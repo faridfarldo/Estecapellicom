@@ -13,6 +13,8 @@ if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
 	define( 'ESTECAPELLI_VERSION', '1.0' );
 }
 
+require get_template_directory() . '/inc/template-tags.php';
+
 if ( ! function_exists( 'estecapelli_setup' ) ) {
 	function estecapelli_setup() {
 		load_theme_textdomain( 'estecapelli', get_template_directory() . '/languages' );
@@ -51,9 +53,16 @@ add_action( 'after_setup_theme', 'estecapelli_setup' );
 
 function estecapelli_enqueue_assets() {
 	wp_enqueue_style(
+		'estecapelli-fonts',
+		'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
+		array(),
+		null
+	);
+
+	wp_enqueue_style(
 		'estecapelli-style',
 		get_stylesheet_uri(),
-		array(),
+		array( 'estecapelli-fonts' ),
 		ESTECAPELLI_VERSION
 	);
 
