@@ -1,0 +1,69 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.sublime-project
+.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+error_log
+debug.log
+
+# Node / build artifacts (for future Phase 10 build tooling)
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+*.map
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# WordPress-specific (in case theme is ever inside a full WP install)
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# Translation compiled files (keep .po, ignore .mo binaries)
+languages/*.mo
+
+# Compiled CSS/JS sourcemaps
+assets/css/*.min.css.map
+assets/js/*.min.js.map
+
+# Backup files
+*.bak
+*.orig
+*.tmp
+
+# Mac
+.AppleDouble
+.LSOverride
+Icon
+
+# Claude Code local settings (keep project memory in its own location, not in repo)
+.claude/
