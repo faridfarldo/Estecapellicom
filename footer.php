@@ -7,36 +7,110 @@
 ?>
 </main><!-- /#main -->
 
+<aside class="cta-band" aria-label="<?php esc_attr_e( 'Book a consultation', 'estecapelli' ); ?>">
+	<div class="container cta-band__inner">
+		<div class="cta-band__text">
+			<h2 class="cta-band__title"><?php esc_html_e( 'Ready to start your transformation?', 'estecapelli' ); ?></h2>
+			<p class="cta-band__sub"><?php esc_html_e( 'Speak with our medical team — free, no obligation.', 'estecapelli' ); ?></p>
+		</div>
+		<div class="cta-band__actions">
+			<a class="btn btn--accent" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
+				<?php esc_html_e( 'Get a Free Consultation', 'estecapelli' ); ?>
+				<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
+			</a>
+			<a class="btn btn--ghost-light" href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener">
+				<?php estecapelli_icon( 'whatsapp', array( 'width' => 18, 'height' => 18 ) ); ?>
+				<?php esc_html_e( 'Chat on WhatsApp', 'estecapelli' ); ?>
+			</a>
+		</div>
+	</div>
+</aside>
+
 <footer class="site-footer" role="contentinfo">
 	<div class="container">
 
 		<div class="site-footer__top">
-			<div class="site-footer__brand">
-				<?php estecapelli_brand_mark( 'footer' ); ?>
+			<div class="site-footer__brand-block">
+				<div class="site-footer__brand">
+					<?php estecapelli_brand_mark( 'footer' ); ?>
+				</div>
+				<p class="site-footer__tagline">
+					<?php esc_html_e( 'World-class hair transplant, plastic surgery, and dental care in Türkiye. Trusted by 15,000+ patients across 40+ countries.', 'estecapelli' ); ?>
+				</p>
+				<div class="site-footer__trust">
+					<span class="site-footer__trust-item"><strong>15+</strong> <?php esc_html_e( 'Years', 'estecapelli' ); ?></span>
+					<span class="site-footer__trust-item"><strong>15,000+</strong> <?php esc_html_e( 'Patients', 'estecapelli' ); ?></span>
+					<span class="site-footer__trust-item"><strong>40+</strong> <?php esc_html_e( 'Countries', 'estecapelli' ); ?></span>
+					<span class="site-footer__trust-item"><strong>24/7</strong> <?php esc_html_e( 'Support', 'estecapelli' ); ?></span>
+				</div>
 			</div>
-			<p class="site-footer__tagline">
-				<?php esc_html_e( 'World-class hair transplant, plastic surgery, and dental care in Türkiye. Trusted by 15,000+ patients across 40+ countries.', 'estecapelli' ); ?>
-			</p>
+
+			<?php
+			$has_footer_widgets = is_active_sidebar( 'footer-1' )
+				|| is_active_sidebar( 'footer-2' )
+				|| is_active_sidebar( 'footer-3' )
+				|| is_active_sidebar( 'footer-4' );
+			?>
+
+			<?php if ( $has_footer_widgets ) : ?>
+				<div class="site-footer__widgets">
+					<?php for ( $i = 1; $i <= 4; $i++ ) : ?>
+						<?php if ( is_active_sidebar( "footer-{$i}" ) ) : ?>
+							<div class="site-footer__col">
+								<?php dynamic_sidebar( "footer-{$i}" ); ?>
+							</div>
+						<?php endif; ?>
+					<?php endfor; ?>
+				</div>
+			<?php else : ?>
+				<div class="site-footer__widgets">
+					<div class="site-footer__col">
+						<h3 class="widget__title"><?php esc_html_e( 'Treatments', 'estecapelli' ); ?></h3>
+						<ul>
+							<li><a href="<?php echo esc_url( home_url( '/hair-transplant/' ) ); ?>"><?php esc_html_e( 'Hair Transplant', 'estecapelli' ); ?></a></li>
+							<li><a href="<?php echo esc_url( home_url( '/plastic-surgery/' ) ); ?>"><?php esc_html_e( 'Plastic Surgery', 'estecapelli' ); ?></a></li>
+							<li><a href="<?php echo esc_url( home_url( '/dental-treatment/' ) ); ?>"><?php esc_html_e( 'Dental Treatment', 'estecapelli' ); ?></a></li>
+							<li><a href="<?php echo esc_url( home_url( '/exosome-treatment/' ) ); ?>"><?php esc_html_e( 'Exosome Treatment', 'estecapelli' ); ?></a></li>
+						</ul>
+					</div>
+					<div class="site-footer__col">
+						<h3 class="widget__title"><?php esc_html_e( 'Company', 'estecapelli' ); ?></h3>
+						<ul>
+							<li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About Us', 'estecapelli' ); ?></a></li>
+							<li><a href="<?php echo esc_url( home_url( '/doctors/' ) ); ?>"><?php esc_html_e( 'Our Doctors', 'estecapelli' ); ?></a></li>
+							<li><a href="<?php echo esc_url( home_url( '/before-after/' ) ); ?>"><?php esc_html_e( 'Before &amp; After', 'estecapelli' ); ?></a></li>
+							<li><a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"><?php esc_html_e( 'Blog', 'estecapelli' ); ?></a></li>
+						</ul>
+					</div>
+					<div class="site-footer__col">
+						<h3 class="widget__title"><?php esc_html_e( 'Contact', 'estecapelli' ); ?></h3>
+						<ul>
+							<li>
+								<a href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener">
+									<?php estecapelli_icon( 'whatsapp', array( 'width' => 16, 'height' => 16 ) ); ?>
+									WhatsApp
+								</a>
+							</li>
+							<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact Form', 'estecapelli' ); ?></a></li>
+							<li><?php esc_html_e( 'Istanbul, Türkiye', 'estecapelli' ); ?></li>
+						</ul>
+					</div>
+					<div class="site-footer__col">
+						<h3 class="widget__title"><?php esc_html_e( 'Languages', 'estecapelli' ); ?></h3>
+						<ul class="site-footer__langs">
+							<?php
+							$footer_langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'DE' => 'Deutsch', 'ES' => 'Español', 'FR' => 'Français', 'IT' => 'Italiano', 'PT' => 'Português', 'PL' => 'Polski', 'AR' => 'العربية' );
+							foreach ( $footer_langs as $code => $name ) :
+								?>
+								<li><a href="#" data-lang="<?php echo esc_attr( strtolower( $code ) ); ?>"><span class="site-footer__lang-code"><?php echo esc_html( $code ); ?></span> <?php echo esc_html( $name ); ?></a></li>
+								<?php
+							endforeach;
+							?>
+						</ul>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
-
-		<?php
-		$has_footer_widgets = is_active_sidebar( 'footer-1' )
-			|| is_active_sidebar( 'footer-2' )
-			|| is_active_sidebar( 'footer-3' )
-			|| is_active_sidebar( 'footer-4' );
-		?>
-
-		<?php if ( $has_footer_widgets ) : ?>
-			<div class="site-footer__widgets">
-				<?php for ( $i = 1; $i <= 4; $i++ ) : ?>
-					<?php if ( is_active_sidebar( "footer-{$i}" ) ) : ?>
-						<div class="site-footer__col">
-							<?php dynamic_sidebar( "footer-{$i}" ); ?>
-						</div>
-					<?php endif; ?>
-				<?php endfor; ?>
-			</div>
-		<?php endif; ?>
 
 		<div class="site-footer__bottom">
 			<p class="site-footer__copy">

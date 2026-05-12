@@ -13,7 +13,20 @@ if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
 	define( 'ESTECAPELLI_VERSION', '1.0' );
 }
 
+if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {
+	define( 'ESTECAPELLI_WHATSAPP', '905431488888' );
+}
+
+if ( ! defined( 'ESTECAPELLI_PATIENT_COUNT' ) ) {
+	define( 'ESTECAPELLI_PATIENT_COUNT', '15,000' );
+}
+
+if ( ! defined( 'ESTECAPELLI_COUNTRY_COUNT' ) ) {
+	define( 'ESTECAPELLI_COUNTRY_COUNT', '40' );
+}
+
 require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/class-estecapelli-walker-nav-menu.php';
 
 if ( ! function_exists( 'estecapelli_setup' ) ) {
 	function estecapelli_setup() {
