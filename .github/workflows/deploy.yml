@@ -1,0 +1,58 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Trigger cPanel Git pull
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Call cPanel UAPI VersionControl::update
+        env:
+          CPANEL_HOST:      ${{ secrets.CPANEL_HOST }}
+          CPANEL_USERNAME:  ${{ secrets.CPANEL_USERNAME }}
+          CPANEL_TOKEN:     ${{ secrets.CPANEL_TOKEN }}
+          CPANEL_REPO_ROOT: ${{ secrets.CPANEL_REPO_ROOT }}
+        run: |
+          set -euo pipefail
+
+          for var in CPANEL_HOST CPANEL_USERNAME CPANEL_TOKEN CPANEL_REPO_ROOT; do
+            if [ -z "${!var:-}" ]; then
+              echo "::error::Missing required secret: $var"
+              exit 1
+            fi
+          done
+
+          encoded_path=$(printf '%s' "$CPANEL_REPO_ROOT" | jq -sRr @uri)
+
+          response_file=$(mktemp)
+          http_code=$(curl --silent --show-error \
+            --max-time 60 \
+            --output "$response_file" \
+            --write-out "%{http_code}" \
+            -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_TOKEN}" \
+            "https://${CPANEL_HOST}/execute/VersionControl/update?repository_root=${encoded_path}")
+
+          echo "HTTP $http_code"
+          echo "--- cPanel response ---"
+          cat "$response_file"
+          echo
+          echo "-----------------------"
+
+          if [ "$http_code" != "200" ]; then
+            echo "::error::cPanel API returned HTTP $http_code"
+            exit 1
+          fi
+
+          if ! jq -e '.status == 1' "$response_file" > /dev/null 2>&1; then
+            echo "::error::cPanel API reported status != 1 (deploy failed)"
+            jq '.errors // .messages // .' "$response_file" || true
+            exit 1
+          fi
+
+          echo "::notice::cPanel pulled latest commit successfully"
