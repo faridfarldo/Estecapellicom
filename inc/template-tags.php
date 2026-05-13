@@ -168,6 +168,9 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'description' => __( 'At Estecapelli we offer patented Exosome FUE hair transplantation — an advanced treatment designed to support the regeneration and vitality of hair follicles.', 'estecapelli' ),
 					'cta_label'   => __( 'Hair Transplant Contact', 'estecapelli' ),
 					'cta_url'     => home_url( '/contact/?service=hair-transplant' ),
+					'video'       => 'mega/hair.mp4',
+					'image'       => 'mega/hair.jpg',
+					'caption'     => __( 'Enriched by Estecapelli\'s expert staff', 'estecapelli' ),
 				),
 			),
 
@@ -194,6 +197,8 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'description' => __( 'Board-certified plastic surgeons. Personalized plans, premium hospitals, and recovery support every step of the way.', 'estecapelli' ),
 					'cta_label'   => __( 'Plastic Surgery Contact', 'estecapelli' ),
 					'cta_url'     => home_url( '/contact/?service=plastic-surgery' ),
+					'video'       => 'mega/plastic.mp4',
+					'image'       => 'mega/plastic.jpg',
 				),
 			),
 
@@ -214,6 +219,8 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'description' => __( 'World-class dental care in Istanbul — same-day implants, veneers, and smile design with personalized planning.', 'estecapelli' ),
 					'cta_label'   => __( 'Dental Contact', 'estecapelli' ),
 					'cta_url'     => home_url( '/contact/?service=dental' ),
+					'video'       => 'mega/dental.mp4',
+					'image'       => 'mega/dental.jpg',
 				),
 			),
 
@@ -234,6 +241,8 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'description' => __( "From your first message to your follow-up months later — Estecapelli's team is with you across 40+ countries.", 'estecapelli' ),
 					'cta_label'   => __( 'Speak with our team', 'estecapelli' ),
 					'cta_url'     => home_url( '/contact/' ),
+					'video'       => 'mega/about.mp4',
+					'image'       => 'mega/about.jpg',
 				),
 			),
 		);
@@ -275,8 +284,35 @@ if ( ! function_exists( 'estecapelli_render_megamenu' ) ) {
 				</div>
 
 				<?php if ( ! empty( $data['feature'] ) ) : $f = $data['feature']; ?>
+					<?php
+					$base_dir = get_template_directory() . '/assets/images/';
+					$base_uri = get_template_directory_uri() . '/assets/images/';
+
+					$video_url = '';
+					if ( ! empty( $f['video'] ) && file_exists( $base_dir . $f['video'] ) ) {
+						$video_url = $base_uri . $f['video'];
+					}
+
+					$image_url = '';
+					if ( ! empty( $f['image'] ) && file_exists( $base_dir . $f['image'] ) ) {
+						$image_url = $base_uri . $f['image'];
+					}
+
+					$has_media = ( $video_url || $image_url );
+					?>
 					<div class="megamenu__feature">
-						<div class="megamenu__feature-art" aria-hidden="true"></div>
+						<div class="megamenu__feature-art <?php echo $has_media ? 'megamenu__feature-art--has-media' : ''; ?>" aria-hidden="true">
+							<?php if ( $video_url ) : ?>
+								<video class="megamenu__feature-media" autoplay muted loop playsinline preload="metadata"<?php echo $image_url ? ' poster="' . esc_url( $image_url ) . '"' : ''; ?>>
+									<source src="<?php echo esc_url( $video_url ); ?>" type="video/mp4" />
+								</video>
+							<?php elseif ( $image_url ) : ?>
+								<img class="megamenu__feature-media" src="<?php echo esc_url( $image_url ); ?>" alt="" loading="lazy" />
+							<?php endif; ?>
+							<?php if ( $has_media && ! empty( $f['caption'] ) ) : ?>
+								<span class="megamenu__feature-caption"><?php echo esc_html( $f['caption'] ); ?></span>
+							<?php endif; ?>
+						</div>
 						<?php if ( ! empty( $f['eyebrow'] ) ) : ?>
 							<span class="megamenu__feature-eyebrow"><?php echo esc_html( $f['eyebrow'] ); ?></span>
 						<?php endif; ?>
