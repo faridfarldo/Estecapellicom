@@ -28,6 +28,15 @@ jobs:
             fi
           done
 
+          # Strip CR/LF + leading/trailing whitespace — paste-from-clipboard artefacts
+          # often leave a trailing newline in GitHub secrets which then breaks the API
+          # (cPanel rejects ".../estecapelli\n" as "not a valid repository_root").
+          strip_ws() { printf '%s' "$1" | tr -d '\r\n' | sed -E 's:^[[:space:]]+|[[:space:]]+$::g'; }
+          CPANEL_HOST=$(strip_ws "$CPANEL_HOST")
+          CPANEL_USERNAME=$(strip_ws "$CPANEL_USERNAME")
+          CPANEL_TOKEN=$(strip_ws "$CPANEL_TOKEN")
+          CPANEL_REPO_ROOT=$(strip_ws "$CPANEL_REPO_ROOT")
+
           encoded_path=$(printf '%s' "$CPANEL_REPO_ROOT" | jq -sRr @uri)
           auth_header="Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_TOKEN}"
 
