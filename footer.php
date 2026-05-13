@@ -36,8 +36,8 @@ $badges     = estecapelli_footer_badges();
 
 		<div class="site-footer__grid">
 
-			<!-- Column 1: Location + Contact + Social -->
-			<div class="site-footer__col">
+			<!-- Column 1: Visit Us — location, contact, social, licences -->
+			<div class="site-footer__col site-footer__col--visit">
 				<h3 class="site-footer__heading"><?php echo esc_html( $contact['heading'] ); ?></h3>
 				<ul class="site-footer__contact">
 					<?php if ( ! empty( $contact['address'] ) ) : ?>
@@ -70,6 +70,17 @@ $badges     = estecapelli_footer_badges();
 							</li>
 						<?php endforeach; ?>
 					</ul>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $badges ) ) : ?>
+					<div class="site-footer__licences">
+						<h4 class="site-footer__sub-heading"><?php esc_html_e( 'Our Licences', 'estecapelli' ); ?></h4>
+						<div class="site-footer__licences-grid">
+							<?php foreach ( $badges as $b ) : ?>
+								<img class="site-footer__licence" src="<?php echo esc_url( $b['src'] ); ?>" alt="<?php echo esc_attr( $b['alt'] ); ?>" loading="lazy" />
+							<?php endforeach; ?>
+						</div>
+					</div>
 				<?php endif; ?>
 			</div>
 
@@ -133,14 +144,6 @@ $badges     = estecapelli_footer_badges();
 				</form>
 			</div>
 		</div>
-
-		<?php if ( ! empty( $badges ) ) : ?>
-			<div class="site-footer__badges" aria-label="<?php esc_attr_e( 'Certifications and accreditations', 'estecapelli' ); ?>">
-				<?php foreach ( $badges as $b ) : ?>
-					<img class="site-footer__badge" src="<?php echo esc_url( $b['src'] ); ?>" alt="<?php echo esc_attr( $b['alt'] ); ?>" loading="lazy" />
-				<?php endforeach; ?>
-			</div>
-		<?php endif; ?>
 
 		<div class="site-footer__bottom">
 			<p class="site-footer__copy">

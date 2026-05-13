@@ -855,10 +855,10 @@
 	}
 	.site-footer a:hover { color: white; }
 
-	/* 4-column footer grid */
+	/* 4-column footer grid — Visit Us slightly wider to fit licences below */
 	.site-footer__grid {
 		display: grid;
-		grid-template-columns: 1.1fr 1fr 0.9fr 1.3fr;
+		grid-template-columns: 1.4fr 0.95fr 0.9fr 1.2fr;
 		gap: 2.5rem;
 		padding-bottom: 3rem;
 		border-bottom: 1px solid oklch(50% 0.05 260 / 0.25);
@@ -1011,30 +1011,43 @@
 		width: 100%;
 	}
 
-	/* Certification badges strip */
-	.site-footer__badges {
+	/* Our Licences (inside Visit Us column) */
+	.site-footer__licences {
+		margin-top: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+	.site-footer__sub-heading {
+		font-size: 0.6875rem;
+		font-weight: 700;
+		color: oklch(72% 0.05 260);
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		margin: 0;
+	}
+	.site-footer__licences-grid {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		justify-content: center;
-		gap: 1.5rem 2rem;
-		padding-block: 2rem;
-		border-bottom: 1px solid oklch(50% 0.05 260 / 0.25);
+		gap: 0.75rem;
 	}
-	.site-footer__badge {
-		height: 64px;
+	.site-footer__licence {
+		height: 44px;
 		width: auto;
+		max-width: 110px;
 		object-fit: contain;
-		opacity: 0.95;
-		transition: opacity 200ms, transform 200ms;
+		background: oklch(100% 0 0 / 0.06);
+		border: 1px solid oklch(50% 0.05 260 / 0.25);
+		border-radius: 6px;
+		padding: 6px 8px;
+		opacity: 0.9;
+		transition: opacity 200ms, transform 200ms, background 200ms;
 	}
-	.site-footer__badge:hover {
+	.site-footer__licence:hover {
 		opacity: 1;
+		background: oklch(100% 0 0 / 0.12);
 		transform: scale(1.05);
-	}
-	@media (max-width: 540px) {
-		.site-footer__badge { height: 52px; }
-		.site-footer__badges { gap: 1rem 1.25rem; padding-block: 1.5rem; }
 	}
 
 	/* Bottom strip: copyright + legal nav */
