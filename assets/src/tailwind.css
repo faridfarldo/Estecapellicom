@@ -339,9 +339,18 @@
 	}
 
 	.brand-link { display: inline-flex; align-items: center; flex-shrink: 0; }
-	.brand-logo { height: 36px; width: auto; display: block; }
+	/* logo.png / logo.webp are square with transparent whitespace around the
+	   mark; use object-fit: cover on a wide rectangle to crop the whitespace
+	   so the visible mark is appropriately sized in the slim navbar. */
+	.brand-logo {
+		width: 170px;
+		height: 48px;
+		object-fit: cover;
+		object-position: center;
+		display: block;
+	}
 	@media (max-width: 540px) {
-		.brand-logo { height: 30px; }
+		.brand-logo { width: 130px; height: 38px; }
 	}
 	.brand-wordmark {
 		font-weight: 700;
@@ -863,8 +872,10 @@
 		gap: 1rem;
 	}
 	.site-footer__logo {
-		height: 64px;
-		width: auto;
+		width: 210px;
+		height: 60px;
+		object-fit: cover;
+		object-position: center;
 		display: block;
 	}
 	.site-footer__wordmark {
