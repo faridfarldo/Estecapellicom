@@ -57,14 +57,14 @@ if ( ! function_exists( 'estecapelli_trustpilot_badge' ) ) {
 	 */
 	function estecapelli_trustpilot_badge() {
 		?>
-		<span class="trustpilot-badge" aria-label="<?php esc_attr_e( 'Trustpilot rating: 5 out of 5, Excellent', 'estecapelli' ); ?>">
-			<span class="trustpilot-badge__label"><?php esc_html_e( 'Excellent', 'estecapelli' ); ?></span>
-			<span class="trustpilot-badge__stars" aria-hidden="true">
+		<span class="trustpilot" aria-label="<?php esc_attr_e( 'Trustpilot rating: 5 out of 5, Excellent', 'estecapelli' ); ?>">
+			<span class="trustpilot__label"><?php esc_html_e( 'Excellent', 'estecapelli' ); ?></span>
+			<span class="trustpilot__stars" aria-hidden="true">
 				<?php for ( $i = 0; $i < 5; $i++ ) : ?>
-					<?php estecapelli_icon( 'star', array( 'width' => 14, 'height' => 14, 'class' => 'trustpilot-badge__star' ) ); ?>
+					<?php estecapelli_icon( 'star', array( 'width' => 14, 'height' => 14, 'class' => 'trustpilot__star' ) ); ?>
 				<?php endfor; ?>
 			</span>
-			<span class="trustpilot-badge__name">Trustpilot</span>
+			<span class="trustpilot__name">Trustpilot</span>
 		</span>
 		<?php
 	}
@@ -84,42 +84,262 @@ if ( ! function_exists( 'estecapelli_whatsapp_url' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
+	/**
+	 * Hardcoded mega-menu data keyed by parent slug.
+	 * Returns null when the key has no mega data (item renders as a simple link).
+	 *
+	 * Each mega-menu has:
+	 *   - columns: an array of columns, each column is an array of items
+	 *     each item has: label, url, description, optional badge
+	 *   - feature: right-side promo block with image, title, description, CTA
+	 */
+	function estecapelli_megamenu_data( $key ) {
+		$menus = array(
+			'hair-transplant' => array(
+				'columns' => array(
+					array(
+						array(
+							'label'       => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),
+							'url'         => home_url( '/treatments/exosome-fue-hair-transplant/' ),
+							'description' => __( 'Supported by cell-regenerating exosomes, it keeps hair follicles alive for longer-lasting density.', 'estecapelli' ),
+							'badge'       => __( 'POPULAR', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'Female Hair Transplant', 'estecapelli' ),
+							'url'         => home_url( '/treatments/female-hair-transplant/' ),
+							'description' => __( 'Special for women, dense and natural-looking hair transplant without shaving.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'Hair Mesotherapy', 'estecapelli' ),
+							'url'         => home_url( '/treatments/hair-mesotherapy/' ),
+							'description' => __( 'A vitamin and mineral injection treatment that revitalizes hair follicles.', 'estecapelli' ),
+						),
+					),
+					array(
+						array(
+							'label'       => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ),
+							'url'         => home_url( '/treatments/sapphire-fue-hair-transplant/' ),
+							'description' => __( 'A natural and permanent hair transplant technique where follicles are placed via sapphire blades.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'TrichoLab', 'estecapelli' ),
+							'url'         => home_url( '/treatments/tricholab/' ),
+							'description' => __( 'Advanced AI-powered hair analysis system that examines the hair and scalp in detail.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'Beard Transplant', 'estecapelli' ),
+							'url'         => home_url( '/treatments/beard-transplant/' ),
+							'description' => __( 'Natural beard and mustache transplantation for sparse or non-existing growth.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'Post-Hair Transplant Period', 'estecapelli' ),
+							'url'         => home_url( '/treatments/post-hair-transplant-period/' ),
+							'description' => __( 'The post-harvest recovery and hair care period.', 'estecapelli' ),
+						),
+					),
+					array(
+						array(
+							'label'       => __( 'DHI Hair Transplant', 'estecapelli' ),
+							'url'         => home_url( '/treatments/dhi-hair-transplant/' ),
+							'description' => __( 'A modern hair transplantation method performed with a Choi pen that allows precise placement.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'VITA Treatment', 'estecapelli' ),
+							'url'         => home_url( '/treatments/vita/' ),
+							'description' => __( "Estecapelli's signature method that revitalizes the scalp and strengthens hair.", 'estecapelli' ),
+							'badge'       => __( 'POPULAR', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'Eyebrow Transplant', 'estecapelli' ),
+							'url'         => home_url( '/treatments/eyebrow-transplant/' ),
+							'description' => __( 'Eyebrow transplantation that gives a naturally curved and full eyebrow shape.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'Pre-Hair Transplant Period', 'estecapelli' ),
+							'url'         => home_url( '/treatments/pre-hair-transplant-period/' ),
+							'description' => __( 'The preparation and analysis process before hair transplantation.', 'estecapelli' ),
+						),
+					),
+				),
+				'feature' => array(
+					'eyebrow'     => __( 'PATENTED METHOD', 'estecapelli' ),
+					'title'       => __( 'Premium Hair Transplant Consultation', 'estecapelli' ),
+					'description' => __( 'At Estecapelli we offer patented Exosome FUE hair transplantation — an advanced treatment designed to support the regeneration and vitality of hair follicles.', 'estecapelli' ),
+					'cta_label'   => __( 'Hair Transplant Contact', 'estecapelli' ),
+					'cta_url'     => home_url( '/contact/?service=hair-transplant' ),
+				),
+			),
+
+			'plastic-surgery' => array(
+				'columns' => array(
+					array(
+						array( 'label' => __( 'Rhinoplasty', 'estecapelli' ),     'url' => home_url( '/treatments/rhinoplasty/' ),     'description' => __( 'Nose reshaping surgery that refines proportions and function.', 'estecapelli' ) ),
+						array( 'label' => __( 'Tipplasty', 'estecapelli' ),       'url' => home_url( '/treatments/tipplasty/' ),       'description' => __( 'Targeted refinement of the nasal tip only.', 'estecapelli' ) ),
+						array( 'label' => __( 'Facelift', 'estecapelli' ),        'url' => home_url( '/treatments/facelift/' ),        'description' => __( 'Restores facial contour and reduces visible signs of aging.', 'estecapelli' ) ),
+					),
+					array(
+						array( 'label' => __( 'BBL (Brazilian Butt Lift)', 'estecapelli' ), 'url' => home_url( '/treatments/bbl/' ),         'description' => __( 'Natural body contouring with fat transfer to the buttocks.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'Liposuction', 'estecapelli' ),     'url' => home_url( '/treatments/liposuction/' ),     'description' => __( 'Removes localized fat deposits to reshape the body.', 'estecapelli' ) ),
+						array( 'label' => __( 'Tummy Tuck', 'estecapelli' ),      'url' => home_url( '/treatments/tummy-tuck/' ),      'description' => __( 'Flattens and tightens the abdomen for a smoother profile.', 'estecapelli' ) ),
+					),
+					array(
+						array( 'label' => __( 'Breast Aesthetics', 'estecapelli' ),'url' => home_url( '/treatments/breast-aesthetics/' ), 'description' => __( 'Augmentation, lift, and reduction tailored to your goals.', 'estecapelli' ) ),
+						array( 'label' => __( 'Gynecomastia', 'estecapelli' ),    'url' => home_url( '/treatments/gynecomastia/' ),    'description' => __( 'Surgical treatment of enlarged male breast tissue.', 'estecapelli' ) ),
+					),
+				),
+				'feature' => array(
+					'eyebrow'     => __( 'AESTHETIC EXCELLENCE', 'estecapelli' ),
+					'title'       => __( 'Aesthetic Surgery Consultation', 'estecapelli' ),
+					'description' => __( 'Board-certified plastic surgeons. Personalized plans, premium hospitals, and recovery support every step of the way.', 'estecapelli' ),
+					'cta_label'   => __( 'Plastic Surgery Contact', 'estecapelli' ),
+					'cta_url'     => home_url( '/contact/?service=plastic-surgery' ),
+				),
+			),
+
+			'dental-treatment' => array(
+				'columns' => array(
+					array(
+						array( 'label' => __( 'Dental Implants', 'estecapelli' ), 'url' => home_url( '/treatments/dental-implants/' ), 'description' => __( 'Permanent replacement for missing teeth with titanium roots.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'Smile Design', 'estecapelli' ),    'url' => home_url( '/treatments/smile-design/' ),    'description' => __( 'A bespoke makeover that reshapes your smile aesthetic.', 'estecapelli' ) ),
+					),
+					array(
+						array( 'label' => __( 'Veneers', 'estecapelli' ),         'url' => home_url( '/treatments/veneers/' ),         'description' => __( 'Thin porcelain or composite shells for a flawless front-of-tooth finish.', 'estecapelli' ) ),
+						array( 'label' => __( 'Teeth Whitening', 'estecapelli' ), 'url' => home_url( '/treatments/teeth-whitening/' ), 'description' => __( 'Professional bleaching for noticeably brighter teeth.', 'estecapelli' ) ),
+					),
+				),
+				'feature' => array(
+					'eyebrow'     => __( 'FULL-MOUTH PLANS', 'estecapelli' ),
+					'title'       => __( 'Dental Treatment Consultation', 'estecapelli' ),
+					'description' => __( 'World-class dental care in Istanbul — same-day implants, veneers, and smile design with personalized planning.', 'estecapelli' ),
+					'cta_label'   => __( 'Dental Contact', 'estecapelli' ),
+					'cta_url'     => home_url( '/contact/?service=dental' ),
+				),
+			),
+
+			'about-us' => array(
+				'columns' => array(
+					array(
+						array( 'label' => __( 'About Estecapelli', 'estecapelli' ),'url' => home_url( '/about/' ),         'description' => __( 'Who we are and what drives our clinic forward.', 'estecapelli' ) ),
+						array( 'label' => __( 'Our Doctors', 'estecapelli' ),     'url' => home_url( '/doctors/' ),       'description' => __( 'Meet the surgeons leading every procedure.', 'estecapelli' ) ),
+					),
+					array(
+						array( 'label' => __( 'Our Team', 'estecapelli' ),        'url' => home_url( '/team/' ),          'description' => __( 'The full medical and patient-care team behind your treatment.', 'estecapelli' ) ),
+						array( 'label' => __( 'Hospital & Facilities', 'estecapelli' ), 'url' => home_url( '/hospital/' ), 'description' => __( 'High-end accredited hospitals in central Istanbul.', 'estecapelli' ) ),
+					),
+				),
+				'feature' => array(
+					'eyebrow'     => __( '15+ YEARS OF EXPERIENCE', 'estecapelli' ),
+					'title'       => __( 'Trusted by 15,000+ Patients', 'estecapelli' ),
+					'description' => __( "From your first message to your follow-up months later — Estecapelli's team is with you across 40+ countries.", 'estecapelli' ),
+					'cta_label'   => __( 'Speak with our team', 'estecapelli' ),
+					'cta_url'     => home_url( '/contact/' ),
+				),
+			),
+		);
+
+		return $menus[ $key ] ?? null;
+	}
+}
+
+if ( ! function_exists( 'estecapelli_render_megamenu' ) ) {
+	/**
+	 * Render the mega-menu HTML for a given parent key.
+	 */
+	function estecapelli_render_megamenu( $key ) {
+		$data = estecapelli_megamenu_data( $key );
+		if ( ! $data ) {
+			return;
+		}
+		?>
+		<div class="megamenu" role="menu" aria-label="<?php echo esc_attr( $key ); ?>">
+			<div class="megamenu__inner">
+				<div class="megamenu__cols">
+					<?php foreach ( $data['columns'] as $col ) : ?>
+						<div class="megamenu__col">
+							<?php foreach ( $col as $item ) : ?>
+								<a class="megamenu__item" href="<?php echo esc_url( $item['url'] ); ?>" role="menuitem">
+									<span class="megamenu__item-head">
+										<span class="megamenu__item-label"><?php echo esc_html( $item['label'] ); ?></span>
+										<?php if ( ! empty( $item['badge'] ) ) : ?>
+											<span class="megamenu__item-badge"><?php echo esc_html( $item['badge'] ); ?></span>
+										<?php endif; ?>
+									</span>
+									<?php if ( ! empty( $item['description'] ) ) : ?>
+										<span class="megamenu__item-desc"><?php echo esc_html( $item['description'] ); ?></span>
+									<?php endif; ?>
+								</a>
+							<?php endforeach; ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+
+				<?php if ( ! empty( $data['feature'] ) ) : $f = $data['feature']; ?>
+					<div class="megamenu__feature">
+						<div class="megamenu__feature-art" aria-hidden="true"></div>
+						<?php if ( ! empty( $f['eyebrow'] ) ) : ?>
+							<span class="megamenu__feature-eyebrow"><?php echo esc_html( $f['eyebrow'] ); ?></span>
+						<?php endif; ?>
+						<h3 class="megamenu__feature-title"><?php echo esc_html( $f['title'] ); ?></h3>
+						<p class="megamenu__feature-desc"><?php echo esc_html( $f['description'] ); ?></p>
+						<a class="btn btn-primary btn-sm megamenu__feature-cta" href="<?php echo esc_url( $f['cta_url'] ); ?>">
+							<?php echo esc_html( $f['cta_label'] ); ?>
+							<?php estecapelli_icon( 'arrow-right', array( 'width' => 14, 'height' => 14 ) ); ?>
+						</a>
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 	/**
 	 * Fallback nav shown when no menu is assigned to the "primary" location.
-	 * Mirrors the live site's main nav so the header is presentable before WP-admin setup.
-	 * Items marked with a chevron visually indicate they would have a dropdown
-	 * once WP admin nests child items beneath them.
+	 * Renders top-level items and mega-menus for items keyed in
+	 * estecapelli_megamenu_data().
 	 */
 	function estecapelli_primary_menu_fallback() {
 		$items = array(
-			array( 'label' => __( 'Hair Transplant', 'estecapelli' ),  'url' => home_url( '/hair-transplant/' ),  'dropdown' => true ),
-			array( 'label' => __( 'Plastic Surgery', 'estecapelli' ),  'url' => home_url( '/plastic-surgery/' ),  'dropdown' => true ),
-			array( 'label' => __( 'Dental Treatment', 'estecapelli' ), 'url' => home_url( '/dental-treatment/' ), 'dropdown' => true ),
-			array( 'label' => __( 'Exosome Treatment', 'estecapelli' ),'url' => home_url( '/exosome-treatment/' ),'dropdown' => false, 'badge' => __( 'NEW', 'estecapelli' ) ),
-			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/before-after/' ),     'dropdown' => false ),
-			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/about/' ),            'dropdown' => true ),
-			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/blog/' ),             'dropdown' => false ),
-			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/contact/' ),          'dropdown' => false ),
+			array( 'label' => __( 'Hair Transplant', 'estecapelli' ),  'url' => home_url( '/hair-transplant/' ),  'mega' => 'hair-transplant' ),
+			array( 'label' => __( 'Plastic Surgery', 'estecapelli' ),  'url' => home_url( '/plastic-surgery/' ),  'mega' => 'plastic-surgery' ),
+			array( 'label' => __( 'Dental Treatment', 'estecapelli' ), 'url' => home_url( '/dental-treatment/' ), 'mega' => 'dental-treatment' ),
+			array( 'label' => __( 'Exosome Treatment', 'estecapelli' ),'url' => home_url( '/exosome-treatment/' ),'badge' => __( 'NEW', 'estecapelli' ) ),
+			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/before-after/' ) ),
+			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/about/' ),            'mega' => 'about-us' ),
+			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/blog/' ) ),
+			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/contact/' ) ),
 		);
 
 		echo '<ul class="site-nav__list">';
 		foreach ( $items as $item ) {
+			$has_mega = ! empty( $item['mega'] ) && estecapelli_megamenu_data( $item['mega'] );
+
 			$badge = ! empty( $item['badge'] )
 				? sprintf( '<span class="nav-badge">%s</span>', esc_html( $item['badge'] ) )
 				: '';
 
-			$chevron = ! empty( $item['dropdown'] )
+			$chevron = $has_mega
 				? '<svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4 L6 8 L10 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 				: '';
 
+			$li_class = $has_mega ? ' class="has-megamenu"' : '';
+
 			printf(
-				'<li><a href="%1$s">%2$s%3$s%4$s</a></li>',
+				'<li%1$s><a href="%2$s">%3$s%4$s%5$s</a>',
+				$li_class, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				esc_url( $item['url'] ),
 				esc_html( $item['label'] ),
 				$badge, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				$chevron // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			);
+
+			if ( $has_mega ) {
+				estecapelli_render_megamenu( $item['mega'] );
+			}
+
+			echo '</li>';
 		}
 		echo '</ul>';
 	}
