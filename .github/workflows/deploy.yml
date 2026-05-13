@@ -7,12 +7,12 @@ on:
 
 jobs:
   deploy:
-    name: Trigger cPanel Git pull
+    name: Pull + Deploy on cPanel
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
-      - name: Call cPanel UAPI VersionControl::update
+      - name: Call cPanel UAPI VersionControl::update + VersionControlDeployment::create
         env:
           CPANEL_HOST:      ${{ secrets.CPANEL_HOST }}
           CPANEL_USERNAME:  ${{ secrets.CPANEL_USERNAME }}
@@ -29,30 +29,46 @@ jobs:
           done
 
           encoded_path=$(printf '%s' "$CPANEL_REPO_ROOT" | jq -sRr @uri)
+          auth_header="Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_TOKEN}"
 
-          response_file=$(mktemp)
-          http_code=$(curl --silent --show-error \
-            --max-time 60 \
-            --output "$response_file" \
-            --write-out "%{http_code}" \
-            -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_TOKEN}" \
-            "https://${CPANEL_HOST}/execute/VersionControl/update?repository_root=${encoded_path}")
+          call_api() {
+            local endpoint="$1"
+            local label="$2"
+            local response_file
+            response_file=$(mktemp)
 
-          echo "HTTP $http_code"
-          echo "--- cPanel response ---"
-          cat "$response_file"
-          echo
-          echo "-----------------------"
+            local http_code
+            http_code=$(curl --silent --show-error \
+              --max-time 120 \
+              --output "$response_file" \
+              --write-out "%{http_code}" \
+              -H "$auth_header" \
+              "https://${CPANEL_HOST}/execute/${endpoint}?repository_root=${encoded_path}")
 
-          if [ "$http_code" != "200" ]; then
-            echo "::error::cPanel API returned HTTP $http_code"
-            exit 1
-          fi
+            echo "::group::${label} (HTTP $http_code)"
+            cat "$response_file"
+            echo
+            echo "::endgroup::"
 
-          if ! jq -e '.status == 1' "$response_file" > /dev/null 2>&1; then
-            echo "::error::cPanel API reported status != 1 (deploy failed)"
-            jq '.errors // .messages // .' "$response_file" || true
-            exit 1
-          fi
+            if [ "$http_code" != "200" ]; then
+              echo "::error::${label} returned HTTP $http_code"
+              return 1
+            fi
 
-          echo "::notice::cPanel pulled latest commit successfully"
+            if ! jq -e '.status == 1' "$response_file" > /dev/null 2>&1; then
+              echo "::error::${label} reported status != 1"
+              jq '.errors // .messages // .' "$response_file" || true
+              return 1
+            fi
+
+            return 0
+          }
+
+          call_api "VersionControl/update" "Step 1: VersionControl::update (git fetch + fast-forward)"
+
+          # Brief pause so cPanel can register the fetched commits before deploying
+          sleep 2
+
+          call_api "VersionControlDeployment/create" "Step 2: VersionControlDeployment::create (deploy HEAD)"
+
+          echo "::notice::cPanel pulled + deployed successfully"
