@@ -67,3 +67,7 @@ Icon
 
 # Claude Code local settings (keep project memory in its own location, not in repo)
 .claude/
+
+# Tailwind CLI standalone binary (download yourself, see README)
+tailwindcss.exe
+tailwindcss-*

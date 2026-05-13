@@ -106,11 +106,11 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 		echo '<ul class="site-nav__list">';
 		foreach ( $items as $item ) {
 			$badge = ! empty( $item['badge'] )
-				? sprintf( '<span class="site-nav__badge">%s</span>', esc_html( $item['badge'] ) )
+				? sprintf( '<span class="nav-badge">%s</span>', esc_html( $item['badge'] ) )
 				: '';
 
 			$chevron = ! empty( $item['dropdown'] )
-				? '<svg class="site-nav__chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4 L6 8 L10 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+				? '<svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4 L6 8 L10 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 				: '';
 
 			printf(
@@ -146,12 +146,13 @@ if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 			}
 		}
 
-		$class_prefix = ( 'footer' === $context ) ? 'site-footer' : 'site-header';
+		$img_class  = ( 'footer' === $context ) ? 'site-footer__logo' : 'brand-logo';
+		$text_class = ( 'footer' === $context ) ? 'site-footer__wordmark' : 'brand-wordmark';
 
 		if ( $logo_url ) {
 			printf(
-				'<img class="%1$s__logo" src="%2$s" alt="%3$s" width="240" height="44" />',
-				esc_attr( $class_prefix ),
+				'<img class="%1$s" src="%2$s" alt="%3$s" width="240" height="44" />',
+				esc_attr( $img_class ),
 				esc_url( $logo_url ),
 				esc_attr( get_bloginfo( 'name' ) )
 			);
@@ -159,8 +160,8 @@ if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 		}
 
 		printf(
-			'<span class="%1$s__logo-text"><span>Este</span><span>capelli</span></span>',
-			esc_attr( $class_prefix )
+			'<span class="%1$s"><span>Este</span><span>capelli</span></span>',
+			esc_attr( $text_class )
 		);
 	}
 }

@@ -8,17 +8,17 @@
 </main><!-- /#main -->
 
 <aside class="cta-band" aria-label="<?php esc_attr_e( 'Book a consultation', 'estecapelli' ); ?>">
-	<div class="container cta-band__inner">
-		<div class="cta-band__text">
-			<h2 class="cta-band__title"><?php esc_html_e( 'Ready to start your transformation?', 'estecapelli' ); ?></h2>
-			<p class="cta-band__sub"><?php esc_html_e( 'Speak with our medical team — free, no obligation.', 'estecapelli' ); ?></p>
+	<div class="shell cta-band-inner">
+		<div>
+			<h2><?php esc_html_e( 'Ready to start your transformation?', 'estecapelli' ); ?></h2>
+			<p><?php esc_html_e( 'Speak with our medical team — free, no obligation. Get a personalized plan based on your goals.', 'estecapelli' ); ?></p>
 		</div>
 		<div class="cta-band__actions">
-			<a class="btn btn--accent" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
+			<a class="btn btn-accent btn-lg" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
 				<?php esc_html_e( 'Get a Free Consultation', 'estecapelli' ); ?>
 				<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
 			</a>
-			<a class="btn btn--ghost-light" href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener">
+			<a class="btn btn-ghost-light btn-lg" href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener">
 				<?php estecapelli_icon( 'whatsapp', array( 'width' => 18, 'height' => 18 ) ); ?>
 				<?php esc_html_e( 'Chat on WhatsApp', 'estecapelli' ); ?>
 			</a>
@@ -27,11 +27,11 @@
 </aside>
 
 <footer class="site-footer" role="contentinfo">
-	<div class="container">
+	<div class="shell">
 
 		<div class="site-footer__top">
 			<div class="site-footer__brand-block">
-				<div class="site-footer__brand">
+				<div>
 					<?php estecapelli_brand_mark( 'footer' ); ?>
 				</div>
 				<p class="site-footer__tagline">
@@ -65,7 +65,7 @@
 			<?php else : ?>
 				<div class="site-footer__widgets">
 					<div class="site-footer__col">
-						<h3 class="widget__title"><?php esc_html_e( 'Treatments', 'estecapelli' ); ?></h3>
+						<h3><?php esc_html_e( 'Treatments', 'estecapelli' ); ?></h3>
 						<ul>
 							<li><a href="<?php echo esc_url( home_url( '/hair-transplant/' ) ); ?>"><?php esc_html_e( 'Hair Transplant', 'estecapelli' ); ?></a></li>
 							<li><a href="<?php echo esc_url( home_url( '/plastic-surgery/' ) ); ?>"><?php esc_html_e( 'Plastic Surgery', 'estecapelli' ); ?></a></li>
@@ -74,7 +74,7 @@
 						</ul>
 					</div>
 					<div class="site-footer__col">
-						<h3 class="widget__title"><?php esc_html_e( 'Company', 'estecapelli' ); ?></h3>
+						<h3><?php esc_html_e( 'Company', 'estecapelli' ); ?></h3>
 						<ul>
 							<li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About Us', 'estecapelli' ); ?></a></li>
 							<li><a href="<?php echo esc_url( home_url( '/doctors/' ) ); ?>"><?php esc_html_e( 'Our Doctors', 'estecapelli' ); ?></a></li>
@@ -83,7 +83,7 @@
 						</ul>
 					</div>
 					<div class="site-footer__col">
-						<h3 class="widget__title"><?php esc_html_e( 'Contact', 'estecapelli' ); ?></h3>
+						<h3><?php esc_html_e( 'Contact', 'estecapelli' ); ?></h3>
 						<ul>
 							<li>
 								<a href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener">
@@ -96,7 +96,7 @@
 						</ul>
 					</div>
 					<div class="site-footer__col">
-						<h3 class="widget__title"><?php esc_html_e( 'Languages', 'estecapelli' ); ?></h3>
+						<h3><?php esc_html_e( 'Languages', 'estecapelli' ); ?></h3>
 						<ul class="site-footer__langs">
 							<?php
 							$footer_langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'DE' => 'Deutsch', 'ES' => 'Español', 'FR' => 'Français', 'IT' => 'Italiano', 'PT' => 'Português', 'PL' => 'Polski', 'AR' => 'العربية' );
@@ -113,10 +113,10 @@
 		</div>
 
 		<div class="site-footer__bottom">
-			<p class="site-footer__copy">
+			<p>
 				&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>. <?php esc_html_e( 'All rights reserved.', 'estecapelli' ); ?>
 			</p>
-			<nav class="site-footer__legal" aria-label="<?php esc_attr_e( 'Footer legal', 'estecapelli' ); ?>">
+			<nav aria-label="<?php esc_attr_e( 'Footer legal', 'estecapelli' ); ?>">
 				<?php
 				if ( has_nav_menu( 'footer' ) ) {
 					wp_nav_menu(
