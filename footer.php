@@ -4,6 +4,11 @@
  *
  * @package Estecapelli
  */
+
+$contact    = estecapelli_footer_contact();
+$treatments = estecapelli_footer_treatments();
+$sitemap    = estecapelli_footer_sitemap();
+$badges     = estecapelli_footer_badges();
 ?>
 </main><!-- /#main -->
 
@@ -29,94 +34,119 @@
 <footer class="site-footer" role="contentinfo">
 	<div class="shell">
 
-		<div class="site-footer__top">
-			<div class="site-footer__brand-block">
-				<div>
-					<?php estecapelli_brand_mark( 'footer' ); ?>
-				</div>
-				<p class="site-footer__tagline">
-					<?php esc_html_e( 'World-class hair transplant, plastic surgery, and dental care in Türkiye. Trusted by 15,000+ patients across 40+ countries.', 'estecapelli' ); ?>
-				</p>
-				<div class="site-footer__trust">
-					<span class="site-footer__trust-item"><strong>15+</strong> <?php esc_html_e( 'Years', 'estecapelli' ); ?></span>
-					<span class="site-footer__trust-item"><strong>15,000+</strong> <?php esc_html_e( 'Patients', 'estecapelli' ); ?></span>
-					<span class="site-footer__trust-item"><strong>40+</strong> <?php esc_html_e( 'Countries', 'estecapelli' ); ?></span>
-					<span class="site-footer__trust-item"><strong>24/7</strong> <?php esc_html_e( 'Support', 'estecapelli' ); ?></span>
-				</div>
-			</div>
+		<div class="site-footer__grid">
 
-			<?php
-			$has_footer_widgets = is_active_sidebar( 'footer-1' )
-				|| is_active_sidebar( 'footer-2' )
-				|| is_active_sidebar( 'footer-3' )
-				|| is_active_sidebar( 'footer-4' );
-			?>
+			<!-- Column 1: Location + Contact + Social -->
+			<div class="site-footer__col">
+				<h3 class="site-footer__heading"><?php echo esc_html( $contact['heading'] ); ?></h3>
+				<ul class="site-footer__contact">
+					<?php if ( ! empty( $contact['address'] ) ) : ?>
+						<li>
+							<?php estecapelli_icon( 'map-pin', array( 'width' => 16, 'height' => 16, 'class' => 'site-footer__contact-icon' ) ); ?>
+							<span><?php echo esc_html( $contact['address'] ); ?></span>
+						</li>
+					<?php endif; ?>
+					<?php if ( ! empty( $contact['phone'] ) ) : ?>
+						<li>
+							<?php estecapelli_icon( 'phone', array( 'width' => 16, 'height' => 16, 'class' => 'site-footer__contact-icon' ) ); ?>
+							<a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $contact['phone'] ) ); ?>"><?php echo esc_html( $contact['phone'] ); ?></a>
+						</li>
+					<?php endif; ?>
+					<?php if ( ! empty( $contact['email'] ) ) : ?>
+						<li>
+							<?php estecapelli_icon( 'mail', array( 'width' => 16, 'height' => 16, 'class' => 'site-footer__contact-icon' ) ); ?>
+							<a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>"><?php echo esc_html( $contact['email'] ); ?></a>
+						</li>
+					<?php endif; ?>
+				</ul>
 
-			<?php if ( $has_footer_widgets ) : ?>
-				<div class="site-footer__widgets">
-					<?php for ( $i = 1; $i <= 4; $i++ ) : ?>
-						<?php if ( is_active_sidebar( "footer-{$i}" ) ) : ?>
-							<div class="site-footer__col">
-								<?php dynamic_sidebar( "footer-{$i}" ); ?>
-							</div>
-						<?php endif; ?>
-					<?php endfor; ?>
-				</div>
-			<?php else : ?>
-				<div class="site-footer__widgets">
-					<div class="site-footer__col">
-						<h3><?php esc_html_e( 'Treatments', 'estecapelli' ); ?></h3>
-						<ul>
-							<li><a href="<?php echo esc_url( home_url( '/hair-transplant/' ) ); ?>"><?php esc_html_e( 'Hair Transplant', 'estecapelli' ); ?></a></li>
-							<li><a href="<?php echo esc_url( home_url( '/plastic-surgery/' ) ); ?>"><?php esc_html_e( 'Plastic Surgery', 'estecapelli' ); ?></a></li>
-							<li><a href="<?php echo esc_url( home_url( '/dental-treatment/' ) ); ?>"><?php esc_html_e( 'Dental Treatment', 'estecapelli' ); ?></a></li>
-							<li><a href="<?php echo esc_url( home_url( '/exosome-treatment/' ) ); ?>"><?php esc_html_e( 'Exosome Treatment', 'estecapelli' ); ?></a></li>
-						</ul>
-					</div>
-					<div class="site-footer__col">
-						<h3><?php esc_html_e( 'Company', 'estecapelli' ); ?></h3>
-						<ul>
-							<li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About Us', 'estecapelli' ); ?></a></li>
-							<li><a href="<?php echo esc_url( home_url( '/doctors/' ) ); ?>"><?php esc_html_e( 'Our Doctors', 'estecapelli' ); ?></a></li>
-							<li><a href="<?php echo esc_url( home_url( '/before-after/' ) ); ?>"><?php esc_html_e( 'Before &amp; After', 'estecapelli' ); ?></a></li>
-							<li><a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"><?php esc_html_e( 'Blog', 'estecapelli' ); ?></a></li>
-						</ul>
-					</div>
-					<div class="site-footer__col">
-						<h3><?php esc_html_e( 'Contact', 'estecapelli' ); ?></h3>
-						<ul>
+				<?php if ( ! empty( $contact['socials'] ) ) : ?>
+					<ul class="site-footer__socials">
+						<?php foreach ( $contact['socials'] as $s ) : ?>
 							<li>
-								<a href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener">
-									<?php estecapelli_icon( 'whatsapp', array( 'width' => 16, 'height' => 16 ) ); ?>
-									WhatsApp
+								<a href="<?php echo esc_url( $s['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $s['label'] ); ?>">
+									<?php estecapelli_icon( $s['icon'], array( 'width' => 18, 'height' => 18 ) ); ?>
 								</a>
 							</li>
-							<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact Form', 'estecapelli' ); ?></a></li>
-							<li><?php esc_html_e( 'Istanbul, Türkiye', 'estecapelli' ); ?></li>
-						</ul>
-					</div>
-					<div class="site-footer__col">
-						<h3><?php esc_html_e( 'Languages', 'estecapelli' ); ?></h3>
-						<ul class="site-footer__langs">
-							<?php
-							$footer_langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'DE' => 'Deutsch', 'ES' => 'Español', 'FR' => 'Français', 'IT' => 'Italiano', 'PT' => 'Português', 'PL' => 'Polski', 'AR' => 'العربية' );
-							foreach ( $footer_langs as $code => $name ) :
-								?>
-								<li><a href="#" data-lang="<?php echo esc_attr( strtolower( $code ) ); ?>"><span class="site-footer__lang-code"><?php echo esc_html( $code ); ?></span> <?php echo esc_html( $name ); ?></a></li>
-								<?php
-							endforeach;
-							?>
-						</ul>
-					</div>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+			</div>
+
+			<!-- Column 2: Hair Transplant treatments -->
+			<div class="site-footer__col">
+				<h3 class="site-footer__heading"><?php esc_html_e( 'Hair Transplant', 'estecapelli' ); ?></h3>
+				<ul class="site-footer__links">
+					<?php foreach ( $treatments as $t ) : ?>
+						<li><a href="<?php echo esc_url( $t['url'] ); ?>"><?php echo esc_html( $t['label'] ); ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+
+			<!-- Column 3: Sitemap -->
+			<div class="site-footer__col">
+				<h3 class="site-footer__heading"><?php esc_html_e( 'Sitemap', 'estecapelli' ); ?></h3>
+				<ul class="site-footer__links">
+					<?php foreach ( $sitemap as $s ) : ?>
+						<li><a href="<?php echo esc_url( $s['url'] ); ?>"><?php echo esc_html( $s['label'] ); ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+
+			<!-- Column 4: Logo + Quick form -->
+			<div class="site-footer__col site-footer__col--lead">
+				<div class="site-footer__brand">
+					<?php estecapelli_brand_mark( 'footer' ); ?>
 				</div>
-			<?php endif; ?>
+
+				<form class="lead-form" method="post" action="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
+					<p class="lead-form__intro"><?php esc_html_e( 'Get a free consultation — leave your details and we will reach out.', 'estecapelli' ); ?></p>
+					<div class="lead-form__field">
+						<label for="lead-name" class="sr-only"><?php esc_html_e( 'Name and surname', 'estecapelli' ); ?></label>
+						<input
+							id="lead-name"
+							type="text"
+							name="lead_name"
+							required
+							autocomplete="name"
+							placeholder="<?php esc_attr_e( 'Name and surname', 'estecapelli' ); ?>"
+						/>
+					</div>
+					<div class="lead-form__field">
+						<label for="lead-phone" class="sr-only"><?php esc_html_e( 'Phone number', 'estecapelli' ); ?></label>
+						<input
+							id="lead-phone"
+							type="tel"
+							name="lead_phone"
+							required
+							autocomplete="tel"
+							inputmode="tel"
+							placeholder="<?php esc_attr_e( 'Phone number (with country code)', 'estecapelli' ); ?>"
+						/>
+					</div>
+					<input type="hidden" name="lead_source" value="footer" />
+					<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
+					<button type="submit" class="btn btn-primary lead-form__submit">
+						<?php esc_html_e( 'Request Call Back', 'estecapelli' ); ?>
+						<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
+					</button>
+				</form>
+			</div>
 		</div>
 
+		<?php if ( ! empty( $badges ) ) : ?>
+			<div class="site-footer__badges" aria-label="<?php esc_attr_e( 'Certifications and accreditations', 'estecapelli' ); ?>">
+				<?php foreach ( $badges as $b ) : ?>
+					<img class="site-footer__badge" src="<?php echo esc_url( $b['src'] ); ?>" alt="<?php echo esc_attr( $b['alt'] ); ?>" loading="lazy" />
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+
 		<div class="site-footer__bottom">
-			<p>
+			<p class="site-footer__copy">
 				&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>. <?php esc_html_e( 'All rights reserved.', 'estecapelli' ); ?>
 			</p>
-			<nav aria-label="<?php esc_attr_e( 'Footer legal', 'estecapelli' ); ?>">
+			<nav class="site-footer__legal-nav" aria-label="<?php esc_attr_e( 'Footer legal', 'estecapelli' ); ?>">
 				<?php
 				if ( has_nav_menu( 'footer' ) ) {
 					wp_nav_menu(

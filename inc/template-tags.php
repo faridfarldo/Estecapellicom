@@ -42,6 +42,12 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 			'menu'         => '<line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>',
 			'close'        => '<line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>',
 			'arrow-right'  => '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+			'mail'         => '<rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/>',
+			'map-pin'      => '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+			'instagram'    => '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
+			'facebook'     => '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+			'youtube'      => '<path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>',
+			'tiktok'       => '<path d="M16 8a5 5 0 0 0 5 5V8.5a4.5 4.5 0 0 1-4.5-4.5H13v12a3 3 0 1 1-3-3v-3a6 6 0 1 0 6 6V8z" fill="currentColor" stroke="none"/>',
 		);
 
 		$path = $paths[ $name ] ?? '';
@@ -81,6 +87,113 @@ if ( ! function_exists( 'estecapelli_whatsapp_url' ) ) {
 			$url .= '?text=' . rawurlencode( $message );
 		}
 		return $url;
+	}
+}
+
+if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
+	/**
+	 * Footer contact block data (location, address, phone, email, social).
+	 * ACF override: option 'footer_contact' takes precedence when set.
+	 */
+	function estecapelli_footer_contact() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'footer_contact', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+		return array(
+			'heading'  => __( 'Visit Us', 'estecapelli' ),
+			'address'  => __( 'Istanbul, Türkiye', 'estecapelli' ),
+			'phone'    => '+90 543 148 88 88',
+			'whatsapp' => ESTECAPELLI_WHATSAPP,
+			'email'    => 'info@estecapelli.com',
+			'socials'  => array(
+				array( 'label' => 'Instagram', 'icon' => 'instagram', 'url' => 'https://instagram.com/estecapelli' ),
+				array( 'label' => 'Facebook',  'icon' => 'facebook',  'url' => 'https://facebook.com/estecapelli' ),
+				array( 'label' => 'YouTube',   'icon' => 'youtube',   'url' => 'https://youtube.com/@estecapelli' ),
+				array( 'label' => 'TikTok',    'icon' => 'tiktok',    'url' => 'https://tiktok.com/@estecapelli' ),
+			),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_footer_treatments' ) ) {
+	/**
+	 * Hair-transplant treatment links shown in the footer column 2.
+	 * Curated subset of the full mega-menu list (per user selection).
+	 */
+	function estecapelli_footer_treatments() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'footer_treatments', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+		return array(
+			array( 'label' => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ), 'url' => home_url( '/treatments/sapphire-fue-hair-transplant/' ) ),
+			array( 'label' => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),  'url' => home_url( '/treatments/exosome-fue-hair-transplant/' ) ),
+			array( 'label' => __( 'DHI Hair Transplant', 'estecapelli' ),          'url' => home_url( '/treatments/dhi-hair-transplant/' ) ),
+			array( 'label' => __( 'VITA Treatment', 'estecapelli' ),               'url' => home_url( '/treatments/vita/' ) ),
+			array( 'label' => __( 'Female Hair Transplant', 'estecapelli' ),       'url' => home_url( '/treatments/female-hair-transplant/' ) ),
+			array( 'label' => __( 'Beard Transplant', 'estecapelli' ),             'url' => home_url( '/treatments/beard-transplant/' ) ),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_footer_sitemap' ) ) {
+	/**
+	 * Sitemap-style link group for footer column 3.
+	 */
+	function estecapelli_footer_sitemap() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'footer_sitemap', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+		return array(
+			array( 'label' => __( 'Home', 'estecapelli' ),             'url' => home_url( '/' ) ),
+			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/about/' ) ),
+			array( 'label' => __( 'Our Doctors', 'estecapelli' ),      'url' => home_url( '/doctors/' ) ),
+			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/before-after/' ) ),
+			array( 'label' => __( 'Treatments', 'estecapelli' ),       'url' => home_url( '/treatments/' ) ),
+			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/blog/' ) ),
+			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/contact/' ) ),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_footer_badges' ) ) {
+	/**
+	 * Returns paths to certification badge images found in assets/images/badges/.
+	 * User drops files into that folder; renderer iterates whatever's present.
+	 */
+	function estecapelli_footer_badges() {
+		$dir = get_template_directory() . '/assets/images/badges';
+		$uri = get_template_directory_uri() . '/assets/images/badges';
+
+		if ( ! is_dir( $dir ) ) {
+			return array();
+		}
+
+		$files = glob( $dir . '/*.{png,jpg,jpeg,webp,svg}', GLOB_BRACE );
+		if ( ! $files ) {
+			return array();
+		}
+
+		sort( $files ); // 01-foo.png, 02-bar.png ... define order via filename prefix
+		$badges = array();
+		foreach ( $files as $f ) {
+			$basename = basename( $f );
+			$alt      = ucwords( str_replace( array( '-', '_' ), ' ', pathinfo( $basename, PATHINFO_FILENAME ) ) );
+			$alt      = preg_replace( '/^\d+\s+/', '', $alt ); // strip "01 " prefix from alt
+			$badges[] = array(
+				'src' => $uri . '/' . $basename,
+				'alt' => $alt,
+			);
+		}
+		return $badges;
 	}
 }
 
