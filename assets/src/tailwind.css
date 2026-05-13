@@ -364,7 +364,7 @@
 		align-items: center;
 		gap: 0.25rem;
 	}
-	.site-nav__list > li { position: relative; }
+	.site-nav__list > li { position: relative; flex-shrink: 0; }
 	.site-nav__list > li > a {
 		position: relative;
 		display: inline-flex;
@@ -375,6 +375,7 @@
 		font-weight: 500;
 		color: var(--color-brand-900);
 		border-radius: 8px;
+		white-space: nowrap;
 		transition: color 200ms, background 200ms;
 	}
 	.site-nav__list > li > a:hover,
@@ -469,7 +470,10 @@
 	.mainbar-cta { flex-shrink: 0; }
 
 	/* ---------- Mega-menu (hardcoded, full-width dropdowns) ---------- */
-	.has-megamenu { position: static; }
+	/* Higher-specificity override: .site-nav__list > li had position:relative,
+	   which trapped the absolutely-positioned .megamenu inside the narrow <li>.
+	   We need the megamenu to anchor to .site-header (full viewport width). */
+	.site-nav__list > li.has-megamenu { position: static; }
 
 	.megamenu {
 		position: absolute;
