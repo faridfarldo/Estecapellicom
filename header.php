@@ -21,7 +21,7 @@
 <header class="site-header" data-site-header>
 
 	<div class="topbar" data-topbar>
-		<div class="shell topbar-inner">
+		<div class="topbar-inner">
 			<div class="topbar-left">
 				<?php estecapelli_trustpilot_badge(); ?>
 				<span class="topbar-patients">
@@ -64,7 +64,7 @@
 	</div>
 
 	<div class="mainbar">
-		<div class="shell mainbar-inner">
+		<div class="mainbar-inner">
 
 			<a class="brand-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				<?php estecapelli_brand_mark( 'header' ); ?>
