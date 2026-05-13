@@ -395,7 +395,7 @@ if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 
 		$candidates = ( 'footer' === $context )
 			? array( 'logo-white.svg', 'logo-white.png', 'logo.svg', 'logo.webp', 'logo.png' )
-			: array( 'logo.svg', 'logo-horizontal.svg', 'logo.webp', 'logo.png', 'logo-horizontal.png' );
+			: array( 'logo-compact.svg', 'logo.svg', 'logo-horizontal.svg', 'logo.webp', 'logo.png', 'logo-horizontal.png' );
 
 		$logo_url = '';
 		foreach ( $candidates as $file ) {

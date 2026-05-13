@@ -92,6 +92,7 @@
 			<div class="mainbar-cta">
 				<a class="btn btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
 					<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
+					<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
 				</a>
 			</div>
 
