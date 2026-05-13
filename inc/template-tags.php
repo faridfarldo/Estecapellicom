@@ -134,11 +134,14 @@ if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 	 * @param string $context 'header' or 'footer'.
 	 */
 	function estecapelli_brand_mark( $context = 'header' ) {
-		$candidates = array( 'logo.svg', 'logo-horizontal.svg', 'logo.png', 'logo-horizontal.png' );
 		$base_dir   = get_template_directory() . '/assets/images/';
 		$base_uri   = get_template_directory_uri() . '/assets/images/';
-		$logo_url   = '';
 
+		$candidates = ( 'footer' === $context )
+			? array( 'logo-white.svg', 'logo-white.png', 'logo.svg', 'logo.webp', 'logo.png' )
+			: array( 'logo.svg', 'logo-horizontal.svg', 'logo.webp', 'logo.png', 'logo-horizontal.png' );
+
+		$logo_url = '';
 		foreach ( $candidates as $file ) {
 			if ( file_exists( $base_dir . $file ) ) {
 				$logo_url = $base_uri . $file;
@@ -151,7 +154,7 @@ if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 
 		if ( $logo_url ) {
 			printf(
-				'<img class="%1$s" src="%2$s" alt="%3$s" width="240" height="44" />',
+				'<img class="%1$s" src="%2$s" alt="%3$s" width="240" height="74" />',
 				esc_attr( $img_class ),
 				esc_url( $logo_url ),
 				esc_attr( get_bloginfo( 'name' ) )

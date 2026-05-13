@@ -323,7 +323,10 @@
 	}
 
 	.brand-link { display: inline-flex; align-items: center; flex-shrink: 0; }
-	.brand-logo { height: 44px; width: auto; }
+	.brand-logo { height: 56px; width: auto; display: block; }
+	@media (max-width: 540px) {
+		.brand-logo { height: 44px; }
+	}
 	.brand-wordmark {
 		font-weight: 700;
 		font-size: 1.5rem;
@@ -618,9 +621,9 @@
 		gap: 1rem;
 	}
 	.site-footer__logo {
-		height: 48px;
+		height: 64px;
 		width: auto;
-		filter: brightness(0) invert(1);
+		display: block;
 	}
 	.site-footer__wordmark {
 		font-weight: 700;
