@@ -337,6 +337,35 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 				),
 			),
 
+			'medical-treatment' => array(
+				'columns' => array(
+					array(
+						array( 'label' => __( 'Botox', 'estecapelli' ),              'url' => home_url( '/treatments/botox/' ),              'description' => __( 'Smooths expression lines and softens wrinkles for a refreshed look.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'Dermal Fillers', 'estecapelli' ),    'url' => home_url( '/treatments/dermal-fillers/' ),    'description' => __( 'Restores volume and contour to cheeks, jawline and under-eye areas.', 'estecapelli' ) ),
+						array( 'label' => __( 'Lip Augmentation', 'estecapelli' ),  'url' => home_url( '/treatments/lip-augmentation/' ),  'description' => __( 'Natural-looking lip enhancement with hyaluronic acid injections.', 'estecapelli' ) ),
+					),
+					array(
+						array( 'label' => __( 'PRP Treatment', 'estecapelli' ),     'url' => home_url( '/treatments/prp-treatment/' ),     'description' => __( 'Platelet-rich plasma therapy that stimulates skin and hair regeneration.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'Fractional Laser', 'estecapelli' ),  'url' => home_url( '/treatments/fractional-laser/' ),  'description' => __( 'Targeted laser resurfacing for scars, pigmentation and skin texture.', 'estecapelli' ) ),
+						array( 'label' => __( 'Skin Mesotherapy', 'estecapelli' ),  'url' => home_url( '/treatments/skin-mesotherapy/' ),  'description' => __( 'Micro-injections of vitamins and antioxidants for radiant skin.', 'estecapelli' ) ),
+					),
+					array(
+						array( 'label' => __( 'Carboxytherapy', 'estecapelli' ),    'url' => home_url( '/treatments/carboxytherapy/' ),    'description' => __( 'CO₂ injections that boost circulation and tighten the skin.', 'estecapelli' ) ),
+						array( 'label' => __( 'Salmon DNA Injection', 'estecapelli' ), 'url' => home_url( '/treatments/salmon-dna/' ),      'description' => __( 'Polynucleotide therapy that deeply repairs and revitalizes the skin.', 'estecapelli' ) ),
+						array( 'label' => __( 'Skin Rejuvenation', 'estecapelli' ), 'url' => home_url( '/treatments/skin-rejuvenation/' ), 'description' => __( 'Combined non-surgical protocols for firmer, brighter, healthier skin.', 'estecapelli' ) ),
+					),
+				),
+				'feature' => array(
+					'eyebrow'     => __( 'NON-SURGICAL AESTHETICS', 'estecapelli' ),
+					'title'       => __( 'Medical Aesthetic Treatments', 'estecapelli' ),
+					'description' => __( 'Refresh, rejuvenate and restore without surgery. Personalized plans delivered by our licensed medical team.', 'estecapelli' ),
+					'cta_label'   => __( 'Book a Consultation', 'estecapelli' ),
+					'cta_url'     => home_url( '/contact/?service=medical-treatment' ),
+					'video'       => 'mega/medical.mp4',
+					'image'       => 'mega/medical.jpg',
+				),
+			),
+
 			'about-us' => array(
 				'columns' => array(
 					array(
@@ -374,7 +403,7 @@ if ( ! function_exists( 'estecapelli_render_megamenu' ) ) {
 			return;
 		}
 		?>
-		<div class="megamenu" role="menu" aria-label="<?php echo esc_attr( $key ); ?>">
+		<div class="megamenu" role="menu" aria-label="<?php echo esc_attr( $key ); ?>" data-mega-key="<?php echo esc_attr( $key ); ?>">
 			<div class="megamenu__inner">
 				<div class="megamenu__cols">
 					<?php foreach ( $data['columns'] as $col ) : ?>
@@ -454,6 +483,7 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 			array( 'label' => __( 'Hair Transplant', 'estecapelli' ),  'url' => home_url( '/hair-transplant/' ),  'mega' => 'hair-transplant' ),
 			array( 'label' => __( 'Plastic Surgery', 'estecapelli' ),  'url' => home_url( '/plastic-surgery/' ),  'mega' => 'plastic-surgery' ),
 			array( 'label' => __( 'Dental Treatment', 'estecapelli' ), 'url' => home_url( '/dental-treatment/' ), 'mega' => 'dental-treatment' ),
+			array( 'label' => __( 'Medical Treatment', 'estecapelli' ),'url' => home_url( '/medical-treatment/' ),'mega' => 'medical-treatment' ),
 			array( 'label' => __( 'Exosome Treatment', 'estecapelli' ),'url' => home_url( '/exosome-treatment/' ),'badge' => __( 'NEW', 'estecapelli' ) ),
 			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/before-after/' ) ),
 			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/about/' ),            'mega' => 'about-us' ),

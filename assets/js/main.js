@@ -35,14 +35,36 @@
 		nav.addEventListener('click', function (e) {
 			var target = e.target.closest('a');
 			if (!target) return;
-			if (window.matchMedia('(max-width: 1024px)').matches) {
-				setOpen(false);
+			if (!window.matchMedia('(max-width: 1024px)').matches) return;
+
+			var parentLi = target.parentElement;
+			var isMegaTrigger =
+				parentLi &&
+				parentLi.classList.contains('has-megamenu') &&
+				parentLi.parentElement &&
+				parentLi.parentElement.classList.contains('site-nav__list');
+
+			if (isMegaTrigger) {
+				e.preventDefault();
+				var siblings = parentLi.parentElement.querySelectorAll(':scope > li.has-megamenu');
+				var willOpen = parentLi.getAttribute('data-mobile-open') !== 'true';
+				siblings.forEach(function (sib) {
+					sib.setAttribute('data-mobile-open', sib === parentLi && willOpen ? 'true' : 'false');
+				});
+				return;
 			}
+
+			setOpen(false);
 		});
 
 		var mq = window.matchMedia('(min-width: 1025px)');
 		mq.addEventListener('change', function (ev) {
-			if (ev.matches) setOpen(false);
+			if (ev.matches) {
+				setOpen(false);
+				nav.querySelectorAll('li.has-megamenu[data-mobile-open="true"]').forEach(function (li) {
+					li.setAttribute('data-mobile-open', 'false');
+				});
+			}
 		});
 	}
 
