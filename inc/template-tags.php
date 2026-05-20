@@ -602,6 +602,61 @@ if ( ! function_exists( 'estecapelli_trust_stats' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_home_services' ) ) {
+	/**
+	 * Featured hair-transplant services for the homepage tile section.
+	 * ACF override: option 'home_services' returns the full payload below.
+	 */
+	function estecapelli_home_services() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'home_services', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		$img = get_template_directory_uri() . '/assets/images/services/';
+
+		return array(
+			'eyebrow'  => __( 'OUR HAIR TRANSPLANT METHODS', 'estecapelli' ),
+			'headline' => __( 'The right method for your hair.', 'estecapelli' ),
+			'lead'     => __( 'Each technique is matched to your hair type, density goals and recovery preferences — recommended after your free consultation.', 'estecapelli' ),
+			'items'    => array(
+				array(
+					'tag'         => __( 'Hair Transplant', 'estecapelli' ),
+					'title'       => __( 'Micro Sapphire FUE', 'estecapelli' ),
+					'description' => __( 'Sapphire-blade precision for natural density and faster healing.', 'estecapelli' ),
+					'image'       => $img . 'sapphire-fue.jpg',
+					'url'         => home_url( '/treatments/sapphire-fue-hair-transplant/' ),
+				),
+				array(
+					'tag'         => __( 'Hair Transplant', 'estecapelli' ),
+					'title'       => __( 'DHI', 'estecapelli' ),
+					'description' => __( 'Choi-pen implantation for precise angle and direction control.', 'estecapelli' ),
+					'image'       => $img . 'dhi.jpg',
+					'url'         => home_url( '/treatments/dhi-hair-transplant/' ),
+				),
+				array(
+					'tag'         => __( 'Hair Transplant', 'estecapelli' ),
+					'title'       => __( 'Exosome Treatment', 'estecapelli' ),
+					'description' => __( 'Cell-regenerating exosomes that keep follicles alive longer.', 'estecapelli' ),
+					'image'       => $img . 'exosome.jpg',
+					'url'         => home_url( '/treatments/exosome-fue-hair-transplant/' ),
+					'badge'       => __( 'POPULAR', 'estecapelli' ),
+				),
+				array(
+					'tag'         => __( 'Hair Transplant', 'estecapelli' ),
+					'title'       => __( 'VITA Treatment', 'estecapelli' ),
+					'description' => __( "Estecapelli's signature protocol that revitalises scalp & strands.", 'estecapelli' ),
+					'image'       => $img . 'vita.jpg',
+					'url'         => home_url( '/treatments/vita/' ),
+					'badge'       => __( 'SIGNATURE', 'estecapelli' ),
+				),
+			),
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 	/**
 	 * Render the brand mark (logo image if present, else styled text wordmark).
