@@ -1,6 +1,7 @@
 <?php
 /**
- * Homepage: featured hair-transplant services grid.
+ * Homepage: tabbed featured-services block.
+ * Tab buttons across the top, card grid below that swaps on tab change.
  *
  * @package Estecapelli
  */
@@ -10,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $data = estecapelli_home_services();
-if ( empty( $data['items'] ) ) {
+if ( empty( $data['categories'] ) ) {
 	return;
 }
 ?>
@@ -35,51 +36,97 @@ if ( empty( $data['items'] ) ) {
 			<?php endif; ?>
 		</header>
 
-		<ul class="services-home__grid">
-			<?php foreach ( $data['items'] as $i => $item ) : ?>
-				<li class="services-home__card">
-					<a class="services-home__link" href="<?php echo esc_url( $item['url'] ); ?>">
-
-						<span class="services-home__media" aria-hidden="true">
-							<img
-								class="services-home__img"
-								src="<?php echo esc_url( $item['image'] ); ?>"
-								alt=""
-								loading="lazy"
-								decoding="async"
-								width="1200"
-								height="800"
-							/>
-							<span class="services-home__media-wash"></span>
-						</span>
-
-						<span class="services-home__index" aria-hidden="true">
-							<?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?>
-							<span class="services-home__index-of">/ <?php echo esc_html( str_pad( (string) count( $data['items'] ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-						</span>
-
-						<?php if ( ! empty( $item['badge'] ) ) : ?>
-							<span class="services-home__badge"><?php echo esc_html( $item['badge'] ); ?></span>
-						<?php endif; ?>
-
-						<span class="services-home__body">
-							<?php if ( ! empty( $item['tag'] ) ) : ?>
-								<span class="services-home__tag"><?php echo esc_html( $item['tag'] ); ?></span>
-							<?php endif; ?>
-							<span class="services-home__name"><?php echo esc_html( $item['title'] ); ?></span>
-							<?php if ( ! empty( $item['description'] ) ) : ?>
-								<span class="services-home__desc"><?php echo esc_html( $item['description'] ); ?></span>
-							<?php endif; ?>
-							<span class="services-home__cta">
-								<?php esc_html_e( 'Learn More', 'estecapelli' ); ?>
-								<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16, 'class' => 'services-home__cta-arrow' ) ); ?>
-							</span>
-						</span>
-
-					</a>
-				</li>
+		<div class="services-home__tabs" role="tablist" aria-label="<?php esc_attr_e( 'Treatment categories', 'estecapelli' ); ?>" data-services-tablist>
+			<?php foreach ( $data['categories'] as $i => $cat ) :
+				$tab_id   = 'svc-tab-' . $cat['key'];
+				$panel_id = 'svc-panel-' . $cat['key'];
+				$is_first = ( 0 === $i );
+				?>
+				<button
+					type="button"
+					id="<?php echo esc_attr( $tab_id ); ?>"
+					class="services-home__tab"
+					role="tab"
+					aria-selected="<?php echo $is_first ? 'true' : 'false'; ?>"
+					aria-controls="<?php echo esc_attr( $panel_id ); ?>"
+					tabindex="<?php echo $is_first ? '0' : '-1'; ?>"
+					data-services-tab
+				>
+					<span class="services-home__tab-icon" aria-hidden="true">
+						<?php estecapelli_icon( $cat['icon'], array( 'width' => 18, 'height' => 18 ) ); ?>
+					</span>
+					<span class="services-home__tab-label"><?php echo esc_html( $cat['label'] ); ?></span>
+				</button>
 			<?php endforeach; ?>
-		</ul>
+		</div>
+
+		<?php foreach ( $data['categories'] as $i => $cat ) :
+			$tab_id   = 'svc-tab-' . $cat['key'];
+			$panel_id = 'svc-panel-' . $cat['key'];
+			$is_first = ( 0 === $i );
+			$count    = count( $cat['items'] );
+			?>
+			<div
+				id="<?php echo esc_attr( $panel_id ); ?>"
+				class="services-home__panel"
+				role="tabpanel"
+				aria-labelledby="<?php echo esc_attr( $tab_id ); ?>"
+				data-services-panel
+				<?php echo $is_first ? '' : 'hidden'; ?>
+			>
+				<ul class="services-home__grid">
+					<?php foreach ( $cat['items'] as $idx => $item ) : ?>
+						<li class="services-home__card<?php echo empty( $item['image'] ) ? ' services-home__card--no-image' : ''; ?>" data-cat-key="<?php echo esc_attr( $cat['key'] ); ?>">
+							<a class="services-home__link" href="<?php echo esc_url( $item['url'] ); ?>">
+
+								<span class="services-home__media" aria-hidden="true">
+									<?php if ( ! empty( $item['image'] ) ) : ?>
+										<img
+											class="services-home__img"
+											src="<?php echo esc_url( $item['image'] ); ?>"
+											alt=""
+											loading="lazy"
+											decoding="async"
+											width="1200"
+											height="800"
+										/>
+									<?php else : ?>
+										<span class="services-home__media-icon">
+											<?php estecapelli_icon( $cat['icon'], array( 'width' => 96, 'height' => 96 ) ); ?>
+										</span>
+									<?php endif; ?>
+									<span class="services-home__media-wash"></span>
+								</span>
+
+								<span class="services-home__index" aria-hidden="true">
+									<?php echo esc_html( str_pad( (string) ( $idx + 1 ), 2, '0', STR_PAD_LEFT ) ); ?>
+									<span class="services-home__index-of">/ <?php echo esc_html( str_pad( (string) $count, 2, '0', STR_PAD_LEFT ) ); ?></span>
+								</span>
+
+								<?php if ( ! empty( $item['badge'] ) ) : ?>
+									<span class="services-home__badge"><?php echo esc_html( $item['badge'] ); ?></span>
+								<?php endif; ?>
+
+								<span class="services-home__body">
+									<?php if ( ! empty( $item['tag'] ) ) : ?>
+										<span class="services-home__tag"><?php echo esc_html( $item['tag'] ); ?></span>
+									<?php endif; ?>
+									<span class="services-home__name"><?php echo esc_html( $item['title'] ); ?></span>
+									<?php if ( ! empty( $item['description'] ) ) : ?>
+										<span class="services-home__desc"><?php echo esc_html( $item['description'] ); ?></span>
+									<?php endif; ?>
+									<span class="services-home__cta">
+										<?php esc_html_e( 'Learn More', 'estecapelli' ); ?>
+										<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16, 'class' => 'services-home__cta-arrow' ) ); ?>
+									</span>
+								</span>
+
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php endforeach; ?>
 
 	</div>
 </section>
