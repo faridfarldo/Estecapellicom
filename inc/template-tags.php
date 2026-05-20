@@ -48,6 +48,10 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 			'facebook'     => '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
 			'youtube'      => '<path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>',
 			'tiktok'       => '<path d="M16 8a5 5 0 0 0 5 5V8.5a4.5 4.5 0 0 1-4.5-4.5H13v12a3 3 0 1 1-3-3v-3a6 6 0 1 0 6 6V8z" fill="currentColor" stroke="none"/>',
+			'hair'         => '<path d="M3 21h18"/><path d="M6 21V13"/><path d="M10 21V8"/><path d="M14 21V6"/><path d="M18 21V11"/>',
+			'face'         => '<path d="M12 3c4.5 0 8 3.5 8 8 0 3-1 5-1 7v2c0 1-1 2-2 2H9c-1 0-2-1-2-2v-2c0-2-3-4-3-7 0-4.5 3.5-8 8-8z"/><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M9.5 14c1 1 4 1 5 0"/>',
+			'tooth'        => '<path d="M8 3C5.5 3 4 4.5 4 7.5c0 3 .8 6 1.8 9 .5 1.5 1 4 2.2 4 1 0 1.3-2 1.7-4 .3-1.5.8-2.5 2.3-2.5s2 1 2.3 2.5c.4 2 .7 4 1.7 4 1.2 0 1.7-2.5 2.2-4 1-3 1.8-6 1.8-9C20 4.5 18.5 3 16 3c-1.5 0-2.5.7-4 .7S9.5 3 8 3z"/>',
+			'medical-plus' => '<circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M7 12h10"/>',
 		);
 
 		$path = $paths[ $name ] ?? '';
@@ -651,6 +655,51 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 					'image'       => $img . 'vita.jpg',
 					'url'         => home_url( '/treatments/vita/' ),
 					'badge'       => __( 'SIGNATURE', 'estecapelli' ),
+				),
+			),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_home_categories' ) ) {
+	/**
+	 * Homepage treatment-category accordion data.
+	 * Reuses estecapelli_megamenu_data() so the service lists stay in sync
+	 * with the mega-menu — single source of truth.
+	 */
+	function estecapelli_home_categories() {
+		return array(
+			'eyebrow'  => __( 'EXPLORE ALL TREATMENTS', 'estecapelli' ),
+			'headline' => __( 'Beyond hair — four worlds of care.', 'estecapelli' ),
+			'lead'     => __( 'Tap each category to see every service we offer in that field.', 'estecapelli' ),
+			'items'    => array(
+				array(
+					'key'   => 'hair-transplant',
+					'icon'  => 'hair',
+					'label' => __( 'Hair Transplant', 'estecapelli' ),
+					'url'   => home_url( '/hair-transplant/' ),
+					'data'  => estecapelli_megamenu_data( 'hair-transplant' ),
+				),
+				array(
+					'key'   => 'plastic-surgery',
+					'icon'  => 'face',
+					'label' => __( 'Plastic Surgery', 'estecapelli' ),
+					'url'   => home_url( '/plastic-surgery/' ),
+					'data'  => estecapelli_megamenu_data( 'plastic-surgery' ),
+				),
+				array(
+					'key'   => 'dental-treatment',
+					'icon'  => 'tooth',
+					'label' => __( 'Dental Treatment', 'estecapelli' ),
+					'url'   => home_url( '/dental-treatment/' ),
+					'data'  => estecapelli_megamenu_data( 'dental-treatment' ),
+				),
+				array(
+					'key'   => 'medical-treatment',
+					'icon'  => 'medical-plus',
+					'label' => __( 'Medical Treatment', 'estecapelli' ),
+					'url'   => home_url( '/medical-treatment/' ),
+					'data'  => estecapelli_megamenu_data( 'medical-treatment' ),
 				),
 			),
 		);

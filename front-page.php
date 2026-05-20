@@ -17,5 +17,7 @@ get_header();
 
 <?php get_template_part( 'template-parts/services', 'home' ); ?>
 
+<?php get_template_part( 'template-parts/categories', 'home' ); ?>
+
 <?php
 get_footer();
