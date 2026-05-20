@@ -13,5 +13,7 @@ get_header();
 
 <?php get_template_part( 'template-parts/hero', 'home' ); ?>
 
+<?php get_template_part( 'template-parts/trust', 'strip' ); ?>
+
 <?php
 get_footer();

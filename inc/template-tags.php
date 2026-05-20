@@ -588,6 +588,29 @@ if ( ! function_exists( 'estecapelli_home_hero' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_trust_stats' ) ) {
+	/**
+	 * Quiet trust-stats strip rendered below the hero.
+	 * Intentionally minimal: 4 metrics inline, no icons, no cards.
+	 * ACF override: option 'trust_stats' returns an array of {value,label}.
+	 */
+	function estecapelli_trust_stats() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'trust_stats', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		return array(
+			array( 'value' => '15+',                                   'label' => __( 'Years of Experience', 'estecapelli' ) ),
+			array( 'value' => '+' . ESTECAPELLI_PATIENT_COUNT,         'label' => __( 'Happy Patients', 'estecapelli' ) ),
+			array( 'value' => '+' . ESTECAPELLI_COUNTRY_COUNT,         'label' => __( 'Countries Served', 'estecapelli' ) ),
+			array( 'value' => '24/7',                                  'label' => __( 'Support Team', 'estecapelli' ) ),
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 	/**
 	 * Render the brand mark (logo image if present, else styled text wordmark).
