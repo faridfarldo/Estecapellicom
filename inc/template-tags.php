@@ -524,6 +524,70 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_home_hero' ) ) {
+	/**
+	 * Homepage hero content (ACF override-ready).
+	 * Returns a single associative array that hero-home.php iterates over —
+	 * any field can later be overridden via an ACF option page without
+	 * touching the renderer.
+	 */
+	function estecapelli_home_hero() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'home_hero', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		return array(
+			'eyebrow'    => __( 'EST. 2010 · ISTANBUL, TÜRKİYE', 'estecapelli' ),
+			'headline'   => __( 'Aesthetic Excellence, Backed by Medical Trust.', 'estecapelli' ),
+			'body'       => __( "From hair restoration to plastic, dental and non-surgical aesthetics — Estecapelli's board-certified doctors deliver hospital-grade care with the precision your transformation deserves.", 'estecapelli' ),
+			'rating'     => array(
+				'trustpilot_label' => __( 'Excellent', 'estecapelli' ),
+				'trustpilot_count' => __( 'on Trustpilot', 'estecapelli' ),
+				'google_score'     => '4.9',
+				'google_count'     => __( 'Google Reviews', 'estecapelli' ),
+			),
+			'stats'      => array(
+				array(
+					'value' => '+' . ESTECAPELLI_PATIENT_COUNT,
+					'label' => __( 'Happy Patients', 'estecapelli' ),
+				),
+				array(
+					'value' => '+' . ESTECAPELLI_COUNTRY_COUNT,
+					'label' => __( 'Countries Served', 'estecapelli' ),
+				),
+				array(
+					'value' => '15+',
+					'label' => __( 'Years of Practice', 'estecapelli' ),
+				),
+			),
+			'cta_primary' => array(
+				'label' => __( 'Free Consultation', 'estecapelli' ),
+				'url'   => home_url( '/contact/' ),
+			),
+			'cta_whatsapp' => array(
+				'label' => __( 'Chat on WhatsApp', 'estecapelli' ),
+				'url'   => estecapelli_whatsapp_url( __( 'Hello Estecapelli, I would like to book a free consultation.', 'estecapelli' ) ),
+			),
+			'doctor'     => array(
+				'image'    => get_template_directory_uri() . '/assets/images/doctors/mehmet-hanifi-kutlar.jpg',
+				'name'     => __( 'Dr. Mehmet Hanifi Kutlar', 'estecapelli' ),
+				'role'     => __( 'Medical Director & Co-founder', 'estecapelli' ),
+				'subline'  => __( '15+ years in aesthetic medicine', 'estecapelli' ),
+			),
+			'credential' => array(
+				'eyebrow' => __( 'ACCREDITED CLINIC', 'estecapelli' ),
+				'lines'   => array(
+					__( 'Ministry of Health Licensed', 'estecapelli' ),
+					__( 'ISO 9001 · TURSAB Certified', 'estecapelli' ),
+				),
+			),
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 	/**
 	 * Render the brand mark (logo image if present, else styled text wordmark).
