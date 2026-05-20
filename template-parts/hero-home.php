@@ -75,15 +75,19 @@ $hero = estecapelli_home_hero();
 				</a>
 			</div>
 
-			<?php if ( ! empty( $hero['stats'] ) ) : ?>
-				<dl class="hero-home__stats">
-					<?php foreach ( $hero['stats'] as $stat ) : ?>
-						<div class="hero-home__stat">
-							<dt class="hero-home__stat-value"><?php echo esc_html( $stat['value'] ); ?></dt>
-							<dd class="hero-home__stat-label"><?php echo esc_html( $stat['label'] ); ?></dd>
-						</div>
-					<?php endforeach; ?>
-				</dl>
+			<?php if ( ! empty( $hero['certs']['image'] ) ) : $c = $hero['certs']; ?>
+				<figure class="hero-home__certs">
+					<?php if ( ! empty( $c['caption'] ) ) : ?>
+						<figcaption class="hero-home__certs-caption"><?php echo esc_html( $c['caption'] ); ?></figcaption>
+					<?php endif; ?>
+					<img
+						class="hero-home__certs-img"
+						src="<?php echo esc_url( $c['image'] ); ?>"
+						alt="<?php echo esc_attr( $c['alt'] ); ?>"
+						loading="lazy"
+						decoding="async"
+					/>
+				</figure>
 			<?php endif; ?>
 
 		</div>

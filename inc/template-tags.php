@@ -549,19 +549,10 @@ if ( ! function_exists( 'estecapelli_home_hero' ) ) {
 				'google_score'     => '4.9',
 				'google_count'     => __( 'Google Reviews', 'estecapelli' ),
 			),
-			'stats'      => array(
-				array(
-					'value' => '+' . ESTECAPELLI_PATIENT_COUNT,
-					'label' => __( 'Happy Patients', 'estecapelli' ),
-				),
-				array(
-					'value' => '+' . ESTECAPELLI_COUNTRY_COUNT,
-					'label' => __( 'Countries Served', 'estecapelli' ),
-				),
-				array(
-					'value' => '15+',
-					'label' => __( 'Years of Practice', 'estecapelli' ),
-				),
+			'certs'      => array(
+				'image'   => get_template_directory_uri() . '/assets/images/certs.png',
+				'alt'     => __( 'Internationally accredited — Ministry of Health, HRSA, NACo, ISO 13485, Certified Medical Travel Agent', 'estecapelli' ),
+				'caption' => __( 'Internationally Accredited & Certified', 'estecapelli' ),
 			),
 			'cta_primary' => array(
 				'label' => __( 'Free Consultation', 'estecapelli' ),
