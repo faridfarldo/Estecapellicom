@@ -67,6 +67,10 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 			'clipboard'    => '<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3h-6z" fill="currentColor" stroke="none"/><polyline points="9 13 11 15 15 11"/>',
 			'plane'        => '<path d="M21 13l-9-1.5-3-7.5h-2l1.5 8L3 13.5v1.5l6-1.5 1.5 5h1.5l1-5L21 12z" fill="currentColor" stroke="none"/>',
 			'hands-heart'  => '<path d="M12 8.5l-1.2-1.3a2.2 2.2 0 1 0-3.1 3.1L12 14.8l4.3-4.5a2.2 2.2 0 1 0-3.1-3.1L12 8.5z" fill="currentColor" stroke="none"/><path d="M4 17l4-1 4 4 4-4 4 1"/><path d="M3 21h18"/>',
+			'quote'        => '<path d="M7 7h4v4H7zm0 4c0 3-2 5-4 5M17 7h4v4h-4zm0 4c0 3-2 5-4 5" fill="currentColor" stroke="none"/>',
+			'play'         => '<polygon points="7 5 19 12 7 19 7 5" fill="currentColor" stroke="none"/>',
+			'chevron-right' => '<polyline points="9 6 15 12 9 18"/>',
+			'chevron-left'  => '<polyline points="15 6 9 12 15 18"/>',
 		);
 
 		$path = $paths[ $name ] ?? '';
@@ -1059,6 +1063,102 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 						'label' => __( 'Get Free Consultation', 'estecapelli' ),
 						'url'   => home_url( '/contact/' ),
 					),
+				),
+			),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
+	/**
+	 * Homepage "Real Stories" — cinematic patient-testimonial stage.
+	 *
+	 * Each story carries a YouTube ID, a hero pre-title, a long editorial
+	 * body, a 5-star rating, and three meta pills (grafts / technique /
+	 * country). The renderer shows one story as the hero and the rest in a
+	 * vertical "poster wall" the visitor can click to swap.
+	 *
+	 * ACF override: option 'home_patient_stories' returns the full payload.
+	 */
+	function estecapelli_patient_stories() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'home_patient_stories', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		return array(
+			'eyebrow'  => __( 'Real Stories', 'estecapelli' ),
+			'headline' => __( 'Their results speak louder than any ad ever could.', 'estecapelli' ),
+			'lead'     => __( 'Hear, in their own words, how patients from around the world describe their Estecapelli journey — from first consultation to long-term result.', 'estecapelli' ),
+
+			// Placeholder stories — user will swap YouTube IDs and details later.
+			'stories' => array(
+				array(
+					'key'         => 'alexander-p',
+					'name'        => __( 'Alexander P.', 'estecapelli' ),
+					'country'     => __( 'Germany', 'estecapelli' ),
+					'country_iso' => 'DE',
+					'flag'        => '🇩🇪',
+					'grafts'      => '4,280',
+					'technique'   => 'DHI',
+					'rating'      => 5,
+					'video_id'    => '',
+					'pre_title'   => __( 'A naturally fuller beard, designed graft by graft.', 'estecapelli' ),
+					'body'        => __( 'Using the DHI technique, 4,280 grafts were transferred from the scalp donor area to enhance the naturally sparse beard. The beard was designed according to the patient\'s preferences and facial structure. With moderate graft quality averaging 2.6 hairs per follicle, the procedure achieved natural and satisfying results.', 'estecapelli' ),
+				),
+				array(
+					'key'         => 'juan-cv',
+					'name'        => __( 'Juan C. V.', 'estecapelli' ),
+					'country'     => __( 'United States', 'estecapelli' ),
+					'country_iso' => 'US',
+					'flag'        => '🇺🇸',
+					'grafts'      => '3,340',
+					'technique'   => 'DHI',
+					'rating'      => 5,
+					'video_id'    => '',
+					'pre_title'   => __( '11 months, Norwood 3 reversed.', 'estecapelli' ),
+					'body'        => __( 'Our male patient from the USA completed his 11-month DHI journey with 3,340 grafts, each averaging 2.4 hairs. He arrived with Norwood 3 hair loss and visible thinning. Dense implantation was performed on bald spots and the crown, delivering precise placement, natural direction, and satisfying coverage.', 'estecapelli' ),
+				),
+				array(
+					'key'         => 'matthew-k',
+					'name'        => __( 'Matthew K.', 'estecapelli' ),
+					'country'     => __( 'Canada', 'estecapelli' ),
+					'country_iso' => 'CA',
+					'flag'        => '🇨🇦',
+					'grafts'      => '3,500',
+					'technique'   => 'Sapphire FUE',
+					'rating'      => 5,
+					'video_id'    => '',
+					'pre_title'   => __( 'Hairline rebuilt with surgical precision.', 'estecapelli' ),
+					'body'        => __( 'For this Canadian patient, 3,500 grafts were harvested using a 9-4 punch system. With an impressive average of 3 hairs per graft, intensive implantation reconstructed the frontal hairline and the area immediately behind it. At 10 months the result shows excellent density, natural direction, and a balanced appearance.', 'estecapelli' ),
+				),
+				array(
+					'key'         => 'olivier-r',
+					'name'        => __( 'Olivier R.', 'estecapelli' ),
+					'country'     => __( 'France', 'estecapelli' ),
+					'country_iso' => 'FR',
+					'flag'        => '🇫🇷',
+					'grafts'      => '4,000',
+					'technique'   => 'Sapphire FUE',
+					'rating'      => 5,
+					'video_id'    => '',
+					'pre_title'   => __( 'A receding hairline, fully restored.', 'estecapelli' ),
+					'body'        => __( 'Our French patient arrived with a deep receding hairline and a wide frontal recession. We extracted 4,000 grafts with the Sapphire FUE technique and rebuilt a softly rounded hairline that frames the face naturally. Twelve-month follow-up confirmed excellent density and direction.', 'estecapelli' ),
+				),
+				array(
+					'key'         => 'hassan-m',
+					'name'        => __( 'Hassan M.', 'estecapelli' ),
+					'country'     => __( 'United Arab Emirates', 'estecapelli' ),
+					'country_iso' => 'AE',
+					'flag'        => '🇦🇪',
+					'grafts'      => '3,800',
+					'technique'   => 'DHI',
+					'rating'      => 5,
+					'video_id'    => '',
+					'pre_title'   => __( 'Crown thickening with zero downtime.', 'estecapelli' ),
+					'body'        => __( 'For this patient from the UAE we implanted 3,800 grafts with the DHI technique, focusing on crown thickening and minor temporal reinforcement. The session was completed in a single sitting with no overnight stay and the patient returned home within 48 hours. Follow-up at 9 months confirmed dense, natural growth.', 'estecapelli' ),
 				),
 			),
 		);

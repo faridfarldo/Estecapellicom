@@ -164,10 +164,104 @@
 		}
 	}
 
+	function initPatientStories() {
+		var roots = document.querySelectorAll('[data-stories]');
+		if (!roots.length) return;
+
+		roots.forEach(function (root) {
+			var heroes  = Array.prototype.slice.call(root.querySelectorAll('[data-stories-hero]'));
+			var posters = Array.prototype.slice.call(root.querySelectorAll('[data-stories-select]'));
+			var counter = root.querySelector('[data-stories-current]');
+			if (!heroes.length || !posters.length) return;
+
+			function activate(key) {
+				heroes.forEach(function (h) {
+					if (h.getAttribute('data-key') === key) {
+						h.removeAttribute('hidden');
+					} else {
+						h.setAttribute('hidden', '');
+					}
+				});
+				posters.forEach(function (p) {
+					var isActive = p.getAttribute('data-stories-select') === key;
+					p.setAttribute('data-active', isActive ? 'true' : 'false');
+					p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+					if (isActive && counter) {
+						counter.textContent = p.getAttribute('data-index') || '1';
+					}
+				});
+			}
+
+			posters.forEach(function (p) {
+				p.addEventListener('click', function () {
+					activate(p.getAttribute('data-stories-select'));
+				});
+			});
+		});
+	}
+
+	function initStoriesLightbox() {
+		var lightbox = document.querySelector('[data-stories-lightbox]');
+		if (!lightbox) return;
+
+		var frame      = lightbox.querySelector('[data-stories-lightbox-frame]');
+		var titleEl    = lightbox.querySelector('[data-stories-lightbox-title]');
+		var closeBtns  = lightbox.querySelectorAll('[data-stories-lightbox-close]');
+		var triggers   = document.querySelectorAll('[data-stories-play]');
+		var lastFocused = null;
+
+		function open(videoId, title) {
+			if (!videoId) return;
+			lastFocused = document.activeElement;
+			frame.innerHTML =
+				'<iframe class="stories__lightbox-iframe" src="https://www.youtube.com/embed/' +
+				encodeURIComponent(videoId) +
+				'?autoplay=1&rel=0&modestbranding=1" title="' +
+				(title || 'Patient story') +
+				'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+			if (titleEl) titleEl.textContent = title || '';
+			lightbox.removeAttribute('hidden');
+			lightbox.setAttribute('data-open', 'true');
+			document.body.classList.add('no-scroll');
+			var firstClose = lightbox.querySelector('[data-stories-lightbox-close]:not(.stories__lightbox-backdrop)');
+			if (firstClose) firstClose.focus();
+		}
+
+		function close() {
+			lightbox.removeAttribute('data-open');
+			lightbox.setAttribute('hidden', '');
+			frame.innerHTML = '';
+			document.body.classList.remove('no-scroll');
+			if (lastFocused && typeof lastFocused.focus === 'function') {
+				lastFocused.focus();
+			}
+		}
+
+		triggers.forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				var id = btn.getAttribute('data-stories-play');
+				if (!id) return; // No video set yet — bail silently.
+				open(id, btn.getAttribute('data-story-title') || '');
+			});
+		});
+
+		closeBtns.forEach(function (b) {
+			b.addEventListener('click', close);
+		});
+
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && lightbox.getAttribute('data-open') === 'true') {
+				close();
+			}
+		});
+	}
+
 	ready(function () {
 		initMobileNav();
 		initLangSwitch();
 		initStickyHeader();
 		initServicesTabs();
+		initPatientStories();
+		initStoriesLightbox();
 	});
 })();
