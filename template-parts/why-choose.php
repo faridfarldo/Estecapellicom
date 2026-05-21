@@ -14,8 +14,10 @@ if ( empty( $data['features'] ) ) {
 	return;
 }
 
-$intro  = $data['intro'] ?? array();
-$badges = function_exists( 'estecapelli_footer_badges' ) ? estecapelli_footer_badges() : array();
+$intro     = $data['intro'] ?? array();
+$certs_dir = get_template_directory() . '/assets/images/certs.png';
+$certs_uri = get_template_directory_uri() . '/assets/images/certs.png';
+$has_certs = file_exists( $certs_dir );
 ?>
 
 <section class="why-choose" aria-labelledby="why-choose-title">
@@ -62,20 +64,16 @@ $badges = function_exists( 'estecapelli_footer_badges' ) ? estecapelli_footer_ba
 					<p class="why-choose__intro-body"><?php echo esc_html( $intro['body'] ); ?></p>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $badges ) ) : ?>
-					<ul class="why-choose__badges" aria-label="<?php esc_attr_e( 'Accreditations and certifications', 'estecapelli' ); ?>">
-						<?php foreach ( $badges as $i => $badge ) : ?>
-							<li class="why-choose__badge" style="--i: <?php echo (int) $i; ?>">
-								<img
-									class="why-choose__badge-img"
-									src="<?php echo esc_url( $badge['src'] ); ?>"
-									alt="<?php echo esc_attr( $badge['alt'] ); ?>"
-									loading="lazy"
-									decoding="async"
-								/>
-							</li>
-						<?php endforeach; ?>
-					</ul>
+				<?php if ( $has_certs ) : ?>
+					<figure class="why-choose__certs">
+						<img
+							class="why-choose__certs-img"
+							src="<?php echo esc_url( $certs_uri ); ?>"
+							alt="<?php esc_attr_e( 'Internationally accredited — Ministry of Health, HRSA, NACo, ISO 13485, Certified Medical Travel Agency', 'estecapelli' ); ?>"
+							loading="lazy"
+							decoding="async"
+						/>
+					</figure>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $intro['caption'] ) ) : ?>
