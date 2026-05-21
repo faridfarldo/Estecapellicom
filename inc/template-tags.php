@@ -63,6 +63,10 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 			'check-circle' => '<circle cx="12" cy="12" r="10"/><polyline points="8 12.5 11 15.5 16 9.5"/>',
 			'x-circle'     => '<circle cx="12" cy="12" r="10"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/>',
 			'headset'      => '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><path d="M4 15h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M20 15h-2a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a3 3 0 0 0 3-3z"/>',
+			'image'        => '<rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><polyline points="3 17 9 12 13 16 17 12 21 16"/>',
+			'clipboard'    => '<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3h-6z" fill="currentColor" stroke="none"/><polyline points="9 13 11 15 15 11"/>',
+			'plane'        => '<path d="M21 13l-9-1.5-3-7.5h-2l1.5 8L3 13.5v1.5l6-1.5 1.5 5h1.5l1-5L21 12z" fill="currentColor" stroke="none"/>',
+			'hands-heart'  => '<path d="M12 8.5l-1.2-1.3a2.2 2.2 0 1 0-3.1 3.1L12 14.8l4.3-4.5a2.2 2.2 0 1 0-3.1-3.1L12 8.5z" fill="currentColor" stroke="none"/><path d="M4 17l4-1 4 4 4-4 4 1"/><path d="M3 21h18"/>',
 		);
 
 		$path = $paths[ $name ] ?? '';
@@ -958,6 +962,102 @@ if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
 					'cta'        => array(
 						'label' => __( 'Learn more about VITA', 'estecapelli' ),
 						'url'   => home_url( '/treatments/vita/' ),
+					),
+				),
+			),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
+	/**
+	 * Homepage "Your Journey" — six step cards arranged around a centred photo.
+	 *
+	 * ACF override: option 'home_journey_steps' returns the full payload.
+	 */
+	function estecapelli_journey_steps() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'home_journey_steps', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		return array(
+			'eyebrow'  => __( 'Your Journey', 'estecapelli' ),
+			'headline' => __( 'From your first photo to twelve months later — we walk every step with you.', 'estecapelli' ),
+			'lead'     => __( 'Six clear stages, one dedicated team. Here is what your hair transplant journey looks like with Estecapelli.', 'estecapelli' ),
+
+			'photo'     => 'team.png',
+			'photo_alt' => __( 'Estecapelli patient consultants ready to welcome you', 'estecapelli' ),
+
+			'closing' => array(
+				'text' => __( 'Ready to take the first step towards restoring your confidence?', 'estecapelli' ),
+				'cta'  => array(
+					'label' => __( 'Schedule Your Free Consultation', 'estecapelli' ),
+					'url'   => home_url( '/contact/' ),
+				),
+			),
+
+			'steps' => array(
+				array(
+					'time'  => __( '1 Minute', 'estecapelli' ),
+					'icon'  => 'image',
+					'title' => __( 'Send Us Your Photos', 'estecapelli' ),
+					'body'  => __( 'To get started, simply share clear photos of your hair and receive a free online consultation from our clinic.', 'estecapelli' ),
+					'link'  => array(
+						'label' => __( 'Meet Our Doctors', 'estecapelli' ),
+						'url'   => home_url( '/doctors/' ),
+					),
+				),
+				array(
+					'time'  => __( 'Day 1', 'estecapelli' ),
+					'icon'  => 'clipboard',
+					'title' => __( "Let's Plan Your Operation", 'estecapelli' ),
+					'body'  => __( 'Based on a detailed analysis of your hair and scalp, our experts design a customised treatment plan to achieve the most natural-looking results.', 'estecapelli' ),
+					'link'  => array(
+						'label' => __( 'Explore Our Technology', 'estecapelli' ),
+						'url'   => home_url( '/treatments/tricholab/' ),
+					),
+				),
+				array(
+					'time'  => __( 'Day 2', 'estecapelli' ),
+					'icon'  => 'plane',
+					'title' => __( 'Flights, Transport & Hotel', 'estecapelli' ),
+					'body'  => __( 'Once your flight is confirmed, our team arranges your hotel accommodation and private VIP transfers between the airport, hotel and clinic for a smooth, stress-free stay.', 'estecapelli' ),
+					'link'  => array(
+						'label' => __( 'Learn More', 'estecapelli' ),
+						'url'   => home_url( '/about/' ),
+					),
+				),
+				array(
+					'time'  => __( 'Day 3', 'estecapelli' ),
+					'icon'  => 'hair',
+					'title' => __( 'Hair Transplant Day', 'estecapelli' ),
+					'body'  => __( 'On the day of your procedure, we guide you through every step. The transplant is performed under local anaesthesia, with no overnight hospital stay required.', 'estecapelli' ),
+					'link'  => array(
+						'label' => __( 'See Success Stories', 'estecapelli' ),
+						'url'   => home_url( '/before-after/' ),
+					),
+				),
+				array(
+					'time'  => __( '2–3 Weeks', 'estecapelli' ),
+					'icon'  => 'hands-heart',
+					'title' => __( 'Post-Operative Care', 'estecapelli' ),
+					'body'  => __( 'Dressing and the first hair washing procedures are carried out by our team to ensure a complication-free recovery.', 'estecapelli' ),
+					'link'  => array(
+						'label' => __( 'View Care Plans', 'estecapelli' ),
+						'url'   => home_url( '/care/' ),
+					),
+				),
+				array(
+					'time'  => __( '12 Months', 'estecapelli' ),
+					'icon'  => 'headset',
+					'title' => __( 'Follow-Up Care Service', 'estecapelli' ),
+					'body'  => __( 'Our dedicated post-operative support team guides you through recovery and hair growth, ensuring a streamlined journey toward your desired results.', 'estecapelli' ),
+					'link'  => array(
+						'label' => __( 'Get Free Consultation', 'estecapelli' ),
+						'url'   => home_url( '/contact/' ),
 					),
 				),
 			),
