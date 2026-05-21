@@ -18,10 +18,13 @@ if ( empty( $data['steps'] ) ) {
 }
 
 $photo_uri = '';
-if ( ! empty( $data['photo'] ) ) {
-	$photo_path = get_template_directory() . '/assets/images/steps/' . $data['photo'];
-	if ( file_exists( $photo_path ) ) {
-		$photo_uri = get_template_directory_uri() . '/assets/images/steps/' . $data['photo'];
+$photo_dir = get_template_directory() . '/assets/images/steps/';
+$photo_url = get_template_directory_uri() . '/assets/images/steps/';
+$photo_base = ! empty( $data['photo'] ) ? pathinfo( $data['photo'], PATHINFO_FILENAME ) : 'team';
+foreach ( array( 'png', 'webp', 'jpg', 'jpeg' ) as $ext ) {
+	if ( file_exists( $photo_dir . $photo_base . '.' . $ext ) ) {
+		$photo_uri = $photo_url . $photo_base . '.' . $ext;
+		break;
 	}
 }
 
