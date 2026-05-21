@@ -71,6 +71,13 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 			'play'         => '<polygon points="7 5 19 12 7 19 7 5" fill="currentColor" stroke="none"/>',
 			'chevron-right' => '<polyline points="9 6 15 12 9 18"/>',
 			'chevron-left'  => '<polyline points="15 6 9 12 15 18"/>',
+			'building'      => '<rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="8" y1="7" x2="10" y2="7"/><line x1="14" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="10" y2="11"/><line x1="14" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="10" y2="15"/><line x1="14" y1="15" x2="16" y2="15"/>',
+			'wifi'          => '<path d="M2 9c5-5 15-5 20 0"/><path d="M5 12c4-3 10-3 14 0"/><path d="M8 15c2-1.5 6-1.5 8 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/>',
+			'utensils'      => '<path d="M7 2v10a2 2 0 0 1-2 2H4"/><path d="M11 2v20"/><path d="M5 2v8"/><path d="M9 2v8"/><path d="M17 8a4 4 0 0 1 4 4v3h-4v7"/>',
+			'concierge'     => '<circle cx="12" cy="7" r="3"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/><line x1="3" y1="21" x2="21" y2="21"/>',
+			'calendar'      => '<rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/>',
+			'tag'           => '<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5" fill="currentColor" stroke="none"/>',
+			'book-open'     => '<path d="M12 5v16"/><path d="M3 5a14 14 0 0 1 9 2v14a14 14 0 0 0-9-2z"/><path d="M21 5a14 14 0 0 0-9 2v14a14 14 0 0 1 9-2z"/>',
 		);
 
 		$path = $paths[ $name ] ?? '';
@@ -1162,6 +1169,88 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 				),
 			),
 		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_facilities' ) ) {
+	/**
+	 * Homepage "Our Facilities" — hotel + clinic editorial cards.
+	 *
+	 * Image lookup is extension-agnostic: drop `hotel.{png,webp,jpg,jpeg}`
+	 * or `clinic.{png,webp,jpg,jpeg}` into /assets/images/facilities/ and
+	 * the renderer will find it.
+	 *
+	 * ACF override: option 'home_facilities' returns the full payload.
+	 */
+	function estecapelli_facilities() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'home_facilities', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		return array(
+			'eyebrow'  => __( 'Our Facilities', 'estecapelli' ),
+			'headline' => __( 'A clinic that performs. A hotel that pampers.', 'estecapelli' ),
+			'lead'     => __( 'Two addresses, one continuous experience — both curated to keep you comfortable from the moment you land in Istanbul until the day you fly home.', 'estecapelli' ),
+
+			'cards' => array(
+				array(
+					'key'      => 'hotel',
+					'kind'     => __( 'Your Stay', 'estecapelli' ),
+					'name'     => __( 'Five-Star Partner Hotel', 'estecapelli' ),
+					'location' => __( 'City centre · Istanbul, Türkiye', 'estecapelli' ),
+					'body'     => __( 'A handpicked 5-star hotel with full board, a quiet recovery suite, and 24/7 patient support — minutes from the clinic and the city\'s landmarks.', 'estecapelli' ),
+					'image'    => 'hotel',
+					'amenities' => array(
+						array( 'icon' => 'bed',       'label' => __( '5-Star Room', 'estecapelli' ) ),
+						array( 'icon' => 'utensils',  'label' => __( 'Full Board', 'estecapelli' ) ),
+						array( 'icon' => 'wifi',      'label' => __( 'High-Speed Wi-Fi', 'estecapelli' ) ),
+						array( 'icon' => 'concierge', 'label' => __( '24/7 Patient Care', 'estecapelli' ) ),
+					),
+					'cta' => array(
+						'label' => __( 'Explore the Hotel', 'estecapelli' ),
+						'url'   => home_url( '/hospital/#hotel' ),
+					),
+				),
+				array(
+					'key'      => 'clinic',
+					'kind'     => __( 'Your Clinic', 'estecapelli' ),
+					'name'     => __( 'Hospital-Grade Estecapelli Clinic', 'estecapelli' ),
+					'location' => __( 'Şişli · Istanbul, Türkiye', 'estecapelli' ),
+					'body'     => __( 'A Ministry-of-Health licensed facility with modern operation rooms, sapphire-blade instruments, and a permanent on-site medical team led by Dr. Mehmet Hanifi Kutlar.', 'estecapelli' ),
+					'image'    => 'clinic',
+					'amenities' => array(
+						array( 'icon' => 'building',     'label' => __( 'Ministry Licensed', 'estecapelli' ) ),
+						array( 'icon' => 'shield-check', 'label' => __( 'Sterile Theatres', 'estecapelli' ) ),
+						array( 'icon' => 'target',       'label' => __( 'Latest Equipment', 'estecapelli' ) ),
+						array( 'icon' => 'medical-plus', 'label' => __( 'On-Site Doctors', 'estecapelli' ) ),
+					),
+					'cta' => array(
+						'label' => __( 'Tour the Clinic', 'estecapelli' ),
+						'url'   => home_url( '/hospital/#clinic' ),
+					),
+				),
+			),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_resolve_image' ) ) {
+	/**
+	 * Find an image under /assets/images/{folder}/{base}.{png|webp|jpg|jpeg}.
+	 * Returns the URL, or '' if no candidate exists.
+	 */
+	function estecapelli_resolve_image( $folder, $base ) {
+		$dir = get_template_directory() . '/assets/images/' . $folder . '/';
+		$uri = get_template_directory_uri() . '/assets/images/' . $folder . '/';
+		foreach ( array( 'png', 'webp', 'jpg', 'jpeg' ) as $ext ) {
+			if ( file_exists( $dir . $base . '.' . $ext ) ) {
+				return $uri . $base . '.' . $ext;
+			}
+		}
+		return '';
 	}
 }
 

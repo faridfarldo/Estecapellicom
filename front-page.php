@@ -25,5 +25,9 @@ get_header();
 
 <?php get_template_part( 'template-parts/journey', 'steps' ); ?>
 
+<?php get_template_part( 'template-parts/facilities' ); ?>
+
+<?php get_template_part( 'template-parts/latest', 'posts' ); ?>
+
 <?php
 get_footer();
