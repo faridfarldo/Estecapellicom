@@ -4434,26 +4434,20 @@
 	}
 
 	/* ============================================================ Nav hover bridge
-	   Extends the menu-item's hover area downward into the dropdown gap so the
-	   mouse can travel from the link to the panel without breaking :hover. */
-	.site-nav__list > li.has-megamenu,
-	.site-nav__list > li.menu-item-has-children {
-		position: relative;
-	}
-	.site-nav__list > li.has-megamenu::after,
-	.site-nav__list > li.menu-item-has-children::after {
+	   The dropdown panels sit 10px below the link. We extend each panel
+	   upward with a transparent pseudo-strip so the cursor can travel
+	   across the gap without :hover breaking. The pseudo keeps
+	   pointer-events: auto even while the parent panel is fading out, so
+	   re-entering it within the visibility delay re-asserts :hover. */
+	.megamenu::before,
+	.site-nav__submenu::after {
 		content: '';
 		position: absolute;
-		top: 100%;
+		top: -14px;
 		left: 0;
 		right: 0;
 		height: 14px;
-		pointer-events: none;
-	}
-	.site-nav__list > li.has-megamenu:hover::after,
-	.site-nav__list > li.has-megamenu:focus-within::after,
-	.site-nav__list > li.menu-item-has-children:hover::after,
-	.site-nav__list > li.menu-item-has-children:focus-within::after {
+		background: transparent;
 		pointer-events: auto;
 	}
 
