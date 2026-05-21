@@ -1,9 +1,9 @@
 <?php
 /**
- * Section: Before & After — image pair gallery.
+ * Section: Before & After — gallery of single composite images.
  *
- * Renders a responsive grid of paired cards. Each card shows before and after
- * side by side with a centred divider and caption.
+ * Each item is one image the editor has already composed (before/after
+ * laid out in their own design), plus an optional caption and graft count.
  *
  * @package Estecapelli
  */
@@ -16,10 +16,10 @@ if ( ! is_array( $section ) ) { return; }
 $eyebrow = $section['eyebrow'] ?? '';
 $title   = $section['title']   ?? '';
 $lead    = $section['lead']    ?? '';
-$pairs   = $section['pairs']   ?? array();
+$items   = $section['items']   ?? array();
 $cta     = $section['cta']     ?? array();
 
-if ( empty( $pairs ) ) { return; }
+if ( empty( $items ) ) { return; }
 ?>
 
 <section class="t-gallery">
@@ -39,31 +39,29 @@ if ( empty( $pairs ) ) { return; }
 		</header>
 
 		<ul class="t-gallery__grid">
-			<?php foreach ( $pairs as $pair ) :
-				$before = $pair['before'] ?? array();
-				$after  = $pair['after']  ?? array();
-				if ( empty( $before['url'] ) || empty( $after['url'] ) ) { continue; }
+			<?php foreach ( $items as $item ) :
+				$image = $item['image'] ?? array();
+				if ( empty( $image['url'] ) ) { continue; }
 				?>
 				<li class="t-gallery__card">
-					<div class="t-gallery__pair">
-						<figure class="t-gallery__side">
-							<img src="<?php echo esc_url( $before['url'] ); ?>" alt="<?php echo esc_attr( $before['alt'] ?? 'Before' ); ?>" loading="lazy" decoding="async" />
-							<figcaption class="t-gallery__label t-gallery__label--before"><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
-						</figure>
-						<span class="t-gallery__divider" aria-hidden="true"></span>
-						<figure class="t-gallery__side">
-							<img src="<?php echo esc_url( $after['url'] ); ?>" alt="<?php echo esc_attr( $after['alt'] ?? 'After' ); ?>" loading="lazy" decoding="async" />
-							<figcaption class="t-gallery__label t-gallery__label--after"><?php esc_html_e( 'After', 'estecapelli' ); ?></figcaption>
-						</figure>
-					</div>
+					<figure class="t-gallery__media">
+						<img
+							src="<?php echo esc_url( $image['url'] ); ?>"
+							alt="<?php echo esc_attr( $image['alt'] ?? __( 'Before and after result', 'estecapelli' ) ); ?>"
+							loading="lazy"
+							decoding="async"
+							width="<?php echo (int) ( $image['width']  ?? 1600 ); ?>"
+							height="<?php echo (int) ( $image['height'] ?? 1000 ); ?>"
+						/>
+					</figure>
 
-					<?php if ( ! empty( $pair['caption'] ) || ! empty( $pair['grafts'] ) ) : ?>
+					<?php if ( ! empty( $item['caption'] ) || ! empty( $item['grafts'] ) ) : ?>
 						<div class="t-gallery__meta">
-							<?php if ( ! empty( $pair['caption'] ) ) : ?>
-								<span class="t-gallery__caption"><?php echo esc_html( $pair['caption'] ); ?></span>
+							<?php if ( ! empty( $item['caption'] ) ) : ?>
+								<span class="t-gallery__caption"><?php echo esc_html( $item['caption'] ); ?></span>
 							<?php endif; ?>
-							<?php if ( ! empty( $pair['grafts'] ) ) : ?>
-								<span class="t-gallery__grafts"><?php echo esc_html( $pair['grafts'] ); ?>&nbsp;<?php esc_html_e( 'grafts', 'estecapelli' ); ?></span>
+							<?php if ( ! empty( $item['grafts'] ) ) : ?>
+								<span class="t-gallery__grafts"><?php echo esc_html( $item['grafts'] ); ?>&nbsp;<?php esc_html_e( 'grafts', 'estecapelli' ); ?></span>
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
