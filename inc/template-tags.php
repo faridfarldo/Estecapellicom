@@ -52,6 +52,17 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 			'face'         => '<path d="M12 3c4.5 0 8 3.5 8 8 0 3-1 5-1 7v2c0 1-1 2-2 2H9c-1 0-2-1-2-2v-2c0-2-3-4-3-7 0-4.5 3.5-8 8-8z"/><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M9.5 14c1 1 4 1 5 0"/>',
 			'tooth'        => '<path d="M8 3C5.5 3 4 4.5 4 7.5c0 3 .8 6 1.8 9 .5 1.5 1 4 2.2 4 1 0 1.3-2 1.7-4 .3-1.5.8-2.5 2.3-2.5s2 1 2.3 2.5c.4 2 .7 4 1.7 4 1.2 0 1.7-2.5 2.2-4 1-3 1.8-6 1.8-9C20 4.5 18.5 3 16 3c-1.5 0-2.5.7-4 .7S9.5 3 8 3z"/>',
 			'medical-plus' => '<circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M7 12h10"/>',
+			'bed'          => '<path d="M3 18v-7a2 2 0 0 1 2-2h11a4 4 0 0 1 4 4v5"/><path d="M3 14h18"/><path d="M3 18v3"/><path d="M21 18v3"/><circle cx="8" cy="11.5" r="1.5"/>',
+			'car'          => '<path d="M5 17h14"/><path d="M5 17v-4l2-5a2 2 0 0 1 1.8-1.2h6.4A2 2 0 0 1 17 8l2 5v4"/><circle cx="8" cy="17.5" r="1.6"/><circle cx="16" cy="17.5" r="1.6"/>',
+			'languages'    => '<path d="M4 5h7"/><path d="M9 3v2c0 4.4-3 7-6 7"/><path d="M5 9c0 2.5 3 5 7 6"/><path d="M13 21l4-9 4 9"/><path d="M14.5 17h5"/>',
+			'sparkles'     => '<path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z" fill="currentColor" stroke="none"/><path d="M19 14l.7 2L22 17l-2.3.7L19 20l-.7-2.3L16 17l2.3-.7z" fill="currentColor" stroke="none"/>',
+			'target'       => '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>',
+			'atom'         => '<circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>',
+			'dna'          => '<path d="M5 4c0 4 14 4 14 8"/><path d="M5 20c0-4 14-4 14-8"/><path d="M7 6h10"/><path d="M7 18h10"/><path d="M9 10h6"/><path d="M9 14h6"/>',
+			'shield-check' => '<path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><polyline points="9 12 11.5 14.5 16 10"/>',
+			'check-circle' => '<circle cx="12" cy="12" r="10"/><polyline points="8 12.5 11 15.5 16 9.5"/>',
+			'x-circle'     => '<circle cx="12" cy="12" r="10"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/>',
+			'headset'      => '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><path d="M4 15h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M20 15h-2a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a3 3 0 0 0 3-3z"/>',
 		);
 
 		$path = $paths[ $name ] ?? '';
@@ -770,6 +781,103 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 					),
 				),
 			),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_why_choose' ) ) {
+	/**
+	 * Homepage "Why Choose Estecapelli" — comparison verdict board.
+	 *
+	 * Returns a single payload the renderer iterates; can be overridden via
+	 * ACF option 'home_why_choose' without touching the template.
+	 */
+	function estecapelli_why_choose() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'home_why_choose', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		return array(
+			'eyebrow'  => __( 'The Comparison', 'estecapelli' ),
+			'headline' => __( 'Global standards, Turkish expertise.', 'estecapelli' ),
+			'lead'     => __( 'See how our comprehensive approach and advanced techniques set us apart from other clinics.', 'estecapelli' ),
+
+			'intro'    => array(
+				'title'   => __( 'Built for patients who refuse to compromise.', 'estecapelli' ),
+				'body'    => __( 'At Estecapelli, we go beyond expectations to deliver personalised, high-quality care backed by years of experience and international standards. Our expert team combines innovative methods with a patient-first approach to deliver results that look natural and feel confident.', 'estecapelli' ),
+				'caption' => __( 'Experience the Estecapelli difference — advanced techniques, patient-focused care.', 'estecapelli' ),
+				'cta'     => array(
+					'label' => __( 'Get a Free Consultation', 'estecapelli' ),
+					'url'   => home_url( '/contact/' ),
+				),
+			),
+
+			'us_label'   => __( 'Estecapelli', 'estecapelli' ),
+			'them_label' => __( 'Other Clinics', 'estecapelli' ),
+			'us_tag'     => __( 'Premium Care', 'estecapelli' ),
+			'them_tag'   => __( 'Standard Care', 'estecapelli' ),
+
+			'features'   => array(
+				array(
+					'icon'  => 'bed',
+					'label' => __( '5-Star Hotel Accommodation', 'estecapelli' ),
+					'us'    => true,
+					'them'  => true,
+				),
+				array(
+					'icon'  => 'car',
+					'label' => __( 'VIP Transfer Service', 'estecapelli' ),
+					'us'    => true,
+					'them'  => true,
+				),
+				array(
+					'icon'  => 'languages',
+					'label' => __( 'Personal Translator', 'estecapelli' ),
+					'us'    => true,
+					'them'  => true,
+				),
+				array(
+					'icon'  => 'sparkles',
+					'label' => __( 'Latest Technology Implementation', 'estecapelli' ),
+					'us'    => true,
+					'them'  => false,
+				),
+				array(
+					'icon'  => 'target',
+					'label' => __( 'Success-Oriented Treatment Planning', 'estecapelli' ),
+					'us'    => true,
+					'them'  => false,
+				),
+				array(
+					'icon'  => 'atom',
+					'label' => __( 'Innovative Techniques (Exosome, FUE, DHI, VITA)', 'estecapelli' ),
+					'us'    => true,
+					'them'  => false,
+				),
+				array(
+					'icon'  => 'dna',
+					'label' => __( 'Regenerative Stem Cell Therapy', 'estecapelli' ),
+					'us'    => true,
+					'them'  => false,
+				),
+				array(
+					'icon'  => 'headset',
+					'label' => __( 'Dedicated Post-Op Follow-Up Team', 'estecapelli' ),
+					'us'    => true,
+					'them'  => true,
+				),
+				array(
+					'icon'  => 'shield-check',
+					'label' => __( 'Pain-Free Anaesthesia', 'estecapelli' ),
+					'us'    => true,
+					'them'  => false,
+				),
+			),
+
+			'footnote'   => __( 'Nine details where every choice matters.', 'estecapelli' ),
 		);
 	}
 }
