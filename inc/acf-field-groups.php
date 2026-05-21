@@ -70,6 +70,13 @@ function estecapelli_register_acf_field_groups() {
 						'value'    => 'treatment',
 					),
 				),
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'page',
+					),
+				),
 			),
 			'menu_order'            => 0,
 			'position'              => 'normal',

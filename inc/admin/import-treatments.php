@@ -15,16 +15,86 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once get_template_directory() . '/inc/data/treatments-seed.php';
+require_once get_template_directory() . '/inc/data/pages-seed.php';
 
-add_action( 'admin_menu', 'estecapelli_register_treatments_importer' );
-function estecapelli_register_treatments_importer() {
+add_action( 'admin_menu', 'estecapelli_register_content_importer' );
+function estecapelli_register_content_importer() {
 	add_management_page(
-		__( 'Estecapelli — Treatment Importer', 'estecapelli' ),
-		__( 'Treatment Importer', 'estecapelli' ),
+		__( 'Estecapelli — Content Importer', 'estecapelli' ),
+		__( 'Estecapelli Imports', 'estecapelli' ),
 		'manage_options',
 		'estecapelli-treatment-importer',
 		'estecapelli_render_treatments_importer'
 	);
+}
+
+/**
+ * Find or create a page by slug + parent path; return its ID. Resolves the
+ * parent_slug to a post_parent ID, walking the seed if the parent was just
+ * created in the same run.
+ */
+function estecapelli_import_page( array $data, array &$slug_to_id ) {
+
+	if ( empty( $data['slug'] ) || empty( $data['title'] ) ) {
+		return new WP_Error( 'invalid_page', __( 'Missing slug or title.', 'estecapelli' ) );
+	}
+
+	// Resolve parent ID by slug (may be null for top-level pages).
+	$parent_id = 0;
+	if ( ! empty( $data['parent'] ) ) {
+		if ( isset( $slug_to_id[ $data['parent'] ] ) ) {
+			$parent_id = (int) $slug_to_id[ $data['parent'] ];
+		} else {
+			// Fall back to a DB lookup if the parent wasn't in this run.
+			$existing_parent = get_page_by_path( $data['parent'], OBJECT, 'page' );
+			if ( $existing_parent ) {
+				$parent_id = (int) $existing_parent->ID;
+			}
+		}
+	}
+
+	// Look up existing by full path (e.g. about-us/our-doctors/op-dr-hasan-celik).
+	$path     = $data['slug'];
+	$walk_id  = $parent_id;
+	$path_stack = array( $data['slug'] );
+	while ( $walk_id ) {
+		$walk = get_post( $walk_id );
+		if ( ! $walk ) {
+			break;
+		}
+		array_unshift( $path_stack, $walk->post_name );
+		$walk_id = (int) $walk->post_parent;
+	}
+	$full_path = implode( '/', $path_stack );
+	$existing  = get_page_by_path( $full_path, OBJECT, 'page' );
+
+	$post_args = array(
+		'post_type'    => 'page',
+		'post_title'   => $data['title'],
+		'post_name'    => $data['slug'],
+		'post_status'  => 'publish',
+		'post_parent'  => $parent_id,
+		'post_content' => '',
+	);
+
+	if ( $existing ) {
+		$post_args['ID'] = $existing->ID;
+		$post_id         = wp_update_post( $post_args, true );
+	} else {
+		$post_id = wp_insert_post( $post_args, true );
+	}
+
+	if ( is_wp_error( $post_id ) ) {
+		return $post_id;
+	}
+
+	$slug_to_id[ $data['slug'] ] = $post_id;
+
+	if ( function_exists( 'update_field' ) && ! empty( $data['sections'] ) ) {
+		update_field( 'page_sections', $data['sections'], $post_id );
+	}
+
+	return $post_id;
 }
 
 /**
@@ -85,31 +155,51 @@ function estecapelli_render_treatments_importer() {
 
 	$messages = array();
 
-	// Handle import request.
+	// Handle import request (treatments and pages share the same form).
 	if ( isset( $_POST['estecapelli_action'] ) && check_admin_referer( 'estecapelli_import_treatments' ) ) {
 
 		$treatments = estecapelli_treatments_seed();
+		$pages      = estecapelli_pages_seed();
 		$target     = sanitize_text_field( wp_unslash( $_POST['estecapelli_action'] ) );
 
+		// Treatments.
 		foreach ( $treatments as $t ) {
-			if ( '__all__' !== $target && $t['slug'] !== $target ) {
+			if ( '__all__' !== $target && '__all_treatments__' !== $target && $t['slug'] !== $target ) {
 				continue;
 			}
 			$result = estecapelli_import_treatment( $t );
 			if ( is_wp_error( $result ) ) {
-				$messages[] = array(
-					'type' => 'error',
-					'text' => sprintf( '%s — %s', $t['title'], $result->get_error_message() ),
-				);
+				$messages[] = array( 'type' => 'error', 'text' => sprintf( '%s — %s', esc_html( $t['title'] ), esc_html( $result->get_error_message() ) ) );
 			} else {
 				$messages[] = array(
 					'type' => 'success',
 					'text' => sprintf(
-						/* translators: 1: treatment title, 2: edit url */
-						__( 'Imported: %1$s — %2$s', 'estecapelli' ),
+						/* translators: 1: title, 2: links */
+						__( 'Imported treatment: %1$s — %2$s', 'estecapelli' ),
 						esc_html( $t['title'] ),
-						'<a href="' . esc_url( get_edit_post_link( $result ) ) . '">' . esc_html__( 'edit', 'estecapelli' ) . '</a> · ' .
-						'<a href="' . esc_url( get_permalink( $result ) ) . '" target="_blank">' . esc_html__( 'view', 'estecapelli' ) . '</a>'
+						'<a href="' . esc_url( get_edit_post_link( $result ) ) . '">edit</a> · <a href="' . esc_url( get_permalink( $result ) ) . '" target="_blank">view</a>'
+					),
+				);
+			}
+		}
+
+		// Pages — order in the seed must keep parents before children.
+		$slug_to_id = array();
+		foreach ( $pages as $p ) {
+			if ( '__all__' !== $target && '__all_pages__' !== $target && $p['slug'] !== $target ) {
+				continue;
+			}
+			$result = estecapelli_import_page( $p, $slug_to_id );
+			if ( is_wp_error( $result ) ) {
+				$messages[] = array( 'type' => 'error', 'text' => sprintf( '%s — %s', esc_html( $p['title'] ), esc_html( $result->get_error_message() ) ) );
+			} else {
+				$messages[] = array(
+					'type' => 'success',
+					'text' => sprintf(
+						/* translators: 1: title, 2: links */
+						__( 'Imported page: %1$s — %2$s', 'estecapelli' ),
+						esc_html( $p['title'] ),
+						'<a href="' . esc_url( get_edit_post_link( $result ) ) . '">edit</a> · <a href="' . esc_url( get_permalink( $result ) ) . '" target="_blank">view</a>'
 					),
 				);
 			}
@@ -117,6 +207,7 @@ function estecapelli_render_treatments_importer() {
 	}
 
 	$treatments = estecapelli_treatments_seed();
+	$pages      = estecapelli_pages_seed();
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Treatment Importer', 'estecapelli' ); ?></h1>
@@ -173,8 +264,78 @@ function estecapelli_render_treatments_importer() {
 			</table>
 
 			<p style="margin-top:1.25rem;">
-				<button type="submit" name="estecapelli_action" value="__all__" class="button button-primary button-large">
+				<button type="submit" name="estecapelli_action" value="__all_treatments__" class="button button-primary">
 					<?php esc_html_e( 'Import / Re-import All Treatments', 'estecapelli' ); ?>
+				</button>
+			</p>
+
+			<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Pages', 'estecapelli' ); ?></h2>
+			<p class="description" style="max-width:740px;">
+				<?php esc_html_e( 'Each row is a regular WordPress page scaffolded with a basic Hero section. After importing, edit each page in the WordPress editor to build it out with the page-builder sections.', 'estecapelli' ); ?>
+			</p>
+
+			<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+				<thead>
+					<tr>
+						<th style="width:32%;"><?php esc_html_e( 'Page', 'estecapelli' ); ?></th>
+						<th style="width:24%;"><?php esc_html_e( 'Slug', 'estecapelli' ); ?></th>
+						<th style="width:14%;"><?php esc_html_e( 'Parent', 'estecapelli' ); ?></th>
+						<th style="width:8%;"><?php esc_html_e( 'Sections', 'estecapelli' ); ?></th>
+						<th style="width:12%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+						<th style="width:10%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $pages as $p ) :
+						// Build full hierarchical path for lookup.
+						$path_parts = array( $p['slug'] );
+						$walk_slug  = $p['parent'] ?? null;
+						$guard      = 0;
+						while ( $walk_slug && $guard < 10 ) {
+							array_unshift( $path_parts, $walk_slug );
+							$found_parent = null;
+							foreach ( $pages as $candidate ) {
+								if ( $candidate['slug'] === $walk_slug ) {
+									$found_parent = $candidate;
+									break;
+								}
+							}
+							$walk_slug = $found_parent['parent'] ?? null;
+							$guard++;
+						}
+						$full_path = implode( '/', $path_parts );
+						$existing  = get_page_by_path( $full_path, OBJECT, 'page' );
+						?>
+						<tr>
+							<td><strong><?php echo esc_html( $p['title'] ); ?></strong></td>
+							<td><code><?php echo esc_html( $full_path ); ?></code></td>
+							<td><?php echo esc_html( $p['parent'] ?: '—' ); ?></td>
+							<td><?php echo (int) count( $p['sections'] ); ?></td>
+							<td>
+								<?php if ( $existing ) : ?>
+									<span style="color:#0d8551;">● <?php esc_html_e( 'Exists', 'estecapelli' ); ?></span><br>
+									<a href="<?php echo esc_url( get_edit_post_link( $existing->ID ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a> ·
+									<a href="<?php echo esc_url( get_permalink( $existing->ID ) ); ?>" target="_blank"><?php esc_html_e( 'view', 'estecapelli' ); ?></a>
+								<?php else : ?>
+									<span style="color:#888;">○ <?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+								<?php endif; ?>
+							</td>
+							<td>
+								<button type="submit" name="estecapelli_action" value="<?php echo esc_attr( $p['slug'] ); ?>" class="button">
+									<?php echo $existing ? esc_html__( 'Re-import', 'estecapelli' ) : esc_html__( 'Import', 'estecapelli' ); ?>
+								</button>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+
+			<p style="margin-top:1.25rem;">
+				<button type="submit" name="estecapelli_action" value="__all_pages__" class="button button-primary">
+					<?php esc_html_e( 'Import / Re-import All Pages', 'estecapelli' ); ?>
+				</button>
+				<button type="submit" name="estecapelli_action" value="__all__" class="button button-primary button-large" style="margin-left:1rem;">
+					<?php esc_html_e( 'Import / Re-import EVERYTHING', 'estecapelli' ); ?>
 				</button>
 			</p>
 
