@@ -200,6 +200,250 @@ function estecapelli_register_acf_field_groups() {
 							),
 						),
 
+						// ============================================================ Steps timeline
+						'steps' => array(
+							'key'        => 'layout_steps',
+							'name'       => 'steps',
+							'label'      => __( 'Steps Timeline — numbered procedure flow', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_steps_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_steps_title',   'label' => __( 'Title',   'estecapelli' ), 'name' => 'title',   'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_steps_lead',    'label' => __( 'Lead',    'estecapelli' ), 'name' => 'lead',    'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'          => 'field_steps_items',
+									'label'        => __( 'Steps', 'estecapelli' ),
+									'name'         => 'items',
+									'type'         => 'repeater',
+									'min'          => 1,
+									'max'          => 8,
+									'button_label' => __( '+ Add Step', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_step_icon',  'label' => __( 'Icon', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_step_time',  'label' => __( 'Time / phase', 'estecapelli' ), 'name' => 'time', 'type' => 'text' ),
+										array( 'key' => 'field_step_title', 'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+										array( 'key' => 'field_step_body',  'label' => __( 'Body',  'estecapelli' ), 'name' => 'body',  'type' => 'textarea', 'rows' => 3 ),
+									),
+								),
+							),
+						),
+
+						// ============================================================ Candidate checklist
+						'candidate' => array(
+							'key'        => 'layout_candidate',
+							'name'       => 'candidate',
+							'label'      => __( 'Candidate — "Who is it for" checklist', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_cand_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_cand_title',   'label' => __( 'Title',   'estecapelli' ), 'name' => 'title',   'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_cand_body',    'label' => __( 'Intro paragraph', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 3 ),
+								array(
+									'key'           => 'field_cand_image',
+									'label'         => __( 'Side image (optional)', 'estecapelli' ),
+									'name'          => 'image',
+									'type'          => 'image',
+									'return_format' => 'array',
+									'preview_size'  => 'medium',
+								),
+								array(
+									'key'          => 'field_cand_items',
+									'label'        => __( 'Checklist items', 'estecapelli' ),
+									'name'         => 'items',
+									'type'         => 'repeater',
+									'min'          => 1,
+									'max'          => 10,
+									'button_label' => __( '+ Add Criterion', 'estecapelli' ),
+									'layout'       => 'table',
+									'sub_fields'   => array(
+										array( 'key' => 'field_cand_item_label', 'label' => __( 'Criterion', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
+									),
+								),
+							),
+						),
+
+						// ============================================================ Before / After gallery
+						'gallery' => array(
+							'key'        => 'layout_gallery',
+							'name'       => 'gallery',
+							'label'      => __( 'Before & After — image pair gallery', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_gal_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_gal_title',   'label' => __( 'Title',   'estecapelli' ), 'name' => 'title',   'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_gal_lead',    'label' => __( 'Lead',    'estecapelli' ), 'name' => 'lead',    'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'          => 'field_gal_pairs',
+									'label'        => __( 'Before / After pairs', 'estecapelli' ),
+									'name'         => 'pairs',
+									'type'         => 'repeater',
+									'min'          => 1,
+									'max'          => 12,
+									'button_label' => __( '+ Add Pair', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_gal_before',  'label' => __( 'Before', 'estecapelli' ), 'name' => 'before',  'type' => 'image', 'return_format' => 'array', 'required' => 1 ),
+										array( 'key' => 'field_gal_after',   'label' => __( 'After',  'estecapelli' ), 'name' => 'after',   'type' => 'image', 'return_format' => 'array', 'required' => 1 ),
+										array( 'key' => 'field_gal_caption', 'label' => __( 'Caption / months', 'estecapelli' ), 'name' => 'caption', 'type' => 'text' ),
+										array( 'key' => 'field_gal_grafts',  'label' => __( 'Grafts (optional)', 'estecapelli' ), 'name' => 'grafts',  'type' => 'text' ),
+									),
+								),
+								array(
+									'key'        => 'field_gal_cta',
+									'label'      => __( 'Gallery CTA (optional)', 'estecapelli' ),
+									'name'       => 'cta',
+									'type'       => 'group',
+									'layout'     => 'block',
+									'sub_fields' => array(
+										array( 'key' => 'field_gal_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text' ),
+										array( 'key' => 'field_gal_cta_url',   'label' => __( 'URL',   'estecapelli' ), 'name' => 'url',   'type' => 'url'  ),
+									),
+								),
+							),
+						),
+
+						// ============================================================ FAQ accordion
+						'faq' => array(
+							'key'        => 'layout_faq',
+							'name'       => 'faq',
+							'label'      => __( 'FAQ — accordion of questions', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_faq_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_faq_title',   'label' => __( 'Title',   'estecapelli' ), 'name' => 'title',   'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_faq_lead',    'label' => __( 'Lead',    'estecapelli' ), 'name' => 'lead',    'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'          => 'field_faq_items',
+									'label'        => __( 'Questions', 'estecapelli' ),
+									'name'         => 'items',
+									'type'         => 'repeater',
+									'min'          => 1,
+									'max'          => 20,
+									'button_label' => __( '+ Add Question', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_faq_q', 'label' => __( 'Question', 'estecapelli' ), 'name' => 'question', 'type' => 'text', 'required' => 1 ),
+										array(
+											'key' => 'field_faq_a',
+											'label' => __( 'Answer', 'estecapelli' ),
+											'name' => 'answer',
+											'type' => 'wysiwyg',
+											'tabs' => 'visual',
+											'toolbar' => 'basic',
+											'media_upload' => 0,
+											'required' => 1,
+										),
+									),
+								),
+							),
+						),
+
+						// ============================================================ Pricing
+						'pricing' => array(
+							'key'        => 'layout_pricing',
+							'name'       => 'pricing',
+							'label'      => __( 'Pricing — card with price + features + CTA', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_price_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_price_title',   'label' => __( 'Section title', 'estecapelli' ), 'name' => 'title', 'type' => 'text' ),
+								array( 'key' => 'field_price_lead',    'label' => __( 'Lead', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 2 ),
+								array( 'key' => 'field_price_plan',    'label' => __( 'Plan name', 'estecapelli' ), 'name' => 'plan_name', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_price_currency','label' => __( 'Currency symbol', 'estecapelli' ), 'name' => 'currency', 'type' => 'text', 'default_value' => '€' ),
+								array( 'key' => 'field_price_amount',  'label' => __( 'Amount (or "From")', 'estecapelli' ), 'name' => 'amount', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_price_period',  'label' => __( 'Period / unit (e.g. "all-inclusive")', 'estecapelli' ), 'name' => 'period', 'type' => 'text' ),
+								array(
+									'key'          => 'field_price_features',
+									'label'        => __( 'Included features', 'estecapelli' ),
+									'name'         => 'features',
+									'type'         => 'repeater',
+									'min'          => 1,
+									'max'          => 12,
+									'button_label' => __( '+ Add Feature', 'estecapelli' ),
+									'layout'       => 'table',
+									'sub_fields'   => array(
+										array( 'key' => 'field_price_feat', 'label' => __( 'Feature', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
+									),
+								),
+								array( 'key' => 'field_price_note', 'label' => __( 'Note / disclaimer (optional)', 'estecapelli' ), 'name' => 'note', 'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'        => 'field_price_cta',
+									'label'      => __( 'CTA', 'estecapelli' ),
+									'name'       => 'cta',
+									'type'       => 'group',
+									'layout'     => 'block',
+									'sub_fields' => array(
+										array( 'key' => 'field_price_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text' ),
+										array( 'key' => 'field_price_cta_url',   'label' => __( 'URL',   'estecapelli' ), 'name' => 'url',   'type' => 'url'  ),
+									),
+								),
+							),
+						),
+
+						// ============================================================ Doctor card
+						'doctor' => array(
+							'key'        => 'layout_doctor',
+							'name'       => 'doctor',
+							'label'      => __( 'Doctor — profile card linked to a CTA', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_doc_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_doc_name',    'label' => __( 'Doctor name', 'estecapelli' ), 'name' => 'name', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_doc_role',    'label' => __( 'Role / title', 'estecapelli' ), 'name' => 'role', 'type' => 'text' ),
+								array( 'key' => 'field_doc_photo',   'label' => __( 'Photo', 'estecapelli' ), 'name' => 'photo', 'type' => 'image', 'return_format' => 'array' ),
+								array( 'key' => 'field_doc_body',    'label' => __( 'Bio paragraph', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 4 ),
+								array(
+									'key'          => 'field_doc_credentials',
+									'label'        => __( 'Credentials', 'estecapelli' ),
+									'name'         => 'credentials',
+									'type'         => 'repeater',
+									'min'          => 0,
+									'max'          => 6,
+									'button_label' => __( '+ Add Credential', 'estecapelli' ),
+									'layout'       => 'table',
+									'sub_fields'   => array(
+										array( 'key' => 'field_doc_cred_label', 'label' => __( 'Credential', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
+									),
+								),
+								array(
+									'key'        => 'field_doc_cta',
+									'label'      => __( 'CTA (optional)', 'estecapelli' ),
+									'name'       => 'cta',
+									'type'       => 'group',
+									'layout'     => 'block',
+									'sub_fields' => array(
+										array( 'key' => 'field_doc_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text' ),
+										array( 'key' => 'field_doc_cta_url',   'label' => __( 'URL',   'estecapelli' ), 'name' => 'url',   'type' => 'url'  ),
+									),
+								),
+							),
+						),
+
+						// ============================================================ Related treatments
+						'related' => array(
+							'key'        => 'layout_related',
+							'name'       => 'related',
+							'label'      => __( 'Related Treatments — auto-queried cards', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_rel_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_rel_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_rel_count',   'label' => __( 'How many to show', 'estecapelli' ), 'name' => 'count', 'type' => 'number', 'default_value' => 3, 'min' => 1, 'max' => 6 ),
+								array(
+									'key'           => 'field_rel_manual',
+									'label'         => __( 'Manual selection (optional)', 'estecapelli' ),
+									'instructions'  => __( 'Leave empty to auto-pull treatments from the same category.', 'estecapelli' ),
+									'name'          => 'manual',
+									'type'          => 'post_object',
+									'post_type'     => array( 'treatment' ),
+									'multiple'      => 1,
+									'return_format' => 'id',
+									'ui'            => 1,
+								),
+							),
+						),
+
 						// ============================================================ Intro
 						'intro' => array(
 							'key'        => 'layout_intro',
