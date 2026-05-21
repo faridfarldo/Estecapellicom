@@ -4433,6 +4433,30 @@
 		flex-shrink: 0;
 	}
 
+	/* ============================================================ Nav hover bridge
+	   Extends the menu-item's hover area downward into the dropdown gap so the
+	   mouse can travel from the link to the panel without breaking :hover. */
+	.site-nav__list > li.has-megamenu,
+	.site-nav__list > li.menu-item-has-children {
+		position: relative;
+	}
+	.site-nav__list > li.has-megamenu::after,
+	.site-nav__list > li.menu-item-has-children::after {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		height: 14px;
+		pointer-events: none;
+	}
+	.site-nav__list > li.has-megamenu:hover::after,
+	.site-nav__list > li.has-megamenu:focus-within::after,
+	.site-nav__list > li.menu-item-has-children:hover::after,
+	.site-nav__list > li.menu-item-has-children:focus-within::after {
+		pointer-events: auto;
+	}
+
 	/* Sections without an internal mark element get a ::before pseudo line */
 	.hero-home__eyebrow::before,
 	.t-hero__eyebrow::before {
