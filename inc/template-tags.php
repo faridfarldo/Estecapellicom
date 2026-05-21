@@ -882,6 +882,89 @@ if ( ! function_exists( 'estecapelli_why_choose' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
+	/**
+	 * Homepage "Signature Methods" — three flip cards that auto-rotate.
+	 *
+	 * Front: photo + eyebrow + title + tease.
+	 * Back:  stat + body + two CTAs.
+	 *
+	 * ACF override: option 'home_signature_methods' returns the full payload.
+	 */
+	function estecapelli_signature_methods() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'home_signature_methods', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		$img = get_template_directory_uri() . '/assets/images/expertise/';
+
+		return array(
+			'eyebrow'  => __( 'Our Expertise', 'estecapelli' ),
+			'headline' => __( 'Three methods that shape every treatment.', 'estecapelli' ),
+			'lead'     => __( 'Two are exclusively ours. One sets the standard for personalised planning. All three power the results our patients trust us for.', 'estecapelli' ),
+
+			'cta_secondary' => array(
+				'label' => __( 'Schedule a Free Consultation', 'estecapelli' ),
+				'url'   => home_url( '/contact/' ),
+			),
+
+			'cards' => array(
+				array(
+					'key'        => 'exosome',
+					'eyebrow'    => __( 'Patented · Estecapelli Exclusive', 'estecapelli' ),
+					'title'      => __( 'Exosome FUE', 'estecapelli' ),
+					'subtitle'   => __( 'Premium Hair Transplant Method', 'estecapelli' ),
+					'tease'      => __( 'Mesenchymal stem-cell support that keeps follicles alive longer.', 'estecapelli' ),
+					'image'      => $img . 'exosome.png',
+					'icon'       => 'atom',
+					'stat'       => '98%',
+					'stat_label' => __( 'Follicle survival over 72 hours', 'estecapelli' ),
+					'body'       => __( 'Our patented Exosome Treatment is derived from mesenchymal stem cells found in the umbilical cord — designed to lift hair-follicle survival to 98% over 72 hours, with faster recovery, stronger growth, and naturally lasting results.', 'estecapelli' ),
+					'cta'        => array(
+						'label' => __( 'Learn about Exosome FUE', 'estecapelli' ),
+						'url'   => home_url( '/treatments/exosome-fue-hair-transplant/' ),
+					),
+				),
+				array(
+					'key'        => 'tricholab',
+					'eyebrow'    => __( 'AI-Powered Diagnosis', 'estecapelli' ),
+					'title'      => __( 'TrichoLab', 'estecapelli' ),
+					'subtitle'   => __( 'Millimetric Hair & Scalp Analysis', 'estecapelli' ),
+					'tease'      => __( 'AI maps your scalp before a single graft is planned.', 'estecapelli' ),
+					'image'      => $img . 'tricholab.jpg',
+					'icon'       => 'target',
+					'stat'       => __( 'Millimetric', 'estecapelli' ),
+					'stat_label' => __( 'Precision per scalp scan', 'estecapelli' ),
+					'body'       => __( 'TrichoLab examines your hair and scalp with millimetric accuracy — measuring follicle density, thickness, donor capacity, and loss patterns — so every graft is planned for your unique anatomy and the result feels naturally yours.', 'estecapelli' ),
+					'cta'        => array(
+						'label' => __( 'Learn more about TrichoLab', 'estecapelli' ),
+						'url'   => home_url( '/treatments/tricholab/' ),
+					),
+				),
+				array(
+					'key'        => 'vita',
+					'eyebrow'    => __( 'Signature Protocol · Estecapelli Exclusive', 'estecapelli' ),
+					'title'      => __( 'VITA Treatment', 'estecapelli' ),
+					'subtitle'   => __( 'Power Derived from Vitamins', 'estecapelli' ),
+					'tease'      => __( 'A vitamin-cooled bath that keeps grafts strong out of the body.', 'estecapelli' ),
+					'image'      => $img . 'vita.jpg',
+					'icon'       => 'sparkles',
+					'stat'       => __( 'Cool-Vapor', 'estecapelli' ),
+					'stat_label' => __( 'Vitamin-nourished grafts', 'estecapelli' ),
+					'body'       => __( 'Grafts lose strength the moment they leave the body. Our VITA Protocol bathes them in a specially formulated vitamin cocktail with cool-vapor application — keeping every follicle alive, nourished, and resilient until placement.', 'estecapelli' ),
+					'cta'        => array(
+						'label' => __( 'Learn more about VITA', 'estecapelli' ),
+						'url'   => home_url( '/treatments/vita/' ),
+					),
+				),
+			),
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 	/**
 	 * Render the brand mark (logo image if present, else styled text wordmark).

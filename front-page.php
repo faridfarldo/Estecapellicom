@@ -19,5 +19,7 @@ get_header();
 
 <?php get_template_part( 'template-parts/why', 'choose' ); ?>
 
+<?php get_template_part( 'template-parts/signature', 'methods' ); ?>
+
 <?php
 get_footer();
