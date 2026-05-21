@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
-	define( 'ESTECAPELLI_VERSION', '1.7.0' );
+	define( 'ESTECAPELLI_VERSION', '1.8.0' );
 }
 
 if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {
@@ -27,6 +27,8 @@ if ( ! defined( 'ESTECAPELLI_COUNTRY_COUNT' ) ) {
 
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/class-estecapelli-walker-nav-menu.php';
+require get_template_directory() . '/inc/post-types.php';
+require get_template_directory() . '/inc/acf-field-groups.php';
 
 if ( ! function_exists( 'estecapelli_setup' ) ) {
 	function estecapelli_setup() {
