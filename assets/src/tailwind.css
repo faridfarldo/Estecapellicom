@@ -4392,6 +4392,91 @@
 	.t-related__arrow { transition: transform 0.25s; }
 	.t-related__card:hover .t-related__arrow { transform: translateX(3px); }
 
+	/* ============================================================ Editorial eyebrow — global override
+	   Unified Title-Case eyebrow with a single accent rule on the left,
+	   replacing the previous pill+dot pattern site-wide. Markup stays the
+	   same; we override the existing __eyebrow / __eyebrow-mark classes. */
+	.services-home__eyebrow,
+	.why-choose__eyebrow,
+	.signature__eyebrow,
+	.stories__eyebrow,
+	.journey__eyebrow,
+	.facilities__eyebrow,
+	.posts__eyebrow,
+	.hero-home__eyebrow,
+	.t-hero__eyebrow,
+	.t-stats__eyebrow,
+	.t-intro__eyebrow,
+	.t-steps__eyebrow,
+	.t-cand__eyebrow,
+	.t-gallery__eyebrow,
+	.t-faq__eyebrow,
+	.t-price__eyebrow,
+	.t-doctor__eyebrow,
+	.t-related__eyebrow {
+		background: transparent !important;
+		border: 0 !important;
+		-webkit-backdrop-filter: none !important;
+		        backdrop-filter: none !important;
+		border-radius: 0 !important;
+		padding: 0 !important;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.625rem;
+		width: fit-content;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: -0.005em;
+		text-transform: none;
+		color: var(--color-brand-700);
+	}
+
+	/* Repurpose the existing dot element as the accent rule */
+	.services-home__eyebrow-mark,
+	.why-choose__eyebrow-mark,
+	.signature__eyebrow-mark,
+	.stories__eyebrow-mark,
+	.journey__eyebrow-mark,
+	.facilities__eyebrow-mark,
+	.posts__eyebrow-mark,
+	.t-stats__eyebrow-mark,
+	.t-intro__eyebrow-mark,
+	.t-steps__eyebrow-mark,
+	.t-cand__eyebrow-mark,
+	.t-gallery__eyebrow-mark,
+	.t-faq__eyebrow-mark,
+	.t-price__eyebrow-mark,
+	.t-doctor__eyebrow-mark,
+	.t-related__eyebrow-mark {
+		width: 36px !important;
+		height: 1.5px !important;
+		background: linear-gradient(90deg, var(--color-accent-500), var(--color-accent-700)) !important;
+		border-radius: 9999px !important;
+		box-shadow: none !important;
+		flex-shrink: 0;
+	}
+
+	/* Sections without an internal mark element get a ::before pseudo line */
+	.hero-home__eyebrow::before,
+	.t-hero__eyebrow::before {
+		content: '';
+		width: 36px;
+		height: 1.5px;
+		background: linear-gradient(90deg, var(--color-accent-500), var(--color-accent-700));
+		border-radius: 9999px;
+		flex-shrink: 0;
+		display: inline-block;
+	}
+
+	/* Dark backgrounds: shift text from brand-700 to accent-300 */
+	.signature__eyebrow,
+	.journey__eyebrow,
+	.t-hero__eyebrow,
+	.t-price__eyebrow,
+	.hero-home__eyebrow {
+		color: var(--color-accent-300) !important;
+	}
+
 	/* Fallback when no sections are configured */
 	.treatment-fallback {
 		padding-block: clamp(3rem, 6vw, 5rem);
