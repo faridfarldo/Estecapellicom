@@ -840,6 +840,555 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 				),
 			),
 
+			// ============================================================
+			// Rhinoplasty (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'rhinoplasty',
+				'title'    => 'Rhinoplasty',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Nose Aesthetics', 'estecapelli' ),
+						'title'         => __( 'Rhinoplasty', 'estecapelli' ),
+						'lead'          => __( 'A surgical procedure that reshapes the nose — improving its form, size and function. Performed for both aesthetic refinement and breathing concerns.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
+						'title'         => __( 'What is Rhinoplasty?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Rhinoplasty reshapes the nose to improve its form, size and function. It can be performed for aesthetic reasons, to correct breathing problems, or both — always planned around facial harmony and the individual’s anatomy.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
+						'title'         => __( 'Types of Rhinoplasty', 'estecapelli' ),
+						'body'          => __( 'At Estecapelli the right technique is chosen for your anatomy and goals:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Open Rhinoplasty — full access via a small incision under the nostrils', 'estecapelli' ) ),
+							array( 'label' => __( 'Closed Rhinoplasty — all incisions inside the nose, no visible scars', 'estecapelli' ) ),
+							array( 'label' => __( 'Tipplasty — refinement of the nasal tip only', 'estecapelli' ) ),
+							array( 'label' => __( 'Septum Deviation Surgery — corrects the midline cartilage/bone for better breathing', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Recovery Timeline', 'estecapelli' ),
+						'lead'          => __( 'What to expect after your rhinoplasty.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'time' => __( 'First 24h', 'estecapelli' ), 'title' => __( 'Mild Swelling', 'estecapelli' ), 'body' => __( 'Mild pain and swelling may occur and are easily managed.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'Week 1', 'estecapelli' ),   'title' => __( 'Splint Removal', 'estecapelli' ), 'body' => __( 'Most bruising begins to fade and the splint is typically removed.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( 'Months', 'estecapelli' ),   'title' => __( 'Final Shape', 'estecapelli' ),   'body' => __( 'Swelling subsides gradually and the refined, natural shape settles over the following months.', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'Rhinoplasty — FAQ', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'Is rhinoplasty only cosmetic?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'No — it can also correct breathing problems such as a deviated septum, and is often combined with aesthetic reshaping.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will there be visible scars?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Closed rhinoplasty leaves no external scars; open rhinoplasty leaves only a tiny, well-hidden incision under the nose.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// BBL — Brazilian Butt Lift (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'bbl',
+				'title'    => 'BBL (Brazilian Butt Lift)',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Body Contouring', 'estecapelli' ),
+						'title'         => __( 'Brazilian Butt Lift (BBL)', 'estecapelli' ),
+						'lead'          => __( 'A popular body-contouring procedure that enhances the shape, volume and lift of the buttocks for a fuller, more balanced silhouette — using your own fat.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
+						'title'         => __( 'What is a Brazilian Butt Lift?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'BBL enhances the shape and volume of the buttocks and improves overall body proportion. The most popular approach uses the patient’s own fat in two steps: liposuction to harvest excess fat, then purification and re-injection into the buttocks for a natural, lasting result. Silicone implants are an alternative for patients without enough fat.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Why Choose It', 'estecapelli' ),
+						'title'         => __( 'What BBL Can Improve', 'estecapelli' ),
+						'body'          => __( 'BBL addresses a range of shape and proportion concerns:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Flat or shapeless buttocks', 'estecapelli' ) ),
+							array( 'label' => __( 'Lack of waist-to-hip definition', 'estecapelli' ) ),
+							array( 'label' => __( 'Volume loss after weight change', 'estecapelli' ) ),
+							array( 'label' => __( 'A more balanced, curved silhouette', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Recovery & Sitting Rules', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Avoid sitting directly on the buttocks for the first 2–3 weeks; pressure should be transferred to the thighs with a special cushion. Transferred fat cells that survive become permanent and last for years, barring major weight changes.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'BBL — FAQ', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The fat cells that survive the transfer stay for years unless you undergo major weight changes.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is BBL safe?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Performed under general anaesthesia in a fully equipped hospital with experienced surgeons and modern techniques, BBL is carried out with safety as the priority.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Breast Aesthetics (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'breast-aesthetics-breast-surgery',
+				'title'    => 'Breast Aesthetics',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Breast Surgery', 'estecapelli' ),
+						'title'         => __( 'Breast Aesthetics', 'estecapelli' ),
+						'lead'          => __( 'Achieve breasts that are harmonious with your body — full and natural-looking. Personalised planning ensures aesthetic, balanced results.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
+						'title'         => __( 'What is Breast Aesthetics?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Breast aesthetics is the general term for surgical procedures that improve the size, shape and position of the breasts — including augmentation, lift and reduction. Each plan is tailored to the patient’s body proportions and goals.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'When It Helps', 'estecapelli' ),
+						'title'         => __( 'When is Breast Augmentation Performed?', 'estecapelli' ),
+						'body'          => __( 'Breast augmentation is an ideal solution in cases such as:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Genetically small breast structure', 'estecapelli' ) ),
+							array( 'label' => __( 'Volume loss after pregnancy or weight change', 'estecapelli' ) ),
+							array( 'label' => __( 'Asymmetry between the breasts', 'estecapelli' ) ),
+							array( 'label' => __( 'A desire for fuller, more balanced proportions', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'How It Works', 'estecapelli' ),
+						'title'         => __( 'How is Breast Augmentation Performed?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Augmentation is performed under general anaesthesia in a fully equipped operating room. Implant shape (round or teardrop), volume, surface and the incision site are chosen together with you — the incision can be made under the arm, under the breast or around the areola.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'Breast Aesthetics — FAQ', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'Round or teardrop implants?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Both are excellent; the right choice depends on your anatomy and the look you want. Your surgeon recommends the best option during consultation.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does it cover lift and reduction too?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes — breast aesthetics includes augmentation, lift and reduction, planned to your individual goals.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Abdominoplasty / Tummy Tuck (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'abdominoplasty-tummy-tuck',
+				'title'    => 'Abdominoplasty (Tummy Tuck)',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Body Contouring', 'estecapelli' ),
+						'title'         => __( 'Abdominoplasty (Tummy Tuck)', 'estecapelli' ),
+						'lead'          => __( 'Achieve a firmer, flatter abdomen. We deliver smooth, aesthetic results tailored to your body and goals by correcting sagging, looseness and muscle separation.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
+						'title'         => __( 'What is Abdominoplasty?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Abdominoplasty is a body-contouring procedure that corrects sagging, looseness and muscle separation in the abdominal area, removing excess skin and fat to create a firmer, flatter profile.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
+						'title'         => __( 'Types of Tummy Tuck', 'estecapelli' ),
+						'body'          => __( 'The right approach depends on the degree of sagging and muscle separation:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Full Abdominoplasty — for advanced sagging and muscle separation', 'estecapelli' ) ),
+							array( 'label' => __( 'Mini Tummy Tuck — for mild sagging below the navel', 'estecapelli' ) ),
+							array( 'label' => __( 'Liposuction + Abdominoplasty — when both excess fat and skin are present', 'estecapelli' ) ),
+							array( 'label' => __( 'Mommy Makeover — combines procedures to restore the body after childbirth', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Recovery Process', 'estecapelli' ),
+						'lead'          => __( 'A general guide — recovery varies from person to person.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'time' => __( 'Day 1', 'estecapelli' ),     'title' => __( 'Tightness', 'estecapelli' ),       'body' => __( 'A feeling of tightness is normal; one night in hospital is typical.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'Weeks 2–6', 'estecapelli' ), 'title' => __( 'Back to Routine', 'estecapelli' ), 'body' => __( 'Swelling decreases gradually; light activity is reintroduced with a corset worn as advised.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( '6–12 Months', 'estecapelli' ),'title' => __( 'Final Result', 'estecapelli' ),   'body' => __( 'The abdominal contour reaches its most refined, natural state and scars continue to fade.', 'estecapelli' ) ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Liposuction (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'liposuction',
+				'title'    => 'Liposuction',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Body Contouring', 'estecapelli' ),
+						'title'         => __( 'Liposuction', 'estecapelli' ),
+						'lead'          => __( 'A modern body-contouring procedure that reduces localized, stubborn fat deposits and reshapes your aesthetic contours.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
+						'title'         => __( 'What is Liposuction?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Liposuction reduces localized fat deposits that resist diet and exercise, reshaping the body’s contours. It can be applied to many areas where stubborn fat accumulates.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
+						'title'         => __( 'Types of Liposuction', 'estecapelli' ),
+						'body'          => __( 'The technique is chosen for your goals and anatomy:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Vaser Liposuction — ultrasound energy for precise, gentle contouring', 'estecapelli' ) ),
+							array( 'label' => __( 'Laser Liposuction — breaks down fat while tightening the skin', 'estecapelli' ) ),
+							array( 'label' => __( 'Tumescent Liposuction — minimizes bleeding and discomfort', 'estecapelli' ) ),
+							array( 'label' => __( 'PAL (Power-Assisted) — vibration-assisted, efficient fat removal', 'estecapelli' ) ),
+							array( 'label' => __( 'Classic Liposuction — conventional manual technique', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Recovery Process', 'estecapelli' ),
+						'lead'          => __( 'Comfort is prioritised with careful post-operative monitoring.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'time' => __( 'First Days', 'estecapelli' ), 'title' => __( 'Compression Garment', 'estecapelli' ), 'body' => __( 'Mild bruising and swelling may occur; a compression garment is started.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'Weeks 2–3', 'estecapelli' ),  'title' => __( 'Back to Activity', 'estecapelli' ),    'body' => __( 'Swelling diminishes and a gradual return to sport is possible.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( '3–6 Months', 'estecapelli' ), 'title' => __( 'Final Contours', 'estecapelli' ),     'body' => __( 'Body contours settle and final results are revealed.', 'estecapelli' ) ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Face & Neck Lift Surgery (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'face-and-neck-lift-surgery',
+				'title'    => 'Face & Neck Lift Surgery',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Facial Rejuvenation', 'estecapelli' ),
+						'title'         => __( 'Face & Neck Lift Surgery', 'estecapelli' ),
+						'lead'          => __( 'As we age, facial tissues sag and the jawline and neck lose definition. A face and neck lift restores a firmer, more youthful and natural contour.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
+						'title'         => __( 'What is a Face & Neck Lift?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'A facelift lifts sagging facial tissues, removes excess skin and restores definition; a neck lift corrects sagging, banding and a double chin. Together they rejuvenate the lower face and neck for a natural, refreshed look.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
+						'title'         => __( 'Types of Face Lift', 'estecapelli' ),
+						'body'          => __( 'Techniques are tailored to your anatomy, age and expectations:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Mini Facelift — minimally invasive, for mild to moderate sagging', 'estecapelli' ) ),
+							array( 'label' => __( 'Full Facelift — comprehensive rejuvenation for moderate to advanced aging', 'estecapelli' ) ),
+							array( 'label' => __( 'Deep Plane Facelift — advanced lift for moderate to severe aging', 'estecapelli' ) ),
+							array( 'label' => __( 'Neck Lift — firms loose skin, fat and muscle banding in the neck', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Recovery Process', 'estecapelli' ),
+						'lead'          => __( 'A general guide; recovery varies per person.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'time' => __( 'First Days', 'estecapelli' ), 'title' => __( 'Swelling', 'estecapelli' ),       'body' => __( 'Mild pain, swelling and bruising are normal; a one-night hospital stay may be needed.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'Weeks 2–3', 'estecapelli' ), 'title' => __( 'Resume Life', 'estecapelli' ),    'body' => __( 'Swelling and bruising fade and most normal activities resume.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( '1–3 Months', 'estecapelli' ),'title' => __( 'Final Contour', 'estecapelli' ),  'body' => __( 'Final results become visible and facial contours are fully defined.', 'estecapelli' ) ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Obesity Surgeries — Bariatric & Gastric Balloon (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'obesity-surgeries-bariatric-surgery-and-gastric-balloon',
+				'title'    => 'Obesity Surgeries (Bariatric)',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Weight Loss', 'estecapelli' ),
+						'title'         => __( 'Obesity Surgeries — Bariatric & Gastric Balloon', 'estecapelli' ),
+						'lead'          => __( 'Permanent and healthy weight loss with Estecapelli. Surgical and non-surgical options tailored to your health profile and goals.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
+						'title'         => __( 'What is Bariatric Surgery?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Bariatric surgery is a general term for procedures used to treat severe obesity, promoting significant, sustainable weight loss. The right method is chosen based on your BMI, health and goals.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Methods', 'estecapelli' ),
+						'title'         => __( 'Bariatric Methods', 'estecapelli' ),
+						'body'          => __( 'The most common approaches include:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Gastric Sleeve (Sleeve Gastrectomy)', 'estecapelli' ) ),
+							array( 'label' => __( 'Gastric Bypass', 'estecapelli' ) ),
+							array( 'label' => __( 'Gastric Balloon (endoscopic, non-surgical)', 'estecapelli' ) ),
+							array( 'label' => __( 'Gastric Band', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Non-Surgical Option', 'estecapelli' ),
+						'title'         => __( 'What is a Gastric Balloon?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The gastric balloon is an inflatable device placed in the stomach via endoscopy — no surgery required. It is suitable for people with a BMI of 30–35, or higher-BMI patients preparing for surgery, helping reduce food intake and kick-start weight loss.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Gynecomastia (Plastic Surgery)
+			// ============================================================
+			array(
+				'slug'     => 'gynecomastia',
+				'title'    => 'Gynecomastia',
+				'category' => 'Plastic Surgery',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Male Chest Aesthetics', 'estecapelli' ),
+						'title'         => __( 'Gynecomastia', 'estecapelli' ),
+						'lead'          => __( 'A surgical solution for enlarged male breast tissue — restoring a flatter, firmer and more masculine chest contour with natural-looking results.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Condition', 'estecapelli' ),
+						'title'         => __( 'What is Gynecomastia?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Gynecomastia is a condition in which male breast tissue grows beyond its normal size, giving the chest a fuller appearance. It often results from a hormonal imbalance between estrogen and testosterone, among other causes.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'The Approach', 'estecapelli' ),
+						'title'         => __( 'How Surgery is Performed', 'estecapelli' ),
+						'body'          => __( 'Performed under general anaesthesia, the technique depends on the case:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Excess fatty tissue only → liposuction / Vaser liposuction', 'estecapelli' ) ),
+							array( 'label' => __( 'Glandular tissue with skin sagging → tissue removal + skin reshaping', 'estecapelli' ) ),
+							array( 'label' => __( 'Natural, masculine chest contour as the goal', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Recovery Process', 'estecapelli' ),
+						'lead'          => __( 'Generally comfortable and well tolerated.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'time' => __( 'First Week', 'estecapelli' ), 'title' => __( 'Compression Vest', 'estecapelli' ), 'body' => __( 'Swelling and sensitivity are expected; a compression garment is essential for proper healing.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'Weeks 2–3', 'estecapelli' ),  'title' => __( 'Back to Routine', 'estecapelli' ),  'body' => __( 'Swelling largely subsides and light daily activity resumes.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( '1 Month+', 'estecapelli' ),   'title' => __( 'Defined Chest', 'estecapelli' ),    'body' => __( 'The chest takes on a natural, defined appearance; chest-intensive exercise gradually returns.', 'estecapelli' ) ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Dental Implant (Dental Treatment)
+			// ============================================================
+			array(
+				'slug'     => 'dental-implant',
+				'title'    => 'Dental Implant',
+				'category' => 'Dental Treatment',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Permanent Tooth Replacement', 'estecapelli' ),
+						'title'         => __( 'Dental Implant', 'estecapelli' ),
+						'lead'          => __( 'Restore missing teeth with permanent, natural-looking solutions. Biocompatible titanium roots deliver strong, aesthetic and long-lasting results.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Treatment', 'estecapelli' ),
+						'title'         => __( 'What is a Dental Implant?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'A dental implant is a modern treatment that restores natural tooth function and appearance by placing biocompatible titanium roots into the jawbone. Tooth loss affects more than aesthetics — it impairs chewing and can impact the digestive system and jaw health — which implants address permanently.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'The Process', 'estecapelli' ),
+						'title'         => __( 'How is a Dental Implant Applied?', 'estecapelli' ),
+						'lead'          => __( 'A structured process for safe, long-lasting, natural-looking results.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'target',       'time' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Examination & Imaging', 'estecapelli' ), 'body' => __( 'The jawbone is analysed with panoramic X-rays and digital tomography to assess bone density and implant size.', 'estecapelli' ) ),
+							array( 'icon' => 'clipboard',    'time' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'Treatment Planning', 'estecapelli' ),   'body' => __( 'A personalised plan is prepared based on the number of missing teeth, jaw structure and oral health.', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'time' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Implant Placement', 'estecapelli' ),    'body' => __( 'Under local anaesthesia the titanium root is precisely placed into the jawbone.', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'time' => __( 'Step 4', 'estecapelli' ), 'title' => __( 'Osseointegration', 'estecapelli' ),     'body' => __( 'A healing period of about 2–3 months lets the implant fully integrate with the bone.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( 'Step 5', 'estecapelli' ), 'title' => __( 'Prosthetic Tooth', 'estecapelli' ),     'body' => __( 'A custom-made prosthetic tooth is attached for a natural look and full chewing function.', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Why Choose It', 'estecapelli' ),
+						'title'         => __( 'Advantages of Dental Implants', 'estecapelli' ),
+						'body'          => __( 'Implants are the gold standard for replacing missing teeth:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'label' => __( 'Natural tooth appearance and feel', 'estecapelli' ) ),
+							array( 'label' => __( 'Maximum chewing performance', 'estecapelli' ) ),
+							array( 'label' => __( 'No alteration of adjacent healthy teeth', 'estecapelli' ) ),
+							array( 'label' => __( 'Long-lasting, durable solution', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'Dental Implants — FAQ', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'How long does treatment take?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'After placement, the implant needs roughly 2–3 months to integrate with the bone before the prosthetic tooth is fitted.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Why are implants popular in Turkey?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Turkey combines experienced specialists, modern technology and excellent value, making it a leading destination for implant treatment.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
+			// ============================================================
+			// Hollywood Smile (Dental Treatment)
+			// ============================================================
+			array(
+				'slug'     => 'hollywood-smile',
+				'title'    => 'Hollywood Smile',
+				'category' => 'Dental Treatment',
+				'sections' => array(
+					array(
+						'acf_fc_layout' => 'hero',
+						'eyebrow'       => __( 'Smile Design', 'estecapelli' ),
+						'title'         => __( 'Hollywood Smile', 'estecapelli' ),
+						'lead'          => __( 'A brighter, more symmetrical and truly striking smile — designed to transform not just your teeth, but the harmony of teeth, gums and lips.', 'estecapelli' ),
+						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
+						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
+						'media_type'    => 'image', 'image' => '', 'video_id' => '',
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Treatment', 'estecapelli' ),
+						'title'         => __( 'What is a Hollywood Smile?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Hollywood Smile is a comprehensive smile-design treatment that harmonises the relationship between teeth, gums and lips to create a symmetrical, bright and natural-looking smile. It is an ideal solution for discoloration, staining, gaps, misalignment and worn or asymmetrical teeth.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'The Process', 'estecapelli' ),
+						'title'         => __( 'How is a Hollywood Smile Applied?', 'estecapelli' ),
+						'lead'          => __( 'A highly personalised treatment tailored to each patient.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'target',       'time' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Digital Smile Analysis', 'estecapelli' ), 'body' => __( 'Facial shape, lip structure, gum line and tooth form are analysed to design a fully personalised smile.', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'time' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'Oral Health Preparation', 'estecapelli' ), 'body' => __( 'A healthy oral foundation is established before any aesthetic work begins.', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'time' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Restoring Missing Teeth', 'estecapelli' ), 'body' => __( 'Where teeth are missing, implant treatment is completed first.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( 'Step 4', 'estecapelli' ), 'title' => __( 'Gum Aesthetics', 'estecapelli' ),         'body' => __( 'Laser gum contouring balances asymmetrical or gummy gum lines.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( 'Step 5', 'estecapelli' ), 'title' => __( 'Teeth Renewal & Whitening', 'estecapelli' ), 'body' => __( 'Teeth are aesthetically reshaped and the final shade is harmonised for a consistent, balanced result.', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'Hollywood Smile — FAQ', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'Who is it suitable for?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Anyone with discoloration, staining, gaps, misalignment or worn/asymmetrical teeth who wants a brighter, balanced smile.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is it tailored to me?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes — it begins with a digital smile analysis of your facial proportions, so the result is designed uniquely for you.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
+				),
+			),
+
 		);
 	}
 }
