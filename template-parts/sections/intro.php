@@ -20,6 +20,8 @@ $body     = $section['body']           ?? '';
 $image    = $section['image']          ?? array();
 $position = $section['image_position'] ?? 'right';
 $cta      = $section['cta']            ?? array();
+$mtype    = ! empty( $section['media_type'] ) ? $section['media_type'] : 'image';
+$video_id = ! empty( $section['video_url'] ) ? estecapelli_youtube_id( $section['video_url'] ) : '';
 
 if ( ! $title && ! $body ) {
 	return;
@@ -55,7 +57,20 @@ if ( ! $title && ! $body ) {
 			<?php endif; ?>
 		</div>
 
-		<?php if ( ! empty( $image['url'] ) ) : ?>
+		<?php if ( 'video' === $mtype && $video_id ) : ?>
+			<figure class="t-intro__media t-intro__media--video">
+				<div class="t-intro__video">
+					<iframe
+						src="https://www.youtube-nocookie.com/embed/<?php echo esc_attr( $video_id ); ?>?rel=0&modestbranding=1"
+						title="<?php echo esc_attr( $title ); ?>"
+						loading="lazy"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+				</div>
+			</figure>
+		<?php elseif ( 'image' === $mtype && ! empty( $image['url'] ) ) : ?>
 			<figure class="t-intro__media">
 				<img
 					class="t-intro__img"

@@ -23,7 +23,7 @@ $cta_p    = $section['cta_primary']   ?? array();
 $cta_s    = $section['cta_secondary'] ?? array();
 $mtype    = $section['media_type'] ?? 'image';
 $image    = $section['image']    ?? array();
-$video_id = $section['video_id'] ?? '';
+$video_id = ! empty( $section['video_id'] ) ? estecapelli_youtube_id( $section['video_id'] ) : '';
 
 if ( ! $title ) {
 	return;

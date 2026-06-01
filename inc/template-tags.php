@@ -120,6 +120,37 @@ if ( ! function_exists( 'estecapelli_whatsapp_url' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_youtube_id' ) ) {
+	/**
+	 * Extract the 11-character YouTube video ID from any common URL form,
+	 * or return the input unchanged if it is already a bare ID.
+	 *
+	 * Accepts: youtube.com/watch?v=ID, youtu.be/ID, youtube.com/embed/ID,
+	 * youtube.com/shorts/ID, with or without extra query params — and a
+	 * plain ID pasted on its own.
+	 *
+	 * @param string $input URL or video ID.
+	 * @return string The video ID, or '' if none could be found.
+	 */
+	function estecapelli_youtube_id( $input ) {
+		$input = trim( (string) $input );
+		if ( '' === $input ) {
+			return '';
+		}
+
+		// Already a bare ID (no slashes, no dots) — accept as-is.
+		if ( preg_match( '/^[A-Za-z0-9_-]{11}$/', $input ) ) {
+			return $input;
+		}
+
+		if ( preg_match( '~(?:youtube(?:-nocookie)?\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/|v/)|youtu\.be/)([A-Za-z0-9_-]{11})~i', $input, $m ) ) {
+			return $m[1];
+		}
+
+		return '';
+	}
+}
+
 if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
 	/**
 	 * Footer contact block data (location, address, phone, email, social).
