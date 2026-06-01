@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
-	define( 'ESTECAPELLI_VERSION', '1.13.0' );
+	define( 'ESTECAPELLI_VERSION', '1.15.0' );
 }
 
 if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {
@@ -70,6 +70,29 @@ if ( ! function_exists( 'estecapelli_setup' ) ) {
 	}
 }
 add_action( 'after_setup_theme', 'estecapelli_setup' );
+
+/**
+ * Flush rewrite rules once per theme version.
+ *
+ * The `treatment` CPT registers a `/treatments/%slug%/` permalink. Those
+ * pretty URLs only resolve after rewrite rules are flushed; otherwise the
+ * site falls back to the ugly `?treatment=slug` query form. Because the
+ * theme is deployed by `git pull` (not a real theme switch), we gate the
+ * flush on ESTECAPELLI_VERSION: bump the version on deploy and rules are
+ * regenerated exactly once, with no per-request cost afterwards.
+ *
+ * Runs after the CPT is registered (init priority 0) so its rules exist.
+ *
+ * Note: this only produces pretty URLs when the site's permalink structure
+ * is set to something other than "Plain" (Settings → Permalinks).
+ */
+function estecapelli_maybe_flush_rewrite_rules() {
+	if ( get_option( 'estecapelli_rewrite_version' ) !== ESTECAPELLI_VERSION ) {
+		flush_rewrite_rules();
+		update_option( 'estecapelli_rewrite_version', ESTECAPELLI_VERSION );
+	}
+}
+add_action( 'init', 'estecapelli_maybe_flush_rewrite_rules', 99 );
 
 function estecapelli_enqueue_assets() {
 	wp_enqueue_style(
