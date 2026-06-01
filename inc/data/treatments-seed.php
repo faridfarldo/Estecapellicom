@@ -528,7 +528,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 			// VITA Treatment (VITA Protocol)
 			// ============================================================
 			array(
-				'slug'     => 'vita',
+				'slug'     => 'vita-treatment',
 				'title'    => 'VITA Treatment',
 				'category' => 'Hair Transplant',
 				'sections' => array(

@@ -275,63 +275,63 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					array(
 						array(
 							'label'       => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),
-							'url'         => home_url( '/treatments/exosome-fue-hair-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/exosome-fue-hair-transplant/' ),
 							'description' => __( 'Supported by cell-regenerating exosomes, it keeps hair follicles alive for longer-lasting density.', 'estecapelli' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'Female Hair Transplant', 'estecapelli' ),
-							'url'         => home_url( '/treatments/female-hair-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/female-hair-transplant/' ),
 							'description' => __( 'Special for women, dense and natural-looking hair transplant without shaving.', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'Hair Mesotherapy', 'estecapelli' ),
-							'url'         => home_url( '/treatments/hair-mesotherapy/' ),
+							'url'         => home_url( '/en/hair-transplant/hair-mesotherapy/' ),
 							'description' => __( 'A vitamin and mineral injection treatment that revitalizes hair follicles.', 'estecapelli' ),
 						),
 					),
 					array(
 						array(
 							'label'       => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ),
-							'url'         => home_url( '/treatments/sapphire-fue-hair-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/sapphire-fue-hair-transplant/' ),
 							'description' => __( 'A natural and permanent hair transplant technique where follicles are placed via sapphire blades.', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'TrichoLab', 'estecapelli' ),
-							'url'         => home_url( '/treatments/tricholab/' ),
+							'url'         => home_url( '/en/hair-transplant/tricholab/' ),
 							'description' => __( 'Advanced AI-powered hair analysis system that examines the hair and scalp in detail.', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'Beard Transplant', 'estecapelli' ),
-							'url'         => home_url( '/treatments/beard-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/beard-transplant/' ),
 							'description' => __( 'Natural beard and mustache transplantation for sparse or non-existing growth.', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'Post-Hair Transplant Period', 'estecapelli' ),
-							'url'         => home_url( '/treatments/post-hair-transplant-period/' ),
+							'url'         => home_url( '/en/hair-transplant/post-hair-transplant-period/' ),
 							'description' => __( 'The post-harvest recovery and hair care period.', 'estecapelli' ),
 						),
 					),
 					array(
 						array(
 							'label'       => __( 'DHI Hair Transplant', 'estecapelli' ),
-							'url'         => home_url( '/treatments/dhi-hair-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/dhi-hair-transplant/' ),
 							'description' => __( 'A modern hair transplantation method performed with a Choi pen that allows precise placement.', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'VITA Treatment', 'estecapelli' ),
-							'url'         => home_url( '/treatments/vita/' ),
+							'url'         => home_url( '/en/hair-transplant/vita-treatment/' ),
 							'description' => __( "Estecapelli's signature method that revitalizes the scalp and strengthens hair.", 'estecapelli' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'Eyebrow Transplant', 'estecapelli' ),
-							'url'         => home_url( '/treatments/eyebrow-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/eyebrow-transplant/' ),
 							'description' => __( 'Eyebrow transplantation that gives a naturally curved and full eyebrow shape.', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'Pre-Hair Transplant Period', 'estecapelli' ),
-							'url'         => home_url( '/treatments/pre-hair-transplant-period/' ),
+							'url'         => home_url( '/en/hair-transplant/pre-hair-transplant-period/' ),
 							'description' => __( 'The preparation and analysis process before hair transplantation.', 'estecapelli' ),
 						),
 					),
@@ -341,7 +341,7 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'title'       => __( 'Premium Hair Transplant Consultation', 'estecapelli' ),
 					'description' => __( 'At Estecapelli we offer patented Exosome FUE hair transplantation — an advanced treatment designed to support the regeneration and vitality of hair follicles.', 'estecapelli' ),
 					'cta_label'   => __( 'Hair Transplant Contact', 'estecapelli' ),
-					'cta_url'     => home_url( '/contact/?service=hair-transplant' ),
+					'cta_url'     => home_url( '/en/contact/' ),
 					'video'       => 'mega/hair.mp4',
 					'image'       => 'mega/hair.jpg',
 					'caption'     => __( 'Enriched by Estecapelli\'s expert staff', 'estecapelli' ),
@@ -351,18 +351,18 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 			'plastic-surgery' => array(
 				'columns' => array(
 					array(
-						array( 'label' => __( 'Rhinoplasty', 'estecapelli' ),     'url' => home_url( '/treatments/rhinoplasty/' ),     'description' => __( 'Nose reshaping surgery that refines proportions and function.', 'estecapelli' ) ),
-						array( 'label' => __( 'Tipplasty', 'estecapelli' ),       'url' => home_url( '/treatments/tipplasty/' ),       'description' => __( 'Targeted refinement of the nasal tip only.', 'estecapelli' ) ),
-						array( 'label' => __( 'Facelift', 'estecapelli' ),        'url' => home_url( '/treatments/facelift/' ),        'description' => __( 'Restores facial contour and reduces visible signs of aging.', 'estecapelli' ) ),
+						array( 'label' => __( 'Rhinoplasty', 'estecapelli' ),               'url' => home_url( '/en/plastic-surgery/rhinoplasty/' ),                                         'description' => __( 'Nose reshaping surgery that refines proportions and function.', 'estecapelli' ) ),
+						array( 'label' => __( 'BBL (Brazilian Butt Lift)', 'estecapelli' ), 'url' => home_url( '/en/plastic-surgery/bbl/' ),                                                 'description' => __( 'Natural body contouring with fat transfer to the buttocks.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'Liposuction', 'estecapelli' ),               'url' => home_url( '/en/plastic-surgery/liposuction/' ),                                         'description' => __( 'Removes localized fat deposits to reshape the body.', 'estecapelli' ) ),
 					),
 					array(
-						array( 'label' => __( 'BBL (Brazilian Butt Lift)', 'estecapelli' ), 'url' => home_url( '/treatments/bbl/' ),         'description' => __( 'Natural body contouring with fat transfer to the buttocks.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
-						array( 'label' => __( 'Liposuction', 'estecapelli' ),     'url' => home_url( '/treatments/liposuction/' ),     'description' => __( 'Removes localized fat deposits to reshape the body.', 'estecapelli' ) ),
-						array( 'label' => __( 'Tummy Tuck', 'estecapelli' ),      'url' => home_url( '/treatments/tummy-tuck/' ),      'description' => __( 'Flattens and tightens the abdomen for a smoother profile.', 'estecapelli' ) ),
+						array( 'label' => __( 'Breast Aesthetics', 'estecapelli' ),         'url' => home_url( '/en/plastic-surgery/breast-aesthetics-breast-surgery/' ),                    'description' => __( 'Augmentation, lift, and reduction tailored to your goals.', 'estecapelli' ) ),
+						array( 'label' => __( 'Abdominoplasty (Tummy Tuck)', 'estecapelli' ),'url' => home_url( '/en/plastic-surgery/abdominoplasty-tummy-tuck/' ),                          'description' => __( 'Flattens and tightens the abdomen for a smoother profile.', 'estecapelli' ) ),
+						array( 'label' => __( 'Gynecomastia', 'estecapelli' ),              'url' => home_url( '/en/plastic-surgery/gynecomastia/' ),                                        'description' => __( 'Surgical treatment of enlarged male breast tissue.', 'estecapelli' ) ),
 					),
 					array(
-						array( 'label' => __( 'Breast Aesthetics', 'estecapelli' ),'url' => home_url( '/treatments/breast-aesthetics/' ), 'description' => __( 'Augmentation, lift, and reduction tailored to your goals.', 'estecapelli' ) ),
-						array( 'label' => __( 'Gynecomastia', 'estecapelli' ),    'url' => home_url( '/treatments/gynecomastia/' ),    'description' => __( 'Surgical treatment of enlarged male breast tissue.', 'estecapelli' ) ),
+						array( 'label' => __( 'Face & Neck Lift Surgery', 'estecapelli' ),  'url' => home_url( '/en/plastic-surgery/face-and-neck-lift-surgery/' ),                          'description' => __( 'Restores facial contour and reduces visible signs of aging.', 'estecapelli' ) ),
+						array( 'label' => __( 'Obesity Surgeries (Bariatric)', 'estecapelli' ),'url' => home_url( '/en/plastic-surgery/obesity-surgeries-bariatric-surgery-and-gastric-balloon/' ), 'description' => __( 'Bariatric surgery and gastric balloon for sustainable weight loss.', 'estecapelli' ) ),
 					),
 				),
 				'feature' => array(
@@ -370,7 +370,7 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'title'       => __( 'Aesthetic Surgery Consultation', 'estecapelli' ),
 					'description' => __( 'Board-certified plastic surgeons. Personalized plans, premium hospitals, and recovery support every step of the way.', 'estecapelli' ),
 					'cta_label'   => __( 'Plastic Surgery Contact', 'estecapelli' ),
-					'cta_url'     => home_url( '/contact/?service=plastic-surgery' ),
+					'cta_url'     => home_url( '/en/contact/' ),
 					'video'       => 'mega/plastic.mp4',
 					'image'       => 'mega/plastic.jpg',
 				),
@@ -379,12 +379,8 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 			'dental-treatment' => array(
 				'columns' => array(
 					array(
-						array( 'label' => __( 'Dental Implants', 'estecapelli' ), 'url' => home_url( '/treatments/dental-implants/' ), 'description' => __( 'Permanent replacement for missing teeth with titanium roots.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
-						array( 'label' => __( 'Smile Design', 'estecapelli' ),    'url' => home_url( '/treatments/smile-design/' ),    'description' => __( 'A bespoke makeover that reshapes your smile aesthetic.', 'estecapelli' ) ),
-					),
-					array(
-						array( 'label' => __( 'Veneers', 'estecapelli' ),         'url' => home_url( '/treatments/veneers/' ),         'description' => __( 'Thin porcelain or composite shells for a flawless front-of-tooth finish.', 'estecapelli' ) ),
-						array( 'label' => __( 'Teeth Whitening', 'estecapelli' ), 'url' => home_url( '/treatments/teeth-whitening/' ), 'description' => __( 'Professional bleaching for noticeably brighter teeth.', 'estecapelli' ) ),
+						array( 'label' => __( 'Dental Implant', 'estecapelli' ),  'url' => home_url( '/en/dental-treatment/dental-implant/' ),  'description' => __( 'Permanent replacement for missing teeth with titanium roots.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'Hollywood Smile', 'estecapelli' ), 'url' => home_url( '/en/dental-treatment/hollywood-smile/' ), 'description' => __( 'A bespoke makeover that reshapes your smile aesthetic.', 'estecapelli' ) ),
 					),
 				),
 				'feature' => array(
@@ -392,50 +388,20 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'title'       => __( 'Dental Treatment Consultation', 'estecapelli' ),
 					'description' => __( 'World-class dental care in Istanbul — same-day implants, veneers, and smile design with personalized planning.', 'estecapelli' ),
 					'cta_label'   => __( 'Dental Contact', 'estecapelli' ),
-					'cta_url'     => home_url( '/contact/?service=dental' ),
+					'cta_url'     => home_url( '/en/contact/' ),
 					'video'       => 'mega/dental.mp4',
 					'image'       => 'mega/dental.jpg',
-				),
-			),
-
-			'medical-treatment' => array(
-				'columns' => array(
-					array(
-						array( 'label' => __( 'Botox', 'estecapelli' ),              'url' => home_url( '/treatments/botox/' ),              'description' => __( 'Smooths expression lines and softens wrinkles for a refreshed look.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
-						array( 'label' => __( 'Dermal Fillers', 'estecapelli' ),    'url' => home_url( '/treatments/dermal-fillers/' ),    'description' => __( 'Restores volume and contour to cheeks, jawline and under-eye areas.', 'estecapelli' ) ),
-						array( 'label' => __( 'Lip Augmentation', 'estecapelli' ),  'url' => home_url( '/treatments/lip-augmentation/' ),  'description' => __( 'Natural-looking lip enhancement with hyaluronic acid injections.', 'estecapelli' ) ),
-					),
-					array(
-						array( 'label' => __( 'PRP Treatment', 'estecapelli' ),     'url' => home_url( '/treatments/prp-treatment/' ),     'description' => __( 'Platelet-rich plasma therapy that stimulates skin and hair regeneration.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
-						array( 'label' => __( 'Fractional Laser', 'estecapelli' ),  'url' => home_url( '/treatments/fractional-laser/' ),  'description' => __( 'Targeted laser resurfacing for scars, pigmentation and skin texture.', 'estecapelli' ) ),
-						array( 'label' => __( 'Skin Mesotherapy', 'estecapelli' ),  'url' => home_url( '/treatments/skin-mesotherapy/' ),  'description' => __( 'Micro-injections of vitamins and antioxidants for radiant skin.', 'estecapelli' ) ),
-					),
-					array(
-						array( 'label' => __( 'Carboxytherapy', 'estecapelli' ),    'url' => home_url( '/treatments/carboxytherapy/' ),    'description' => __( 'CO₂ injections that boost circulation and tighten the skin.', 'estecapelli' ) ),
-						array( 'label' => __( 'Salmon DNA Injection', 'estecapelli' ), 'url' => home_url( '/treatments/salmon-dna/' ),      'description' => __( 'Polynucleotide therapy that deeply repairs and revitalizes the skin.', 'estecapelli' ) ),
-						array( 'label' => __( 'Skin Rejuvenation', 'estecapelli' ), 'url' => home_url( '/treatments/skin-rejuvenation/' ), 'description' => __( 'Combined non-surgical protocols for firmer, brighter, healthier skin.', 'estecapelli' ) ),
-					),
-				),
-				'feature' => array(
-					'eyebrow'     => __( 'NON-SURGICAL AESTHETICS', 'estecapelli' ),
-					'title'       => __( 'Medical Aesthetic Treatments', 'estecapelli' ),
-					'description' => __( 'Refresh, rejuvenate and restore without surgery. Personalized plans delivered by our licensed medical team.', 'estecapelli' ),
-					'cta_label'   => __( 'Book a Consultation', 'estecapelli' ),
-					'cta_url'     => home_url( '/contact/?service=medical-treatment' ),
-					'video'       => 'mega/medical.mp4',
-					'image'       => 'mega/medical.jpg',
 				),
 			),
 
 			'about-us' => array(
 				'columns' => array(
 					array(
-						array( 'label' => __( 'About Estecapelli', 'estecapelli' ),'url' => home_url( '/about/' ),         'description' => __( 'Who we are and what drives our clinic forward.', 'estecapelli' ) ),
-						array( 'label' => __( 'Our Doctors', 'estecapelli' ),     'url' => home_url( '/doctors/' ),       'description' => __( 'Meet the surgeons leading every procedure.', 'estecapelli' ) ),
+						array( 'label' => __( 'About Estecapelli', 'estecapelli' ),'url' => home_url( '/en/about-us/' ),            'description' => __( 'Who we are and what drives our clinic forward.', 'estecapelli' ) ),
+						array( 'label' => __( 'Our Doctors', 'estecapelli' ),     'url' => home_url( '/en/about-us/our-doctors/' ), 'description' => __( 'Meet the surgeons leading every procedure.', 'estecapelli' ) ),
 					),
 					array(
-						array( 'label' => __( 'Our Team', 'estecapelli' ),        'url' => home_url( '/team/' ),          'description' => __( 'The full medical and patient-care team behind your treatment.', 'estecapelli' ) ),
-						array( 'label' => __( 'Hospital & Facilities', 'estecapelli' ), 'url' => home_url( '/hospital/' ), 'description' => __( 'High-end accredited hospitals in central Istanbul.', 'estecapelli' ) ),
+						array( 'label' => __( 'Our Team', 'estecapelli' ),        'url' => home_url( '/en/about-us/our-team/' ),    'description' => __( 'The full medical and patient-care team behind your treatment.', 'estecapelli' ) ),
 					),
 				),
 				'feature' => array(
@@ -443,7 +409,7 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					'title'       => __( 'Trusted by 15,000+ Patients', 'estecapelli' ),
 					'description' => __( "From your first message to your follow-up months later — Estecapelli's team is with you across 40+ countries.", 'estecapelli' ),
 					'cta_label'   => __( 'Speak with our team', 'estecapelli' ),
-					'cta_url'     => home_url( '/contact/' ),
+					'cta_url'     => home_url( '/en/contact/' ),
 					'video'       => 'mega/about.mp4',
 					'image'       => 'mega/about.jpg',
 				),
@@ -541,14 +507,13 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 	 */
 	function estecapelli_primary_menu_fallback() {
 		$items = array(
-			array( 'label' => __( 'Hair Transplant', 'estecapelli' ),  'url' => home_url( '/hair-transplant/' ),  'mega' => 'hair-transplant' ),
-			array( 'label' => __( 'Plastic Surgery', 'estecapelli' ),  'url' => home_url( '/plastic-surgery/' ),  'mega' => 'plastic-surgery' ),
-			array( 'label' => __( 'Dental Treatment', 'estecapelli' ), 'url' => home_url( '/dental-treatment/' ), 'mega' => 'dental-treatment' ),
-			array( 'label' => __( 'Medical Treatment', 'estecapelli' ),'url' => home_url( '/medical-treatment/' ),'mega' => 'medical-treatment' ),
-			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/before-after/' ) ),
-			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/about/' ),            'mega' => 'about-us' ),
-			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/blog/' ) ),
-			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/contact/' ) ),
+			array( 'label' => __( 'Hair Transplant', 'estecapelli' ),  'url' => home_url( '/en/hair-transplant/' ),  'mega' => 'hair-transplant' ),
+			array( 'label' => __( 'Plastic Surgery', 'estecapelli' ),  'url' => home_url( '/en/plastic-surgery/' ),  'mega' => 'plastic-surgery' ),
+			array( 'label' => __( 'Dental Treatment', 'estecapelli' ), 'url' => home_url( '/en/dental-treatment/' ), 'mega' => 'dental-treatment' ),
+			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/en/before-after/' ) ),
+			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/en/about-us/' ),         'mega' => 'about-us' ),
+			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/en/blog/' ) ),
+			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/en/contact/' ) ),
 		);
 
 		echo '<ul class="site-nav__list">';

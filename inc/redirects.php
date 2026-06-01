@@ -38,9 +38,9 @@ function estecapelli_handle_legacy_redirects() {
 	$path = preg_replace( '#^en(/|$)#', '', $path );
 	$path = trim( $path, '/' );
 
-	// Empty after stripping = redirect to the (language-aware) homepage.
+	// Empty after stripping = redirect to the English homepage.
 	if ( '' === $path ) {
-		wp_safe_redirect( home_url( '/' ), 301 );
+		wp_safe_redirect( home_url( '/en/' ), 301 );
 		exit;
 	}
 
@@ -70,31 +70,15 @@ function estecapelli_legacy_redirect_rules() {
 
 	return array(
 
-		// ---- Explicit static pages ----
-		array( 'from' => '#^home/?$#i',    'to' => '/' ),
+		// ---- Homepage ----
+		array( 'from' => '#^home/?$#i', 'to' => '/en/' ),
 
-		// ---- Category overview pages ----
-		array( 'from' => '#^hair-transplant/hair-transplant-overview/?$#i',     'to' => '/hair-transplant/' ),
-		array( 'from' => '#^plastic-surgery/plastic-surgery-overview/?$#i',     'to' => '/plastic-surgery/' ),
-		array( 'from' => '#^dental-treatment/dental-treatment-overview/?$#i',   'to' => '/dental-treatment/' ),
-
-		// ---- Removed sub-pages → parent treatment ----
-		array( 'from' => '#^hair-transplant/dhi-hair-transplant/[^/]+/?$#i',    'to' => '/treatments/dhi-hair-transplant/' ),
-
-		// ---- Treatments — flatten /{category}/{slug} → /treatments/{slug}/ ----
-		array( 'from' => '#^(hair-transplant|plastic-surgery|dental-treatment)/([^/]+)/?$#i', 'to' => '/treatments/$2/' ),
-
-		// ---- Before-after items → single gallery page ----
-		array( 'from' => '#^before-after/.+$#i',    'to' => '/before-after/' ),
-
-		// ---- About sub-pages — preserve hierarchy, only ensure trailing slash ----
-		array( 'from' => '#^(about-us/.+?)/?$#i',   'to' => '/$1/' ),
-
-		// ---- Blog posts — preserve slug under /blog/ ----
-		array( 'from' => '#^blog/(.+?)/?$#i',       'to' => '/blog/$1/' ),
-
-		// ---- Top-level pages that already match the new structure ----
-		array( 'from' => '#^(about-us|hair-transplant|plastic-surgery|dental-treatment|before-after|blog|contact)/?$#i', 'to' => '/$1/' ),
+		// ---- Previous build shipped treatments at /treatments/{slug}/.
+		//      Canonical is now /en/{category}/{service}. Every treatment we
+		//      shipped was hair-transplant, so map those across; VITA also
+		//      changed slug (vita → vita-treatment). ----
+		array( 'from' => '#^treatments/vita/?$#i',    'to' => '/en/hair-transplant/vita-treatment/' ),
+		array( 'from' => '#^treatments/([^/]+)/?$#i', 'to' => '/en/hair-transplant/$1/' ),
 
 	);
 }

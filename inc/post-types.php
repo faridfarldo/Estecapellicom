@@ -38,8 +38,12 @@ function estecapelli_register_treatment_cpt() {
 			'show_in_rest'        => true,
 			'menu_icon'           => 'dashicons-heart',
 			'menu_position'       => 20,
-			'has_archive'         => 'treatments',
-			'rewrite'             => array( 'slug' => 'treatments', 'with_front' => false ),
+			'has_archive'         => false,
+			// Live URL structure is /en/{category}/{service}. The %treatment_category%
+			// tag is a real rewrite tag (registered because treatment_category has
+			// rewrite enabled) so WordPress builds matching rules; the displayed
+			// permalink is resolved in estecapelli_treatment_permalink().
+			'rewrite'             => array( 'slug' => 'en/%treatment_category%', 'with_front' => false ),
 			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ),
 			'show_in_nav_menus'   => true,
 		)
@@ -68,4 +72,28 @@ function estecapelli_register_treatment_cpt() {
 			'rewrite'           => array( 'slug' => 'treatment-category', 'with_front' => false ),
 		)
 	);
+}
+
+/**
+ * Resolve the %treatment_category% tag in treatment permalinks to the
+ * post's category term slug, producing /en/{category}/{service}/.
+ *
+ * Falls back to the first category's slug; if a treatment has no category
+ * assigned we default to 'hair-transplant' so the URL never breaks.
+ */
+add_filter( 'post_type_link', 'estecapelli_treatment_permalink', 10, 2 );
+function estecapelli_treatment_permalink( $post_link, $post ) {
+	if ( 'treatment' !== $post->post_type || false === strpos( $post_link, '%treatment_category%' ) ) {
+		return $post_link;
+	}
+
+	$category = 'hair-transplant';
+	$terms    = get_the_terms( $post->ID, 'treatment_category' );
+	if ( $terms && ! is_wp_error( $terms ) ) {
+		// Prefer the deepest (most specific) term if the taxonomy is nested.
+		$term     = end( $terms );
+		$category = $term->slug;
+	}
+
+	return str_replace( '%treatment_category%', $category, $post_link );
 }
