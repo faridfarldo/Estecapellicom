@@ -192,12 +192,12 @@ if ( ! function_exists( 'estecapelli_footer_treatments' ) ) {
 			}
 		}
 		return array(
-			array( 'label' => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ), 'url' => home_url( '/treatments/sapphire-fue-hair-transplant/' ) ),
-			array( 'label' => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),  'url' => home_url( '/treatments/exosome-fue-hair-transplant/' ) ),
-			array( 'label' => __( 'DHI Hair Transplant', 'estecapelli' ),          'url' => home_url( '/treatments/dhi-hair-transplant/' ) ),
-			array( 'label' => __( 'VITA Treatment', 'estecapelli' ),               'url' => home_url( '/treatments/vita/' ) ),
-			array( 'label' => __( 'Female Hair Transplant', 'estecapelli' ),       'url' => home_url( '/treatments/female-hair-transplant/' ) ),
-			array( 'label' => __( 'Beard Transplant', 'estecapelli' ),             'url' => home_url( '/treatments/beard-transplant/' ) ),
+			array( 'label' => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ), 'url' => home_url( '/en/hair-transplant/sapphire-fue-hair-transplant/' ) ),
+			array( 'label' => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),  'url' => home_url( '/en/hair-transplant/exosome-fue-hair-transplant/' ) ),
+			array( 'label' => __( 'DHI Hair Transplant', 'estecapelli' ),          'url' => home_url( '/en/hair-transplant/dhi-hair-transplant/' ) ),
+			array( 'label' => __( 'VITA Treatment', 'estecapelli' ),               'url' => home_url( '/en/hair-transplant/vita-treatment/' ) ),
+			array( 'label' => __( 'Female Hair Transplant', 'estecapelli' ),       'url' => home_url( '/en/hair-transplant/female-hair-transplant/' ) ),
+			array( 'label' => __( 'Beard Transplant', 'estecapelli' ),             'url' => home_url( '/en/hair-transplant/beard-transplant/' ) ),
 		);
 	}
 }
@@ -214,13 +214,13 @@ if ( ! function_exists( 'estecapelli_footer_sitemap' ) ) {
 			}
 		}
 		return array(
-			array( 'label' => __( 'Home', 'estecapelli' ),             'url' => home_url( '/' ) ),
-			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/about/' ) ),
-			array( 'label' => __( 'Our Doctors', 'estecapelli' ),      'url' => home_url( '/doctors/' ) ),
-			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/before-after/' ) ),
-			array( 'label' => __( 'Treatments', 'estecapelli' ),       'url' => home_url( '/treatments/' ) ),
-			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/blog/' ) ),
-			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/contact/' ) ),
+			array( 'label' => __( 'Home', 'estecapelli' ),             'url' => home_url( '/en/' ) ),
+			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/en/about-us/' ) ),
+			array( 'label' => __( 'Our Doctors', 'estecapelli' ),      'url' => home_url( '/en/about-us/our-doctors/' ) ),
+			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/en/before-after/' ) ),
+			array( 'label' => __( 'Treatments', 'estecapelli' ),       'url' => home_url( '/en/hair-transplant/' ) ),
+			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/en/blog/' ) ),
+			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/en/contact/' ) ),
 		);
 	}
 }
@@ -581,7 +581,7 @@ if ( ! function_exists( 'estecapelli_home_hero' ) ) {
 			),
 			'cta_primary' => array(
 				'label' => __( 'Free Consultation', 'estecapelli' ),
-				'url'   => home_url( '/contact/' ),
+				'url'   => home_url( '/en/contact/' ),
 			),
 			'cta_whatsapp' => array(
 				'label' => __( 'Chat on WhatsApp', 'estecapelli' ),
@@ -666,21 +666,21 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 							'title'       => __( 'Micro Sapphire FUE', 'estecapelli' ),
 							'description' => __( 'Sapphire-blade precision for natural density and faster healing.', 'estecapelli' ),
 							'image'       => $img . 'sapphire-fue.jpg',
-							'url'         => home_url( '/treatments/sapphire-fue-hair-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/sapphire-fue-hair-transplant/' ),
 						),
 						array(
 							'tag'         => $hair_tag,
 							'title'       => __( 'DHI', 'estecapelli' ),
 							'description' => __( 'Choi-pen implantation for precise angle and direction control.', 'estecapelli' ),
 							'image'       => $img . 'dhi.jpg',
-							'url'         => home_url( '/treatments/dhi-hair-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/dhi-hair-transplant/' ),
 						),
 						array(
 							'tag'         => $hair_tag,
 							'title'       => __( 'Exosome Treatment', 'estecapelli' ),
 							'description' => __( 'Cell-regenerating exosomes that keep follicles alive longer.', 'estecapelli' ),
 							'image'       => $img . 'exosome.jpg',
-							'url'         => home_url( '/treatments/exosome-fue-hair-transplant/' ),
+							'url'         => home_url( '/en/hair-transplant/exosome-fue-hair-transplant/' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
@@ -688,7 +688,7 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 							'title'       => __( 'VITA Treatment', 'estecapelli' ),
 							'description' => __( "Estecapelli's signature protocol that revitalises scalp & strands.", 'estecapelli' ),
 							'image'       => $img . 'vita.jpg',
-							'url'         => home_url( '/treatments/vita/' ),
+							'url'         => home_url( '/en/hair-transplant/vita-treatment/' ),
 							'badge'       => __( 'SIGNATURE', 'estecapelli' ),
 						),
 					),
@@ -702,26 +702,26 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 							'tag'         => $plastic_tag,
 							'title'       => __( 'Rhinoplasty', 'estecapelli' ),
 							'description' => __( 'Nose reshaping that refines proportions and function.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/rhinoplasty/' ),
+							'url'         => home_url( '/en/plastic-surgery/rhinoplasty/' ),
 						),
 						array(
 							'tag'         => $plastic_tag,
 							'title'       => __( 'BBL', 'estecapelli' ),
 							'description' => __( 'Brazilian Butt Lift — natural contouring with fat transfer.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/bbl/' ),
+							'url'         => home_url( '/en/plastic-surgery/bbl/' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
 							'tag'         => $plastic_tag,
 							'title'       => __( 'Facelift', 'estecapelli' ),
 							'description' => __( 'Restores facial contour and reduces visible signs of aging.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/facelift/' ),
+							'url'         => home_url( '/en/plastic-surgery/face-and-neck-lift-surgery/' ),
 						),
 						array(
 							'tag'         => $plastic_tag,
 							'title'       => __( 'Breast Aesthetics', 'estecapelli' ),
 							'description' => __( 'Augmentation, lift and reduction tailored to your goals.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/breast-aesthetics/' ),
+							'url'         => home_url( '/en/plastic-surgery/breast-aesthetics-breast-surgery/' ),
 						),
 					),
 				),
@@ -734,26 +734,26 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 							'tag'         => $dental_tag,
 							'title'       => __( 'Dental Implants', 'estecapelli' ),
 							'description' => __( 'Permanent replacement for missing teeth with titanium roots.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/dental-implants/' ),
+							'url'         => home_url( '/en/dental-treatment/dental-implant/' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
 							'tag'         => $dental_tag,
 							'title'       => __( 'Smile Design', 'estecapelli' ),
 							'description' => __( 'A bespoke makeover that reshapes your entire smile.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/smile-design/' ),
+							'url'         => home_url( '/en/dental-treatment/hollywood-smile/' ),
 						),
 						array(
 							'tag'         => $dental_tag,
 							'title'       => __( 'Veneers', 'estecapelli' ),
 							'description' => __( 'Thin porcelain shells for a flawless front-of-tooth finish.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/veneers/' ),
+							'url'         => home_url( '/en/dental-treatment/' ),
 						),
 						array(
 							'tag'         => $dental_tag,
 							'title'       => __( 'Teeth Whitening', 'estecapelli' ),
 							'description' => __( 'Professional bleaching for noticeably brighter teeth.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/teeth-whitening/' ),
+							'url'         => home_url( '/en/dental-treatment/' ),
 						),
 					),
 				),
@@ -766,27 +766,27 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 							'tag'         => $medical_tag,
 							'title'       => __( 'Botox', 'estecapelli' ),
 							'description' => __( 'Smooths expression lines for a refreshed, rested look.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/botox/' ),
+							'url'         => home_url( '/en/contact/' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
 							'tag'         => $medical_tag,
 							'title'       => __( 'Dermal Fillers', 'estecapelli' ),
 							'description' => __( 'Restores volume to cheeks, jawline and under-eye areas.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/dermal-fillers/' ),
+							'url'         => home_url( '/en/contact/' ),
 						),
 						array(
 							'tag'         => $medical_tag,
 							'title'       => __( 'PRP Treatment', 'estecapelli' ),
 							'description' => __( 'Platelet-rich plasma therapy for skin and hair regeneration.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/prp-treatment/' ),
+							'url'         => home_url( '/en/contact/' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
 							'tag'         => $medical_tag,
 							'title'       => __( 'Skin Rejuvenation', 'estecapelli' ),
 							'description' => __( 'Non-surgical protocols for firmer, brighter, healthier skin.', 'estecapelli' ),
-							'url'         => home_url( '/treatments/skin-rejuvenation/' ),
+							'url'         => home_url( '/en/contact/' ),
 						),
 					),
 				),
@@ -821,7 +821,7 @@ if ( ! function_exists( 'estecapelli_why_choose' ) ) {
 				'caption' => __( 'Experience the Estecapelli difference — advanced techniques, patient-focused care.', 'estecapelli' ),
 				'cta'     => array(
 					'label' => __( 'Get a Free Consultation', 'estecapelli' ),
-					'url'   => home_url( '/contact/' ),
+					'url'   => home_url( '/en/contact/' ),
 				),
 			),
 
@@ -918,7 +918,7 @@ if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
 
 			'cta_secondary' => array(
 				'label' => __( 'Schedule a Free Consultation', 'estecapelli' ),
-				'url'   => home_url( '/contact/' ),
+				'url'   => home_url( '/en/contact/' ),
 			),
 
 			'cards' => array(
@@ -935,7 +935,7 @@ if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
 					'body'       => __( 'Our patented Exosome Treatment is derived from mesenchymal stem cells found in the umbilical cord — designed to lift hair-follicle survival to 98% over 72 hours, with faster recovery, stronger growth, and naturally lasting results.', 'estecapelli' ),
 					'cta'        => array(
 						'label' => __( 'Learn about Exosome FUE', 'estecapelli' ),
-						'url'   => home_url( '/treatments/exosome-fue-hair-transplant/' ),
+						'url'   => home_url( '/en/hair-transplant/exosome-fue-hair-transplant/' ),
 					),
 				),
 				array(
@@ -951,7 +951,7 @@ if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
 					'body'       => __( 'TrichoLab examines your hair and scalp with millimetric accuracy — measuring follicle density, thickness, donor capacity, and loss patterns — so every graft is planned for your unique anatomy and the result feels naturally yours.', 'estecapelli' ),
 					'cta'        => array(
 						'label' => __( 'Learn more about TrichoLab', 'estecapelli' ),
-						'url'   => home_url( '/treatments/tricholab/' ),
+						'url'   => home_url( '/en/hair-transplant/tricholab/' ),
 					),
 				),
 				array(
@@ -967,7 +967,7 @@ if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
 					'body'       => __( 'Grafts lose strength the moment they leave the body. Our VITA Protocol bathes them in a specially formulated vitamin cocktail with cool-vapor application — keeping every follicle alive, nourished, and resilient until placement.', 'estecapelli' ),
 					'cta'        => array(
 						'label' => __( 'Learn more about VITA', 'estecapelli' ),
-						'url'   => home_url( '/treatments/vita/' ),
+						'url'   => home_url( '/en/hair-transplant/vita-treatment/' ),
 					),
 				),
 			),
@@ -1001,7 +1001,7 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 				'text' => __( 'Ready to take the first step towards restoring your confidence?', 'estecapelli' ),
 				'cta'  => array(
 					'label' => __( 'Schedule Your Free Consultation', 'estecapelli' ),
-					'url'   => home_url( '/contact/' ),
+					'url'   => home_url( '/en/contact/' ),
 				),
 			),
 
@@ -1013,7 +1013,7 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 					'body'  => __( 'To get started, simply share clear photos of your hair and receive a free online consultation from our clinic.', 'estecapelli' ),
 					'link'  => array(
 						'label' => __( 'Meet Our Doctors', 'estecapelli' ),
-						'url'   => home_url( '/doctors/' ),
+						'url'   => home_url( '/en/about-us/our-doctors/' ),
 					),
 				),
 				array(
@@ -1023,7 +1023,7 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 					'body'  => __( 'Based on a detailed analysis of your hair and scalp, our experts design a customised treatment plan to achieve the most natural-looking results.', 'estecapelli' ),
 					'link'  => array(
 						'label' => __( 'Explore Our Technology', 'estecapelli' ),
-						'url'   => home_url( '/treatments/tricholab/' ),
+						'url'   => home_url( '/en/hair-transplant/tricholab/' ),
 					),
 				),
 				array(
@@ -1033,7 +1033,7 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 					'body'  => __( 'Once your flight is confirmed, our team arranges your hotel accommodation and private VIP transfers between the airport, hotel and clinic for a smooth, stress-free stay.', 'estecapelli' ),
 					'link'  => array(
 						'label' => __( 'Learn More', 'estecapelli' ),
-						'url'   => home_url( '/about/' ),
+						'url'   => home_url( '/en/about-us/' ),
 					),
 				),
 				array(
@@ -1043,7 +1043,7 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 					'body'  => __( 'On the day of your procedure, we guide you through every step. The transplant is performed under local anaesthesia, with no overnight hospital stay required.', 'estecapelli' ),
 					'link'  => array(
 						'label' => __( 'See Success Stories', 'estecapelli' ),
-						'url'   => home_url( '/before-after/' ),
+						'url'   => home_url( '/en/before-after/' ),
 					),
 				),
 				array(
@@ -1053,7 +1053,7 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 					'body'  => __( 'Dressing and the first hair washing procedures are carried out by our team to ensure a complication-free recovery.', 'estecapelli' ),
 					'link'  => array(
 						'label' => __( 'View Care Plans', 'estecapelli' ),
-						'url'   => home_url( '/care/' ),
+						'url'   => home_url( '/en/hair-transplant/post-hair-transplant-period/' ),
 					),
 				),
 				array(
@@ -1063,7 +1063,7 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 					'body'  => __( 'Our dedicated post-operative support team guides you through recovery and hair growth, ensuring a streamlined journey toward your desired results.', 'estecapelli' ),
 					'link'  => array(
 						'label' => __( 'Get Free Consultation', 'estecapelli' ),
-						'url'   => home_url( '/contact/' ),
+						'url'   => home_url( '/en/contact/' ),
 					),
 				),
 			),
@@ -1206,7 +1206,7 @@ if ( ! function_exists( 'estecapelli_facilities' ) ) {
 					),
 					'cta' => array(
 						'label' => __( 'Explore the Hotel', 'estecapelli' ),
-						'url'   => home_url( '/hospital/#hotel' ),
+						'url'   => home_url( '/en/about-us/' ),
 					),
 				),
 				array(
@@ -1224,7 +1224,7 @@ if ( ! function_exists( 'estecapelli_facilities' ) ) {
 					),
 					'cta' => array(
 						'label' => __( 'Tour the Clinic', 'estecapelli' ),
-						'url'   => home_url( '/hospital/#clinic' ),
+						'url'   => home_url( '/en/about-us/' ),
 					),
 				),
 			),

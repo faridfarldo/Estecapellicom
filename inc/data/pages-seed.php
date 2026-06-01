@@ -29,7 +29,7 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				'eyebrow'       => $eyebrow,
 				'title'         => $title,
 				'lead'          => $lead,
-				'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/contact/' ) ),
+				'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact/' ) ),
 				'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
 				'media_type'    => 'image',
 				'image'         => '',
