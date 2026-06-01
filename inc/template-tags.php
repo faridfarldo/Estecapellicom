@@ -545,7 +545,6 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 			array( 'label' => __( 'Plastic Surgery', 'estecapelli' ),  'url' => home_url( '/plastic-surgery/' ),  'mega' => 'plastic-surgery' ),
 			array( 'label' => __( 'Dental Treatment', 'estecapelli' ), 'url' => home_url( '/dental-treatment/' ), 'mega' => 'dental-treatment' ),
 			array( 'label' => __( 'Medical Treatment', 'estecapelli' ),'url' => home_url( '/medical-treatment/' ),'mega' => 'medical-treatment' ),
-			array( 'label' => __( 'Exosome Treatment', 'estecapelli' ),'url' => home_url( '/exosome-treatment/' ),'badge' => __( 'NEW', 'estecapelli' ) ),
 			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/before-after/' ) ),
 			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/about/' ),            'mega' => 'about-us' ),
 			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/blog/' ) ),
