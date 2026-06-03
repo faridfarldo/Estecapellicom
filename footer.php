@@ -19,7 +19,7 @@ $badges     = estecapelli_footer_badges();
 			<p><?php esc_html_e( 'Speak with our medical team — free, no obligation. Get a personalized plan based on your goals.', 'estecapelli' ); ?></p>
 		</div>
 		<div class="cta-band__actions">
-			<a class="btn btn-accent btn-lg" href="<?php echo esc_url( home_url( '/en/contact/' ) ); ?>">
+			<a class="btn btn-accent btn-lg" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
 				<?php esc_html_e( 'Get a Free Consultation', 'estecapelli' ); ?>
 				<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
 			</a>
@@ -110,7 +110,7 @@ $badges     = estecapelli_footer_badges();
 					<?php estecapelli_brand_mark( 'footer' ); ?>
 				</div>
 
-				<form class="lead-form" method="post" action="<?php echo esc_url( home_url( '/en/contact/' ) ); ?>">
+				<form class="lead-form" method="post" action="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
 					<p class="lead-form__intro"><?php esc_html_e( 'Get a free consultation — leave your details and we will reach out.', 'estecapelli' ); ?></p>
 					<div class="lead-form__field">
 						<label for="lead-name" class="sr-only"><?php esc_html_e( 'Name and surname', 'estecapelli' ); ?></label>
@@ -164,9 +164,9 @@ $badges     = estecapelli_footer_badges();
 					echo '<ul class="site-footer__legal-list">';
 					printf(
 						'<li><a href="%1$s">%2$s</a></li><li><a href="%3$s">%4$s</a></li>',
-						esc_url( home_url( '/en/privacy-policy/' ) ),
+						esc_url( home_url( '/en/privacy-policy' ) ),
 						esc_html__( 'Privacy Policy', 'estecapelli' ),
-						esc_url( home_url( '/en/terms/' ) ),
+						esc_url( home_url( '/en/terms' ) ),
 						esc_html__( 'Terms', 'estecapelli' )
 					);
 					echo '</ul>';

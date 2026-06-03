@@ -84,13 +84,13 @@
 				);
 				?>
 
-				<a class="btn btn-primary site-nav__mobile-cta" href="<?php echo esc_url( home_url( '/en/contact/' ) ); ?>">
+				<a class="btn btn-primary site-nav__mobile-cta" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
 					<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
 				</a>
 			</nav>
 
 			<div class="mainbar-cta">
-				<a class="btn btn-primary" href="<?php echo esc_url( home_url( '/en/contact/' ) ); ?>">
+				<a class="btn btn-primary" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
 					<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
 					<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
 				</a>

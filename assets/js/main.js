@@ -256,6 +256,48 @@
 		});
 	}
 
+	function initCarousels() {
+		var carousels = document.querySelectorAll('[data-carousel]');
+		if (!carousels.length) return;
+
+		carousels.forEach(function (root) {
+			var track = root.querySelector('[data-carousel-track]');
+			var prev  = root.querySelector('[data-carousel-prev]');
+			var next  = root.querySelector('[data-carousel-next]');
+			if (!track) return;
+
+			function step() {
+				var card = track.firstElementChild;
+				if (!card) return Math.round(track.clientWidth * 0.8);
+				var styles = getComputedStyle(track);
+				var gap = parseFloat(styles.columnGap || styles.gap) || 24;
+				return card.getBoundingClientRect().width + gap;
+			}
+
+			function update() {
+				if (!prev || !next) return;
+				var max = track.scrollWidth - track.clientWidth - 2;
+				prev.disabled = track.scrollLeft <= 2;
+				next.disabled = track.scrollLeft >= max;
+			}
+
+			if (prev) {
+				prev.addEventListener('click', function () {
+					track.scrollBy({ left: -step(), behavior: 'smooth' });
+				});
+			}
+			if (next) {
+				next.addEventListener('click', function () {
+					track.scrollBy({ left: step(), behavior: 'smooth' });
+				});
+			}
+
+			track.addEventListener('scroll', update, { passive: true });
+			window.addEventListener('resize', update);
+			update();
+		});
+	}
+
 	ready(function () {
 		initMobileNav();
 		initLangSwitch();
@@ -263,5 +305,6 @@
 		initServicesTabs();
 		initPatientStories();
 		initStoriesLightbox();
+		initCarousels();
 	});
 })();

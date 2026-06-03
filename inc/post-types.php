@@ -49,9 +49,37 @@ function estecapelli_register_treatment_cpt() {
 		)
 	);
 
+	register_post_type(
+		'result',
+		array(
+			'labels' => array(
+				'name'                  => __( 'Before & After', 'estecapelli' ),
+				'singular_name'         => __( 'Result', 'estecapelli' ),
+				'menu_name'             => __( 'Before & After', 'estecapelli' ),
+				'add_new'               => __( 'Add Result', 'estecapelli' ),
+				'add_new_item'          => __( 'Add New Result', 'estecapelli' ),
+				'new_item'              => __( 'New Result', 'estecapelli' ),
+				'edit_item'             => __( 'Edit Result', 'estecapelli' ),
+				'view_item'             => __( 'View Result', 'estecapelli' ),
+				'all_items'             => __( 'All Results', 'estecapelli' ),
+				'search_items'          => __( 'Search Results', 'estecapelli' ),
+			),
+			// Managed in admin, surfaced only through the carousel + gallery
+			// page — no thin single-result pages on the front end.
+			'public'              => false,
+			'show_ui'             => true,
+			'show_in_rest'        => true,
+			'menu_icon'           => 'dashicons-images-alt2',
+			'menu_position'       => 21,
+			'has_archive'         => false,
+			'rewrite'             => false,
+			'supports'            => array( 'title', 'page-attributes' ),
+		)
+	);
+
 	register_taxonomy(
 		'treatment_category',
-		'treatment',
+		array( 'treatment', 'result' ),
 		array(
 			'labels' => array(
 				'name'              => __( 'Treatment Categories', 'estecapelli' ),

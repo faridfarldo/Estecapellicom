@@ -46,7 +46,7 @@ $total = (int) $latest->post_count;
 				</h2>
 			</div>
 
-			<a class="posts__head-cta" href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ?: home_url( '/en/blog/' ) ); ?>">
+			<a class="posts__head-cta" href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ?: home_url( '/en/blog' ) ); ?>">
 				<?php esc_html_e( 'View all articles', 'estecapelli' ); ?>
 				<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
 			</a>

@@ -26,6 +26,9 @@ while ( have_posts() ) :
 		<?php
 	endif;
 
+	// Real before/after results for this service, appended to the bottom.
+	estecapelli_render_before_after_carousel( get_the_ID() );
+
 endwhile;
 
 get_footer();

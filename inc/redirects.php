@@ -77,8 +77,8 @@ function estecapelli_legacy_redirect_rules() {
 		//      Canonical is now /en/{category}/{service}. Every treatment we
 		//      shipped was hair-transplant, so map those across; VITA also
 		//      changed slug (vita → vita-treatment). ----
-		array( 'from' => '#^treatments/vita/?$#i',    'to' => '/en/hair-transplant/vita-treatment/' ),
-		array( 'from' => '#^treatments/([^/]+)/?$#i', 'to' => '/en/hair-transplant/$1/' ),
+		array( 'from' => '#^treatments/vita/?$#i',    'to' => '/en/hair-transplant/vita-treatment' ),
+		array( 'from' => '#^treatments/([^/]+)/?$#i', 'to' => '/en/hair-transplant/$1' ),
 
 	);
 }

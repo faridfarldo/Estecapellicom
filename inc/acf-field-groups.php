@@ -541,4 +541,77 @@ function estecapelli_register_acf_field_groups() {
 			),
 		)
 	);
+
+	// ============================================================
+	// Before & After result fields
+	// ============================================================
+	acf_add_local_field_group(
+		array(
+			'key'                   => 'group_result_fields',
+			'title'                 => __( 'Before & After', 'estecapelli' ),
+			'location'              => array(
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'result',
+					),
+				),
+			),
+			'menu_order'            => 0,
+			'position'              => 'normal',
+			'style'                 => 'default',
+			'label_placement'       => 'top',
+			'instruction_placement' => 'label',
+			'active'                => true,
+			'fields'                => array(
+				array(
+					'key'           => 'field_result_before',
+					'label'         => __( 'Before image', 'estecapelli' ),
+					'name'          => 'before_image',
+					'type'          => 'image',
+					'return_format' => 'array',
+					'preview_size'  => 'medium',
+					'required'      => 1,
+				),
+				array(
+					'key'           => 'field_result_after',
+					'label'         => __( 'After image', 'estecapelli' ),
+					'name'          => 'after_image',
+					'type'          => 'image',
+					'return_format' => 'array',
+					'preview_size'  => 'medium',
+					'required'      => 1,
+				),
+				array(
+					'key'           => 'field_result_service',
+					'label'         => __( 'Service', 'estecapelli' ),
+					'name'          => 'service',
+					'type'          => 'post_object',
+					'instructions'  => __( 'The treatment this result belongs to. Drives the carousel on that service page and the grouping on the Before & After page.', 'estecapelli' ),
+					'post_type'     => array( 'treatment' ),
+					'return_format' => 'id',
+					'multiple'      => 0,
+					'allow_null'    => 0,
+					'ui'            => 1,
+					'required'      => 1,
+				),
+				array(
+					'key'           => 'field_result_method',
+					'label'         => __( 'Method label (optional)', 'estecapelli' ),
+					'name'          => 'method',
+					'type'          => 'text',
+					'instructions'  => __( 'Shown under the photo. Leave empty to use the service name.', 'estecapelli' ),
+				),
+				array(
+					'key'           => 'field_result_grafts',
+					'label'         => __( 'Graft count (optional)', 'estecapelli' ),
+					'name'          => 'grafts',
+					'type'          => 'number',
+					'instructions'  => __( 'Hair transplant results only. Leave empty for other procedures.', 'estecapelli' ),
+					'min'           => 0,
+				),
+			),
+		)
+	);
 }
