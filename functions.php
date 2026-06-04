@@ -96,6 +96,19 @@ function estecapelli_maybe_flush_rewrite_rules() {
 }
 add_action( 'init', 'estecapelli_maybe_flush_rewrite_rules', 99 );
 
+/**
+ * Cache-busting asset version: file modification time when available,
+ * falling back to the theme version. Ensures browsers fetch fresh CSS/JS
+ * whenever the file actually changes.
+ *
+ * @param string $relative_path Path relative to the theme root, e.g. '/assets/css/main.css'.
+ * @return string
+ */
+function estecapelli_asset_ver( $relative_path ) {
+	$file = get_template_directory() . $relative_path;
+	return file_exists( $file ) ? (string) filemtime( $file ) : ESTECAPELLI_VERSION;
+}
+
 function estecapelli_enqueue_assets() {
 	wp_enqueue_style(
 		'estecapelli-fonts',
@@ -115,14 +128,14 @@ function estecapelli_enqueue_assets() {
 		'estecapelli-main',
 		get_template_directory_uri() . '/assets/css/main.css',
 		array( 'estecapelli-style' ),
-		ESTECAPELLI_VERSION
+		estecapelli_asset_ver( '/assets/css/main.css' )
 	);
 
 	wp_enqueue_script(
 		'estecapelli-main',
 		get_template_directory_uri() . '/assets/js/main.js',
 		array(),
-		ESTECAPELLI_VERSION,
+		estecapelli_asset_ver( '/assets/js/main.js' ),
 		true
 	);
 
