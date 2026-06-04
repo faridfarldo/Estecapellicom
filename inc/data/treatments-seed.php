@@ -1847,31 +1847,76 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					array(
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Condition', 'estecapelli' ),
-						'title'         => __( 'What is Gynecomastia?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Gynecomastia is a condition in which male breast tissue grows beyond its normal size, giving the chest a fuller appearance. It often results from a hormonal imbalance between estrogen and testosterone, among other causes.', 'estecapelli' ) . '</p>',
+						'title'         => __( 'What Is Gynecomastia?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Gynecomastia is a condition in which male breast tissue grows beyond its normal size, causing the chest to take on a feminine appearance. While men naturally have breast tissue and mammary glands, testosterone typically keeps this tissue small and inactive. When hormonal imbalances, weight gain, certain medications or underlying health conditions disrupt this balance, the tissue enlarges and gynecomastia develops.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'This condition goes beyond aesthetics — it can significantly impact a man’s psychological well-being, self-confidence and social life. At Estecapelli, gynecomastia is approached from both a medical and aesthetic standpoint, ensuring that each patient receives a personalised and permanent solution.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'candidate',
-						'eyebrow'       => __( 'The Approach', 'estecapelli' ),
-						'title'         => __( 'How Surgery is Performed', 'estecapelli' ),
-						'body'          => __( 'Performed under general anaesthesia, the technique depends on the case:', 'estecapelli' ),
+						'eyebrow'       => __( 'Causes', 'estecapelli' ),
+						'title'         => __( 'What Causes Gynecomastia?', 'estecapelli' ),
+						'body'          => __( 'Gynecomastia can develop through a variety of mechanisms. The most common causes include:', 'estecapelli' ),
 						'image'         => '',
 						'items'         => array(
-							array( 'icon' => 'target',       'label' => __( 'Excess fatty tissue only → liposuction / Vaser liposuction', 'estecapelli' ) ),
-							array( 'icon' => 'medical-plus', 'label' => __( 'Glandular tissue with skin sagging → tissue removal + skin reshaping', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'label' => __( 'Natural, masculine chest contour as the goal', 'estecapelli' ) ),
+							array( 'icon' => 'atom',         'label' => __( 'Imbalance between estrogen (female hormone) and testosterone (male hormone)', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Fat accumulation in the chest area due to excessive weight gain', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Tissue and skin sagging caused by repeated cycles of weight gain and loss', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Hormonal side effects of certain medications', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Liver, kidney and endocrine system diseases', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'label' => __( 'Age-related hormonal changes', 'estecapelli' ) ),
+							array( 'icon' => 'x-circle',     'label' => __( 'Use of anabolic steroids for bodybuilding purposes', 'estecapelli' ) ),
+							array( 'icon' => 'dna',          'label' => __( 'A significant decrease in testosterone levels', 'estecapelli' ) ),
 						),
+						'footer'        => __( 'In many cases, a combination of these factors contributes to the condition, making a thorough medical evaluation essential before determining the appropriate treatment approach.', 'estecapelli' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Treatment', 'estecapelli' ),
+						'title'         => __( 'Gynecomastia Treatment: Non-Surgical and Surgical Approaches', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The most suitable treatment method is determined based on the type and degree of breast enlargement, as well as the underlying cause. A thorough evaluation ensures that each patient receives a personalised approach for safe and effective results.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'In mild cases', 'estecapelli' ) . '</strong> ' . esc_html__( 'with minimal fat accumulation and skin sagging: removal of fatty tissue through liposuction or its variants — such as Vaser liposuction — may be sufficient to achieve the desired contour.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'In advanced cases', 'estecapelli' ) . '</strong> ' . esc_html__( 'with significant breast tissue enlargement and skin sagging: surgical removal of glandular tissue combined with excess skin excision is required for a flat and natural-looking result.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'At Estecapelli, each patient is evaluated individually. A detailed analysis is performed to determine whether the excess tissue consists of fatty tissue, firm glandular breast tissue or a combination of both — ensuring the most appropriate and effective treatment plan is selected.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Operation', 'estecapelli' ),
+						'title'         => __( 'How Is Gynecomastia Surgery Performed?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Gynecomastia surgery is performed under general anaesthesia in a fully equipped operating room. The procedure is tailored to each patient’s specific condition, and its content varies depending on the type and degree of gynecomastia present.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Case Type', 'estecapelli' ),
+						'title'         => __( 'Cases With Excess Fatty Tissue Only', 'estecapelli' ),
+						'body'          => '<ul><li>' . esc_html__( 'Liposuction or Vaser Liposuction is the preferred technique', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Fatty tissue is removed using cannulas inserted through very small incisions in the chest area', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'When skin elasticity is sufficient, a flat and natural chest contour is achieved without the need for additional skin incisions', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Case Type', 'estecapelli' ),
+						'title'         => __( 'Cases With Both Breast Tissue Enlargement and Skin Sagging', 'estecapelli' ),
+						'body'          => '<ul><li>' . esc_html__( 'Glandular breast tissue is surgically removed', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Excess skin is excised and the chest is reshaped for a firmer, flatter contour', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Inverted T or circular incisions are used when necessary', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'The average duration of the surgery is approximately 1.5–2 hours.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Liposuction-based procedures leave minimal scarring. In surgeries involving tissue and skin removal, incisions are strategically placed in the most discreet areas possible and fade significantly over time with proper care.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'steps',
 						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
-						'title'         => __( 'Recovery Process', 'estecapelli' ),
-						'lead'          => __( 'Generally comfortable and well tolerated.', 'estecapelli' ),
+						'title'         => __( 'Recovery Process After Gynecomastia Surgery', 'estecapelli' ),
+						'lead'          => __( 'The postoperative period is generally comfortable and well-tolerated. Mild pain and a feeling of tightness on the first day are completely normal and expected.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'shield-check', 'time' => __( 'First Week', 'estecapelli' ), 'title' => __( 'Compression Vest', 'estecapelli' ), 'body' => __( 'Swelling and sensitivity are expected; a compression garment is essential for proper healing.', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'time' => __( 'Weeks 2–3', 'estecapelli' ),  'title' => __( 'Back to Routine', 'estecapelli' ),  'body' => __( 'Swelling largely subsides and light daily activity resumes.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( '1 Month+', 'estecapelli' ),   'title' => __( 'Defined Chest', 'estecapelli' ),    'body' => __( 'The chest takes on a natural, defined appearance; chest-intensive exercise gradually returns.', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'time' => __( 'First 24 Hours', 'estecapelli' ),   'title' => __( 'Hospital Stay', 'estecapelli' ),       'body' => __( 'The patient typically stays in hospital for one night, with pain well-managed through prescribed medication.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'First Week', 'estecapelli' ),       'title' => __( 'Compression Garment', 'estecapelli' ),  'body' => __( 'Swelling, bruising and sensitivity in the chest area are expected. Wearing a compression garment during this period is essential for proper healing and shaping.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( 'Weeks 2–3', 'estecapelli' ),        'title' => __( 'Edema Subsides', 'estecapelli' ),       'body' => __( 'Edema largely subsides and movement becomes more comfortable. Light daily activities can gradually be resumed.', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'time' => __( '1 Month and Beyond', 'estecapelli' ),'title' => __( 'Defined Chest', 'estecapelli' ),       'body' => __( 'The chest begins to take on a more natural and defined appearance. Returning to sports, weightlifting and chest-intensive exercises requires doctor approval to ensure a safe and full recovery.', 'estecapelli' ) ),
 						),
 					),
 					array(
@@ -1887,6 +1932,18 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Will it come back?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The risk of recurrence is low unless there are hormonal problems or significant weight gain.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Does the chest look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Done with the right technique, the chest takes on a flat, natural appearance.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Pricing', 'estecapelli' ),
+						'title'         => __( 'Gynecomastia Surgery Prices', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Gynecomastia surgery prices may vary depending on several factors, including:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'The technique used (liposuction only, surgical gland removal, or a combined approach)', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'The severity or degree of gynecomastia', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'The patient’s individual needs and whether additional procedures are required', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'The overall surgical plan and treatment approach', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'For this reason, the most accurate price can only be determined after an in-person examination or an online pre-consultation with Estecapelli specialists.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
