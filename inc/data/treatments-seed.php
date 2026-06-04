@@ -911,10 +911,22 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					array(
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
-						'title'         => __( 'How Does a Beard Transplant Work?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'The beard is one of the most defining aesthetic features for men. A beard transplant restores fullness by transplanting hair follicles into sparse, uneven or patchy areas. Healthy grafts are harvested from a safe donor area and implanted into the beard region at the correct angle and direction, delivering a result that is both permanent and completely natural.', 'estecapelli' ) . '</p>',
+						'title'         => __( 'What is Beard Transplantation?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The beard is one of the most defining aesthetic features for men, projecting strength, confidence and character. A full, well-groomed beard not only enhances self-confidence but also sculpts and defines facial structure.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Yet for many men, achieving that ideal beard is not straightforward. Genetic factors, hormonal imbalances, trauma or scarring can lead to thinning, patchiness or uneven growth. Beard transplantation offers a permanent, natural-looking solution to these challenges.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'At Estecapelli, our specialists bring deep expertise to every beard transplant procedure. Using the same proven principles as hair transplantation, our team applies advanced techniques to deliver results that are both natural in appearance and permanent — giving you the beard you have always wanted, for life.', 'estecapelli' ) . '</p>',
 						'image'         => '',
 						'image_position' => 'right',
+						'cta'           => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'How It Works', 'estecapelli' ),
+						'title'         => __( 'How Does a Beard Transplant Work?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'A beard transplant is a surgical procedure that restores fullness to the beard by transplanting hair follicles into sparse, uneven or hairless areas. At Estecapelli, our expert team creates a personalised beard design tailored to each individual’s facial features and expectations. The procedure is performed under local anaesthesia and is generally painless throughout. Recovery time varies from person to person, but most patients return to their social lives relatively quickly, and following the aftercare guidelines provided by our team helps speed up healing and ensures the best possible results.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'left',
 						'cta'           => array( 'label' => '', 'url' => '' ),
 					),
 
@@ -924,25 +936,21 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Stages of Beard Transplantation', 'estecapelli' ),
 						'lead'          => __( 'Careful harvesting and precise placement for a natural beard line.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'target',       'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),  'body' => __( 'Follicles are harvested with the FUE method from the safe donor areas at the back and sides of the head.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Channel Opening', 'estecapelli' ),   'body' => __( 'The direction, depth and angle of the channels are carefully set — the key to a natural-looking beard.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Implantation', 'estecapelli' ), 'body' => __( 'The harvested grafts are placed one by one into the prepared channels at the correct angle for seamless density.', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),  'body' => __( 'The FUE method is used for harvesting hairs from the safe donor areas at the back and the sides of the head. Each follicle is carefully extracted one by one to minimise damage and preserve the natural look of the donor area.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Channel Opening', 'estecapelli' ),   'body' => __( 'The direction, depth and angle of the channels are crucial in achieving a natural-looking result. Our experts carefully create micro-channels that align with the natural growth pattern of your beard, ensuring each follicle sits seamlessly within the surrounding hair.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Implantation', 'estecapelli' ), 'body' => __( 'In the final stage, the harvested grafts are carefully placed into the prepared channels one by one. Each follicle is implanted at the correct angle and depth to ensure a seamless, natural appearance — a fuller, well-defined beard that looks and feels completely natural.', 'estecapelli' ) ),
 						),
 					),
 
 					array(
-						'acf_fc_layout' => 'candidate',
-						'eyebrow'       => __( 'Why Choose It', 'estecapelli' ),
-						'title'         => __( 'Advantages of Beard Transplantation', 'estecapelli' ),
-						'body'          => __( 'Permanent, natural results that grow in alignment with your beard:', 'estecapelli' ),
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'Advantages and Possible Risks of Beard Transplantation', 'estecapelli' ),
+						'body'          => '<p><strong>' . esc_html__( 'Advantages.', 'estecapelli' ) . '</strong> ' . esc_html__( 'One of the greatest advantages of beard transplantation is that the results are both permanent and natural-looking. The beard grows in alignment with its surrounding hair, making it virtually indistinguishable from natural growth. Beyond aesthetics, a fuller and well-defined beard can have a meaningful impact on self-confidence and overall appearance.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Possible Risks.', 'estecapelli' ) . '</strong> ' . esc_html__( 'As with any medical procedure, beard transplantation carries some minor, temporary side effects. These typically include redness, swelling and mild sensitivity in the treated area in the days following the procedure, all of which subside on their own with proper aftercare. Serious complications are rare, particularly when the procedure is performed by an experienced team. At Estecapelli, our specialists take every precaution to ensure a safe procedure and a smooth recovery.', 'estecapelli' ) . '</p>',
 						'image'         => '',
-						'items'         => array(
-							array( 'icon' => 'check-circle', 'label' => __( 'Permanent and natural-looking results', 'estecapelli' ) ),
-							array( 'icon' => 'hair',         'label' => __( 'Fills sparse, patchy or uneven areas', 'estecapelli' ) ),
-							array( 'icon' => 'face',         'label' => __( 'Grows in alignment with your facial features', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'label' => __( 'Uses your own follicles for a seamless blend', 'estecapelli' ) ),
-							array( 'icon' => 'shield-check', 'label' => __( 'Minimal, temporary side effects', 'estecapelli' ) ),
-						),
+						'image_position' => 'right',
+						'cta'           => array( 'label' => '', 'url' => '' ),
 					),
 
 					array(
