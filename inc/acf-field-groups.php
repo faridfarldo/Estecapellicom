@@ -264,6 +264,7 @@ function estecapelli_register_acf_field_groups() {
 									'button_label' => __( '+ Add Criterion', 'estecapelli' ),
 									'layout'       => 'table',
 									'sub_fields'   => array(
+										array( 'key' => 'field_cand_item_icon',  'label' => __( 'Icon', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
 										array( 'key' => 'field_cand_item_label', 'label' => __( 'Criterion', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
 									),
 								),

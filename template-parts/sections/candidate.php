@@ -38,9 +38,9 @@ if ( ! $title || empty( $items ) ) { return; }
 				<?php foreach ( $items as $item ) : ?>
 					<li class="t-cand__item">
 						<span class="t-cand__check" aria-hidden="true">
-							<?php estecapelli_icon( 'check-circle', array( 'width' => 18, 'height' => 18 ) ); ?>
+							<?php estecapelli_icon( $item['icon'] ?? 'check-circle', array( 'width' => 22, 'height' => 22 ) ); ?>
 						</span>
-						<?php echo esc_html( $item['label'] ); ?>
+						<span class="t-cand__label"><?php echo esc_html( $item['label'] ); ?></span>
 					</li>
 				<?php endforeach; ?>
 			</ul>
