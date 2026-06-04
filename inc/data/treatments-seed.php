@@ -1329,31 +1329,99 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'What is Abdominoplasty?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Abdominoplasty is a body-contouring procedure that corrects sagging, looseness and muscle separation in the abdominal area, removing excess skin and fat to create a firmer, flatter profile.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Abdominoplasty is a surgical body-contouring procedure that corrects sagging, looseness and deformities in the abdominal area, resulting in a firmer, flatter and more aesthetic appearance. Performed by Estecapelli’s expert team, it is one of the most effective procedures for reshaping the abdomen in both women and men.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Over time, the abdominal area can loosen due to weight changes, aging, pregnancy, genetic factors or reduced skin elasticity. Tummy tuck surgery addresses these concerns directly, restoring a younger, fitter and more balanced appearance to the midsection.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'candidate',
-						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
-						'title'         => __( 'Types of Tummy Tuck', 'estecapelli' ),
-						'body'          => __( 'The right approach depends on the degree of sagging and muscle separation:', 'estecapelli' ),
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who Is Suitable for Abdominoplasty?', 'estecapelli' ),
+						'body'          => __( 'Adult women and men who are dissatisfied with the appearance of their abdominal area and experience one or more of the following conditions may be suitable candidates for this surgery:', 'estecapelli' ),
 						'image'         => '',
 						'items'         => array(
-							array( 'icon' => 'medical-plus', 'label' => __( 'Full Abdominoplasty — for advanced sagging and muscle separation', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'label' => __( 'Mini Tummy Tuck — for mild sagging below the navel', 'estecapelli' ) ),
-							array( 'icon' => 'target',       'label' => __( 'Liposuction + Abdominoplasty — when both excess fat and skin are present', 'estecapelli' ) ),
-							array( 'icon' => 'hands-heart',  'label' => __( 'Mommy Makeover — combines procedures to restore the body after childbirth', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Sagging following significant weight gain or loss', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Loose or excess skin after pregnancy', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Separation of the abdominal muscles (diastasis recti)', 'estecapelli' ) ),
+							array( 'icon' => 'dna',          'label' => __( 'Genetically loose or weak abdominal structure', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Excess skin remaining after liposuction', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'label' => __( 'Abdominal concerns that cannot be resolved through exercise alone', 'estecapelli' ) ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Type', 'estecapelli' ),
+						'title'         => __( 'Full Abdominoplasty', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Full abdominoplasty is preferred for individuals with advanced sagging and muscle separation throughout the abdominal area. The procedure addresses the abdomen comprehensively through the following steps:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'The entire abdominal area is tightened', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'The navel is repositioned for a natural appearance', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Excess skin is removed', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'The underlying muscles are tightened and repaired', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Type', 'estecapelli' ),
+						'title'         => __( 'Mini Tummy Tuck', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'A mini tummy tuck is suitable for individuals with mild sagging limited to the area below the navel. Compared to a full abdominoplasty, it is a less invasive option with several notable benefits:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Smaller incision', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Faster recovery time', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'No repositioning of the navel', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Type', 'estecapelli' ),
+						'title'         => __( 'Liposuction + Abdominoplasty Combination', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'This combination is the ideal approach when both excess fat and skin sagging are present in the abdominal area. Liposuction is first performed to remove unwanted fat, followed by the removal of excess skin for a smoother and more contoured result.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Type', 'estecapelli' ),
+						'title'         => __( 'Mommy Makeover', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'A mommy makeover combines multiple procedures into a single surgery for women looking to restore their body after childbirth. It typically includes abdominoplasty, breast lift or augmentation, and liposuction, allowing patients to achieve a full transformation with just one recovery period.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Operation', 'estecapelli' ),
+						'title'         => __( 'How Is Abdominoplasty Performed?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Abdominoplasty is performed under general anaesthesia in a sterile operating room and typically lasts between 1.5 and 4 hours. The procedure follows these steps:', 'estecapelli' ) . '</p>'
+							. '<ol><li>' . esc_html__( 'Marking of sagging skin and tissues', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Tightening of the abdominal muscles', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Removal of excess skin', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Aesthetic reshaping of the belly button', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Closure of incision areas with aesthetic sutures', 'estecapelli' ) . '</li></ol>'
+							. '<p>' . esc_html__( 'The incision scar is carefully placed along the bikini line and gradually fades over time.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'steps',
 						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
-						'title'         => __( 'Recovery Process', 'estecapelli' ),
-						'lead'          => __( 'A general guide — recovery varies from person to person.', 'estecapelli' ),
+						'title'         => __( 'Recovery Process After Abdominoplasty', 'estecapelli' ),
+						'lead'          => __( 'While recovery varies from person to person, the general process is as follows.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'shield-check', 'time' => __( 'Day 1', 'estecapelli' ),     'title' => __( 'Tightness', 'estecapelli' ),       'body' => __( 'A feeling of tightness is normal; one night in hospital is typical.', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'time' => __( 'Weeks 2–6', 'estecapelli' ), 'title' => __( 'Back to Routine', 'estecapelli' ), 'body' => __( 'Swelling decreases gradually; light activity is reintroduced with a corset worn as advised.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( '6–12 Months', 'estecapelli' ),'title' => __( 'Final Result', 'estecapelli' ),   'body' => __( 'The abdominal contour reaches its most refined, natural state and scars continue to fade.', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'time' => __( 'Day 1', 'estecapelli' ),       'title' => __( 'Tightness', 'estecapelli' ),         'body' => __( 'A feeling of tightness in the abdomen is normal. The patient stays one night in hospital.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'Week 1', 'estecapelli' ),      'title' => __( 'Corset & Light Activity', 'estecapelli' ), 'body' => __( 'A gradual return to daily activities begins. The corset should be worn regularly as advised.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( 'Weeks 2–6', 'estecapelli' ),   'title' => __( 'Back to Routine', 'estecapelli' ),   'body' => __( 'Swelling continues to decrease gradually and light walks can be extended as comfort improves. Physical activity is slowly reintroduced under surgeon guidance, and most patients return to their normal daily routine within this period.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( '3 Months', 'estecapelli' ),    'title' => __( 'Settling', 'estecapelli' ),          'body' => __( 'The abdominal area begins to take on a more natural and settled appearance, and scars continue to fade and soften over time.', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'time' => __( '6–12 Months', 'estecapelli' ), 'title' => __( 'Final Result', 'estecapelli' ),      'body' => __( 'The final result of the surgery becomes fully apparent and the abdominal contour is at its most refined and natural state.', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Benefits', 'estecapelli' ),
+						'title'         => __( 'Advantages of Tummy Tuck Surgery', 'estecapelli' ),
+						'body'          => __( 'A tummy tuck offers a range of aesthetic and confidence-related benefits:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'check-circle', 'label' => __( 'A flatter and firmer abdominal appearance', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Removal of most stretch marks in the treated area', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'A slimmer, more defined waistline', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Correction of post-pregnancy changes to the abdomen', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'label' => __( 'Longer-lasting, natural-looking results', 'estecapelli' ) ),
+							array( 'icon' => 'face',         'label' => __( 'A significant boost in self-confidence and body image', 'estecapelli' ) ),
 						),
 					),
 					array(
@@ -1369,6 +1437,19 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, results are long-lasting, though significant weight gain or pregnancy can affect them.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'When can I exercise again?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Light walking is possible within a few days; strenuous exercise after about six to eight weeks.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Pricing', 'estecapelli' ),
+						'title'         => __( 'Tummy Tuck Surgery Prices in Turkey', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Turkey is a globally preferred destination for tummy tuck surgery, and for good reason:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Highly experienced surgeons with proven results', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Well-equipped hospital infrastructure', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'International quality standards', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'More affordable pricing compared to Europe and North America', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Comprehensive patient care and support services', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'Prices vary depending on the technique used, the surgeon’s experience, any additional procedures and the overall scope of the operation.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
