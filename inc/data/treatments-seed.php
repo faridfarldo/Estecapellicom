@@ -631,9 +631,21 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Method', 'estecapelli' ),
 						'title'         => __( 'What is the VITA Protocol?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'The VITA Protocol is a two-phase treatment developed by Estecapelli medical experts to increase graft survival. The period grafts spend outside the body is a critical factor in the success of a transplant — VITA’s vitamin-derived serum, rich in vitamins, minerals, growth factors and ATP, strengthens follicles and supports healthy new growth. It combines easily with both FUE and DHI procedures.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'The VITA Protocol is a two-phase treatment, specifically designed by Estecapelli medical experts, to increase graft survival rates and enhance surgical outcomes during the hair transplant process. It can be used in compatibility with both Sapphire FUE and DHI hair transplant techniques. This protocol combines highly enriched components — including amino acids, vitamins, growth factors and ATP — to nourish hair follicles.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'In the first phase, a serum solution is applied to the scalp via microchannels opened with a dermaroller massage tool, allowing grafts to receive the nutrients they need more effectively. In the second phase, cold air vapour is applied to the grafts after they are harvested and during the waiting period in VITA serum, combined with a saline solution to increase their survival rate.', 'estecapelli' ) . '</p>',
 						'image'         => '',
 						'image_position' => 'right',
+						'cta'           => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Science', 'estecapelli' ),
+						'title'         => __( 'Estecapelli’s Signature Technique — VITA Power Derived from Vitamins', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The period during which hair follicles remain outside the body is a critical factor that directly affects the procedure’s success. Once grafts are extracted, their access to blood circulation and vital nutrients is interrupted, leading to gradual weakening.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The VITA Protocol intervenes at these sensitive stages of the operation by providing essential support to the grafts. Thanks to a specially formulated vitamin serum solution and cold air vapour application, it significantly contributes to preserving graft viability in both FUE and DHI techniques.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'left',
 						'cta'           => array( 'label' => '', 'url' => '' ),
 					),
 
@@ -659,8 +671,8 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'How is the VITA Protocol Applied?', 'estecapelli' ),
 						'lead'          => __( 'A two-stage protocol that integrates seamlessly into your transplant.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'medical-plus', 'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Microneedling & Nutrient Serum', 'estecapelli' ), 'body' => __( 'Microchannels are created and a highly concentrated nutrient serum is applied to prepare the scalp.', 'estecapelli' ) ),
-							array( 'icon' => 'atom',         'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Cold-Vapour Serum on Grafts', 'estecapelli' ),  'body' => __( 'The same nourishing serum is applied to the harvested grafts with a cold-vapour method to keep them strong until implantation.', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Microneedling & Nutrient Serum', 'estecapelli' ), 'body' => __( 'Microchannels are created with a dermaroller massage tool, and a highly concentrated serum of vitamins, amino acids, growth factors and minerals is applied to boost blood circulation. The donor area is ideally prepared for smooth, well-fed harvesting, and the recipient area is nourished with a concentrated vitamin complex that the scalp absorbs more effectively thanks to the micro-channels.', 'estecapelli' ) ),
+							array( 'icon' => 'atom',         'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Cold-Vapour Serum on Grafts', 'estecapelli' ),  'body' => __( 'The same nourishing serum is mixed with saline in the graft-harvesting tray and applied to the harvested grafts using a cold-vapour method. This prevents grafts from deteriorating and supports their survival, protecting the follicles to the maximum extent and increasing their post-transplantation regrowth potential.', 'estecapelli' ) ),
 						),
 					),
 
