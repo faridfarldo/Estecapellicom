@@ -4527,6 +4527,116 @@
 		flex-shrink: 0;
 	}
 
+	/* ---- Doctors roster ---- */
+	.t-docs {
+		padding-block: clamp(3.5rem, 6vw, 6rem);
+		background: linear-gradient(180deg, white, oklch(98.5% 0.008 260));
+	}
+	.t-docs__head {
+		max-width: 62ch;
+		margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+		text-align: center;
+		display: flex; flex-direction: column; align-items: center; gap: 0.85rem;
+	}
+	.t-docs__eyebrow {
+		display: inline-flex; align-items: center; gap: 0.5rem;
+		font-size: 0.8125rem; font-weight: 700;
+		letter-spacing: 0.16em; text-transform: uppercase;
+		color: var(--color-brand-700);
+	}
+	.t-docs__eyebrow-mark {
+		width: 6px; height: 6px; border-radius: 9999px;
+		background: var(--color-accent-500);
+		box-shadow: 0 0 0 3px oklch(70% 0.15 78 / 0.18);
+	}
+	.t-docs__title {
+		margin: 0;
+		font-size: var(--text-h2); line-height: 1.15;
+		letter-spacing: -0.025em; font-weight: 700;
+		color: var(--color-brand-950);
+		text-wrap: balance;
+	}
+	.t-docs__lead {
+		margin: 0;
+		font-size: 1rem; line-height: 1.65;
+		color: oklch(42% 0.015 260);
+	}
+	.t-docs__grid {
+		list-style: none; margin: 0; padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: clamp(1.1rem, 2.2vw, 1.85rem);
+	}
+	.t-docs__card {
+		position: relative;
+		display: flex; flex-direction: column;
+		overflow: hidden;
+		background: white;
+		border: 1px solid var(--color-brand-100);
+		border-radius: 22px;
+		box-shadow: 0 1px 2px oklch(20% 0.05 260 / 0.04);
+		transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease, border-color 0.3s ease;
+	}
+	.t-docs__card:hover {
+		transform: translateY(-6px);
+		box-shadow: var(--shadow-card);
+		border-color: var(--color-brand-200);
+	}
+	/* Photo fills the whole top of the card (large square). */
+	.t-docs__photo {
+		position: relative; margin: 0;
+		width: 100%; aspect-ratio: 1 / 1;
+		display: grid; place-items: center;
+		overflow: hidden;
+		background: linear-gradient(140deg, var(--color-brand-50), var(--color-brand-100));
+	}
+	.t-docs__img, .t-docs__placeholder {
+		width: 100%; height: 100%;
+		object-fit: cover;
+		transition: transform 0.5s var(--ease-spring);
+	}
+	.t-docs__card:hover .t-docs__img { transform: scale(1.04); }
+	.t-docs__placeholder {
+		display: grid; place-items: center;
+		background: linear-gradient(140deg, var(--color-brand-100), var(--color-brand-200));
+		color: var(--color-brand-700);
+		font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 700; letter-spacing: 0.02em;
+	}
+	.t-docs__info {
+		display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+		width: 100%;
+		padding: 1.25rem 1.25rem 1.4rem;
+		text-align: center;
+	}
+	.t-docs__name {
+		margin: 0;
+		font-size: 1.125rem; font-weight: 700; line-height: 1.25;
+		letter-spacing: -0.015em;
+		color: var(--color-brand-950);
+	}
+	.t-docs__position {
+		margin: 0;
+		font-size: 0.875rem; font-weight: 600; line-height: 1.4;
+		color: var(--color-brand-600);
+	}
+	.t-docs__resume {
+		margin-top: 0.85rem;
+		display: inline-flex; align-items: center; gap: 0.5rem;
+		padding: 0.6rem 1.2rem;
+		background: var(--color-brand-900);
+		color: white;
+		border-radius: 9999px;
+		font-size: 0.875rem; font-weight: 600;
+		text-decoration: none;
+		transition: background 0.25s ease, gap 0.25s ease, transform 0.25s ease;
+	}
+	.t-docs__resume svg { transition: transform 0.25s var(--ease-spring); }
+	.t-docs__resume:hover {
+		background: var(--color-accent-500);
+		gap: 0.7rem;
+	}
+	.t-docs__resume:hover svg { transform: translateX(2px); }
+
 	/* ---- Related ---- */
 	.t-related {
 		padding-block: clamp(3rem, 5vw, 4.5rem);

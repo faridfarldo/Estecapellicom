@@ -116,6 +116,44 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				'parent' => 'about-us',
 				'sections' => array(
 					$hero( __( 'Our Doctors', 'estecapelli' ), __( 'Surgeons who lead every procedure.', 'estecapelli' ), __( 'Meet the board-certified surgeons performing every operation at Estecapelli — each one personally selected for their experience, results and patient care.', 'estecapelli' ) ),
+					array(
+						'acf_fc_layout' => 'doctors',
+						'eyebrow'       => __( 'Board-Certified Surgeons', 'estecapelli' ),
+						'title'         => __( 'Meet the surgeons', 'estecapelli' ),
+						'lead'          => __( 'Each operation is led personally by one of our specialist surgeons. Open any résumé to read their training, credentials and areas of expertise.', 'estecapelli' ),
+						'members'       => array(
+							array(
+								'photo'      => '',
+								'name'       => __( 'Dr. Mehmet Hanifi Kutlar', 'estecapelli' ),
+								'position'   => __( 'Medical Director & Co-founder', 'estecapelli' ),
+								'resume_url' => home_url( '/en/about-us/medical-director/mehmet-hanifi-kutlar' ),
+							),
+							array(
+								'photo'      => '',
+								'name'       => __( 'Op. Dr. Hasan Çelik', 'estecapelli' ),
+								'position'   => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
+								'resume_url' => home_url( '/en/about-us/our-doctors/op-dr-hasan-celik' ),
+							),
+							array(
+								'photo'      => '',
+								'name'       => __( 'Op. Dr. Mehmet Palalı', 'estecapelli' ),
+								'position'   => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
+								'resume_url' => home_url( '/en/about-us/our-doctors/op-dr-mehmet-palali' ),
+							),
+							array(
+								'photo'      => '',
+								'name'       => __( 'Op. Dr. Necdet Derici', 'estecapelli' ),
+								'position'   => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
+								'resume_url' => home_url( '/en/about-us/our-doctors/op-dr-necdet-derici' ),
+							),
+							array(
+								'photo'      => '',
+								'name'       => __( 'Op. Dr. Ali Durmuş', 'estecapelli' ),
+								'position'   => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
+								'resume_url' => home_url( '/en/about-us/our-doctors/op-dr-ali-durmus' ),
+							),
+						),
+					),
 				),
 			),
 			array(

@@ -479,6 +479,35 @@ function estecapelli_register_acf_field_groups() {
 							),
 						),
 
+						// ============================================================ Doctors — roster grid linked to résumés
+						'doctors' => array(
+							'key'        => 'layout_doctors',
+							'name'       => 'doctors',
+							'label'      => __( 'Doctors — roster grid (name, position, résumé link)', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_docs_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_docs_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_docs_lead',    'label' => __( 'Lead', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'          => 'field_docs_members',
+									'label'        => __( 'Doctors', 'estecapelli' ),
+									'name'         => 'members',
+									'type'         => 'repeater',
+									'min'          => 0,
+									'max'          => 24,
+									'button_label' => __( '+ Add Doctor', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_docs_m_photo',    'label' => __( 'Photo', 'estecapelli' ), 'name' => 'photo', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium' ),
+										array( 'key' => 'field_docs_m_name',     'label' => __( 'Name', 'estecapelli' ), 'name' => 'name', 'type' => 'text', 'required' => 1 ),
+										array( 'key' => 'field_docs_m_position', 'label' => __( 'Position / specialty', 'estecapelli' ), 'name' => 'position', 'type' => 'text' ),
+										array( 'key' => 'field_docs_m_resume',   'label' => __( 'Résumé / profile URL', 'estecapelli' ), 'name' => 'resume_url', 'type' => 'url', 'instructions' => __( 'Link to this doctor\'s profile page. Leave empty to hide the button.', 'estecapelli' ) ),
+									),
+								),
+							),
+						),
+
 						// ============================================================ Related treatments
 						'related' => array(
 							'key'        => 'layout_related',
