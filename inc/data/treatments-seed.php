@@ -711,7 +711,8 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Technology', 'estecapelli' ),
 						'title'         => __( 'What is TrichoLab?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'TrichoLab is an advanced AI-powered hair analysis system that examines the hair and scalp through high-resolution trichoscopic imaging. By measuring hair density, follicular distribution and donor capacity with scientific precision, it removes guesswork from hair transplant planning. It is available in only a limited number of clinics in Turkey, and at Estecapelli it sits at the heart of every treatment plan.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'TrichoLab is an advanced AI-powered hair analysis system that examines the hair and scalp through high-resolution trichoscopic imaging. By measuring critical parameters with millimetric precision, it provides objective, data-driven insights that guide our specialists in planning the most effective treatment for each individual.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The system evaluates a comprehensive range of factors, including hair follicle density, graft potential, hair shaft thickness, donor area capacity, hair loss mapping and miniaturisation rate. This level of detail allows our team to design a personalised treatment plan based on accurate, real-time data rather than estimation, ensuring the best possible outcome for every patient.', 'estecapelli' ) . '</p>',
 						'image'         => '',
 						'image_position' => 'right',
 						'cta'           => array( 'label' => '', 'url' => '' ),
@@ -742,6 +743,18 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'icon' => 'shield-check', 'label' => __( 'Long-term protection of the donor area', 'estecapelli' ) ),
 							array( 'icon' => 'star',         'label' => __( 'Available in only a limited number of clinics in Turkey', 'estecapelli' ) ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Why Estecapelli', 'estecapelli' ),
+						'title'         => __( 'Why TrichoLab at Estecapelli?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'TrichoLab is an advanced analysis system available in only a limited number of clinics across Turkey, and at Estecapelli it sits at the core of everything we do, giving our patients access to a level of analysis that few clinics can offer.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Every evaluation is objective, measurable and fully transparent, giving patients a clear understanding of their hair health before any procedure begins. A truly personalised transplant strategy is developed for each patient, built on accurate data rather than guesswork, and planning is designed to be both safe and sustainable — protecting the donor area and maximising long-term results.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'At Estecapelli, every procedure is data-driven, because a natural result starts with an accurate analysis.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'left',
+						'cta'           => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 
 					array(
