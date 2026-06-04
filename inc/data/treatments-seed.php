@@ -761,30 +761,76 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'What is Eyebrow Transplantation?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Eyebrows are one of the most defining elements of facial expression. Eyebrow transplantation is a precise microsurgical procedure that restores brows that have thinned, fallen out or lost their shape. It follows principles similar to hair transplantation but demands far greater precision: single follicles are used and implanted with the DHI method to achieve a natural angle, direction and density.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Eyebrow transplantation is a precise microsurgical procedure designed to restore eyebrows that have thinned, fallen out or lost their natural shape due to aging, trauma, medical conditions or over-plucking. During the procedure, individual hair follicles are carefully harvested from the nape (back of the scalp) and transplanted into the eyebrow area. Each follicle is placed at the exact angle and direction to mimic natural eyebrow growth.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The main goal is to create full, natural-looking eyebrows that complement your facial features. Once healed, the transplanted hairs grow permanently, providing a low-maintenance, aesthetic result that doesn’t rely on makeup.', 'estecapelli' ) . '</p>',
 						'image'         => '',
 						'image_position' => 'right',
 						'cta'           => array( 'label' => '', 'url' => '' ),
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Why It Is Preferred', 'estecapelli' ),
+						'title'         => __( 'Why is Eyebrow Transplantation Preferred?', 'estecapelli' ),
+						'body'          => __( 'Eyebrows are one of the most defining elements of facial expression. Eyebrow transplantation provides a permanent and effective solution in the following situations:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Years of incorrect eyebrow shaping', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Sudden hair loss', 'estecapelli' ) ),
+							array( 'icon' => 'atom',         'label' => __( 'Hormonal changes', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Stress or nutritional deficiencies', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Gaps caused by injury, burns or trauma', 'estecapelli' ) ),
+							array( 'icon' => 'face',         'label' => __( 'Deformations caused by permanent makeup or microblading', 'estecapelli' ) ),
+							array( 'icon' => 'dna',          'label' => __( 'Genetically sparse eyebrows', 'estecapelli' ) ),
+						),
+						'footer'        => __( 'With the advancement of techniques, eyebrow transplantation has become one of the most preferred procedures in recent years due to its natural and aesthetic results.', 'estecapelli' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Process', 'estecapelli' ),
 						'title'         => __( 'How is Eyebrow Transplantation Performed?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The eyebrow transplant procedure follows principles similar to hair transplantation; however, it requires a much higher level of aesthetic precision.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'left',
+						'cta'           => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'steps',
+						'eyebrow'       => __( 'Step by Step', 'estecapelli' ),
+						'title'         => __( 'The Eyebrow Transplant Stages', 'estecapelli' ),
 						'lead'          => __( 'Designed around your facial proportions for a natural, lasting result.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'sparkles',     'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Eyebrow Design', 'estecapelli' ),     'body' => __( 'A natural brow shape is created from your facial proportions, muscle structure and personal preferences.', 'estecapelli' ) ),
-							array( 'icon' => 'target',       'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),   'body' => __( 'Single follicles are extracted from the nape with a specialised micromotor — essential for a natural brow.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'DHI Implantation', 'estecapelli' ),   'body' => __( 'With the DHI method, channel opening and implantation happen together for precise angle and direction control.', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'time' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Procedure Duration', 'estecapelli' ), 'body' => __( 'The procedure takes roughly 2–3 hours under local anaesthesia and is very comfortable.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Eyebrow Design', 'estecapelli' ),       'body' => __( 'A natural eyebrow shape is created by taking facial proportions, muscle structure and the individual’s preferences into account. This stage is the most critical part of the procedure.', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),     'body' => __( 'Single hair follicles are extracted from the nape area using a specialised micromotor. Using only single follicles is essential for achieving natural-looking results in eyebrow transplantation.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'DHI Implantation', 'estecapelli' ),     'body' => __( 'The DHI method is preferred in eyebrow transplantation. With this technique, channel opening and graft implantation are performed simultaneously thanks to special pens.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Procedure Duration', 'estecapelli' ), 'body' => __( 'Eyebrow transplantation takes approximately 2 to 3 hours. As it is performed under local anaesthesia, the procedure is highly comfortable.', 'estecapelli' ) ),
 						),
 					),
 
 					array(
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'After the Procedure', 'estecapelli' ),
-						'title'         => __( 'What is the Recovery Process Like?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'On the first day, mild redness and sensitivity are normal. Within about two weeks, light scabbing clears. As with hair transplantation, shock shedding may occur before the permanent brow hairs grow in with a natural shape and density. The DHI method is the most suitable technique for eyebrow transplantation thanks to its precise control.', 'estecapelli' ) . '</p>',
+						'title'         => __( 'What is the Post-Eyebrow Transplantation Process Like?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The first day after the procedure, mild redness and sensitivity are normal. Within two weeks, mild scabbing occurs in the area and falls off. During the same period, the transplanted hairs may temporarily shed; this process is called shock loss.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'From the third month onward, new eyebrows begin to grow. It takes approximately 9 to 12 months for the eyebrows to fully settle and achieve a natural appearance. Since eyebrow transplantation uses fewer grafts compared to hair transplantation, the recovery process is much faster and more comfortable.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'right',
+						'cta'           => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Best Technique', 'estecapelli' ),
+						'title'         => __( 'Which Method Should Be Used for Eyebrow Transplantation?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The most suitable technique for eyebrow transplantation is the DHI (Direct Hair Implantation) method. With the DHI method, we are able to achieve:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'More controlled direction of eyebrow hairs', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Channel opening and implantation performed simultaneously', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'More successful creation of natural angles', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Shorter recovery time compared to other techniques', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Minimal trauma to the facial area', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'The FUE method is not frequently preferred for the eyebrow area, as it results in a longer recovery period.', 'estecapelli' ) . '</p>',
 						'image'         => '',
 						'image_position' => 'left',
 						'cta'           => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
