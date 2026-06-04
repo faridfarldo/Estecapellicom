@@ -1395,32 +1395,154 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'What is Liposuction?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Liposuction reduces localized fat deposits that resist diet and exercise, reshaping the body’s contours. It can be applied to many areas where stubborn fat accumulates.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Liposuction is a modern body-contouring procedure designed to reduce localised fat deposits and reshape aesthetic contours. During the procedure, fat cells are surgically removed, permanently decreasing their number in the treated area. Because of this, liposuction provides an effective and reliable solution with results that can last for many years.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The liposuction techniques used at Estecapelli go beyond simple body slimming and help achieve a more proportionate, aesthetic appearance.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'candidate',
-						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
-						'title'         => __( 'Types of Liposuction', 'estecapelli' ),
-						'body'          => __( 'The technique is chosen for your goals and anatomy:', 'estecapelli' ),
+						'eyebrow'       => __( 'Treatment Areas', 'estecapelli' ),
+						'title'         => __( 'Which Areas Can Be Shaped with Liposuction?', 'estecapelli' ),
+						'body'          => __( 'Liposuction can be performed on various areas of the body where fat tends to accumulate and is resistant to other methods. The most common areas treated include:', 'estecapelli' ),
 						'image'         => '',
 						'items'         => array(
-							array( 'icon' => 'atom',         'label' => __( 'Vaser Liposuction — ultrasound energy for precise, gentle contouring', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'label' => __( 'Laser Liposuction — breaks down fat while tightening the skin', 'estecapelli' ) ),
-							array( 'icon' => 'hands-heart',  'label' => __( 'Tumescent Liposuction — minimizes bleeding and discomfort', 'estecapelli' ) ),
-							array( 'icon' => 'target',       'label' => __( 'PAL (Power-Assisted) — vibration-assisted, efficient fat removal', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'label' => __( 'Classic Liposuction — conventional manual technique', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Abdomen and stomach', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Waist and flanks', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'label' => __( 'Hips and saddlebags', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'label' => __( 'Inner and outer thighs', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Back', 'estecapelli' ) ),
+							array( 'icon' => 'face',         'label' => __( 'Arms and underarms', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Chest (to treat gynecomastia in men)', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Double chin and under the jaw', 'estecapelli' ) ),
 						),
+						'footer'        => __( 'This procedure is not a method for weight loss. Instead, it effectively removes localised fat deposits that do not disappear despite overall weight loss.', 'estecapelli' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
+						'title'         => __( 'Types of Liposuction', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'At Estecapelli, different liposuction techniques are used to achieve body-contouring goals. Each technique is chosen based on the person’s fat distribution, skin elasticity and desired results.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Technique', 'estecapelli' ),
+						'title'         => __( 'Vaser Liposuction', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Vaser Liposuction is an advanced technique that uses ultrasound energy to liquefy fat cells before removal, allowing for precise and gentle body contouring.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+							. '<ul><li>' . esc_html__( 'Targets fat precisely', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Minimally invasive with less tissue trauma', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Smooth, natural-looking results', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Faster recovery compared to traditional liposuction', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Technique', 'estecapelli' ),
+						'title'         => __( 'Laser Liposuction', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Laser Liposuction uses intense laser energy to break down fat cells, while simultaneously promoting skin tightening for smoother contours.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+							. '<ul><li>' . esc_html__( 'Melts fat precisely', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Supports skin tightening', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Minimally invasive with quick recovery', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Smooth and natural-looking results', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Technique', 'estecapelli' ),
+						'title'         => __( 'Tumescent Liposuction', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Tumescent Liposuction involves injecting a special solution into the targeted area before fat removal to minimise bleeding and bruising. Today, it is often combined with other liposuction techniques for enhanced results.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Technique', 'estecapelli' ),
+						'title'         => __( 'PAL (Power Assisted Liposuction)', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'PAL (Power Assisted Liposuction) uses vibration-assisted cannulas to break down fat more easily and efficiently, making the procedure faster and smoother.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+							. '<ul><li>' . esc_html__( 'Easier and faster fat removal', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Less surgeon fatigue, more precise', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Minimally invasive with smoother results', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Can be combined with other techniques', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Technique', 'estecapelli' ),
+						'title'         => __( 'Classic Liposuction', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Traditional Liposuction is a conventional fat removal technique performed manually without devices. It remains a preferred option in certain cases.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who Can Have Liposuction?', 'estecapelli' ),
+						'body'          => __( 'If you meet any of these criteria, you might be a candidate for liposuction:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'check-circle', 'label' => __( 'Adults who have finished their growth phase', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'People with stubborn fat areas that do not improve with diet and exercise', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Those seeking to define their body contours', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Individuals without medical conditions that prevent surgery', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'People with good skin elasticity', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Important', 'estecapelli' ),
+						'title'         => __( 'When Liposuction Is Not Recommended', 'estecapelli' ),
+						'body'          => '<ul><li>' . esc_html__( 'Pregnancy and breastfeeding period', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Serious chronic illnesses', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Bleeding disorders', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Severe obesity', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Before Surgery', 'estecapelli' ),
+						'title'         => __( 'Preparation Before Liposuction', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The preoperative process at Estecapelli is meticulously managed to ensure safe surgical planning.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Operation', 'estecapelli' ),
+						'title'         => __( 'How is Liposuction Surgery Performed?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Liposuction is performed under either local or general anaesthesia. The technique selected depends on the amount and characteristics of the fat to be removed, as well as the size of the treated area.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'General steps:', 'estecapelli' ) . '</strong></p>'
+							. '<ol><li>' . esc_html__( 'Make small incisions', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Break down fat using the appropriate technology (Vaser, laser, etc.)', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Remove fat cells with cannulas', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Contour and shape the area', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Close incisions with minimal scarring', 'estecapelli' ) . '</li></ol>'
+							. '<p>' . esc_html__( 'Duration: 30 minutes to 3 hours, depending on the size of the procedure.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'steps',
 						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
-						'title'         => __( 'Recovery Process', 'estecapelli' ),
-						'lead'          => __( 'Comfort is prioritised with careful post-operative monitoring.', 'estecapelli' ),
+						'title'         => __( 'Recovery Process After Liposuction', 'estecapelli' ),
+						'lead'          => __( 'At Estecapelli, we prioritise comfort by carefully monitoring the post-liposuction recovery process.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'shield-check', 'time' => __( 'First Days', 'estecapelli' ), 'title' => __( 'Compression Garment', 'estecapelli' ), 'body' => __( 'Mild bruising and swelling may occur; a compression garment is started.', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'time' => __( 'Weeks 2–3', 'estecapelli' ),  'title' => __( 'Back to Activity', 'estecapelli' ),    'body' => __( 'Swelling diminishes and a gradual return to sport is possible.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( '3–6 Months', 'estecapelli' ), 'title' => __( 'Final Contours', 'estecapelli' ),     'body' => __( 'Body contours settle and final results are revealed.', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'time' => __( 'First Days', 'estecapelli' ),       'title' => __( 'Compression Garment', 'estecapelli' ), 'body' => __( 'Mild pain, bruising and swelling might happen. Start using a compression garment.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( '1st Week', 'estecapelli' ),         'title' => __( 'Back to Daily Life', 'estecapelli' ),  'body' => __( 'The patient may resume daily activities. Walking and light movements are encouraged.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( '2–3 Weeks', 'estecapelli' ),        'title' => __( 'Swelling Diminishes', 'estecapelli' ), 'body' => __( 'Swelling significantly diminishes. Gradually returning to sports activities is possible.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( '6 Weeks – 3 Months', 'estecapelli' ),'title' => __( 'Contours Take Shape', 'estecapelli' ),'body' => __( 'Body contours start to take shape.', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'time' => __( '3–6 Months', 'estecapelli' ),       'title' => __( 'Final Results', 'estecapelli' ),       'body' => __( 'Final results are revealed.', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Aftercare', 'estecapelli' ),
+						'title'         => __( 'Things to Consider After Liposuction', 'estecapelli' ),
+						'body'          => __( 'To support healing and protect your results, keep the following in mind:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'label' => __( 'Wear the recommended compression garment regularly', 'estecapelli' ) ),
+							array( 'icon' => 'x-circle',     'label' => __( 'Avoid intense sports for some time', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Stay away from hot baths, saunas or similar environments', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'label' => __( 'Drink plenty of water and keep a balanced diet', 'estecapelli' ) ),
 						),
 					),
 					array(
@@ -1436,6 +1558,19 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Does it look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Applied with the right technique by an experienced surgeon, results look natural and proportionate.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'When can I exercise again?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Light walking after a few days; strenuous exercise after about four to six weeks.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Pricing', 'estecapelli' ),
+						'title'         => __( 'Liposuction Prices', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Liposuction pricing depends on several factors:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Amount of fat to be removed', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Number of areas to be treated', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Technique used (Vaser, laser, classic, etc.)', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Duration of the surgery', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Patient’s expectations', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'The most accurate price is determined after an online consultation with Estecapelli specialists.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
