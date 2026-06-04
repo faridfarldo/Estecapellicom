@@ -153,7 +153,8 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Approach', 'estecapelli' ),
 						'title'         => __( 'What Is Female Hair Transplantation?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( "Female hair transplant is a specialised procedure designed to address hair loss and thinning in women, delivering permanent and natural-looking results. Unlike male hair transplants, the technique is carefully adapted to suit women's unique hair structure, growth patterns, and hairline aesthetics. At Estecapelli, every treatment plan begins with a thorough analysis of what is driving your hair loss.", 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( "Female hair transplant is a specialised procedure designed to address hair loss and thinning in women, delivering permanent and natural-looking results. Unlike male hair transplants, the technique is carefully adapted to suit women's unique hair structure, growth patterns and hairline aesthetics.", 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'At Estecapelli, every treatment plan is fully personalised, ensuring results that blend seamlessly with your natural hair. Our specialists guide you through every step of the journey, from the initial consultation to post-operative care, making sure your recovery is smooth and your results are everything you hoped for.', 'estecapelli' ) . '</p>',
 						'image'         => '',
 						'image_position' => 'right',
 						'cta'           => array( 'label' => '', 'url' => '' ),
