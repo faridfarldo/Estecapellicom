@@ -1057,28 +1057,109 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'What is a Brazilian Butt Lift?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'BBL enhances the shape and volume of the buttocks and improves overall body proportion. The most popular approach uses the patient’s own fat in two steps: liposuction to harvest excess fat, then purification and re-injection into the buttocks for a natural, lasting result. Silicone implants are an alternative for patients without enough fat.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Brazilian Butt Lift (BBL) is a popular body-contouring procedure designed to enhance the shape, volume and lift of the buttocks, creating a fuller and more sculpted appearance.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The most common technique involves transferring the patient’s own fat to the buttocks. Excess fat is first removed from areas such as the waist, abdomen or hips through liposuction and then carefully injected into the buttocks to improve shape and projection.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'This modern approach not only enhances the buttocks but also slims surrounding areas, helping to create a more balanced and feminine body contour.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who is BBL Suitable For?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Brazilian Butt Lift (BBL) is a body-contouring procedure suitable for both women and men who wish to enhance the shape and volume of their buttocks.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Ideal candidates are generally individuals in good overall health who feel their buttocks lack volume, shape or projection, and who wish to achieve a more balanced waist–hip proportion. Patients with excess fat in areas such as the waist, hips or abdomen are often especially suitable for fat transfer BBL.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'For individuals who do not have enough fat tissue for transfer, buttock augmentation with silicone implants may also be considered as an alternative option.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
 						'acf_fc_layout' => 'candidate',
-						'eyebrow'       => __( 'Why Choose It', 'estecapelli' ),
-						'title'         => __( 'What BBL Can Improve', 'estecapelli' ),
-						'body'          => __( 'BBL addresses a range of shape and proportion concerns:', 'estecapelli' ),
+						'eyebrow'       => __( 'What It Improves', 'estecapelli' ),
+						'title'         => __( 'What Problems Does BBL Solve?', 'estecapelli' ),
+						'body'          => __( 'Brazilian Butt Lift (BBL) can improve a range of aesthetic and proportion-related concerns, including:', 'estecapelli' ),
 						'image'         => '',
 						'items'         => array(
 							array( 'icon' => 'target',      'label' => __( 'Flat or shapeless buttocks', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',    'label' => __( 'Lack of waist-to-hip definition', 'estecapelli' ) ),
-							array( 'icon' => 'hands-heart', 'label' => __( 'Volume loss after weight change', 'estecapelli' ) ),
-							array( 'icon' => 'star',        'label' => __( 'A more balanced, curved silhouette', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',    'label' => __( 'Lack of waist definition', 'estecapelli' ) ),
+							array( 'icon' => 'star',        'label' => __( 'Underdeveloped hip curves', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart', 'label' => __( 'Volume loss or sagging after weight changes', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle','label' => __( 'Imbalance between the upper and lower body', 'estecapelli' ) ),
 						),
+						'footer'        => __( 'At Estecapelli, the focus is not just on enhancing the buttocks, but on creating a balanced and harmonious body contour by considering the waist, hips and abdomen as a whole.', 'estecapelli' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Fat Transfer BBL', 'estecapelli' ),
+						'title'         => __( 'Brazilian Butt Lift with Fat Transfer', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The most popular approach for Brazilian Butt Lift (BBL) uses the patient’s own fat and involves two main steps:', 'estecapelli' ) . '</p>'
+							. '<ol><li><strong>' . esc_html__( 'Liposuction (Fat Removal)', 'estecapelli' ) . '</strong> — ' . esc_html__( 'excess fat is gently removed from areas such as the abdomen, waist, hips, back or legs. This step also helps refine the waistline, enhancing an “hourglass” silhouette.', 'estecapelli' ) . '</li>'
+							. '<li><strong>' . esc_html__( 'Fat Transfer (Buttock Injection)', 'estecapelli' ) . '</strong> — ' . esc_html__( 'the harvested fat is purified and then carefully injected into the upper and outer buttocks, following natural anatomical contours. The goal is to create a rounded, lifted and balanced buttock shape.', 'estecapelli' ) . '</li></ol>'
+							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+							. '<ul><li>' . esc_html__( 'Uses your own fat, with no foreign material', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Slims the waist and abdomen while enhancing the buttocks', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Minimal, well-hidden scars', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Natural look and feel', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Alternative', 'estecapelli' ),
+						'title'         => __( 'Buttock Augmentation with Silicone Implants', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Silicone buttock implants are an alternative for patients who do not have enough fat for a fat transfer BBL. In this procedure:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'A small incision is made near the tailbone', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'A specially designed silicone implant is placed either under or above the gluteal muscle', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'The implants are made from materials safe for long-term use in the body', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'This method provides an effective way to enhance buttock volume and shape, especially for patients who are very lean or have limited fat reserves.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Operation', 'estecapelli' ),
+						'title'         => __( 'How is BBL Surgery Performed?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'At Estecapelli, the Brazilian Butt Lift is performed under general anaesthesia in fully equipped operating room conditions. The average surgery time may vary between 2–4 hours depending on the technique used and combined procedures. The process is summarised as follows:', 'estecapelli' ) . '</p>'
+							. '<ol><li>' . esc_html__( 'Pre-examination and body analysis', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Determination of buttock design and target volume', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Planning of liposuction areas', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Preoperative required examinations and blood tests', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Operation performed under general anaesthesia', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Fat transfer or placement of silicone implant', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Postoperative corset application and creation of a follow-up plan', 'estecapelli' ) . '</li></ol>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
-						'title'         => __( 'Recovery & Sitting Rules', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Avoid sitting directly on the buttocks for the first 2–3 weeks; pressure should be transferred to the thighs with a special cushion. Transferred fat cells that survive become permanent and last for years, barring major weight changes.', 'estecapelli' ) . '</p>',
+						'title'         => __( 'Recovery Process & Sitting Rules After BBL', 'estecapelli' ),
+						'body'          => '<ul><li>' . esc_html__( 'Avoid sitting directly on the buttocks for the first 2–3 weeks', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Pressure should be transferred to the thighs using special BBL pillows', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Sleeping on the stomach or side is preferred during the first days', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'The compression garment should be used for the period recommended by your surgeon (usually 4–6 weeks)', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Heavy sports and intense exercise are not recommended during the first 4 weeks', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'In a BBL performed with fat transfer, this period is critical for the transferred fat cells to establish a new blood supply and become permanent.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Results', 'estecapelli' ),
+						'title'         => __( 'When Do BBL Results Appear and How Long Do They Last?', 'estecapelli' ),
+						'body'          => '<ul><li>' . esc_html__( 'Fat cells that become permanent stay for years unless major weight changes occur', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'With silicone implants the volume is more predictable and more defined; results become clearer after the swelling subsides', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'More stable and true results appear after 3–6 months', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'About 20–30% of fat cells may be absorbed naturally by the body in the first 3 months', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Safety', 'estecapelli' ),
+						'title'         => __( 'Is BBL Safe?', 'estecapelli' ),
+						'body'          => __( 'BBL has become one of the fastest-growing body-contouring procedures worldwide. While its popularity has risen, safety concerns have emerged in the past, often due to incorrect techniques or inexperienced practitioners. To ensure a safe BBL procedure:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'label' => __( 'Fat is injected only into the subcutaneous (under-the-skin) layer', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Muscle or deep tissue injections are strictly avoided', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'label' => __( 'Fat volumes are kept within safe limits', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'label' => __( 'Procedures are performed by experienced plastic surgeons', 'estecapelli' ) ),
+							array( 'icon' => 'building',     'label' => __( 'Surgeries take place in fully equipped operating rooms or hospital settings', 'estecapelli' ) ),
+						),
 					),
 					array(
 						'acf_fc_layout' => 'faq',
@@ -1093,6 +1174,13 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Some of the injected fat is reabsorbed; the fat that survives is permanent. Final results usually become clear within three to six months.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Does it look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'With personalised planning and the right technique, BBL gives very natural-looking results.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Pricing', 'estecapelli' ),
+						'title'         => __( 'BBL Prices', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'BBL pricing varies depending on the technique used (fat transfer or implants), the scope of the procedure, any combined treatments and your individual needs and anatomy. A personalised quote is provided following a detailed consultation, ensuring full transparency before any decisions are made.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
