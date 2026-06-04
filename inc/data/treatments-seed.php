@@ -2256,21 +2256,90 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Treatment', 'estecapelli' ),
 						'title'         => __( 'What is a Hollywood Smile?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Hollywood Smile is a comprehensive smile-design treatment that harmonises the relationship between teeth, gums and lips to create a symmetrical, bright and natural-looking smile. It is an ideal solution for discoloration, staining, gaps, misalignment and worn or asymmetrical teeth.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Hollywood Smile is a comprehensive smile design treatment that harmonises the relationship between teeth, gums and lips to create a smile that is symmetrical, natural and perfectly suited to the individual’s face. Rather than simply altering the appearance of the teeth, it takes a holistic approach, considering gum health, facial structure and aesthetic proportions as a whole.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'At Estecapelli, every Hollywood Smile procedure is tailored to the individual using digital design technologies and the principles of aesthetic dentistry. The result is a smile that is not only visually striking but also healthy, balanced and built to last.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
-						'acf_fc_layout' => 'steps',
-						'eyebrow'       => __( 'The Process', 'estecapelli' ),
-						'title'         => __( 'How is a Hollywood Smile Applied?', 'estecapelli' ),
-						'lead'          => __( 'A highly personalised treatment tailored to each patient.', 'estecapelli' ),
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who Is Hollywood Smile Suitable For?', 'estecapelli' ),
+						'body'          => __( 'Hollywood Smile is an ideal solution for individuals experiencing any of the following:', 'estecapelli' ),
+						'image'         => '',
 						'items'         => array(
-							array( 'icon' => 'target',       'time' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Digital Smile Analysis', 'estecapelli' ), 'body' => __( 'Facial shape, lip structure, gum line and tooth form are analysed to design a fully personalised smile.', 'estecapelli' ) ),
-							array( 'icon' => 'shield-check', 'time' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'Oral Health Preparation', 'estecapelli' ), 'body' => __( 'A healthy oral foundation is established before any aesthetic work begins.', 'estecapelli' ) ),
-							array( 'icon' => 'medical-plus', 'time' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Restoring Missing Teeth', 'estecapelli' ), 'body' => __( 'Where teeth are missing, implant treatment is completed first.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( 'Step 4', 'estecapelli' ), 'title' => __( 'Gum Aesthetics', 'estecapelli' ),         'body' => __( 'Laser gum contouring balances asymmetrical or gummy gum lines.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'time' => __( 'Step 5', 'estecapelli' ), 'title' => __( 'Teeth Renewal & Whitening', 'estecapelli' ), 'body' => __( 'Teeth are aesthetically reshaped and the final shade is harmonised for a consistent, balanced result.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Tooth discoloration and staining', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Crowding, gaps or irregular alignment', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Worn, broken or short teeth', 'estecapelli' ) ),
+							array( 'icon' => 'face',         'label' => __( 'Excessive gum display (gummy smile)', 'estecapelli' ) ),
+							array( 'icon' => 'tooth',        'label' => __( 'Missing teeth', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'label' => __( 'A smile that lacks harmony with the facial and lip structure', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'label' => __( 'Anyone looking for a whiter, more symmetrical and more attractive smile', 'estecapelli' ) ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Process', 'estecapelli' ),
+						'title'         => __( 'How Is a Hollywood Smile Applied?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Hollywood Smile is a highly personalised treatment, and the procedure is tailored to the unique needs of each patient. While the specific steps may vary, the process generally follows these key stages.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Step 1', 'estecapelli' ),
+						'title'         => __( 'Digital Smile Analysis', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The patient’s facial shape, lip structure, gum line and tooth form are thoroughly analysed. Using this data, a fully personalised smile design is created digitally, allowing both the specialist and the patient to visualise the expected outcome before any treatment begins.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Step 2', 'estecapelli' ),
+						'title'         => __( 'Oral and Dental Health Preparation', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Before any aesthetic work begins, the foundation of a healthy oral structure must be established. Depending on the patient’s needs, this may include:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Treatment of any existing cavities', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Professional dental scaling', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Treatment of gum disease', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Root canal treatment where necessary', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'Aesthetic procedures are only initiated once full oral health has been confirmed, ensuring lasting and stable results.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Step 3', 'estecapelli' ),
+						'title'         => __( 'Restoring Missing Teeth', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Where missing teeth are present, implant treatment is carried out prior to the aesthetic procedure. Once the implant has fully integrated with the bone, aesthetic crowns are placed to complete the smile design seamlessly.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Step 4', 'estecapelli' ),
+						'title'         => __( 'Gum Aesthetics (Gummy Smile Treatment)', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Where gum levels are asymmetrical or excessively visible, laser gum contouring is performed to achieve a balanced and proportionate gum line. This step plays a critical role in the overall smile design, as even the most refined dental work can fall short without a well-defined and symmetrical gum structure.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Step 5', 'estecapelli' ),
+						'title'         => __( 'Teeth Renewal', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The most suitable materials are applied to aesthetically reshape and transform the teeth. The most commonly used options in Hollywood Smile treatment are:', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Porcelain Laminate Veneer', 'estecapelli' ) . '</strong></p>'
+							. '<ul><li>' . esc_html__( 'Closest aesthetic appearance to natural teeth', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'High light translucency for a lifelike finish', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Requires minimal tooth reduction', 'estecapelli' ) . '</li></ul>'
+							. '<p><strong>' . esc_html__( 'Zirconia Crowns', 'estecapelli' ) . '</strong></p>'
+							. '<ul><li>' . esc_html__( 'Long-lasting due to their highly durable structure', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Suitable for use in cases of missing teeth', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Delivers a white and aesthetically pleasing result', 'estecapelli' ) . '</li></ul>'
+							. '<p><strong>' . esc_html__( 'Composite Bonding', 'estecapelli' ) . '</strong></p>'
+							. '<ul><li>' . esc_html__( 'Ideal for quickly correcting minor imperfections', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Can be applied without damaging the natural tooth structure', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Step 6', 'estecapelli' ),
+						'title'         => __( 'Teeth Whitening and Colour Matching', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'In the final stage, the shade of all teeth is carefully harmonised to create a consistent and balanced appearance. This ensures the overall result looks natural, cohesive and aesthetically refined across the entire smile.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'faq',
