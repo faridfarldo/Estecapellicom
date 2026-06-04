@@ -1784,30 +1784,129 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 					array(
 						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Overview', 'estecapelli' ),
+						'title'         => __( 'Permanent and Healthy Weight Loss with Estecapelli', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Obesity has become one of the fastest-growing health problems worldwide. Defined as having a body mass index over 30, obesity affects not only physical appearance but also leads to serious conditions such as cardiovascular diseases, diabetes, sleep apnea, hypertension and joint disorders.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Estecapelli provides professional solutions for sustainable weight loss and a healthier life through internationally standardised bariatric surgery methods and endoscopic gastric balloon treatments to combat obesity.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'What is Bariatric Surgery?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Bariatric surgery is a general term for procedures used to treat severe obesity, promoting significant, sustainable weight loss. The right method is chosen based on your BMI, health and goals.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Bariatric surgery is a general term for surgical procedures used to treat severe obesity, aiming to promote weight loss and reduce obesity-related health risks. These surgeries work by altering how the digestive system functions:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'To achieve satiety with less food', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'To reduce nutrient absorption', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'To modify metabolism', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'Bariatric surgery is one of the most effective methods for achieving lasting weight loss in appropriate patients.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who Can Undergo Bariatric Surgery?', 'estecapelli' ),
+						'body'          => __( 'Individuals who meet one or more of the following criteria may be suitable candidates for bariatric surgery:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'target',       'label' => __( 'Body mass index (BMI) of 40 or higher', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'BMI between 35–40 with conditions such as diabetes, hypertension or sleep apnea', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Those who cannot achieve results despite weight loss efforts', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Individuals experiencing movement limitations due to obesity', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'label' => __( 'Individuals whose quality of life is reduced because of excess weight', 'estecapelli' ) ),
+						),
+						'footer'        => __( 'At Estecapelli, each patient is evaluated through a multidisciplinary approach, and the most appropriate treatment plan is created in consultation with internal medicine, endocrinology and cardiology.', 'estecapelli' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Before Surgery', 'estecapelli' ),
+						'title'         => __( 'Preoperative Requirements for Bariatric Surgery', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The preoperative process is essential for the success of the surgery. At Estecapelli, pre-surgery preparation involves the following steps:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Detailed physical examination', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Blood tests, ECG and stress test if needed', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Endoscopic evaluation', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Review of medical history and medication use', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Abstaining from alcohol and smoking for at least 6 months', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Nutritional and psychological assessments', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'After all results are reviewed, a customised surgical plan is developed for the patient.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'candidate',
 						'eyebrow'       => __( 'Methods', 'estecapelli' ),
-						'title'         => __( 'Bariatric Methods', 'estecapelli' ),
-						'body'          => __( 'The most common approaches include:', 'estecapelli' ),
+						'title'         => __( 'Bariatric Surgery Methods', 'estecapelli' ),
+						'body'          => __( 'The most common methods include:', 'estecapelli' ),
 						'image'         => '',
 						'items'         => array(
 							array( 'icon' => 'medical-plus', 'label' => __( 'Gastric Sleeve (Sleeve Gastrectomy)', 'estecapelli' ) ),
 							array( 'icon' => 'target',       'label' => __( 'Gastric Bypass', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'label' => __( 'Gastric Balloon (endoscopic, non-surgical)', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Gastric Balloon (Endoscopic Procedure – Non-Surgical)', 'estecapelli' ) ),
 							array( 'icon' => 'check-circle', 'label' => __( 'Gastric Band', 'estecapelli' ) ),
 						),
 					),
 					array(
 						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Post-Bariatric Surgery Care and Recovery Guidelines', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'After a successful operation, permanent weight loss is possible with consistent lifestyle habits. Estecapelli’s expert team provides patients with a detailed roadmap during the post-operative journey:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Follow the nutrition plan carefully', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Consume liquids during the first few weeks', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Gradually switch to a protein-rich diet', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Avoid sugary and processed foods', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Take vitamin and mineral supplements regularly', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Begin with light exercises and gradually establish a consistent workout routine', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Drink plenty of water', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Stay away from alcohol and caffeine during the initial months', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'The post-bariatric surgery process requires both physical and psychological support. Estecapelli offers post-operative follow-up and counselling to all patients.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'Non-Surgical Option', 'estecapelli' ),
 						'title'         => __( 'What is a Gastric Balloon?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'The gastric balloon is an inflatable device placed in the stomach via endoscopy — no surgery required. It is suitable for people with a BMI of 30–35, or higher-BMI patients preparing for surgery, helping reduce food intake and kick-start weight loss.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+						'body'          => '<p>' . esc_html__( 'The gastric balloon is an inflatable medical device inserted into the stomach through endoscopy, eliminating the need for surgery. By reducing the stomach’s capacity, the balloon helps individuals feel full with less food, promoting weight loss.', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'The procedure takes 20–30 minutes', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Same-day discharge is possible', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Options for 6- or 12-month balloons are available', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'The gastric balloon is an effective weight management method for patients who prefer to avoid surgery or are not suitable candidates for surgical procedures.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Eligibility', 'estecapelli' ),
+						'title'         => __( 'Who is Eligible for a Gastric Balloon?', 'estecapelli' ),
+						'body'          => __( 'A gastric balloon can be recommended for people with the following conditions:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'check-circle', 'label' => __( 'Individuals with a BMI of 30–35 who prefer to avoid surgery', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Those needing a supportive first step in weight loss', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'People with health issues that make surgery unsuitable', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Individuals who cannot lose weight after childbirth and have a moderate amount of excess weight', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Important', 'estecapelli' ),
+						'title'         => __( 'When a Gastric Balloon Should Not Be Used', 'estecapelli' ),
+						'body'          => '<ul><li>' . esc_html__( 'Gastric ulcer, gastritis and hiatal hernia', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Substance abuse', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Severe eating disorders', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Pregnancy and breastfeeding period', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Why Turkey', 'estecapelli' ),
+						'title'         => __( 'Obesity Surgery in Turkey', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Turkey is among the most popular countries worldwide for bariatric surgery. The main reasons include:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Surgeons with international experience', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Technologically advanced hospitals', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'High success rates', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'More affordable prices compared to Europe and the USA', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'Estecapelli offers the following services to patients coming from both Turkey and abroad:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Personalised treatment plans', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Comfortable hospital and hotel options', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Post-operative follow-up programs', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'faq',
@@ -1822,6 +1921,13 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'How long is recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most patients return to daily life within one to two weeks, with full recovery in around four to six weeks.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Does it improve other health conditions?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. It brings marked improvement in conditions such as type 2 diabetes, high blood pressure, sleep apnea and joint pain.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Pricing', 'estecapelli' ),
+						'title'         => __( 'Obesity Surgery Prices', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Prices vary based on factors such as the chosen method, the patient’s health, the preferred balloon type and the surgical technique. The most accurate prices are determined after an assessment with Estecapelli specialists.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
