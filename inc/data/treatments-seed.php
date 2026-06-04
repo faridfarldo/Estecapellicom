@@ -916,33 +916,100 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'What is Rhinoplasty?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Rhinoplasty reshapes the nose to improve its form, size and function. It can be performed for aesthetic reasons, to correct breathing problems, or both — always planned around facial harmony and the individual’s anatomy.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Rhinoplasty is a surgical procedure designed to reshape the nose by improving its form, size and function. It can be performed for both aesthetic purposes and to correct breathing problems. Because the nose is the most prominent feature at the center of the face, even subtle changes can make a noticeable difference in facial harmony and self-confidence.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'At Estecapelli, every rhinoplasty procedure is carefully planned on an individual basis. Our specialists evaluate the overall facial structure and consider facial proportions and balance to achieve natural-looking results. All surgeries are performed by experienced ear, nose and throat (ENT) specialists and plastic surgeons, ensuring both aesthetic refinement and functional improvement.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'candidate',
-						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
-						'title'         => __( 'Types of Rhinoplasty', 'estecapelli' ),
-						'body'          => __( 'At Estecapelli the right technique is chosen for your anatomy and goals:', 'estecapelli' ),
+						'eyebrow'       => __( 'Why It Is Done', 'estecapelli' ),
+						'title'         => __( 'Why is Rhinoplasty Done?', 'estecapelli' ),
+						'body'          => __( 'People choose rhinoplasty for a variety of reasons, related to both aesthetic appearance and functional concerns. Some of the most common reasons include:', 'estecapelli' ),
 						'image'         => '',
 						'items'         => array(
-							array( 'icon' => 'medical-plus', 'label' => __( 'Open Rhinoplasty — full access via a small incision under the nostrils', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'label' => __( 'Closed Rhinoplasty — all incisions inside the nose, no visible scars', 'estecapelli' ) ),
-							array( 'icon' => 'target',       'label' => __( 'Tipplasty — refinement of the nasal tip only', 'estecapelli' ) ),
-							array( 'icon' => 'shield-check', 'label' => __( 'Septum Deviation Surgery — corrects the midline cartilage/bone for better breathing', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'label' => __( 'Non-Surgical Rhinoplasty — fillers soften a bump or lift the tip; temporary, lasting around 12–18 months', 'estecapelli' ) ),
+							array( 'icon' => 'face',         'label' => __( 'A nose that appears too large or too small in proportion to the face', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'A noticeable hump on the nasal bridge', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'A drooping, wide or poorly defined nasal tip', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Asymmetrical nostrils', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Deformities caused by previous injury or trauma', 'estecapelli' ) ),
+							array( 'icon' => 'dna',          'label' => __( 'Dissatisfaction with the natural, genetically inherited shape of the nose', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Breathing difficulties caused by structural issues such as a deviated septum or internal nasal curvature', 'estecapelli' ) ),
 						),
+						'footer'        => __( 'At Estecapelli, the aim of rhinoplasty is to create a natural-looking nose that complements the overall facial features while also improving breathing function when necessary.', 'estecapelli' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who Can Have Rhinoplasty?', 'estecapelli' ),
+						'body'          => __( 'Rhinoplasty may be a suitable option for individuals who wish to improve both the appearance and function of their nose. Ideal candidates typically include:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'check-circle', 'label' => __( 'Adults whose facial growth and physical development are complete', 'estecapelli' ) ),
+							array( 'icon' => 'face',         'label' => __( 'Individuals who feel dissatisfied with the appearance or shape of their nose', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'People who experience breathing difficulties due to structural nasal issues', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Those with nasal deformities caused by genetics, injury or previous trauma', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Individuals seeking a more balanced, natural and harmonious facial appearance', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
+						'title'         => __( 'Types of Rhinoplasty', 'estecapelli' ),
+						'body'          => '<ul><li><strong>' . esc_html__( 'Open Rhinoplasty', 'estecapelli' ) . '</strong> — ' . esc_html__( 'a surgical technique in which the nasal structure is fully exposed through a small incision made under the nostrils. It is the most ideal method for major structural changes, significant deviations and cases requiring revision surgery.', 'estecapelli' ) . '</li>'
+							. '<li><strong>' . esc_html__( 'Closed Rhinoplasty', 'estecapelli' ) . '</strong> — ' . esc_html__( 'a surgical technique in which all incisions are made inside the nose, leaving no visible external scars. It offers a faster recovery process and minimal tissue trauma. However, it may not be suitable for every nose; eligibility is determined through a medical examination.', 'estecapelli' ) . '</li>'
+							. '<li><strong>' . esc_html__( 'Tipplasty (Nose Tip Surgery)', 'estecapelli' ) . '</strong> — ' . esc_html__( 'an aesthetic procedure performed solely on the nasal tip. Without intervening in the nasal bridge or bone structure, the tip of the nose is reshaped. The procedure takes less time and offers a faster recovery period.', 'estecapelli' ) . '</li>'
+							. '<li><strong>' . esc_html__( 'Septum Deviation Surgery', 'estecapelli' ) . '</strong> — ' . esc_html__( 'the correction of cartilage and bone curvature in the midline of the nose. The primary goal is to eliminate breathing problems. The external appearance of the nose is not altered; only nasal function is improved.', 'estecapelli' ) . '</li></ul>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Before Surgery', 'estecapelli' ),
+						'title'         => __( 'The Pre-Operative Process', 'estecapelli' ),
+						'body'          => __( 'The pre-operative stage is essential for a successful rhinoplasty. At Estecapelli, each patient undergoes a careful evaluation to ensure both safety and the best possible results. Before surgery, the following steps are carried out:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'clipboard',    'label' => __( 'Review of the patient’s medical history and current health conditions', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart',  'label' => __( 'Discussion of aesthetic expectations and desired results', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Examination of the internal and external nasal structure', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'label' => __( 'Blood tests and anaesthesia assessment', 'estecapelli' ) ),
+							array( 'icon' => 'image',        'label' => __( 'Medical photographs for analysis and surgical planning', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Temporary discontinuation of blood-thinning medications', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'label' => __( 'Avoiding alcohol and smoking before surgery to support proper healing', 'estecapelli' ) ),
+						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'The Operation', 'estecapelli' ),
+						'title'         => __( 'How is Rhinoplasty Performed?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Operation steps:', 'estecapelli' ) . '</p>'
+							. '<ol><li>' . esc_html__( 'Administration of anaesthesia', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Making incisions inside or outside the nose', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Reshaping the cartilage and bone structure', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Opening the airways if necessary', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Aesthetic adjustment of the nasal tip', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Closing the incisions and applying a splint', 'estecapelli' ) . '</li></ol>'
+							. '<p>' . esc_html__( 'Most patients are discharged the same day or the next day after the operation.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'steps',
 						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
-						'title'         => __( 'Recovery Timeline', 'estecapelli' ),
-						'lead'          => __( 'What to expect after your rhinoplasty.', 'estecapelli' ),
+						'title'         => __( 'The Recovery Process After Rhinoplasty', 'estecapelli' ),
+						'lead'          => __( 'A general guide to the rhinoplasty recovery timeline.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'shield-check', 'time' => __( 'First 24h', 'estecapelli' ), 'title' => __( 'Mild Swelling', 'estecapelli' ), 'body' => __( 'Mild pain and swelling may occur and are easily managed.', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'time' => __( 'Week 1', 'estecapelli' ),   'title' => __( 'Splint Removal', 'estecapelli' ), 'body' => __( 'Most bruising begins to fade and the splint is typically removed.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( 'Months', 'estecapelli' ),   'title' => __( 'Final Shape', 'estecapelli' ),   'body' => __( 'Swelling subsides gradually and the refined, natural shape settles over the following months.', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'time' => __( 'First 24 Hours', 'estecapelli' ), 'title' => __( 'Mild Swelling', 'estecapelli' ),   'body' => __( 'Mild pain and swelling may occur.', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'time' => __( 'First Week', 'estecapelli' ),     'title' => __( 'Bruising Fades', 'estecapelli' ),  'body' => __( 'Most bruising begins to subside.', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'time' => __( 'Day 7', 'estecapelli' ),          'title' => __( 'Splint Removed', 'estecapelli' ),  'body' => __( 'The splint is usually removed.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'time' => __( '1 Month', 'estecapelli' ),        'title' => __( 'Major Healing', 'estecapelli' ),   'body' => __( 'Significant healing takes place.', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'time' => __( '6–12 Months', 'estecapelli' ),    'title' => __( 'Final Shape', 'estecapelli' ),     'body' => __( 'The final shape of the nose gradually settles and fully matures.', 'estecapelli' ) ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'Risks of Rhinoplasty', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'As with any surgical procedure, rhinoplasty carries some potential risks, such as mild swelling, temporary bleeding, infection or healing-related issues. However, these complications are uncommon and can be significantly minimised when the procedure is performed by experienced surgeons using proper techniques.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'faq',
@@ -957,6 +1024,13 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Will there be visible scars?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Closed rhinoplasty leaves no external scars; with the open technique the incision is tiny and usually unnoticeable.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Are the results permanent and natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Rhinoplasty gives permanent results, and in experienced hands the outcome looks completely natural.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Pricing', 'estecapelli' ),
+						'title'         => __( 'Rhinoplasty Prices', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Rhinoplasty pricing varies depending on the technique used, the scope of the procedure and your individual needs and anatomy. A personalised quote is provided following a detailed consultation, ensuring full transparency before any decisions are made.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
