@@ -573,6 +573,19 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 
 					array(
 						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who Can Undergo a Hair Transplant?', 'estecapelli' ),
+						'body'          => '<p><strong>' . esc_html__( 'Age.', 'estecapelli' ) . '</strong> ' . esc_html__( 'There is no strict age limit for hair transplantation, but candidates are generally over 25, when hair loss patterns become more predictable. That said, hair loss can be advanced even at 22–24, so the extent of a patient’s hair loss is just as important as age when planning a transplant.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Donor Area.', 'estecapelli' ) . '</strong> ' . esc_html__( 'A successful hair transplant requires healthy hair follicles that can be safely harvested. The primary donor area is usually the back and sides of the scalp, where hair is genetically resistant to thinning. The quality and density of the donor area determine how many grafts can be transplanted.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Type of Hair Loss.', 'estecapelli' ) . '</strong> ' . esc_html__( 'The best candidates are typically those with male or female pattern baldness, as this type usually affects only certain areas of the scalp, so the donor area is likely to remain unaffected. Other types, such as alopecia, require a more specialised evaluation.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Health.', 'estecapelli' ) . '</strong> ' . esc_html__( 'For an effective hair transplant, you should not have any medical conditions that could affect the procedure or healing, such as uncontrolled diabetes, severe heart or liver problems, active scalp infections, or autoimmune disorders. A thorough medical evaluation before the procedure ensures it is safe and effective.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'right',
+						'cta'           => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
 						'title'         => __( 'DHI Recovery Process: What to Expect', 'estecapelli' ),
 						'body'          => '<p><strong>' . esc_html__( 'First days and weeks:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Mild redness and swelling are normal and resolve quickly.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Scab shedding:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Small scabs naturally shed as part of healing.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Months 1–4:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Temporary shock shedding occurs as follicles enter a new growth cycle.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Months 3–12:', 'estecapelli' ) . '</strong> ' . esc_html__( 'New hair grows in with full, natural density, supported by our follow-up team.', 'estecapelli' ) . '</p>',
