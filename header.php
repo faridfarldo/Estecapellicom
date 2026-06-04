@@ -45,7 +45,7 @@
 					</button>
 					<ul class="lang-switch__menu" id="lang-menu" hidden>
 						<?php
-						$langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'DE' => 'Deutsch', 'ES' => 'Español', 'FR' => 'Français', 'IT' => 'Italiano', 'PT' => 'Português', 'PL' => 'Polski', 'AR' => 'العربية' );
+						$langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'FR' => 'French', 'IT' => 'Italian', 'ES' => 'Spanish', 'PL' => 'Polish', 'PT' => 'Portuguese' );
 						foreach ( $langs as $code => $name ) :
 							?>
 							<li><a href="#" data-lang="<?php echo esc_attr( strtolower( $code ) ); ?>"><span class="lang-code"><?php echo esc_html( $code ); ?></span> <?php echo esc_html( $name ); ?></a></li>

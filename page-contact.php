@@ -28,11 +28,11 @@ foreach ( (array) ( $contact['socials'] ?? array() ) as $s ) {
 $languages = array(
 	array( 'cc' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
 	array( 'cc' => 'tr', 'label' => __( 'Türkçe', 'estecapelli' ) ),
-	array( 'cc' => 'sa', 'label' => __( 'العربية', 'estecapelli' ) ),
-	array( 'cc' => 'ru', 'label' => __( 'Русский', 'estecapelli' ) ),
-	array( 'cc' => 'fr', 'label' => __( 'Français', 'estecapelli' ) ),
-	array( 'cc' => 'de', 'label' => __( 'Deutsch', 'estecapelli' ) ),
-	array( 'cc' => 'es', 'label' => __( 'Español', 'estecapelli' ) ),
+	array( 'cc' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
+	array( 'cc' => 'it', 'label' => __( 'Italian', 'estecapelli' ) ),
+	array( 'cc' => 'es', 'label' => __( 'Spanish', 'estecapelli' ) ),
+	array( 'cc' => 'pl', 'label' => __( 'Polish', 'estecapelli' ) ),
+	array( 'cc' => 'pt', 'label' => __( 'Portuguese', 'estecapelli' ) ),
 );
 
 $sent = isset( $_GET['sent'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
