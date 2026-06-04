@@ -1036,7 +1036,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'hero',
 						'eyebrow'       => __( 'Breast Surgery', 'estecapelli' ),
 						'title'         => __( 'Breast Aesthetics', 'estecapelli' ),
-						'lead'          => __( 'Achieve breasts that are harmonious with your body — full and natural-looking. Personalised planning ensures aesthetic, balanced results.', 'estecapelli' ),
+						'lead'          => __( 'Achieve breasts that are harmonious with your body — full and natural-looking. Our personalised planning ensures aesthetic, balanced results tailored to your unique figure and goals.', 'estecapelli' ),
 						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
 						'media_type'    => 'image', 'image' => '', 'video_id' => '',
@@ -1044,28 +1044,81 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					array(
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
-						'title'         => __( 'What is Breast Aesthetics?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Breast aesthetics is the general term for surgical procedures that improve the size, shape and position of the breasts — including augmentation, lift and reduction. Each plan is tailored to the patient’s body proportions and goals.', 'estecapelli' ) . '</p>',
+						'title'         => __( 'What is Breast Aesthetics (Breast Surgery)?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Breast aesthetics is the general term for aesthetic surgical procedures performed to improve the size, shape and position of the breasts in harmony with the face and overall body proportions. The most commonly performed procedures include breast augmentation, breast reduction and breast lift surgery.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'At Estecapelli, breast aesthetics is about more than simply enlarging or reducing the breasts. It is about creating a balanced, natural silhouette that complements the entire body. Every treatment plan is carefully personalised to each patient’s unique anatomy and aesthetic goals. Our ultimate aim is to help patients feel better both physically and emotionally, achieving a body form they feel truly confident and comfortable in.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
 						'acf_fc_layout' => 'candidate',
 						'eyebrow'       => __( 'When It Helps', 'estecapelli' ),
 						'title'         => __( 'When is Breast Augmentation Performed?', 'estecapelli' ),
-						'body'          => __( 'Breast augmentation is an ideal solution in cases such as:', 'estecapelli' ),
+						'body'          => __( 'Breast augmentation surgery is an ideal solution in the following cases:', 'estecapelli' ),
 						'image'         => '',
 						'items'         => array(
 							array( 'icon' => 'dna',         'label' => __( 'Genetically small breast structure', 'estecapelli' ) ),
-							array( 'icon' => 'hands-heart', 'label' => __( 'Volume loss after pregnancy or weight change', 'estecapelli' ) ),
-							array( 'icon' => 'target',      'label' => __( 'Asymmetry between the breasts', 'estecapelli' ) ),
-							array( 'icon' => 'star',        'label' => __( 'A desire for fuller, more balanced proportions', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',    'label' => __( 'Breasts that appear small relative to overall body proportions', 'estecapelli' ) ),
+							array( 'icon' => 'hands-heart', 'label' => __( 'Loss of volume and shape due to aging, weight loss, pregnancy or breastfeeding', 'estecapelli' ) ),
+							array( 'icon' => 'target',      'label' => __( 'A noticeable size difference between the two breasts', 'estecapelli' ) ),
+							array( 'icon' => 'star',        'label' => __( 'Asymmetry or unevenness that affects confidence and clothing fit', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus','label' => __( 'Volume restoration following breast cancer surgery or reconstruction', 'estecapelli' ) ),
 						),
+						'footer'        => __( 'At Estecapelli, the goal of breast augmentation is not only to increase volume but to create a natural-looking breast form that suits the patient’s body proportions, posture and personal expectations.', 'estecapelli' ),
 					),
 					array(
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'How It Works', 'estecapelli' ),
 						'title'         => __( 'How is Breast Augmentation Performed?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Augmentation is performed under general anaesthesia in a fully equipped operating room. Implant shape (round or teardrop), volume, surface and the incision site are chosen together with you — the incision can be made under the arm, under the breast or around the areola.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'Breast augmentation surgery is performed under general anaesthesia in a fully equipped operating room and typically takes between 1.5 and 2 hours to complete. During the procedure, implants are carefully placed to achieve the most natural and proportionate result possible. Patients are generally discharged the day after surgery, following a routine post-operative check-up.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Implant Selection', 'estecapelli' ),
+						'title'         => __( 'Choosing a Silicone Implant: Round or Teardrop?', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Breast implants vary in shape, volume, surface texture and filling content. Choosing the right implant is one of the most important steps in achieving a natural and proportionate result, and the ideal option differs from patient to patient based on body structure, existing breast tissue and personal aesthetic goals. At Estecapelli, implant selection is made together with the patient through detailed consultation and careful evaluation.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Surgical Detail', 'estecapelli' ),
+						'title'         => __( 'Incision Site and Implant Placement', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'In breast augmentation surgery, the incision can be made at one of three entry points:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Underarm', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Under the breast', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Around the nipple', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'The choice of incision site is made together with the patient during consultation, with priority given to minimising visible scarring and protecting the milk ducts.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Implants can be placed in one of two tissue layers:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Above the muscle (under the breast tissue)', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Below the muscle', 'estecapelli' ) . '</li></ul>'
+							. '<p>' . esc_html__( 'Submuscular placement is frequently preferred as it tends to offer a more natural appearance, better long-term tissue support and a lower risk of capsular contracture. The most suitable option is determined through detailed examination and personalised planning.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Why Turkey & Estecapelli', 'estecapelli' ),
+						'title'         => __( 'Breast Aesthetics in Turkey and the Advantages of Estecapelli', 'estecapelli' ),
+						'body'          => __( 'Turkey is one of the most preferred destinations worldwide for breast aesthetics. The main reasons include:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'star',     'label' => __( 'Highly experienced surgeons with a strong track record of successful cases', 'estecapelli' ) ),
+							array( 'icon' => 'building',  'label' => __( 'Clinical infrastructure that meets international standards', 'estecapelli' ) ),
+							array( 'icon' => 'tag',       'label' => __( 'High-quality care at significantly more affordable costs compared to Europe and North America', 'estecapelli' ) ),
+						),
+						'footer'        => __( 'At Estecapelli, these advantages are combined with a personalised approach, ensuring every patient receives the attention, expertise and results they deserve.', 'estecapelli' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Before Surgery', 'estecapelli' ),
+						'title'         => __( 'Breast Augmentation Surgery: Preoperative Process', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'The most critical part of the entire process is establishing a clear and mutual understanding between the surgeon and the patient. This includes an open discussion of aesthetic expectations, implant selection and the anticipated post-operative appearance. At Estecapelli, every patient undergoes a thorough preoperative consultation to ensure they feel fully informed, prepared and confident before proceeding with surgery.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'The Recovery Process', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Achieving a fully settled, natural and near-final appearance typically requires a period of 3 to 6 months. The recovery process after breast augmentation surgery is gradual, and patients are guided closely at every stage to ensure comfort, safety and the best possible outcome.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array(
@@ -1081,6 +1134,13 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Are breast implants safe?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. FDA-approved silicone implants have been used safely for many years.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Are the results permanent and natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Results are long-lasting and implants can be used for many years. With the right implant choice and technique, the result looks very natural. Incisions are placed discreetly and fade over time.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Pricing', 'estecapelli' ),
+						'title'         => __( 'Breast Aesthetics Prices', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Breast aesthetics pricing — whether for augmentation, reduction or lift — varies depending on several factors. These include the type of implant selected, the scope of the procedure, any additional treatments such as a lift, asymmetry correction or combined surgeries, and the patient’s individual needs and anatomy. A personalised quote is provided following a detailed consultation, ensuring full transparency before any decisions are made.', 'estecapelli' ) . '</p>',
+						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),

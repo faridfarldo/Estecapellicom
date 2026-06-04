@@ -13,6 +13,7 @@ if ( ! is_array( $section ) ) { return; }
 $eyebrow = $section['eyebrow'] ?? '';
 $title   = $section['title']   ?? '';
 $body    = $section['body']    ?? '';
+$footer  = $section['footer']  ?? '';
 $image   = $section['image']   ?? array();
 $items   = $section['items']   ?? array();
 
@@ -44,6 +45,10 @@ if ( ! $title || empty( $items ) ) { return; }
 					</li>
 				<?php endforeach; ?>
 			</ul>
+
+			<?php if ( $footer ) : ?>
+				<p class="t-cand__footer"><?php echo esc_html( $footer ); ?></p>
+			<?php endif; ?>
 		</div>
 
 		<?php if ( ! empty( $image['url'] ) ) : ?>

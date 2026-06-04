@@ -4016,6 +4016,12 @@
 		color: white;
 	}
 	.t-cand__label { display: block; min-width: 0; }
+	.t-cand__footer {
+		margin: 0.25rem 0 0;
+		max-width: 70ch;
+		font-size: 0.9375rem; line-height: 1.65;
+		color: oklch(40% 0.015 260);
+	}
 	/* When paired with an image the copy column is narrower — keep cards compact. */
 	.t-cand--with-image .t-cand__list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
 	.t-cand__media {

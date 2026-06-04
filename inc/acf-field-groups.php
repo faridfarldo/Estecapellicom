@@ -246,6 +246,7 @@ function estecapelli_register_acf_field_groups() {
 								array( 'key' => 'field_cand_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
 								array( 'key' => 'field_cand_title',   'label' => __( 'Title',   'estecapelli' ), 'name' => 'title',   'type' => 'text', 'required' => 1 ),
 								array( 'key' => 'field_cand_body',    'label' => __( 'Intro paragraph', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 3 ),
+								array( 'key' => 'field_cand_footer', 'label' => __( 'Closing paragraph (optional, after the list)', 'estecapelli' ), 'name' => 'footer', 'type' => 'textarea', 'rows' => 3 ),
 								array(
 									'key'           => 'field_cand_image',
 									'label'         => __( 'Side image (optional)', 'estecapelli' ),
