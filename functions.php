@@ -33,6 +33,7 @@ require get_template_directory() . '/inc/engine.php';
 require get_template_directory() . '/inc/before-after.php';
 require get_template_directory() . '/inc/redirects.php';
 require get_template_directory() . '/inc/local-en-routing.php';
+require get_template_directory() . '/inc/leads.php';
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-treatments.php';
 }

@@ -35,33 +35,31 @@ if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
  * Returns false (short-circuiting WP's own parsing) only when the stripped
  * path is a real page; treatments and everything else fall through unchanged.
  */
-add_filter( 'do_parse_request', 'estecapelli_local_en_parse', 10, 2 );
-function estecapelli_local_en_parse( $continue, $wp ) {
+add_filter( 'request', 'estecapelli_local_en_request' );
+function estecapelli_local_en_request( $query_vars ) {
 	$uri  = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
 	$path = trim( (string) wp_parse_url( $uri, PHP_URL_PATH ), '/' );
 
 	if ( 'en' !== $path && 0 !== strpos( $path, 'en/' ) ) {
-		return $continue;
+		return $query_vars;
 	}
 
 	$rest = trim( substr( $path, 2 ), '/' );
 	if ( '' === $rest ) {
-		// Bare /en/ — serve the front page without a canonical redirect loop.
-		$wp->query_vars   = array();
-		$wp->request      = $path;
-		$wp->matched_rule = '';
-		return false;
+		return array(); // bare /en/ — serve the front page.
 	}
 
 	$page = get_page_by_path( $rest );
 	if ( $page ) {
-		$wp->query_vars  = array( 'pagename' => $rest );
-		$wp->request     = $path;
-		$wp->matched_rule = '';
-		return false; // we resolved it; skip WP's rule matching.
+		// Remap /en/{page-path} to the resolved page. The `request` filter's
+		// return value becomes the final query vars, overriding whatever the
+		// greedy `en/%treatment_category%` rewrite matched for this URL.
+		// (A do_parse_request short-circuit set query vars that never reached
+		// the main query in this environment — the request filter is reliable.)
+		return array( 'page_id' => $page->ID );
 	}
 
-	return $continue; // not a page → let the treatment CPT rules handle it.
+	return $query_vars; // not a page → let the treatment CPT vars stand.
 }
 
 /**
