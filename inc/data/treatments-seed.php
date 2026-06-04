@@ -451,6 +451,8 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Who is a good candidate?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Candidates are generally over 25 with a healthy donor area and no medical condition that would affect the procedure or healing. A free consultation confirms your suitability.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Does it require shaving?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Sapphire FUE typically involves shaving the donor and recipient areas; unshaven options can be discussed during your consultation.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'When will I see the final result?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'New growth starts around month three and full, natural density is generally achieved within twelve months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is Sapphire FUE painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Like every hair transplant method at Estecapelli, Sapphire FUE is performed under local anaesthesia, so no pain is felt during the procedure. Your comfort is prioritised at every stage with support from our expert team.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are there any side effects?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Temporary effects such as mild redness, scabbing or shock shedding can occur after the procedure. With proper care and by following expert advice, these settle and disappear completely in a short time.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -556,6 +558,8 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Is DHI shaving-free?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'DHI is ideal for unshaven and targeted procedures. Depending on the size of the area, existing hair can often be preserved — your consultant will confirm what suits you.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Who is DHI best suited to?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'DHI is an excellent choice for early-stage hair loss, diffuse thinning, smaller areas and patients seeking ultra-precise, dense placement.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'When will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Visible growth typically begins around month three, with full results generally seen by month twelve.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is DHI painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The DHI procedure is carried out under local anaesthesia, so no pain is felt during treatment. At Estecapelli, patient comfort is prioritised at every stage and the process is carefully managed by our expert team.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long does recovery take?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Because DHI is a minimally invasive method, recovery is fast. Most patients return to daily life within a few days, and any redness or scabbing subsides shortly after.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -716,6 +720,9 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'Is TrichoLab analysis painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Not at all. It is a non-invasive imaging process that simply scans the scalp — no needles, no discomfort.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Why does TrichoLab matter for my transplant?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It calculates the exact number of grafts you need and protects your donor area, so the plan is accurate, natural and sustainable.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Is it included in my consultation?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'At Estecapelli, TrichoLab analysis is part of building your personalised treatment plan. Contact us to arrange your assessment.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What exactly is TrichoLab analysis?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'TrichoLab is an advanced hair analysis system that examines the hair and scalp with high-resolution imaging and AI-supported software, measuring hair density, hair strand thickness, donor area capacity and shedding pattern.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What data does it analyse?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It typically measures hair density, follicle distribution, hair strand thickness, donor area capacity, the shedding map and the condition of the scalp.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does TrichoLab determine the exact number of grafts?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'TrichoLab strengthens planning by supporting the graft requirement with scientific data. The final decision is made together with clinical factors such as expert assessment and hairline design.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -871,7 +878,10 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'items'         => array(
 							array( 'question' => __( 'Where do the grafts come from?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Healthy follicles are harvested with the FUE method from the safe donor area at the back and sides of the head.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Will the beard look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Careful control of the angle, depth and direction of each graft ensures the beard grows in naturally and blends with existing hair.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'What side effects should I expect?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'As with any procedure there may be minor, temporary redness, swelling or sensitivity, which settle quickly.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What side effects should I expect?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'As with any procedure there may be minor, temporary redness, swelling or sensitivity, which settle quickly. Rarely, there is a risk of infection or scarring, minimised by following expert advice.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long does recovery take?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Recovery after a beard transplant generally takes 1–2 weeks. The full growth of the transplanted beard and its final appearance form over 6–12 months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The first beard growth usually begins within 3–6 months, with permanent, clear results appearing at the end of 6–12 months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is a beard transplant permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. When performed with the right techniques by an expert team, a beard transplant delivers permanent results. Estecapelli’s personalised process targets natural, long-lasting satisfaction.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
