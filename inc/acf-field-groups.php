@@ -429,6 +429,56 @@ function estecapelli_register_acf_field_groups() {
 							),
 						),
 
+						// ============================================================ Team — member grid
+						'team' => array(
+							'key'        => 'layout_team',
+							'name'       => 'team',
+							'label'      => __( 'Team — member grid (roles or languages)', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_team_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_team_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_team_lead',    'label' => __( 'Lead', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'           => 'field_team_variant',
+									'label'         => __( 'Variant', 'estecapelli' ),
+									'name'          => 'variant',
+									'type'          => 'select',
+									'choices'       => array( 'medical' => __( 'Medical Team (show role)', 'estecapelli' ), 'consultant' => __( 'Consultants (show languages)', 'estecapelli' ) ),
+									'default_value' => 'medical',
+								),
+								array(
+									'key'          => 'field_team_members',
+									'label'        => __( 'Members', 'estecapelli' ),
+									'name'         => 'members',
+									'type'         => 'repeater',
+									'min'          => 0,
+									'max'          => 24,
+									'button_label' => __( '+ Add Member', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_team_m_photo', 'label' => __( 'Photo', 'estecapelli' ), 'name' => 'photo', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium' ),
+										array( 'key' => 'field_team_m_name',  'label' => __( 'Name', 'estecapelli' ), 'name' => 'name', 'type' => 'text', 'required' => 1 ),
+										array( 'key' => 'field_team_m_role',  'label' => __( 'Position / role (e.g. Nurse)', 'estecapelli' ), 'name' => 'role', 'type' => 'text' ),
+										array(
+											'key'          => 'field_team_m_langs',
+											'label'        => __( 'Languages (for consultants)', 'estecapelli' ),
+											'name'         => 'languages',
+											'type'         => 'repeater',
+											'min'          => 0,
+											'max'          => 10,
+											'button_label' => __( '+ Add Language', 'estecapelli' ),
+											'layout'       => 'table',
+											'sub_fields'   => array(
+												array( 'key' => 'field_team_lang_country', 'label' => __( 'Country code (ISO, e.g. gb, tr, sa, ru)', 'estecapelli' ), 'name' => 'country', 'type' => 'text' ),
+												array( 'key' => 'field_team_lang_label',   'label' => __( 'Language', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
+											),
+										),
+									),
+								),
+							),
+						),
+
 						// ============================================================ Related treatments
 						'related' => array(
 							'key'        => 'layout_related',
