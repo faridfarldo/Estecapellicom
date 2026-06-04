@@ -433,11 +433,40 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 
 					array(
 						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
-						'title'         => __( 'Sapphire FUE Recovery Process: What to Expect', 'estecapelli' ),
-						'body'          => '<p><strong>' . esc_html__( 'First days and weeks:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Mild redness and swelling are normal and subside quickly.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Days 7–10:', 'estecapelli' ) . '</strong> ' . esc_html__( 'The scab-shedding phase is a natural part of healing.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Months 1–3:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Temporary shock shedding may occur — completely expected.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Months 3–12:', 'estecapelli' ) . '</strong> ' . esc_html__( 'New hair grows in with full density and a natural look, supported by our follow-up team every step of the way.', 'estecapelli' ) . '</p>',
+						'eyebrow'       => __( 'Sapphire vs FUE', 'estecapelli' ),
+						'title'         => __( 'What are the Differences Between Sapphire FUE and FUE?', 'estecapelli' ),
+						'body'          => '<p><strong>' . esc_html__( 'Sharp and Smooth Channels.', 'estecapelli' ) . '</strong> ' . esc_html__( 'While traditional FUE uses steel blades, Sapphire FUE creates ultra-precise channels with sapphire-tipped blades that stay sharp longer. This allows for smaller, cleaner incisions, minimising tissue trauma and bleeding. The precise placement of grafts ensures natural hair growth and density, while also promoting a faster, more comfortable recovery.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Natural Hairline.', 'estecapelli' ) . '</strong> ' . esc_html__( 'The Sapphire FUE technique is more effective than traditional methods in achieving a natural appearance. Sapphire blades create channels that consider the natural growth direction of hair follicles, giving the patient a more natural hairline. Additionally, maximum density is achieved, resulting in a fuller appearance.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Less Scarring.', 'estecapelli' ) . '</strong> ' . esc_html__( 'Sapphire FUE leaves less scarring compared to traditional techniques. Because sapphire blades maintain their sharpness, the incisions are smaller, resulting in minimal scarring after the healing process. These marks disappear quickly.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'right',
+						'cta'           => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
+						'title'         => __( 'Who Can Undergo a Hair Transplant?', 'estecapelli' ),
+						'body'          => '<p><strong>' . esc_html__( 'Age.', 'estecapelli' ) . '</strong> ' . esc_html__( 'There is no strict age limit for hair transplantation, but candidates are generally over 25, when hair loss patterns become more predictable. That said, hair loss can be advanced even at 22–24, so the extent of a patient’s hair loss is just as important as age when planning a transplant.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Donor Area.', 'estecapelli' ) . '</strong> ' . esc_html__( 'A successful hair transplant requires healthy hair follicles that can be safely harvested. The primary donor area is usually the back and sides of the scalp, where hair is genetically resistant to thinning. In some cases, when additional grafts are needed, chest or beard hair can also be used. The quality and density of the donor area determine how many grafts can be transplanted.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Type of Hair Loss.', 'estecapelli' ) . '</strong> ' . esc_html__( 'The cause of your hair loss is an important factor in determining your suitability. The best candidates are typically those with male or female pattern baldness, as this type usually affects only certain areas of the scalp rather than all of it, so the donor area is likely to remain unaffected. Other types, such as alopecia, require a more specialised evaluation.', 'estecapelli' ) . '</p>'
+							. '<p><strong>' . esc_html__( 'Health.', 'estecapelli' ) . '</strong> ' . esc_html__( 'For an effective hair transplant, you should not have any medical conditions that could affect the procedure or healing process. Examples include:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Uncontrolled diabetes, which can slow wound healing', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Severe heart or liver problems, which may complicate anaesthesia', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Active scalp infections or skin diseases in the donor or recipient areas', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Autoimmune disorders that can interfere with hair growth', 'estecapelli' ) . '</li></ul>',
 						'image'         => '',
 						'image_position' => 'left',
+						'cta'           => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'intro',
+						'eyebrow'       => __( 'After Surgery', 'estecapelli' ),
+						'title'         => __( 'Sapphire FUE Recovery Process: What to Expect', 'estecapelli' ),
+						'body'          => '<p><strong>' . esc_html__( 'First days and weeks:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Mild redness and swelling are normal and subside quickly.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Days 7–14:', 'estecapelli' ) . '</strong> ' . esc_html__( 'The scab-shedding phase is a natural part of healing; small scabs loosen around day 7–10 and fully come off with gentle washing between days 10 and 14.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Months 1–3:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Temporary shock shedding may occur as follicles adapt — completely expected and harmless to the follicles.', 'estecapelli' ) . '</p><p><strong>' . esc_html__( 'Months 3–12:', 'estecapelli' ) . '</strong> ' . esc_html__( 'New growth begins around month 3–4; density gradually increases and by 12 months the results are fully visible — thicker, natural-looking and permanent hair, supported by our follow-up team every step of the way.', 'estecapelli' ) . '</p>',
+						'image'         => '',
+						'image_position' => 'right',
 						'cta'           => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 
