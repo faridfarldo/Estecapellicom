@@ -203,6 +203,13 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				),
 			),
 
+			// ======================== Blog ========================
+			array(
+				'slug'   => 'blog',
+				'title'  => 'Blog',
+				'parent' => null,
+			),
+
 			// ======================== Contact ========================
 			array(
 				'slug'   => 'contact',

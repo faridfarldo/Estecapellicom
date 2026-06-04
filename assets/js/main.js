@@ -298,6 +298,29 @@
 		});
 	}
 
+	function initCopyLink() {
+		document.querySelectorAll('[data-copy-link]').forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				var url = btn.getAttribute('data-copy-link');
+				var done = function () {
+					btn.classList.add('is-copied');
+					setTimeout(function () { btn.classList.remove('is-copied'); }, 1600);
+				};
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					navigator.clipboard.writeText(url).then(done).catch(done);
+				} else {
+					var t = document.createElement('textarea');
+					t.value = url;
+					document.body.appendChild(t);
+					t.select();
+					try { document.execCommand('copy'); } catch (e) {}
+					document.body.removeChild(t);
+					done();
+				}
+			});
+		});
+	}
+
 	ready(function () {
 		initMobileNav();
 		initLangSwitch();
@@ -306,5 +329,6 @@
 		initPatientStories();
 		initStoriesLightbox();
 		initCarousels();
+		initCopyLink();
 	});
 })();

@@ -109,18 +109,26 @@ function estecapelli_handle_lead() {
 add_action( 'template_redirect', 'estecapelli_handle_lead', 5 );
 
 /**
- * Route the Contact page to its dedicated template.
+ * Route special pages (by slug) to their dedicated templates.
  */
-function estecapelli_contact_template( $template ) {
-	if ( is_page() && 'contact' === get_post_field( 'post_name', get_queried_object_id() ) ) {
-		$contact = locate_template( 'page-contact.php' );
-		if ( $contact ) {
-			return $contact;
+function estecapelli_page_template_router( $template ) {
+	if ( ! is_page() ) {
+		return $template;
+	}
+	$map  = array(
+		'contact' => 'page-contact.php',
+		'blog'    => 'page-blog.php',
+	);
+	$slug = get_post_field( 'post_name', get_queried_object_id() );
+	if ( isset( $map[ $slug ] ) ) {
+		$found = locate_template( $map[ $slug ] );
+		if ( $found ) {
+			return $found;
 		}
 	}
 	return $template;
 }
-add_filter( 'template_include', 'estecapelli_contact_template' );
+add_filter( 'template_include', 'estecapelli_page_template_router' );
 
 /**
  * Show stored lead details as admin columns for quick triage.
