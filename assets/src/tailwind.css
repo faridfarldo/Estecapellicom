@@ -4441,7 +4441,7 @@
 	.t-team__grid {
 		list-style: none; margin: 0; padding: 0;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 		gap: clamp(1rem, 2vw, 1.75rem);
 	}
 	.t-team__card {
@@ -4461,7 +4461,7 @@
 	}
 	.t-team__photo {
 		position: relative; margin: 0;
-		width: clamp(108px, 34%, 134px); aspect-ratio: 1 / 1;
+		width: clamp(150px, 62%, 190px); aspect-ratio: 1 / 1;
 		border-radius: 50%;
 		display: grid; place-items: center;
 	}
@@ -4490,7 +4490,7 @@
 		display: grid; place-items: center;
 		background: linear-gradient(140deg, var(--color-brand-100), var(--color-brand-200));
 		color: var(--color-brand-700);
-		font-size: 1.75rem; font-weight: 700; letter-spacing: 0.02em;
+		font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700; letter-spacing: 0.02em;
 	}
 	.t-team--consultant .t-team__placeholder {
 		background: linear-gradient(140deg, var(--color-trust-50, oklch(95% 0.04 145)), oklch(88% 0.07 145));
