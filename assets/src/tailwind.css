@@ -4446,9 +4446,8 @@
 	}
 	.t-team__card {
 		position: relative;
-		display: flex; flex-direction: column; align-items: center; text-align: center;
-		gap: 1rem;
-		padding: 1.75rem 1.25rem 1.5rem;
+		display: flex; flex-direction: column;
+		overflow: hidden;
 		background: linear-gradient(180deg, white, oklch(99% 0.006 260));
 		border: 1px solid var(--color-brand-100);
 		border-radius: 20px;
@@ -4459,44 +4458,36 @@
 		box-shadow: var(--shadow-card);
 		border-color: var(--color-brand-200);
 	}
+	/* Photo fills the whole top of the card (large square). */
 	.t-team__photo {
 		position: relative; margin: 0;
-		width: clamp(150px, 62%, 190px); aspect-ratio: 1 / 1;
-		border-radius: 50%;
+		width: 100%; aspect-ratio: 1 / 1;
 		display: grid; place-items: center;
+		overflow: hidden;
 	}
-	.t-team__aura {
-		position: absolute; inset: -14%;
-		border-radius: 50%;
-		background: radial-gradient(50% 50%, oklch(58% 0.13 260 / 0.28), transparent 70%);
-		filter: blur(26px);
-		opacity: 0.85;
-		transition: opacity 0.3s ease;
-		z-index: 0;
-	}
-	.t-team--consultant .t-team__aura {
-		background: radial-gradient(50% 50%, oklch(72% 0.18 145 / 0.30), transparent 70%);
-	}
-	.t-team__card:hover .t-team__aura { opacity: 1; }
+	.t-team__aura { display: none; }
 	.t-team__img, .t-team__placeholder {
-		position: relative; z-index: 1;
 		width: 100%; height: 100%;
-		border-radius: 50%;
 		object-fit: cover;
-		border: 3px solid white;
-		box-shadow: 0 6px 18px oklch(20% 0.05 260 / 0.12);
+		transition: transform 0.5s var(--ease-spring);
 	}
+	.t-team__card:hover .t-team__img { transform: scale(1.04); }
 	.t-team__placeholder {
 		display: grid; place-items: center;
 		background: linear-gradient(140deg, var(--color-brand-100), var(--color-brand-200));
 		color: var(--color-brand-700);
-		font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700; letter-spacing: 0.02em;
+		font-size: clamp(2.75rem, 7vw, 4rem); font-weight: 700; letter-spacing: 0.02em;
 	}
 	.t-team--consultant .t-team__placeholder {
 		background: linear-gradient(140deg, var(--color-trust-50, oklch(95% 0.04 145)), oklch(88% 0.07 145));
 		color: var(--color-trust-600, oklch(48% 0.13 145));
 	}
-	.t-team__info { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; width: 100%; }
+	.t-team__info {
+		display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
+		width: 100%;
+		padding: 1.1rem 1.1rem 1.4rem;
+		text-align: center;
+	}
 	.t-team__name {
 		margin: 0;
 		font-size: 1.0625rem; font-weight: 700; line-height: 1.25;
