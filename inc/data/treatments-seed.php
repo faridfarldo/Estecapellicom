@@ -1845,62 +1845,59 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
-						'title'         => __( 'Types of Face Lifts', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'At Estecapelli, different facelift techniques are tailored to each person’s anatomy, expectations and needs.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Mini Face Lift', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'A Mini Facelift is a minimally invasive procedure designed for younger patients with mild to moderate facial sagging. It focuses on tightening the lower face and jawline, providing a more refreshed and youthful appearance with smaller incisions and a quicker recovery compared to a traditional facelift.', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Minimally invasive procedure', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Smaller incisions and minimal scarring', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Faster recovery time', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Natural-looking results', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Improves jawline and mild sagging', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Full Face Lift', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'A Full Facelift is a comprehensive facial rejuvenation procedure designed for patients with moderate to advanced signs of aging. It targets deeper facial sagging by tightening the skin and underlying tissues of the mid-face, jawline and neck, creating a smoother and more youthful appearance.', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Treats moderate to severe facial sagging', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Improves jawline and neck contours', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Long-lasting results', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Comprehensive facial rejuvenation', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Natural and balanced appearance', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Deep Plane Face Lift', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'A Deep Plane Facelift is an advanced facelift technique designed to treat moderate to severe facial aging. This method lifts the deeper facial tissues rather than only tightening the skin, allowing for more natural and longer-lasting rejuvenation, especially in the mid-face, nasolabial folds, jawline and neck.', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Lifts deeper facial tissues for natural results', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Improves mid-face volume and nasolabial folds', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Enhances jawline and neck contour', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Long-lasting rejuvenation', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'More natural facial movement and expression', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Neck Lift', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'A Neck Lift is a procedure designed to improve loose skin, excess fat and muscle banding in the neck area. It helps create a firmer, smoother and more defined neck and jawline, restoring a more youthful profile.', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Tightens loose neck skin', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Improves jawline definition', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Reduces neck bands and excess fat', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Creates a smoother, youthful neck contour', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+						'acf_fc_layout' => 'stepbook',
+						'eyebrow'       => __( 'The Options', 'estecapelli' ),
+						'title'         => __( 'Types of Face & Neck Lift', 'estecapelli' ),
+						'lead'          => __( 'At Estecapelli, different facelift and neck lift techniques are tailored to each person’s anatomy, expectations and needs. Swipe through the options below.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'icon'    => 'sparkles',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Mini Face Lift', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'A Mini Facelift is a minimally invasive procedure designed for younger patients with mild to moderate facial sagging. It focuses on tightening the lower face and jawline, providing a more refreshed and youthful appearance with smaller incisions and a quicker recovery compared to a traditional facelift.', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Minimally invasive procedure', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Smaller incisions and minimal scarring', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Faster recovery time', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Natural-looking results', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Improves jawline and mild sagging', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'face',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Full Face Lift', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'A Full Facelift is a comprehensive facial rejuvenation procedure designed for patients with moderate to advanced signs of aging. It targets deeper facial sagging by tightening the skin and underlying tissues of the mid-face, jawline and neck, creating a smoother and more youthful appearance.', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Treats moderate to severe facial sagging', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Improves jawline and neck contours', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Long-lasting results', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Comprehensive facial rejuvenation', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Natural and balanced appearance', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'dna',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Deep Plane Face Lift', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'A Deep Plane Facelift is an advanced facelift technique designed to treat moderate to severe facial aging. This method lifts the deeper facial tissues rather than only tightening the skin, allowing for more natural and longer-lasting rejuvenation, especially in the mid-face, nasolabial folds, jawline and neck.', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Lifts deeper facial tissues for natural results', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Improves mid-face volume and nasolabial folds', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Enhances jawline and neck contour', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Long-lasting rejuvenation', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'More natural facial movement and expression', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'target',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Neck Lift', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'A Neck Lift is a procedure designed to improve loose skin, excess fat and muscle banding in the neck area. It helps create a firmer, smoother and more defined neck and jawline, restoring a more youthful profile.', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Tightens loose neck skin', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Improves jawline definition', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Reduces neck bands and excess fat', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Creates a smoother, youthful neck contour', 'estecapelli' ) . '</li></ul>',
+							),
+						),
 					),
 					array(
 						'acf_fc_layout' => 'intro',
@@ -1942,17 +1939,27 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Face & Neck Lift — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the natural rejuvenation our patients achieve — a firmer jawline, smoother neck and refreshed, younger-looking face. Every result is planned individually.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+					array(
 						'acf_fc_layout' => 'faq',
 						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
 						'title'         => __( 'Face & Neck Lift — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'What is a facelift?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'A facelift is a surgical procedure that reduces sagging and wrinkles on the face for a younger, more dynamic appearance.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Can a facelift and neck lift be done together?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. As the face and neck form an aesthetic whole, the two are often performed together.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long is recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Initial recovery takes ten to fourteen days; full settling of the tissues takes six to eight weeks.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Will there be swelling and bruising?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, swelling and bruising are normal and subside gradually over a few weeks.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, results last many years, although the natural ageing process continues.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Will there be visible scars?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Incisions are hidden around the ears and within the hairline, and the scars fade over time.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is a face and neck lift?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is a surgical rejuvenation procedure that lifts sagging facial and neck tissues, removes excess skin and redefines the jawline and neckline. The result is a firmer, smoother and more youthful appearance — without changing your natural expressions or identity.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is the difference between a mini, full and deep plane facelift?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'A mini facelift treats mild sagging through smaller incisions with a faster recovery, ideal for younger patients. A full facelift addresses moderate to advanced ageing across the mid-face, jawline and neck. A deep plane facelift lifts the deeper tissue layers rather than just the skin, giving the most natural and longest-lasting result. Your surgeon recommends the right option after assessing your face.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Can a facelift and neck lift be done together?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, and they very often are. Because the face and neck age as one aesthetic unit and loosened facial skin tends to gather in the neck, combining the two delivers a more balanced, harmonious result in a single recovery period.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate, and is there an age limit?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Good candidates are generally healthy non-smokers (or those willing to stop around surgery) who have visible sagging of the cheeks, jawline or neck and realistic expectations. There is no strict age limit — skin quality and overall health matter more than age. A consultation confirms the best approach for you.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is the surgery painful, and what anaesthesia is used?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The operation is performed under general anaesthesia, so you feel nothing during surgery. Afterwards most patients report tightness and mild discomfort rather than significant pain, which is easily controlled with prescribed medication.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long is the recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most patients return to daily life within ten to fourteen days, once the main swelling and bruising have settled. Tissues continue to refine over the following weeks, with the final contour usually visible between one and three months after surgery.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will there be visible scars?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Incisions are carefully placed around the ears and within the hairline so they are well hidden. As they heal they fade and become difficult to notice, especially once the hair and natural skin creases conceal them.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'A face and neck lift produces long-lasting results that typically last many years. The natural ageing process continues gradually afterwards, but your face will always look younger than it would have without the procedure. A healthy lifestyle and good skin care help preserve the result.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 					array(
@@ -1966,6 +1973,20 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							. '<li>' . esc_html__( 'The clinic’s capabilities and equipment', 'estecapelli' ) . '</li></ul>'
 							. '<p>' . esc_html__( 'Costs may vary accordingly. A personalised quote is provided following a detailed consultation.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready to Refresh Your Look?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised face & neck lift plan and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
