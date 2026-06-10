@@ -160,13 +160,15 @@ function estecapelli_results_grouped() {
 	}
 
 	// Order categories: hair-transplant first, then alphabetically by name.
+	// Fixed priority for the main categories, then alphabetical for the rest.
+	$cat_order = array( 'hair-transplant' => 0, 'plastic-surgery' => 1, 'dental-treatment' => 2 );
 	uasort(
 		$buckets,
-		function ( $a, $b ) {
-			$a_hair = ( 'hair-transplant' === $a['term']->slug ) ? 0 : 1;
-			$b_hair = ( 'hair-transplant' === $b['term']->slug ) ? 0 : 1;
-			if ( $a_hair !== $b_hair ) {
-				return $a_hair - $b_hair;
+		function ( $a, $b ) use ( $cat_order ) {
+			$ai = $cat_order[ $a['term']->slug ] ?? 99;
+			$bi = $cat_order[ $b['term']->slug ] ?? 99;
+			if ( $ai !== $bi ) {
+				return $ai - $bi;
 			}
 			return strcmp( $a['term']->name, $b['term']->name );
 		}
@@ -245,13 +247,15 @@ function estecapelli_gallery_grouped() {
 		);
 	}
 
+	// Fixed priority for the main categories, then alphabetical for the rest.
+	$cat_order = array( 'hair-transplant' => 0, 'plastic-surgery' => 1, 'dental-treatment' => 2 );
 	uasort(
 		$buckets,
-		function ( $a, $b ) {
-			$a_hair = ( 'hair-transplant' === $a['term']->slug ) ? 0 : 1;
-			$b_hair = ( 'hair-transplant' === $b['term']->slug ) ? 0 : 1;
-			if ( $a_hair !== $b_hair ) {
-				return $a_hair - $b_hair;
+		function ( $a, $b ) use ( $cat_order ) {
+			$ai = $cat_order[ $a['term']->slug ] ?? 99;
+			$bi = $cat_order[ $b['term']->slug ] ?? 99;
+			if ( $ai !== $bi ) {
+				return $ai - $bi;
 			}
 			return strcmp( $a['term']->name, $b['term']->name );
 		}

@@ -55,30 +55,77 @@ if ( function_exists( 'get_field' ) ) {
 		</div>
 	</header>
 
-	<?php if ( empty( $groups ) ) : ?>
+	<?php
+	// Keep only categories whose services actually have images.
+	$renderable = array();
+	foreach ( $groups as $group ) {
+		$services = array();
+		foreach ( $group['services'] as $sb ) {
+			if ( $sb['service'] && ! empty( $sb['items'] ) ) {
+				$services[] = $sb;
+			}
+		}
+		if ( ! empty( $services ) ) {
+			$renderable[] = array( 'group' => $group, 'services' => $services );
+		}
+	}
+	$multi_cat = count( $renderable ) > 1;
+	?>
+
+	<?php if ( empty( $renderable ) ) : ?>
 		<div class="shell">
 			<p class="ba-page__empty"><?php esc_html_e( 'Results will appear here soon.', 'estecapelli' ); ?></p>
 		</div>
 	<?php else : ?>
-		<?php
-		foreach ( $groups as $group ) :
-			$cat_slug = $group['term']->slug;
+		<div class="ba-cats-wrap" data-cats>
 
-			// Keep only services that actually have images, reindexed for tabs.
-			$services = array();
-			foreach ( $group['services'] as $sb ) {
-				if ( $sb['service'] && ! empty( $sb['items'] ) ) {
-					$services[] = $sb;
-				}
-			}
-			if ( empty( $services ) ) { continue; }
-			$multi = count( $services ) > 1;
-			?>
-			<section class="ba-group">
+			<?php if ( $multi_cat ) : ?>
 				<div class="shell">
-					<h2 class="ba-group__title"><?php echo esc_html( $group['term']->name ); ?></h2>
+					<div class="ba-cats" role="tablist" aria-label="<?php esc_attr_e( 'Treatment categories', 'estecapelli' ); ?>" data-cats-tablist>
+						<?php foreach ( $renderable as $ci => $r ) :
+							$cat_slug = $r['group']['term']->slug;
+							?>
+							<button
+								type="button"
+								id="ba-cat-tab-<?php echo esc_attr( $cat_slug ); ?>"
+								class="ba-cat-tab"
+								role="tab"
+								aria-selected="<?php echo 0 === $ci ? 'true' : 'false'; ?>"
+								aria-controls="ba-cat-panel-<?php echo esc_attr( $cat_slug ); ?>"
+								tabindex="<?php echo 0 === $ci ? '0' : '-1'; ?>"
+								data-cats-tab
+							>
+								<?php echo esc_html( $r['group']['term']->name ); ?>
+							</button>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			<?php endif; ?>
 
-					<?php if ( $multi ) : ?>
+			<?php
+			foreach ( $renderable as $ci => $r ) :
+				$group    = $r['group'];
+				$services = $r['services'];
+				$cat_slug = $group['term']->slug;
+				$multi    = count( $services ) > 1;
+				?>
+				<div
+					id="ba-cat-panel-<?php echo esc_attr( $cat_slug ); ?>"
+					class="ba-cat-panel"
+					<?php if ( $multi_cat ) : ?>
+						role="tabpanel"
+						aria-labelledby="ba-cat-tab-<?php echo esc_attr( $cat_slug ); ?>"
+						data-cats-panel
+						<?php echo 0 === $ci ? '' : 'hidden'; ?>
+					<?php endif; ?>
+				>
+				<section class="ba-group">
+					<div class="shell">
+						<?php if ( ! $multi_cat ) : ?>
+							<h2 class="ba-group__title"><?php echo esc_html( $group['term']->name ); ?></h2>
+						<?php endif; ?>
+
+						<?php if ( $multi ) : ?>
 						<div class="ba-tabs" role="tablist" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: category name */ __( '%s services', 'estecapelli' ), $group['term']->name ) ); ?>" data-services-tablist>
 							<?php foreach ( $services as $i => $sb ) :
 								$svc = $sb['service'];
@@ -155,7 +202,10 @@ if ( function_exists( 'get_field' ) ) {
 					<?php endforeach; ?>
 				</div>
 			</section>
-		<?php endforeach; ?>
+				</div>
+			<?php endforeach; ?>
+
+		</div>
 	<?php endif; ?>
 
 </div>
