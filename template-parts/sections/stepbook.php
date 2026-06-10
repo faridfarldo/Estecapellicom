@@ -114,14 +114,29 @@ $uid   = 'book-' . sanitize_title( $title ) . '-' . wp_rand( 100, 999 );
 								</figure>
 							<?php elseif ( ! empty( $image['url'] ) ) : ?>
 								<figure class="t-book__page-media">
-									<img
-										class="t-book__page-img"
-										src="<?php echo esc_url( $image['url'] ); ?>"
-										alt="<?php echo esc_attr( $image['alt'] ?? $stitle ); ?>"
-										width="<?php echo (int) ( $image['width']  ?? 1200 ); ?>"
-										height="<?php echo (int) ( $image['height'] ?? 750 ); ?>"
-										loading="lazy" decoding="async"
-									/>
+									<?php
+									$img_id = $image['ID'] ?? $image['id'] ?? 0;
+									if ( $img_id ) {
+										// Responsive srcset — the browser downloads the size it needs.
+										echo wp_get_attachment_image(
+											(int) $img_id,
+											'large',
+											false,
+											array( 'class' => 't-book__page-img', 'alt' => $image['alt'] ?? $stitle, 'loading' => 'lazy', 'decoding' => 'async' )
+										);
+									} else {
+										?>
+										<img
+											class="t-book__page-img"
+											src="<?php echo esc_url( $image['url'] ); ?>"
+											alt="<?php echo esc_attr( $image['alt'] ?? $stitle ); ?>"
+											width="<?php echo (int) ( $image['width']  ?? 1200 ); ?>"
+											height="<?php echo (int) ( $image['height'] ?? 750 ); ?>"
+											loading="lazy" decoding="async"
+										/>
+										<?php
+									}
+									?>
 								</figure>
 							<?php else : ?>
 								<figure class="t-book__page-media t-book__page-media--empty" aria-hidden="true">

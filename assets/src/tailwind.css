@@ -4330,8 +4330,11 @@
 			grid-template-columns: 1fr;
 			gap: 1.25rem;
 		}
-		.t-book__page-media { min-height: 0; aspect-ratio: 16 / 10; }
+		/* On mobile show the whole photo at its natural height — no cropping. */
+		.t-book__page-media { min-height: 0; }
+		.t-book__page-img { position: static; width: 100%; height: auto; }
 		.t-book__page-media--video { aspect-ratio: 16 / 9; }
+		.t-book__page-media--empty { aspect-ratio: 16 / 10; }
 	}
 
 	/* ---- Candidate ---- */
@@ -4487,7 +4490,7 @@
 	}
 	.t-gallery__media {
 		margin: 0;
-		background: var(--color-brand-900);
+		background: var(--color-brand-50);
 		overflow: hidden;
 	}
 	.t-gallery__media img {
@@ -4516,7 +4519,7 @@
 	.t-gallery__cta-wrap { text-align: center; margin-top: clamp(2rem, 4vw, 3rem); }
 
 	/* Gallery as a carousel (service-page module) */
-	.t-gallery__track { align-items: stretch; }
+	.t-gallery__track { align-items: flex-start; }
 	.t-gallery__track > .t-gallery__card {
 		flex: 0 0 min(360px, 80vw);
 	}

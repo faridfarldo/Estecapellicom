@@ -64,14 +64,30 @@ $multi = count( $items ) > 1;
 					?>
 					<li class="t-gallery__card">
 						<figure class="t-gallery__media">
-							<img
-								src="<?php echo esc_url( $image['url'] ); ?>"
-								alt="<?php echo esc_attr( $image['alt'] ?? __( 'Before and after result', 'estecapelli' ) ); ?>"
-								loading="lazy"
-								decoding="async"
-								width="<?php echo (int) ( $image['width']  ?? 1600 ); ?>"
-								height="<?php echo (int) ( $image['height'] ?? 1000 ); ?>"
-							/>
+							<?php
+							$img_id = $image['ID'] ?? $image['id'] ?? 0;
+							$img_alt = $image['alt'] ?? __( 'Before and after result', 'estecapelli' );
+							if ( $img_id ) {
+								// Responsive srcset — the browser downloads the size it needs.
+								echo wp_get_attachment_image(
+									(int) $img_id,
+									'large',
+									false,
+									array( 'alt' => $img_alt, 'loading' => 'lazy', 'decoding' => 'async' )
+								);
+							} else {
+								?>
+								<img
+									src="<?php echo esc_url( $image['url'] ); ?>"
+									alt="<?php echo esc_attr( $img_alt ); ?>"
+									loading="lazy"
+									decoding="async"
+									width="<?php echo (int) ( $image['width']  ?? 1600 ); ?>"
+									height="<?php echo (int) ( $image['height'] ?? 1000 ); ?>"
+								/>
+								<?php
+							}
+							?>
 						</figure>
 
 						<?php if ( ! empty( $item['caption'] ) || ! empty( $item['grafts'] ) ) : ?>
