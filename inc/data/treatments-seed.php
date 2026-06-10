@@ -2238,31 +2238,30 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
-						'acf_fc_layout' => 'intro',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Operation', 'estecapelli' ),
 						'title'         => __( 'How Is Gynecomastia Surgery Performed?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Gynecomastia surgery is performed under general anaesthesia in a fully equipped operating room. The procedure is tailored to each patient’s specific condition, and its content varies depending on the type and degree of gynecomastia present.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Case Type', 'estecapelli' ),
-						'title'         => __( 'Cases With Excess Fatty Tissue Only', 'estecapelli' ),
-						'body'          => '<ul><li>' . esc_html__( 'Liposuction or Vaser Liposuction is the preferred technique', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Fatty tissue is removed using cannulas inserted through very small incisions in the chest area', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'When skin elasticity is sufficient, a flat and natural chest contour is achieved without the need for additional skin incisions', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Case Type', 'estecapelli' ),
-						'title'         => __( 'Cases With Both Breast Tissue Enlargement and Skin Sagging', 'estecapelli' ),
-						'body'          => '<ul><li>' . esc_html__( 'Glandular breast tissue is surgically removed', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Excess skin is excised and the chest is reshaped for a firmer, flatter contour', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Inverted T or circular incisions are used when necessary', 'estecapelli' ) . '</li></ul>'
-							. '<p>' . esc_html__( 'The average duration of the surgery is approximately 1.5–2 hours.', 'estecapelli' ) . '</p>'
-							. '<p>' . esc_html__( 'Liposuction-based procedures leave minimal scarring. In surgeries involving tissue and skin removal, incisions are strategically placed in the most discreet areas possible and fade significantly over time with proper care.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+						'lead'          => __( 'Gynecomastia surgery is performed under general anaesthesia in a fully equipped operating room. The procedure is tailored to each patient’s specific condition, and its content varies depending on the type and degree of gynecomastia present.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'icon'    => 'target',
+								'eyebrow' => __( 'Case Type', 'estecapelli' ),
+								'title'   => __( 'Cases With Excess Fatty Tissue Only', 'estecapelli' ),
+								'body'    => '<ul><li>' . esc_html__( 'Liposuction or Vaser Liposuction is the preferred technique', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Fatty tissue is removed using cannulas inserted through very small incisions in the chest area', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'When skin elasticity is sufficient, a flat and natural chest contour is achieved without the need for additional skin incisions', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'medical-plus',
+								'eyebrow' => __( 'Case Type', 'estecapelli' ),
+								'title'   => __( 'Cases With Both Breast Tissue Enlargement and Skin Sagging', 'estecapelli' ),
+								'body'    => '<ul><li>' . esc_html__( 'Glandular breast tissue is surgically removed', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Excess skin is excised and the chest is reshaped for a firmer, flatter contour', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Inverted T or circular incisions are used when necessary', 'estecapelli' ) . '</li></ul>'
+									. '<p>' . esc_html__( 'The average duration of the surgery is approximately 1.5–2 hours.', 'estecapelli' ) . '</p>'
+									. '<p>' . esc_html__( 'Liposuction-based procedures leave minimal scarring. In surgeries involving tissue and skin removal, incisions are strategically placed in the most discreet areas possible and fade significantly over time with proper care.', 'estecapelli' ) . '</p>',
+							),
+						),
 					),
 					array(
 						'acf_fc_layout' => 'steps',
@@ -2277,17 +2276,26 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Gynecomastia — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the flatter, firmer and more masculine chest contour our patients achieve. Every result is planned individually for a natural look and discreet scarring.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+					array(
 						'acf_fc_layout' => 'faq',
 						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
 						'title'         => __( 'Gynecomastia — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'What is gynecomastia?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Gynecomastia is the abnormal enlargement of breast tissue in men due to hormonal or structural causes.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How is gynecomastia treated?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is treated with liposuction and/or surgical removal of the breast tissue.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long is recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Initial recovery takes one to two weeks, with full recovery in four to six weeks.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The removed breast tissue does not grow back; the results are permanent.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Will it come back?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The risk of recurrence is low unless there are hormonal problems or significant weight gain.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Does the chest look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Done with the right technique, the chest takes on a flat, natural appearance.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is gynecomastia?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Gynecomastia is the enlargement of breast tissue in men, giving the chest a fuller, more feminine appearance. It can be caused by a hormonal imbalance between estrogen and testosterone, weight gain, certain medications, anabolic steroid use or underlying health conditions. It is very common and, while harmless medically, can affect confidence — which is why many men choose treatment.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How is gynecomastia treated?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Treatment depends on whether the excess is fatty tissue, firm glandular tissue or a combination. Milder cases are corrected with liposuction (often Vaser), while cases with significant glandular tissue or loose skin require surgical removal of the gland and, where needed, skin tightening. Your surgeon confirms the right approach after examining you.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is the surgery painful, and what anaesthesia is used?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedure is performed under general anaesthesia, so you feel nothing during surgery. Afterwards most patients describe mild soreness and tightness rather than significant pain, which is well controlled with prescribed medication and eases within a few days.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long is the recovery and stay in Turkey?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most patients stay in Turkey for around three to five days, including a follow-up check. You can return to daily life within one to two weeks, while a compression garment is worn for several weeks to support shaping. Strenuous exercise and chest workouts are resumed after about a month, with your surgeon’s approval.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will there be visible scars?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Liposuction-only procedures leave tiny, barely noticeable marks. When glandular tissue or skin is removed, incisions are placed as discreetly as possible — often around the edge of the areola — and fade significantly over time with proper care.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent, and can it come back?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The removed glandular tissue does not grow back, so results are long-lasting. Recurrence is uncommon, but significant weight gain, steroid use or a new hormonal imbalance can cause changes — maintaining a stable weight and healthy lifestyle keeps your results looking their best.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does the chest look natural afterwards?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Performed with the right technique, gynecomastia surgery creates a flat, firm and naturally masculine chest contour. The aim is always a result that looks like it was never operated on, in harmony with your body.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 					array(
@@ -2301,6 +2309,20 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							. '<li>' . esc_html__( 'The overall surgical plan and treatment approach', 'estecapelli' ) . '</li></ul>'
 							. '<p>' . esc_html__( 'For this reason, the most accurate price can only be determined after an in-person examination or an online pre-consultation with Estecapelli specialists.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Restore Your Confidence', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised gynecomastia treatment plan and a no-obligation, all-inclusive quote — usually within a few hours. Your enquiry is completely confidential.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free, discreet assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
