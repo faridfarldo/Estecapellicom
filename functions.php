@@ -110,6 +110,26 @@ function estecapelli_asset_ver( $relative_path ) {
 	return file_exists( $file ) ? (string) filemtime( $file ) : ESTECAPELLI_VERSION;
 }
 
+/**
+ * Output a favicon built from the theme logo when no Site Icon is set in the
+ * Customizer. Once an editor uploads a Site Icon (Appearance → Customize →
+ * Site Identity), WordPress prints its own (better, multi-size) tags and this
+ * fallback steps aside to avoid duplicates.
+ */
+add_action( 'wp_head', 'estecapelli_fallback_favicon', 4 );
+function estecapelli_fallback_favicon() {
+	if ( function_exists( 'has_site_icon' ) && has_site_icon() ) {
+		return;
+	}
+	$path = '/assets/images/logo.png';
+	if ( ! file_exists( get_template_directory() . $path ) ) {
+		return;
+	}
+	$url = add_query_arg( 'v', estecapelli_asset_ver( $path ), get_template_directory_uri() . $path );
+	printf( '<link rel="icon" type="image/png" href="%s" />' . "\n", esc_url( $url ) );
+	printf( '<link rel="apple-touch-icon" href="%s" />' . "\n", esc_url( $url ) );
+}
+
 function estecapelli_enqueue_assets() {
 	wp_enqueue_style(
 		'estecapelli-fonts',
