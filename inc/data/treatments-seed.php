@@ -2462,6 +2462,14 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Hollywood Smile — Before & After', 'estecapelli' ),
+						'lead'          => __( 'Real smile-design transformations from our patients. Every result is tailored to the individual’s face for a natural, balanced and confident smile.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+					array(
 						'acf_fc_layout' => 'faq',
 						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
 						'title'         => __( 'Hollywood Smile — FAQ', 'estecapelli' ),
@@ -2478,6 +2486,20 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							array( 'question' => __( 'What happens if a veneer or crown chips or comes off?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Modern veneers and crowns are strong, but in the rare event that one chips or debonds, a single unit can usually be repaired or replaced without redoing the whole smile. Avoiding very hard foods and wearing a night guard if you grind your teeth greatly reduces this risk.', 'estecapelli' ) . '</p>' ),
 							array( 'question' => __( 'Who is a good candidate for a Hollywood Smile?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Good candidates are adults with healthy gums and sufficient tooth structure who want to improve discoloration, staining, gaps, worn or asymmetrical teeth. Any active issues such as decay or gum disease are treated first. A short assessment — ideally with photos or a video consultation — lets our dentists confirm suitability and outline the right plan for you.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready for Your New Smile?', 'estecapelli' ),
+						'lead'          => __( 'Send us a few details and our team will reply with a personalised Hollywood Smile plan and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free digital smile assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
