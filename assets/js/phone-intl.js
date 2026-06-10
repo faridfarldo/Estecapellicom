@@ -23,14 +23,31 @@
 		try { cached = sessionStorage.getItem('ec_country'); } catch (e) {}
 		if (cached) { callback(cached); return; }
 
+		// intl-tel-input needs a lowercase ISO2 code; only cache a real hit so a
+		// failed lookup never sticks the visitor on the 'us' fallback.
+		function done(cc) {
+			cc = (cc || '').toString().toLowerCase();
+			if (cc) {
+				try { sessionStorage.setItem('ec_country', cc); } catch (e) {}
+				callback(cc);
+			} else {
+				callback('us');
+			}
+		}
+
+		// Primary provider, with a fallback if it fails or is rate-limited.
 		fetch('https://ipwho.is/')
 			.then(function (r) { return r.json(); })
 			.then(function (d) {
-				var cc = (d && d.success && d.country_code) ? d.country_code : 'us';
-				try { sessionStorage.setItem('ec_country', cc); } catch (e) {}
-				callback(cc);
+				if (d && d.success && d.country_code) { done(d.country_code); }
+				else { throw new Error('no country'); }
 			})
-			.catch(function () { callback('us'); });
+			.catch(function () {
+				fetch('https://ipapi.co/json/')
+					.then(function (r) { return r.json(); })
+					.then(function (d) { done(d && d.country_code ? d.country_code : ''); })
+					.catch(function () { done(''); });
+			});
 	}
 
 	Array.prototype.forEach.call(inputs, function (input) {
