@@ -1474,39 +1474,43 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Full Abdominoplasty', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Full abdominoplasty is preferred for individuals with advanced sagging and muscle separation throughout the abdominal area. The procedure addresses the abdomen comprehensively through the following steps:', 'estecapelli' ) . '</p>'
-							. '<ul><li>' . esc_html__( 'The entire abdominal area is tightened', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'The navel is repositioned for a natural appearance', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Excess skin is removed', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'The underlying muscles are tightened and repaired', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Mini Tummy Tuck', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'A mini tummy tuck is suitable for individuals with mild sagging limited to the area below the navel. Compared to a full abdominoplasty, it is a less invasive option with several notable benefits:', 'estecapelli' ) . '</p>'
-							. '<ul><li>' . esc_html__( 'Smaller incision', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Faster recovery time', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'No repositioning of the navel', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Liposuction + Abdominoplasty Combination', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'This combination is the ideal approach when both excess fat and skin sagging are present in the abdominal area. Liposuction is first performed to remove unwanted fat, followed by the removal of excess skin for a smoother and more contoured result.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Type', 'estecapelli' ),
-						'title'         => __( 'Mommy Makeover', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'A mommy makeover combines multiple procedures into a single surgery for women looking to restore their body after childbirth. It typically includes abdominoplasty, breast lift or augmentation, and liposuction, allowing patients to achieve a full transformation with just one recovery period.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+						'acf_fc_layout' => 'stepbook',
+						'eyebrow'       => __( 'The Options', 'estecapelli' ),
+						'title'         => __( 'Types of Tummy Tuck', 'estecapelli' ),
+						'lead'          => __( 'The right technique depends on your anatomy, the degree of sagging and your goals. Swipe through the main options below.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'icon'    => 'target',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Full Abdominoplasty', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Full abdominoplasty is preferred for individuals with advanced sagging and muscle separation throughout the abdominal area. The procedure addresses the abdomen comprehensively through the following steps:', 'estecapelli' ) . '</p>'
+									. '<ul><li>' . esc_html__( 'The entire abdominal area is tightened', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'The navel is repositioned for a natural appearance', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Excess skin is removed', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'The underlying muscles are tightened and repaired', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'sparkles',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Mini Tummy Tuck', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'A mini tummy tuck is suitable for individuals with mild sagging limited to the area below the navel. Compared to a full abdominoplasty, it is a less invasive option with several notable benefits:', 'estecapelli' ) . '</p>'
+									. '<ul><li>' . esc_html__( 'Smaller incision', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Faster recovery time', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'No repositioning of the navel', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'medical-plus',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Liposuction + Abdominoplasty Combination', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'This combination is the ideal approach when both excess fat and skin sagging are present in the abdominal area. Liposuction is first performed to remove unwanted fat, followed by the removal of excess skin for a smoother and more contoured result.', 'estecapelli' ) . '</p>',
+							),
+							array(
+								'icon'    => 'hands-heart',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Mommy Makeover', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'A mommy makeover combines multiple procedures into a single surgery for women looking to restore their body after childbirth. It typically includes abdominoplasty, breast lift or augmentation, and liposuction, allowing patients to achieve a full transformation with just one recovery period.', 'estecapelli' ) . '</p>',
+							),
+						),
 					),
 					array(
 						'acf_fc_layout' => 'intro',
@@ -1550,17 +1554,26 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Tummy Tuck — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the flatter, firmer and more contoured abdomen our patients achieve. Every result is tailored to the individual body, with the scar discreetly placed along the bikini line.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+					array(
 						'acf_fc_layout' => 'faq',
 						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
 						'title'         => __( 'Tummy Tuck — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'Does a tummy tuck make you lose weight?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'No. A tummy tuck is a body-contouring operation, not a weight-loss method.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'What is the difference between a mini and a full tummy tuck?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'A mini tummy tuck addresses the lower abdomen, while a full tummy tuck covers the whole abdomen and includes muscle repair.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long is recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Initial recovery takes about two to three weeks, with full recovery in six to eight weeks.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Will there be a scar?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, but the scar is planned to sit along the underwear line and fades over time.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, results are long-lasting, though significant weight gain or pregnancy can affect them.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'When can I exercise again?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Light walking is possible within a few days; strenuous exercise after about six to eight weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does a tummy tuck make you lose weight?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Not really — a tummy tuck is a body-contouring operation, not a weight-loss method. It removes loose, excess skin and tightens the abdominal muscles, which can make you look noticeably slimmer and more toned, but the actual change on the scale is usually modest. It works best once you are close to a stable, healthy weight.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Which type of tummy tuck is right for me?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It depends on how much loose skin and muscle laxity you have. A mini tummy tuck suits mild sagging below the navel, a full abdominoplasty addresses the whole abdomen with muscle repair, a liposuction combination is ideal when excess fat is also present, and a mommy makeover bundles several procedures after childbirth. Your surgeon recommends the best option after examining you.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is the surgery painful, and what anaesthesia is used?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The operation is performed under general anaesthesia, so you feel nothing during surgery. Afterwards you can expect tightness and moderate discomfort for the first few days, well controlled with prescribed medication. A supportive corset and gentle movement help you feel more comfortable as you heal.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long is the recovery and stay in Turkey?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most patients stay in Turkey for around five to seven days, including a follow-up check before flying home. Initial recovery takes about two to three weeks, and a compression corset is worn for several weeks. Full recovery, including return to strenuous exercise, takes roughly six to eight weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will there be a visible scar?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, a tummy tuck does leave a scar, but it is carefully positioned low along the bikini line so it stays hidden under underwear and swimwear. With proper care the scar flattens and fades considerably over the following months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The results are long-lasting, especially the muscle repair and removal of excess skin. Maintaining a stable weight preserves your result best — significant weight gain or a future pregnancy can stretch the area again, so a tummy tuck is ideally done once you are not planning further pregnancies.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When can I exercise again?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Gentle walking is encouraged within a few days to support circulation and healing. Light activity resumes over the first few weeks, while strenuous exercise, core workouts and heavy lifting should wait until around six to eight weeks, once your surgeon confirms you are fully healed.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 					array(
@@ -1575,6 +1588,20 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							. '<li>' . esc_html__( 'Comprehensive patient care and support services', 'estecapelli' ) . '</li></ul>'
 							. '<p>' . esc_html__( 'Prices vary depending on the technique used, the surgeon’s experience, any additional procedures and the overall scope of the operation.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready for a Flatter, Firmer Abdomen?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised tummy tuck plan and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
