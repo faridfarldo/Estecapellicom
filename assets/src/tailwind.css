@@ -4142,16 +4142,21 @@
 	.t-book__pages { display: flex; flex-direction: column; min-width: 0; }
 	.t-book__track {
 		display: flex; gap: 0;
-		flex: 1;
+		flex: 0 0 auto;
+		align-items: flex-start;
 		overflow-x: auto;
+		overflow-y: hidden;
 		scroll-snap-type: x mandatory;
 		scroll-behavior: smooth;
 		list-style: none; margin: 0; padding: 0;
 		scrollbar-width: none;
+		/* Height is set per active page by JS so the box fits its content. */
+		transition: height 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
 	.t-book__track::-webkit-scrollbar { display: none; }
 	.t-book__page {
 		flex: 0 0 100%;
+		align-self: flex-start;
 		scroll-snap-align: start;
 		min-width: 0;
 		padding: clamp(1.5rem, 3.2vw, 2.75rem);

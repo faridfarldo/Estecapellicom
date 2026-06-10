@@ -323,6 +323,12 @@
 				return pages[0].getBoundingClientRect().width + gap;
 			}
 
+			// Size the deck to the active page so short steps don't leave a gap.
+			function setHeight() {
+				var active = pages[index];
+				if (active) { track.style.height = active.offsetHeight + 'px'; }
+			}
+
 			function render() {
 				tabs.forEach(function (t, i) {
 					var on = i === index;
@@ -335,6 +341,7 @@
 				if (fill) { fill.style.width = ((index + 1) / total) * 100 + '%'; }
 				if (prev) { prev.disabled = index <= 0; }
 				if (next) { next.disabled = index >= total - 1; }
+				setHeight();
 			}
 
 			function goTo(i, smooth) {
@@ -359,6 +366,15 @@
 			}, { passive: true });
 
 			window.addEventListener('resize', function () { goTo(index, false); });
+
+			// Recompute height once images finish loading (they change page height).
+			track.querySelectorAll('img').forEach(function (img) {
+				if (!img.complete) {
+					img.addEventListener('load', setHeight);
+					img.addEventListener('error', setHeight);
+				}
+			});
+			window.addEventListener('load', setHeight);
 
 			render();
 		});
