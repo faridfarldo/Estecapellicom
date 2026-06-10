@@ -2402,69 +2402,64 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
-						'acf_fc_layout' => 'intro',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Process', 'estecapelli' ),
 						'title'         => __( 'How Is a Hollywood Smile Applied?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Hollywood Smile is a highly personalised treatment, and the procedure is tailored to the unique needs of each patient. While the specific steps may vary, the process generally follows these key stages.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Step 1', 'estecapelli' ),
-						'title'         => __( 'Digital Smile Analysis', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'The patient’s facial shape, lip structure, gum line and tooth form are thoroughly analysed. Using this data, a fully personalised smile design is created digitally, allowing both the specialist and the patient to visualise the expected outcome before any treatment begins.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Step 2', 'estecapelli' ),
-						'title'         => __( 'Oral and Dental Health Preparation', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Before any aesthetic work begins, the foundation of a healthy oral structure must be established. Depending on the patient’s needs, this may include:', 'estecapelli' ) . '</p>'
-							. '<ul><li>' . esc_html__( 'Treatment of any existing cavities', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Professional dental scaling', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Treatment of gum disease', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Root canal treatment where necessary', 'estecapelli' ) . '</li></ul>'
-							. '<p>' . esc_html__( 'Aesthetic procedures are only initiated once full oral health has been confirmed, ensuring lasting and stable results.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Step 3', 'estecapelli' ),
-						'title'         => __( 'Restoring Missing Teeth', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Where missing teeth are present, implant treatment is carried out prior to the aesthetic procedure. Once the implant has fully integrated with the bone, aesthetic crowns are placed to complete the smile design seamlessly.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Step 4', 'estecapelli' ),
-						'title'         => __( 'Gum Aesthetics (Gummy Smile Treatment)', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Where gum levels are asymmetrical or excessively visible, laser gum contouring is performed to achieve a balanced and proportionate gum line. This step plays a critical role in the overall smile design, as even the most refined dental work can fall short without a well-defined and symmetrical gum structure.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Step 5', 'estecapelli' ),
-						'title'         => __( 'Teeth Renewal', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'The most suitable materials are applied to aesthetically reshape and transform the teeth. The most commonly used options in Hollywood Smile treatment are:', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Porcelain Laminate Veneer', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Closest aesthetic appearance to natural teeth', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'High light translucency for a lifelike finish', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Requires minimal tooth reduction', 'estecapelli' ) . '</li></ul>'
-							. '<p><strong>' . esc_html__( 'Zirconia Crowns', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Long-lasting due to their highly durable structure', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Suitable for use in cases of missing teeth', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Delivers a white and aesthetically pleasing result', 'estecapelli' ) . '</li></ul>'
-							. '<p><strong>' . esc_html__( 'Composite Bonding', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Ideal for quickly correcting minor imperfections', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Can be applied without damaging the natural tooth structure', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Step 6', 'estecapelli' ),
-						'title'         => __( 'Teeth Whitening and Colour Matching', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'In the final stage, the shade of all teeth is carefully harmonised to create a consistent and balanced appearance. This ensures the overall result looks natural, cohesive and aesthetically refined across the entire smile.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
+						'lead'          => __( 'Hollywood Smile is a highly personalised treatment, and the procedure is tailored to the unique needs of each patient. While the specific steps may vary, the process generally follows these key stages.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'icon'    => 'target',
+								'eyebrow' => __( 'Step 1', 'estecapelli' ),
+								'title'   => __( 'Digital Smile Analysis', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'The patient’s facial shape, lip structure, gum line and tooth form are thoroughly analysed. Using this data, a fully personalised smile design is created digitally, allowing both the specialist and the patient to visualise the expected outcome before any treatment begins.', 'estecapelli' ) . '</p>',
+							),
+							array(
+								'icon'    => 'medical-plus',
+								'eyebrow' => __( 'Step 2', 'estecapelli' ),
+								'title'   => __( 'Oral and Dental Health Preparation', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Before any aesthetic work begins, the foundation of a healthy oral structure must be established. Depending on the patient’s needs, this may include:', 'estecapelli' ) . '</p>'
+									. '<ul><li>' . esc_html__( 'Treatment of any existing cavities', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Professional dental scaling', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Treatment of gum disease', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Root canal treatment where necessary', 'estecapelli' ) . '</li></ul>'
+									. '<p>' . esc_html__( 'Aesthetic procedures are only initiated once full oral health has been confirmed, ensuring lasting and stable results.', 'estecapelli' ) . '</p>',
+							),
+							array(
+								'icon'    => 'tooth',
+								'eyebrow' => __( 'Step 3', 'estecapelli' ),
+								'title'   => __( 'Restoring Missing Teeth', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Where missing teeth are present, implant treatment is carried out prior to the aesthetic procedure. Once the implant has fully integrated with the bone, aesthetic crowns are placed to complete the smile design seamlessly.', 'estecapelli' ) . '</p>',
+							),
+							array(
+								'icon'    => 'face',
+								'eyebrow' => __( 'Step 4', 'estecapelli' ),
+								'title'   => __( 'Gum Aesthetics (Gummy Smile Treatment)', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Where gum levels are asymmetrical or excessively visible, laser gum contouring is performed to achieve a balanced and proportionate gum line. This step plays a critical role in the overall smile design, as even the most refined dental work can fall short without a well-defined and symmetrical gum structure.', 'estecapelli' ) . '</p>',
+							),
+							array(
+								'icon'    => 'sparkles',
+								'eyebrow' => __( 'Step 5', 'estecapelli' ),
+								'title'   => __( 'Teeth Renewal', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'The most suitable materials are applied to aesthetically reshape and transform the teeth. The most commonly used options in Hollywood Smile treatment are:', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Porcelain Laminate Veneer', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Closest aesthetic appearance to natural teeth', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'High light translucency for a lifelike finish', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Requires minimal tooth reduction', 'estecapelli' ) . '</li></ul>'
+									. '<p><strong>' . esc_html__( 'Zirconia Crowns', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Long-lasting due to their highly durable structure', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Suitable for use in cases of missing teeth', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Delivers a white and aesthetically pleasing result', 'estecapelli' ) . '</li></ul>'
+									. '<p><strong>' . esc_html__( 'Composite Bonding', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Ideal for quickly correcting minor imperfections', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Can be applied without damaging the natural tooth structure', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'star',
+								'eyebrow' => __( 'Step 6', 'estecapelli' ),
+								'title'   => __( 'Teeth Whitening and Colour Matching', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'In the final stage, the shade of all teeth is carefully harmonised to create a consistent and balanced appearance. This ensures the overall result looks natural, cohesive and aesthetically refined across the entire smile.', 'estecapelli' ) . '</p>',
+							),
+						),
 					),
 					array(
 						'acf_fc_layout' => 'faq',
@@ -2472,12 +2467,16 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Hollywood Smile — FAQ', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'Who is it suitable for?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Anyone with discoloration, staining, gaps, misalignment or worn/asymmetrical teeth and good general oral health who wants a brighter, balanced smile.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How is a Hollywood Smile done?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Depending on your needs it can combine whitening, porcelain laminate veneers, zirconium crowns and gum contouring — all planned from a digital smile analysis of your facial proportions.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long does treatment take?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Treatment is usually completed within three to seven days.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is it painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedures are generally painless; local anaesthesia is used where needed.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is it permanent and natural-looking?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The restorations are long-lasting and, with regular oral care, last for years. Personalised planning and the right materials give a very natural result.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Will my teeth be damaged?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'No. When performed by experienced dentists, the treatment does not harm your teeth.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is the difference between veneers, crowns and a Hollywood Smile?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'A Hollywood Smile is not a single product but a complete smile-design plan. Porcelain laminate veneers are ultra-thin shells bonded to the front of the teeth and require minimal reshaping; zirconium crowns cover the whole tooth and are used when a tooth is heavily worn, broken or root-canal treated. Your dentist combines whichever options suit each tooth — together with whitening or gum contouring where needed — so the final result looks balanced across the entire smile.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How much of my natural tooth is removed, and is it reversible?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It depends on the material. Porcelain laminate veneers need only a very thin layer of enamel removed — sometimes almost none — while crowns require more reshaping. Because some enamel is permanently reduced, the treatment is generally considered non-reversible, which is exactly why a careful digital smile analysis and a clear plan are agreed before any work begins.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will my smile look natural or too “fake white”?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'A well-designed Hollywood Smile should look natural for your face. Shade, tooth shape and proportions are chosen from a digital smile design based on your facial features, age and skin tone — so you can have a bright, even smile without the flat, overly white “block of teeth” look. The shade is agreed with you in advance.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long does the treatment take and how many days should I stay in Turkey?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most Hollywood Smile treatments are completed in roughly five to seven days, across two to three appointments — the first for preparation and temporaries, the following ones for fitting and fine-tuning the final restorations. We recommend planning your stay accordingly and keeping a day at the end for any small adjustments.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is the procedure painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedure itself is performed under local anaesthesia, so you should not feel pain during treatment. Some patients notice mild sensitivity to hot or cold for a few days afterwards, which is temporary and easily managed with simple aftercare and, if needed, over-the-counter pain relief.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long do the results last?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'With good oral hygiene and regular check-ups, porcelain laminate veneers and zirconium crowns typically last around ten to fifteen years, and often longer. Their lifespan depends mainly on daily care, gum health and avoiding habits such as biting hard objects or grinding your teeth.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How do I care for them, and will they stain?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'You care for them just like natural teeth: brushing twice a day, flossing and regular dental visits. High-quality porcelain and zirconium are highly resistant to staining and do not discolour the way natural enamel does, though good habits keep the surrounding gums and teeth healthy and the overall smile bright.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Can a Hollywood Smile fix crooked or gapped teeth without braces?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'In many cases of mild crowding, gaps or slightly rotated teeth, veneers and crowns can create a straight, even appearance without orthodontics. For more significant misalignment your dentist may recommend orthodontic treatment first, or a combined plan, so the final result is both aesthetic and healthy.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What happens if a veneer or crown chips or comes off?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Modern veneers and crowns are strong, but in the rare event that one chips or debonds, a single unit can usually be repaired or replaced without redoing the whole smile. Avoiding very hard foods and wearing a night guard if you grind your teeth greatly reduces this risk.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Who is a good candidate for a Hollywood Smile?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Good candidates are adults with healthy gums and sufficient tooth structure who want to improve discoloration, staining, gaps, worn or asymmetrical teeth. Any active issues such as decay or gum disease are treated first. A short assessment — ideally with photos or a video consultation — lets our dentists confirm suitability and outline the right plan for you.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),

@@ -119,7 +119,7 @@ $sent = isset( $_GET['sent'] ); // phpcs:ignore WordPress.Security.NonceVerifica
 						</div>
 						<div class="contact-form__field">
 							<label for="cf-phone"><?php esc_html_e( 'Phone', 'estecapelli' ); ?> <span aria-hidden="true">*</span></label>
-							<input id="cf-phone" type="tel" name="lead_phone" required autocomplete="tel" inputmode="tel" placeholder="<?php esc_attr_e( 'With country code', 'estecapelli' ); ?>" />
+							<input id="cf-phone" class="js-intl-phone" type="tel" name="lead_phone" required autocomplete="tel" inputmode="tel" placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>" />
 						</div>
 					</div>
 					<div class="contact-form__row">

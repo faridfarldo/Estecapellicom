@@ -2,16 +2,32 @@
 /**
  * Template Name: Before & After Gallery
  *
- * Lists every result grouped by category (main group, e.g. Hair Transplant)
- * then by service (technique, e.g. DHI, Sapphire FUE). Data comes from the
- * `result` CPT via estecapelli_results_grouped().
+ * Aggregates the before/after composites from every treatment's "gallery"
+ * section, grouped by category (main group, e.g. Hair Transplant) then by
+ * service (technique). Whatever an editor adds to a treatment's gallery
+ * section shows up here automatically. Data: estecapelli_gallery_grouped().
  *
  * @package Estecapelli
  */
 
 get_header();
 
-$groups = estecapelli_results_grouped();
+$groups = estecapelli_gallery_grouped();
+
+// Intro text: the page's own content, falling back to the lead of its first
+// hero section (set via the seed / page builder) so the header isn't bare.
+$ba_intro = '';
+if ( function_exists( 'get_field' ) ) {
+	$ba_sections = get_field( 'page_sections', get_the_ID() );
+	if ( ! empty( $ba_sections ) && is_array( $ba_sections ) ) {
+		foreach ( $ba_sections as $ba_section ) {
+			if ( 'hero' === ( $ba_section['acf_fc_layout'] ?? '' ) && ! empty( $ba_section['lead'] ) ) {
+				$ba_intro = $ba_section['lead'];
+				break;
+			}
+		}
+	}
+}
 ?>
 
 <div class="ba-page">
@@ -24,16 +40,18 @@ $groups = estecapelli_results_grouped();
 			</span>
 			<h1 class="ba-page__title"><?php the_title(); ?></h1>
 			<?php
+			$ba_content = '';
 			while ( have_posts() ) :
 				the_post();
-				$intro = get_the_content();
-				if ( trim( wp_strip_all_tags( $intro ) ) ) :
-					?>
-					<div class="ba-page__intro"><?php the_content(); ?></div>
-					<?php
-				endif;
+				$ba_content = trim( wp_strip_all_tags( get_the_content() ) );
 			endwhile;
-			?>
+
+			if ( $ba_content ) :
+				?>
+				<div class="ba-page__intro"><?php echo wpautop( wp_kses_post( get_the_content() ) ); ?></div>
+			<?php elseif ( $ba_intro ) : ?>
+				<p class="ba-page__intro"><?php echo esc_html( $ba_intro ); ?></p>
+			<?php endif; ?>
 		</div>
 	</header>
 
@@ -42,39 +60,97 @@ $groups = estecapelli_results_grouped();
 			<p class="ba-page__empty"><?php esc_html_e( 'Results will appear here soon.', 'estecapelli' ); ?></p>
 		</div>
 	<?php else : ?>
-		<?php foreach ( $groups as $group ) : ?>
+		<?php
+		foreach ( $groups as $group ) :
+			$cat_slug = $group['term']->slug;
+
+			// Keep only services that actually have images, reindexed for tabs.
+			$services = array();
+			foreach ( $group['services'] as $sb ) {
+				if ( $sb['service'] && ! empty( $sb['items'] ) ) {
+					$services[] = $sb;
+				}
+			}
+			if ( empty( $services ) ) { continue; }
+			$multi = count( $services ) > 1;
+			?>
 			<section class="ba-group">
 				<div class="shell">
 					<h2 class="ba-group__title"><?php echo esc_html( $group['term']->name ); ?></h2>
 
-					<?php foreach ( $group['services'] as $service_block ) :
-						$service = $service_block['service'];
-						if ( ! $service ) { continue; }
+					<?php if ( $multi ) : ?>
+						<div class="ba-tabs" role="tablist" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: category name */ __( '%s services', 'estecapelli' ), $group['term']->name ) ); ?>" data-services-tablist>
+							<?php foreach ( $services as $i => $sb ) :
+								$svc = $sb['service'];
+								?>
+								<button
+									type="button"
+									id="ba-tab-<?php echo esc_attr( $cat_slug . '-' . $svc->ID ); ?>"
+									class="ba-tab"
+									role="tab"
+									aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>"
+									aria-controls="ba-panel-<?php echo esc_attr( $cat_slug . '-' . $svc->ID ); ?>"
+									tabindex="<?php echo 0 === $i ? '0' : '-1'; ?>"
+									data-services-tab
+								>
+									<?php echo esc_html( get_the_title( $svc ) ); ?>
+								</button>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
 
-						$cards = array();
-						foreach ( $service_block['results'] as $result ) {
-							$data = estecapelli_result_card_data( $result );
-							if ( $data ) { $cards[] = $data; }
-						}
-						if ( empty( $cards ) ) { continue; }
+					<?php foreach ( $services as $i => $sb ) :
+						$svc   = $sb['service'];
+						$items = $sb['items'];
 						?>
-						<div class="ba-technique">
+						<div
+							id="ba-panel-<?php echo esc_attr( $cat_slug . '-' . $svc->ID ); ?>"
+							class="ba-panel"
+							<?php if ( $multi ) : ?>
+								role="tabpanel"
+								aria-labelledby="ba-tab-<?php echo esc_attr( $cat_slug . '-' . $svc->ID ); ?>"
+								data-services-panel
+								<?php echo 0 === $i ? '' : 'hidden'; ?>
+							<?php endif; ?>
+						>
 							<div class="ba-technique__head">
-								<h3 class="ba-technique__title"><?php echo esc_html( get_the_title( $service ) ); ?></h3>
-								<a class="ba-technique__link" href="<?php echo esc_url( get_permalink( $service ) ); ?>">
+								<h3 class="ba-technique__title"><?php echo esc_html( get_the_title( $svc ) ); ?></h3>
+								<a class="ba-technique__link" href="<?php echo esc_url( get_permalink( $svc ) ); ?>">
 									<?php esc_html_e( 'View treatment', 'estecapelli' ); ?>
 									<?php estecapelli_icon( 'arrow-right', array( 'width' => 15, 'height' => 15 ) ); ?>
 								</a>
 							</div>
 
-							<div class="ba-grid">
-								<?php
-								foreach ( $cards as $card ) {
-									set_query_var( 'ba_card', $card );
-									load_template( locate_template( 'template-parts/before-after-card.php' ), false );
-								}
-								?>
-							</div>
+							<ul class="t-gallery__grid">
+								<?php foreach ( $items as $item ) :
+									$image = $item['image'] ?? array();
+									if ( empty( $image['url'] ) ) { continue; }
+									?>
+									<li class="t-gallery__card">
+										<figure class="t-gallery__media">
+											<img
+												src="<?php echo esc_url( $image['url'] ); ?>"
+												alt="<?php echo esc_attr( $image['alt'] ?: __( 'Before and after result', 'estecapelli' ) ); ?>"
+												loading="lazy"
+												decoding="async"
+												width="<?php echo (int) ( $image['width']  ?? 1080 ); ?>"
+												height="<?php echo (int) ( $image['height'] ?? 1080 ); ?>"
+											/>
+										</figure>
+
+										<?php if ( ! empty( $item['caption'] ) || ! empty( $item['grafts'] ) ) : ?>
+											<div class="t-gallery__meta">
+												<?php if ( ! empty( $item['caption'] ) ) : ?>
+													<span class="t-gallery__caption"><?php echo esc_html( $item['caption'] ); ?></span>
+												<?php endif; ?>
+												<?php if ( ! empty( $item['grafts'] ) ) : ?>
+													<span class="t-gallery__grafts"><?php echo esc_html( $item['grafts'] ); ?>&nbsp;<?php esc_html_e( 'grafts', 'estecapelli' ); ?></span>
+												<?php endif; ?>
+											</div>
+										<?php endif; ?>
+									</li>
+								<?php endforeach; ?>
+							</ul>
 						</div>
 					<?php endforeach; ?>
 				</div>

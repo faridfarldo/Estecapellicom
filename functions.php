@@ -140,6 +140,29 @@ function estecapelli_enqueue_assets() {
 		true
 	);
 
+	// International phone input — auto-selects the country dial code from the
+	// visitor's IP. Upgrades any input.js-intl-phone (footer, contact, form section).
+	wp_enqueue_style(
+		'intl-tel-input',
+		'https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css',
+		array(),
+		'24.6.0'
+	);
+	wp_enqueue_script(
+		'intl-tel-input',
+		'https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js',
+		array(),
+		'24.6.0',
+		true
+	);
+	wp_enqueue_script(
+		'estecapelli-phone',
+		get_template_directory_uri() . '/assets/js/phone-intl.js',
+		array( 'intl-tel-input' ),
+		estecapelli_asset_ver( '/assets/js/phone-intl.js' ),
+		true
+	);
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

@@ -236,6 +236,37 @@ function estecapelli_register_acf_field_groups() {
 							),
 						),
 
+						// ============================================================ Step Book — booklet walk-through
+						'stepbook' => array(
+							'key'        => 'layout_stepbook',
+							'name'       => 'stepbook',
+							'label'      => __( 'Step Book — booklet walk-through (rich, one step per page)', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_book_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_book_title',   'label' => __( 'Title',   'estecapelli' ), 'name' => 'title',   'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_book_lead',    'label' => __( 'Lead',    'estecapelli' ), 'name' => 'lead',    'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'          => 'field_book_items',
+									'label'        => __( 'Steps', 'estecapelli' ),
+									'name'         => 'items',
+									'type'         => 'repeater',
+									'min'          => 1,
+									'max'          => 12,
+									'button_label' => __( '+ Add Step', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_book_item_icon',    'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon', 'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_book_item_eyebrow', 'label' => __( 'Eyebrow / label (e.g. Step 1)', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+										array( 'key' => 'field_book_item_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+										array( 'key' => 'field_book_item_body',    'label' => __( 'Body (HTML allowed)', 'estecapelli' ), 'name' => 'body', 'type' => 'wysiwyg', 'tabs' => 'all', 'media_upload' => 0 ),
+										array( 'key' => 'field_book_item_image',   'label' => __( 'Step image (optional)', 'estecapelli' ), 'name' => 'image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => __( 'Shown under the step text. Recommended ratio 16:10.', 'estecapelli' ) ),
+										array( 'key' => 'field_book_item_video',   'label' => __( 'Step video URL (optional)', 'estecapelli' ), 'name' => 'video_url', 'type' => 'url', 'instructions' => __( 'YouTube URL. Takes priority over the image when both are set.', 'estecapelli' ) ),
+									),
+								),
+							),
+						),
+
 						// ============================================================ Candidate checklist
 						'candidate' => array(
 							'key'        => 'layout_candidate',
@@ -614,6 +645,35 @@ function estecapelli_register_acf_field_groups() {
 										array( 'key' => 'field_intro_cta_url',   'label' => __( 'URL',   'estecapelli' ), 'name' => 'url',   'type' => 'url'  ),
 									),
 								),
+							),
+						),
+
+						// ============================================================ Lead form
+						'form' => array(
+							'key'        => 'layout_form',
+							'name'       => 'form',
+							'label'      => __( 'Lead Form — name, phone, email, note capture', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_form_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_form_title',    'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_form_lead',    'label' => __( 'Lead paragraph', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 3 ),
+								array(
+									'key'          => 'field_form_points',
+									'label'        => __( 'Trust points (optional, shown beside the form)', 'estecapelli' ),
+									'name'         => 'points',
+									'type'         => 'repeater',
+									'min'          => 0,
+									'max'          => 6,
+									'button_label' => __( '+ Add Point', 'estecapelli' ),
+									'layout'       => 'table',
+									'sub_fields'   => array(
+										array( 'key' => 'field_form_point_icon',  'label' => __( 'Icon', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_form_point_label', 'label' => __( 'Text', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
+									),
+								),
+								array( 'key' => 'field_form_submit', 'label' => __( 'Submit button label', 'estecapelli' ), 'name' => 'submit_label', 'type' => 'text', 'default_value' => __( 'Request a Free Consultation', 'estecapelli' ) ),
+								array( 'key' => 'field_form_show_wa', 'label' => __( 'Show WhatsApp button', 'estecapelli' ), 'name' => 'show_whatsapp', 'type' => 'true_false', 'ui' => 1, 'default_value' => 1 ),
 							),
 						),
 

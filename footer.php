@@ -127,12 +127,13 @@ $badges     = estecapelli_footer_badges();
 						<label for="lead-phone" class="sr-only"><?php esc_html_e( 'Phone number', 'estecapelli' ); ?></label>
 						<input
 							id="lead-phone"
+							class="js-intl-phone"
 							type="tel"
 							name="lead_phone"
 							required
 							autocomplete="tel"
 							inputmode="tel"
-							placeholder="<?php esc_attr_e( 'Phone number (with country code)', 'estecapelli' ); ?>"
+							placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>"
 						/>
 					</div>
 					<input type="hidden" name="lead_source" value="footer" />

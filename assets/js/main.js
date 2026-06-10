@@ -298,6 +298,72 @@
 		});
 	}
 
+	function initStepbooks() {
+		var books = document.querySelectorAll('[data-stepbook]');
+		if (!books.length) return;
+
+		books.forEach(function (root) {
+			var track = root.querySelector('[data-stepbook-track]');
+			if (!track) return;
+
+			var pages = Array.prototype.slice.call(track.children);
+			var tabs  = Array.prototype.slice.call(root.querySelectorAll('[data-stepbook-tab]'));
+			var prev  = root.querySelector('[data-stepbook-prev]');
+			var next  = root.querySelector('[data-stepbook-next]');
+			var curEl = root.querySelector('[data-stepbook-current]');
+			var fill  = root.querySelector('[data-stepbook-progress]');
+			var total = pages.length;
+			var index = 0;
+
+			if (!total) return;
+
+			function stepWidth() {
+				var styles = getComputedStyle(track);
+				var gap = parseFloat(styles.columnGap || styles.gap) || 0;
+				return pages[0].getBoundingClientRect().width + gap;
+			}
+
+			function render() {
+				tabs.forEach(function (t, i) {
+					var on = i === index;
+					t.classList.toggle('is-active', on);
+					if (on) { t.setAttribute('aria-current', 'step'); }
+					else { t.removeAttribute('aria-current'); }
+				});
+				pages.forEach(function (p, i) { p.classList.toggle('is-active', i === index); });
+				if (curEl) { curEl.textContent = String(index + 1); }
+				if (fill) { fill.style.width = ((index + 1) / total) * 100 + '%'; }
+				if (prev) { prev.disabled = index <= 0; }
+				if (next) { next.disabled = index >= total - 1; }
+			}
+
+			function goTo(i, smooth) {
+				index = Math.max(0, Math.min(total - 1, i));
+				track.scrollTo({ left: index * stepWidth(), behavior: smooth === false ? 'auto' : 'smooth' });
+				render();
+			}
+
+			tabs.forEach(function (t, i) {
+				t.addEventListener('click', function () { goTo(i); });
+			});
+			if (prev) { prev.addEventListener('click', function () { goTo(index - 1); }); }
+			if (next) { next.addEventListener('click', function () { goTo(index + 1); }); }
+
+			var raf;
+			track.addEventListener('scroll', function () {
+				if (raf) { cancelAnimationFrame(raf); }
+				raf = requestAnimationFrame(function () {
+					var i = Math.round(track.scrollLeft / stepWidth());
+					if (i !== index) { index = Math.max(0, Math.min(total - 1, i)); render(); }
+				});
+			}, { passive: true });
+
+			window.addEventListener('resize', function () { goTo(index, false); });
+
+			render();
+		});
+	}
+
 	function initCopyLink() {
 		document.querySelectorAll('[data-copy-link]').forEach(function (btn) {
 			btn.addEventListener('click', function () {
@@ -329,6 +395,7 @@
 		initPatientStories();
 		initStoriesLightbox();
 		initCarousels();
+		initStepbooks();
 		initCopyLink();
 	});
 })();

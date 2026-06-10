@@ -174,3 +174,88 @@ function estecapelli_results_grouped() {
 
 	return array_values( $buckets );
 }
+
+/**
+ * All before/after composites pulled from the "gallery" sections of every
+ * treatment, grouped by category (main group) then service (technique).
+ *
+ * This is the source for the Before & After page: whatever an editor adds to a
+ * treatment's gallery section automatically surfaces here, grouped by the
+ * treatment's category. Hair Transplant is forced first.
+ *
+ * @return array List of groups: [ 'term' => WP_Term, 'services' => [ [ 'service' => WP_Post, 'items' => array[] ] ] ].
+ */
+function estecapelli_gallery_grouped() {
+	if ( ! function_exists( 'get_field' ) ) {
+		return array();
+	}
+
+	$treatment_ids = get_posts(
+		array(
+			'post_type'      => 'treatment',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+		)
+	);
+	if ( empty( $treatment_ids ) ) {
+		return array();
+	}
+
+	// Bucket: cat_term_id => [ 'term' => WP_Term, 'services' => [ service_id => [...] ] ].
+	$buckets = array();
+
+	foreach ( $treatment_ids as $tid ) {
+		$sections = get_field( 'page_sections', $tid );
+		if ( empty( $sections ) || ! is_array( $sections ) ) {
+			continue;
+		}
+
+		// Gather every image from all gallery sections on this treatment.
+		$items = array();
+		foreach ( $sections as $section ) {
+			if ( 'gallery' !== ( $section['acf_fc_layout'] ?? '' ) || empty( $section['items'] ) || ! is_array( $section['items'] ) ) {
+				continue;
+			}
+			foreach ( $section['items'] as $item ) {
+				if ( ! empty( $item['image']['url'] ) ) {
+					$items[] = $item;
+				}
+			}
+		}
+		if ( empty( $items ) ) {
+			continue;
+		}
+
+		$terms = get_the_terms( $tid, 'treatment_category' );
+		if ( ! $terms || is_wp_error( $terms ) ) {
+			continue;
+		}
+		// Deepest (most specific) category wins, matching the permalink rule.
+		$term = end( $terms );
+
+		if ( ! isset( $buckets[ $term->term_id ] ) ) {
+			$buckets[ $term->term_id ] = array( 'term' => $term, 'services' => array() );
+		}
+		$buckets[ $term->term_id ]['services'][ $tid ] = array(
+			'service' => get_post( $tid ),
+			'items'   => $items,
+		);
+	}
+
+	uasort(
+		$buckets,
+		function ( $a, $b ) {
+			$a_hair = ( 'hair-transplant' === $a['term']->slug ) ? 0 : 1;
+			$b_hair = ( 'hair-transplant' === $b['term']->slug ) ? 0 : 1;
+			if ( $a_hair !== $b_hair ) {
+				return $a_hair - $b_hair;
+			}
+			return strcmp( $a['term']->name, $b['term']->name );
+		}
+	);
+
+	return array_values( $buckets );
+}

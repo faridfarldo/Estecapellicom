@@ -101,8 +101,15 @@ function estecapelli_handle_lead() {
 	);
 	wp_mail( $to, $subject, implode( "\n", $lines ) );
 
-	// Post/Redirect/Get → land back on the contact page with a success flag.
-	$redirect = add_query_arg( 'sent', '1', home_url( '/en/contact' ) ) . '#contact-form';
+	// Post/Redirect/Get → return to the submitting page with a success flag.
+	// Forms embedded in a page (e.g. the ACF "form" section) pass `lead_return`
+	// so the visitor stays put; everything else falls back to the contact page.
+	$return = isset( $_POST['lead_return'] ) ? wp_validate_redirect( esc_url_raw( wp_unslash( $_POST['lead_return'] ) ), '' ) : '';
+	if ( $return ) {
+		$redirect = add_query_arg( 'sent', '1', $return ) . '#lead-form';
+	} else {
+		$redirect = add_query_arg( 'sent', '1', home_url( '/en/contact' ) ) . '#contact-form';
+	}
 	wp_safe_redirect( $redirect );
 	exit;
 }
@@ -116,8 +123,9 @@ function estecapelli_page_template_router( $template ) {
 		return $template;
 	}
 	$map  = array(
-		'contact' => 'page-contact.php',
-		'blog'    => 'page-blog.php',
+		'contact'      => 'page-contact.php',
+		'blog'         => 'page-blog.php',
+		'before-after' => 'page-before-after.php',
 	);
 	$slug = get_post_field( 'post_name', get_queried_object_id() );
 	if ( isset( $map[ $slug ] ) ) {
