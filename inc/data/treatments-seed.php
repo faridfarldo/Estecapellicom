@@ -1149,14 +1149,14 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Process', 'estecapelli' ),
 						'title'         => __( 'Stages of Beard Transplantation', 'estecapelli' ),
-						'lead'          => __( 'Careful harvesting and precise placement for a natural beard line.', 'estecapelli' ),
+						'lead'          => __( 'Careful harvesting and precise placement for a natural beard line. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'target',       'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),  'body' => __( 'The FUE method is used for harvesting hairs from the safe donor areas at the back and the sides of the head. Each follicle is carefully extracted one by one to minimise damage and preserve the natural look of the donor area.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Channel Opening', 'estecapelli' ),   'body' => __( 'The direction, depth and angle of the channels are crucial in achieving a natural-looking result. Our experts carefully create micro-channels that align with the natural growth pattern of your beard, ensuring each follicle sits seamlessly within the surrounding hair.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Implantation', 'estecapelli' ), 'body' => __( 'In the final stage, the harvested grafts are carefully placed into the prepared channels one by one. Each follicle is implanted at the correct angle and depth to ensure a seamless, natural appearance — a fuller, well-defined beard that looks and feels completely natural.', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),  'body' => '<p>' . esc_html__( 'The FUE method is used to harvest follicles from the safe donor area at the back and sides of the head, where hair is genetically resistant to loss. Each follicle is extracted one by one with ultra-fine micromotors to minimise damage and preserve the natural look of the donor area.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'sparkles',     'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Channel Opening', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'The direction, depth and angle of the channels are the most decisive factors for a natural result. Our experts create micro-channels that follow the natural growth pattern of a beard — flatter and more downward than scalp hair — so each follicle sits seamlessly within the surrounding hair and defines a clean beard line.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Implantation', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Finally, the harvested grafts are placed into the prepared channels one by one, each at the correct angle and depth. This precise placement fills patchy or sparse areas evenly for a fuller, well-defined beard that looks and feels completely natural and grows in with your existing hair.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -1177,13 +1177,37 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Beard Transplant — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'Where do the grafts come from?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Healthy follicles are harvested with the FUE method from the safe donor area at the back and sides of the head.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Will the beard look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Careful control of the angle, depth and direction of each graft ensures the beard grows in naturally and blends with existing hair.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'What side effects should I expect?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'As with any procedure there may be minor, temporary redness, swelling or sensitivity, which settle quickly. Rarely, there is a risk of infection or scarring, minimised by following expert advice.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long does recovery take?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Recovery after a beard transplant generally takes 1–2 weeks. The full growth of the transplanted beard and its final appearance form over 6–12 months.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'When will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The first beard growth usually begins within 3–6 months, with permanent, clear results appearing at the end of 6–12 months.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is a beard transplant permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. When performed with the right techniques by an expert team, a beard transplant delivers permanent results. Estecapelli’s personalised process targets natural, long-lasting satisfaction.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate for a beard transplant?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'If you have patchy, sparse or uneven beard growth, gaps from scarring or injury, or simply struggle to grow a full beard, you are likely a good candidate — provided you have a healthy donor area at the back and sides of the scalp. A consultation with clear photos confirms your suitability and estimates the grafts you need.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Where do the grafts come from, and will the beard look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Healthy follicles are harvested with the FUE method from the safe donor area at the back and sides of the head. Careful control of the angle, depth and direction of each graft — following the flatter, downward growth pattern of a beard — ensures the result blends seamlessly with your existing hair and looks completely natural.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Can I shave and shape it normally afterwards?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Once fully healed, your transplanted beard behaves like natural beard hair — you can shave it, trim it, grow it out and style it however you like. Because the follicles are permanent, the fullness remains even as your look changes over time.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is it painful, and what is recovery like?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedure is performed under local anaesthesia, so it is generally painless. Mild redness, swelling and small scabs in the treated area are normal for the first week and settle with proper aftercare; most patients return to their social life within one to two weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see results, and is shedding normal?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The transplanted hairs usually shed in the first few weeks — this shock loss is completely normal. New beard growth begins around months three to six, and the full, final appearance forms over six to twelve months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is a beard transplant permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The follicles are taken from a permanent donor area, so once they settle they grow for life. Performed with the right technique by an experienced team, a beard transplant delivers natural, long-lasting results.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Beard Transplant — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the fuller, well-defined beards our patients achieve. Every beard line is designed around your facial features and implanted hair by hair, so patchy areas fill in evenly and the result looks completely natural.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready for a Fuller, Natural Beard?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised beard transplant plan, a beard design suited to your face and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free graft assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Natural beard line designed around your face', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
