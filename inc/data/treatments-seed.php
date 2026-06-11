@@ -104,18 +104,42 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Exosome FUE — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the natural density and hairline our patients achieve with Exosome FUE. Every result is planned around your own growth pattern for a result that looks completely natural.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
 						'acf_fc_layout' => 'faq',
 						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
 						'title'         => __( 'Exosome FUE — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'What is Exosome FUE hair transplantation?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Exosome FUE is an innovative, biotechnology-enhanced version of the classic FUE method. The exosomes it uses are micro-vesicles secreted by cells that stimulate follicle regeneration and support stronger, healthier hair growth.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is Exosome FUE more effective than classic FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Compared with classic FUE it offers faster healing, a higher graft-survival rate and a denser result, because exosome technology strengthens the way the follicles adapt after transplantation.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Why choose Estecapelli for Exosome FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Estecapelli is an international clinic with proven expertise in hair restoration. An experienced medical team, the latest technology and personalised treatment plans deliver natural, lasting Exosome FUE results.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'When will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'New growth usually appears within three to six months, with final, permanent results emerging at around twelve months.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'What is recovery like after Exosome FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Recovery is faster than with classic methods. Mild swelling, redness and scabbing may appear in the first few days; these are normal and subside quickly when you follow the aftercare advice.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is Exosome FUE permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The transplanted follicles are resistant to shedding and continue to grow like natural hair, giving permanent results.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is Exosome FUE and how does it differ from classic FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Exosome FUE follows the same gold-standard FUE technique — individual follicles are extracted and implanted one by one — but adds exosome therapy to support healing and growth. Exosomes are tiny cell-derived vesicles rich in growth factors that signal the follicles and surrounding tissue to regenerate. The result is the proven reliability of FUE combined with a biological boost to graft recovery.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate for Exosome FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most adults with stable hair loss and a healthy donor area at the back and sides of the scalp are suitable, including men with male-pattern baldness and many women with thinning. It is also a strong option for patients with weaker hair quality or those wanting to maximise graft survival. A consultation with photos lets our team confirm your suitability and estimate the grafts needed.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What does the procedure involve and is it painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedure is performed under local anaesthesia, so you are awake but comfortable and feel no pain during the session, which typically lasts six to eight hours depending on the number of grafts. Follicles are extracted from the donor area, the exosome solution is applied to support the grafts, and they are implanted along a natural-looking hairline designed with you beforehand. You go home or back to your hotel the same day.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is recovery like and how long should I stay in Turkey?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most patients stay in Turkey for around three days, including a first wash and aftercare briefing before flying home. Mild redness, swelling and small scabs are normal in the first week and settle quickly; the scabs fall away within about ten days. Many people return to desk-based work within a few days, avoiding strenuous activity, sun and swimming for the first couple of weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see results, and is the shedding phase normal?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes — the transplanted hairs often shed in the first few weeks, which is completely normal and expected. New growth begins around months three to four, noticeable density develops by six to nine months, and the final, fully matured result appears at about twelve months. Exosome support can help the new hair come through stronger and a little sooner than with classic FUE.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent and natural-looking?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The transplanted follicles are taken from areas genetically resistant to hair loss, so they continue to grow permanently like the rest of your hair. With a carefully designed hairline and single-follicle implantation, the result looks completely natural — you can cut, style and wash it normally. Existing non-transplanted hair can still thin over time, so your surgeon may advise supportive care to protect the overall look.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready to Restore Your Hair with Exosome FUE?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised Exosome FUE plan, a graft estimate and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free graft assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
