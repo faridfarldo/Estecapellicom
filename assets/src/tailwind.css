@@ -1315,6 +1315,18 @@
 		box-shadow: var(--shadow-pop);
 		position: relative;
 	}
+
+	/* Compact panel for menus without a feature column: shrink the card to the
+	   width its columns actually need instead of stretching to full container
+	   width (which left small menus looking oversized and empty). */
+	.megamenu--no-feature .megamenu__inner {
+		grid-template-columns: auto;
+		width: max-content;
+		max-width: calc(100vw - 2rem);
+	}
+	.megamenu--no-feature .megamenu__cols {
+		grid-auto-columns: 260px;
+	}
 	.megamenu__inner::before {
 		content: "";
 		position: absolute;
@@ -1331,7 +1343,10 @@
 
 	.megamenu__cols {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		/* One grid column per data column, so menus with fewer columns don't
+		   leave empty cells (auto-flow matches the actual count). */
+		grid-auto-flow: column;
+		grid-auto-columns: minmax(0, 1fr);
 		gap: 0.125rem 1rem;
 	}
 	.megamenu__col {
@@ -1550,6 +1565,7 @@
 			box-shadow: none;
 			border-radius: 0;
 			max-width: none;
+			width: auto;
 		}
 		.megamenu__inner::before { display: none; }
 		.megamenu__cols {

@@ -352,7 +352,7 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 				'columns' => array(
 					array(
 						array( 'label' => __( 'Rhinoplasty', 'estecapelli' ),               'url' => home_url( '/en/plastic-surgery/rhinoplasty' ),                                         'description' => __( 'Nose reshaping surgery that refines proportions and function.', 'estecapelli' ) ),
-						array( 'label' => __( 'BBL (Brazilian Butt Lift)', 'estecapelli' ), 'url' => home_url( '/en/plastic-surgery/bbl' ),                                                 'description' => __( 'Natural body contouring with fat transfer to the buttocks.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'BBL (Brazilian Butt Lift)', 'estecapelli' ), 'url' => home_url( '/en/plastic-surgery/bbl' ),                                                 'description' => __( 'Natural body contouring with fat transfer to the buttocks.', 'estecapelli' ) ),
 						array( 'label' => __( 'Liposuction', 'estecapelli' ),               'url' => home_url( '/en/plastic-surgery/liposuction' ),                                         'description' => __( 'Removes localized fat deposits to reshape the body.', 'estecapelli' ) ),
 					),
 					array(
@@ -365,32 +365,14 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 						array( 'label' => __( 'Obesity Surgeries (Bariatric)', 'estecapelli' ),'url' => home_url( '/en/plastic-surgery/obesity-surgeries-bariatric-surgery-and-gastric-balloon' ), 'description' => __( 'Bariatric surgery and gastric balloon for sustainable weight loss.', 'estecapelli' ) ),
 					),
 				),
-				'feature' => array(
-					'eyebrow'     => __( 'AESTHETIC EXCELLENCE', 'estecapelli' ),
-					'title'       => __( 'Aesthetic Surgery Consultation', 'estecapelli' ),
-					'description' => __( 'Board-certified plastic surgeons. Personalized plans, premium hospitals, and recovery support every step of the way.', 'estecapelli' ),
-					'cta_label'   => __( 'Plastic Surgery Contact', 'estecapelli' ),
-					'cta_url'     => home_url( '/en/contact' ),
-					'video'       => 'mega/plastic.mp4',
-					'image'       => 'mega/plastic.jpg',
-				),
 			),
 
 			'dental-treatment' => array(
 				'columns' => array(
 					array(
-						array( 'label' => __( 'Dental Implant', 'estecapelli' ),  'url' => home_url( '/en/dental-treatment/dental-implant' ),  'description' => __( 'Permanent replacement for missing teeth with titanium roots.', 'estecapelli' ), 'badge' => __( 'POPULAR', 'estecapelli' ) ),
+						array( 'label' => __( 'Dental Implant', 'estecapelli' ),  'url' => home_url( '/en/dental-treatment/dental-implant' ),  'description' => __( 'Permanent replacement for missing teeth with titanium roots.', 'estecapelli' ) ),
 						array( 'label' => __( 'Hollywood Smile', 'estecapelli' ), 'url' => home_url( '/en/dental-treatment/hollywood-smile' ), 'description' => __( 'A bespoke makeover that reshapes your smile aesthetic.', 'estecapelli' ) ),
 					),
-				),
-				'feature' => array(
-					'eyebrow'     => __( 'FULL-MOUTH PLANS', 'estecapelli' ),
-					'title'       => __( 'Dental Treatment Consultation', 'estecapelli' ),
-					'description' => __( 'World-class dental care in Istanbul — same-day implants, veneers, and smile design with personalized planning.', 'estecapelli' ),
-					'cta_label'   => __( 'Dental Contact', 'estecapelli' ),
-					'cta_url'     => home_url( '/en/contact' ),
-					'video'       => 'mega/dental.mp4',
-					'image'       => 'mega/dental.jpg',
 				),
 			),
 
@@ -403,15 +385,6 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					array(
 						array( 'label' => __( 'Our Team', 'estecapelli' ),        'url' => home_url( '/en/about-us/our-team' ),    'description' => __( 'The full medical and patient-care team behind your treatment.', 'estecapelli' ) ),
 					),
-				),
-				'feature' => array(
-					'eyebrow'     => __( '15+ YEARS OF EXPERIENCE', 'estecapelli' ),
-					'title'       => __( 'Trusted by 15,000+ Patients', 'estecapelli' ),
-					'description' => __( "From your first message to your follow-up months later — Estecapelli's team is with you across 40+ countries.", 'estecapelli' ),
-					'cta_label'   => __( 'Speak with our team', 'estecapelli' ),
-					'cta_url'     => home_url( '/en/contact' ),
-					'video'       => 'mega/about.mp4',
-					'image'       => 'mega/about.jpg',
 				),
 			),
 		);
@@ -430,7 +403,7 @@ if ( ! function_exists( 'estecapelli_render_megamenu' ) ) {
 			return;
 		}
 		?>
-		<div class="megamenu" role="menu" aria-label="<?php echo esc_attr( $key ); ?>" data-mega-key="<?php echo esc_attr( $key ); ?>">
+		<div class="megamenu<?php echo empty( $data['feature'] ) ? ' megamenu--no-feature' : ''; ?>" role="menu" aria-label="<?php echo esc_attr( $key ); ?>" data-mega-key="<?php echo esc_attr( $key ); ?>">
 			<div class="megamenu__inner">
 				<div class="megamenu__cols">
 					<?php foreach ( $data['columns'] as $col ) : ?>
