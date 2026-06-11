@@ -1277,7 +1277,11 @@
 		top: 100%;
 		left: 0;
 		right: 0;
-		margin-top: 10px;
+		/* Transparent top padding instead of a margin: it keeps the panel's
+		   hover area flush against the trigger so the pointer never crosses a
+		   dead gap, while the visible card (.megamenu__inner) still sits 10px
+		   below the navbar. */
+		padding-top: 10px;
 		padding-inline: clamp(1rem, 3vw, 2rem);
 		opacity: 0;
 		visibility: hidden;
@@ -5163,12 +5167,10 @@
 	}
 
 	/* ============================================================ Nav hover bridge
-	   The dropdown panels sit 10px below the link. We extend each panel
-	   upward with a transparent pseudo-strip so the cursor can travel
-	   across the gap without :hover breaking. The pseudo keeps
-	   pointer-events: auto even while the parent panel is fading out, so
-	   re-entering it within the visibility delay re-asserts :hover. */
-	.megamenu::before,
+	   The submenu panel sits 10px below the link. We extend it upward with a
+	   transparent pseudo-strip so the cursor can travel across the gap without
+	   :hover breaking. (The mega-menu handles this with transparent padding-top
+	   on the panel itself — see .megamenu.) */
 	.site-nav__submenu::after {
 		content: '';
 		position: absolute;
