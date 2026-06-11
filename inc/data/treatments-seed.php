@@ -1337,6 +1337,41 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
 					),
 					array(
+						'acf_fc_layout' => 'stepbook',
+						'eyebrow'       => __( 'The Options', 'estecapelli' ),
+						'title'         => __( 'Types of Breast Surgery', 'estecapelli' ),
+						'lead'          => __( 'The right procedure depends on your anatomy, your goals and the look you want. Swipe through the main options below.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'icon'    => 'sparkles',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Breast Augmentation', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Breast augmentation increases breast volume and improves shape using silicone implants or, for suitable patients, fat transfer. It is ideal for genetically small breasts or volume loss after pregnancy, breastfeeding or weight change.', 'estecapelli' ) . '</p>'
+									. '<ul><li>' . esc_html__( 'Adds fullness and balance to the figure', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Implant shape and size chosen with you', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Discreet incision and natural-looking result', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'target',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Breast Reduction', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Breast reduction removes excess breast tissue, fat and skin to create a lighter, firmer and more proportionate breast. It relieves the neck, back and shoulder strain often caused by overly large breasts.', 'estecapelli' ) . '</p>'
+									. '<ul><li>' . esc_html__( 'Eases physical discomfort and posture problems', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Reshapes and lifts at the same time', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'A more balanced, comfortable silhouette', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'hands-heart',
+								'eyebrow' => __( 'Type', 'estecapelli' ),
+								'title'   => __( 'Breast Lift (Mastopexy)', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'A breast lift raises and reshapes sagging breasts by removing excess skin and tightening the surrounding tissue, restoring a firmer, more youthful position without necessarily changing the size. It can be combined with an implant for added volume.', 'estecapelli' ) . '</p>'
+									. '<ul><li>' . esc_html__( 'Corrects sagging after pregnancy, ageing or weight loss', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Repositions the nipple for a natural look', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Can be combined with augmentation for volume', 'estecapelli' ) . '</li></ul>',
+							),
+						),
+					),
+					array(
 						'acf_fc_layout' => 'candidate',
 						'eyebrow'       => __( 'When It Helps', 'estecapelli' ),
 						'title'         => __( 'When is Breast Augmentation Performed?', 'estecapelli' ),
@@ -1409,6 +1444,14 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 					),
 					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Breast Aesthetics — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the natural, balanced results our patients achieve — fuller, lifted or more proportionate, always in harmony with the body. Every result is personalised, with incisions placed as discreetly as possible.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+					array(
 						'acf_fc_layout' => 'faq',
 						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
 						'title'         => __( 'Breast Aesthetics — FAQ', 'estecapelli' ),
@@ -1428,6 +1471,20 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Breast Aesthetics Prices', 'estecapelli' ),
 						'body'          => '<p>' . esc_html__( 'Breast aesthetics pricing — whether for augmentation, reduction or lift — varies depending on several factors. These include the type of implant selected, the scope of the procedure, any additional treatments such as a lift, asymmetry correction or combined surgeries, and the patient’s individual needs and anatomy. A personalised quote is provided following a detailed consultation, ensuring full transparency before any decisions are made.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready for a Naturally Balanced Silhouette?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised breast surgery plan and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
