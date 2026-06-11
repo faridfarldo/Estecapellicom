@@ -211,15 +211,15 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Process', 'estecapelli' ),
 						'title'         => __( 'Female Hair Transplant Stages', 'estecapelli' ),
-						'lead'          => __( 'The process is carried out in four fundamental stages, each meticulously managed to ensure natural-looking, dense, and lasting results.', 'estecapelli' ),
+						'lead'          => __( 'Carefully managed from the first consultation to final growth, every stage is tailored to a woman’s hair structure and aesthetic goals. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'clipboard',   'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ),     'body' => __( 'Your hair loss is analysed, your expectations evaluated, and a fully personalised treatment plan is created tailored to your unique needs.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',    'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Natural Hairline Design', 'estecapelli' ),     'body' => __( 'An aesthetic, natural hairline is carefully designed in harmony with your facial features.', 'estecapelli' ) ),
-							array( 'icon' => 'target',      'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Hair Follicle Extraction', 'estecapelli' ),    'body' => __( 'Healthy grafts are individually and precisely harvested from the donor area using the least invasive method possible.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle','time' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Graft Implantation', 'estecapelli' ),          'body' => __( 'The harvested follicles are precisely implanted into the target area at the correct angle and direction for a seamless, natural-looking density.', 'estecapelli' ) ),
+							array( 'icon' => 'clipboard',    'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ),  'body' => '<p>' . esc_html__( 'Your hair loss is analysed in detail and the underlying cause — hormonal, genetic or nutritional — is identified so the plan addresses the real problem. We assess the strength of your donor area, evaluate your expectations and build a fully personalised treatment plan, including a realistic graft estimate and the technique best suited to your hair.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'sparkles',     'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Natural Hairline Design', 'estecapelli' ),  'body' => '<p>' . esc_html__( 'An aesthetic, feminine hairline is drawn in harmony with your facial proportions and natural growth direction. For women the goal is usually to restore density and frame the face rather than rebuild a receded line, so the design protects your existing style and keeps the result completely undetectable.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Hair Follicle Extraction', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Healthy grafts are harvested one by one from the safe donor area at the back of the scalp using ultra-fine micromotors. With the DHI technique this is done without shaving your existing hair, so you keep your length throughout — the donor area heals quickly and leaves no linear scar.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Graft Implantation', 'estecapelli' ),       'body' => '<p>' . esc_html__( 'Using DHI implanter pens, the follicles are placed directly into the thinning areas at the correct angle, depth and direction for seamless, natural density. Direct implantation gives precise control and lets grafts be added between your existing hairs without damaging them.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -271,13 +271,39 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Female Hair Transplant — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'When will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Final results generally appear within six to twelve months. Shock shedding can occur in the first three months; from month six new, permanent hair begins to grow. Timing varies with the technique used and your individual healing.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is a female hair transplant permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The shedding-resistant follicles taken from the donor area continue to grow like natural hair after transplantation, making it a permanent solution.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Are there any risks or side effects?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is a safe procedure. Mild swelling, redness, temporary scabbing and itching may appear afterwards; with correct care and expert guidance these resolve quickly.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Can women with fine or sparse hair have a transplant?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes, provided there are enough follicles in the donor area. For patients with a weaker donor area, mesotherapy or stem-cell-supported treatments may be recommended alongside.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long is recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Full recovery averages one to two months, though returning to daily life is possible right after the procedure.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Does the result look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. With the right techniques and an aesthetic hairline design — placing follicles along the natural growth direction — the result is completely natural and undetectable.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate for a female hair transplant?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Most women with stable hair loss and a healthy donor area at the back of the scalp are suitable. It works best for thinning along the part line, a widening hairline or sparse temples. Because women more often have diffuse thinning, the single most important step is identifying the cause of your hair loss first — a consultation with clear photos lets our team confirm your suitability and estimate the grafts needed.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will my head be shaved? Can I keep my long hair?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'In most cases, no. We primarily use the DHI technique, which allows follicles to be implanted directly without shaving your existing hair, so you keep your length and style throughout the whole process. Only a small, hidden section of the donor area may be trimmed, staying completely covered by the hair above it.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'My hair loss may be hormonal — postpartum, menopause, PCOS or thyroid. Can I still have a transplant?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Hormonal and medical hair loss often needs to be stabilised first, because transplanting into actively shedding hair can give disappointing results. We assess the underlying cause and may recommend supportive treatments such as PRP, mesotherapy or medical management before or instead of surgery. Once your hair loss is stable, a transplant becomes a reliable, permanent option.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Could a transplant damage my existing hair?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'With the precise, direct DHI method, grafts are carefully placed between your existing follicles to avoid harming them. A temporary "shock loss" of some surrounding hairs can occur in the first weeks — this is normal and the hair regrows. Choosing an experienced team is the key factor in protecting your natural hair.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The transplanted hairs usually shed within the first few weeks, which is completely normal. New growth begins around months three to four, noticeable density develops by six to nine months, and the final, fully matured result appears at about twelve months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent and natural-looking?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The follicles are taken from areas genetically resistant to hair loss, so they keep growing permanently like the rest of your hair. With a feminine hairline design and single-follicle implantation along the natural growth direction, the result is completely natural and undetectable — you can cut, colour and style it as usual.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is it painful, and how long is recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedure is performed under local anaesthesia, so you stay awake but comfortable and feel no pain during the session. Mild redness and small scabs are normal in the first week and settle quickly; most patients return to daily life within a few days, avoiding strenuous activity, sun and swimming for the first couple of weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Can I have a transplant while pregnant or breastfeeding?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'We do not perform hair transplants during pregnancy or breastfeeding, as a precaution around anaesthesia and medication. Postpartum shedding is also usually temporary and often recovers on its own, so we recommend waiting until your hormones and hair have settled before considering surgery.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Female Hair Transplant — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the restored density and natural hairlines our female patients achieve. Every result is planned around your own hair structure and growth pattern, so the outcome blends seamlessly with your existing hair and looks completely natural.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready to Restore Your Hair?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised, shaving-free female hair transplant plan, a graft estimate and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free graft assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-shave DHI planned around your existing hair', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
