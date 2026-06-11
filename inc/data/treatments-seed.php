@@ -1708,61 +1708,57 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'footer'        => __( 'This procedure is not a method for weight loss. Instead, it effectively removes localised fat deposits that do not disappear despite overall weight loss.', 'estecapelli' ),
 					),
 					array(
-						'acf_fc_layout' => 'intro',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
 						'title'         => __( 'Types of Liposuction', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'At Estecapelli, different liposuction techniques are used to achieve body-contouring goals. Each technique is chosen based on the person’s fat distribution, skin elasticity and desired results.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Technique', 'estecapelli' ),
-						'title'         => __( 'Vaser Liposuction', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Vaser Liposuction is an advanced technique that uses ultrasound energy to liquefy fat cells before removal, allowing for precise and gentle body contouring.', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Targets fat precisely', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Minimally invasive with less tissue trauma', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Smooth, natural-looking results', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Faster recovery compared to traditional liposuction', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Technique', 'estecapelli' ),
-						'title'         => __( 'Laser Liposuction', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Laser Liposuction uses intense laser energy to break down fat cells, while simultaneously promoting skin tightening for smoother contours.', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Melts fat precisely', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Supports skin tightening', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Minimally invasive with quick recovery', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Smooth and natural-looking results', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Technique', 'estecapelli' ),
-						'title'         => __( 'Tumescent Liposuction', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Tumescent Liposuction involves injecting a special solution into the targeted area before fat removal to minimise bleeding and bruising. Today, it is often combined with other liposuction techniques for enhanced results.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Technique', 'estecapelli' ),
-						'title'         => __( 'PAL (Power Assisted Liposuction)', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'PAL (Power Assisted Liposuction) uses vibration-assisted cannulas to break down fat more easily and efficiently, making the procedure faster and smoother.', 'estecapelli' ) . '</p>'
-							. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
-							. '<ul><li>' . esc_html__( 'Easier and faster fat removal', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Less surgeon fatigue, more precise', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Minimally invasive with smoother results', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Can be combined with other techniques', 'estecapelli' ) . '</li></ul>',
-						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => '', 'url' => '' ),
-					),
-					array(
-						'acf_fc_layout' => 'intro',
-						'eyebrow'       => __( 'Technique', 'estecapelli' ),
-						'title'         => __( 'Classic Liposuction', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'Traditional Liposuction is a conventional fat removal technique performed manually without devices. It remains a preferred option in certain cases.', 'estecapelli' ) . '</p>',
-						'image'         => '', 'image_position' => 'right', 'cta' => array( 'label' => '', 'url' => '' ),
+						'lead'          => __( 'At Estecapelli, different liposuction techniques are used to reach your body-contouring goals. The right method is chosen based on your fat distribution, skin elasticity and desired result. Swipe through the main options below.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'icon'    => 'sparkles',
+								'eyebrow' => __( 'Technique', 'estecapelli' ),
+								'title'   => __( 'Vaser Liposuction', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Vaser Liposuction is an advanced technique that uses ultrasound energy to liquefy fat cells before removal, allowing for precise and gentle body contouring.', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Targets fat precisely', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Minimally invasive with less tissue trauma', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Smooth, natural-looking results', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Faster recovery compared to traditional liposuction', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'target',
+								'eyebrow' => __( 'Technique', 'estecapelli' ),
+								'title'   => __( 'Laser Liposuction', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Laser Liposuction uses intense laser energy to break down fat cells, while simultaneously promoting skin tightening for smoother contours.', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Melts fat precisely', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Supports skin tightening', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Minimally invasive with quick recovery', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Smooth and natural-looking results', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'medical-plus',
+								'eyebrow' => __( 'Technique', 'estecapelli' ),
+								'title'   => __( 'Tumescent Liposuction', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Tumescent Liposuction involves injecting a special solution into the targeted area before fat removal to minimise bleeding and bruising. Today, it is often combined with other liposuction techniques for enhanced results.', 'estecapelli' ) . '</p>',
+							),
+							array(
+								'icon'    => 'check-circle',
+								'eyebrow' => __( 'Technique', 'estecapelli' ),
+								'title'   => __( 'PAL (Power Assisted Liposuction)', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'PAL (Power Assisted Liposuction) uses vibration-assisted cannulas to break down fat more easily and efficiently, making the procedure faster and smoother.', 'estecapelli' ) . '</p>'
+									. '<p><strong>' . esc_html__( 'Advantages:', 'estecapelli' ) . '</strong></p>'
+									. '<ul><li>' . esc_html__( 'Easier and faster fat removal', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Less surgeon fatigue, more precise', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Minimally invasive with smoother results', 'estecapelli' ) . '</li>'
+									. '<li>' . esc_html__( 'Can be combined with other techniques', 'estecapelli' ) . '</li></ul>',
+							),
+							array(
+								'icon'    => 'hands-heart',
+								'eyebrow' => __( 'Technique', 'estecapelli' ),
+								'title'   => __( 'Classic Liposuction', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Traditional Liposuction is a conventional fat removal technique performed manually without devices. It remains a preferred option in certain cases.', 'estecapelli' ) . '</p>',
+							),
+						),
 					),
 					array(
 						'acf_fc_layout' => 'candidate',
@@ -1836,6 +1832,14 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						),
 					),
 					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Liposuction — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the smoother, more defined contours our patients achieve. Every result is tailored to the individual body, with fat removed precisely for a natural, proportionate shape.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+					array(
 						'acf_fc_layout' => 'faq',
 						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
 						'title'         => __( 'Liposuction — Frequently Asked Questions', 'estecapelli' ),
@@ -1861,6 +1865,20 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							. '<li>' . esc_html__( 'Patient’s expectations', 'estecapelli' ) . '</li></ul>'
 							. '<p>' . esc_html__( 'The most accurate price is determined after an online consultation with Estecapelli specialists.', 'estecapelli' ) . '</p>',
 						'image'         => '', 'image_position' => 'left', 'cta' => array( 'label' => __( 'Request a Personalised Quote', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready to Define Your Contours?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised liposuction plan and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 					array( 'acf_fc_layout' => 'related', 'eyebrow' => __( 'Explore Further', 'estecapelli' ), 'title' => __( 'Related Treatments', 'estecapelli' ), 'count' => 3, 'manual' => array() ),
 				),
