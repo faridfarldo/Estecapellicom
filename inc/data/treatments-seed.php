@@ -359,15 +359,15 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Process', 'estecapelli' ),
 						'title'         => __( 'How is Hair Mesotherapy Performed?', 'estecapelli' ),
-						'lead'          => __( "Estecapelli's step-by-step application process.", 'estecapelli' ),
+						'lead'          => __( "Estecapelli's step-by-step application process, from scalp analysis to a personalised session program. Swipe through the steps below.", 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'target',       'time' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Analysis', 'estecapelli' ),                            'body' => __( 'The hair and scalp are carefully evaluated to understand the structure of the hair follicles, overall scalp condition and the cause of hair loss. At Estecapelli, this is done using TrichoLab analysis, which allows specialists to examine hair follicle length, quality and density for a precise and personalised treatment plan.', 'estecapelli' ) ),
-							array( 'icon' => 'atom',         'time' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'Preparation of the Mesotherapy Mixture', 'estecapelli' ), 'body' => __( 'A customised mesotherapy solution is prepared for each patient, containing a carefully balanced combination of vitamins, minerals, amino acids and growth factors essential for healthy hair. The mixture is tailored to support follicle strength, stimulate growth and improve overall hair quality.', 'estecapelli' ) ),
-							array( 'icon' => 'medical-plus', 'time' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Application', 'estecapelli' ),                         'body' => __( 'The customised mixture is injected directly into the scalp using fine-tipped needles, delivering nutrients straight to the hair follicles. For those with sensitive scalps, a topical anaesthetic cream can be applied. The procedure is quick, comfortable and minimally invasive, allowing patients to return to daily activities immediately.', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'time' => __( 'Step 4', 'estecapelli' ), 'title' => __( 'Treatment Program', 'estecapelli' ),                   'body' => __( 'Typically, a treatment program of 4–6 sessions is applied at intervals of 4–6 weeks. The process may vary depending on the individual’s level of hair loss.', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'eyebrow' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Analysis', 'estecapelli' ),                            'body' => '<p>' . esc_html__( 'The hair and scalp are carefully evaluated to understand the structure of the hair follicles, overall scalp condition and the cause of hair loss. At Estecapelli, this is done using TrichoLab analysis, which lets our specialists examine follicle length, quality and density — the basis for a precise, personalised treatment plan rather than a one-size-fits-all cocktail.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'atom',         'eyebrow' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'Preparation of the Mesotherapy Mixture', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'A customised mesotherapy solution is prepared for each patient, containing a carefully balanced combination of vitamins, minerals, amino acids and growth factors essential for healthy hair. The mixture is tailored to your specific needs — to support follicle strength, stimulate growth and improve overall hair quality.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'medical-plus', 'eyebrow' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Application', 'estecapelli' ),                         'body' => '<p>' . esc_html__( 'The customised mixture is injected directly into the scalp using fine-tipped needles, delivering nutrients straight to the hair follicles. For those with sensitive scalps, a topical anaesthetic cream can be applied. The procedure is quick, comfortable and minimally invasive, so you can return to daily activities immediately.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'calendar',     'eyebrow' => __( 'Step 4', 'estecapelli' ), 'title' => __( 'Treatment Program', 'estecapelli' ),                   'body' => '<p>' . esc_html__( 'A treatment program of typically 4–6 sessions is applied at intervals of 4–6 weeks. The exact schedule is adjusted to your level of hair loss and how your hair responds, with periodic maintenance sessions recommended afterwards to preserve the results.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -393,13 +393,38 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Hair Mesotherapy — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'How many sessions before it works?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Hair mesotherapy is usually planned as four to six sessions. The exact number is personalised to the severity of hair loss, your general health and your hair structure.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is hair mesotherapy painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is generally painless. You may feel only a slight pricking sensation during application; the procedure stays comfortable even for those with a low pain threshold.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Who is it suitable for?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It can be applied for different types of hair loss in men and women, such as androgenetic alopecia and telogen effluvium. The cause of hair loss should first be assessed in detail by a specialist.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Can it be combined with other treatments?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. It can be combined with medical treatments such as minoxidil and finasteride, or with DHI, FUE and Sapphire FUE transplantation. Our specialists determine the best combination for you.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Are there any side effects?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is a safe procedure. Rarely, temporary redness, mild swelling or itching may occur and disappear on their own shortly after.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long do the results last?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The effects can last a long time. If the factors causing hair loss persist, periodic maintenance sessions may be recommended to preserve the results.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate for hair mesotherapy?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Mesotherapy suits men and women in the early to moderate stages of hair loss — thinning, weak or shedding hair, including androgenetic alopecia and telogen effluvium. It is also a strong support treatment after a hair transplant. It is not a substitute for surgery in advanced baldness, so the cause should first be assessed in detail by a specialist.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How many sessions will I need and when will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'A typical course is four to six sessions spaced four to six weeks apart. Many patients notice reduced shedding after the first two or three sessions, with improved thickness and new growth building over the full program. The exact number is personalised to the severity of your hair loss and how your hair responds.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is hair mesotherapy painful, and is there any downtime?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is generally painless — you may feel only a slight pricking sensation, and a topical numbing cream can be used for sensitive scalps. There is no downtime: sessions are short and you can return to your daily routine, including work, straight afterwards.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is actually in the mesotherapy mixture?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The solution is a tailored cocktail of vitamins, minerals, amino acids and growth factors that nourish the follicles directly. Rather than a fixed formula, the blend is adjusted to your scalp analysis so it targets the specific deficiencies and weaknesses found in your hair.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Can it be combined with other treatments?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. It pairs well with PRP and with medical treatments such as minoxidil, and it is often used to support and strengthen results after DHI, FUE or Sapphire FUE transplantation. Our specialists design the best combination for your goals.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are there any side effects?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is a safe, minimally invasive procedure. Rarely, temporary redness, mild swelling or itching may appear at the injection sites and settle on their own within a short time.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long do the results last?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Results can last a long time, but mesotherapy supports rather than permanently cures hair loss. If the underlying factors persist, periodic maintenance sessions are recommended to preserve the density and keep your hair healthy.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Hair Mesotherapy — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the improvement in density and hair quality our patients achieve over a course of mesotherapy. Results build gradually across sessions as the follicles are nourished and strengthened.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready to Strengthen Your Hair?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised mesotherapy plan, the recommended number of sessions and a no-obligation quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free scalp assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Personalised vitamin and mineral cocktail', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
