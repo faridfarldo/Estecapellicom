@@ -480,16 +480,16 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'How is Sapphire FUE Applied at Estecapelli?', 'estecapelli' ),
-						'lead'          => __( 'Every procedure is built on careful planning and precise execution at each stage.', 'estecapelli' ),
+						'lead'          => __( 'Every procedure is built on careful planning and precise execution at each stage. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'clipboard',    'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ),     'body' => __( 'A comprehensive consultation and scalp analysis create the most accurate treatment plan based on your unique hair structure and goals.', 'estecapelli' ) ),
-							array( 'icon' => 'shield-check', 'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Local Anaesthesia', 'estecapelli' ),         'body' => __( 'Local anaesthesia is applied to the donor area to ensure a comfortable, pain-free graft harvest.', 'estecapelli' ) ),
-							array( 'icon' => 'target',       'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Collection', 'estecapelli' ),           'body' => __( 'Healthy follicles are individually harvested from the safe donor area using ultra-fine micromotors.', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'time' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Sapphire Channel Opening', 'estecapelli' ),   'body' => __( 'Channels are created with sapphire-tipped blades — the most decisive stage for natural density, angle and direction.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'time' => __( 'Stage 5', 'estecapelli' ), 'title' => __( 'Follicle Implantation', 'estecapelli' ),       'body' => __( 'The harvested follicles are implanted one by one into the pre-opened channels at the correct depth and angle.', 'estecapelli' ) ),
+							array( 'icon' => 'clipboard',    'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'A comprehensive consultation and TrichoLab scalp analysis create the most accurate treatment plan based on your unique hair structure and goals. Your donor area is assessed, the number of grafts estimated and a natural hairline designed before anything else begins.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'shield-check', 'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Local Anaesthesia', 'estecapelli' ),       'body' => '<p>' . esc_html__( 'Local anaesthesia is applied to the donor and recipient areas so the entire session is comfortable and pain-free. You stay awake but relaxed throughout, and can listen to music or watch something during the procedure.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Collection', 'estecapelli' ),         'body' => '<p>' . esc_html__( 'Healthy follicles are harvested one by one from the safe donor area at the back and sides of the scalp using ultra-fine micromotors. Each graft is carefully sorted and preserved to keep it strong and viable until it is implanted.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'sparkles',     'eyebrow' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Sapphire Channel Opening', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Channels are created with sapphire-tipped blades — the most decisive stage for natural density, angle and direction. The smoother, sharper sapphire edge makes finer incisions, so grafts sit closer together with less tissue trauma and faster healing.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 5', 'estecapelli' ), 'title' => __( 'Follicle Implantation', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'The harvested follicles are implanted one by one into the pre-opened channels at the correct depth, angle and direction. This precise placement is what delivers a full, completely natural-looking result that grows in seamlessly with your own hair.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -555,13 +555,37 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Sapphire FUE — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'What is the difference between Sapphire FUE and standard FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Standard FUE opens channels with steel blades, while Sapphire FUE uses sapphire-tipped blades that create sharper, smoother and smaller channels — meaning a more natural hairline, less scarring and faster healing.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Who is a good candidate?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Candidates are generally over 25 with a healthy donor area and no medical condition that would affect the procedure or healing. A free consultation confirms your suitability.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Does it require shaving?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Sapphire FUE typically involves shaving the donor and recipient areas; unshaven options can be discussed during your consultation.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'When will I see the final result?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'New growth starts around month three and full, natural density is generally achieved within twelve months.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is Sapphire FUE painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Like every hair transplant method at Estecapelli, Sapphire FUE is performed under local anaesthesia, so no pain is felt during the procedure. Your comfort is prioritised at every stage with support from our expert team.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Are there any side effects?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Temporary effects such as mild redness, scabbing or shock shedding can occur after the procedure. With proper care and by following expert advice, these settle and disappear completely in a short time.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is the difference between Sapphire FUE and standard FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Both use the same follicle-by-follicle FUE method; the difference is the blade. Standard FUE opens the recipient channels with steel blades, while Sapphire FUE uses sapphire-tipped blades that stay sharper and create smoother, smaller incisions. That means grafts can be placed closer together for higher density, with less tissue trauma, a more natural hairline, minimal scarring and faster healing.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate for Sapphire FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The best candidates are generally over 25 with male or female pattern hair loss, a healthy donor area at the back and sides of the scalp, and no medical condition that would affect the procedure or healing. Because sapphire blades are gentle, it also suits sensitive scalps. A free consultation with photos confirms your suitability and estimates the grafts you need.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does it require shaving, and how long should I stay in Turkey?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Sapphire FUE usually involves shaving the donor and recipient areas to give the surgeon full precision, though partial-shave options can be discussed at your consultation. Most patients stay in Turkey for around three days, including a first wash and aftercare briefing before flying home.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is Sapphire FUE painful, and what is recovery like?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedure is performed under local anaesthesia, so you feel no pain during the session, which typically lasts six to eight hours. Mild redness and swelling settle within a few days, and small scabs shed with gentle washing between days ten and fourteen. Most people return to desk-based work within a few days, avoiding strenuous activity, sun and swimming for the first couple of weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see the final result, and is shedding normal?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The transplanted hairs often shed in the first weeks — this "shock shedding" is completely normal and expected. New growth begins around months three to four, noticeable density develops by six to nine months, and the final, fully matured result appears at about twelve months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent and natural-looking?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The follicles are taken from areas genetically resistant to hair loss, so they keep growing permanently. The sapphire channels follow your natural growth direction for a completely natural hairline and density — you can cut, wash and style the hair normally. Existing non-transplanted hair can still thin over time, so supportive care may be advised to protect the overall look.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Sapphire FUE — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the density and natural hairlines our patients achieve with Sapphire FUE. Every result is planned around your own growth pattern, so the outcome blends seamlessly with your existing hair and looks completely natural.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready to Restore Your Hair with Sapphire FUE?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised Sapphire FUE plan, a graft estimate and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free graft assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
