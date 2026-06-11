@@ -641,15 +641,15 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'How is DHI Performed at Estecapelli?', 'estecapelli' ),
-						'lead'          => __( 'A precise, four-stage process managed end to end by our medical team.', 'estecapelli' ),
+						'lead'          => __( 'A precise, four-stage process managed end to end by our medical team. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'clipboard',    'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ), 'body' => __( 'Your hair structure and goals are analysed with AI-supported TrichoLab to design a fully personalised plan.', 'estecapelli' ) ),
-							array( 'icon' => 'shield-check', 'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Local Anaesthesia', 'estecapelli' ),     'body' => __( 'Local anaesthesia is applied for a comfortable, pain-free procedure.', 'estecapelli' ) ),
-							array( 'icon' => 'target',       'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Collection', 'estecapelli' ),       'body' => __( 'Follicles are individually extracted from the donor area, ready for direct implantation.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'time' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Implantation with Choi Pen', 'estecapelli' ), 'body' => __( 'Grafts are implanted directly with the Choi pen at the precise angle and density for a natural result.', 'estecapelli' ) ),
+							array( 'icon' => 'clipboard',    'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'Your hair structure, donor area and goals are analysed with AI-supported TrichoLab to design a fully personalised plan. The number of grafts is estimated and a natural hairline mapped out, so every detail is agreed before the procedure begins.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'shield-check', 'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Local Anaesthesia', 'estecapelli' ),       'body' => '<p>' . esc_html__( 'Local anaesthesia is applied to the donor and recipient areas for a comfortable, pain-free procedure. You stay awake but relaxed throughout, and can listen to music or watch something during the session.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Collection', 'estecapelli' ),         'body' => '<p>' . esc_html__( 'Healthy follicles are individually extracted from the safe donor area using ultra-fine micromotors and immediately loaded into the Choi implanter pens, minimising the time grafts spend outside the scalp to keep them strong and viable.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Implantation with Choi Pen', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Grafts are implanted directly with the Choi pen at the precise angle, depth and direction — no separate channels are opened first. This direct placement allows very high density between existing hairs and, with the right plan, often without shaving, for a completely natural result.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -699,13 +699,37 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'DHI — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'What is the difference between DHI and FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'With DHI, follicles are implanted directly using a Choi pen without opening separate channels first, giving denser placement and faster healing. FUE opens channels before implantation.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is DHI shaving-free?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'DHI is ideal for unshaven and targeted procedures. Depending on the size of the area, existing hair can often be preserved — your consultant will confirm what suits you.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Who is DHI best suited to?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'DHI is an excellent choice for early-stage hair loss, diffuse thinning, smaller areas and patients seeking ultra-precise, dense placement.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'When will I see results?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Visible growth typically begins around month three, with full results generally seen by month twelve.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Is DHI painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The DHI procedure is carried out under local anaesthesia, so no pain is felt during treatment. At Estecapelli, patient comfort is prioritised at every stage and the process is carefully managed by our expert team.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long does recovery take?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Because DHI is a minimally invasive method, recovery is fast. Most patients return to daily life within a few days, and any redness or scabbing subsides shortly after.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What is the difference between DHI and FUE?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Both harvest follicles the same way; the difference is implantation. With FUE the recipient channels are opened first and grafts placed afterwards, while DHI uses a Choi implanter pen to open the site and place the follicle in one direct motion. This gives the surgeon precise control over angle, depth and density, allows very dense placement, and — with the right plan — often avoids shaving your existing hair.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is DHI really shaving-free? Can I keep my hair?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'DHI is the technique best suited to unshaven and targeted procedures. For smaller areas and density work, your existing hair can often be fully preserved; for larger sessions a partial or hidden trim may be needed. Your consultant will confirm exactly what is possible for your case from your photos.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate for DHI?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'DHI is an excellent choice for early to moderate hair loss, diffuse thinning, smaller or targeted areas, hairline refinement and anyone wanting ultra-precise, dense placement without shaving. The best candidates are generally over 25 with a healthy donor area and stable hair loss; a free consultation with photos confirms your suitability.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is DHI painful, and what is recovery like?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The procedure is carried out under local anaesthesia, so no pain is felt during treatment. Because DHI is minimally invasive with no open channels, recovery is fast — mild redness and small scabs settle within days and most patients return to daily life quickly, avoiding strenuous activity, sun and swimming for the first couple of weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see results, and is shedding normal?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The transplanted hairs often shed in the first weeks — this "shock shedding" is completely normal. New growth begins around months three to four, noticeable density develops by six to nine months, and the final, fully matured result appears at about twelve months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent and natural-looking?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The follicles are taken from areas genetically resistant to hair loss, so they keep growing permanently. The direct, angle-controlled implantation gives a completely natural hairline and density — you can cut, wash and style the hair normally. Existing non-transplanted hair can still thin over time, so supportive care may be advised to protect the overall look.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'DHI — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the density and natural hairlines our patients achieve with DHI. Every result is planned around your own growth pattern, so the outcome blends seamlessly with your existing hair and looks completely natural.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready to Restore Your Hair with DHI?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised DHI plan, a graft estimate and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free graft assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Precise, often shave-free direct implantation', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
