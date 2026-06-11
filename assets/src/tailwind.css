@@ -1277,11 +1277,15 @@
 		top: 100%;
 		left: 0;
 		right: 0;
-		/* Transparent top padding instead of a margin: it keeps the panel's
-		   hover area flush against the trigger so the pointer never crosses a
-		   dead gap, while the visible card (.megamenu__inner) still sits 10px
-		   below the navbar. */
-		padding-top: 10px;
+		/* The panel anchors to the bottom of .site-header, but the nav links sit
+		   ~14px above that (the mainbar has 10px of vertical padding and the
+		   links are vertically centred). That leftover band is a dead zone that
+		   drops :hover and closes the menu mid-move. Pull the panel's hover area
+		   up to the link's bottom edge with a negative margin (no gap), then use
+		   transparent padding-top to drop the visible card back to ~10px below
+		   the header — same look, but the cursor never leaves :hover. */
+		margin-top: -14px;
+		padding-top: 24px;
 		padding-inline: clamp(1rem, 3vw, 2rem);
 		opacity: 0;
 		visibility: hidden;
