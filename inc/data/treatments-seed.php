@@ -802,13 +802,13 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'The Procedure', 'estecapelli' ),
 						'title'         => __( 'How is the VITA Protocol Applied?', 'estecapelli' ),
-						'lead'          => __( 'A two-stage protocol that integrates seamlessly into your transplant.', 'estecapelli' ),
+						'lead'          => __( 'A two-stage protocol that integrates seamlessly into your Sapphire FUE or DHI transplant. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'medical-plus', 'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Microneedling & Nutrient Serum', 'estecapelli' ), 'body' => __( 'Microchannels are created with a dermaroller massage tool, and a highly concentrated serum of vitamins, amino acids, growth factors and minerals is applied to boost blood circulation. The donor area is ideally prepared for smooth, well-fed harvesting, and the recipient area is nourished with a concentrated vitamin complex that the scalp absorbs more effectively thanks to the micro-channels.', 'estecapelli' ) ),
-							array( 'icon' => 'atom',         'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Cold-Vapour Serum on Grafts', 'estecapelli' ),  'body' => __( 'The same nourishing serum is mixed with saline in the graft-harvesting tray and applied to the harvested grafts using a cold-vapour method. This prevents grafts from deteriorating and supports their survival, protecting the follicles to the maximum extent and increasing their post-transplantation regrowth potential.', 'estecapelli' ) ),
+							array( 'icon' => 'medical-plus', 'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Microneedling & Nutrient Serum', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Microchannels are created with a dermaroller massage tool, and a highly concentrated serum of vitamins, amino acids, growth factors and minerals is applied to boost blood circulation. The donor area is ideally prepared for smooth, well-fed harvesting, while the recipient area is nourished with a concentrated vitamin complex that the scalp absorbs far more effectively thanks to the micro-channels.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'atom',         'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Cold-Vapour Serum on Grafts', 'estecapelli' ),  'body' => '<p>' . esc_html__( 'The same nourishing serum is mixed with saline in the graft-harvesting tray and applied to the harvested grafts using a cold-vapour method. This is the most critical window — while follicles are outside the body — so protecting them here prevents deterioration, maximises survival and increases their post-transplantation regrowth potential.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -818,10 +818,36 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'VITA Treatment — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'Is VITA a standalone treatment?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'VITA is a protocol that enhances a hair transplant. It is combined with your FUE or DHI procedure to protect grafts and improve survival.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Who benefits most from VITA?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is especially valuable for patients with weak follicles, fine hair, or a donor area that needs every graft to count.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Does VITA change recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'By nourishing the scalp and grafts, the protocol supports a faster, healthier healing process.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is VITA a standalone treatment?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'No — VITA is a protocol that enhances a hair transplant rather than a treatment on its own. It is applied during your Sapphire FUE or DHI procedure to nourish the scalp and protect the grafts, improving their survival and your overall result.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Why does graft survival matter so much?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The time follicles spend outside the body is one of the biggest factors in a transplant’s success. Once harvested, grafts lose access to blood supply and nutrients and begin to weaken. By feeding and cold-protecting them during this window, VITA helps more grafts survive and grow — which means denser, fuller results.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Who benefits most from VITA?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It is valuable for almost any transplant, but especially for patients with weak follicles, fine hair, or a limited donor area where every single graft needs to count. Your surgeon will advise whether adding VITA is worthwhile for your specific case.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does VITA work with both FUE and DHI?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The VITA Protocol is fully compatible with both Sapphire FUE and DHI techniques, integrating seamlessly into either procedure without changing how your transplant is performed.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does VITA change recovery or cause side effects?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'By nourishing the scalp and grafts, the protocol supports a faster, healthier healing process. It uses vitamins, minerals, amino acids and growth factors naturally suited to the body, so it adds no meaningful downtime or side effects beyond those of the transplant itself.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'VITA-Supported Transplants — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the density and natural results our patients achieve when the VITA Protocol supports their Sapphire FUE or DHI transplant — stronger graft survival translating into a fuller, healthier head of hair.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Want VITA Added to Your Transplant?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised transplant plan, explain how the VITA Protocol can boost your graft survival, and send a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free graft assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Maximised graft survival with the VITA Protocol', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
