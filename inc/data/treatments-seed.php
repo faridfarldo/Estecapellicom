@@ -1017,15 +1017,15 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'steps',
+						'acf_fc_layout' => 'stepbook',
 						'eyebrow'       => __( 'Step by Step', 'estecapelli' ),
 						'title'         => __( 'The Eyebrow Transplant Stages', 'estecapelli' ),
-						'lead'          => __( 'Designed around your facial proportions for a natural, lasting result.', 'estecapelli' ),
+						'lead'          => __( 'Designed around your facial proportions for a natural, lasting result. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'sparkles',     'time' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Eyebrow Design', 'estecapelli' ),       'body' => __( 'A natural eyebrow shape is created by taking facial proportions, muscle structure and the individual’s preferences into account. This stage is the most critical part of the procedure.', 'estecapelli' ) ),
-							array( 'icon' => 'target',       'time' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),     'body' => __( 'Single hair follicles are extracted from the nape area using a specialised micromotor. Using only single follicles is essential for achieving natural-looking results in eyebrow transplantation.', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'time' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'DHI Implantation', 'estecapelli' ),     'body' => __( 'The DHI method is preferred in eyebrow transplantation. With this technique, channel opening and graft implantation are performed simultaneously thanks to special pens.', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'time' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Procedure Duration', 'estecapelli' ), 'body' => __( 'Eyebrow transplantation takes approximately 2 to 3 hours. As it is performed under local anaesthesia, the procedure is highly comfortable.', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Eyebrow Design', 'estecapelli' ),       'body' => '<p>' . esc_html__( 'A natural eyebrow shape is drawn by taking your facial proportions, muscle structure and personal preferences into account. This is the most critical part of the procedure — the design determines the entire result, so it is agreed with you in detail before any follicles are placed.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'Single hair follicles are extracted from the nape at the back of the scalp using a specialised micromotor. Using only single follicles — rather than multi-hair grafts — is essential for the fine, hair-by-hair look that makes an eyebrow transplant appear completely natural.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'DHI Implantation', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'The DHI method is preferred for eyebrows: using special Choi pens, the channel is opened and the follicle implanted in one motion. This gives precise control over the very shallow angle and direction each brow hair needs to lie flat and grow naturally.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'calendar',     'eyebrow' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Procedure Duration', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'The procedure takes approximately two to three hours and is performed under local anaesthesia, so it is comfortable and pain-free. It is carried out as a day procedure, and you can return to your hotel or home the same day.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 
@@ -1062,10 +1062,37 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Eyebrow Transplant — Frequently Asked Questions', 'estecapelli' ),
 						'lead'          => '',
 						'items'         => array(
-							array( 'question' => __( 'Will the result look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Using single follicles implanted at the correct angle and direction with the DHI method creates a brow that looks and behaves completely naturally.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'How long does the procedure take?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Around 2–3 hours under local anaesthesia, performed as a comfortable day procedure.', 'estecapelli' ) . '</p>' ),
-							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Transplanted brow follicles are permanent; after an initial shedding phase they grow in for a lasting result.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will the result look natural?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Using only single follicles, implanted hair by hair at the correct shallow angle and direction with the DHI method, creates a brow that looks and behaves completely naturally — the shape is designed to suit your face, not a one-size template.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Will I have to trim my eyebrows? They grow like scalp hair, right?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Because the follicles come from the nape of your scalp, they keep their original growth behaviour and will grow longer than normal brow hairs. This is completely normal — you simply trim them every couple of weeks. Over time they often adapt and slow down, and the upkeep is minimal.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long does the procedure take, and is it painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It takes around two to three hours and is performed under local anaesthesia, so you feel no pain during the session. It is a comfortable day procedure, and because far fewer grafts are needed than a scalp transplant, recovery is quick.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see the final result?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The transplanted hairs usually shed within the first weeks — this shock loss is normal. New brow hairs begin to grow from around month three, and it takes roughly nine to twelve months for the eyebrows to fully settle into their final, natural appearance.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Am I a good candidate?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Eyebrow transplantation suits anyone with brows that have thinned, scarred or lost shape from over-plucking, ageing, hormonal changes, injury or permanent makeup, as long as there are healthy donor follicles at the nape. A consultation with clear photos confirms your suitability and the design.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Are the results permanent?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. The transplanted brow follicles are taken from a permanent donor area, so after the initial shedding phase they grow in for a lasting, low-maintenance result that does not rely on makeup or microblading.', 'estecapelli' ) . '</p>' ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'gallery',
+						'eyebrow'       => __( 'Real Results', 'estecapelli' ),
+						'title'         => __( 'Eyebrow Transplant — Before & After', 'estecapelli' ),
+						'lead'          => __( 'See the natural, fuller brows our patients achieve. Every eyebrow is designed around your facial proportions and implanted hair by hair, so the result frames your face and looks completely natural.', 'estecapelli' ),
+						'items'         => array(), // Upload before/after composite images in the editor — recommended ratio 16:10.
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Ready for Fuller, Natural Eyebrows?', 'estecapelli' ),
+						'lead'          => __( 'Share a few details and our team will reply with a personalised eyebrow transplant plan, a brow design suited to your face and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free brow assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Single-follicle DHI for a completely natural look', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
 					),
 
 					array(
