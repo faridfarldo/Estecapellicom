@@ -2,17 +2,19 @@
 /**
  * Template Name: Before & After Gallery
  *
- * Aggregates the before/after composites from every treatment's "gallery"
- * section, grouped by category (main group, e.g. Hair Transplant) then by
- * service (technique). Whatever an editor adds to a treatment's gallery
- * section shows up here automatically. Data: estecapelli_gallery_grouped().
+ * Aggregates every Before & After result (the `result` post type), grouped by
+ * category (main group, e.g. Hair Transplant) then by service (technique).
+ * Each result is the single source of truth: it shows here AND in the carousel
+ * at the bottom of its linked treatment page. Add a result once under the
+ * "Before & After" menu and it surfaces in both places automatically.
+ * Data: estecapelli_results_grouped().
  *
  * @package Estecapelli
  */
 
 get_header();
 
-$groups = estecapelli_gallery_grouped();
+$groups = estecapelli_results_grouped();
 
 // Intro text: the page's own content, falling back to the lead of its first
 // hero section (set via the seed / page builder) so the header isn't bare.
@@ -56,12 +58,12 @@ if ( function_exists( 'get_field' ) ) {
 	</header>
 
 	<?php
-	// Keep only categories whose services actually have images.
+	// Keep only categories whose services actually have results.
 	$renderable = array();
 	foreach ( $groups as $group ) {
 		$services = array();
 		foreach ( $group['services'] as $sb ) {
-			if ( $sb['service'] && ! empty( $sb['items'] ) ) {
+			if ( $sb['service'] && ! empty( $sb['results'] ) ) {
 				$services[] = $sb;
 			}
 		}
@@ -148,7 +150,7 @@ if ( function_exists( 'get_field' ) ) {
 
 					<?php foreach ( $services as $i => $sb ) :
 						$svc   = $sb['service'];
-						$items = $sb['items'];
+						$results = $sb['results'];
 						?>
 						<div
 							id="ba-panel-<?php echo esc_attr( $cat_slug . '-' . $svc->ID ); ?>"
@@ -168,36 +170,14 @@ if ( function_exists( 'get_field' ) ) {
 								</a>
 							</div>
 
-							<ul class="t-gallery__grid">
-								<?php foreach ( $items as $item ) :
-									$image = $item['image'] ?? array();
-									if ( empty( $image['url'] ) ) { continue; }
-									?>
-									<li class="t-gallery__card">
-										<figure class="t-gallery__media">
-											<img
-												src="<?php echo esc_url( $image['url'] ); ?>"
-												alt="<?php echo esc_attr( $image['alt'] ?: __( 'Before and after result', 'estecapelli' ) ); ?>"
-												loading="lazy"
-												decoding="async"
-												width="<?php echo (int) ( $image['width']  ?? 1080 ); ?>"
-												height="<?php echo (int) ( $image['height'] ?? 1080 ); ?>"
-											/>
-										</figure>
-
-										<?php if ( ! empty( $item['caption'] ) || ! empty( $item['grafts'] ) ) : ?>
-											<div class="t-gallery__meta">
-												<?php if ( ! empty( $item['caption'] ) ) : ?>
-													<span class="t-gallery__caption"><?php echo esc_html( $item['caption'] ); ?></span>
-												<?php endif; ?>
-												<?php if ( ! empty( $item['grafts'] ) ) : ?>
-													<span class="t-gallery__grafts"><?php echo esc_html( $item['grafts'] ); ?>&nbsp;<?php esc_html_e( 'grafts', 'estecapelli' ); ?></span>
-												<?php endif; ?>
-											</div>
-										<?php endif; ?>
-									</li>
-								<?php endforeach; ?>
-							</ul>
+							<div class="t-gallery__grid">
+								<?php foreach ( $results as $result ) :
+									$card = estecapelli_result_card_data( $result );
+									if ( ! $card ) { continue; }
+									set_query_var( 'ba_card', $card );
+									load_template( locate_template( 'template-parts/before-after-card.php' ), false );
+								endforeach; ?>
+							</div>
 						</div>
 					<?php endforeach; ?>
 				</div>
