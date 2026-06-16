@@ -1998,6 +1998,14 @@
 		flex-direction: column;
 		gap: 0.75rem;
 	}
+	/* Accreditation strip (same image as the hero) — a single transparent PNG
+	   sitting on the dark footer; scales to the column width. */
+	.site-footer__certs {
+		display: block;
+		width: 100%;
+		max-width: 340px;
+		height: auto;
+	}
 	.site-footer__sub-heading {
 		font-size: 0.6875rem;
 		font-weight: 700;

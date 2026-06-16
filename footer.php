@@ -8,7 +8,6 @@
 $contact    = estecapelli_footer_contact();
 $treatments = estecapelli_footer_treatments();
 $sitemap    = estecapelli_footer_sitemap();
-$badges     = estecapelli_footer_badges();
 ?>
 </main><!-- /#main -->
 
@@ -72,16 +71,15 @@ $badges     = estecapelli_footer_badges();
 					</ul>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $badges ) ) : ?>
-					<div class="site-footer__licences">
-						<h4 class="site-footer__sub-heading"><?php esc_html_e( 'Our Licences', 'estecapelli' ); ?></h4>
-						<div class="site-footer__licences-grid">
-							<?php foreach ( $badges as $b ) : ?>
-								<img class="site-footer__licence" src="<?php echo esc_url( $b['src'] ); ?>" alt="<?php echo esc_attr( $b['alt'] ); ?>" loading="lazy" />
-							<?php endforeach; ?>
-						</div>
-					</div>
-				<?php endif; ?>
+				<div class="site-footer__licences">
+					<h4 class="site-footer__sub-heading"><?php esc_html_e( 'Our Licences', 'estecapelli' ); ?></h4>
+					<img
+						class="site-footer__certs"
+						src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/certs.png' ); ?>"
+						alt="<?php esc_attr_e( 'Internationally accredited & certified — Ministry of Health, Certified Medical Travel Agency, HRSA, NACo Award, ISO 13485', 'estecapelli' ); ?>"
+						loading="lazy"
+					/>
+				</div>
 			</div>
 
 			<!-- Column 2: Hair Transplant treatments -->
