@@ -320,7 +320,7 @@ function estecapelli_register_acf_field_groups() {
 									'name'         => 'items',
 									'type'         => 'repeater',
 									'min'          => 1,
-									'max'          => 12,
+									'max'          => 0, // 0 = unlimited before/after composites
 									'button_label' => __( '+ Add Image', 'estecapelli' ),
 									'layout'       => 'block',
 									'sub_fields'   => array(
