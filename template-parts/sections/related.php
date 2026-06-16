@@ -10,10 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 $section = get_query_var( 'section' );
 if ( ! is_array( $section ) ) { return; }
 
-$eyebrow = $section['eyebrow'] ?? '';
-$title   = $section['title']   ?? '';
-$count   = (int) ( $section['count'] ?? 3 );
-$manual  = $section['manual']  ?? array();
+$eyebrow  = $section['eyebrow']  ?? '';
+$title    = $section['title']    ?? '';
+$count    = (int) ( $section['count'] ?? 3 );
+$manual   = $section['manual']   ?? array();
+$category = $section['category'] ?? ''; // optional treatment_category slug (for category landing pages)
 
 $query_args = array(
 	'post_type'           => 'treatment',
@@ -27,6 +28,17 @@ $query_args = array(
 if ( ! empty( $manual ) ) {
 	$query_args['post__in'] = array_map( 'intval', (array) $manual );
 	$query_args['orderby']  = 'post__in';
+} elseif ( ! empty( $category ) ) {
+	// Explicit category (used on category landing pages, which are not treatments themselves).
+	$query_args['tax_query'] = array(
+		array(
+			'taxonomy' => 'treatment_category',
+			'field'    => 'slug',
+			'terms'    => sanitize_title( $category ),
+		),
+	);
+	$query_args['orderby'] = 'title';
+	$query_args['order']   = 'ASC';
 } else {
 	// Auto: pull from same category as the current treatment.
 	$terms = wp_get_post_terms( get_the_ID(), 'treatment_category', array( 'fields' => 'ids' ) );

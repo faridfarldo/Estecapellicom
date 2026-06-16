@@ -548,7 +548,14 @@ function estecapelli_register_acf_field_groups() {
 							'sub_fields' => array(
 								array( 'key' => 'field_rel_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
 								array( 'key' => 'field_rel_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
-								array( 'key' => 'field_rel_count',   'label' => __( 'How many to show', 'estecapelli' ), 'name' => 'count', 'type' => 'number', 'default_value' => 3, 'min' => 1, 'max' => 6 ),
+								array( 'key' => 'field_rel_count',   'label' => __( 'How many to show', 'estecapelli' ), 'name' => 'count', 'type' => 'number', 'default_value' => 3, 'min' => 1, 'max' => 12 ),
+								array(
+									'key'          => 'field_rel_category',
+									'label'        => __( 'Category slug (optional)', 'estecapelli' ),
+									'instructions' => __( 'On a category landing page, enter a treatment-category slug (e.g. hair-transplant) to list every treatment in that category. Leave empty on treatment pages.', 'estecapelli' ),
+									'name'         => 'category',
+									'type'         => 'text',
+								),
 								array(
 									'key'           => 'field_rel_manual',
 									'label'         => __( 'Manual selection (optional)', 'estecapelli' ),
