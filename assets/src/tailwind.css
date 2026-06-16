@@ -1406,6 +1406,43 @@
 		line-height: 1.45;
 	}
 
+	/* ---------- Mega-menu: stacked main column (treatments + care group) ---------- */
+	/* The left side of the panel stacks the treatment columns on top of the
+	   "Care & Technology" group, so the group sits below the treatments and the
+	   feature card on the right keeps its full height. */
+	.megamenu__main {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	/* Care & technology group: part of hair transplant, but not a treatment.
+	   A divider line sets it apart from the treatments above. */
+	.megamenu__extra {
+		margin-top: 0.875rem;
+		padding-top: 0.875rem;
+		border-top: 1px solid var(--color-brand-100);
+	}
+	.megamenu__extra-heading {
+		display: block;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-brand-600);
+		padding-inline: 0.625rem;
+		margin-bottom: 0.25rem;
+	}
+	.megamenu__extra-items {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.125rem 1rem;
+	}
+	/* Quieter than the treatment items — these are supporting guides/tools. */
+	.megamenu__item--care .megamenu__item-label {
+		color: var(--color-brand-700);
+	}
+
 	/* ---------- Mega-menu feature column ---------- */
 	.megamenu__feature {
 		border-left: 1px solid var(--color-brand-100);
@@ -1597,6 +1634,23 @@
 			color: oklch(48% 0.012 260);
 			margin-top: 0.15rem;
 			line-height: 1.4;
+		}
+
+		/* Care & technology group on mobile: keep the divider + heading, stack
+		   its items like the rest of the accordion. */
+		.megamenu__extra {
+			margin-top: 0.25rem;
+			padding-top: 0.75rem;
+			border-top: 1px solid var(--color-brand-100);
+		}
+		.megamenu__extra-heading {
+			padding-inline: 0.75rem;
+			margin-bottom: 0.35rem;
+		}
+		.megamenu__extra-items {
+			display: flex;
+			flex-direction: column;
+			gap: 0;
 		}
 
 		.megamenu__feature { display: none; }

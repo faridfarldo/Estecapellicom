@@ -274,9 +274,27 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 				'columns' => array(
 					array(
 						array(
+							'label'       => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ),
+							'url'         => home_url( '/en/hair-transplant/sapphire-fue-hair-transplant' ),
+							'description' => __( 'A natural and permanent hair transplant technique where follicles are placed via sapphire blades.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'DHI Hair Transplant', 'estecapelli' ),
+							'url'         => home_url( '/en/hair-transplant/dhi-hair-transplant' ),
+							'description' => __( 'A modern hair transplantation method performed with a Choi pen that allows precise placement.', 'estecapelli' ),
+						),
+						array(
 							'label'       => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),
 							'url'         => home_url( '/en/hair-transplant/exosome-fue-hair-transplant' ),
 							'description' => __( 'Supported by cell-regenerating exosomes, it keeps hair follicles alive for longer-lasting density.', 'estecapelli' ),
+							'badge'       => __( 'POPULAR', 'estecapelli' ),
+						),
+					),
+					array(
+						array(
+							'label'       => __( 'VITA Treatment', 'estecapelli' ),
+							'url'         => home_url( '/en/hair-transplant/vita-treatment' ),
+							'description' => __( "Estecapelli's signature method that revitalizes the scalp and strengthens hair.", 'estecapelli' ),
 							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
@@ -292,47 +310,36 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					),
 					array(
 						array(
-							'label'       => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ),
-							'url'         => home_url( '/en/hair-transplant/sapphire-fue-hair-transplant' ),
-							'description' => __( 'A natural and permanent hair transplant technique where follicles are placed via sapphire blades.', 'estecapelli' ),
-						),
-						array(
-							'label'       => __( 'TrichoLab', 'estecapelli' ),
-							'url'         => home_url( '/en/hair-transplant/tricholab' ),
-							'description' => __( 'Advanced AI-powered hair analysis system that examines the hair and scalp in detail.', 'estecapelli' ),
-						),
-						array(
 							'label'       => __( 'Beard Transplant', 'estecapelli' ),
 							'url'         => home_url( '/en/hair-transplant/beard-transplant' ),
 							'description' => __( 'Natural beard and mustache transplantation for sparse or non-existing growth.', 'estecapelli' ),
-						),
-						array(
-							'label'       => __( 'Post-Hair Transplant Period', 'estecapelli' ),
-							'url'         => home_url( '/en/hair-transplant/post-hair-transplant-period' ),
-							'description' => __( 'The post-harvest recovery and hair care period.', 'estecapelli' ),
-						),
-					),
-					array(
-						array(
-							'label'       => __( 'DHI Hair Transplant', 'estecapelli' ),
-							'url'         => home_url( '/en/hair-transplant/dhi-hair-transplant' ),
-							'description' => __( 'A modern hair transplantation method performed with a Choi pen that allows precise placement.', 'estecapelli' ),
-						),
-						array(
-							'label'       => __( 'VITA Treatment', 'estecapelli' ),
-							'url'         => home_url( '/en/hair-transplant/vita-treatment' ),
-							'description' => __( "Estecapelli's signature method that revitalizes the scalp and strengthens hair.", 'estecapelli' ),
-							'badge'       => __( 'POPULAR', 'estecapelli' ),
 						),
 						array(
 							'label'       => __( 'Eyebrow Transplant', 'estecapelli' ),
 							'url'         => home_url( '/en/hair-transplant/eyebrow-transplant' ),
 							'description' => __( 'Eyebrow transplantation that gives a naturally curved and full eyebrow shape.', 'estecapelli' ),
 						),
+					),
+				),
+				// Care & technology: part of hair transplant, but not a treatment in itself —
+				// rendered below a divider, visually set apart from the treatments above.
+				'extra' => array(
+					'heading' => __( 'Hair Transplant Care & Technology', 'estecapelli' ),
+					'items'   => array(
 						array(
 							'label'       => __( 'Pre-Hair Transplant Period', 'estecapelli' ),
 							'url'         => home_url( '/en/hair-transplant/pre-hair-transplant-period' ),
 							'description' => __( 'The preparation and analysis process before hair transplantation.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'Post-Hair Transplant Period', 'estecapelli' ),
+							'url'         => home_url( '/en/hair-transplant/post-hair-transplant-period' ),
+							'description' => __( 'The post-procedure recovery and hair care period.', 'estecapelli' ),
+						),
+						array(
+							'label'       => __( 'TrichoLab', 'estecapelli' ),
+							'url'         => home_url( '/en/hair-transplant/tricholab' ),
+							'description' => __( 'Advanced AI-powered hair analysis system that examines the hair and scalp in detail.', 'estecapelli' ),
 						),
 					),
 				),
@@ -405,24 +412,49 @@ if ( ! function_exists( 'estecapelli_render_megamenu' ) ) {
 		?>
 		<div class="megamenu<?php echo empty( $data['feature'] ) ? ' megamenu--no-feature' : ''; ?>" role="menu" aria-label="<?php echo esc_attr( $key ); ?>" data-mega-key="<?php echo esc_attr( $key ); ?>">
 			<div class="megamenu__inner">
-				<div class="megamenu__cols">
-					<?php foreach ( $data['columns'] as $col ) : ?>
-						<div class="megamenu__col">
-							<?php foreach ( $col as $item ) : ?>
-								<a class="megamenu__item" href="<?php echo esc_url( $item['url'] ); ?>" role="menuitem">
-									<span class="megamenu__item-head">
-										<span class="megamenu__item-label"><?php echo esc_html( $item['label'] ); ?></span>
-										<?php if ( ! empty( $item['badge'] ) ) : ?>
-											<span class="megamenu__item-badge"><?php echo esc_html( $item['badge'] ); ?></span>
+				<div class="megamenu__main">
+					<div class="megamenu__cols">
+						<?php foreach ( $data['columns'] as $col ) : ?>
+							<div class="megamenu__col">
+								<?php foreach ( $col as $item ) : ?>
+									<a class="megamenu__item" href="<?php echo esc_url( $item['url'] ); ?>" role="menuitem">
+										<span class="megamenu__item-head">
+											<span class="megamenu__item-label"><?php echo esc_html( $item['label'] ); ?></span>
+											<?php if ( ! empty( $item['badge'] ) ) : ?>
+												<span class="megamenu__item-badge"><?php echo esc_html( $item['badge'] ); ?></span>
+											<?php endif; ?>
+										</span>
+										<?php if ( ! empty( $item['description'] ) ) : ?>
+											<span class="megamenu__item-desc"><?php echo esc_html( $item['description'] ); ?></span>
 										<?php endif; ?>
-									</span>
-									<?php if ( ! empty( $item['description'] ) ) : ?>
-										<span class="megamenu__item-desc"><?php echo esc_html( $item['description'] ); ?></span>
-									<?php endif; ?>
-								</a>
-							<?php endforeach; ?>
+									</a>
+								<?php endforeach; ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
+
+					<?php if ( ! empty( $data['extra']['items'] ) ) : $ex = $data['extra']; ?>
+						<div class="megamenu__extra">
+							<?php if ( ! empty( $ex['heading'] ) ) : ?>
+								<span class="megamenu__extra-heading"><?php echo esc_html( $ex['heading'] ); ?></span>
+							<?php endif; ?>
+							<div class="megamenu__extra-items">
+								<?php foreach ( $ex['items'] as $item ) : ?>
+									<a class="megamenu__item megamenu__item--care" href="<?php echo esc_url( $item['url'] ); ?>" role="menuitem">
+										<span class="megamenu__item-head">
+											<span class="megamenu__item-label"><?php echo esc_html( $item['label'] ); ?></span>
+											<?php if ( ! empty( $item['badge'] ) ) : ?>
+												<span class="megamenu__item-badge"><?php echo esc_html( $item['badge'] ); ?></span>
+											<?php endif; ?>
+										</span>
+										<?php if ( ! empty( $item['description'] ) ) : ?>
+											<span class="megamenu__item-desc"><?php echo esc_html( $item['description'] ); ?></span>
+										<?php endif; ?>
+									</a>
+								<?php endforeach; ?>
+							</div>
 						</div>
-					<?php endforeach; ?>
+					<?php endif; ?>
 				</div>
 
 				<?php if ( ! empty( $data['feature'] ) ) : $f = $data['feature']; ?>
