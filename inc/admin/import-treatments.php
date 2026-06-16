@@ -327,7 +327,7 @@ function estecapelli_render_treatments_importer() {
 							<td><strong><?php echo esc_html( $t['title'] ); ?></strong></td>
 							<td><code><?php echo esc_html( $t['slug'] ); ?></code></td>
 							<td><?php echo esc_html( $t['category'] ); ?></td>
-							<td><?php echo (int) count( $t['sections'] ); ?></td>
+							<td><?php echo (int) count( $t['sections'] ?? array() ); ?></td>
 							<td>
 								<?php if ( $existing ) : ?>
 									<span style="color:#0d8551;">● <?php esc_html_e( 'Exists', 'estecapelli' ); ?></span><br>
@@ -394,7 +394,7 @@ function estecapelli_render_treatments_importer() {
 							<td><strong><?php echo esc_html( $p['title'] ); ?></strong></td>
 							<td><code><?php echo esc_html( $full_path ); ?></code></td>
 							<td><?php echo esc_html( $p['parent'] ?: '—' ); ?></td>
-							<td><?php echo (int) count( $p['sections'] ); ?></td>
+							<td><?php echo (int) count( $p['sections'] ?? array() ); ?></td>
 							<td>
 								<?php if ( $existing ) : ?>
 									<span style="color:#0d8551;">● <?php esc_html_e( 'Exists', 'estecapelli' ); ?></span><br>
