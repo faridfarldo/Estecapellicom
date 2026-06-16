@@ -77,6 +77,41 @@ function estecapelli_register_treatment_cpt() {
 		)
 	);
 
+	register_post_type(
+		'doctor',
+		array(
+			'labels' => array(
+				'name'                  => __( 'Doctors', 'estecapelli' ),
+				'singular_name'         => __( 'Doctor', 'estecapelli' ),
+				'menu_name'             => __( 'Doctors', 'estecapelli' ),
+				'add_new'               => __( 'Add Doctor', 'estecapelli' ),
+				'add_new_item'          => __( 'Add New Doctor', 'estecapelli' ),
+				'new_item'              => __( 'New Doctor', 'estecapelli' ),
+				'edit_item'             => __( 'Edit Doctor', 'estecapelli' ),
+				'view_item'             => __( 'View Doctor', 'estecapelli' ),
+				'all_items'             => __( 'All Doctors', 'estecapelli' ),
+				'search_items'          => __( 'Search Doctors', 'estecapelli' ),
+				'not_found'             => __( 'No doctors yet. Click “Add Doctor” to create one.', 'estecapelli' ),
+				'not_found_in_trash'    => __( 'No doctors in the trash.', 'estecapelli' ),
+			),
+			'public'              => true,
+			'show_in_rest'        => true,
+			'menu_icon'           => 'dashicons-businessperson',
+			'menu_position'       => 22,
+			'has_archive'         => false,
+			// Profiles live at /en/about-us/our-doctors/{slug} — the same path the
+			// old nested pages used, so existing links and SEO are preserved. The
+			// /en/ prefix is baked in to match the treatment CPT convention (WPML
+			// owns /en/ in production; see inc/local-en-routing.php).
+			'rewrite'             => array( 'slug' => 'en/about-us/our-doctors', 'with_front' => false ),
+			// Name = post title, ordering via page-attributes (menu_order). Photo,
+			// position, bio and credentials are ACF fields (see acf-field-groups.php)
+			// so the editor only ever sees a short, friendly form.
+			'supports'            => array( 'title', 'page-attributes' ),
+			'show_in_nav_menus'   => true,
+		)
+	);
+
 	register_taxonomy(
 		'treatment_category',
 		array( 'treatment', 'result' ),

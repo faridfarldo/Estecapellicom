@@ -3,7 +3,14 @@
  * Section: Doctors — roster grid.
  *
  * Each card shows the doctor's photo, name and position, plus a "View Résumé"
- * button that links to their own profile page when one exists on the site.
+ * button that links to their own profile page.
+ *
+ * The roster is populated automatically from the `doctor` post type: every
+ * published doctor appears here, ordered by their menu order then title, with
+ * the résumé button pointing at their profile permalink. No manual card-by-card
+ * editing — adding a doctor in the Doctors menu is all it takes. The manual
+ * `members` repeater is kept only as a fallback for installs that have no
+ * doctor posts yet (e.g. a fresh import before the doctors are created).
  *
  * @package Estecapelli
  */
@@ -17,6 +24,32 @@ $eyebrow = $section['eyebrow'] ?? '';
 $title   = $section['title']   ?? '';
 $lead    = $section['lead']    ?? '';
 $members = $section['members'] ?? array();
+
+// Prefer live doctor posts over the manual repeater.
+if ( post_type_exists( 'doctor' ) ) {
+	$doctor_posts = get_posts(
+		array(
+			'post_type'      => 'doctor',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+		)
+	);
+
+	if ( $doctor_posts ) {
+		$members = array_map(
+			static function ( $doc ) {
+				return array(
+					'name'       => get_the_title( $doc ),
+					'position'   => function_exists( 'get_field' ) ? (string) get_field( 'position', $doc->ID ) : '',
+					'photo'      => function_exists( 'get_field' ) ? get_field( 'photo', $doc->ID ) : array(),
+					'resume_url' => get_permalink( $doc ),
+				);
+			},
+			$doctor_posts
+		);
+	}
+}
 
 if ( ! $title || empty( $members ) ) { return; }
 

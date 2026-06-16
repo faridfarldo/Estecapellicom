@@ -762,4 +762,74 @@ function estecapelli_register_acf_field_groups() {
 			),
 		)
 	);
+
+	// ============================================================
+	// Doctor profile fields
+	//
+	// A doctor is its own post type (one entry per surgeon). The editor only
+	// fills this short form — name is the post title, everything else lives
+	// here. The single-doctor template and the "Our Doctors" roster grid both
+	// read these fields, so a new doctor appears on the site automatically with
+	// no page nesting and no roster editing.
+	// ============================================================
+	acf_add_local_field_group(
+		array(
+			'key'                   => 'group_doctor_fields',
+			'title'                 => __( 'Doctor Profile', 'estecapelli' ),
+			'location'              => array(
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'doctor',
+					),
+				),
+			),
+			'menu_order'            => 0,
+			'position'              => 'normal',
+			'style'                 => 'default',
+			'label_placement'       => 'top',
+			'instruction_placement' => 'label',
+			'active'                => true,
+			'fields'                => array(
+				array(
+					'key'          => 'field_doctor_position',
+					'label'        => __( 'Position / title', 'estecapelli' ),
+					'name'         => 'position',
+					'type'         => 'text',
+					'instructions' => __( 'e.g. Plastic & Reconstructive Surgeon. Shown under the name on the card and profile.', 'estecapelli' ),
+				),
+				array(
+					'key'           => 'field_doctor_photo',
+					'label'         => __( 'Photo', 'estecapelli' ),
+					'name'          => 'photo',
+					'type'          => 'image',
+					'return_format' => 'array',
+					'preview_size'  => 'medium',
+					'instructions'  => __( 'Portrait photo. Leave empty to show the doctor’s initials instead.', 'estecapelli' ),
+				),
+				array(
+					'key'          => 'field_doctor_bio',
+					'label'        => __( 'Bio', 'estecapelli' ),
+					'name'         => 'bio',
+					'type'         => 'textarea',
+					'rows'         => 6,
+					'instructions' => __( 'A short paragraph about the doctor’s training, experience and approach.', 'estecapelli' ),
+				),
+				array(
+					'key'          => 'field_doctor_credentials',
+					'label'        => __( 'Credentials', 'estecapelli' ),
+					'name'         => 'credentials',
+					'type'         => 'repeater',
+					'min'          => 0,
+					'max'          => 12,
+					'button_label' => __( '+ Add Credential', 'estecapelli' ),
+					'layout'       => 'table',
+					'sub_fields'   => array(
+						array( 'key' => 'field_doctor_cred_label', 'label' => __( 'Credential', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
+					),
+				),
+			),
+		)
+	);
 }

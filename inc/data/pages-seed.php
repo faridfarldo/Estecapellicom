@@ -37,31 +37,9 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 			);
 		};
 
-		/**
-		 * Helper: build a doctor profile (résumé) section. Photo is left empty
-		 * so the page shows a clean placeholder until a portrait is uploaded.
-		 * $credentials is a flat list of already-translated strings.
-		 */
-		$doctor = function ( $role, $name, $body, $credentials ) {
-			return array(
-				'acf_fc_layout' => 'doctor',
-				'eyebrow'       => __( 'Résumé', 'estecapelli' ),
-				'name'          => $name,
-				'role'          => $role,
-				'photo'         => array(),
-				'body'          => $body,
-				'credentials'   => array_map(
-					static function ( $label ) {
-						return array( 'label' => $label );
-					},
-					$credentials
-				),
-				'cta'           => array(
-					'label' => __( 'Book a Free Consultation', 'estecapelli' ),
-					'url'   => home_url( '/en/contact' ),
-				),
-			);
-		};
+		// Doctor profiles are no longer pages — each surgeon is a `doctor` post
+		// (see inc/data/doctors-seed.php and the Doctors menu). The "Our Doctors"
+		// roster grid pulls them in automatically.
 
 		return array(
 
@@ -183,116 +161,11 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				),
 			),
 			array(
-				'slug'    => 'op-dr-hasan-celik',
-				'title'   => 'Op. Dr. Hasan Çelik',
-				'parent'  => 'our-doctors',
-				'sections' => array(
-					$hero( __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ), __( 'Op. Dr. Hasan Çelik', 'estecapelli' ), __( 'Board-certified plastic and reconstructive surgeon at Estecapelli.', 'estecapelli' ) ),
-					$doctor(
-						__( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-						__( 'Op. Dr. Hasan Çelik', 'estecapelli' ),
-						__( 'Op. Dr. Hasan Çelik is a board-certified plastic, reconstructive and aesthetic surgeon at Estecapelli. He completed his medical degree and specialist surgical training at [university / training hospital] and has built his practice around [main areas — e.g. rhinoplasty, body contouring, breast and facial aesthetics]. He leads each of his operations personally, from the first consultation through surgery to post-operative follow-up, pairing precise surgical technique with a calm, patient-first approach. [Add one or two sentences on his experience, fellowships or special interests.]', 'estecapelli' ),
-						array(
-							__( 'Board-certified — Plastic, Reconstructive & Aesthetic Surgery', 'estecapelli' ),
-							__( 'Medical degree — [University, year]', 'estecapelli' ),
-							__( 'Specialist training — [Training hospital / department]', 'estecapelli' ),
-							__( 'Member — [Professional society]', 'estecapelli' ),
-							__( 'Special interests — [e.g. rhinoplasty, body contouring]', 'estecapelli' ),
-							__( 'Languages — [Turkish, English]', 'estecapelli' ),
-						)
-					),
-				),
-			),
-			array(
-				'slug'    => 'op-dr-mehmet-palali',
-				'title'   => 'Op. Dr. Mehmet Palalı',
-				'parent'  => 'our-doctors',
-				'sections' => array(
-					$hero( __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ), __( 'Op. Dr. Mehmet Palalı', 'estecapelli' ), __( 'Board-certified plastic and reconstructive surgeon at Estecapelli.', 'estecapelli' ) ),
-					$doctor(
-						__( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-						__( 'Op. Dr. Mehmet Palalı', 'estecapelli' ),
-						__( 'Op. Dr. Mehmet Palalı is a board-certified plastic, reconstructive and aesthetic surgeon at Estecapelli. He completed his medical degree and specialist surgical training at [university / training hospital] and has built his practice around [main areas — e.g. rhinoplasty, body contouring, breast and facial aesthetics]. He leads each of his operations personally, from the first consultation through surgery to post-operative follow-up, pairing precise surgical technique with a calm, patient-first approach. [Add one or two sentences on his experience, fellowships or special interests.]', 'estecapelli' ),
-						array(
-							__( 'Board-certified — Plastic, Reconstructive & Aesthetic Surgery', 'estecapelli' ),
-							__( 'Medical degree — [University, year]', 'estecapelli' ),
-							__( 'Specialist training — [Training hospital / department]', 'estecapelli' ),
-							__( 'Member — [Professional society]', 'estecapelli' ),
-							__( 'Special interests — [e.g. rhinoplasty, body contouring]', 'estecapelli' ),
-							__( 'Languages — [Turkish, English]', 'estecapelli' ),
-						)
-					),
-				),
-			),
-			array(
-				'slug'    => 'op-dr-necdet-derici',
-				'title'   => 'Op. Dr. Necdet Derici',
-				'parent'  => 'our-doctors',
-				'sections' => array(
-					$hero( __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ), __( 'Op. Dr. Necdet Derici', 'estecapelli' ), __( 'Board-certified plastic and reconstructive surgeon at Estecapelli.', 'estecapelli' ) ),
-					$doctor(
-						__( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-						__( 'Op. Dr. Necdet Derici', 'estecapelli' ),
-						__( 'Op. Dr. Necdet Derici is a board-certified plastic, reconstructive and aesthetic surgeon at Estecapelli. He completed his medical degree and specialist surgical training at [university / training hospital] and has built his practice around [main areas — e.g. rhinoplasty, body contouring, breast and facial aesthetics]. He leads each of his operations personally, from the first consultation through surgery to post-operative follow-up, pairing precise surgical technique with a calm, patient-first approach. [Add one or two sentences on his experience, fellowships or special interests.]', 'estecapelli' ),
-						array(
-							__( 'Board-certified — Plastic, Reconstructive & Aesthetic Surgery', 'estecapelli' ),
-							__( 'Medical degree — [University, year]', 'estecapelli' ),
-							__( 'Specialist training — [Training hospital / department]', 'estecapelli' ),
-							__( 'Member — [Professional society]', 'estecapelli' ),
-							__( 'Special interests — [e.g. rhinoplasty, body contouring]', 'estecapelli' ),
-							__( 'Languages — [Turkish, English]', 'estecapelli' ),
-						)
-					),
-				),
-			),
-			array(
-				'slug'    => 'op-dr-ali-durmus',
-				'title'   => 'Op. Dr. Ali Durmuş',
-				'parent'  => 'our-doctors',
-				'sections' => array(
-					$hero( __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ), __( 'Op. Dr. Ali Durmuş', 'estecapelli' ), __( 'Board-certified plastic and reconstructive surgeon at Estecapelli.', 'estecapelli' ) ),
-					$doctor(
-						__( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-						__( 'Op. Dr. Ali Durmuş', 'estecapelli' ),
-						__( 'Op. Dr. Ali Durmuş is a board-certified plastic, reconstructive and aesthetic surgeon at Estecapelli. He completed his medical degree and specialist surgical training at [university / training hospital] and has built his practice around [main areas — e.g. rhinoplasty, body contouring, breast and facial aesthetics]. He leads each of his operations personally, from the first consultation through surgery to post-operative follow-up, pairing precise surgical technique with a calm, patient-first approach. [Add one or two sentences on his experience, fellowships or special interests.]', 'estecapelli' ),
-						array(
-							__( 'Board-certified — Plastic, Reconstructive & Aesthetic Surgery', 'estecapelli' ),
-							__( 'Medical degree — [University, year]', 'estecapelli' ),
-							__( 'Specialist training — [Training hospital / department]', 'estecapelli' ),
-							__( 'Member — [Professional society]', 'estecapelli' ),
-							__( 'Special interests — [e.g. rhinoplasty, body contouring]', 'estecapelli' ),
-							__( 'Languages — [Turkish, English]', 'estecapelli' ),
-						)
-					),
-				),
-			),
-			array(
 				'slug'   => 'medical-director',
 				'title'  => 'Medical Director',
 				'parent' => 'about-us',
 				'sections' => array(
 					$hero( __( 'Medical Direction', 'estecapelli' ), __( 'Led by our medical director.', 'estecapelli' ), __( 'Every clinical decision at Estecapelli is overseen by our medical director, ensuring consistent standards across hair restoration, plastic surgery, dental and non-surgical care.', 'estecapelli' ) ),
-				),
-			),
-			array(
-				'slug'    => 'mehmet-hanifi-kutlar',
-				'title'   => 'Dr. Mehmet Hanifi Kutlar',
-				'parent'  => 'medical-director',
-				'sections' => array(
-					$hero( __( 'Medical Director & Co-founder', 'estecapelli' ), __( 'Dr. Mehmet Hanifi Kutlar', 'estecapelli' ), __( '15+ years in aesthetic medicine, leading the clinical standards behind every Estecapelli treatment.', 'estecapelli' ) ),
-					$doctor(
-						__( 'Medical Director & Co-founder', 'estecapelli' ),
-						__( 'Dr. Mehmet Hanifi Kutlar', 'estecapelli' ),
-						__( 'Dr. Mehmet Hanifi Kutlar is the Medical Director and co-founder of Estecapelli, overseeing clinical standards across hair restoration, plastic surgery, dental and non-surgical aesthetics. With more than 15 years in aesthetic medicine, he shaped the clinic’s treatment protocols and surgical-quality framework, and personally guides the medical team that delivers them every day. [Add one or two sentences on his background, training and the founding story of Estecapelli.]', 'estecapelli' ),
-						array(
-							__( 'Medical Director & Co-founder — Estecapelli', 'estecapelli' ),
-							__( '15+ years in aesthetic medicine', 'estecapelli' ),
-							__( 'Medical degree — [University, year]', 'estecapelli' ),
-							__( 'Member — [Professional society]', 'estecapelli' ),
-							__( 'Areas of focus — [e.g. hair restoration, aesthetic medicine]', 'estecapelli' ),
-							__( 'Languages — [Turkish, English]', 'estecapelli' ),
-						)
-					),
 				),
 			),
 

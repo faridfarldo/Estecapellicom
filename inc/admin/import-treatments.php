@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once get_template_directory() . '/inc/data/treatments-seed.php';
 require_once get_template_directory() . '/inc/data/pages-seed.php';
+require_once get_template_directory() . '/inc/data/doctors-seed.php';
 
 add_action( 'admin_menu', 'estecapelli_register_content_importer' );
 function estecapelli_register_content_importer() {
@@ -147,6 +148,65 @@ function estecapelli_import_treatment( array $data ) {
 	return $post_id;
 }
 
+/**
+ * Find or create a doctor by slug; return its ID. Writes the Doctor Profile
+ * ACF fields and trashes the legacy nested page it replaces (trashing frees the
+ * slug, so the doctor CPT can own the same URL). The photo field is left
+ * untouched so re-running an import never wipes an uploaded portrait.
+ */
+function estecapelli_import_doctor( array $data ) {
+
+	if ( empty( $data['slug'] ) || empty( $data['name'] ) ) {
+		return new WP_Error( 'invalid_doctor', __( 'Missing slug or name.', 'estecapelli' ) );
+	}
+
+	$existing = get_page_by_path( $data['slug'], OBJECT, 'doctor' );
+
+	$post_args = array(
+		'post_type'    => 'doctor',
+		'post_title'   => $data['name'],
+		'post_name'    => $data['slug'],
+		'post_status'  => 'publish',
+		'post_content' => '',
+		'menu_order'   => (int) ( $data['menu_order'] ?? 0 ),
+	);
+
+	if ( $existing ) {
+		$post_args['ID'] = $existing->ID;
+		$post_id         = wp_update_post( $post_args, true );
+	} else {
+		$post_id = wp_insert_post( $post_args, true );
+	}
+
+	if ( is_wp_error( $post_id ) ) {
+		return $post_id;
+	}
+
+	if ( function_exists( 'update_field' ) ) {
+		update_field( 'position', $data['position'] ?? '', $post_id );
+		update_field( 'bio', $data['bio'] ?? '', $post_id );
+		$credentials = array_map(
+			static function ( $label ) {
+				return array( 'label' => $label );
+			},
+			$data['credentials'] ?? array()
+		);
+		update_field( 'credentials', $credentials, $post_id );
+	}
+
+	// Retire the legacy page so the content lives in one place and the doctor
+	// CPT owns the URL. wp_trash_post() suffixes the old slug with __trashed,
+	// freeing the path for the new profile.
+	if ( ! empty( $data['old_page_path'] ) ) {
+		$old = get_page_by_path( $data['old_page_path'], OBJECT, 'page' );
+		if ( $old && 'trash' !== $old->post_status ) {
+			wp_trash_post( $old->ID );
+		}
+	}
+
+	return $post_id;
+}
+
 function estecapelli_render_treatments_importer() {
 
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -160,6 +220,7 @@ function estecapelli_render_treatments_importer() {
 
 		$treatments = estecapelli_treatments_seed();
 		$pages      = estecapelli_pages_seed();
+		$doctors    = estecapelli_doctors_seed();
 		$target     = sanitize_text_field( wp_unslash( $_POST['estecapelli_action'] ) );
 
 		// Treatments.
@@ -204,10 +265,33 @@ function estecapelli_render_treatments_importer() {
 				);
 			}
 		}
+
+		// Doctors — creates the doctor CPT posts and trashes the legacy
+		// nested pages they replace.
+		foreach ( $doctors as $d ) {
+			if ( '__all__' !== $target && '__all_doctors__' !== $target && ( 'doctor:' . $d['slug'] ) !== $target ) {
+				continue;
+			}
+			$result = estecapelli_import_doctor( $d );
+			if ( is_wp_error( $result ) ) {
+				$messages[] = array( 'type' => 'error', 'text' => sprintf( '%s — %s', esc_html( $d['name'] ), esc_html( $result->get_error_message() ) ) );
+			} else {
+				$messages[] = array(
+					'type' => 'success',
+					'text' => sprintf(
+						/* translators: 1: name, 2: links */
+						__( 'Imported doctor: %1$s — %2$s', 'estecapelli' ),
+						esc_html( $d['name'] ),
+						'<a href="' . esc_url( get_edit_post_link( $result ) ) . '">edit</a> · <a href="' . esc_url( get_permalink( $result ) ) . '" target="_blank">view</a>'
+					),
+				);
+			}
+		}
 	}
 
 	$treatments = estecapelli_treatments_seed();
 	$pages      = estecapelli_pages_seed();
+	$doctors    = estecapelli_doctors_seed();
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Treatment Importer', 'estecapelli' ); ?></h1>
@@ -333,6 +417,54 @@ function estecapelli_render_treatments_importer() {
 			<p style="margin-top:1.25rem;">
 				<button type="submit" name="estecapelli_action" value="__all_pages__" class="button button-primary">
 					<?php esc_html_e( 'Import / Re-import All Pages', 'estecapelli' ); ?>
+				</button>
+			</p>
+
+			<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Doctors', 'estecapelli' ); ?></h2>
+			<p class="description" style="max-width:740px;">
+				<?php esc_html_e( 'Migrates the existing doctor profiles into the Doctors post type. Each becomes a single entry under the “Doctors” menu — no page nesting — and the old nested page it replaces is moved to the trash. The “Our Doctors” roster grid then lists every doctor automatically. Re-importing overwrites the position, bio and credentials, but never the uploaded photo.', 'estecapelli' ); ?>
+			</p>
+
+			<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+				<thead>
+					<tr>
+						<th style="width:30%;"><?php esc_html_e( 'Doctor', 'estecapelli' ); ?></th>
+						<th style="width:22%;"><?php esc_html_e( 'Slug', 'estecapelli' ); ?></th>
+						<th style="width:24%;"><?php esc_html_e( 'Replaces page', 'estecapelli' ); ?></th>
+						<th style="width:12%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+						<th style="width:12%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $doctors as $d ) :
+						$existing = get_page_by_path( $d['slug'], OBJECT, 'doctor' );
+						?>
+						<tr>
+							<td><strong><?php echo esc_html( $d['name'] ); ?></strong></td>
+							<td><code><?php echo esc_html( $d['slug'] ); ?></code></td>
+							<td><code><?php echo esc_html( $d['old_page_path'] ?? '—' ); ?></code></td>
+							<td>
+								<?php if ( $existing ) : ?>
+									<span style="color:#0d8551;">● <?php esc_html_e( 'Exists', 'estecapelli' ); ?></span><br>
+									<a href="<?php echo esc_url( get_edit_post_link( $existing->ID ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a> ·
+									<a href="<?php echo esc_url( get_permalink( $existing->ID ) ); ?>" target="_blank"><?php esc_html_e( 'view', 'estecapelli' ); ?></a>
+								<?php else : ?>
+									<span style="color:#888;">○ <?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+								<?php endif; ?>
+							</td>
+							<td>
+								<button type="submit" name="estecapelli_action" value="doctor:<?php echo esc_attr( $d['slug'] ); ?>" class="button">
+									<?php echo $existing ? esc_html__( 'Re-import', 'estecapelli' ) : esc_html__( 'Migrate', 'estecapelli' ); ?>
+								</button>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+
+			<p style="margin-top:1.25rem;">
+				<button type="submit" name="estecapelli_action" value="__all_doctors__" class="button button-primary">
+					<?php esc_html_e( 'Migrate / Re-import All Doctors', 'estecapelli' ); ?>
 				</button>
 				<button type="submit" name="estecapelli_action" value="__all__" class="button button-primary button-large" style="margin-left:1rem;">
 					<?php esc_html_e( 'Import / Re-import EVERYTHING', 'estecapelli' ); ?>
