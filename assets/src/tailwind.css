@@ -1055,6 +1055,169 @@
 	}
 
 
+	/* ---------- Homepage Before & After gallery ---------- */
+	.home-ba {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding-block: clamp(3rem, 5vw, 5.5rem);
+		background:
+			radial-gradient(ellipse 70% 60% at 80% 10%, oklch(35% 0.10 260 / 0.5), transparent 60%),
+			linear-gradient(170deg, var(--color-brand-950) 0%, oklch(11% 0.03 260) 70%, oklch(9% 0.025 265) 100%);
+		color: white;
+	}
+	.home-ba__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+	.home-ba__glow { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: 0.5; }
+	.home-ba__glow--a { width: 460px; height: 460px; background: oklch(58% 0.13 260 / 0.45); top: -120px; right: -60px; }
+	.home-ba__glow--b { width: 360px; height: 360px; background: oklch(70% 0.15 78 / 0.16); bottom: -120px; left: -40px; }
+	.home-ba .shell { position: relative; z-index: 1; }
+
+	.home-ba__head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 0.75rem;
+		margin-bottom: clamp(1.75rem, 3vw, 2.75rem);
+	}
+	.home-ba__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--color-accent-300);
+	}
+	.home-ba__eyebrow-mark {
+		width: 5px; height: 5px;
+		border-radius: 9999px;
+		background: var(--color-accent-400);
+		box-shadow: 0 0 0 3px oklch(70% 0.15 78 / 0.18);
+	}
+	.home-ba__title {
+		font-size: clamp(1.875rem, 1.3rem + 2.4vw, 2.75rem);
+		font-weight: 700;
+		letter-spacing: -0.025em;
+		margin: 0;
+		color: white;
+	}
+	.home-ba__lead {
+		max-width: 60ch;
+		margin: 0;
+		font-size: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
+		line-height: 1.6;
+		color: oklch(85% 0.015 260);
+	}
+
+	.home-ba__track { padding-block: 0.5rem; align-items: flex-start; }
+	.home-ba__card {
+		flex: 0 0 clamp(280px, 30vw, 380px);
+		scroll-snap-align: start;
+	}
+	.home-ba__frame {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		border-radius: 18px;
+		overflow: hidden;
+		box-shadow:
+			0 4px 12px oklch(0% 0 0 / 0.3),
+			0 24px 50px oklch(0% 0 0 / 0.4),
+			inset 0 0 0 1px oklch(100% 0 0 / 0.08);
+		transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s;
+	}
+	.home-ba__frame:hover {
+		transform: translateY(-4px);
+		box-shadow:
+			0 8px 18px oklch(0% 0 0 / 0.35),
+			0 30px 60px oklch(0% 0 0 / 0.5),
+			inset 0 0 0 1px oklch(100% 0 0 / 0.14);
+	}
+	.home-ba__media {
+		position: relative;
+		margin: 0;
+		overflow: hidden;
+		background: oklch(100% 0 0 / 0.04);
+	}
+	/* Composites come in mixed ratios — never crop them; let height follow. */
+	.home-ba__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+	}
+	.home-ba__frame:hover .home-ba__img { transform: scale(1.04); }
+	.home-ba__shade {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background: linear-gradient(180deg, transparent 45%, oklch(8% 0.02 265 / 0.78) 100%);
+	}
+	.home-ba__cat {
+		position: absolute;
+		top: 0.75rem; left: 0.75rem;
+		z-index: 2;
+		padding: 4px 10px;
+		font-size: 0.625rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: white;
+		background: oklch(20% 0.03 260 / 0.65);
+		border: 1px solid oklch(100% 0 0 / 0.18);
+		border-radius: 9999px;
+		backdrop-filter: blur(6px);
+	}
+	.home-ba__overlay {
+		position: absolute;
+		inset: auto 0 0 0;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		padding: 1rem;
+	}
+	.home-ba__technique {
+		font-size: 1.0625rem;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: white;
+		text-shadow: 0 1px 12px oklch(0% 0 0 / 0.5);
+	}
+	.home-ba__facts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+	.home-ba__chip {
+		padding: 4px 10px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: oklch(90% 0.015 260);
+		background: oklch(100% 0 0 / 0.12);
+		border: 1px solid oklch(100% 0 0 / 0.18);
+		border-radius: 9999px;
+		backdrop-filter: blur(6px);
+	}
+	.home-ba__chip--grafts {
+		color: var(--color-accent-200);
+		border-color: oklch(70% 0.15 78 / 0.4);
+		background: oklch(70% 0.15 78 / 0.16);
+	}
+
+	.home-ba__foot {
+		display: flex;
+		justify-content: center;
+		margin-top: clamp(1.75rem, 3vw, 2.5rem);
+	}
+
+	@media (max-width: 520px) {
+		.home-ba__card { flex-basis: 84%; }
+	}
+
+
 	/* ---------- Container ---------- */
 	.shell {
 		width: 100%;
