@@ -1114,12 +1114,20 @@
 	/* ---- Technique tabs ---- */
 	.home-ba__tabs {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		flex-wrap: nowrap;
 		gap: 0.5rem;
-		margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+		/* Single row: centred when it fits, horizontally scrollable when not. */
+		width: fit-content;
+		max-width: 100%;
+		margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+		overflow-x: auto;
+		scrollbar-width: none;
+		padding-bottom: 2px;
 	}
+	.home-ba__tabs::-webkit-scrollbar { display: none; }
 	.home-ba__tab {
+		flex: 0 0 auto;
+		white-space: nowrap;
 		padding: 0.6rem 1.15rem;
 		border-radius: 9999px;
 		border: 1px solid oklch(100% 0 0 / 0.16);
@@ -1271,14 +1279,21 @@
 	}
 	.home-ba__thumbs {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		flex-wrap: nowrap;
 		gap: 0.6rem;
-		margin: 0.25rem 0 0;
-		padding: 0;
+		/* Single row: centred when few, horizontally scrollable for many. */
+		width: fit-content;
+		max-width: 100%;
+		margin: 0.25rem auto 0;
+		padding-bottom: 6px;
 		list-style: none;
+		overflow-x: auto;
+		scrollbar-width: none;
 	}
+	.home-ba__thumbs::-webkit-scrollbar { display: none; }
+	.home-ba__thumbs li { flex: 0 0 auto; }
 	.home-ba__thumb {
+		flex: 0 0 auto;
 		padding: 0;
 		border: 2px solid transparent;
 		border-radius: 10px;
