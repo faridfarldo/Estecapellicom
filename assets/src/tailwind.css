@@ -478,34 +478,45 @@
 	.hero-split__stage[data-split-active] { transition: --split 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
 
 	@media (max-width: 860px) {
-		/* Drop the diagonal: stack the two panels with a slanted horizontal seam. */
+		/* Keep the interactive split, just rotate it: the diagonal seam runs
+		   horizontally so the two panels stack top (Exosome) / bottom (VITA)
+		   while the same --split / click-to-expand mechanism drives it. */
 		.hero-split__stage {
-			height: auto;
-			display: flex;
-			flex-direction: column;
-			gap: 0.75rem;
+			--slant: 4%;
+			height: clamp(540px, 86vh, 760px);
 		}
-		.hero-split__panel {
-			position: relative;
-			inset: auto;
-			clip-path: none !important;
-			border-radius: 16px;
-			min-height: 168px;
-			transition: min-height 0.45s ease;
+		.hero-split__panel--exosome {
+			clip-path: polygon(0 0, 100% 0, 100% calc(var(--split) - var(--slant)), 0 calc(var(--split) + var(--slant)));
 		}
+		.hero-split__panel--vita {
+			clip-path: polygon(0 calc(var(--split) + var(--slant)), 100% calc(var(--split) - var(--slant)), 100% 100%, 0 100%);
+		}
+
+		/* Anchor each panel's copy to its own edge so the heading stays inside
+		   the visible strip when collapsed; full width, always left-aligned. */
 		.hero-split__content {
 			max-width: none;
+			width: 100%;
 			align-items: flex-start !important;
 			text-align: left !important;
-			padding: 1.5rem;
+			padding: clamp(1.5rem, 6vw, 2.25rem);
 		}
-		.hero-split__panel--vita .hero-split__name,
-		.hero-split__panel--vita .hero-split__detail,
-		.hero-split__panel--vita .hero-split__point { justify-content: flex-start; align-items: flex-start; flex-direction: row; }
-		.hero-split__panel--vita .hero-split__cta { align-self: flex-start; }
+		.hero-split__panel--exosome .hero-split__content { justify-content: flex-start; }
+		.hero-split__panel--vita .hero-split__content { justify-content: flex-end; }
+
+		.hero-split__name,
+		.hero-split__panel--vita .hero-split__name { justify-content: flex-start; }
+		.hero-split__panel--vita .hero-split__detail { align-items: flex-start; }
+		.hero-split__panel--vita .hero-split__point { flex-direction: row; }
+		.hero-split__panel--vita .hero-split__cta,
+		.hero-split__cta { align-self: flex-start; }
 		.hero-split__detail { max-width: none; }
-		.hero-split__panel[data-open="true"] { min-height: 340px; }
-		.hero-split__seam { display: none; }
+
+		/* Horizontal seam glow to match the rotated diagonal. */
+		.hero-split__seam { display: block; }
+		.hero-split__panel--exosome .hero-split__seam {
+			background: linear-gradient(to bottom, transparent calc(var(--split) - var(--slant) - 1px), oklch(85% 0.12 285 / 0.5) var(--split), transparent calc(var(--split) + var(--slant) + 1px));
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
