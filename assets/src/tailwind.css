@@ -2513,9 +2513,19 @@
 		cursor: pointer;
 		outline: none;
 	}
-	.signature__card:hover .signature__inner,
-	.signature__card:focus-within .signature__inner {
+	/* Hover/focus peek — only while the card is still auto-rotating. */
+	.signature__card:not(.is-controlled):hover .signature__inner,
+	.signature__card:not(.is-controlled):focus-within .signature__inner {
 		animation-play-state: paused;
+		transform: rotateY(180deg);
+	}
+	/* Once clicked, the visitor owns this card: stop the auto-flip and let
+	   each click toggle front/back. Other cards keep rotating on their own. */
+	.signature__card.is-controlled .signature__inner {
+		animation: none;
+		transform: rotateY(0deg);
+	}
+	.signature__card.is-controlled.is-flipped .signature__inner {
 		transform: rotateY(180deg);
 	}
 	@keyframes signature-flip {
@@ -2708,8 +2718,9 @@
 		.signature__inner,
 		.signature__card-eyebrow-dot,
 		.signature__hint-icon { animation: none; }
-		.signature__card:hover .signature__inner,
-		.signature__card:focus-within .signature__inner { transform: rotateY(180deg); }
+		.signature__card:not(.is-controlled):hover .signature__inner,
+		.signature__card:not(.is-controlled):focus-within .signature__inner { transform: rotateY(180deg); }
+		.signature__card.is-controlled.is-flipped .signature__inner { transform: rotateY(180deg); }
 	}
 
 	/* ============================================================ Journey — six step cards around a centred team photo */

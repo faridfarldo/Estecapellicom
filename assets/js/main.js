@@ -234,6 +234,37 @@
 		});
 	}
 
+	function initSignatureCards() {
+		var cards = document.querySelectorAll('.signature__card');
+		if (!cards.length) return;
+
+		cards.forEach(function (card) {
+			var inner = card.querySelector('.signature__inner');
+			if (!inner) return;
+
+			function toggle() {
+				// First interaction hands control to the visitor: the card stops
+				// auto-rotating and from now on each click flips it front/back.
+				card.classList.add('is-controlled');
+				card.classList.toggle('is-flipped');
+			}
+
+			inner.addEventListener('click', function (e) {
+				// Let real links/buttons (the back-face CTAs) behave normally.
+				if (e.target.closest('a, button')) return;
+				toggle();
+			});
+
+			inner.addEventListener('keydown', function (e) {
+				if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+					if (e.target.closest('a, button')) return;
+					e.preventDefault();
+					toggle();
+				}
+			});
+		});
+	}
+
 	function initStickyHeader() {
 		var header = document.querySelector('[data-site-header]');
 		if (!header) return;
@@ -495,6 +526,7 @@
 		initMobileNav();
 		initLangSwitch();
 		initStickyHeader();
+		initSignatureCards();
 		initHeroSplit();
 		initServicesTabs();
 		initCategoryTabs();
