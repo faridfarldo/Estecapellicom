@@ -92,27 +92,6 @@ function estecapelli_result_card_data( $result ) {
 }
 
 /**
- * Extract a YouTube video ID from a raw ID or any common YouTube URL form.
- *
- * @param string $raw Field value (ID, youtu.be/…, watch?v=…, embed/…).
- * @return string The 11-char video ID, or '' when none can be found.
- */
-function estecapelli_youtube_id( $raw ) {
-	$raw = trim( $raw );
-	if ( '' === $raw ) {
-		return '';
-	}
-	// Already a bare ID.
-	if ( preg_match( '/^[A-Za-z0-9_-]{11}$/', $raw ) ) {
-		return $raw;
-	}
-	if ( preg_match( '~(?:youtu\.be/|v=|/embed/|/shorts/)([A-Za-z0-9_-]{11})~', $raw, $m ) ) {
-		return $m[1];
-	}
-	return '';
-}
-
-/**
  * Latest published results for the homepage album, newest (menu order) first.
  *
  * @param int $limit Max results to return.
