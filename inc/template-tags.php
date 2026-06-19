@@ -690,14 +690,114 @@ if ( ! function_exists( 'estecapelli_trust_stats' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
+	/**
+	 * Build the homepage services payload from real `treatment` posts.
+	 *
+	 * Tabs are the `treatment_category` terms (ordered by a known field-of-care
+	 * sequence); each card is a treatment in that category, with its cover =
+	 * featured image, title = post title, description = excerpt and link =
+	 * permalink. Returns an empty array when no treatments are published yet,
+	 * so the caller can fall back to the curated defaults.
+	 */
+	function estecapelli_home_services_from_treatments() {
+		if ( ! post_type_exists( 'treatment' ) || ! taxonomy_exists( 'treatment_category' ) ) {
+			return array();
+		}
+
+		// Icons aren't stored on terms — map the known category slugs.
+		$icons = array(
+			'hair-transplant'   => 'hair',
+			'plastic-surgery'   => 'face',
+			'dental-treatment'  => 'tooth',
+			'medical-treatment' => 'medical-plus',
+		);
+		// Preferred tab order; unknown categories fall in after these.
+		$order   = array( 'hair-transplant', 'plastic-surgery', 'dental-treatment', 'medical-treatment' );
+		$per_tab = 4;
+
+		$terms = get_terms( array(
+			'taxonomy'   => 'treatment_category',
+			'hide_empty' => true,
+		) );
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			return array();
+		}
+
+		usort( $terms, function ( $a, $b ) use ( $order ) {
+			$ia = array_search( $a->slug, $order, true );
+			$ib = array_search( $b->slug, $order, true );
+			$ia = ( false === $ia ) ? PHP_INT_MAX : $ia;
+			$ib = ( false === $ib ) ? PHP_INT_MAX : $ib;
+			return $ia <=> $ib;
+		} );
+
+		$categories = array();
+
+		foreach ( $terms as $term ) {
+			$query = new WP_Query( array(
+				'post_type'           => 'treatment',
+				'post_status'         => 'publish',
+				'posts_per_page'      => $per_tab,
+				'orderby'             => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
+				'ignore_sticky_posts' => true,
+				'no_found_rows'       => true,
+				'tax_query'           => array(
+					array(
+						'taxonomy'         => 'treatment_category',
+						'field'            => 'term_id',
+						'terms'            => $term->term_id,
+						'include_children' => false,
+					),
+				),
+			) );
+
+			if ( ! $query->have_posts() ) {
+				continue;
+			}
+
+			$items = array();
+			foreach ( $query->posts as $post ) {
+				$items[] = array(
+					'tag'         => $term->name,
+					'title'       => get_the_title( $post ),
+					'description' => wp_trim_words( get_the_excerpt( $post ), 16, '…' ),
+					'image'       => (string) get_the_post_thumbnail_url( $post, 'large' ),
+					'url'         => get_permalink( $post ),
+					// Optional editorial flag (POPULAR / SIGNATURE …) via post meta.
+					'badge'       => (string) get_post_meta( $post->ID, '_home_card_badge', true ),
+				);
+			}
+
+			$categories[] = array(
+				'key'   => $term->slug,
+				'icon'  => $icons[ $term->slug ] ?? 'medical-plus',
+				'label' => $term->name,
+				'items' => $items,
+			);
+		}
+		wp_reset_postdata();
+
+		if ( empty( $categories ) ) {
+			return array();
+		}
+
+		return array(
+			'eyebrow'    => __( 'WHAT WE TREAT', 'estecapelli' ),
+			'headline'   => __( 'Pick a field. See our signature treatments.', 'estecapelli' ),
+			'lead'       => __( 'Switch between tabs to explore the methods we are best known for in each field of care.', 'estecapelli' ),
+			'categories' => $categories,
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_home_services' ) ) {
 	/**
 	 * Tabbed featured-services block for the homepage.
-	 * Tab buttons map to category keys used in estecapelli_megamenu_data();
-	 * each tab carries 4 cards. Hair Transplant cards have curated photos;
-	 * the other categories fall back to icon-only cards until photos arrive.
 	 *
-	 * ACF override: option 'home_services' returns the full payload below.
+	 * Source of truth, in order: an ACF option override, then the real
+	 * `treatment` posts (covers + cards read from the service section), then a
+	 * curated hardcoded fallback so the block always renders something.
 	 */
 	function estecapelli_home_services() {
 		if ( function_exists( 'get_field' ) ) {
@@ -705,6 +805,11 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 			if ( ! empty( $acf ) ) {
 				return $acf;
 			}
+		}
+
+		$from_cpt = estecapelli_home_services_from_treatments();
+		if ( ! empty( $from_cpt['categories'] ) ) {
+			return $from_cpt;
 		}
 
 		$img = get_template_directory_uri() . '/assets/images/services/';
