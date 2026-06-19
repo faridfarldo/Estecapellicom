@@ -1111,100 +1111,147 @@
 		color: oklch(85% 0.015 260);
 	}
 
-	.home-ba__track { padding-block: 0.5rem; align-items: flex-start; }
-	.home-ba__card {
-		flex: 0 0 clamp(280px, 30vw, 380px);
-		scroll-snap-align: start;
+	/* ---- Technique tabs ---- */
+	.home-ba__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
 	}
-	.home-ba__frame {
+	.home-ba__tab {
+		padding: 0.6rem 1.15rem;
+		border-radius: 9999px;
+		border: 1px solid oklch(100% 0 0 / 0.16);
+		background: oklch(100% 0 0 / 0.06);
+		color: oklch(85% 0.015 260);
+		font-size: 0.875rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: color 0.25s, background 0.25s, border-color 0.25s;
+	}
+	.home-ba__tab:hover { color: white; border-color: oklch(100% 0 0 / 0.32); }
+	.home-ba__tab[aria-selected="true"] {
+		background: var(--color-accent-500);
+		border-color: transparent;
+		color: var(--color-brand-950);
+	}
+
+	.home-ba__panel[hidden] { display: none; }
+
+	/* ---- Auto-scrolling marquee ---- */
+	.home-ba__marquee {
+		overflow: hidden;
+		-webkit-mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+		        mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+	}
+	.home-ba__strip {
+		display: flex;
+		gap: 1rem;
+		width: max-content;
+		margin: 0;
+		padding: 0.25rem 0;
+		list-style: none;
+		animation: home-ba-marquee 60s linear infinite;
+	}
+	.home-ba__marquee:hover .home-ba__strip,
+	.home-ba__marquee[data-paused="true"] .home-ba__strip { animation-play-state: paused; }
+	@keyframes home-ba-marquee {
+		from { transform: translateX(-50%); }
+		to   { transform: translateX(0); }
+	}
+	.home-ba__cell { flex: 0 0 auto; }
+	.home-ba__open {
 		display: block;
-		text-decoration: none;
-		color: inherit;
-		border-radius: 18px;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: pointer;
+		border-radius: 14px;
 		overflow: hidden;
 		box-shadow:
 			0 4px 12px oklch(0% 0 0 / 0.3),
-			0 24px 50px oklch(0% 0 0 / 0.4),
+			0 16px 36px oklch(0% 0 0 / 0.35),
 			inset 0 0 0 1px oklch(100% 0 0 / 0.08);
-		transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s;
 	}
-	.home-ba__frame:hover {
-		transform: translateY(-4px);
-		box-shadow:
-			0 8px 18px oklch(0% 0 0 / 0.35),
-			0 30px 60px oklch(0% 0 0 / 0.5),
-			inset 0 0 0 1px oklch(100% 0 0 / 0.14);
-	}
-	.home-ba__media {
-		position: relative;
-		margin: 0;
-		overflow: hidden;
-		background: oklch(100% 0 0 / 0.04);
-	}
-	/* Composites come in mixed ratios — never crop them; let height follow. */
-	.home-ba__img {
+	.home-ba__open img {
 		display: block;
-		width: 100%;
-		height: auto;
-		transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+		height: clamp(180px, 22vw, 260px);
+		width: auto;
+		object-fit: cover;
+		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
-	.home-ba__frame:hover .home-ba__img { transform: scale(1.04); }
-	.home-ba__shade {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		background: linear-gradient(180deg, transparent 45%, oklch(8% 0.02 265 / 0.78) 100%);
-	}
-	.home-ba__cat {
-		position: absolute;
-		top: 0.75rem; left: 0.75rem;
-		z-index: 2;
-		padding: 4px 10px;
-		font-size: 0.625rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: white;
-		background: oklch(20% 0.03 260 / 0.65);
-		border: 1px solid oklch(100% 0 0 / 0.18);
-		border-radius: 9999px;
-		backdrop-filter: blur(6px);
-	}
-	.home-ba__overlay {
-		position: absolute;
-		inset: auto 0 0 0;
-		z-index: 2;
+	.home-ba__open:hover img { transform: scale(1.05); }
+
+	/* ---- Viewer (large image + thumbnails) ---- */
+	.home-ba__viewer {
 		display: flex;
 		flex-direction: column;
-		gap: 0.4rem;
-		padding: 1rem;
+		align-items: center;
+		gap: 0.75rem;
 	}
-	.home-ba__technique {
-		font-size: 1.0625rem;
-		font-weight: 700;
-		letter-spacing: -0.01em;
-		color: white;
-		text-shadow: 0 1px 12px oklch(0% 0 0 / 0.5);
+	.home-ba__back {
+		align-self: flex-start;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.4rem 0.75rem;
+		border-radius: 9999px;
+		border: 1px solid oklch(100% 0 0 / 0.18);
+		background: oklch(100% 0 0 / 0.06);
+		color: oklch(88% 0.015 260);
+		font-size: 0.8125rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: color 0.2s, border-color 0.2s;
 	}
-	.home-ba__facts {
+	.home-ba__back:hover { color: white; border-color: oklch(100% 0 0 / 0.32); }
+	.home-ba__stage {
+		margin: 0;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		border-radius: 18px;
+		overflow: hidden;
+		background: oklch(100% 0 0 / 0.04);
+		box-shadow:
+			0 8px 18px oklch(0% 0 0 / 0.3),
+			0 30px 60px oklch(0% 0 0 / 0.45),
+			inset 0 0 0 1px oklch(100% 0 0 / 0.08);
+	}
+	.home-ba__main {
+		display: block;
+		max-width: 100%;
+		max-height: clamp(340px, 55vh, 560px);
+		width: auto;
+		height: auto;
+	}
+	.home-ba__thumbs {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.4rem;
+		justify-content: center;
+		gap: 0.6rem;
+		margin: 0.25rem 0 0;
+		padding: 0;
+		list-style: none;
 	}
-	.home-ba__chip {
-		padding: 4px 10px;
-		font-size: 0.75rem;
-		font-weight: 600;
-		color: oklch(90% 0.015 260);
-		background: oklch(100% 0 0 / 0.12);
-		border: 1px solid oklch(100% 0 0 / 0.18);
-		border-radius: 9999px;
-		backdrop-filter: blur(6px);
+	.home-ba__thumb {
+		padding: 0;
+		border: 2px solid transparent;
+		border-radius: 10px;
+		overflow: hidden;
+		background: none;
+		cursor: pointer;
+		opacity: 0.6;
+		transition: opacity 0.2s, border-color 0.2s;
 	}
-	.home-ba__chip--grafts {
-		color: var(--color-accent-200);
-		border-color: oklch(70% 0.15 78 / 0.4);
-		background: oklch(70% 0.15 78 / 0.16);
+	.home-ba__thumb:hover { opacity: 1; }
+	.home-ba__thumb[aria-current="true"] { opacity: 1; border-color: var(--color-accent-400); }
+	.home-ba__thumb img {
+		display: block;
+		width: clamp(60px, 9vw, 92px);
+		height: clamp(60px, 9vw, 92px);
+		object-fit: cover;
 	}
 
 	.home-ba__foot {
@@ -1213,8 +1260,9 @@
 		margin-top: clamp(1.75rem, 3vw, 2.5rem);
 	}
 
-	@media (max-width: 520px) {
-		.home-ba__card { flex-basis: 84%; }
+	@media (prefers-reduced-motion: reduce) {
+		.home-ba__strip { animation: none; }
+		.home-ba__marquee { overflow-x: auto; }
 	}
 
 

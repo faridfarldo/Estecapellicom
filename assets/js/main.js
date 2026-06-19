@@ -265,6 +265,55 @@
 		});
 	}
 
+	function initHomeBaGallery() {
+		var roots = document.querySelectorAll('[data-hba]');
+		if (!roots.length) return;
+
+		roots.forEach(function (root) {
+			var marquee = root.querySelector('[data-hba-marquee]');
+			var viewer  = root.querySelector('[data-hba-viewer]');
+			var mainImg = root.querySelector('[data-hba-main]');
+			var thumbs  = Array.prototype.slice.call(root.querySelectorAll('[data-hba-thumb]'));
+			if (!marquee || !viewer || !mainImg) return;
+
+			function setMain(src, alt) {
+				mainImg.src = src;
+				mainImg.alt = alt || '';
+				thumbs.forEach(function (t) {
+					t.setAttribute('aria-current', t.getAttribute('data-hba-src') === src ? 'true' : 'false');
+				});
+			}
+
+			function openViewer(src, alt) {
+				setMain(src, alt);
+				marquee.setAttribute('data-paused', 'true');
+				marquee.hidden = true;
+				viewer.hidden = false;
+			}
+
+			function closeViewer() {
+				viewer.hidden = true;
+				marquee.hidden = false;
+				marquee.removeAttribute('data-paused');
+			}
+
+			root.querySelectorAll('[data-hba-open]').forEach(function (btn) {
+				btn.addEventListener('click', function () {
+					openViewer(btn.getAttribute('data-hba-src'), btn.getAttribute('data-hba-alt'));
+				});
+			});
+
+			thumbs.forEach(function (t) {
+				t.addEventListener('click', function () {
+					setMain(t.getAttribute('data-hba-src'), t.getAttribute('data-hba-alt'));
+				});
+			});
+
+			var back = root.querySelector('[data-hba-back]');
+			if (back) back.addEventListener('click', closeViewer);
+		});
+	}
+
 	function initStickyHeader() {
 		var header = document.querySelector('[data-site-header]');
 		if (!header) return;
@@ -528,6 +577,7 @@
 		initStickyHeader();
 		initSignatureCards();
 		initHeroSplit();
+		initHomeBaGallery();
 		initServicesTabs();
 		initCategoryTabs();
 		initPatientStories();

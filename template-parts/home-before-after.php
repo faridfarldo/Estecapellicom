@@ -1,11 +1,14 @@
 <?php
 /**
- * Homepage: Before & After gallery (special).
+ * Homepage: Hair-transplant Before & After gallery.
  *
- * Read-only: pulls the same before/after composites that the Before & After
- * page shows (estecapelli_gallery_grouped — images added to each treatment's
- * gallery section), flattens them and shows a premium carousel on the home
- * page. Does NOT modify any Before & After data, function or page.
+ * Tabs = hair-transplant techniques (services). Each technique shows an
+ * auto-scrolling marquee of its before/after composites; clicking an image
+ * pauses the marquee and opens a viewer (large image + thumbnail strip).
+ *
+ * Read-only: reuses estecapelli_gallery_grouped() (images from each
+ * treatment's gallery section). Does NOT modify any Before & After data,
+ * function or page. Plastic surgery / dental are intentionally excluded.
  *
  * @package Estecapelli
  */
@@ -16,36 +19,54 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $groups = function_exists( 'estecapelli_gallery_grouped' ) ? estecapelli_gallery_grouped() : array();
 
-// Flatten the grouped composites into a flat list of cards.
-$cards = array();
+// Only the hair-transplant category feeds this section.
+$ht_group = null;
 foreach ( $groups as $group ) {
-	$category = $group['term']->name;
-	foreach ( $group['services'] as $sb ) {
-		$svc       = $sb['service'];
-		$technique = $svc ? get_the_title( $svc ) : '';
-		$url       = $svc ? get_permalink( $svc ) : '';
-		foreach ( $sb['items'] as $item ) {
-			if ( empty( $item['image']['url'] ) ) {
-				continue;
-			}
-			$cards[] = array(
-				'image'     => $item['image'],
-				'caption'   => trim( (string) ( $item['caption'] ?? '' ) ),
-				'grafts'    => trim( (string) ( $item['grafts'] ?? '' ) ),
-				'technique' => $technique,
-				'category'  => $category,
-				'url'       => $url,
-			);
-		}
+	if ( isset( $group['term'] ) && 'hair-transplant' === $group['term']->slug ) {
+		$ht_group = $group;
+		break;
 	}
 }
-if ( empty( $cards ) ) {
+if ( ! $ht_group ) {
 	return;
 }
 
-// Keep the homepage light — show the first dozen, full set lives on the page.
-$cards       = array_slice( $cards, 0, 12 );
-$multi       = count( $cards ) > 1;
+// Each service in the category becomes a technique tab carrying its images.
+$techniques = array();
+foreach ( $ht_group['services'] as $sb ) {
+	$svc = $sb['service'];
+	if ( ! $svc ) {
+		continue;
+	}
+
+	$images = array();
+	foreach ( $sb['items'] as $item ) {
+		if ( empty( $item['image']['url'] ) ) {
+			continue;
+		}
+		$im      = $item['image'];
+		$sizes   = $im['sizes'] ?? array();
+		$images[] = array(
+			'thumb' => $sizes['medium'] ?? ( $sizes['large'] ?? $im['url'] ),
+			'full'  => $sizes['large'] ?? $im['url'],
+			'alt'   => $im['alt'] ?: get_the_title( $svc ),
+		);
+	}
+	if ( empty( $images ) ) {
+		continue;
+	}
+
+	$techniques[] = array(
+		'id'     => $svc->ID,
+		'title'  => get_the_title( $svc ),
+		'url'    => get_permalink( $svc ),
+		'images' => $images,
+	);
+}
+if ( empty( $techniques ) ) {
+	return;
+}
+
 $gallery_url = home_url( '/en/before-after' );
 ?>
 
@@ -64,84 +85,98 @@ $gallery_url = home_url( '/en/before-after' );
 				<?php esc_html_e( 'REAL PATIENTS · REAL RESULTS', 'estecapelli' ); ?>
 			</span>
 			<h2 id="home-ba-title" class="home-ba__title"><?php esc_html_e( 'Before &amp; After', 'estecapelli' ); ?></h2>
-			<p class="home-ba__lead"><?php esc_html_e( 'A look at the transformations our patients trust us for — every result planned around their own anatomy.', 'estecapelli' ); ?></p>
+			<p class="home-ba__lead"><?php esc_html_e( 'Choose a hair-transplant technique to browse real patient results.', 'estecapelli' ); ?></p>
 		</header>
 
-		<div class="home-ba__carousel ec-carousel" data-carousel>
-			<?php if ( $multi ) : ?>
-				<button type="button" class="ec-carousel__nav ec-carousel__nav--prev" data-carousel-prev aria-label="<?php esc_attr_e( 'Previous result', 'estecapelli' ); ?>">
-					<?php estecapelli_icon( 'chevron-down', array( 'width' => 22, 'height' => 22 ) ); ?>
+		<div class="home-ba__tabs" role="tablist" aria-label="<?php esc_attr_e( 'Hair transplant techniques', 'estecapelli' ); ?>" data-services-tablist>
+			<?php foreach ( $techniques as $i => $tech ) :
+				$is_first = ( 0 === $i );
+				?>
+				<button
+					type="button"
+					id="home-ba-tab-<?php echo (int) $tech['id']; ?>"
+					class="home-ba__tab"
+					role="tab"
+					aria-selected="<?php echo $is_first ? 'true' : 'false'; ?>"
+					aria-controls="home-ba-panel-<?php echo (int) $tech['id']; ?>"
+					tabindex="<?php echo $is_first ? '0' : '-1'; ?>"
+					data-services-tab
+				>
+					<?php echo esc_html( $tech['title'] ); ?>
 				</button>
-			<?php endif; ?>
-
-			<ul class="home-ba__track ec-carousel__track" data-carousel-track>
-				<?php
-				foreach ( $cards as $card ) :
-					$image = $card['image'];
-					$tag   = 'li';
-					?>
-					<li class="home-ba__card">
-						<?php
-						$has_link = ! empty( $card['url'] );
-						$open     = $has_link ? '<a class="home-ba__frame" href="' . esc_url( $card['url'] ) . '">' : '<div class="home-ba__frame">';
-						$close    = $has_link ? '</a>' : '</div>';
-						echo $open; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						?>
-							<figure class="home-ba__media">
-								<?php
-								$img_id = $image['ID'] ?? $image['id'] ?? 0;
-								$alt    = $image['alt'] ?? __( 'Before and after result', 'estecapelli' );
-								if ( $img_id ) {
-									echo wp_get_attachment_image(
-										(int) $img_id,
-										'large',
-										false,
-										array( 'class' => 'home-ba__img', 'alt' => $alt, 'loading' => 'lazy', 'decoding' => 'async' )
-									);
-								} else {
-									?>
-									<img class="home-ba__img" src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" decoding="async" />
-									<?php
-								}
-								?>
-								<span class="home-ba__shade" aria-hidden="true"></span>
-
-								<?php if ( $card['category'] ) : ?>
-									<span class="home-ba__cat"><?php echo esc_html( $card['category'] ); ?></span>
-								<?php endif; ?>
-
-								<?php if ( $card['technique'] || $card['grafts'] || $card['caption'] ) : ?>
-									<figcaption class="home-ba__overlay">
-										<?php if ( $card['technique'] ) : ?>
-											<span class="home-ba__technique"><?php echo esc_html( $card['technique'] ); ?></span>
-										<?php endif; ?>
-										<div class="home-ba__facts">
-											<?php if ( $card['grafts'] ) : ?>
-												<span class="home-ba__chip home-ba__chip--grafts">
-													<?php
-													/* translators: %s: graft count. */
-													printf( esc_html__( '%s grafts', 'estecapelli' ), esc_html( $card['grafts'] ) );
-													?>
-												</span>
-											<?php endif; ?>
-											<?php if ( $card['caption'] ) : ?>
-												<span class="home-ba__chip"><?php echo esc_html( $card['caption'] ); ?></span>
-											<?php endif; ?>
-										</div>
-									</figcaption>
-								<?php endif; ?>
-							</figure>
-						<?php echo $close; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-
-			<?php if ( $multi ) : ?>
-				<button type="button" class="ec-carousel__nav ec-carousel__nav--next" data-carousel-next aria-label="<?php esc_attr_e( 'Next result', 'estecapelli' ); ?>">
-					<?php estecapelli_icon( 'chevron-down', array( 'width' => 22, 'height' => 22 ) ); ?>
-				</button>
-			<?php endif; ?>
+			<?php endforeach; ?>
 		</div>
+
+		<?php foreach ( $techniques as $i => $tech ) :
+			$is_first = ( 0 === $i );
+			?>
+			<div
+				id="home-ba-panel-<?php echo (int) $tech['id']; ?>"
+				class="home-ba__panel"
+				role="tabpanel"
+				aria-labelledby="home-ba-tab-<?php echo (int) $tech['id']; ?>"
+				data-services-panel
+				data-hba
+				<?php echo $is_first ? '' : 'hidden'; ?>
+			>
+
+				<!-- Auto-scrolling marquee (click an image to open the viewer) -->
+				<div class="home-ba__marquee" data-hba-marquee>
+					<ul class="home-ba__strip" data-hba-strip>
+						<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
+							<?php foreach ( $tech['images'] as $img ) : ?>
+								<li class="home-ba__cell" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
+									<button
+										type="button"
+										class="home-ba__open"
+										data-hba-open
+										data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
+										data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
+										<?php echo 1 === $dup ? 'tabindex="-1" aria-hidden="true"' : ''; ?>
+										aria-label="<?php esc_attr_e( 'Open result', 'estecapelli' ); ?>"
+									>
+										<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
+									</button>
+								</li>
+							<?php endforeach; ?>
+						<?php endfor; ?>
+					</ul>
+				</div>
+
+				<!-- Viewer: large image + thumbnail strip -->
+				<div class="home-ba__viewer" data-hba-viewer hidden>
+					<button type="button" class="home-ba__back" data-hba-back>
+						<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
+						<?php esc_html_e( 'Back to gallery', 'estecapelli' ); ?>
+					</button>
+
+					<figure class="home-ba__stage">
+						<img class="home-ba__main" data-hba-main src="" alt="" decoding="async" />
+					</figure>
+
+					<ul class="home-ba__thumbs">
+						<?php foreach ( $tech['images'] as $idx => $img ) : ?>
+							<li>
+								<button
+									type="button"
+									class="home-ba__thumb"
+									data-hba-thumb
+									data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
+									data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
+									aria-label="<?php
+										/* translators: %d: image number. */
+										printf( esc_attr__( 'View result %d', 'estecapelli' ), (int) $idx + 1 );
+									?>"
+								>
+									<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
+								</button>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+
+			</div>
+		<?php endforeach; ?>
 
 		<div class="home-ba__foot">
 			<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $gallery_url ); ?>">
