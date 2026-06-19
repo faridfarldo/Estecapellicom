@@ -13,6 +13,8 @@ get_header();
 
 <?php get_template_part( 'template-parts/hero', 'home' ); ?>
 
+<?php get_template_part( 'template-parts/hair-analysis-lab' ); ?>
+
 <?php get_template_part( 'template-parts/trust', 'strip' ); ?>
 
 <?php get_template_part( 'template-parts/home-before-after' ); ?>
@@ -24,8 +26,6 @@ get_header();
 <?php get_template_part( 'template-parts/signature', 'methods' ); ?>
 
 <?php get_template_part( 'template-parts/patient', 'stories' ); ?>
-
-<?php get_template_part( 'template-parts/hair-analysis-lab' ); ?>
 
 <?php get_template_part( 'template-parts/facilities' ); ?>
 
