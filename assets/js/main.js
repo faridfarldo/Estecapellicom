@@ -338,6 +338,45 @@
 				show(null);
 			});
 		});
+
+		// Interactive scalp-zone picker (self-assessment form).
+		var zones = Array.prototype.slice.call(root.querySelectorAll('[data-hal-zone]'));
+		if (zones.length) {
+			var field   = root.querySelector('[data-hal-zones]');
+			var summary = root.querySelector('[data-hal-summary]');
+			var list    = root.querySelector('[data-hal-zonelist]');
+			var selected = [];
+
+			function renderZones() {
+				if (field) field.value = selected.join(', ');
+				if (summary) summary.classList.toggle('has-selection', selected.length > 0);
+				if (list) {
+					list.textContent = '';
+					selected.forEach(function (name) {
+						var pill = document.createElement('span');
+						pill.className = 'hal__zonepill';
+						pill.textContent = name;
+						list.appendChild(pill);
+					});
+				}
+			}
+
+			zones.forEach(function (zone) {
+				zone.addEventListener('click', function () {
+					var name    = zone.getAttribute('data-hal-zone');
+					var related = root.querySelectorAll('[data-hal-zone="' + name + '"]');
+					var idx     = selected.indexOf(name);
+					if (idx > -1) {
+						selected.splice(idx, 1);
+						related.forEach(function (r) { r.classList.remove('is-active'); });
+					} else {
+						selected.push(name);
+						related.forEach(function (r) { r.classList.add('is-active'); });
+					}
+					renderZones();
+				});
+			});
+		}
 	}
 
 	function initStickyHeader() {

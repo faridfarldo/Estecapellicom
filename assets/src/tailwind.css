@@ -1500,6 +1500,73 @@
 		opacity: 0.8;
 	}
 	.hal__fieldset { border: 0; margin: 0; padding: 0; }
+
+	/* ---- Interactive scalp-zone picker ---- */
+	.hal__zonemap {
+		position: relative;
+		max-width: 420px;
+		margin-inline: auto;
+	}
+	.hal__zoneimg {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 16px;
+	}
+	.hal__zonesvg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.hal__zone {
+		fill: oklch(82% 0.13 85 / 0);
+		stroke: oklch(82% 0.13 85 / 0);
+		stroke-width: 2;
+		cursor: pointer;
+		transition: fill 0.2s, stroke 0.2s;
+	}
+	.hal__zone:hover {
+		fill: oklch(82% 0.13 85 / 0.35);
+		stroke: var(--hal-gold);
+	}
+	.hal__zone.is-active {
+		fill: oklch(58% 0.21 25 / 0.5);
+		stroke: var(--hal-red);
+	}
+	.hal__zonesummary {
+		margin-top: 1rem;
+		text-align: center;
+	}
+	.hal__zonesummary-label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--hal-muted);
+	}
+	.hal__zonesummary-empty {
+		font-size: 0.875rem;
+		color: var(--hal-muted);
+	}
+	.hal__zonesummary.has-selection .hal__zonesummary-empty { display: none; }
+	.hal__zonesummary-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.4rem;
+	}
+	.hal__zonepill {
+		padding: 4px 12px;
+		border-radius: 9999px;
+		font-size: 0.8125rem;
+		font-weight: 700;
+		color: oklch(20% 0.04 60);
+		background: linear-gradient(140deg, var(--hal-gold-soft), var(--hal-gold));
+	}
+
 	.hal__legend {
 		padding: 0;
 		margin-bottom: 0.75rem;
