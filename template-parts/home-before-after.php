@@ -122,10 +122,18 @@ $gallery_url = home_url( '/en/before-after' );
 
 				<!-- Moving tableau wall — click any photo to open the gallery viewer.
 				     Images are emitted twice so the scroll loops seamlessly. -->
+				<?php
+				// Widen one half so the full-bleed wall always covers the viewport,
+				// then emit two identical halves for a seamless -50%→0 loop.
+				$half_imgs = $tech['images'];
+				while ( count( $half_imgs ) < 12 ) {
+					$half_imgs = array_merge( $half_imgs, $tech['images'] );
+				}
+				?>
 				<div class="home-ba__wall" data-hba-board>
 					<ul class="home-ba__walltrack">
 						<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
-							<?php foreach ( $tech['images'] as $idx => $img ) :
+							<?php foreach ( $half_imgs as $idx => $img ) :
 								// Every 5th tile is a big 2x2 block; the pattern is keyed to the
 								// real index so both copies match and the loop stays seamless.
 								$is_big = ( 0 === $idx % 5 );
