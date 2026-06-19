@@ -184,6 +184,33 @@
 		});
 	}
 
+	function initHeroSplit() {
+		var stages = document.querySelectorAll('[data-split-stage]');
+		if (!stages.length) return;
+
+		stages.forEach(function (stage) {
+			var toggles = Array.prototype.slice.call(stage.querySelectorAll('[data-split-toggle]'));
+			if (!toggles.length) return;
+
+			function activate(key) {
+				stage.setAttribute('data-split-active', key);
+				toggles.forEach(function (t) {
+					var on = t.getAttribute('data-split-toggle') === key;
+					t.setAttribute('aria-pressed', on ? 'true' : 'false');
+					var panel = t.closest('[data-split-panel]');
+					if (panel) panel.setAttribute('data-open', on ? 'true' : 'false');
+				});
+			}
+
+			toggles.forEach(function (t) {
+				var key = t.getAttribute('data-split-toggle');
+				t.addEventListener('click', function () { activate(key); });
+				// Keyboard users land on a panel via Tab; reveal it on focus too.
+				t.addEventListener('focus', function () { activate(key); });
+			});
+		});
+	}
+
 	function initStickyHeader() {
 		var header = document.querySelector('[data-site-header]');
 		if (!header) return;
@@ -445,6 +472,7 @@
 		initMobileNav();
 		initLangSwitch();
 		initStickyHeader();
+		initHeroSplit();
 		initServicesTabs();
 		initCategoryTabs();
 		initPatientStories();
