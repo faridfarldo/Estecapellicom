@@ -1157,7 +1157,7 @@
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		animation: home-ba-wall 90s linear infinite;
+		animation: home-ba-wall 30s linear infinite;
 	}
 	.home-ba__wall:hover .home-ba__walltrack { animation-play-state: paused; }
 	@keyframes home-ba-wall {
