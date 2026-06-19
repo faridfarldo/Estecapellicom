@@ -310,39 +310,101 @@
 		clip-path: polygon(calc(var(--split) + var(--slant)) 0, 100% 0, 100% 100%, calc(var(--split) - var(--slant)) 100%);
 	}
 
-	.hero-split__panel-bg {
+	/* Cover image — shown while the panel is collapsed. */
+	.hero-split__cover {
 		position: absolute;
 		inset: 0;
 		z-index: 0;
-		transition: opacity 0.5s ease, transform 0.6s ease;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
-	.hero-split__panel--exosome .hero-split__panel-bg {
-		background:
-			radial-gradient(ellipse 90% 70% at 30% 30%, oklch(55% 0.16 285 / 0.55), transparent 70%),
-			linear-gradient(150deg, oklch(30% 0.10 285) 0%, oklch(16% 0.06 285) 100%);
+	.hero-split__panel--exosome .hero-split__cover { object-position: 30% center; }
+	.hero-split__panel--vita .hero-split__cover { object-position: 70% center; }
+
+	/* Video layer — JS injects the YouTube iframe on open and clears it on close. */
+	.hero-split__video {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 0.45s ease;
+		background: oklch(8% 0.02 265);
 	}
-	.hero-split__panel--vita .hero-split__panel-bg {
-		background:
-			radial-gradient(ellipse 90% 70% at 70% 30%, oklch(60% 0.15 200 / 0.55), transparent 70%),
-			linear-gradient(210deg, oklch(32% 0.09 200) 0%, oklch(15% 0.05 215) 100%);
+	.hero-split__panel[data-open="true"] .hero-split__video { opacity: 1; }
+	.hero-split__video iframe {
+		position: absolute;
+		/* Cover the panel without letterboxing: scale a 16:9 frame to fill. */
+		top: 50%;
+		left: 50%;
+		width: max(100%, 177.78vh);
+		height: max(100%, 56.25vw);
+		min-width: 100%;
+		min-height: 100%;
+		transform: translate(-50%, -50%);
+		border: 0;
+		display: block;
+	}
+
+	/* Tint + legibility overlay, sits above cover and video. */
+	.hero-split__scrim {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		pointer-events: none;
+	}
+	.hero-split__panel--exosome .hero-split__scrim {
+		background: linear-gradient(155deg, oklch(30% 0.10 285 / 0.45) 0%, oklch(8% 0.02 285 / 0.72) 100%);
+	}
+	.hero-split__panel--vita .hero-split__scrim {
+		background: linear-gradient(205deg, oklch(32% 0.09 200 / 0.45) 0%, oklch(8% 0.02 215 / 0.72) 100%);
+	}
+	.hero-split__panel[data-open="true"] .hero-split__scrim {
+		background: linear-gradient(180deg, oklch(8% 0.02 265 / 0.15) 0%, transparent 35%, oklch(8% 0.02 265 / 0.6) 100%);
 	}
 
 	/* The diagonal seam highlight, drawn along each panel's slanted edge. */
 	.hero-split__seam {
 		position: absolute;
 		inset: 0;
-		z-index: 1;
+		z-index: 3;
 		pointer-events: none;
 	}
 	.hero-split__panel--exosome .hero-split__seam {
 		background: linear-gradient(105deg, transparent calc(var(--split) - var(--slant) - 1px), oklch(85% 0.12 285 / 0.55) calc(var(--split) - var(--slant)), transparent calc(var(--split) + var(--slant) + 1px));
 	}
 
+	/* Play affordance — centred while collapsed, fades out once the video runs. */
+	.hero-split__play {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 3;
+		display: grid;
+		place-items: center;
+		width: 64px;
+		height: 64px;
+		border-radius: 9999px;
+		color: white;
+		background: oklch(100% 0 0 / 0.14);
+		border: 1px solid oklch(100% 0 0 / 0.4);
+		backdrop-filter: blur(6px);
+		pointer-events: none;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+	.hero-split__play .icon { margin-left: 2px; }
+	.hero-split__panel[data-open="true"] .hero-split__play {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0.8);
+	}
+
 	/* Full-panel click target sits beneath the content layer. */
 	.hero-split__toggle {
 		position: absolute;
 		inset: 0;
-		z-index: 2;
+		z-index: 4;
 		appearance: none;
 		border: 0;
 		margin: 0;
@@ -353,15 +415,16 @@
 
 	.hero-split__content {
 		position: relative;
-		z-index: 3;
+		z-index: 5;
 		pointer-events: none;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-end;
 		gap: 0.75rem;
 		padding: clamp(1.5rem, 4vw, 3rem);
 		max-width: 480px;
+		text-shadow: 0 1px 16px oklch(0% 0 0 / 0.55);
 	}
 	.hero-split__panel--exosome .hero-split__content {
 		align-items: flex-start;

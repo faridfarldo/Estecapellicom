@@ -626,48 +626,38 @@ if ( ! function_exists( 'estecapelli_signature_split' ) ) {
 		}
 
 		$cta = home_url( '/en/contact' );
+		$img = get_template_directory_uri() . '/assets/images/techniques/';
 
 		return array(
 			'intro' => array(
 				'eyebrow'  => __( 'OUR SIGNATURE METHODS', 'estecapelli' ),
 				'headline' => __( 'Two techniques. Registered to our name.', 'estecapelli' ),
-				'body'     => __( 'Estecapelli developed and trademarked two exclusive protocols for next-generation hair restoration — engineered in-house and performed nowhere else.', 'estecapelli' ),
-				'hint'     => __( 'Select a method to explore it', 'estecapelli' ),
+				'body'     => __( 'Two exclusive, trademarked protocols — developed in-house.', 'estecapelli' ),
+				'hint'     => __( 'Select a method to play', 'estecapelli' ),
 			),
 			// Order in the array is render order; CSS places exosome left, vita right.
+			// 'video' is a YouTube ID; collapsed panels show 'cover', open ones play it.
 			'panels' => array(
 				'vita' => array(
-					'key'      => 'vita',
-					'icon'     => 'sparkles',
-					'name'     => __( 'VITA', 'estecapelli' ),
+					'key'       => 'vita',
+					'name'      => __( 'VITA', 'estecapelli' ),
 					'trademark' => '®',
-					'tag'      => __( 'Treatment', 'estecapelli' ),
-					'tagline'  => __( 'Vitality-driven follicular renewal', 'estecapelli' ),
-					'body'     => __( 'Our registered VITA® protocol pairs precision implantation with a proprietary vitality serum, accelerating graft survival and natural density from the very first session.', 'estecapelli' ),
-					'points'   => array(
-						__( 'Higher graft survival rate', 'estecapelli' ),
-						__( 'Faster recovery & denser regrowth', 'estecapelli' ),
-						__( 'Exclusive to Estecapelli', 'estecapelli' ),
-					),
-					'cta'      => array(
+					'tag'       => __( 'Treatment', 'estecapelli' ),
+					'cover'     => $img . 'vita-cover.webp',
+					'video'     => 'oINL-_dGV_M',
+					'cta'       => array(
 						'label' => __( 'Explore VITA®', 'estecapelli' ),
 						'url'   => $cta,
 					),
 				),
 				'exosome' => array(
-					'key'      => 'exosome',
-					'icon'     => 'dna',
-					'name'     => __( 'Exosome', 'estecapelli' ),
+					'key'       => 'exosome',
+					'name'      => __( 'Exosome', 'estecapelli' ),
 					'trademark' => '®',
-					'tag'      => __( 'Treatment', 'estecapelli' ),
-					'tagline'  => __( 'Cellular signalling regeneration', 'estecapelli' ),
-					'body'     => __( 'Our registered Exosome® protocol harnesses regenerative cell-signalling to revive dormant follicles and strengthen existing hair — a biological boost developed and trademarked in-house.', 'estecapelli' ),
-					'points'   => array(
-						__( 'Stimulates dormant follicles', 'estecapelli' ),
-						__( 'Strengthens existing hair', 'estecapelli' ),
-						__( 'Exclusive to Estecapelli', 'estecapelli' ),
-					),
-					'cta'      => array(
+					'tag'       => __( 'Treatment', 'estecapelli' ),
+					'cover'     => $img . 'exosome-cover.webp',
+					'video'     => 'rb7IgHFZIto',
+					'cta'       => array(
 						'label' => __( 'Explore Exosome®', 'estecapelli' ),
 						'url'   => $cta,
 					),

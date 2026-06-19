@@ -192,13 +192,33 @@
 			var toggles = Array.prototype.slice.call(stage.querySelectorAll('[data-split-toggle]'));
 			if (!toggles.length) return;
 
+			function setVideo(panel, on) {
+				var holder = panel.querySelector('[data-split-video]');
+				if (!holder) return;
+				if (on) {
+					if (holder.querySelector('iframe')) return; // already playing
+					var id = holder.getAttribute('data-video-id');
+					if (!id) return;
+					var src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) +
+						'?autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(id) +
+						'&controls=0&modestbranding=1&rel=0&playsinline=1';
+					holder.innerHTML = '<iframe src="' + src + '" title="" tabindex="-1" ' +
+						'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+				} else {
+					holder.innerHTML = ''; // stops playback
+				}
+			}
+
 			function activate(key) {
 				stage.setAttribute('data-split-active', key);
 				toggles.forEach(function (t) {
 					var on = t.getAttribute('data-split-toggle') === key;
 					t.setAttribute('aria-pressed', on ? 'true' : 'false');
 					var panel = t.closest('[data-split-panel]');
-					if (panel) panel.setAttribute('data-open', on ? 'true' : 'false');
+					if (panel) {
+						panel.setAttribute('data-open', on ? 'true' : 'false');
+						setVideo(panel, on);
+					}
 				});
 			}
 
