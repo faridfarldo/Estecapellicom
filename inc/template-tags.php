@@ -714,7 +714,8 @@ if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
 		);
 		// Preferred tab order; unknown categories fall in after these.
 		$order   = array( 'hair-transplant', 'plastic-surgery', 'dental-treatment', 'medical-treatment' );
-		$per_tab = 4;
+		// Show more than the 4 visible at once; the rest page in via the carousel.
+		$per_tab = 12;
 
 		$terms = get_terms( array(
 			'taxonomy'   => 'treatment_category',

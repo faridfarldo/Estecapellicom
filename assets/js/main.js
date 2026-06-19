@@ -125,6 +125,9 @@
 						p.setAttribute('hidden', '');
 					}
 				});
+				// The newly shown panel had zero width while hidden — nudge the
+				// carousels to recompute their nav (prev/next) enabled state.
+				window.dispatchEvent(new Event('resize'));
 			}
 
 			tabs.forEach(function (tab, idx) {

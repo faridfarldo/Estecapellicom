@@ -65,16 +65,24 @@ if ( empty( $data['categories'] ) ) {
 			$panel_id = 'svc-panel-' . $cat['key'];
 			$is_first = ( 0 === $i );
 			$count    = count( $cat['items'] );
+			$multi    = $count > 1;
 			?>
 			<div
 				id="<?php echo esc_attr( $panel_id ); ?>"
-				class="services-home__panel"
+				class="services-home__panel ec-carousel"
 				role="tabpanel"
 				aria-labelledby="<?php echo esc_attr( $tab_id ); ?>"
 				data-services-panel
+				data-carousel
 				<?php echo $is_first ? '' : 'hidden'; ?>
 			>
-				<ul class="services-home__grid">
+				<?php if ( $multi ) : ?>
+					<button type="button" class="ec-carousel__nav ec-carousel__nav--prev" data-carousel-prev aria-label="<?php esc_attr_e( 'Previous treatments', 'estecapelli' ); ?>">
+						<?php estecapelli_icon( 'chevron-down', array( 'width' => 22, 'height' => 22 ) ); ?>
+					</button>
+				<?php endif; ?>
+
+				<ul class="services-home__grid" data-carousel-track>
 					<?php foreach ( $cat['items'] as $idx => $item ) : ?>
 						<li class="services-home__card<?php echo empty( $item['image'] ) ? ' services-home__card--no-image' : ''; ?>" data-cat-key="<?php echo esc_attr( $cat['key'] ); ?>">
 							<a class="services-home__link" href="<?php echo esc_url( $item['url'] ); ?>">
@@ -125,6 +133,12 @@ if ( empty( $data['categories'] ) ) {
 						</li>
 					<?php endforeach; ?>
 				</ul>
+
+				<?php if ( $multi ) : ?>
+					<button type="button" class="ec-carousel__nav ec-carousel__nav--next" data-carousel-next aria-label="<?php esc_attr_e( 'Next treatments', 'estecapelli' ); ?>">
+						<?php estecapelli_icon( 'chevron-down', array( 'width' => 22, 'height' => 22 ) ); ?>
+					</button>
+				<?php endif; ?>
 			</div>
 		<?php endforeach; ?>
 
