@@ -120,23 +120,31 @@ $gallery_url = home_url( '/en/before-after' );
 				<?php echo $is_first ? '' : 'hidden'; ?>
 			>
 
-				<!-- Tableau board — click any photo to open the gallery viewer -->
-				<div class="home-ba__board" data-hba-board>
-					<ul class="home-ba__masonry">
-						<?php foreach ( array_slice( $tech['images'], 0, 9 ) as $img ) : ?>
-							<li class="home-ba__cell">
-								<button
-									type="button"
-									class="home-ba__open"
-									data-hba-open
-									data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
-									data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
-									aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
-								>
-									<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
-								</button>
-							</li>
-						<?php endforeach; ?>
+				<!-- Moving tableau wall — click any photo to open the gallery viewer.
+				     Images are emitted twice so the scroll loops seamlessly. -->
+				<div class="home-ba__wall" data-hba-board>
+					<ul class="home-ba__walltrack">
+						<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
+							<?php foreach ( $tech['images'] as $idx => $img ) :
+								// Every 5th tile is a big 2x2 block; the pattern is keyed to the
+								// real index so both copies match and the loop stays seamless.
+								$is_big = ( 0 === $idx % 5 );
+								?>
+								<li class="home-ba__cell<?php echo $is_big ? ' home-ba__cell--big' : ''; ?>" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
+									<button
+										type="button"
+										class="home-ba__open"
+										data-hba-open
+										data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
+										data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
+										<?php echo 1 === $dup ? 'tabindex="-1" aria-hidden="true"' : ''; ?>
+										aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
+									>
+										<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
+									</button>
+								</li>
+							<?php endforeach; ?>
+						<?php endfor; ?>
 					</ul>
 					<span class="home-ba__hint" aria-hidden="true">
 						<?php estecapelli_icon( 'image', array( 'width' => 16, 'height' => 16 ) ); ?>
