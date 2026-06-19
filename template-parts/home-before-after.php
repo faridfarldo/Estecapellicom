@@ -120,27 +120,28 @@ $gallery_url = home_url( '/en/before-after' );
 				<?php echo $is_first ? '' : 'hidden'; ?>
 			>
 
-				<!-- Auto-scrolling marquee (click an image to open the viewer) -->
-				<div class="home-ba__marquee" data-hba-marquee>
-					<ul class="home-ba__strip" data-hba-strip>
-						<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
-							<?php foreach ( $tech['images'] as $img ) : ?>
-								<li class="home-ba__cell" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
-									<button
-										type="button"
-										class="home-ba__open"
-										data-hba-open
-										data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
-										data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
-										<?php echo 1 === $dup ? 'tabindex="-1" aria-hidden="true"' : ''; ?>
-										aria-label="<?php esc_attr_e( 'Open result', 'estecapelli' ); ?>"
-									>
-										<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
-									</button>
-								</li>
-							<?php endforeach; ?>
-						<?php endfor; ?>
+				<!-- Tableau board — click any photo to open the gallery viewer -->
+				<div class="home-ba__board" data-hba-board>
+					<ul class="home-ba__masonry">
+						<?php foreach ( array_slice( $tech['images'], 0, 9 ) as $img ) : ?>
+							<li class="home-ba__cell">
+								<button
+									type="button"
+									class="home-ba__open"
+									data-hba-open
+									data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
+									data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
+									aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
+								>
+									<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
+								</button>
+							</li>
+						<?php endforeach; ?>
 					</ul>
+					<span class="home-ba__hint" aria-hidden="true">
+						<?php estecapelli_icon( 'image', array( 'width' => 16, 'height' => 16 ) ); ?>
+						<?php esc_html_e( 'Click any photo to open the gallery', 'estecapelli' ); ?>
+					</span>
 				</div>
 
 				<!-- Viewer: large image + thumbnail strip -->

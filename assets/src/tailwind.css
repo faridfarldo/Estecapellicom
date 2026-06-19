@@ -1139,30 +1139,24 @@
 
 	.home-ba__panel[hidden] { display: none; }
 
-	/* ---- Auto-scrolling marquee ---- */
-	.home-ba__marquee {
-		overflow: hidden;
-		-webkit-mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
-		        mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
-	}
-	.home-ba__strip {
-		display: flex;
-		gap: 1rem;
-		width: max-content;
+	/* ---- Tableau board (masonry: small + big photos) ---- */
+	.home-ba__board { position: relative; }
+	.home-ba__masonry {
+		column-count: 4;
+		column-gap: 0.85rem;
 		margin: 0;
-		padding: 0.25rem 0;
+		padding: 0;
 		list-style: none;
-		animation: home-ba-marquee 60s linear infinite;
 	}
-	.home-ba__marquee:hover .home-ba__strip,
-	.home-ba__marquee[data-paused="true"] .home-ba__strip { animation-play-state: paused; }
-	@keyframes home-ba-marquee {
-		from { transform: translateX(-50%); }
-		to   { transform: translateX(0); }
+	@media (max-width: 1024px) { .home-ba__masonry { column-count: 3; } }
+	@media (max-width: 680px)  { .home-ba__masonry { column-count: 2; } }
+	.home-ba__cell {
+		break-inside: avoid;
+		margin-bottom: 0.85rem;
 	}
-	.home-ba__cell { flex: 0 0 auto; }
 	.home-ba__open {
 		display: block;
+		width: 100%;
 		padding: 0;
 		border: 0;
 		background: none;
@@ -1170,18 +1164,45 @@
 		border-radius: 14px;
 		overflow: hidden;
 		box-shadow:
-			0 4px 12px oklch(0% 0 0 / 0.3),
-			0 16px 36px oklch(0% 0 0 / 0.35),
+			0 2px 8px oklch(0% 0 0 / 0.28),
 			inset 0 0 0 1px oklch(100% 0 0 / 0.08);
+		transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s;
 	}
 	.home-ba__open img {
 		display: block;
-		height: clamp(180px, 22vw, 260px);
-		width: auto;
-		object-fit: cover;
-		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+		width: 100%;
+		height: auto;
 	}
-	.home-ba__open:hover img { transform: scale(1.05); }
+	.home-ba__open:hover {
+		transform: translateY(-3px);
+		box-shadow:
+			0 10px 26px oklch(0% 0 0 / 0.45),
+			inset 0 0 0 1px oklch(100% 0 0 / 0.18);
+	}
+	/* "Click to open" affordance — always visible, lifts on hover. */
+	.home-ba__hint {
+		position: absolute;
+		left: 50%;
+		bottom: 14px;
+		transform: translateX(-50%);
+		z-index: 2;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.55rem 1rem;
+		border-radius: 9999px;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: white;
+		background: oklch(18% 0.03 260 / 0.72);
+		border: 1px solid oklch(100% 0 0 / 0.2);
+		box-shadow: 0 6px 20px oklch(0% 0 0 / 0.4);
+		backdrop-filter: blur(8px);
+		pointer-events: none;
+		transition: transform 0.25s, opacity 0.25s;
+	}
+	.home-ba__hint .icon { color: var(--color-accent-300); }
+	.home-ba__board:hover .home-ba__hint { transform: translateX(-50%) translateY(-3px); }
 
 	/* ---- Viewer (large image + thumbnails) ---- */
 	.home-ba__viewer {
@@ -1258,11 +1279,6 @@
 		display: flex;
 		justify-content: center;
 		margin-top: clamp(1.75rem, 3vw, 2.5rem);
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.home-ba__strip { animation: none; }
-		.home-ba__marquee { overflow-x: auto; }
 	}
 
 

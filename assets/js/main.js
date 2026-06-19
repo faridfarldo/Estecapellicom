@@ -270,11 +270,11 @@
 		if (!roots.length) return;
 
 		roots.forEach(function (root) {
-			var marquee = root.querySelector('[data-hba-marquee]');
+			var board   = root.querySelector('[data-hba-board]');
 			var viewer  = root.querySelector('[data-hba-viewer]');
 			var mainImg = root.querySelector('[data-hba-main]');
 			var thumbs  = Array.prototype.slice.call(root.querySelectorAll('[data-hba-thumb]'));
-			if (!marquee || !viewer || !mainImg) return;
+			if (!board || !viewer || !mainImg) return;
 
 			function setMain(src, alt) {
 				mainImg.src = src;
@@ -286,15 +286,13 @@
 
 			function openViewer(src, alt) {
 				setMain(src, alt);
-				marquee.setAttribute('data-paused', 'true');
-				marquee.hidden = true;
+				board.hidden = true;
 				viewer.hidden = false;
 			}
 
 			function closeViewer() {
 				viewer.hidden = true;
-				marquee.hidden = false;
-				marquee.removeAttribute('data-paused');
+				board.hidden = false;
 			}
 
 			root.querySelectorAll('[data-hba-open]').forEach(function (btn) {
