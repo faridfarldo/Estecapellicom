@@ -183,6 +183,16 @@ function estecapelli_enqueue_assets() {
 		true
 	);
 
+	// Hair Analysis Lab widget styles — only on the front page where it mounts.
+	if ( is_front_page() ) {
+		wp_enqueue_style(
+			'estecapelli-hair-widget',
+			get_template_directory_uri() . '/assets/hair-widget/css/widget.css',
+			array( 'estecapelli-main' ),
+			estecapelli_asset_ver( '/assets/hair-widget/css/widget.css' )
+		);
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

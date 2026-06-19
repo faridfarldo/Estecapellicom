@@ -119,48 +119,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</form>
 		</div>
 
-		<!-- Step 2b: photo-upload form (PLACEHOLDER) -->
+		<!-- Step 2b: AI photo-analysis widget (camera capture wizard) -->
 		<div class="hal__panel" data-hal-form="photos" hidden>
 			<button type="button" class="hal__back" data-hal-back>
 				<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
 				<?php esc_html_e( 'Back to options', 'estecapelli' ); ?>
 			</button>
 
-			<form class="hal__form" action="#" novalidate>
-				<p class="hal__form-note"><?php esc_html_e( 'Placeholder — fields to be finalised.', 'estecapelli' ); ?></p>
-
-				<div class="hal__uploads">
-					<?php
-					$shots = array(
-						__( 'Front', 'estecapelli' ),
-						__( 'Top', 'estecapelli' ),
-						__( 'Left side', 'estecapelli' ),
-						__( 'Right side', 'estecapelli' ),
-					);
-					foreach ( $shots as $shot ) :
-						?>
-						<label class="hal__upload">
-							<?php estecapelli_icon( 'image', array( 'width' => 22, 'height' => 22 ) ); ?>
-							<span class="hal__upload-label"><?php echo esc_html( $shot ); ?></span>
-							<input type="file" name="hal_photo[]" accept="image/*" />
-						</label>
-					<?php endforeach; ?>
-				</div>
-
-				<div class="hal__row">
-					<label class="hal__field">
-						<span class="hal__label"><?php esc_html_e( 'Full name', 'estecapelli' ); ?></span>
-						<input type="text" name="hal_name" placeholder="<?php esc_attr_e( 'Your name', 'estecapelli' ); ?>" />
-					</label>
-					<label class="hal__field">
-						<span class="hal__label"><?php esc_html_e( 'WhatsApp / Email', 'estecapelli' ); ?></span>
-						<input type="text" name="hal_contact" placeholder="<?php esc_attr_e( 'How can we reach you?', 'estecapelli' ); ?>" />
-					</label>
-				</div>
-
-				<button type="button" class="hal__submit"><?php esc_html_e( 'Send for AI analysis', 'estecapelli' ); ?></button>
-			</form>
+			<div class="hal__widget">
+				<div id="hair-widget"></div>
+			</div>
 		</div>
 
 	</div>
+
+	<?php
+	// Mount the camera/photo wizard. `mock: true` keeps it front-end only — the
+	// analysis is a placeholder and submit is a no-op until the REST backend +
+	// Claude Vision key are wired up.
+	$hw_base = get_template_directory_uri() . '/assets/hair-widget/';
+	?>
+	<script type="module">
+		window.HAIR_WIDGET_CFG = {
+			imageBase: '<?php echo esc_url( $hw_base . 'image/' ); ?>',
+			mock: true
+		};
+		import('<?php echo esc_url( $hw_base . 'js/widget.js' ); ?>').then(function (m) {
+			var el = document.getElementById('hair-widget');
+			if (el && m.HairAnalysisWidget) { new m.HairAnalysisWidget(el); }
+		});
+	</script>
 </section>

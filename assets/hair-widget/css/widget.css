@@ -1,0 +1,463 @@
+/**
+ * Hair Analysis widget — self-contained, mobile-first styles.
+ *
+ * Scoped under .hair-widget so it can drop into the WP hero without colliding.
+ * Colors use CSS variables so they can be re-pointed at the theme's tokens
+ * during the port (search for --hw-*).
+ */
+.hair-widget {
+  --hw-bg: #0e1726;
+  --hw-card: #14203400;
+  --hw-surface: rgba(255, 255, 255, 0.06);
+  --hw-border: rgba(255, 255, 255, 0.14);
+  --hw-text: #f4f7fb;
+  --hw-muted: #9fb0c6;
+  --hw-accent: #18b6a6;
+  --hw-accent-ink: #04201d;
+  --hw-danger: #ff6b6b;
+  --hw-ok: #28d6a4;
+  --hw-radius: 18px;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  color: var(--hw-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.hair-widget *,
+.hair-widget *::before,
+.hair-widget *::after {
+  box-sizing: border-box;
+}
+
+/* --- card shell ----------------------------------------------------------- */
+.hw-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--hw-border);
+  border-radius: var(--hw-radius);
+  padding: 22px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* --- typography ----------------------------------------------------------- */
+.hw-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hw-accent);
+}
+.hw-title {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+.hw-title--sm {
+  font-size: 20px;
+}
+.hw-lead {
+  margin: 0;
+  color: var(--hw-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.hw-fineprint,
+.hw-disclaimer {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--hw-muted);
+}
+.hw-disclaimer strong {
+  color: var(--hw-text);
+}
+
+/* --- buttons -------------------------------------------------------------- */
+.hw-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 13px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.08s ease, filter 0.15s ease, background 0.15s ease;
+}
+.hw-btn:active {
+  transform: translateY(1px);
+}
+.hw-btn--accent {
+  background: var(--hw-accent);
+  color: var(--hw-accent-ink);
+}
+.hw-btn--accent:hover {
+  filter: brightness(1.06);
+}
+.hw-btn--ghost {
+  background: var(--hw-surface);
+  border-color: var(--hw-border);
+  color: var(--hw-text);
+}
+.hw-btn--sm {
+  padding: 9px 14px;
+  font-size: 13px;
+}
+
+/* --- progress dots -------------------------------------------------------- */
+.hw-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hw-step-no {
+  font-size: 12px;
+  color: var(--hw-muted);
+  font-weight: 600;
+}
+.hw-dots {
+  display: flex;
+  gap: 6px;
+}
+.hw-dot {
+  width: 28px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--hw-border);
+}
+.hw-dot.is-done {
+  background: var(--hw-accent);
+}
+.hw-dot.is-active {
+  background: var(--hw-text);
+}
+
+/* --- live camera stage ---------------------------------------------------- */
+.hw-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.hw-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hw-video.is-mirrored {
+  transform: scaleX(-1);
+}
+
+/* pose overlays */
+.hw-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hw-overlay--front::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 62%;
+  height: 78%;
+  transform: translate(-50%, -50%);
+  border: 3px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 50% / 60%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hw-stage.is-aligned .hw-overlay--front::before {
+  border-color: var(--hw-ok);
+  border-style: solid;
+  box-shadow: 0 0 0 9999px rgba(40, 214, 164, 0.08);
+}
+/* simple silhouette hint for side/top/back steps */
+.hw-overlay--side::before,
+.hw-overlay--top::before,
+.hw-overlay--donor::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58%;
+  height: 74%;
+  transform: translate(-50%, -50%);
+  border: 3px dashed rgba(255, 255, 255, 0.55);
+  border-radius: 46% 46% 42% 42% / 55% 55% 45% 45%;
+}
+
+/* auto-capture progress ring */
+.hw-ring {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 46px;
+  height: 46px;
+  transform: rotate(-90deg);
+}
+.hw-ring-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 8;
+}
+.hw-ring-fill {
+  fill: none;
+  stroke: var(--hw-ok);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 289;
+  stroke-dashoffset: calc(289 - 289 * var(--p, 0));
+  transition: stroke-dashoffset 0.12s linear;
+}
+
+/* reference "match this pose" illustration, pinned in the camera corner */
+.hw-guide {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  width: 76px;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+.hw-guide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hw-guide figcaption {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--hw-accent-ink);
+  background: var(--hw-accent);
+  padding: 2px 0;
+}
+
+/* larger static reference shown on the camera-denied fallback screen */
+.hw-guide-static {
+  display: block;
+  width: 130px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--hw-border);
+}
+
+.hw-live-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  margin: 0;
+  max-width: 80%;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 7px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* --- actions row ---------------------------------------------------------- */
+.hw-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hw-actions .hw-btn {
+  flex: 1 1 auto;
+}
+
+/* manual shutter button */
+.hw-shutter {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  background: var(--hw-accent);
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.hw-shutter:active {
+  transform: scale(0.94);
+}
+
+/* --- preview -------------------------------------------------------------- */
+.hw-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+}
+.hw-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- denied / fallback ---------------------------------------------------- */
+.hw-denied {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+  text-align: center;
+}
+.hw-denied p {
+  margin: 0;
+  color: var(--hw-muted);
+}
+
+/* --- analyzing / spinner -------------------------------------------------- */
+.hw-analyzing {
+  align-items: center;
+  text-align: center;
+  padding-block: 36px;
+}
+.hw-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid var(--hw-border);
+  border-top-color: var(--hw-accent);
+  animation: hw-spin 0.9s linear infinite;
+}
+@keyframes hw-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- result --------------------------------------------------------------- */
+.hw-result-headline {
+  display: flex;
+  gap: 12px;
+}
+.hw-stat {
+  flex: 1;
+  background: var(--hw-surface);
+  border: 1px solid var(--hw-border);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hw-stat-label {
+  font-size: 12px;
+  color: var(--hw-muted);
+}
+.hw-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+.hw-cta-text {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* --- form ----------------------------------------------------------------- */
+.hw-form,
+.hw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hw-form {
+  gap: 14px;
+}
+.hw-form-note {
+  margin: 0;
+  font-size: 14px;
+  color: var(--hw-muted);
+}
+.hw-field span {
+  font-size: 13px;
+  font-weight: 600;
+}
+.hw-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--hw-border);
+  background: var(--hw-surface);
+  color: var(--hw-text);
+  font-size: 16px; /* >=16px avoids iOS zoom-on-focus */
+}
+.hw-field input:focus {
+  outline: 2px solid var(--hw-accent);
+  outline-offset: 1px;
+}
+.hw-consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--hw-muted);
+}
+.hw-consent input {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: var(--hw-accent);
+}
+
+/* --- done ----------------------------------------------------------------- */
+.hw-done {
+  align-items: center;
+  text-align: center;
+  padding-block: 30px;
+}
+.hw-check {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--hw-accent);
+  color: var(--hw-accent-ink);
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* --- error ---------------------------------------------------------------- */
+.hw-error {
+  margin: 0;
+  background: rgba(255, 107, 107, 0.12);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  color: var(--hw-danger);
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
