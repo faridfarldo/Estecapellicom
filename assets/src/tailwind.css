@@ -1504,14 +1504,19 @@
 	/* ---- Interactive scalp-zone picker ---- */
 	.hal__zonemap {
 		position: relative;
-		max-width: 420px;
+		width: 100%;
+		max-width: 340px;
+		/* Square source (1024²) shown in a 0.75 box with object-fit:contain so it
+		   matches the SVG viewBox (667×799) — same setup the zones were drawn for. */
+		aspect-ratio: 0.75;
 		margin-inline: auto;
 	}
 	.hal__zoneimg {
 		display: block;
 		width: 100%;
-		height: auto;
-		border-radius: 16px;
+		height: 100%;
+		object-fit: contain;
+		border-radius: 18px;
 	}
 	.hal__zonesvg {
 		position: absolute;
