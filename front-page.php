@@ -15,8 +15,6 @@ get_header();
 
 <?php get_template_part( 'template-parts/trust', 'strip' ); ?>
 
-<?php get_template_part( 'template-parts/home-before-after' ); ?>
-
 <?php get_template_part( 'template-parts/services', 'home' ); ?>
 
 <?php get_template_part( 'template-parts/why', 'choose' ); ?>

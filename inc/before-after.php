@@ -81,35 +81,11 @@ function estecapelli_result_card_data( $result ) {
 	$grafts = ( '' !== $grafts && null !== $grafts ) ? (int) $grafts : 0;
 
 	return array(
-		'id'      => $id,
-		'before'  => $before,
-		'after'   => $after,
-		'method'  => $method,
-		'grafts'  => $grafts,
-		'country' => trim( (string) get_field( 'country', $id ) ),
-		'video'   => estecapelli_youtube_id( (string) get_field( 'video_id', $id ) ),
+		'before' => $before,
+		'after'  => $after,
+		'method' => $method,
+		'grafts' => $grafts,
 	);
-}
-
-/**
- * Latest published results for the homepage album, newest (menu order) first.
- *
- * @param int $limit Max results to return.
- * @return WP_Post[] Result posts.
- */
-function estecapelli_recent_results( $limit = 10 ) {
-	$query = new WP_Query(
-		array(
-			'post_type'              => 'result',
-			'post_status'            => 'publish',
-			'posts_per_page'         => (int) $limit,
-			'orderby'                => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
-			'no_found_rows'          => true,
-			'update_post_term_cache' => false,
-		)
-	);
-
-	return $query->posts;
 }
 
 /**
