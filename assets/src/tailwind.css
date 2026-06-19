@@ -1319,6 +1319,288 @@
 	}
 
 
+	/* ---------- Hair Analysis Lab (OFF-THEME: golden / brown / red) ---------- */
+	.hal {
+		/* Local palette — intentionally independent of the site tokens. */
+		--hal-ink: oklch(94% 0.02 85);
+		--hal-muted: oklch(78% 0.04 80);
+		--hal-gold: oklch(82% 0.13 85);
+		--hal-gold-soft: oklch(88% 0.08 88);
+		--hal-red: oklch(58% 0.21 25);
+		--hal-red-dark: oklch(50% 0.21 25);
+		--hal-line: oklch(82% 0.08 80 / 0.22);
+		--hal-card: oklch(28% 0.04 65 / 0.55);
+
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding-block: clamp(3.5rem, 6vw, 6.5rem);
+		color: var(--hal-ink);
+		background:
+			radial-gradient(ellipse 60% 50% at 82% 8%, oklch(48% 0.11 75 / 0.5), transparent 60%),
+			radial-gradient(ellipse 55% 60% at 8% 92%, oklch(42% 0.13 38 / 0.4), transparent 65%),
+			linear-gradient(160deg, oklch(25% 0.045 70) 0%, oklch(17% 0.035 60) 60%, oklch(12% 0.03 50) 100%);
+	}
+	.hal__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+	.hal__glow { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: 0.5; }
+	.hal__glow--a { width: 460px; height: 460px; background: oklch(72% 0.15 80 / 0.4); top: -130px; right: -60px; }
+	.hal__glow--b { width: 380px; height: 380px; background: oklch(55% 0.2 30 / 0.32); bottom: -120px; left: -50px; }
+	.hal__grid {
+		position: absolute; inset: 0;
+		background-image:
+			linear-gradient(oklch(85% 0.1 80 / 0.05) 1px, transparent 1px),
+			linear-gradient(90deg, oklch(85% 0.1 80 / 0.05) 1px, transparent 1px);
+		background-size: 54px 54px;
+		mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, black, transparent 85%);
+		-webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, black, transparent 85%);
+	}
+	.hal__shell { position: relative; z-index: 1; }
+
+	.hal__head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 0.85rem;
+		margin-bottom: clamp(2rem, 4vw, 3rem);
+	}
+	.hal__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: var(--hal-gold);
+	}
+	.hal__eyebrow-mark {
+		width: 5px; height: 5px;
+		border-radius: 9999px;
+		background: var(--hal-red);
+		box-shadow: 0 0 0 3px oklch(58% 0.21 25 / 0.22);
+	}
+	.hal__title {
+		font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.05;
+		margin: 0;
+		color: white;
+	}
+	.hal__title-ai {
+		background: linear-gradient(120deg, var(--hal-gold-soft), var(--hal-gold));
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	.hal__lead {
+		max-width: 56ch;
+		margin: 0;
+		font-size: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
+		line-height: 1.6;
+		color: var(--hal-muted);
+	}
+
+	/* ---- Option cards ---- */
+	.hal__options {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(1rem, 2vw, 1.75rem);
+		max-width: 880px;
+		margin-inline: auto;
+	}
+	.hal__option {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.6rem;
+		text-align: left;
+		padding: clamp(1.5rem, 3vw, 2.25rem);
+		border-radius: 20px;
+		cursor: pointer;
+		color: var(--hal-ink);
+		background: var(--hal-card);
+		border: 1px solid var(--hal-line);
+		box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.03), 0 18px 40px oklch(0% 0 0 / 0.35);
+		transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
+	}
+	.hal__option:hover {
+		transform: translateY(-4px);
+		border-color: oklch(82% 0.13 85 / 0.6);
+		box-shadow: 0 24px 50px oklch(0% 0 0 / 0.45), 0 0 0 1px oklch(82% 0.13 85 / 0.4);
+	}
+	.hal__option-icon {
+		display: grid;
+		place-items: center;
+		width: 52px; height: 52px;
+		border-radius: 14px;
+		color: oklch(20% 0.04 60);
+		background: linear-gradient(140deg, var(--hal-gold-soft), var(--hal-gold));
+		box-shadow: 0 8px 20px oklch(72% 0.15 80 / 0.3);
+	}
+	.hal__option-title {
+		font-size: 1.1875rem;
+		font-weight: 700;
+		color: white;
+	}
+	.hal__option-desc {
+		font-size: 0.9375rem;
+		line-height: 1.55;
+		color: var(--hal-muted);
+	}
+	.hal__option-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-top: 0.35rem;
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: var(--hal-gold);
+	}
+	.hal__option:hover .hal__option-cta { color: var(--hal-gold-soft); }
+
+	/* ---- Forms ---- */
+	.hal__panel {
+		max-width: 720px;
+		margin-inline: auto;
+	}
+	.hal__panel[hidden] { display: none; }
+	.hal__back {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-bottom: 1.25rem;
+		padding: 0.45rem 0.85rem;
+		border-radius: 9999px;
+		border: 1px solid var(--hal-line);
+		background: transparent;
+		color: var(--hal-muted);
+		font-size: 0.8125rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: color 0.2s, border-color 0.2s;
+	}
+	.hal__back:hover { color: var(--hal-gold); border-color: oklch(82% 0.13 85 / 0.5); }
+	.hal__form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		padding: clamp(1.5rem, 3vw, 2.25rem);
+		border-radius: 20px;
+		background: var(--hal-card);
+		border: 1px solid var(--hal-line);
+		box-shadow: 0 18px 40px oklch(0% 0 0 / 0.35);
+	}
+	.hal__form-note {
+		margin: 0;
+		font-size: 0.75rem;
+		letter-spacing: 0.04em;
+		color: var(--hal-muted);
+		opacity: 0.8;
+	}
+	.hal__fieldset { border: 0; margin: 0; padding: 0; }
+	.hal__legend {
+		padding: 0;
+		margin-bottom: 0.75rem;
+		font-size: 0.9375rem;
+		font-weight: 700;
+		color: white;
+	}
+	.hal__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+	.hal__chip {
+		cursor: pointer;
+		user-select: none;
+	}
+	.hal__chip input { position: absolute; opacity: 0; pointer-events: none; }
+	.hal__chip span {
+		display: inline-block;
+		padding: 0.5rem 0.95rem;
+		border-radius: 9999px;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: var(--hal-ink);
+		background: oklch(100% 0 0 / 0.05);
+		border: 1px solid var(--hal-line);
+		transition: color 0.2s, background 0.2s, border-color 0.2s;
+	}
+	.hal__chip input:checked + span {
+		color: oklch(20% 0.04 60);
+		background: linear-gradient(140deg, var(--hal-gold-soft), var(--hal-gold));
+		border-color: transparent;
+	}
+	.hal__chip input:focus-visible + span { outline: 2px solid var(--hal-gold); outline-offset: 2px; }
+
+	.hal__row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+	.hal__field { display: flex; flex-direction: column; gap: 0.4rem; }
+	.hal__label { font-size: 0.8125rem; font-weight: 600; color: var(--hal-muted); }
+	.hal__field input {
+		padding: 0.7rem 0.9rem;
+		border-radius: 12px;
+		color: var(--hal-ink);
+		background: oklch(100% 0 0 / 0.04);
+		border: 1px solid var(--hal-line);
+		font-size: 0.9375rem;
+		transition: border-color 0.2s, box-shadow 0.2s;
+	}
+	.hal__field input::placeholder { color: oklch(70% 0.03 75 / 0.6); }
+	.hal__field input:focus {
+		outline: none;
+		border-color: var(--hal-gold);
+		box-shadow: 0 0 0 3px oklch(82% 0.13 85 / 0.18);
+	}
+
+	.hal__uploads {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0.75rem;
+	}
+	.hal__upload {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.4rem;
+		aspect-ratio: 1 / 1;
+		border-radius: 14px;
+		color: var(--hal-muted);
+		background: oklch(100% 0 0 / 0.04);
+		border: 1.5px dashed var(--hal-line);
+		cursor: pointer;
+		text-align: center;
+		transition: color 0.2s, border-color 0.2s, background 0.2s;
+	}
+	.hal__upload:hover { color: var(--hal-gold); border-color: oklch(82% 0.13 85 / 0.55); background: oklch(82% 0.13 85 / 0.06); }
+	.hal__upload-label { font-size: 0.8125rem; font-weight: 600; }
+	.hal__upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+	.hal__submit {
+		align-self: flex-start;
+		padding: 0.85rem 1.75rem;
+		border-radius: 9999px;
+		border: 0;
+		cursor: pointer;
+		font-size: 0.9375rem;
+		font-weight: 700;
+		color: white;
+		background: linear-gradient(140deg, var(--hal-red), var(--hal-red-dark));
+		box-shadow: 0 10px 26px oklch(58% 0.21 25 / 0.4);
+		transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+	}
+	.hal__submit:hover { transform: translateY(-2px); filter: brightness(1.07); box-shadow: 0 14px 32px oklch(58% 0.21 25 / 0.5); }
+
+	@media (max-width: 760px) {
+		.hal__options { grid-template-columns: 1fr; }
+		.hal__row { grid-template-columns: 1fr; }
+		.hal__uploads { grid-template-columns: repeat(2, 1fr); }
+	}
+
+
 	/* ---------- Container ---------- */
 	.shell {
 		width: 100%;

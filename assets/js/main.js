@@ -312,6 +312,34 @@
 		});
 	}
 
+	function initHairAnalysisLab() {
+		var root = document.querySelector('[data-hal]');
+		if (!root) return;
+
+		var options = root.querySelector('[data-hal-options]');
+		var forms   = Array.prototype.slice.call(root.querySelectorAll('[data-hal-form]'));
+		if (!options || !forms.length) return;
+
+		function show(key) {
+			options.hidden = key !== null;
+			forms.forEach(function (f) {
+				f.hidden = f.getAttribute('data-hal-form') !== key;
+			});
+		}
+
+		root.querySelectorAll('[data-hal-pick]').forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				show(btn.getAttribute('data-hal-pick'));
+			});
+		});
+
+		root.querySelectorAll('[data-hal-back]').forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				show(null);
+			});
+		});
+	}
+
 	function initStickyHeader() {
 		var header = document.querySelector('[data-site-header]');
 		if (!header) return;
@@ -576,6 +604,7 @@
 		initSignatureCards();
 		initHeroSplit();
 		initHomeBaGallery();
+		initHairAnalysisLab();
 		initServicesTabs();
 		initCategoryTabs();
 		initPatientStories();
