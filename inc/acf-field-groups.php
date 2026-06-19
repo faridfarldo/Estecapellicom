@@ -759,6 +759,20 @@ function estecapelli_register_acf_field_groups() {
 					'instructions'  => __( 'Hair transplant results only. Leave empty for other procedures.', 'estecapelli' ),
 					'min'           => 0,
 				),
+				array(
+					'key'           => 'field_result_country',
+					'label'         => __( 'Patient country (optional)', 'estecapelli' ),
+					'name'          => 'country',
+					'type'          => 'text',
+					'instructions'  => __( 'Where the patient travelled from, e.g. United Kingdom. Shown on the homepage album.', 'estecapelli' ),
+				),
+				array(
+					'key'           => 'field_result_video',
+					'label'         => __( 'Video (optional)', 'estecapelli' ),
+					'name'          => 'video_id',
+					'type'          => 'text',
+					'instructions'  => __( 'YouTube ID or link. When set, a play button appears over the before/after photo on the homepage album.', 'estecapelli' ),
+				),
 			),
 		)
 	);
