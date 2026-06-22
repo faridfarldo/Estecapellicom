@@ -199,11 +199,21 @@
 		var timer = null;
 		var DELAY = 7000;
 
+		var nextLabel = root.querySelector('[data-hero-next-label]');
+		var prevLabel = root.querySelector('[data-hero-prev-label]');
+		function titleAt(i) {
+			var s = slides[(i + slides.length) % slides.length];
+			return s ? (s.getAttribute('data-hero-title') || '') : '';
+		}
+
 		function go(n) {
 			index = (n + slides.length) % slides.length;
 			track.style.transform = 'translateX(' + (-index * 100) + '%)';
 			dots.forEach(function (d, i) { d.setAttribute('aria-selected', i === index ? 'true' : 'false'); });
 			slides.forEach(function (s, i) { s.setAttribute('aria-hidden', i === index ? 'false' : 'true'); });
+			// Arrows preview the slide they lead to.
+			if (nextLabel) nextLabel.textContent = titleAt(index + 1);
+			if (prevLabel) prevLabel.textContent = titleAt(index - 1);
 		}
 		function next() { go(index + 1); }
 		function prev() { go(index - 1); }
