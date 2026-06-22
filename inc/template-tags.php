@@ -1418,47 +1418,41 @@ if ( ! function_exists( 'estecapelli_facilities' ) ) {
 			}
 		}
 
-		return array(
-			'eyebrow'  => __( 'Our Facilities', 'estecapelli' ),
-			'headline' => __( 'A clinic that performs. A hotel that pampers.', 'estecapelli' ),
-			'lead'     => __( 'Two addresses, one continuous experience — both curated to keep you comfortable from the moment you land in Istanbul until the day you fly home.', 'estecapelli' ),
+		$img     = get_template_directory_uri() . '/assets/images/';
+		$contact = home_url( '/en/contact' );
 
-			'cards' => array(
-				array(
-					'key'      => 'hotel',
-					'kind'     => __( 'Your Stay', 'estecapelli' ),
-					'name'     => __( 'Five-Star Partner Hotel', 'estecapelli' ),
-					'location' => __( 'City centre · Istanbul, Türkiye', 'estecapelli' ),
-					'body'     => __( 'A handpicked 5-star hotel with full board, a quiet recovery suite, and 24/7 patient support — minutes from the clinic and the city\'s landmarks.', 'estecapelli' ),
-					'image'    => 'hotel',
-					'amenities' => array(
-						array( 'icon' => 'bed',       'label' => __( '5-Star Room', 'estecapelli' ) ),
-						array( 'icon' => 'utensils',  'label' => __( 'Full Board', 'estecapelli' ) ),
-						array( 'icon' => 'wifi',      'label' => __( 'High-Speed Wi-Fi', 'estecapelli' ) ),
-						array( 'icon' => 'concierge', 'label' => __( '24/7 Patient Care', 'estecapelli' ) ),
-					),
-					'cta' => array(
-						'label' => __( 'Explore the Hotel', 'estecapelli' ),
-						'url'   => home_url( '/en/about-us' ),
-					),
-				),
-				array(
-					'key'      => 'clinic',
-					'kind'     => __( 'Your Clinic', 'estecapelli' ),
-					'name'     => __( 'Hospital-Grade Estecapelli Clinic', 'estecapelli' ),
-					'location' => __( 'Şişli · Istanbul, Türkiye', 'estecapelli' ),
-					'body'     => __( 'A Ministry-of-Health licensed facility with modern operation rooms, sapphire-blade instruments, and a permanent on-site medical team led by Dr. Mehmet Hanifi Kutlar.', 'estecapelli' ),
-					'image'    => 'clinic',
-					'amenities' => array(
-						array( 'icon' => 'building',     'label' => __( 'Ministry Licensed', 'estecapelli' ) ),
-						array( 'icon' => 'shield-check', 'label' => __( 'Sterile Theatres', 'estecapelli' ) ),
-						array( 'icon' => 'target',       'label' => __( 'Latest Equipment', 'estecapelli' ) ),
-						array( 'icon' => 'medical-plus', 'label' => __( 'On-Site Doctors', 'estecapelli' ) ),
-					),
-					'cta' => array(
-						'label' => __( 'Tour the Clinic', 'estecapelli' ),
-						'url'   => home_url( '/en/about-us' ),
-					),
+		return array(
+			'eyebrow'  => __( 'Our Clinic', 'estecapelli' ),
+			'headline' => __( 'Step inside our Istanbul clinic', 'estecapelli' ),
+			'lead'     => __( 'A Ministry-of-Health licensed, hospital-grade facility in the heart of Istanbul — modern operation rooms, sterile theatres and a permanent on-site medical team.', 'estecapelli' ),
+			'cta'      => array(
+				'label' => __( 'Book a Free Consultation', 'estecapelli' ),
+				'url'   => $contact,
+			),
+
+			// Mixed photo + video gallery of the clinic. type: image | video
+			// (video opens the shared patient-stories lightbox).
+			'gallery' => array(
+				array( 'type' => 'video', 'image' => $img . 'facilities/clinic.jpg', 'video' => 'oINL-_dGV_M', 'caption' => __( 'Clinic walkthrough', 'estecapelli' ) ),
+				array( 'type' => 'image', 'image' => $img . 'expertise/tricholab.jpg', 'caption' => __( 'TrichoLab analysis', 'estecapelli' ) ),
+				array( 'type' => 'image', 'image' => $img . 'expertise/vita.jpg', 'caption' => __( 'Operating theatre', 'estecapelli' ) ),
+				array( 'type' => 'image', 'image' => $img . 'facilities/clinic.jpg', 'caption' => __( 'Reception & lounge', 'estecapelli' ) ),
+				array( 'type' => 'image', 'image' => $img . 'expertise/exosome.png', 'caption' => __( 'Treatment suite', 'estecapelli' ) ),
+				array( 'type' => 'image', 'image' => $img . 'doctors/mehmet-hanifi-kutlar.jpg', 'caption' => __( 'Our medical team', 'estecapelli' ) ),
+			),
+
+			// Partner hotels — a rotating logo strip. Add 'image' => url to a
+			// logo entry to show a real logo instead of the text wordmark.
+			'partners' => array(
+				'title' => __( 'Our partner hotels', 'estecapelli' ),
+				'logos' => array(
+					array( 'label' => 'Crowne Plaza' ),
+					array( 'label' => 'Hilton' ),
+					array( 'label' => 'Radisson Blu' ),
+					array( 'label' => 'Sheraton' ),
+					array( 'label' => 'Mövenpick' ),
+					array( 'label' => 'Wyndham' ),
+					array( 'label' => 'Hyatt Regency' ),
 				),
 			),
 		);
