@@ -117,9 +117,9 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 
 			// ======================== Pre Hair Transplant ========================
 			array(
-				'slug'   => 'pre-hair-transplant',
-				'title'  => 'Pre Hair Transplant',
-				'parent' => null,
+				'slug'   => 'pre-hair-transplant-period',
+				'title'  => 'Pre Hair Transplant Period',
+				'parent' => 'hair-transplant',
 				'sections' => array(
 					$hero( __( 'Before Your Procedure', 'estecapelli' ), __( 'Preparing for Your Hair Transplant', 'estecapelli' ), __( 'The right preparation is one of the biggest factors in a successful hair transplant. From a thorough medical evaluation to small day-of details, here is everything you need to do before your procedure at Estecapelli.', 'estecapelli' ) ),
 
@@ -181,9 +181,9 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 
 			// ======================== Post Hair Transplant ========================
 			array(
-				'slug'   => 'post-hair-transplant',
-				'title'  => 'Post Hair Transplant',
-				'parent' => null,
+				'slug'   => 'post-hair-transplant-period',
+				'title'  => 'Post Hair Transplant Period',
+				'parent' => 'hair-transplant',
 				'sections' => array(
 					$hero( __( 'After Your Procedure', 'estecapelli' ), __( 'Your Recovery, Step by Step', 'estecapelli' ), __( 'What you do after your hair transplant matters just as much as the procedure itself. Here is exactly what to expect — and what to do — from the first 24 hours to the day your final result is complete.', 'estecapelli' ) ),
 
