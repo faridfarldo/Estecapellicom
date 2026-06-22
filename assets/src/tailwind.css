@@ -4265,9 +4265,10 @@
 	.facilities {
 		position: relative; isolation: isolate;
 		padding-block: clamp(3rem, 6vw, 5.5rem);
+		color: white;
 		background:
-			radial-gradient(ellipse 80% 50% at 50% 100%, oklch(94% 0.022 260 / 0.5), transparent 70%),
-			linear-gradient(180deg, oklch(98% 0.008 260), white);
+			radial-gradient(ellipse 60% 50% at 85% 10%, oklch(35% 0.10 260 / 0.5), transparent 60%),
+			linear-gradient(170deg, var(--color-brand-950) 0%, oklch(12% 0.03 260) 100%);
 		overflow: hidden;
 	}
 	.facilities__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
@@ -4300,9 +4301,9 @@
 		padding: 5px 12px 5px 8px;
 		font-size: 0.6875rem; font-weight: 700;
 		letter-spacing: 0.16em; text-transform: uppercase;
-		color: var(--color-brand-700);
-		background: oklch(48% 0.13 260 / 0.06);
-		border: 1px solid oklch(48% 0.13 260 / 0.12);
+		color: var(--color-accent-300);
+		background: oklch(100% 0 0 / 0.06);
+		border: 1px solid oklch(100% 0 0 / 0.14);
 		border-radius: 9999px;
 	}
 	.facilities__eyebrow-mark {
@@ -4315,14 +4316,14 @@
 		font-size: var(--text-h1); line-height: var(--text-h1--line-height);
 		letter-spacing: -0.025em;
 		font-weight: 700;
-		color: var(--color-brand-950);
+		color: white;
 		text-wrap: balance;
 	}
 	.facilities__lead {
 		margin: 0;
 		max-width: 60ch;
 		font-size: 1rem; line-height: 1.6;
-		color: oklch(40% 0.015 260);
+		color: oklch(85% 0.015 260);
 	}
 
 	/* Clinic photo / video gallery (mosaic) */
@@ -4399,7 +4400,7 @@
 		display: block; text-align: center;
 		font-size: 0.6875rem; font-weight: 700;
 		letter-spacing: 0.18em; text-transform: uppercase;
-		color: var(--color-brand-500);
+		color: oklch(72% 0.03 260);
 		margin-bottom: 1.25rem;
 	}
 	.facilities__marquee {
@@ -4424,10 +4425,10 @@
 	.facilities__logo span {
 		font-size: clamp(1.1rem, 1.6vw, 1.6rem);
 		font-weight: 800; letter-spacing: 0.01em; white-space: nowrap;
-		color: var(--color-brand-300);
+		color: oklch(70% 0.025 260);
 		transition: color 0.25s;
 	}
-	.facilities__logo:hover span { color: var(--color-brand-700); }
+	.facilities__logo:hover span { color: white; }
 	.facilities__logo img { height: 42px; width: auto; object-fit: contain; opacity: 0.7; filter: grayscale(1); transition: opacity 0.25s, filter 0.25s; }
 	.facilities__logo:hover img { opacity: 1; filter: grayscale(0); }
 

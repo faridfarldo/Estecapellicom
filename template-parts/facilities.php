@@ -76,7 +76,7 @@ $partners = $data['partners'] ?? array();
 
 		<?php if ( ! empty( $data['cta']['url'] ) ) : ?>
 			<div class="facilities__foot">
-				<a class="btn btn-primary btn-lg" href="<?php echo esc_url( $data['cta']['url'] ); ?>">
+				<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $data['cta']['url'] ); ?>">
 					<?php echo esc_html( $data['cta']['label'] ); ?>
 					<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
 				</a>
