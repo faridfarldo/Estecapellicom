@@ -115,6 +115,166 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				),
 			),
 
+			// ======================== Pre Hair Transplant ========================
+			array(
+				'slug'   => 'pre-hair-transplant',
+				'title'  => 'Pre Hair Transplant',
+				'parent' => null,
+				'sections' => array(
+					$hero( __( 'Before Your Procedure', 'estecapelli' ), __( 'Preparing for Your Hair Transplant', 'estecapelli' ), __( 'The right preparation is one of the biggest factors in a successful hair transplant. From a thorough medical evaluation to small day-of details, here is everything you need to do before your procedure at Estecapelli.', 'estecapelli' ) ),
+
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'The Preparation Phase', 'estecapelli' ),
+						'title'          => __( 'Why the Pre-Transplant Period Matters', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'The pre-hair-transplant period covers all the essential steps taken before the procedure begins. It includes a thorough medical evaluation, scalp analysis and determining the most suitable technique for you.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The donor area is assessed and the hairline design is carefully planned to achieve natural-looking results. Proper preparation during this period plays a key role in the overall success of the transplant.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'right',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'stepbook',
+						'eyebrow'       => __( 'Your Pre-Op Checklist', 'estecapelli' ),
+						'title'         => __( 'How to Prepare for Your Hair Transplant', 'estecapelli' ),
+						'lead'          => __( 'Follow these steps in the days leading up to your procedure. Swipe through each one below.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'eyebrow' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Your Health Status & Medications', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Share any existing conditions — high blood pressure, diabetes, heart disease, hormonal disorders or other chronic illnesses — and list every medication you take regularly. Never stop a medication, including blood thinners such as Aspirin, without your doctor’s approval.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'Alcohol, Smoking & Substances', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Stop drinking alcohol at least 24 hours before the procedure and quit smoking at least one day before — ideally for a week afterwards too. Smoking reduces blood flow to the scalp and lowers graft survival. Avoid all recreational drugs.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'clipboard', 'eyebrow' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Tests & Examination', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Blood tests screen for infection risk, anaemia, blood-sugar levels and clotting factors. A TrichoLab AI analysis measures your hair density and donor-area capacity, and your hairline is designed in line with your facial proportions.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'sparkles', 'eyebrow' => __( 'Step 4', 'estecapelli' ), 'title' => __( 'Nutrition & Sleep', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Have a light breakfast on the day of the operation — never arrive on an empty stomach — and avoid heavy or greasy food. A good night’s sleep beforehand strengthens your immune system and supports a faster, smoother recovery.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'calendar', 'eyebrow' => __( 'Step 5', 'estecapelli' ), 'title' => __( 'Day-of-Operation Preparation', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Wear comfortable, front-opening clothing such as a button-up or wide-necked top so nothing touches the grafts when you change. Remove all jewellery and accessories, keep your scalp free of gel, wax, spray or shampoo residue, and limit caffeine.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target', 'eyebrow' => __( 'Step 6', 'estecapelli' ), 'title' => __( 'What to Avoid Beforehand', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Avoid Aspirin and blood thinners (without doctor approval), energy drinks, and blood-thinning herbal teas such as green tea, ginseng and ginkgo. These can increase bleeding during the procedure and affect the result.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'star', 'eyebrow' => __( 'Step 7', 'estecapelli' ), 'title' => __( 'Estecapelli Recommendations', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Increase your water intake for better skin hydration and graft survival, take any supplements we recommend for B6, B12, Vitamin D or zinc deficiencies, and try to keep your stress levels low — all of which support a successful outcome.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'Before Your Transplant — Frequently Asked Questions', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'Should I stop my regular medication before the procedure?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Never stop any medication on your own. Tell us everything you take and we will advise you. Blood thinners such as Aspirin are only paused before the procedure under medical supervision.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Can I eat on the day of the operation?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes — have a light breakfast. Arriving on an empty stomach can disrupt your blood-pressure balance, but heavy or greasy food should be avoided.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'How long before the procedure should I stop smoking?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Stop smoking at least one day before, and ideally avoid it for a week after as well. Smoking reduces blood flow to the scalp and can lower graft survival.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What should I wear on the day?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Comfortable, front-opening clothing such as a button-up shirt or a wide-necked top, so you never have to pull anything over the freshly transplanted area.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Have a Question Before Your Procedure?', 'estecapelli' ),
+						'lead'          => __( 'Send us your details and our medical team will guide you through every step of your preparation — and answer any question you have before the day.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'shield-check', 'label' => __( 'Personalised pre-op guidance from our medical team', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from your dedicated patient-care contact', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
+					),
+				),
+			),
+
+			// ======================== Post Hair Transplant ========================
+			array(
+				'slug'   => 'post-hair-transplant',
+				'title'  => 'Post Hair Transplant',
+				'parent' => null,
+				'sections' => array(
+					$hero( __( 'After Your Procedure', 'estecapelli' ), __( 'Your Recovery, Step by Step', 'estecapelli' ), __( 'What you do after your hair transplant matters just as much as the procedure itself. Here is exactly what to expect — and what to do — from the first 24 hours to the day your final result is complete.', 'estecapelli' ) ),
+
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'The Recovery Journey', 'estecapelli' ),
+						'title'          => __( 'Things to Do & Things to Watch For', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'Your hair transplant recovery follows a clear, predictable timeline. Knowing what happens at each stage — and following your aftercare plan closely — protects the grafts and gives you the fullest, most natural result.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'This is the Estecapelli post-operation guide: the things to do and the things to pay attention to, stage by stage, from the day of your procedure through to full results.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'left',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'stepbook',
+						'eyebrow'       => __( 'Recovery Timeline', 'estecapelli' ),
+						'title'         => __( 'Your Hair Transplant, Day by Day', 'estecapelli' ),
+						'lead'          => __( 'From the first 24 hours to the completion of your results. Swipe through each stage below.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'shield-check', 'eyebrow' => __( 'First 24 Hours', 'estecapelli' ), 'title' => __( 'The First 24 Hours', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Mild redness, swelling and sensitivity around the transplanted and donor areas are completely normal. Keep your head elevated, sleep on your back, do not touch or scratch the area, and take the medication we provide exactly as directed.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Day 1', 'estecapelli' ), 'title' => __( 'Dressing & First Wash', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'You return to the clinic so your dressing can be checked and your first hair wash performed by our team. We show you the gentle technique you will then continue at home without disturbing the grafts.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'calendar', 'eyebrow' => __( 'Days 2–7', 'estecapelli' ), 'title' => __( 'Daily Washing Routine', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Continue the daily washing routine exactly as demonstrated, using the lotion and special shampoo provided. Swelling settles and small scabs begin to form around each graft — this is part of normal healing.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'sparkles', 'eyebrow' => __( 'Day 7', 'estecapelli' ), 'title' => __( 'Grafts Secured', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'By around the seventh day the grafts are secure and most swelling has resolved. You can gradually return to your normal routine while still protecting the scalp from knocks and direct sun.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target', 'eyebrow' => __( 'Days 9–12', 'estecapelli' ), 'title' => __( 'Scab Shedding Phase', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'The scab shedding phase is a natural part of healing, occurring around the 7th to 10th day. With gentle washing the small scabs loosen and fall away on their own — never pick or scratch at them.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'atom', 'eyebrow' => __( 'Day 30', 'estecapelli' ), 'title' => __( 'Shock Shedding', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'During the first one to three months some transplanted hairs temporarily shed — a normal phenomenon called shock loss, caused by the follicles entering a brief resting phase before regrowing stronger.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'hair', 'eyebrow' => __( 'Months 2–4', 'estecapelli' ), 'title' => __( 'New Growth Begins', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'The resting follicles reactivate and new hair growth typically begins around the third to fourth month. Early hairs may look fine and sparse at first before they thicken over the following weeks.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'star', 'eyebrow' => __( 'Months 4–12', 'estecapelli' ), 'title' => __( 'Density Builds', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Density steadily increases as more follicles enter the growth phase. The transplanted hair thickens, gains its natural texture and begins to blend seamlessly with your existing hair.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Months 12–18', 'estecapelli' ), 'title' => __( 'Completion of Results', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Your final result matures, with full density and a completely natural look. The transplanted hair is permanent and can be cut, washed and styled exactly like the rest of your hair.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Aftercare Essentials', 'estecapelli' ),
+						'title'         => __( 'What to Do During Recovery', 'estecapelli' ),
+						'body'          => __( 'Following your personalised aftercare plan closely is the single best thing you can do for your result:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'check-circle', 'label' => __( 'Use the special shampoo and lotion exactly as instructed', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'label' => __( 'Keep up your monthly PRP sessions', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Take the prescribed medications and vitamins', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Continue any recommended mesotherapy treatments', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Follow your individualised aftercare plan throughout', 'estecapelli' ) ),
+						),
+					),
+
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'Supportive Treatments', 'estecapelli' ),
+						'title'          => __( 'Treatments We Recommend to Boost Your Result', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'To strengthen the new follicles and accelerate healthy growth, Estecapelli may recommend supportive treatments alongside your recovery:', 'estecapelli' ) . '</p>'
+							. '<ul><li>' . esc_html__( 'Exosome injection — to support follicle health and growth', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'PRP (Platelet-Rich Plasma) — to stimulate the scalp and strengthen hair', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Mesotherapy — to nourish the follicles with vitamins and minerals', 'estecapelli' ) . '</li>'
+							. '<li>' . esc_html__( 'Stem cell therapy — to encourage stronger, healthier regrowth', 'estecapelli' ) . '</li></ul>',
+						'image'          => '',
+						'image_position' => 'right',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'After Your Transplant — Frequently Asked Questions', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'When can I wash my hair?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Your first wash is done at the clinic on Day 1, where our team shows you the gentle technique. From then on you continue the daily washing routine at home with the lotion and shampoo we provide.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When do the scabs fall off?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'The scab shedding phase happens around the 7th to 10th day. With gentle washing the scabs loosen and fall away on their own — it is important never to pick or scratch at them.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Is it normal to lose hair after the transplant?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Yes. Between the first and third months some transplanted hairs shed temporarily — this is called shock loss and is completely normal. The follicles then regrow stronger from around the third to fourth month.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'When will I see my final result?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'New growth begins around months three to four, noticeable density develops between months four and twelve, and your final result is complete at roughly twelve to eighteen months.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Can I smoke or drink alcohol during recovery?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'We recommend avoiding smoking for at least one week after the procedure and limiting alcohol, as both reduce blood flow to the scalp and can affect graft survival and healing.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'We’re Here for You', 'estecapelli' ),
+						'title'         => __( 'Questions About Your Recovery?', 'estecapelli' ),
+						'lead'          => __( 'Our patient-care team supports you long after you fly home. Send your details — or a photo — and we will guide you through every stage of your recovery.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'headset',      'label' => __( 'Dedicated post-operative support team', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Send a photo for a quick progress check', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Contact Patient Care', 'estecapelli' ),
+						'show_whatsapp' => true,
+					),
+				),
+			),
+
 			// ======================== About branch ========================
 			array(
 				'slug'   => 'about-us',

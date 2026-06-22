@@ -89,5 +89,10 @@ function estecapelli_legacy_redirect_rules() {
 		//      standalone page at /en/tricholab. ----
 		array( 'from' => '#^hair-transplant/tricholab/?$#i', 'to' => '/en/tricholab' ),
 
+		// ---- Pre / Post hair-transplant guides are standalone pages. Catch the
+		//      likely legacy nested paths under /hair-transplant/. ----
+		array( 'from' => '#^hair-transplant/pre-hair-transplant/?$#i',  'to' => '/en/pre-hair-transplant' ),
+		array( 'from' => '#^hair-transplant/post-hair-transplant/?$#i', 'to' => '/en/post-hair-transplant' ),
+
 	);
 }
