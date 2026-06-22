@@ -667,6 +667,70 @@ if ( ! function_exists( 'estecapelli_signature_split' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_hero_slides' ) ) {
+	/**
+	 * Extra hero slides (2 and 3) for the 3-slide hero carousel. Slide 1 is the
+	 * Exosome/VITA split (estecapelli_signature_split). All content is
+	 * placeholder-friendly and ACF-overridable via option 'hero_slides'.
+	 */
+	function estecapelli_hero_slides() {
+		if ( function_exists( 'get_field' ) ) {
+			$acf = get_field( 'hero_slides', 'option' );
+			if ( ! empty( $acf ) ) {
+				return $acf;
+			}
+		}
+
+		$img      = get_template_directory_uri() . '/assets/images/';
+		$contact  = home_url( '/en/contact' );
+		$whatsapp = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_url() : $contact;
+
+		return array(
+			// Slide 2 — "most experienced expert" (Bosley-style).
+			'expert' => array(
+				'eyebrow'  => __( 'EST. 2010 · ISTANBUL', 'estecapelli' ),
+				'headline' => __( 'One of the World’s Most Experienced Hair Restoration Teams', 'estecapelli' ),
+				'body'     => __( 'Join the thousands who have come to Estecapelli to regain their confidence.', 'estecapelli' ),
+				'cta'      => array( 'label' => __( 'Schedule a Free Consultation', 'estecapelli' ), 'url' => $contact ),
+				'photo'    => $img . 'doctors/mehmet-hanifi-kutlar.jpg',
+				'badge'    => array(
+					'value' => __( 'Over 50,000+', 'estecapelli' ),
+					'label' => __( '5-Star Results', 'estecapelli' ),
+				),
+				'caption'  => __( 'Actual Estecapelli patient. Individual results may vary.', 'estecapelli' ),
+				'patient'  => __( 'Devin H.', 'estecapelli' ),
+				'before'   => $img . 'techniques/exosome-cover.webp',
+				'after'    => $img . 'techniques/vita-cover.webp',
+				'years'    => array( 'from' => '2010', 'to' => '2025', 'label' => __( 'FIFTEEN YEARS', 'estecapelli' ) ),
+			),
+
+			// Slide 3 — awards, Google review, short intro video.
+			'awards' => array(
+				'eyebrow'  => __( '15 YEARS OF EXPERIENCE · +50,000 SUCCESSFUL TRANSPLANTS', 'estecapelli' ),
+				'headline' => __( 'Istanbul Hair Transplant Center — Natural, Permanent Results', 'estecapelli' ),
+				'points'   => array(
+					__( 'Expert medical team', 'estecapelli' ),
+					__( 'World-class medical expertise', 'estecapelli' ),
+					__( 'Natural results with the most advanced technology', 'estecapelli' ),
+				),
+				'cta'      => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => $contact ),
+				'video'    => 'oINL-_dGV_M', // placeholder intro video (YouTube ID)
+				'review'   => array(
+					'score' => '4.9',
+					'out_of' => '5',
+					'count' => __( '5,800+ reviews', 'estecapelli' ),
+					'label' => __( 'Recommended by 50,000+ patients', 'estecapelli' ),
+				),
+				'awards'   => array(
+					array( 'image' => $img . 'badges/01-ministry-of-health.png', 'alt' => __( 'Ministry of Health licensed', 'estecapelli' ) ),
+					array( 'image' => $img . 'badges/02-tursab.png', 'alt' => __( 'TURSAB certified', 'estecapelli' ) ),
+					array( 'image' => $img . 'badges/03-heal-in-turkiye.webp', 'alt' => __( 'Heal in Türkiye', 'estecapelli' ) ),
+				),
+			),
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_trust_stats' ) ) {
 	/**
 	 * Quiet trust-stats strip rendered below the hero.

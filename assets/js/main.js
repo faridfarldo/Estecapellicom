@@ -187,6 +187,47 @@
 		});
 	}
 
+	function initHeroCarousel() {
+		var root = document.querySelector('[data-hero-carousel]');
+		if (!root) return;
+		var track = root.querySelector('[data-hero-track]');
+		var slides = Array.prototype.slice.call(root.querySelectorAll('[data-hero-slide]'));
+		var dots = Array.prototype.slice.call(root.querySelectorAll('[data-hero-dot]'));
+		if (!track || slides.length < 2) return;
+
+		var index = 0;
+		var timer = null;
+		var DELAY = 7000;
+
+		function go(n) {
+			index = (n + slides.length) % slides.length;
+			track.style.transform = 'translateX(' + (-index * 100) + '%)';
+			dots.forEach(function (d, i) { d.setAttribute('aria-selected', i === index ? 'true' : 'false'); });
+			slides.forEach(function (s, i) { s.setAttribute('aria-hidden', i === index ? 'false' : 'true'); });
+		}
+		function next() { go(index + 1); }
+		function prev() { go(index - 1); }
+		function start() { stop(); timer = setInterval(next, DELAY); }
+		function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+		var nextBtn = root.querySelector('[data-hero-next]');
+		var prevBtn = root.querySelector('[data-hero-prev]');
+		if (nextBtn) nextBtn.addEventListener('click', function () { next(); start(); });
+		if (prevBtn) prevBtn.addEventListener('click', function () { prev(); start(); });
+		dots.forEach(function (d) {
+			d.addEventListener('click', function () { go(Number(d.getAttribute('data-hero-dot'))); start(); });
+		});
+
+		// Pause auto-advance while the visitor is interacting.
+		root.addEventListener('mouseenter', stop);
+		root.addEventListener('mouseleave', start);
+		root.addEventListener('focusin', stop);
+		root.addEventListener('focusout', start);
+
+		go(0);
+		start();
+	}
+
 	function initHeroSplit() {
 		var stages = document.querySelectorAll('[data-split-stage]');
 		if (!stages.length) return;
@@ -641,6 +682,7 @@
 		initLangSwitch();
 		initStickyHeader();
 		initSignatureCards();
+		initHeroCarousel();
 		initHeroSplit();
 		initHomeBaGallery();
 		initHairAnalysisLab();
