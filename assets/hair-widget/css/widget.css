@@ -6,16 +6,18 @@
  * during the port (search for --hw-*).
  */
 .hair-widget {
-  --hw-bg: #0e1726;
-  --hw-card: #14203400;
+  /* Re-themed to match the Hair Analysis Lab section: red CTAs, gold accents. */
+  --hw-bg: #1a120b;
+  --hw-card: #2a1e1200;
   --hw-surface: rgba(255, 255, 255, 0.06);
-  --hw-border: rgba(255, 255, 255, 0.14);
-  --hw-text: #f4f7fb;
-  --hw-muted: #9fb0c6;
-  --hw-accent: #18b6a6;
-  --hw-accent-ink: #04201d;
+  --hw-border: rgba(230, 179, 77, 0.22);
+  --hw-text: #f6efe6;
+  --hw-muted: #cbb89c;
+  --hw-accent: #d6463a;
+  --hw-accent-ink: #ffffff;
+  --hw-gold: #e6b34d;
   --hw-danger: #ff6b6b;
-  --hw-ok: #28d6a4;
+  --hw-ok: #e0a93c;
   --hw-radius: 18px;
 
   box-sizing: border-box;
@@ -51,7 +53,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--hw-accent);
+  color: var(--hw-gold);
 }
 .hw-title {
   margin: 0;
@@ -379,6 +381,7 @@
 .hw-stat-value {
   font-size: 22px;
   font-weight: 700;
+  color: var(--hw-gold);
 }
 .hw-cta-text {
   margin: 0;

@@ -183,10 +183,11 @@ export class HairAnalysisWidget {
   async onSubmit(form) {
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
+    const email = form.email.value.trim();
     const consent = form.consent.checked;
 
-    if (!name || !phone) {
-      this.error = 'Please enter your name and phone number.';
+    if (!name || !phone || !email) {
+      this.error = 'Please enter your name, phone and email.';
       this.render();
       return;
     }
@@ -204,7 +205,7 @@ export class HairAnalysisWidget {
       const blobs = Object.fromEntries(
         Object.entries(this.photos).map(([id, p]) => [id, p.blob])
       );
-      await submitLead({ photos: blobs, analysis: this.analysis, contact: { name, phone, consent } });
+      await submitLead({ photos: blobs, analysis: this.analysis, contact: { name, phone, email, consent } });
       this.setStage('done');
     } catch {
       this.error = 'Submission failed. Please try again.';
@@ -352,8 +353,9 @@ export class HairAnalysisWidget {
           </div>
         </div>
         ${a.summary ? `<p class="hw-lead">${esc(a.summary)}</p>` : ''}
-        <p class="hw-cta-text">Submit your details for an accurate assessment from our medical team.</p>
-        <button class="hw-btn hw-btn--accent" data-action="to-form">Get my accurate assessment</button>
+        <p class="hw-cta-text">This is an automatic estimate. If you'd like a doctor to review your
+          photos, send them along with your contact details and our team will get back to you.</p>
+        <button class="hw-btn hw-btn--accent" data-action="to-form">Send my photos to a doctor</button>
         <p class="hw-disclaimer">This is a preliminary estimate generated automatically and is
           <strong>not a medical diagnosis</strong>. A specialist will review your photos.</p>
       </div>`;
@@ -380,6 +382,10 @@ export class HairAnalysisWidget {
           <label class="hw-field">
             <span>Phone / WhatsApp</span>
             <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+          </label>
+          <label class="hw-field">
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" inputmode="email" required />
           </label>
           <label class="hw-consent">
             <input name="consent" type="checkbox" required />

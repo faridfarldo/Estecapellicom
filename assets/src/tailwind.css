@@ -1611,6 +1611,7 @@
 		grid-template-columns: 1fr 1fr;
 		gap: 1rem;
 	}
+	.hal__row--3 { grid-template-columns: repeat(3, 1fr); }
 	.hal__field { display: flex; flex-direction: column; gap: 0.4rem; }
 	.hal__label { font-size: 0.8125rem; font-weight: 600; color: var(--hal-muted); }
 	.hal__field input {
@@ -1671,7 +1672,8 @@
 
 	@media (max-width: 760px) {
 		.hal__options { grid-template-columns: 1fr; }
-		.hal__row { grid-template-columns: 1fr; }
+		.hal__row,
+		.hal__row--3 { grid-template-columns: 1fr; }
 		.hal__uploads { grid-template-columns: repeat(2, 1fr); }
 	}
 

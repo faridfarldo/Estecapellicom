@@ -24,6 +24,7 @@ export async function submitLead({ photos, analysis, contact }) {
   const form = new FormData();
   form.append('lead_name', contact.name);
   form.append('lead_phone', contact.phone);
+  form.append('lead_email', contact.email || '');
   form.append('lead_consent', contact.consent ? '1' : '0');
   form.append('lead_source', 'hero-hair-analysis');
   form.append('analysis_json', JSON.stringify(analysis ?? {}));

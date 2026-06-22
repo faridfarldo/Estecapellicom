@@ -104,14 +104,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 				</fieldset>
 
-				<div class="hal__row">
+				<div class="hal__row hal__row--3">
 					<label class="hal__field">
 						<span class="hal__label"><?php esc_html_e( 'Full name', 'estecapelli' ); ?></span>
 						<input type="text" name="hal_name" placeholder="<?php esc_attr_e( 'Your name', 'estecapelli' ); ?>" />
 					</label>
 					<label class="hal__field">
-						<span class="hal__label"><?php esc_html_e( 'WhatsApp / Email', 'estecapelli' ); ?></span>
-						<input type="text" name="hal_contact" placeholder="<?php esc_attr_e( 'How can we reach you?', 'estecapelli' ); ?>" />
+						<span class="hal__label"><?php esc_html_e( 'Phone / WhatsApp', 'estecapelli' ); ?></span>
+						<input type="tel" name="hal_phone" inputmode="tel" placeholder="<?php esc_attr_e( 'Your number', 'estecapelli' ); ?>" />
+					</label>
+					<label class="hal__field">
+						<span class="hal__label"><?php esc_html_e( 'Email', 'estecapelli' ); ?></span>
+						<input type="email" name="hal_email" inputmode="email" placeholder="<?php esc_attr_e( 'Your email', 'estecapelli' ); ?>" />
 					</label>
 				</div>
 
