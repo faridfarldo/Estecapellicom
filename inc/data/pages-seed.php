@@ -43,6 +43,78 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 
 		return array(
 
+			// ======================== TrichoLab (AI hair analysis) ========================
+			array(
+				'slug'   => 'tricholab',
+				'title'  => 'TrichoLab',
+				'parent' => null,
+				'sections' => array(
+					$hero( __( 'AI-Powered Hair Analysis', 'estecapelli' ), __( 'TrichoLab', 'estecapelli' ), __( 'An advanced AI-powered hair analysis system that examines the hair and scalp through high-resolution trichoscopic imaging — turning your scalp into precise data that drives a fully personalised transplant plan.', 'estecapelli' ) ),
+
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'The Technology', 'estecapelli' ),
+						'title'          => __( 'What is TrichoLab?', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'TrichoLab is an advanced AI-powered hair analysis system that examines the hair and scalp through high-resolution trichoscopic imaging. By measuring critical parameters with millimetric precision, it provides objective, data-driven insights that guide our specialists in planning the most effective treatment for each individual.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The system evaluates a comprehensive range of factors, including hair follicle density, graft potential, hair shaft thickness, donor area capacity, hair loss mapping and miniaturisation rate. This level of detail allows our team to design a personalised treatment plan based on accurate, real-time data rather than estimation.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'right',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					array(
+						'acf_fc_layout' => 'stepbook',
+						'eyebrow'       => __( 'The Process', 'estecapelli' ),
+						'title'         => __( 'Hair Analysis with TrichoLab at Estecapelli', 'estecapelli' ),
+						'lead'          => __( 'From high-resolution imaging to a precise, personalised plan. Swipe through the steps below.', 'estecapelli' ),
+						'items'         => array(
+							array( 'icon' => 'target',    'eyebrow' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Digital Trichoscopic Scanning', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'The scalp is examined with high-resolution micro-imaging, capturing detailed visuals of the hair follicles.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'atom',      'eyebrow' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'AI-Powered Data Analysis', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'Advanced algorithms turn the imaging data into precise numerical values for density and follicular distribution.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'clipboard', 'eyebrow' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Personalised Treatment Plan', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'The data forms the basis of a fully personalised plan, including the exact number of grafts required.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+
+					array(
+						'acf_fc_layout' => 'candidate',
+						'eyebrow'       => __( 'Why It Matters', 'estecapelli' ),
+						'title'         => __( 'The Importance of TrichoLab in Transplant Planning', 'estecapelli' ),
+						'body'          => __( 'Scientific analysis protects your donor area and ensures natural, symmetrical results:', 'estecapelli' ),
+						'image'         => '',
+						'items'         => array(
+							array( 'icon' => 'atom',         'label' => __( 'Scientific assessment of donor area capacity — no overharvesting', 'estecapelli' ) ),
+							array( 'icon' => 'target',       'label' => __( 'Accurate graft calculation, eliminating under- and over-planning', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'label' => __( 'Natural, symmetrical design based on your existing hair', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Long-term protection of the donor area', 'estecapelli' ) ),
+							array( 'icon' => 'star',         'label' => __( 'Available in only a limited number of clinics in Turkey', 'estecapelli' ) ),
+						),
+					),
+
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'Why Estecapelli', 'estecapelli' ),
+						'title'          => __( 'Why TrichoLab at Estecapelli?', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'TrichoLab is an advanced analysis system available in only a limited number of clinics across Turkey, and at Estecapelli it sits at the core of everything we do, giving our patients access to a level of analysis that few clinics can offer.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Every evaluation is objective, measurable and fully transparent. A truly personalised transplant strategy is developed for each patient, built on accurate data rather than guesswork, protecting the donor area and maximising long-term results.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'left',
+						'cta'            => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+
+					array(
+						'acf_fc_layout' => 'faq',
+						'eyebrow'       => __( 'Good to Know', 'estecapelli' ),
+						'title'         => __( 'TrichoLab — Frequently Asked Questions', 'estecapelli' ),
+						'lead'          => '',
+						'items'         => array(
+							array( 'question' => __( 'Is TrichoLab analysis painful?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'Not at all. It is a non-invasive imaging process that simply scans the scalp — no needles, no discomfort.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Why does TrichoLab matter for my transplant?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'It calculates the exact number of grafts you need and protects your donor area, so the plan is accurate, natural and sustainable.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'What exactly is TrichoLab analysis?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'TrichoLab is an advanced hair analysis system that examines the hair and scalp with high-resolution imaging and AI-supported software, measuring hair density, hair strand thickness, donor area capacity and shedding pattern.', 'estecapelli' ) . '</p>' ),
+							array( 'question' => __( 'Does TrichoLab determine the exact number of grafts?', 'estecapelli' ), 'answer' => '<p>' . esc_html__( 'TrichoLab strengthens planning by supporting the graft requirement with scientific data. The final decision is made together with clinical factors such as expert assessment and hairline design.', 'estecapelli' ) . '</p>' ),
+						),
+					),
+				),
+			),
+
 			// ======================== About branch ========================
 			array(
 				'slug'   => 'about-us',

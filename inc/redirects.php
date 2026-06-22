@@ -85,5 +85,9 @@ function estecapelli_legacy_redirect_rules() {
 		array( 'from' => '#^treatments/vita/?$#i',    'to' => '/en/hair-transplant/vita-treatment' ),
 		array( 'from' => '#^treatments/([^/]+)/?$#i', 'to' => '/en/hair-transplant/$1' ),
 
+		// ---- TrichoLab moved out of the Hair Transplant category to a
+		//      standalone page at /en/tricholab. ----
+		array( 'from' => '#^hair-transplant/tricholab/?$#i', 'to' => '/en/tricholab' ),
+
 	);
 }
