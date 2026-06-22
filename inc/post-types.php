@@ -112,6 +112,18 @@ function estecapelli_register_treatment_cpt() {
 		)
 	);
 
+	// The `doctor` CPT shares its base path with the real "Our Doctors" page
+	// (about-us/our-doctors). WordPress resolves /about-us/our-doctors/{slug}
+	// as a child of that page first and 404s before the CPT rule ever runs, so
+	// register an explicit top-priority rule that maps the trailing slug
+	// straight to the doctor profile. The optional `en/` prefix covers both the
+	// WPML production URLs and the local /en/ routing shim.
+	add_rewrite_rule(
+		'^(?:en/)?about-us/our-doctors/([^/]+)/?$',
+		'index.php?doctor=$matches[1]',
+		'top'
+	);
+
 	register_taxonomy(
 		'treatment_category',
 		array( 'treatment', 'result' ),
