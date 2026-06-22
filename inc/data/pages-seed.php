@@ -49,7 +49,55 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				'title'  => 'About Us',
 				'parent' => null,
 				'sections' => array(
-					$hero( __( 'About Estecapelli', 'estecapelli' ), __( 'Aesthetic excellence, backed by medical trust.', 'estecapelli' ), __( "Estecapelli is an Istanbul-based clinic specialised in hair restoration, plastic surgery, dental treatment and non-surgical aesthetics. We combine board-certified surgeons, hospital-grade facilities and a patient-first philosophy to deliver results our patients trust us for.", 'estecapelli' ) ),
+					$hero( __( 'About Estecapelli', 'estecapelli' ), __( 'Aesthetic excellence, backed by medical trust.', 'estecapelli' ), __( 'Estecapelli is an Istanbul-based clinic specialised in hair restoration, plastic surgery, dental treatment and non-surgical aesthetics. We combine board-certified surgeons, hospital-grade facilities and a patient-first philosophy to deliver results our patients trust us for.', 'estecapelli' ) ),
+
+					// By the numbers.
+					array(
+						'acf_fc_layout' => 'quick_stats',
+						'eyebrow'       => __( 'Trusted Worldwide', 'estecapelli' ),
+						'stats'         => array(
+							array( 'icon' => 'calendar', 'value' => '15+',      'label' => __( 'Years of Experience', 'estecapelli' ) ),
+							array( 'icon' => 'hair',     'value' => '+50,000',  'label' => __( 'Hair Transplants', 'estecapelli' ) ),
+							array( 'icon' => 'globe',    'value' => '+40',      'label' => __( 'Countries Served', 'estecapelli' ) ),
+							array( 'icon' => 'headset',  'value' => '24/7',     'label' => __( 'Patient Support', 'estecapelli' ) ),
+						),
+					),
+
+					// Who we are.
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'Who We Are', 'estecapelli' ),
+						'title'          => __( 'A global leader in hair restoration', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'Estecapelli is a global leader in hair restoration surgery, trusted by thousands of patients worldwide who seek excellence, safety, and truly transformative results.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Our clinic combines advanced medical technology with the expertise of a highly skilled and internationally experienced team. Through our patented techniques and patient-focused approach, we deliver natural-looking, long-lasting outcomes that go beyond restoring hair — helping our patients regain confidence, a youthful appearance, and a renewed sense of well-being.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'right',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					// Why Türkiye / value.
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'Why Türkiye', 'estecapelli' ),
+						'title'          => __( 'World-class results, without the inflated price', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'Why pay more in the UK, USA, or Europe? At Estecapelli we combine medical excellence, internationally accredited techniques and competitive pricing to deliver world-class hair-transplant results at a fraction of the cost.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Our state-of-the-art facilities in Türkiye offer the same quality of care you would expect from top clinics worldwide — without the inflated prices. With experienced surgeons, personalised treatment plans and comprehensive aftercare, you receive exceptional value that never compromises on quality.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'left',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					// Our story.
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'Our Story', 'estecapelli' ),
+						'title'          => __( 'Proven in Türkiye, trusted worldwide', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'Our story began in Istanbul, Türkiye, where thousands of patients from around the world have experienced life-changing hair transformations.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The success we have achieved through our unique techniques and patient-centred approach has brought the Estecapelli experience to Santiago, Chile — and today, with the same passion for excellence, personalised care and natural results, we bring Estecapelli quality to many more locations around the world.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'right',
+						'cta'            => array( 'label' => __( 'Meet Our Doctors', 'estecapelli' ), 'url' => home_url( '/en/about-us/our-doctors' ) ),
+					),
 				),
 			),
 			array(
