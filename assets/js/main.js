@@ -199,11 +199,15 @@
 		var timer = null;
 		var DELAY = 7000;
 
-		var nextLabel = root.querySelector('[data-hero-next-label]');
-		var prevLabel = root.querySelector('[data-hero-prev-label]');
-		function titleAt(i) {
+		var nextThumb = root.querySelector('[data-hero-next-thumb]');
+		var prevThumb = root.querySelector('[data-hero-prev-thumb]');
+		function thumbAt(i) {
 			var s = slides[(i + slides.length) % slides.length];
-			return s ? (s.getAttribute('data-hero-title') || '') : '';
+			return s ? (s.getAttribute('data-hero-thumb') || '') : '';
+		}
+		function setThumb(el, url) {
+			if (!el) return;
+			if (url) { el.style.backgroundImage = 'url("' + url + '")'; }
 		}
 
 		function go(n) {
@@ -211,9 +215,9 @@
 			track.style.transform = 'translateX(' + (-index * 100) + '%)';
 			dots.forEach(function (d, i) { d.setAttribute('aria-selected', i === index ? 'true' : 'false'); });
 			slides.forEach(function (s, i) { s.setAttribute('aria-hidden', i === index ? 'false' : 'true'); });
-			// Arrows preview the slide they lead to.
-			if (nextLabel) nextLabel.textContent = titleAt(index + 1);
-			if (prevLabel) prevLabel.textContent = titleAt(index - 1);
+			// Arrows preview the slide they lead to (mini thumbnail).
+			setThumb(nextThumb, thumbAt(index + 1));
+			setThumb(prevThumb, thumbAt(index - 1));
 		}
 		function next() { go(index + 1); }
 		function prev() { go(index - 1); }

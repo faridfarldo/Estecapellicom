@@ -29,7 +29,7 @@ $aw     = $slides['awards'];
 		<div class="hero-x__track" data-hero-track>
 
 			<!-- ===== Slide 1 — Exosome / VITA split ===== -->
-			<div class="hero-x__slide" data-hero-slide data-hero-title="<?php esc_attr_e( 'Signature Methods', 'estecapelli' ); ?>">
+			<div class="hero-x__slide" data-hero-slide data-hero-title="<?php esc_attr_e( 'Signature Methods', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $panels['exosome']['cover'] ?? '' ); ?>">
 				<div class="hero-split" aria-labelledby="hero-split-title">
 
 					<div class="hero-split__bg" aria-hidden="true">
@@ -103,7 +103,7 @@ $aw     = $slides['awards'];
 			</div>
 
 			<!-- ===== Slide 2 — Most experienced ===== -->
-			<div class="hero-x__slide hero-x__slide--expert" data-hero-slide data-hero-title="<?php esc_attr_e( 'World-Class Experience', 'estecapelli' ); ?>">
+			<div class="hero-x__slide hero-x__slide--expert" data-hero-slide data-hero-title="<?php esc_attr_e( 'World-Class Experience', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $exp['photo'] ); ?>">
 				<div class="hero-x__bg" aria-hidden="true">
 					<span class="hero-x__glow hero-x__glow--a"></span>
 					<span class="hero-x__glow hero-x__glow--b"></span>
@@ -172,7 +172,7 @@ $aw     = $slides['awards'];
 			</div>
 
 			<!-- ===== Slide 3 — Awards & reviews ===== -->
-			<div class="hero-x__slide hero-x__slide--awards" data-hero-slide data-hero-title="<?php esc_attr_e( 'Awards & Reviews', 'estecapelli' ); ?>">
+			<div class="hero-x__slide hero-x__slide--awards" data-hero-slide data-hero-title="<?php esc_attr_e( 'Awards & Reviews', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $exp['after'] ); ?>">
 				<div class="hero-x__bg" aria-hidden="true">
 					<span class="hero-x__glow hero-x__glow--a"></span>
 					<span class="hero-x__glow hero-x__glow--b"></span>
@@ -244,12 +244,12 @@ $aw     = $slides['awards'];
 	</div>
 
 	<button type="button" class="hero-x__nav hero-x__nav--prev" data-hero-prev aria-label="<?php esc_attr_e( 'Previous slide', 'estecapelli' ); ?>">
-		<span class="hero-x__nav-icon"><?php estecapelli_icon( 'chevron-left', array( 'width' => 26, 'height' => 26 ) ); ?></span>
-		<span class="hero-x__nav-label" data-hero-prev-label></span>
+		<span class="hero-x__nav-thumb" data-hero-prev-thumb aria-hidden="true"></span>
+		<span class="hero-x__nav-chevron"><?php estecapelli_icon( 'chevron-left', array( 'width' => 24, 'height' => 24 ) ); ?></span>
 	</button>
 	<button type="button" class="hero-x__nav hero-x__nav--next" data-hero-next aria-label="<?php esc_attr_e( 'Next slide', 'estecapelli' ); ?>">
-		<span class="hero-x__nav-label" data-hero-next-label></span>
-		<span class="hero-x__nav-icon"><?php estecapelli_icon( 'chevron-right', array( 'width' => 26, 'height' => 26 ) ); ?></span>
+		<span class="hero-x__nav-thumb" data-hero-next-thumb aria-hidden="true"></span>
+		<span class="hero-x__nav-chevron"><?php estecapelli_icon( 'chevron-right', array( 'width' => 24, 'height' => 24 ) ); ?></span>
 	</button>
 
 	<div class="hero-x__dots" role="tablist" aria-label="<?php esc_attr_e( 'Choose slide', 'estecapelli' ); ?>">

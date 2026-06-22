@@ -197,44 +197,42 @@
 	.hero-x__glow--a { width: 480px; height: 480px; background: oklch(58% 0.13 260 / 0.45); top: -130px; right: -60px; }
 	.hero-x__glow--b { width: 380px; height: 380px; background: oklch(70% 0.15 78 / 0.16); bottom: -120px; left: -50px; }
 
+	/* Nav = a mini preview of the destination slide with a chevron over it. */
 	.hero-x__nav {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
 		z-index: 6;
-		display: flex;
-		align-items: center;
-		height: 58px;
+		width: 74px;
+		height: 96px;
 		padding: 0;
-		border-radius: 9999px;
+		border: 1px solid oklch(100% 0 0 / 0.35);
+		border-radius: 14px;
+		overflow: hidden;
 		cursor: pointer;
+		background: oklch(20% 0.03 260 / 0.6);
+		box-shadow: 0 10px 30px oklch(0% 0 0 / 0.4);
+		transition: transform 0.25s, box-shadow 0.25s;
+	}
+	.hero-x__nav:hover { transform: translateY(-50%) scale(1.05); box-shadow: 0 14px 36px oklch(0% 0 0 / 0.5); }
+	.hero-x__nav--prev { left: 16px; }
+	.hero-x__nav--next { right: 16px; }
+	.hero-x__nav-thumb {
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-position: center;
+	}
+	.hero-x__nav-chevron {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-items: center;
 		color: white;
-		background: oklch(15% 0.02 260 / 0.55);
-		border: 1px solid oklch(100% 0 0 / 0.28);
-		backdrop-filter: blur(8px);
-		overflow: hidden;
-		transition: background 0.25s, box-shadow 0.25s;
+		background: oklch(10% 0.02 260 / 0.45);
+		transition: background 0.25s;
 	}
-	.hero-x__nav:hover { background: oklch(20% 0.03 260 / 0.72); box-shadow: 0 10px 30px oklch(0% 0 0 / 0.4); }
-	.hero-x__nav--prev { left: 14px; }
-	.hero-x__nav--next { right: 14px; }
-	.hero-x__nav-icon { flex: 0 0 auto; width: 58px; height: 58px; display: grid; place-items: center; }
-	.hero-x__nav-label {
-		max-width: 0;
-		overflow: hidden;
-		white-space: nowrap;
-		opacity: 0;
-		font-size: 0.8125rem;
-		font-weight: 700;
-		letter-spacing: 0.01em;
-		transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s, padding 0.35s;
-	}
-	.hero-x__nav:hover .hero-x__nav-label,
-	.hero-x__nav:focus-visible .hero-x__nav-label { max-width: 220px; opacity: 1; }
-	.hero-x__nav--next:hover .hero-x__nav-label,
-	.hero-x__nav--next:focus-visible .hero-x__nav-label { padding-left: 16px; }
-	.hero-x__nav--prev:hover .hero-x__nav-label,
-	.hero-x__nav--prev:focus-visible .hero-x__nav-label { padding-right: 16px; }
+	.hero-x__nav:hover .hero-x__nav-chevron { background: oklch(10% 0.02 260 / 0.2); }
 
 	.hero-x__dots {
 		position: absolute;
@@ -407,10 +405,9 @@
 		.hero-exp__ba { position: static; margin-top: 1.75rem; width: fit-content; }
 		.hero-exp__seal { top: -10px; right: -6px; width: 72px; height: 72px; }
 		.hero-aw__strip { justify-content: center; }
-		.hero-x__nav { height: 46px; }
-		.hero-x__nav-icon { width: 46px; height: 46px; }
-		.hero-x__nav--prev { left: 6px; }
-		.hero-x__nav--next { right: 6px; }
+		.hero-x__nav { width: 54px; height: 72px; }
+		.hero-x__nav--prev { left: 8px; }
+		.hero-x__nav--next { right: 8px; }
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.hero-x__track { transition: none; }
