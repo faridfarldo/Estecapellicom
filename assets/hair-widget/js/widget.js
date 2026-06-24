@@ -182,7 +182,13 @@ export class HairAnalysisWidget {
 
   async onSubmit(form) {
     const name = form.name.value.trim();
-    const phone = form.phone.value.trim();
+    // Prepend the selected country dial code (intl-tel-input keeps it separate),
+    // matching how phone-intl.js handles the site's other forms.
+    let phone = form.phone.value.trim();
+    if (this.iti && phone && phone[0] !== '+') {
+      const cc = this.iti.getSelectedCountryData();
+      if (cc && cc.dialCode) phone = '+' + cc.dialCode + ' ' + phone;
+    }
     const email = form.email.value.trim();
     const consent = form.consent.checked;
 
@@ -381,7 +387,7 @@ export class HairAnalysisWidget {
           </label>
           <label class="hw-field">
             <span>Phone / WhatsApp</span>
-            <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+            <input name="phone" class="js-intl-phone" type="tel" autocomplete="tel" inputmode="tel" required />
           </label>
           <label class="hw-field">
             <span>Email</span>
@@ -434,11 +440,42 @@ export class HairAnalysisWidget {
     if (file) file.addEventListener('change', (e) => this.onFileFallback(e.target.files?.[0]));
 
     const form = this.root.querySelector('.hw-form');
-    if (form)
+    if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         this.onSubmit(e.currentTarget);
       });
+      this.initPhone(form);
+    }
+  }
+
+  // Upgrade the phone field with the international dial-code selector. The
+  // widget form is rendered dynamically after page load, so phone-intl.js
+  // (which runs once at load) never sees it — we init it here on each render.
+  initPhone(form) {
+    const input = form.querySelector('input[name="phone"]');
+    if (!input || typeof window.intlTelInput !== 'function') return;
+    if (this.iti) {
+      try { this.iti.destroy(); } catch (e) {}
+      this.iti = null;
+    }
+    this.iti = window.intlTelInput(input, {
+      initialCountry: 'auto',
+      separateDialCode: true,
+      geoIpLookup: (cb) => {
+        let cached = null;
+        try { cached = sessionStorage.getItem('ec_country'); } catch (e) {}
+        if (cached) { cb(cached); return; }
+        fetch('https://ipwho.is/')
+          .then((r) => r.json())
+          .then((d) => {
+            const cc = (d && d.success && d.country_code ? d.country_code : 'us').toLowerCase();
+            try { sessionStorage.setItem('ec_country', cc); } catch (e) {}
+            cb(cc);
+          })
+          .catch(() => cb('us'));
+      },
+    });
   }
 }
 

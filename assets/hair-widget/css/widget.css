@@ -420,6 +420,18 @@
   outline: 2px solid var(--hw-accent);
   outline-offset: 1px;
 }
+/* intl-tel-input dial-code selector — fill the field and stay legible on the
+   widget's dark surface. */
+.hw-field .iti {
+  width: 100%;
+  display: block;
+}
+.hw-field .iti__selected-dial-code {
+  color: var(--hw-text);
+}
+.hw-field .iti__arrow {
+  border-top-color: var(--hw-text);
+}
 .hw-consent {
   display: flex;
   gap: 10px;
