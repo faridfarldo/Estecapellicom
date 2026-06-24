@@ -96,7 +96,7 @@ $sent         = isset( $_GET['sent'] ) && '1' === $_GET['sent']; // phpcs:ignore
 					<textarea id="lf-note" name="lead_message" rows="4" placeholder="<?php esc_attr_e( 'Tell us about your goals, or any questions you have…', 'estecapelli' ); ?>"></textarea>
 				</div>
 
-				<input type="hidden" name="lead_source" value="section" />
+				<?php estecapelli_lead_tracking_fields( 'section' ); ?>
 				<input type="hidden" name="lead_return" value="<?php echo esc_url( $return_url ); ?>" />
 				<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
 

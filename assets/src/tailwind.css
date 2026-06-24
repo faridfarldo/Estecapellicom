@@ -6829,3 +6829,123 @@
 		scroll-behavior: auto !important;
 	}
 }
+
+/* ============================================================ Lead popup (modal consultation form) */
+@layer components {
+	.lead-popup {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+	.lead-popup[hidden] { display: none; }
+	.lead-popup.is-open { opacity: 1; }
+
+	.lead-popup__overlay {
+		position: absolute;
+		inset: 0;
+		background: oklch(14% 0.035 260 / 0.55);
+		backdrop-filter: blur(4px);
+	}
+
+	.lead-popup__dialog {
+		position: relative;
+		width: 100%;
+		max-width: 460px;
+		max-height: calc(100dvh - 2rem);
+		overflow-y: auto;
+		background: white;
+		border-radius: var(--radius-2xl, 1rem);
+		box-shadow: var(--shadow-pop);
+		padding: 1.75rem;
+		transform: translateY(12px) scale(0.98);
+		opacity: 0;
+		transition: transform 0.25s var(--ease-spring), opacity 0.2s ease;
+	}
+	.lead-popup.is-open .lead-popup__dialog { transform: none; opacity: 1; }
+
+	.lead-popup__close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border: 0;
+		border-radius: 9999px;
+		background: var(--color-brand-50);
+		color: var(--color-brand-700);
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease;
+	}
+	.lead-popup__close:hover { background: var(--color-brand-100); color: var(--color-brand-900); }
+
+	.lead-popup__head { margin-bottom: 1.25rem; padding-right: 2rem; }
+	.lead-popup__eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--color-brand-600);
+		margin-bottom: 0.65rem;
+	}
+	.lead-popup__eyebrow-mark { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-accent-500); }
+	.lead-popup__title {
+		font-size: var(--text-h3);
+		line-height: 1.2;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--color-brand-950);
+		margin: 0 0 0.5rem;
+	}
+	.lead-popup__lead { color: oklch(45% 0.015 260); font-size: 0.95rem; line-height: 1.55; margin: 0; }
+
+	.lead-popup__feedback {
+		margin: 0.25rem 0 0.75rem;
+		padding: 0.65rem 0.85rem;
+		border-radius: var(--radius-xl, 0.75rem);
+		font-size: 0.9rem;
+	}
+	.lead-popup__feedback.is-error {
+		background: oklch(95% 0.04 25);
+		color: oklch(45% 0.16 25);
+	}
+
+	.lead-popup__success {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		padding: 1.25rem 0;
+		font-size: 1.05rem;
+		color: var(--color-brand-900);
+	}
+	.lead-popup__success-mark {
+		flex-shrink: 0;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 9999px;
+		background: var(--color-trust-500);
+		position: relative;
+	}
+	.lead-popup__success-mark::after {
+		content: "";
+		position: absolute;
+		left: 0.8rem;
+		top: 0.5rem;
+		width: 0.5rem;
+		height: 0.9rem;
+		border: solid white;
+		border-width: 0 2.5px 2.5px 0;
+		transform: rotate(45deg);
+	}
+}

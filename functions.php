@@ -160,6 +160,23 @@ function estecapelli_enqueue_assets() {
 		true
 	);
 
+	// Lead popup: AJAX endpoint + nonce, and the contact-page paths whose links
+	// should open the popup instead of navigating. See assets/js/main.js.
+	wp_localize_script(
+		'estecapelli-main',
+		'EstecapelliLead',
+		array(
+			'ajax'         => admin_url( 'admin-ajax.php' ),
+			'nonce'        => wp_create_nonce( 'estecapelli_lead_ajax' ),
+			'contactPaths' => array( '/en/contact', '/contact' ),
+			'i18n'         => array(
+				'sending' => __( 'Sending…', 'estecapelli' ),
+				'thanks'  => __( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ),
+				'error'   => __( 'Something went wrong. Please try again or reach us on WhatsApp.', 'estecapelli' ),
+			),
+		)
+	);
+
 	// International phone input — auto-selects the country dial code from the
 	// visitor's IP. Upgrades any input.js-intl-phone (footer, contact, form section).
 	wp_enqueue_style(

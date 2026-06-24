@@ -143,7 +143,7 @@ $sent = isset( $_GET['sent'] ); // phpcs:ignore WordPress.Security.NonceVerifica
 						<textarea id="cf-message" name="lead_message" rows="4" placeholder="<?php esc_attr_e( 'Tell us about your goals, or any questions you have…', 'estecapelli' ); ?>"></textarea>
 					</div>
 
-					<input type="hidden" name="lead_source" value="contact" />
+					<?php estecapelli_lead_tracking_fields( 'contact' ); ?>
 					<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
 
 					<div class="contact-form__actions">

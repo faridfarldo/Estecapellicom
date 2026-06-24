@@ -134,7 +134,7 @@ $sitemap    = estecapelli_footer_sitemap();
 							placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>"
 						/>
 					</div>
-					<input type="hidden" name="lead_source" value="footer" />
+					<?php estecapelli_lead_tracking_fields( 'footer' ); ?>
 					<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
 					<button type="submit" class="btn btn-primary lead-form__submit">
 						<?php esc_html_e( 'Request Call Back', 'estecapelli' ); ?>
@@ -176,6 +176,8 @@ $sitemap    = estecapelli_footer_sitemap();
 
 	</div>
 </footer>
+
+<?php get_template_part( 'template-parts/lead-popup' ); ?>
 
 <?php wp_footer(); ?>
 </body>

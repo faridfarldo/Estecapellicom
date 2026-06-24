@@ -691,6 +691,131 @@
 		});
 	}
 
+	/*
+	 * Lead popup: opens on any "Free Consultation"/Contact CTA (or [data-lead-popup]),
+	 * submits over AJAX so the visitor stays on the page, and records which page +
+	 * campaign the lead came from. Also tops up UTM hidden fields on every lead form.
+	 */
+	function initLeadPopup() {
+		var cfg = window.EstecapelliLead || {};
+		var i18n = cfg.i18n || {};
+
+		// Fill UTM hidden fields on every lead form from the current URL.
+		var params = new URLSearchParams(window.location.search);
+		document.querySelectorAll('input[name^="utm_"]').forEach(function (input) {
+			if (input.value) return;
+			var v = params.get(input.name);
+			if (v) { input.value = v; }
+		});
+
+		var popup = document.getElementById('lead-popup');
+		if (!popup) return;
+
+		var form        = popup.querySelector('form');
+		var feedback    = popup.querySelector('.lead-popup__feedback');
+		var submit      = popup.querySelector('.lead-popup__submit');
+		var submitLabel = popup.querySelector('.lead-popup__submit-label');
+		var lastFocus   = null;
+
+		function pathOf(url) {
+			try { return new URL(url, window.location.origin).pathname.replace(/\/+$/, ''); }
+			catch (e) { return ''; }
+		}
+
+		function isContactLink(a) {
+			if (!a || a.hasAttribute('data-no-popup')) return false;
+			var href = a.getAttribute('href') || '';
+			if (!href || href.charAt(0) === '#') return false;
+			var paths = cfg.contactPaths || ['/en/contact', '/contact'];
+			var p = pathOf(a.href);
+			return paths.some(function (c) { return p === c.replace(/\/+$/, ''); });
+		}
+
+		function openPopup(trigger) {
+			lastFocus = trigger || document.activeElement;
+			var u = form.querySelector('[name="lead_page_url"]');
+			var t = form.querySelector('[name="lead_page_title"]');
+			if (u) { u.value = window.location.href; }
+			if (t) { t.value = document.title; }
+			popup.hidden = false;
+			document.body.classList.add('no-scroll');
+			requestAnimationFrame(function () {
+				popup.classList.add('is-open');
+				var first = form.querySelector('input, textarea');
+				if (first) { first.focus(); }
+			});
+		}
+
+		function closePopup() {
+			popup.classList.remove('is-open');
+			document.body.classList.remove('no-scroll');
+			setTimeout(function () { popup.hidden = true; }, 200);
+			if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+		}
+
+		document.addEventListener('click', function (e) {
+			var trigger = e.target.closest('[data-lead-popup]');
+			var link    = e.target.closest('a');
+			if (trigger) {
+				e.preventDefault();
+				openPopup(trigger);
+			} else if (link && !popup.contains(link) && isContactLink(link)) {
+				e.preventDefault();
+				openPopup(link);
+			}
+		});
+
+		popup.querySelectorAll('[data-lead-close]').forEach(function (el) {
+			el.addEventListener('click', closePopup);
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && popup.classList.contains('is-open')) { closePopup(); }
+		});
+
+		function showError(msg) {
+			if (!feedback) return;
+			feedback.textContent = msg || i18n.error || 'Something went wrong. Please try again or use WhatsApp.';
+			feedback.classList.add('is-error');
+			feedback.hidden = false;
+		}
+
+		// AJAX submit (phone-intl.js has already prefixed the dial code by now).
+		if (!cfg.ajax) return;
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			if (feedback) { feedback.hidden = true; feedback.classList.remove('is-error'); }
+			var nameField = form.querySelector('[name="lead_name"]');
+			if (nameField && !nameField.value.trim()) { nameField.focus(); return; }
+
+			var data = new FormData(form);
+			data.append('action', 'estecapelli_lead');
+			data.append('nonce', cfg.nonce || '');
+
+			submit.disabled = true;
+			var original = submitLabel ? submitLabel.textContent : '';
+			if (submitLabel) { submitLabel.textContent = i18n.sending || 'Sending…'; }
+
+			fetch(cfg.ajax, { method: 'POST', body: data, credentials: 'same-origin' })
+				.then(function (r) { return r.json().catch(function () { return { success: false }; }); })
+				.then(function (res) {
+					if (res && res.success) {
+						var msg = (res.data && res.data.message) ? res.data.message : (i18n.thanks || 'Thank you!');
+						form.innerHTML = '<div class="lead-popup__success" role="status">' +
+							'<span class="lead-popup__success-mark" aria-hidden="true"></span>' +
+							'<strong></strong></div>';
+						form.querySelector('strong').textContent = msg;
+					} else {
+						showError(res && res.data && res.data.message);
+					}
+				})
+				.catch(function () { showError(); })
+				.finally(function () {
+					submit.disabled = false;
+					if (submitLabel) { submitLabel.textContent = original; }
+				});
+		});
+	}
+
 	ready(function () {
 		initMobileNav();
 		initLangSwitch();
@@ -707,5 +832,6 @@
 		initCarousels();
 		initStepbooks();
 		initCopyLink();
+		initLeadPopup();
 	});
 })();
