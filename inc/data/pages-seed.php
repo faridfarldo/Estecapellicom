@@ -41,6 +41,105 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 		// (see inc/data/doctors-seed.php and the Doctors menu). The "Our Doctors"
 		// roster grid pulls them in automatically.
 
+		// -------------------------------------------------------------------
+		// Legal pages. Plain WYSIWYG pages (no ACF sections), rendered through
+		// the page.php prose fallback. The text below is a starting template
+		// tailored to a medical clinic in Türkiye serving international
+		// patients — HAVE IT REVIEWED BY A QUALIFIED LAWYER and replace every
+		// [bracketed] placeholder before relying on it.
+		// -------------------------------------------------------------------
+		$privacy_content =
+			  '<p><em>' . esc_html__( 'Last updated: June 2026', 'estecapelli' ) . '</em></p>'
+			. '<p>' . esc_html__( 'This Privacy Policy explains how Estecapelli collects, uses, stores and protects your personal data when you visit our website, contact us, or receive a consultation or treatment with us. Estecapelli is based in Istanbul, Türkiye and cares for patients from around the world. We are committed to handling your data lawfully, transparently and securely.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '1. Who we are', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Estecapelli is a hair restoration, plastic surgery, dental and aesthetic clinic operating in Istanbul, Türkiye. For the purposes of data protection law, the data controller is [registered legal entity name], [registered address]. You can reach us about any privacy matter using the details in the Contact us section below.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '2. The information we collect', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Depending on how you interact with us, we may collect:', 'estecapelli' ) . '</p>'
+			. '<ul>'
+			. '<li>' . esc_html__( 'Contact details — your name, phone number, email address, country and preferred language.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Health information you choose to share — photographs of the treatment area, medical history, current medications and other details you send so our medical team can assess your suitability and prepare a treatment plan.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Booking and travel details — appointment dates and the information needed to coordinate your visit.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Technical data — IP address, browser type, device information and cookie data collected automatically when you use our website.', 'estecapelli' ) . '</li>'
+			. '</ul>'
+
+			. '<h2>' . esc_html__( '3. How we use your information', 'estecapelli' ) . '</h2>'
+			. '<ul>'
+			. '<li>' . esc_html__( 'To respond to your enquiries and provide a personalised assessment, treatment plan and quote.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'To plan, deliver and follow up on your treatment and aftercare.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'To coordinate appointments, travel and accommodation related to your visit.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'To improve our website and services, and — only where you have agreed — to send you relevant information.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'To meet our legal, medical and regulatory obligations.', 'estecapelli' ) . '</li>'
+			. '</ul>'
+
+			. '<h2>' . esc_html__( '4. Legal basis for processing', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'We process your personal data under the Turkish Personal Data Protection Law (KVKK) and, where it applies, the EU/UK General Data Protection Regulation (GDPR). Our legal bases are your consent, the performance of a contract or steps taken at your request, our legitimate interests in running the clinic, and compliance with legal obligations. Health information is a special category of data: we process it only with your explicit consent or where otherwise permitted for the provision of healthcare.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '5. Sharing your information', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'We do not sell your personal data. We share it only as needed with: our medical and patient-care team; the surgeons, hospitals and clinics involved in your treatment; and trusted service providers (for example, secure hosting, communication and travel coordination) acting on our instructions. We may also disclose data where required by law.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '6. International transfers', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Because we treat patients from many countries, your data may be transferred to and processed in Türkiye and other countries. Where we transfer data internationally, we take appropriate safeguards to protect it in line with applicable data protection law.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '7. How long we keep your data', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'We keep your personal data only for as long as necessary for the purposes described above, including any medical, legal or regulatory retention periods that apply to healthcare records. When data is no longer needed, we securely delete or anonymise it.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '8. Your rights', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Subject to applicable law, you have the right to access your data; to have inaccurate data corrected; to request deletion; to restrict or object to certain processing; to data portability; and to withdraw consent at any time without affecting processing already carried out. You also have the right to complain to the relevant data protection authority. To exercise any of these rights, contact us using the details below.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '9. Cookies', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Our website uses cookies and similar technologies to make the site work, to remember your preferences and to understand how the site is used. You can control cookies through your browser settings; disabling some cookies may affect how the site functions.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '10. Security', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'We use appropriate technical and organisational measures to protect your personal data against loss, misuse and unauthorised access. No method of transmission or storage is completely secure, but we work to safeguard your information at all times.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '11. Children', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Our services are intended for adults. We do not knowingly collect data from children without the consent of a parent or legal guardian.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '12. Changes to this policy', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'We may update this Privacy Policy from time to time. The latest version will always be available on this page, with the date it was last updated shown at the top.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '13. Contact us', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'If you have any questions about this policy or how we handle your data, contact us at', 'estecapelli' ) . ' <a href="mailto:info@estecapelli.com">info@estecapelli.com</a> ' . esc_html__( 'or via our Contact page.', 'estecapelli' ) . '</p>';
+
+		$terms_content =
+			  '<p><em>' . esc_html__( 'Last updated: June 2026', 'estecapelli' ) . '</em></p>'
+			. '<p>' . esc_html__( 'These Terms govern your use of the Estecapelli website and the consultations, quotes and information we provide through it. By using this website or contacting us, you agree to these Terms. If you do not agree, please do not use the site.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '1. About these terms', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'This website is operated by Estecapelli, a clinic based in Istanbul, Türkiye. The operator is [registered legal entity name], [registered address]. We may update these Terms from time to time; the current version always applies.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '2. Not medical advice', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'The content on this website is provided for general information only and is not medical advice. It is not a substitute for a professional consultation, diagnosis or examination. Any treatment recommendation can only be confirmed after a personal assessment by our medical team. Always seek the advice of a qualified healthcare professional regarding your individual circumstances.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '3. Consultations and quotes', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Online assessments, graft estimates and price quotes provided before your visit are preliminary and based on the information and photographs you give us. They are indicative only and may be adjusted after an in-person examination. A quote does not constitute a binding offer until confirmed in writing.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '4. Bookings and payments', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Booking, deposit, payment and cancellation terms are provided to you separately before any treatment is confirmed [insert your booking, deposit and cancellation policy here]. Please make sure you have read and understood them before making a payment.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '5. Results and individual variation', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Medical and aesthetic outcomes vary from person to person and cannot be guaranteed. Before-and-after images on this website show real individual results and are not a promise of the outcome you will achieve. Your result depends on factors including your physiology, the treatment plan and following the recommended aftercare.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '6. Intellectual property', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'All content on this website — including text, images, logos, before-and-after photographs and design — is owned by or licensed to Estecapelli and is protected by intellectual property law. You may not copy, reproduce or distribute it without our written permission.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '7. Information and photos you send us', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'When you send us information or photographs, you confirm they are accurate and that you have the right to share them. We handle this information in line with our Privacy Policy. Please do not send information that is not yours to share.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '8. Third-party links', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Our website may contain links to third-party sites and services. We are not responsible for their content or privacy practices, and a link does not imply our endorsement.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '9. Limitation of liability', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'To the fullest extent permitted by law, Estecapelli is not liable for any loss arising from reliance on the general information on this website. Nothing in these Terms limits any liability that cannot be limited under applicable law.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '10. Governing law', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'These Terms are governed by the laws of the Republic of Türkiye, and the courts of Istanbul shall have jurisdiction, without prejudice to any mandatory consumer protection rights you may have in your country of residence.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '11. Contact us', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'For any questions about these Terms, contact us at', 'estecapelli' ) . ' <a href="mailto:info@estecapelli.com">info@estecapelli.com</a> ' . esc_html__( 'or via our Contact page.', 'estecapelli' ) . '</p>';
+
 		return array(
 
 			// ======================== TrichoLab (AI hair analysis) ========================
@@ -710,6 +809,20 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				'sections' => array(
 					$hero( __( 'Get in Touch', 'estecapelli' ), __( "We're here to answer your questions.", 'estecapelli' ), __( 'Reach our team by WhatsApp, phone or email — or schedule a free online consultation with one of our medical consultants.', 'estecapelli' ) ),
 				),
+			),
+
+			// ======================== Legal ========================
+			array(
+				'slug'    => 'privacy-policy',
+				'title'   => 'Privacy Policy',
+				'parent'  => null,
+				'content' => $privacy_content,
+			),
+			array(
+				'slug'    => 'terms',
+				'title'   => 'Terms',
+				'parent'  => null,
+				'content' => $terms_content,
 			),
 
 		);

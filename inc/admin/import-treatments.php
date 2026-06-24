@@ -75,7 +75,9 @@ function estecapelli_import_page( array $data, array &$slug_to_id ) {
 		'post_name'    => $data['slug'],
 		'post_status'  => 'publish',
 		'post_parent'  => $parent_id,
-		'post_content' => '',
+		// Most pages render from ACF sections; plain pages (e.g. legal) carry
+		// their body in an optional `content` key, shown via the page.php fallback.
+		'post_content' => $data['content'] ?? '',
 	);
 
 	if ( $existing ) {
