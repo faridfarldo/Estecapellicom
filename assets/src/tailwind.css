@@ -3374,7 +3374,11 @@
 	/* Hover/focus peek — only while the card is still auto-rotating. */
 	.signature__card:not(.is-controlled):hover .signature__inner,
 	.signature__card:not(.is-controlled):focus-within .signature__inner {
-		animation-play-state: paused;
+		/* Cancel the keyframe animation entirely — merely pausing it lets the
+		   running animation keep overriding this transform, freezing the card
+		   mid-spin so the back-face buttons aren't reliably reachable. With the
+		   animation off, the transition smoothly settles on the back face. */
+		animation: none;
 		transform: rotateY(180deg);
 	}
 	/* Once clicked, the visitor owns this card: stop the auto-flip and let
