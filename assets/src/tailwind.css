@@ -3457,6 +3457,26 @@
 	.signature__front-body {
 		position: relative; z-index: 2;
 		display: flex; flex-direction: column; gap: 0.5rem;
+		/* Leave room at the bottom-right so the "tap to discover" hint never
+		   overlaps the tease text. */
+		padding-bottom: 2rem;
+	}
+
+	/* Hit-testing: only the face currently facing the viewer should receive
+	   clicks. backface-visibility:hidden hides the away face visually but does
+	   NOT reliably stop it capturing pointer events, so every click landed on the
+	   front and just re-flipped the card — the back buttons were unreachable.
+	   Toggle pointer-events explicitly by state instead. */
+	.signature__face--back { pointer-events: none; }
+	.signature__card:not(.is-controlled):hover .signature__face--back,
+	.signature__card:not(.is-controlled):focus-within .signature__face--back,
+	.signature__card.is-controlled.is-flipped .signature__face--back {
+		pointer-events: auto;
+	}
+	.signature__card:not(.is-controlled):hover .signature__face--front,
+	.signature__card:not(.is-controlled):focus-within .signature__face--front,
+	.signature__card.is-controlled.is-flipped .signature__face--front {
+		pointer-events: none;
 	}
 	.signature__card-icon {
 		display: inline-flex; align-items: center; justify-content: center;
