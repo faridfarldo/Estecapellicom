@@ -724,6 +724,9 @@
 
 		function isContactLink(a) {
 			if (!a || a.hasAttribute('data-no-popup')) return false;
+			// Only call-to-action buttons open the popup. Plain navigation links
+			// (the header menu, the footer sitemap) still go to the Contact page.
+			if (!a.classList.contains('btn')) return false;
 			var href = a.getAttribute('href') || '';
 			if (!href || href.charAt(0) === '#') return false;
 			var paths = cfg.contactPaths || ['/en/contact', '/contact'];
