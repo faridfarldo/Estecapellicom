@@ -21,6 +21,17 @@ if ( empty( $data['cards'] ) ) {
 }
 
 $secondary = $data['cta_secondary'] ?? array();
+
+// Defensive fallbacks: if the ACF data leaves a card's "Learn more" link or the
+// shared consultation link empty, resolve sensible defaults so each card is
+// always connected to its own page and the consultation CTA opens the popup.
+$cta_fallbacks   = array(
+	'exosome'   => home_url( '/en/hair-transplant/exosome-fue-hair-transplant' ),
+	'tricholab' => home_url( '/en/hair-transplant/tricholab' ),
+	'vita'      => home_url( '/en/hair-transplant/vita-treatment' ),
+);
+$secondary_url   = ! empty( $secondary['url'] ) ? $secondary['url'] : home_url( '/en/contact' );
+$secondary_label = ! empty( $secondary['label'] ) ? $secondary['label'] : ( $secondary['title'] ?? __( 'Schedule a Free Consultation', 'estecapelli' ) );
 ?>
 
 <section class="signature" aria-labelledby="signature-title">
@@ -113,18 +124,25 @@ $secondary = $data['cta_secondary'] ?? array();
 								<p class="signature__back-text"><?php echo esc_html( $card['body'] ); ?></p>
 							</div>
 
+							<?php
+							$cta       = $card['cta'] ?? array();
+							$cta_url   = ! empty( $cta['url'] ) ? $cta['url'] : ( $cta_fallbacks[ $card['key'] ] ?? '' );
+							$cta_label = $cta['label'] ?? ( $cta['title'] ?? '' );
+							if ( '' === $cta_label ) {
+								$cta_label = __( 'Learn more', 'estecapelli' );
+							}
+							?>
 							<div class="signature__back-actions">
-								<?php if ( ! empty( $card['cta']['url'] ) ) : ?>
-									<a class="btn btn-accent btn-sm" href="<?php echo esc_url( $card['cta']['url'] ); ?>">
-										<?php echo esc_html( $card['cta']['label'] ); ?>
+								<?php if ( $cta_url ) : ?>
+									<a class="btn btn-accent btn-sm" href="<?php echo esc_url( $cta_url ); ?>">
+										<?php echo esc_html( $cta_label ); ?>
 										<?php estecapelli_icon( 'arrow-right', array( 'width' => 14, 'height' => 14 ) ); ?>
 									</a>
 								<?php endif; ?>
-								<?php if ( ! empty( $secondary['url'] ) ) : ?>
-									<a class="btn btn-ghost-light btn-sm" href="<?php echo esc_url( $secondary['url'] ); ?>">
-										<?php echo esc_html( $secondary['label'] ); ?>
-									</a>
-								<?php endif; ?>
+								<?php // Always open the consultation popup (href is the no-JS fallback). ?>
+								<a class="btn btn-ghost-light btn-sm" href="<?php echo esc_url( $secondary_url ); ?>" data-lead-popup>
+									<?php echo esc_html( $secondary_label ); ?>
+								</a>
 							</div>
 						</div>
 
