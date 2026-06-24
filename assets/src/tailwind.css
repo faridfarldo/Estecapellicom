@@ -1864,6 +1864,11 @@
 		border-color: var(--hal-gold);
 		box-shadow: 0 0 0 3px oklch(82% 0.13 85 / 0.18);
 	}
+	/* intl-tel-input on the dark Hair-Analysis form — keep the flag + dial code
+	   legible against the dark field (other forms sit on light backgrounds). */
+	.hal__field .iti { width: 100%; display: block; }
+	.hal__field .iti__selected-dial-code { color: var(--hal-ink); }
+	.hal__field .iti__arrow { border-top-color: var(--hal-ink); }
 
 	.hal__uploads {
 		display: grid;

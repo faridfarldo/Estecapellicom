@@ -111,7 +111,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</label>
 					<label class="hal__field">
 						<span class="hal__label"><?php esc_html_e( 'Phone / WhatsApp', 'estecapelli' ); ?></span>
-						<input type="tel" name="hal_phone" inputmode="tel" placeholder="<?php esc_attr_e( 'Your number', 'estecapelli' ); ?>" />
+						<input type="tel" class="js-intl-phone" name="hal_phone" inputmode="tel" placeholder="<?php esc_attr_e( 'Your number', 'estecapelli' ); ?>" />
 					</label>
 					<label class="hal__field">
 						<span class="hal__label"><?php esc_html_e( 'Email', 'estecapelli' ); ?></span>
