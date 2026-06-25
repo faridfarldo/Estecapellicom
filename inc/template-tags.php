@@ -518,6 +518,7 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/en/before-after' ) ),
 			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/en/about-us' ),         'mega' => 'about-us' ),
 			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/en/blog' ) ),
+			array( 'label' => __( 'Contact Us', 'estecapelli' ),       'url' => home_url( '/en/contact' ) ),
 		);
 
 		echo '<ul class="site-nav__list">';
