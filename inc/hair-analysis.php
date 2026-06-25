@@ -26,7 +26,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_ANTHROPIC_MODEL' ) ) {
-	define( 'ESTECAPELLI_ANTHROPIC_MODEL', 'claude-opus-4-8' );
+	// Sonnet 4.6 is plenty for a broad, surface-level screening estimate and is
+	// far cheaper than Opus. Override in wp-config.php if you want a stronger
+	// model: define( 'ESTECAPELLI_ANTHROPIC_MODEL', 'claude-opus-4-8' );
+	define( 'ESTECAPELLI_ANTHROPIC_MODEL', 'claude-sonnet-4-6' );
 }
 
 add_action( 'rest_api_init', function () {
@@ -114,13 +117,14 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 	$content[] = array(
 		'type' => 'text',
 		'text' =>
-			"You are assisting a hair-transplant clinic with a PRELIMINARY, non-diagnostic visual assessment from patient-submitted photos. " .
-			"Using the hairline, crown and density visible in the images — and the back/donor photo to gauge donor capacity — estimate:\n" .
-			"1) the Norwood-Hamilton stage (integer 1-7),\n" .
-			"2) an approximate FUE graft range for a transplant (realistic counts, usually 1000-5000), and\n" .
-			"3) a short, friendly 2-3 sentence summary the patient can read.\n" .
-			"This is an initial estimate only, not medical advice; the final plan requires an in-person consultation. " .
-			"If the photos are unclear, give your best conservative estimate rather than refusing.",
+			"You are assisting a hair-transplant clinic with a BROAD, SURFACE-LEVEL screening estimate from patient-submitted photos. " .
+			"This is a quick first-impression screen, NOT a precise clinical diagnosis — an approximate, indicative read is exactly what's wanted. " .
+			"Looking at the hairline, crown and overall density — and the back/donor photo to gauge donor capacity — give:\n" .
+			"1) an approximate Norwood-Hamilton stage (integer 1-7),\n" .
+			"2) a wide, indicative FUE graft range for a transplant (realistic counts, usually 1000-5000; keep the range broad rather than a falsely exact number), and\n" .
+			"3) a short, friendly, encouraging 2-3 sentence summary the patient can read.\n" .
+			"Keep it general and reassuring, and make clear the exact plan is confirmed in a free in-person consultation. " .
+			"If the photos are unclear, still give your best broad estimate rather than refusing.",
 	);
 
 	$payload = array(

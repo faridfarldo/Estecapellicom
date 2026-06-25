@@ -22,7 +22,7 @@ export const CONFIG = {
 
   // Image compression before upload.
   image: {
-    maxDimension: 1500, // longest edge, px
+    maxDimension: 1100, // longest edge, px — enough for a surface-level screen, ~half the image tokens of 1500
     quality: 0.8, // JPEG quality
     mimeType: 'image/jpeg',
   },
