@@ -820,46 +820,67 @@
 	}
 
 	/*
-	 * Count-up: animate [data-count] numbers from 0 to their target the first
-	 * time they scroll into view. Respects reduced-motion (leaves final value)
-	 * and rebuilds the exact prefix/suffix + thousands separators each frame.
+	 * Trust reel: an auto-rotating vertical slot reel of stats. Clones the items
+	 * for a seamless loop, crops the viewport to a few rows, and advances one row
+	 * at a time on a timer — the centre row is sharp/enlarged, the rest blurred by
+	 * the overlay fades. Skipped for reduced motion (leaves the static full list).
 	 */
-	function initCountUp() {
-		var els = document.querySelectorAll('[data-count]');
-		if (!els.length) return;
+	function initTrustReel() {
+		var vp = document.querySelector('[data-reel]');
+		if (!vp) return;
+		var track = vp.querySelector('[data-reel-track]');
+		if (!track) return;
 		var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		if (reduce || !('IntersectionObserver' in window)) return;
+		if (reduce) return;
 
-		function fmt(el, n) {
-			return (el.getAttribute('data-prefix') || '') +
-				n.toLocaleString('en-US') +
-				(el.getAttribute('data-suffix') || '');
+		var originals = Array.prototype.slice.call(track.children);
+		var N = originals.length;
+		if (N < 2) return;
+
+		var rowH = originals[0].offsetHeight;
+		if (!rowH) return;
+		var vpH = Math.round(rowH * 2.5);
+
+		// Clone the set once so the reel can wrap without a visible seam.
+		originals.forEach(function (it) { track.appendChild(it.cloneNode(true)); });
+		var all = Array.prototype.slice.call(track.children);
+
+		vp.style.setProperty('--reel-h', vpH + 'px');
+		vp.classList.add('is-reel');
+
+		var i = 0, resetting = false;
+
+		function center(idx, animate) {
+			var y = Math.round(vpH / 2 - rowH / 2 - idx * rowH);
+			track.style.transition = animate ? 'transform 0.7s cubic-bezier(0.5, 0, 0.2, 1)' : 'none';
+			track.style.transform = 'translateY(' + y + 'px)';
+			all.forEach(function (el) { el.classList.remove('is-active'); });
+			if (all[idx]) { all[idx].classList.add('is-active'); }
 		}
-		function run(el) {
-			var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-			var dur = 1500, start = null;
-			function step(ts) {
-				if (start === null) start = ts;
-				var p = Math.min((ts - start) / dur, 1);
-				var eased = 1 - Math.pow(1 - p, 3);
-				el.textContent = fmt(el, Math.round(eased * target));
-				if (p < 1) { requestAnimationFrame(step); }
-				else { el.textContent = fmt(el, target); }
+
+		center(0, false);
+
+		setInterval(function () {
+			if (resetting) return;
+			i++;
+			center(i, true);
+			if (i >= N) {
+				resetting = true;
+				// Once it lands on the cloned first row, jump back to the real
+				// first row (an identical frame) without a transition.
+				setTimeout(function () { i = 0; center(0, false); resetting = false; }, 720);
 			}
-			requestAnimationFrame(step);
-		}
+		}, 2400);
 
-		var io = new IntersectionObserver(function (entries) {
-			entries.forEach(function (e) {
-				if (!e.isIntersecting) return;
-				io.unobserve(e.target);
-				run(e.target);
+		var raf;
+		window.addEventListener('resize', function () {
+			cancelAnimationFrame(raf);
+			raf = requestAnimationFrame(function () {
+				rowH = originals[0].offsetHeight || rowH;
+				vpH = Math.round(rowH * 2.5);
+				vp.style.setProperty('--reel-h', vpH + 'px');
+				center(i >= N ? 0 : i, false);
 			});
-		}, { threshold: 0.4 });
-
-		els.forEach(function (el) {
-			el.textContent = fmt(el, 0); // start from zero — no flash of the final value
-			io.observe(el);
 		});
 	}
 
@@ -880,6 +901,6 @@
 		initStepbooks();
 		initCopyLink();
 		initLeadPopup();
-		initCountUp();
+		initTrustReel();
 	});
 })();
