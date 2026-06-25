@@ -820,10 +820,11 @@
 	}
 
 	/*
-	 * Trust reel: an auto-rotating vertical slot reel of stats. Clones the items
-	 * for a seamless loop, crops the viewport to a few rows, and advances one row
-	 * at a time on a timer — the centre row is sharp/enlarged, the rest blurred by
-	 * the overlay fades. Skipped for reduced motion (leaves the static full list).
+	 * Trust reel: an auto-rotating vertical slot reel of stats. Shows three rows —
+	 * the centre stat sharp, the previous/next ones blurred above and below — and
+	 * advances one row at a time, looping seamlessly. The list is bracketed with
+	 * clones (last item before the first; first + second after the last) so a real
+	 * neighbour always fills the top and bottom rows. Skipped for reduced motion.
 	 */
 	function initTrustReel() {
 		var vp = document.querySelector('[data-reel]');
@@ -837,18 +838,21 @@
 		var N = originals.length;
 		if (N < 2) return;
 
+		var ROWS = 3;
 		var rowH = originals[0].offsetHeight;
 		if (!rowH) return;
-		var vpH = rowH;
+		var vpH = rowH * ROWS;
 
-		// Clone the set once so the reel can wrap without a visible seam.
-		originals.forEach(function (it) { track.appendChild(it.cloneNode(true)); });
+		// [cloneLast, item0 .. itemN-1, cloneFirst, cloneSecond]
+		track.insertBefore(originals[N - 1].cloneNode(true), originals[0]);
+		track.appendChild(originals[0].cloneNode(true));
+		track.appendChild(originals[1].cloneNode(true));
 		var all = Array.prototype.slice.call(track.children);
 
 		vp.style.setProperty('--reel-h', vpH + 'px');
 		vp.classList.add('is-reel');
 
-		var i = 0, resetting = false;
+		var i = 1, resetting = false; // centre the first real item (index 1)
 
 		function center(idx, animate) {
 			var y = Math.round(vpH / 2 - rowH / 2 - idx * rowH);
@@ -858,28 +862,28 @@
 			if (all[idx]) { all[idx].classList.add('is-active'); }
 		}
 
-		center(0, false);
+		center(1, false);
 
 		setInterval(function () {
 			if (resetting) return;
 			i++;
 			center(i, true);
-			if (i >= N) {
+			if (i > N) {
 				resetting = true;
-				// Once it lands on the cloned first row, jump back to the real
-				// first row (an identical frame) without a transition.
-				setTimeout(function () { i = 0; center(0, false); resetting = false; }, 720);
+				// Landed on the cloned first item — jump back to the real first
+				// item (an identical frame) without a transition.
+				setTimeout(function () { i = 1; center(1, false); resetting = false; }, 720);
 			}
-		}, 2400);
+		}, 2600);
 
 		var raf;
 		window.addEventListener('resize', function () {
 			cancelAnimationFrame(raf);
 			raf = requestAnimationFrame(function () {
 				rowH = originals[0].offsetHeight || rowH;
-				vpH = rowH;
+				vpH = rowH * ROWS;
 				vp.style.setProperty('--reel-h', vpH + 'px');
-				center(i >= N ? 0 : i, false);
+				center(i > N ? 1 : i, false);
 			});
 		});
 	}

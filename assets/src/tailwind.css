@@ -859,6 +859,7 @@
 		letter-spacing: -0.01em;
 		color: var(--color-brand-900);
 		margin: 0 0 clamp(1rem, 2.5vw, 2.25rem);
+		text-align: center;
 	}
 
 	/* Full list by default (no-JS / reduced-motion). JS adds .is-reel to crop
@@ -877,6 +878,7 @@
 	.trust-reel__item {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		gap: clamp(0.85rem, 2.5vw, 1.75rem);
 		min-height: var(--reel-row, clamp(88px, 11vw, 140px));
 		white-space: nowrap;
@@ -915,10 +917,20 @@
 		max-width: 18ch;
 	}
 
-	/* Reel mode (JS): crop to one row so a single stat shows and the track rolls
-	   like a ticker. No blur overlays — the vertical slide is the effect. */
+	/* Reel mode (JS): a 3-row window with the centre stat sharp and the previous
+	   / next ones blurred above and below — slot-machine style. The blur lives on
+	   the items themselves (no white overlay boxes). */
 	.trust-reel__viewport.is-reel {
-		height: var(--reel-h, 120px);
+		height: var(--reel-h, 360px);
+	}
+	.is-reel .trust-reel__item {
+		filter: blur(4px);
+		opacity: 0.5;
+		transition: filter 0.55s ease, opacity 0.55s ease;
+	}
+	.is-reel .trust-reel__item.is-active {
+		filter: none;
+		opacity: 1;
 	}
 
 	@media (max-width: 640px) {
