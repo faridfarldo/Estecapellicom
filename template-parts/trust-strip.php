@@ -25,6 +25,8 @@ if ( empty( $stats ) ) {
 
 <section class="trust-reel" aria-label="<?php esc_attr_e( 'Patients trust us by the numbers', 'estecapelli' ); ?>">
 
+	<div class="trust-reel__photo" aria-hidden="true"></div>
+
 	<div class="trust-reel__blobs" aria-hidden="true">
 		<span class="trust-reel__blob trust-reel__blob--1"></span>
 		<span class="trust-reel__blob trust-reel__blob--2"></span>

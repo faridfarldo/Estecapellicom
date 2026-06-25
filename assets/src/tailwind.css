@@ -835,6 +835,14 @@
 			linear-gradient(170deg, oklch(99% 0.008 220) 0%, oklch(96% 0.02 220) 100%);
 		color: var(--color-brand-950);
 	}
+	/* Faint clinic team photo behind the band so it isn't too bare. */
+	.trust-reel__photo {
+		position: absolute;
+		inset: 0;
+		background: url('../images/team-bg.webp') center 40% / cover no-repeat;
+		opacity: 0.15;
+		pointer-events: none;
+	}
 	/* Soft organic blobs drifting behind the numbers. */
 	.trust-reel__blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 	.trust-reel__blob {
