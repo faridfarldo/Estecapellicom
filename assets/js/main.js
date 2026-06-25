@@ -838,7 +838,7 @@
 		var N = originals.length;
 		if (N < 2) return;
 
-		var ROWS = 3;
+		var ROWS = 1.5; // tight window — neighbours fold away on the drum
 		var rowH = originals[0].offsetHeight;
 		if (!rowH) return;
 		var vpH = rowH * ROWS;
@@ -858,8 +858,10 @@
 			var y = Math.round(vpH / 2 - rowH / 2 - idx * rowH);
 			track.style.transition = animate ? 'transform 0.7s cubic-bezier(0.5, 0, 0.2, 1)' : 'none';
 			track.style.transform = 'translateY(' + y + 'px)';
-			all.forEach(function (el) { el.classList.remove('is-active'); });
+			all.forEach(function (el) { el.classList.remove('is-active', 'is-prev', 'is-next'); });
 			if (all[idx]) { all[idx].classList.add('is-active'); }
+			if (all[idx - 1]) { all[idx - 1].classList.add('is-prev'); }
+			if (all[idx + 1]) { all[idx + 1].classList.add('is-next'); }
 		}
 
 		center(1, false);

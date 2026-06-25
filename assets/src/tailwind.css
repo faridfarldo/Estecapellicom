@@ -828,7 +828,7 @@
 	.trust-reel {
 		position: relative;
 		overflow: hidden;
-		padding-block: clamp(3rem, 6vw, 5.5rem);
+		padding-block: clamp(1.75rem, 4vw, 3rem);
 		background:
 			radial-gradient(120% 90% at 82% 8%,  oklch(95% 0.045 205) 0%, transparent 55%),
 			radial-gradient(120% 90% at 8% 92%,  oklch(95% 0.05 238) 0%, transparent 55%),
@@ -917,20 +917,34 @@
 		max-width: 18ch;
 	}
 
-	/* Reel mode (JS): a 3-row window with the centre stat sharp and the previous
-	   / next ones blurred above and below — slot-machine style. The blur lives on
-	   the items themselves (no white overlay boxes). */
+	/* Reel mode (JS): a tight 3D drum. The centre stat is flat & sharp; the
+	   previous/next ones fold away on a cylinder (rotateX) above and below, so the
+	   band stays slim. Everything else is hidden. No white overlay boxes. */
 	.trust-reel__viewport.is-reel {
-		height: var(--reel-h, 360px);
+		height: var(--reel-h, 200px);
+		perspective: 620px;
 	}
+	.is-reel .trust-reel__track { transform-style: preserve-3d; }
 	.is-reel .trust-reel__item {
-		filter: blur(4px);
-		opacity: 0.5;
-		transition: filter 0.55s ease, opacity 0.55s ease;
+		opacity: 0;
+		filter: blur(3px);
+		transform: scale(0.7);
+		transform-origin: center center;
+		transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
+		backface-visibility: hidden;
+	}
+	.is-reel .trust-reel__item.is-prev {
+		opacity: 0.4;
+		transform: rotateX(58deg) scale(0.85);
+	}
+	.is-reel .trust-reel__item.is-next {
+		opacity: 0.4;
+		transform: rotateX(-58deg) scale(0.85);
 	}
 	.is-reel .trust-reel__item.is-active {
-		filter: none;
 		opacity: 1;
+		filter: none;
+		transform: rotateX(0deg) scale(1);
 	}
 
 	@media (max-width: 640px) {
