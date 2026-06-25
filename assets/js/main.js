@@ -819,6 +819,50 @@
 		});
 	}
 
+	/*
+	 * Count-up: animate [data-count] numbers from 0 to their target the first
+	 * time they scroll into view. Respects reduced-motion (leaves final value)
+	 * and rebuilds the exact prefix/suffix + thousands separators each frame.
+	 */
+	function initCountUp() {
+		var els = document.querySelectorAll('[data-count]');
+		if (!els.length) return;
+		var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (reduce || !('IntersectionObserver' in window)) return;
+
+		function fmt(el, n) {
+			return (el.getAttribute('data-prefix') || '') +
+				n.toLocaleString('en-US') +
+				(el.getAttribute('data-suffix') || '');
+		}
+		function run(el) {
+			var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+			var dur = 1500, start = null;
+			function step(ts) {
+				if (start === null) start = ts;
+				var p = Math.min((ts - start) / dur, 1);
+				var eased = 1 - Math.pow(1 - p, 3);
+				el.textContent = fmt(el, Math.round(eased * target));
+				if (p < 1) { requestAnimationFrame(step); }
+				else { el.textContent = fmt(el, target); }
+			}
+			requestAnimationFrame(step);
+		}
+
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (e) {
+				if (!e.isIntersecting) return;
+				io.unobserve(e.target);
+				run(e.target);
+			});
+		}, { threshold: 0.4 });
+
+		els.forEach(function (el) {
+			el.textContent = fmt(el, 0); // start from zero — no flash of the final value
+			io.observe(el);
+		});
+	}
+
 	ready(function () {
 		initMobileNav();
 		initLangSwitch();
@@ -836,5 +880,6 @@
 		initStepbooks();
 		initCopyLink();
 		initLeadPopup();
+		initCountUp();
 	});
 })();
