@@ -839,7 +839,7 @@
 
 		var rowH = originals[0].offsetHeight;
 		if (!rowH) return;
-		var vpH = Math.round(rowH * 2.5);
+		var vpH = rowH;
 
 		// Clone the set once so the reel can wrap without a visible seam.
 		originals.forEach(function (it) { track.appendChild(it.cloneNode(true)); });
@@ -877,7 +877,7 @@
 			cancelAnimationFrame(raf);
 			raf = requestAnimationFrame(function () {
 				rowH = originals[0].offsetHeight || rowH;
-				vpH = Math.round(rowH * 2.5);
+				vpH = rowH;
 				vp.style.setProperty('--reel-h', vpH + 'px');
 				center(i >= N ? 0 : i, false);
 			});

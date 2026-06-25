@@ -746,10 +746,10 @@ if ( ! function_exists( 'estecapelli_trust_stats' ) ) {
 		}
 
 		return array(
-			array( 'value' => '15+',                                   'label' => __( 'Years of Experience', 'estecapelli' ) ),
-			array( 'value' => '+' . ESTECAPELLI_PATIENT_COUNT,         'label' => __( 'Happy Patients', 'estecapelli' ) ),
-			array( 'value' => '+' . ESTECAPELLI_COUNTRY_COUNT,         'label' => __( 'Countries Served', 'estecapelli' ) ),
-			array( 'value' => '24/7',                                  'label' => __( 'Support Team', 'estecapelli' ) ),
+			array( 'icon' => 'calendar', 'value' => '15+',                           'label' => __( 'Years of Experience', 'estecapelli' ) ),
+			array( 'icon' => 'hair',     'value' => '+' . ESTECAPELLI_PATIENT_COUNT,  'label' => __( 'Happy Patients', 'estecapelli' ) ),
+			array( 'icon' => 'globe',    'value' => '+' . ESTECAPELLI_COUNTRY_COUNT,  'label' => __( 'Countries Served', 'estecapelli' ) ),
+			array( 'icon' => 'headset',  'value' => '24/7',                           'label' => __( 'Support Team', 'estecapelli' ) ),
 		);
 	}
 }

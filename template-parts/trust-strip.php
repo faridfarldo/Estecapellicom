@@ -1,12 +1,10 @@
 <?php
 /**
- * Trust-stats section — an auto-rotating "in numbers" slot reel.
+ * Trust-stats section — a slim auto-rotating "in numbers" bar.
  *
- * The stats stack vertically inside a fixed window and roll continuously like a
- * casino reel: the figure in the centre is sharp and enlarged, the ones above
- * and below are blurred and dimmed (the focus depth comes from the top/bottom
- * blur overlays). It loops seamlessly and runs on its own — see initTrustReel()
- * in assets/js/main.js.
+ * One stat (icon + number + label) shows at a time inside a thin pill; the bar
+ * rolls vertically like a ticker, looping seamlessly and running on its own —
+ * see initTrustReel() in assets/js/main.js.
  *
  * Progressive enhancement: with JS off or reduced motion the same markup renders
  * as a plain, fully readable list of every stat (the reel window is only applied
@@ -37,18 +35,22 @@ if ( empty( $stats ) ) {
 
 		<p class="trust-reel__heading"><?php esc_html_e( 'Estecapelli in numbers', 'estecapelli' ); ?></p>
 
-		<div class="trust-reel__viewport" data-reel>
-			<ul class="trust-reel__track" data-reel-track>
-				<?php foreach ( $stats as $stat ) : ?>
-					<li class="trust-reel__item">
-						<span class="trust-reel__num"><?php echo esc_html( $stat['value'] ); ?></span>
-						<span class="trust-reel__label"><?php echo esc_html( $stat['label'] ); ?></span>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-
-			<span class="trust-reel__fade trust-reel__fade--top" aria-hidden="true"></span>
-			<span class="trust-reel__fade trust-reel__fade--bottom" aria-hidden="true"></span>
+		<div class="trust-reel__bar">
+			<div class="trust-reel__viewport" data-reel>
+				<ul class="trust-reel__track" data-reel-track>
+					<?php foreach ( $stats as $stat ) : ?>
+						<li class="trust-reel__item">
+							<?php if ( ! empty( $stat['icon'] ) ) : ?>
+								<span class="trust-reel__icon" aria-hidden="true">
+									<?php estecapelli_icon( $stat['icon'], array( 'width' => 22, 'height' => 22 ) ); ?>
+								</span>
+							<?php endif; ?>
+							<span class="trust-reel__num"><?php echo esc_html( $stat['value'] ); ?></span>
+							<span class="trust-reel__label"><?php echo esc_html( $stat['label'] ); ?></span>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
 		</div>
 
 	</div>
