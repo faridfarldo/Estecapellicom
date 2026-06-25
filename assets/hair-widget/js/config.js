@@ -14,6 +14,9 @@ export const CONFIG = {
   analyzeUrl: OV.analyzeUrl || '/api/analyze',
   submitUrl: OV.submitUrl || '/api/submit',
 
+  // WordPress nonce for the theme REST routes (estecapelli_hair action).
+  nonce: OV.nonce || '',
+
   // Front-end-only mode: placeholder analysis, no network calls.
   mock: OV.mock !== undefined ? OV.mock : false,
 

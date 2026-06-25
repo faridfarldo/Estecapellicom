@@ -138,15 +138,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 	<?php
-	// Mount the camera/photo wizard. `mock: true` keeps it front-end only — the
-	// analysis is a placeholder and submit is a no-op until the REST backend +
-	// Claude Vision key are wired up.
+	// Mount the camera/photo wizard. It posts to the theme's REST routes, which
+	// proxy to Claude Vision server-side (see inc/hair-analysis.php). The Claude
+	// API key lives in wp-config and never reaches the browser. If the key is not
+	// configured, fall back to the front-end-only placeholder (mock) mode.
 	$hw_base = get_template_directory_uri() . '/assets/hair-widget/';
+	$hw_live = defined( 'ESTECAPELLI_ANTHROPIC_KEY' ) && ESTECAPELLI_ANTHROPIC_KEY;
 	?>
 	<script type="module">
 		window.HAIR_WIDGET_CFG = {
 			imageBase: '<?php echo esc_url( $hw_base . 'image/' ); ?>',
-			mock: true
+			analyzeUrl: '<?php echo esc_url_raw( rest_url( 'estecapelli/v1/analyze' ) ); ?>',
+			submitUrl: '<?php echo esc_url_raw( rest_url( 'estecapelli/v1/hair-lead' ) ); ?>',
+			nonce: '<?php echo esc_js( wp_create_nonce( 'estecapelli_hair' ) ); ?>',
+			mock: <?php echo $hw_live ? 'false' : 'true'; ?>
 		};
 		import('<?php echo esc_url( $hw_base . 'js/widget.js' ); ?>').then(function (m) {
 			var el = document.getElementById('hair-widget');

@@ -27,7 +27,7 @@ export async function analyzePhotos(photos) {
   const entries = await Promise.all(
     Object.entries(photos).map(async ([id, blob]) => [id, await blobToBase64(blob)])
   );
-  const payload = { photos: Object.fromEntries(entries) };
+  const payload = { photos: Object.fromEntries(entries), nonce: CONFIG.nonce };
 
   const res = await fetch(CONFIG.analyzeUrl, {
     method: 'POST',

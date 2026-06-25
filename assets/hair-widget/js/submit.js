@@ -28,6 +28,7 @@ export async function submitLead({ photos, analysis, contact }) {
   form.append('lead_consent', contact.consent ? '1' : '0');
   form.append('lead_source', 'hero-hair-analysis');
   form.append('analysis_json', JSON.stringify(analysis ?? {}));
+  form.append('nonce', CONFIG.nonce);
 
   for (const [id, blob] of Object.entries(photos)) {
     form.append(`photo_${id}`, blob, `${id}.jpg`);
