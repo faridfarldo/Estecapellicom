@@ -1,10 +1,10 @@
 <?php
 /**
- * Trust-stats section — a slim auto-rotating "in numbers" bar.
+ * Trust-stats section — a full-width, short "in numbers" reel.
  *
- * One stat (icon + number + label) shows at a time inside a thin pill; the bar
- * rolls vertically like a ticker, looping seamlessly and running on its own —
- * see initTrustReel() in assets/js/main.js.
+ * The section spans the page but stays short: a single stat (icon + number +
+ * label) shows at a time and rolls vertically like a ticker, looping seamlessly
+ * and running on its own — see initTrustReel() in assets/js/main.js.
  *
  * Progressive enhancement: with JS off or reduced motion the same markup renders
  * as a plain, fully readable list of every stat (the reel window is only applied
@@ -35,22 +35,22 @@ if ( empty( $stats ) ) {
 
 		<p class="trust-reel__heading"><?php esc_html_e( 'Estecapelli in numbers', 'estecapelli' ); ?></p>
 
-		<div class="trust-reel__bar">
-			<div class="trust-reel__viewport" data-reel>
-				<ul class="trust-reel__track" data-reel-track>
-					<?php foreach ( $stats as $stat ) : ?>
-						<li class="trust-reel__item">
+		<div class="trust-reel__viewport" data-reel>
+			<ul class="trust-reel__track" data-reel-track>
+				<?php foreach ( $stats as $stat ) : ?>
+					<li class="trust-reel__item">
+						<span class="trust-reel__num"><?php echo esc_html( $stat['value'] ); ?></span>
+						<span class="trust-reel__meta">
 							<?php if ( ! empty( $stat['icon'] ) ) : ?>
 								<span class="trust-reel__icon" aria-hidden="true">
-									<?php estecapelli_icon( $stat['icon'], array( 'width' => 22, 'height' => 22 ) ); ?>
+									<?php estecapelli_icon( $stat['icon'], array( 'width' => 20, 'height' => 20 ) ); ?>
 								</span>
 							<?php endif; ?>
-							<span class="trust-reel__num"><?php echo esc_html( $stat['value'] ); ?></span>
 							<span class="trust-reel__label"><?php echo esc_html( $stat['label'] ); ?></span>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
+						</span>
+					</li>
+				<?php endforeach; ?>
+			</ul>
 		</div>
 
 	</div>

@@ -863,18 +863,7 @@
 
 	/* Full list by default (no-JS / reduced-motion). JS adds .is-reel to crop
 	   it to the rotating window. */
-	/* Slim pill that frames the single rolling stat. */
-	.trust-reel__bar {
-		display: inline-flex;
-		max-width: 100%;
-		padding: clamp(0.45rem, 1.2vw, 0.75rem) clamp(1rem, 2.4vw, 1.75rem);
-		border-radius: 9999px;
-		background: oklch(100% 0 0 / 0.55);
-		border: 1px solid oklch(60% 0.05 240 / 0.18);
-		box-shadow: var(--shadow-soft);
-		-webkit-backdrop-filter: blur(8px);
-		        backdrop-filter: blur(8px);
-	}
+	/* Full-width: one big stat shows at a time and rolls. No box. */
 	.trust-reel__viewport {
 		position: relative;
 		overflow: hidden;
@@ -888,46 +877,54 @@
 	.trust-reel__item {
 		display: flex;
 		align-items: center;
-		gap: clamp(0.6rem, 1.6vw, 1rem);
-		min-height: var(--reel-row, clamp(52px, 7vw, 68px));
+		gap: clamp(0.85rem, 2.5vw, 1.75rem);
+		min-height: var(--reel-row, clamp(88px, 11vw, 140px));
 		white-space: nowrap;
+	}
+	.trust-reel__num {
+		font-size: clamp(2.5rem, 1.4rem + 4.2vw, 5.5rem);
+		font-weight: 800;
+		line-height: 1;
+		letter-spacing: -0.035em;
+		color: var(--color-brand-950);
+		font-variant-numeric: tabular-nums;
+	}
+	/* Icon + label group, sitting beside the number. */
+	.trust-reel__meta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		white-space: normal;
 	}
 	.trust-reel__icon {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: clamp(38px, 5vw, 46px);
-		height: clamp(38px, 5vw, 46px);
+		width: clamp(40px, 4.5vw, 52px);
+		height: clamp(40px, 4.5vw, 52px);
 		border-radius: 9999px;
 		background: linear-gradient(150deg, oklch(95% 0.045 235), oklch(92% 0.06 205));
 		color: var(--color-brand-700);
 	}
-	.trust-reel__num {
-		font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
-		font-weight: 800;
-		line-height: 1;
-		letter-spacing: -0.03em;
-		color: var(--color-brand-950);
-		font-variant-numeric: tabular-nums;
-	}
 	.trust-reel__label {
-		font-size: clamp(0.8125rem, 0.72rem + 0.35vw, 1rem);
+		font-size: clamp(0.9375rem, 0.8rem + 0.45vw, 1.25rem);
 		font-weight: 600;
-		line-height: 1.2;
+		line-height: 1.25;
 		color: var(--color-brand-700);
+		max-width: 18ch;
 	}
 
 	/* Reel mode (JS): crop to one row so a single stat shows and the track rolls
 	   like a ticker. No blur overlays — the vertical slide is the effect. */
 	.trust-reel__viewport.is-reel {
-		height: var(--reel-h, 64px);
+		height: var(--reel-h, 120px);
 	}
 
 	@media (max-width: 640px) {
-		.trust-reel__bar { display: flex; width: 100%; border-radius: 1.25rem; }
-		.trust-reel__num { font-size: clamp(1.5rem, 6vw, 2rem); }
-		.trust-reel__item { min-height: var(--reel-row, clamp(48px, 13vw, 60px)); }
+		.trust-reel__num { font-size: clamp(2.25rem, 9vw, 3.25rem); }
+		.trust-reel__item { min-height: var(--reel-row, clamp(72px, 18vw, 108px)); }
+		.trust-reel__label { max-width: 14ch; }
 	}
 
 	/* ---------- Homepage services grid ---------- */
