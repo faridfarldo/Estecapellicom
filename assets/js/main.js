@@ -302,11 +302,12 @@
 					if (holder.querySelector('iframe')) return; // already playing
 					var id = holder.getAttribute('data-video-id');
 					if (!id) return;
+					// Played from a click (a user gesture), so autoplay WITH sound is
+					// allowed; native YouTube controls give play/pause/volume/fullscreen.
 					var src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) +
-						'?autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(id) +
-						'&controls=0&modestbranding=1&rel=0&playsinline=1';
-					holder.innerHTML = '<iframe src="' + src + '" title="" tabindex="-1" ' +
-						'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+						'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+					holder.innerHTML = '<iframe src="' + src + '" title="" ' +
+						'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
 				} else {
 					holder.innerHTML = ''; // stops playback
 				}
@@ -327,9 +328,9 @@
 
 			toggles.forEach(function (t) {
 				var key = t.getAttribute('data-split-toggle');
+				// Click only — playing with sound needs a real user gesture (focus
+				// isn't one, and would get the audio blocked/muted).
 				t.addEventListener('click', function () { activate(key); });
-				// Keyboard users land on a panel via Tab; reveal it on focus too.
-				t.addEventListener('focus', function () { activate(key); });
 			});
 		});
 	}
