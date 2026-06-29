@@ -139,13 +139,9 @@ foreach ( $result_ids as $rid ) {
 						<?php endif; ?>
 					</div>
 
-					<div class="hero-exp__media" data-hero-results>
+					<div class="hero-exp__media" data-hero-results="<?php echo esc_attr( wp_json_encode( $results ) ); ?>">
 						<figure class="hero-exp__photo">
-							<?php foreach ( $results as $ri => $r ) : ?>
-								<span class="hero-exp__shot <?php echo 0 === $ri ? 'is-active' : ''; ?>" data-result-after>
-									<img src="<?php echo esc_url( $r['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" <?php echo 0 === $ri ? '' : 'loading="lazy"'; ?> decoding="async" />
-								</span>
-							<?php endforeach; ?>
+							<img data-result-after src="<?php echo esc_url( $results[0]['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" decoding="async" />
 
 							<?php if ( ! empty( $exp['badge'] ) ) : ?>
 								<span class="hero-exp__reviews">
@@ -167,15 +163,11 @@ foreach ( $result_ids as $rid ) {
 
 						<div class="hero-exp__ba">
 							<figure>
-								<?php foreach ( $results as $ri => $r ) : ?>
-									<img src="<?php echo esc_url( $r['b1'] ); ?>" class="<?php echo 0 === $ri ? 'is-active' : ''; ?>" data-result-b1 alt="" loading="lazy" decoding="async" />
-								<?php endforeach; ?>
+								<img data-result-b1 src="<?php echo esc_url( $results[0]['b1'] ); ?>" alt="" loading="lazy" decoding="async" />
 								<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
 							</figure>
 							<figure>
-								<?php foreach ( $results as $ri => $r ) : ?>
-									<img src="<?php echo esc_url( $r['b2'] ); ?>" class="<?php echo 0 === $ri ? 'is-active' : ''; ?>" data-result-b2 alt="" loading="lazy" decoding="async" />
-								<?php endforeach; ?>
+								<img data-result-b2 src="<?php echo esc_url( $results[0]['b2'] ); ?>" alt="" loading="lazy" decoding="async" />
 								<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
 							</figure>
 						</div>

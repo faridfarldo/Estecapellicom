@@ -254,22 +254,27 @@
 	function initHeroResults() {
 		var root = document.querySelector('[data-hero-results]');
 		if (!root) return;
-		var groups = [
-			Array.prototype.slice.call(root.querySelectorAll('[data-result-after]')),
-			Array.prototype.slice.call(root.querySelectorAll('[data-result-b1]')),
-			Array.prototype.slice.call(root.querySelectorAll('[data-result-b2]'))
-		];
-		var count = groups[0].length;
-		if (count < 2) return;
+		var data;
+		try { data = JSON.parse(root.getAttribute('data-hero-results') || '[]'); } catch (e) { return; }
+		if (!data || data.length < 2) return;
+
+		var after = root.querySelector('[data-result-after]');
+		var b1 = root.querySelector('[data-result-b1]');
+		var b2 = root.querySelector('[data-result-b2]');
+		if (!after || !b1 || !b2) return;
+
+		// Preload every set so swaps are instant (no flash on first cycle).
+		data.forEach(function (p) {
+			['after', 'b1', 'b2'].forEach(function (k) { if (p[k]) { var im = new Image(); im.src = p[k]; } });
+		});
 
 		var i = 0;
-		function show(idx) {
-			groups.forEach(function (g) {
-				g.forEach(function (el, k) { el.classList.toggle('is-active', k === idx); });
-			});
-		}
-		show(0);
-		setInterval(function () { i = (i + 1) % count; show(i); }, 3000);
+		setInterval(function () {
+			i = (i + 1) % data.length;
+			if (data[i].after) after.src = data[i].after;
+			if (data[i].b1) b1.src = data[i].b1;
+			if (data[i].b2) b2.src = data[i].b2;
+		}, 3000);
 	}
 
 	function initHeroSplit() {
