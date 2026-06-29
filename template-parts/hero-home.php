@@ -78,7 +78,7 @@ foreach ( $result_ids as $rid ) {
 						<?php endif; ?>
 					</div>
 
-					<div class="shell hero-split__stage" data-split-stage>
+					<div class="hero-split__stage" data-split-stage data-split-active="">
 						<?php foreach ( $panels as $key => $p ) : ?>
 							<div class="hero-split__panel hero-split__panel--<?php echo esc_attr( $key ); ?>" data-split-panel="<?php echo esc_attr( $key ); ?>" data-open="false">
 
@@ -87,35 +87,42 @@ foreach ( $result_ids as $rid ) {
 								<?php endif; ?>
 
 								<?php if ( ! empty( $p['video'] ) ) : ?>
-									<div class="hero-split__video" data-split-video data-video-id="<?php echo esc_attr( $p['video'] ); ?>"></div>
+									<div class="hero-split__video" data-split-video data-video-id="<?php echo esc_attr( $p['video'] ); ?>" aria-hidden="true"></div>
 								<?php endif; ?>
 
 								<span class="hero-split__scrim" aria-hidden="true"></span>
-
-								<span class="hero-split__label">
-									<?php echo esc_html( $p['name'] ); ?><sup class="hero-split__tm"><?php echo esc_html( $p['trademark'] ); ?></sup>
-									<span class="hero-split__tag"><?php echo esc_html( $p['tag'] ); ?></span>
-								</span>
+								<span class="hero-split__seam" aria-hidden="true"></span>
 
 								<?php if ( ! empty( $p['video'] ) ) : ?>
-									<button type="button" class="hero-split__play" data-split-play="<?php echo esc_attr( $key ); ?>">
-										<span class="sr-only"><?php
-											/* translators: %s: technique name. */
-											printf( esc_html__( 'Play %s video', 'estecapelli' ), esc_html( $p['name'] ) );
-										?></span>
-										<?php estecapelli_icon( 'play', array( 'width' => 24, 'height' => 24 ) ); ?>
-									</button>
+									<span class="hero-split__play" aria-hidden="true">
+										<?php estecapelli_icon( 'play', array( 'width' => 22, 'height' => 22 ) ); ?>
+									</span>
 								<?php endif; ?>
+
+								<button type="button" class="hero-split__toggle" data-split-toggle="<?php echo esc_attr( $key ); ?>" aria-pressed="false">
+									<span class="sr-only"><?php
+										/* translators: %s: technique name. */
+										printf( esc_html__( 'Play %s video', 'estecapelli' ), esc_html( $p['name'] ) );
+									?></span>
+								</button>
+
+								<div class="hero-split__content">
+									<span class="hero-split__name">
+										<?php echo esc_html( $p['name'] ); ?><sup class="hero-split__tm"><?php echo esc_html( $p['trademark'] ); ?></sup>
+										<span class="hero-split__tag"><?php echo esc_html( $p['tag'] ); ?></span>
+									</span>
+
+									<?php if ( ! empty( $p['cta']['url'] ) ) : ?>
+										<div class="hero-split__detail">
+											<a class="btn btn-accent hero-split__cta" href="<?php echo esc_url( $p['cta']['url'] ); ?>">
+												<?php echo esc_html( $p['cta']['label'] ); ?>
+												<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
+											</a>
+										</div>
+									<?php endif; ?>
+								</div>
 							</div>
 						<?php endforeach; ?>
-					</div>
-
-					<?php $hs_learn = $panels['exosome']['cta']['url'] ?? ( $panels['vita']['cta']['url'] ?? home_url( '/en/' ) ); ?>
-					<div class="shell hero-split__more">
-						<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $hs_learn ); ?>">
-							<?php esc_html_e( 'Learn more', 'estecapelli' ); ?>
-							<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
-						</a>
 					</div>
 
 				</div>

@@ -288,24 +288,48 @@
 	}
 
 	function initHeroSplit() {
-		var plays = Array.prototype.slice.call(document.querySelectorAll('[data-split-play]'));
-		if (!plays.length) return;
+		var stages = document.querySelectorAll('[data-split-stage]');
+		if (!stages.length) return;
 
-		plays.forEach(function (btn) {
-			btn.addEventListener('click', function () {
-				var panel = btn.closest('[data-split-panel]');
-				if (!panel) return;
+		stages.forEach(function (stage) {
+			var toggles = Array.prototype.slice.call(stage.querySelectorAll('[data-split-toggle]'));
+			if (!toggles.length) return;
+
+			function setVideo(panel, on) {
 				var holder = panel.querySelector('[data-split-video]');
-				if (!holder || holder.querySelector('iframe')) return; // already playing
-				var id = holder.getAttribute('data-video-id');
-				if (!id) return;
-				// The click is a user gesture, so autoplay WITH sound is allowed.
-				// Native YouTube controls give play/pause/volume/fullscreen.
-				var src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) +
-					'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-				holder.innerHTML = '<iframe src="' + src + '" title="" ' +
-					'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
-				panel.setAttribute('data-open', 'true');
+				if (!holder) return;
+				if (on) {
+					if (holder.querySelector('iframe')) return; // already playing
+					var id = holder.getAttribute('data-video-id');
+					if (!id) return;
+					var src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) +
+						'?autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(id) +
+						'&controls=0&modestbranding=1&rel=0&playsinline=1';
+					holder.innerHTML = '<iframe src="' + src + '" title="" tabindex="-1" ' +
+						'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+				} else {
+					holder.innerHTML = ''; // stops playback
+				}
+			}
+
+			function activate(key) {
+				stage.setAttribute('data-split-active', key);
+				toggles.forEach(function (t) {
+					var on = t.getAttribute('data-split-toggle') === key;
+					t.setAttribute('aria-pressed', on ? 'true' : 'false');
+					var panel = t.closest('[data-split-panel]');
+					if (panel) {
+						panel.setAttribute('data-open', on ? 'true' : 'false');
+						setVideo(panel, on);
+					}
+				});
+			}
+
+			toggles.forEach(function (t) {
+				var key = t.getAttribute('data-split-toggle');
+				t.addEventListener('click', function () { activate(key); });
+				// Keyboard users land on a panel via Tab; reveal it on focus too.
+				t.addEventListener('focus', function () { activate(key); });
 			});
 		});
 	}
