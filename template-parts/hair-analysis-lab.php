@@ -61,8 +61,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php estecapelli_icon( 'sparkles', array( 'width' => 12, 'height' => 12 ) ); ?>
 					<?php esc_html_e( 'Estecapelli AI', 'estecapelli' ); ?>
 				</span>
-				<span class="hal__option-icon" aria-hidden="true">
-					<?php estecapelli_icon( 'cpu', array( 'width' => 26, 'height' => 26 ) ); ?>
+				<span class="hal__option-icon hal__option-icon--img" aria-hidden="true">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hair-analysis/ailogo.webp' ); ?>" alt="" loading="lazy" decoding="async" />
 				</span>
 				<span class="hal__option-title"><?php esc_html_e( 'Analyse my photos with AI', 'estecapelli' ); ?></span>
 				<span class="hal__option-desc"><?php esc_html_e( 'Upload a few photos of your hair and our AI prepares your assessment.', 'estecapelli' ); ?></span>
