@@ -74,6 +74,13 @@
 	:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 3px; border-radius: 4px; }
 }
 
+/* Registered so the AI badge's orbiting glow angle can animate smoothly. */
+@property --hal-badge-ang {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+
 /* ============================================================ Components */
 @layer components {
 
@@ -1756,6 +1763,8 @@
 		position: absolute;
 		top: 14px;
 		right: 14px;
+		z-index: 3;
+		isolation: isolate;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.3rem;
@@ -1768,6 +1777,41 @@
 		color: white;
 		background: linear-gradient(120deg, oklch(70% 0.16 285), oklch(62% 0.17 255));
 		box-shadow: 0 4px 14px oklch(60% 0.18 278 / 0.4);
+		/* soft attention pulse */
+		animation: hal-badge-pulse 2.8s ease-in-out infinite;
+	}
+	/* a bright arc of light that travels around the badge's edge */
+	.hal__option-badge::before {
+		content: "";
+		position: absolute;
+		inset: -2px;
+		z-index: -1;
+		border-radius: inherit;
+		padding: 2px;
+		background: conic-gradient(from var(--hal-badge-ang),
+			transparent 0 58%,
+			oklch(90% 0.12 200) 74%,
+			#ffffff 84%,
+			oklch(84% 0.17 285) 94%,
+			transparent 100%);
+		/* show only the 2px border band → the arc orbits the rim */
+		-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+		-webkit-mask-composite: xor;
+		        mask-composite: exclude;
+		animation: hal-badge-orbit 2.6s linear infinite;
+	}
+	@keyframes hal-badge-orbit {
+		to { --hal-badge-ang: 360deg; }
+	}
+	@keyframes hal-badge-pulse {
+		0%, 100% { box-shadow: 0 4px 14px oklch(60% 0.18 278 / 0.4); }
+		50% { box-shadow: 0 6px 22px oklch(72% 0.18 278 / 0.75); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.hal__option-badge,
+		.hal__option-badge::before {
+			animation: none;
+		}
 	}
 
 	/* ---- Forms ---- */
