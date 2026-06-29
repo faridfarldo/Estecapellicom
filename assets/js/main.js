@@ -269,12 +269,22 @@
 		});
 
 		var i = 0;
-		setInterval(function () {
-			i = (i + 1) % data.length;
+		function show(idx) {
+			i = (idx + data.length) % data.length;
 			if (data[i].after) after.src = data[i].after;
 			if (data[i].b1) b1.src = data[i].b1;
 			if (data[i].b2) b2.src = data[i].b2;
-		}, 3000);
+			after.style.objectPosition = data[i].pos || 'center 20%';
+		}
+
+		var DELAY = 3500;
+		var timer = setInterval(function () { show(i + 1); }, DELAY);
+		function restart() { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, DELAY); }
+
+		var prev = root.querySelector('[data-result-prev]');
+		var next = root.querySelector('[data-result-next]');
+		if (prev) prev.addEventListener('click', function () { show(i - 1); restart(); });
+		if (next) next.addEventListener('click', function () { show(i + 1); restart(); });
 	}
 
 	function initHeroSplit() {

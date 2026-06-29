@@ -29,12 +29,23 @@ $aw     = $slides['awards'];
 // these every few seconds (see initHeroResults in main.js).
 $result_ids  = array( 2, 4, 5, 8, 10, 12 );
 $result_base = get_template_directory_uri() . '/assets/images/hero-results/';
+// Per-patient framing for the big "after" shot (the photos have different
+// orientations and the face sits at a different height in each).
+$result_pos  = array(
+	2  => '50% 30%',
+	4  => '50% 12%',
+	5  => '50% 30%',
+	8  => '50% 45%',
+	10 => '50% 45%',
+	12 => '50% 80%',
+);
 $results     = array();
 foreach ( $result_ids as $rid ) {
 	$results[] = array(
 		'after' => $result_base . $rid . '/after.jpeg',
 		'b1'    => $result_base . $rid . '/b1.jpeg',
 		'b2'    => $result_base . $rid . '/b2.jpeg',
+		'pos'   => isset( $result_pos[ $rid ] ) ? $result_pos[ $rid ] : '50% 25%',
 	);
 }
 ?>
@@ -141,7 +152,7 @@ foreach ( $result_ids as $rid ) {
 
 					<div class="hero-exp__media" data-hero-results="<?php echo esc_attr( wp_json_encode( $results ) ); ?>">
 						<figure class="hero-exp__photo">
-							<img data-result-after src="<?php echo esc_url( $results[0]['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" decoding="async" />
+							<img data-result-after src="<?php echo esc_url( $results[0]['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" style="object-position: <?php echo esc_attr( $results[0]['pos'] ); ?>;" decoding="async" />
 
 							<?php if ( ! empty( $exp['badge'] ) ) : ?>
 								<span class="hero-exp__reviews">
@@ -161,15 +172,23 @@ foreach ( $result_ids as $rid ) {
 							</figcaption>
 						</figure>
 
-						<div class="hero-exp__ba">
-							<figure>
-								<img data-result-b1 src="<?php echo esc_url( $results[0]['b1'] ); ?>" alt="" loading="lazy" decoding="async" />
-								<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
-							</figure>
-							<figure>
-								<img data-result-b2 src="<?php echo esc_url( $results[0]['b2'] ); ?>" alt="" loading="lazy" decoding="async" />
-								<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
-							</figure>
+						<div class="hero-exp__controls">
+							<button type="button" class="hero-exp__arrow" data-result-prev aria-label="<?php esc_attr_e( 'Previous patient', 'estecapelli' ); ?>">
+								<?php estecapelli_icon( 'chevron-left', array( 'width' => 20, 'height' => 20 ) ); ?>
+							</button>
+							<div class="hero-exp__ba">
+								<figure>
+									<img data-result-b1 src="<?php echo esc_url( $results[0]['b1'] ); ?>" alt="" loading="lazy" decoding="async" />
+									<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
+								</figure>
+								<figure>
+									<img data-result-b2 src="<?php echo esc_url( $results[0]['b2'] ); ?>" alt="" loading="lazy" decoding="async" />
+									<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
+								</figure>
+							</div>
+							<button type="button" class="hero-exp__arrow" data-result-next aria-label="<?php esc_attr_e( 'Next patient', 'estecapelli' ); ?>">
+								<?php estecapelli_icon( 'chevron-right', array( 'width' => 20, 'height' => 20 ) ); ?>
+							</button>
 						</div>
 
 						<?php if ( ! empty( $exp['years'] ) ) : ?>
