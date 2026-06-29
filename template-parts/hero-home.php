@@ -37,7 +37,7 @@ $result_pos  = array(
 	5  => '50% 30%',
 	8  => '50% 45%',
 	10 => '50% 45%',
-	12 => '50% 80%',
+	12 => '50% 100%',
 );
 $results     = array();
 foreach ( $result_ids as $rid ) {
