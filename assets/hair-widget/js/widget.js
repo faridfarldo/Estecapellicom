@@ -317,30 +317,34 @@ export class HairAnalysisWidget {
           </div>
         </div>
 
-        <p class="hw-error" data-error role="alert" ${this.error ? '' : 'hidden'}>${esc(this.error)}</p>
+        <div class="hw-reveal ${this.method ? 'is-open' : ''}" data-reveal>
+          <div class="hw-reveal-inner">
+            <p class="hw-error" data-error role="alert" ${this.error ? '' : 'hidden'}>${esc(this.error)}</p>
 
-        <form class="hw-form hw-intro-form" novalidate>
-          <label class="hw-field">
-            <span>Full name</span>
-            <input name="name" type="text" autocomplete="name" required />
-          </label>
-          <label class="hw-field">
-            <span>Phone / WhatsApp</span>
-            <input name="phone" class="js-intl-phone" type="tel" autocomplete="tel" inputmode="tel" required />
-          </label>
-          <label class="hw-field">
-            <span>Email</span>
-            <input name="email" type="email" autocomplete="email" inputmode="email" required />
-          </label>
-          <label class="hw-consent">
-            <input name="consent" type="checkbox" required />
-            <span>I agree Estecapelli may process my photos and contact details for this
-              assessment (KVKK / GDPR).</span>
-          </label>
-          <button class="hw-btn hw-btn--accent" type="submit">Submit my contacts &amp; start AI analysis</button>
-        </form>
+            <form class="hw-form hw-intro-form" novalidate>
+              <label class="hw-field">
+                <span>Full name</span>
+                <input name="name" type="text" autocomplete="name" required />
+              </label>
+              <label class="hw-field">
+                <span>Phone / WhatsApp</span>
+                <input name="phone" class="js-intl-phone" type="tel" autocomplete="tel" inputmode="tel" required />
+              </label>
+              <label class="hw-field">
+                <span>Email</span>
+                <input name="email" type="email" autocomplete="email" inputmode="email" required />
+              </label>
+              <label class="hw-consent">
+                <input name="consent" type="checkbox" required />
+                <span>I agree Estecapelli may process my photos and contact details for this
+                  assessment (KVKK / GDPR).</span>
+              </label>
+              <button class="hw-btn hw-btn--accent" type="submit">Submit my contacts &amp; start AI analysis</button>
+            </form>
 
-        <p class="hw-fineprint">Next, you'll take four quick photos. They are used only for this assessment.</p>
+            <p class="hw-fineprint">Next, you'll take four quick photos. They are used only for this assessment.</p>
+          </div>
+        </div>
       </div>`;
   }
 
@@ -499,6 +503,13 @@ export class HairAnalysisWidget {
           c.classList.toggle('is-active', on);
           c.setAttribute('aria-checked', on ? 'true' : 'false');
         });
+        // Reveal the contact form on first pick (stays open if they switch).
+        const reveal = this.root.querySelector('[data-reveal]');
+        if (reveal && !reveal.classList.contains('is-open')) {
+          reveal.classList.add('is-open');
+          // Focus the first field once the open transition has settled.
+          setTimeout(() => reveal.querySelector('input[name="name"]')?.focus(), 420);
+        }
       });
     });
 
@@ -528,6 +539,9 @@ export class HairAnalysisWidget {
     this.iti = window.intlTelInput(input, {
       initialCountry: 'auto',
       separateDialCode: true,
+      // Append the country list to <body> so the collapsible reveal's
+      // overflow:hidden never clips it.
+      dropdownContainer: document.body,
       geoIpLookup: (cb) => {
         let cached = null;
         try { cached = sessionStorage.getItem('ec_country'); } catch (e) {}
