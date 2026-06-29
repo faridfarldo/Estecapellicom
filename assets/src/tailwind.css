@@ -425,12 +425,24 @@
 
 	@media (max-width: 860px) {
 		.hero-exp, .hero-aw { grid-template-columns: 1fr; }
-		.hero-exp__ba { position: static; margin-top: 1.75rem; width: fit-content; }
-		.hero-exp__seal { top: -10px; right: -6px; width: 72px; height: 72px; }
+		/* Centre the media column and keep every badge INSIDE the photo so nothing
+		   spills past the screen edge. The before/after pair drops to a tidy,
+		   centred row under the photo instead of a lost corner card. */
+		.hero-exp__media { max-width: 460px; margin-inline: auto; }
+		.hero-exp__reviews { top: 10px; left: 10px; padding: 6px 10px; }
+		.hero-exp__seal { top: 8px; right: 8px; width: 64px; height: 64px; }
+		.hero-exp__ba {
+			position: static; right: auto; bottom: auto;
+			margin: 1.1rem auto 0; width: fit-content;
+		}
+		.hero-exp__ba figure { width: clamp(116px, 38vw, 150px); }
 		.hero-aw__strip { justify-content: center; }
-		.hero-x__nav { width: 54px; height: 72px; }
-		.hero-x__nav--prev { left: 8px; }
-		.hero-x__nav--next { right: 8px; }
+		/* Plain chevron buttons on phones — the slide-preview thumbnail reads as a
+		   stray image floating over the photo, so drop it on small screens. */
+		.hero-x__nav { width: 40px; height: 56px; background: oklch(20% 0.03 260 / 0.55); }
+		.hero-x__nav-thumb { display: none; }
+		.hero-x__nav--prev { left: 6px; }
+		.hero-x__nav--next { right: 6px; }
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.hero-x__track { transition: none; }
