@@ -302,8 +302,9 @@
 		box-shadow: 0 24px 60px oklch(0% 0 0 / 0.45);
 	}
 	/* Single in-flow image (JS swaps its src to rotate patients). In-flow so the
-	   square aspect-ratio box always has height — it can never collapse. */
-	.hero-exp__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+	   square aspect-ratio box always has height — it can never collapse. The
+	   portrait shots are cropped from the TOP so the head/hairline is never cut. */
+	.hero-exp__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
 	.hero-exp__reviews {
 		position: absolute; top: 14px; left: 14px;
 		display: flex; flex-direction: column; align-items: center; gap: 2px;
