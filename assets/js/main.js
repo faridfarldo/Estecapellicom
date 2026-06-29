@@ -221,7 +221,10 @@
 		}
 		function next() { go(index + 1); }
 		function prev() { go(index - 1); }
-		function start() { stop(); timer = setInterval(next, DELAY); }
+		// Auto-advance is intentionally DISABLED: the hero stays on slide 1 and the
+		// visitor moves between slides only via the arrows/dots. (The expert slide
+		// rotates its own patient photos internally — see initHeroResults.)
+		function start() { stop(); }
 		function stop() { if (timer) { clearInterval(timer); timer = null; } }
 
 		var nextBtn = root.querySelector('[data-hero-next]');
@@ -240,6 +243,33 @@
 
 		go(0);
 		start();
+	}
+
+	/*
+	 * Expert hero slide: rotate through the real patient before/after sets every
+	 * 3s. The big "after" photo and the two "before" thumbnails advance together
+	 * so each frame shows one patient. This runs independently of (and instead of)
+	 * any hero auto-advance — only the photos inside this one slide cycle.
+	 */
+	function initHeroResults() {
+		var root = document.querySelector('[data-hero-results]');
+		if (!root) return;
+		var groups = [
+			Array.prototype.slice.call(root.querySelectorAll('[data-result-after]')),
+			Array.prototype.slice.call(root.querySelectorAll('[data-result-b1]')),
+			Array.prototype.slice.call(root.querySelectorAll('[data-result-b2]'))
+		];
+		var count = groups[0].length;
+		if (count < 2) return;
+
+		var i = 0;
+		function show(idx) {
+			groups.forEach(function (g) {
+				g.forEach(function (el, k) { el.classList.toggle('is-active', k === idx); });
+			});
+		}
+		show(0);
+		setInterval(function () { i = (i + 1) % count; show(i); }, 3000);
 	}
 
 	function initHeroSplit() {
@@ -896,6 +926,7 @@
 		initStickyHeader();
 		initSignatureCards();
 		initHeroCarousel();
+		initHeroResults();
 		initHeroSplit();
 		initHomeBaGallery();
 		initHairAnalysisLab();

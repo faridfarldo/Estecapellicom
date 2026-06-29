@@ -22,6 +22,21 @@ $panels = $split['panels'];
 $slides = estecapelli_hero_slides();
 $exp    = $slides['expert'];
 $aw     = $slides['awards'];
+
+// Real patient before/after sets for the "experience" slide. Each folder under
+// /assets/images/hero-results/{id}/ holds after.jpeg (the big result) plus
+// b1.jpeg / b2.jpeg (the two "before" angles). The slide auto-rotates through
+// these every few seconds (see initHeroResults in main.js).
+$result_ids  = array( 2, 4, 5, 8, 10, 12 );
+$result_base = get_template_directory_uri() . '/assets/images/hero-results/';
+$results     = array();
+foreach ( $result_ids as $rid ) {
+	$results[] = array(
+		'after' => $result_base . $rid . '/after.jpeg',
+		'b1'    => $result_base . $rid . '/b1.jpeg',
+		'b2'    => $result_base . $rid . '/b2.jpeg',
+	);
+}
 ?>
 
 <section class="hero-x" aria-label="<?php esc_attr_e( 'Highlights', 'estecapelli' ); ?>" data-hero-carousel>
@@ -103,7 +118,7 @@ $aw     = $slides['awards'];
 			</div>
 
 			<!-- ===== Slide 2 — Most experienced ===== -->
-			<div class="hero-x__slide hero-x__slide--expert" data-hero-slide data-hero-title="<?php esc_attr_e( 'World-Class Experience', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $exp['photo'] ); ?>">
+			<div class="hero-x__slide hero-x__slide--expert" data-hero-slide data-hero-title="<?php esc_attr_e( 'World-Class Experience', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $results[0]['after'] ?? $exp['photo'] ); ?>">
 				<div class="hero-x__bg" aria-hidden="true">
 					<span class="hero-x__glow hero-x__glow--a"></span>
 					<span class="hero-x__glow hero-x__glow--b"></span>
@@ -124,9 +139,13 @@ $aw     = $slides['awards'];
 						<?php endif; ?>
 					</div>
 
-					<div class="hero-exp__media">
+					<div class="hero-exp__media" data-hero-results>
 						<figure class="hero-exp__photo">
-							<img src="<?php echo esc_url( $exp['photo'] ); ?>" alt="<?php echo esc_attr( $exp['patient'] ); ?>" loading="lazy" decoding="async" />
+							<?php foreach ( $results as $ri => $r ) : ?>
+								<span class="hero-exp__shot <?php echo 0 === $ri ? 'is-active' : ''; ?>" data-result-after>
+									<img src="<?php echo esc_url( $r['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" <?php echo 0 === $ri ? '' : 'loading="lazy"'; ?> decoding="async" />
+								</span>
+							<?php endforeach; ?>
 
 							<?php if ( ! empty( $exp['badge'] ) ) : ?>
 								<span class="hero-exp__reviews">
@@ -141,23 +160,25 @@ $aw     = $slides['awards'];
 							<?php endif; ?>
 
 							<figcaption class="hero-exp__cap">
-								<strong><?php echo esc_html( $exp['patient'] ); ?></strong>
-								<?php echo esc_html( $exp['caption'] ); ?>
+								<strong><?php esc_html_e( 'After result', 'estecapelli' ); ?></strong>
+								<?php esc_html_e( 'Actual Estecapelli patient. Individual results may vary.', 'estecapelli' ); ?>
 							</figcaption>
 						</figure>
 
-						<?php if ( ! empty( $exp['before'] ) && ! empty( $exp['after'] ) ) : ?>
-							<div class="hero-exp__ba">
-								<figure>
-									<img src="<?php echo esc_url( $exp['before'] ); ?>" alt="" loading="lazy" />
-									<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
-								</figure>
-								<figure>
-									<img src="<?php echo esc_url( $exp['after'] ); ?>" alt="" loading="lazy" />
-									<figcaption><?php esc_html_e( 'After', 'estecapelli' ); ?></figcaption>
-								</figure>
-							</div>
-						<?php endif; ?>
+						<div class="hero-exp__ba">
+							<figure>
+								<?php foreach ( $results as $ri => $r ) : ?>
+									<img src="<?php echo esc_url( $r['b1'] ); ?>" class="<?php echo 0 === $ri ? 'is-active' : ''; ?>" data-result-b1 alt="" loading="lazy" decoding="async" />
+								<?php endforeach; ?>
+								<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
+							</figure>
+							<figure>
+								<?php foreach ( $results as $ri => $r ) : ?>
+									<img src="<?php echo esc_url( $r['b2'] ); ?>" class="<?php echo 0 === $ri ? 'is-active' : ''; ?>" data-result-b2 alt="" loading="lazy" decoding="async" />
+								<?php endforeach; ?>
+								<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
+							</figure>
+						</div>
 
 						<?php if ( ! empty( $exp['years'] ) ) : ?>
 							<span class="hero-exp__seal" aria-hidden="true">
