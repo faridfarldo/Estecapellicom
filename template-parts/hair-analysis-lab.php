@@ -56,9 +56,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</span>
 			</button>
 
-			<button type="button" class="hal__option" data-hal-pick="photos">
+			<button type="button" class="hal__option hal__option--ai" data-hal-pick="photos">
+				<span class="hal__option-badge">
+					<?php estecapelli_icon( 'sparkles', array( 'width' => 12, 'height' => 12 ) ); ?>
+					<?php esc_html_e( 'Estecapelli AI', 'estecapelli' ); ?>
+				</span>
 				<span class="hal__option-icon" aria-hidden="true">
-					<?php estecapelli_icon( 'image', array( 'width' => 26, 'height' => 26 ) ); ?>
+					<?php estecapelli_icon( 'cpu', array( 'width' => 26, 'height' => 26 ) ); ?>
 				</span>
 				<span class="hal__option-title"><?php esc_html_e( 'Analyse my photos with AI', 'estecapelli' ); ?></span>
 				<span class="hal__option-desc"><?php esc_html_e( 'Upload a few photos of your hair and our AI prepares your assessment.', 'estecapelli' ); ?></span>
@@ -144,6 +148,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// configured, fall back to the front-end-only placeholder (mock) mode.
 	$hw_base = get_template_directory_uri() . '/assets/hair-widget/';
 	$hw_live = defined( 'ESTECAPELLI_ANTHROPIC_KEY' ) && ESTECAPELLI_ANTHROPIC_KEY;
+	// Cache-bust the module loader so each deploy reaches browsers (the widget's
+	// own sub-imports are pinned with ?v=N — bump that when changing widget JS).
+	$hw_ver  = estecapelli_asset_ver( '/assets/hair-widget/js/widget.js' );
 	?>
 	<script type="module">
 		window.HAIR_WIDGET_CFG = {
@@ -153,7 +160,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			nonce: '<?php echo esc_js( wp_create_nonce( 'estecapelli_hair' ) ); ?>',
 			mock: <?php echo $hw_live ? 'false' : 'true'; ?>
 		};
-		import('<?php echo esc_url( $hw_base . 'js/widget.js' ); ?>').then(function (m) {
+		import('<?php echo esc_url( $hw_base . 'js/widget.js' ); ?>?v=<?php echo esc_attr( $hw_ver ); ?>').then(function (m) {
 			var el = document.getElementById('hair-widget');
 			if (el && m.HairAnalysisWidget) { new m.HairAnalysisWidget(el); }
 		});

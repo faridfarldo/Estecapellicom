@@ -4,11 +4,14 @@
  * Stages: intro → capture(×4) → analyzing → result → form → done.
  * Vanilla JS, no framework, so it ports into the WP hero with no build step.
  */
-import { CONFIG } from './config.js';
-import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js';
-import { startFaceGate } from './face-detect.js';
-import { analyzePhotos } from './analyze.js';
-import { submitLead } from './submit.js';
+// NOTE: the ?v=N query on these relative imports cache-busts the whole module
+// graph. Bump N (here AND in analyze.js / submit.js / camera.js / face-detect.js)
+// whenever you change any widget JS, so browsers never run a stale mix.
+import { CONFIG } from './config.js?v=2';
+import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=2';
+import { startFaceGate } from './face-detect.js?v=2';
+import { analyzePhotos } from './analyze.js?v=2';
+import { submitLead } from './submit.js?v=2';
 
 const STEPS = CONFIG.steps;
 
@@ -20,6 +23,11 @@ export class HairAnalysisWidget {
     // Captured photos keyed by step id → { blob, url }.
     this.photos = {};
     this.analysis = null;
+
+    // Contact is collected UP FRONT (intro), before any photo is taken.
+    this.contact = null; // { name, phone, email, consent }
+    this.method = ''; // preferred contact channel: 'whatsapp' | 'call' | 'email'
+    this.submitted = false; // guard so the lead is sent only once
 
     // Camera/runtime state for the active capture step.
     this.stream = null;
@@ -161,26 +169,9 @@ export class HairAnalysisWidget {
     }
   }
 
-  // --- analysis ------------------------------------------------------------
+  // --- contact (collected up front, on the intro screen) -------------------
 
-  async runAnalysis() {
-    this.setStage('analyzing');
-    try {
-      const blobs = Object.fromEntries(
-        Object.entries(this.photos).map(([id, p]) => [id, p.blob])
-      );
-      this.analysis = await analyzePhotos(blobs);
-      this.setStage('result');
-    } catch {
-      this.error = 'Analysis failed. Please try again.';
-      this.stage = 'result';
-      this.render();
-    }
-  }
-
-  // --- submission ----------------------------------------------------------
-
-  async onSubmit(form) {
+  onIntroSubmit(form) {
     const name = form.name.value.trim();
     // Prepend the selected country dial code (intl-tel-input keeps it separate),
     // matching how phone-intl.js handles the site's other forms.
@@ -192,32 +183,65 @@ export class HairAnalysisWidget {
     const email = form.email.value.trim();
     const consent = form.consent.checked;
 
-    if (!name || !phone || !email) {
-      this.error = 'Please enter your name, phone and email.';
-      this.render();
-      return;
-    }
-    if (!consent) {
-      this.error = 'Please accept the consent to continue.';
-      this.render();
-      return;
-    }
+    // Validate WITHOUT re-rendering, so the visitor doesn't lose what they typed.
+    if (!this.method) return this.showError('Please choose how we should send your result.');
+    if (!name || !phone || !email) return this.showError('Please enter your name, phone and email.');
+    if (!consent) return this.showError('Please accept the consent to continue.');
 
-    this.stage = 'submitting';
-    this.error = '';
-    this.render();
+    this.contact = { name, phone, email, consent };
+    this.enterCaptureStep(0);
+  }
+
+  /** Update the inline error in place (no re-render → form input is preserved). */
+  showError(msg) {
+    this.error = msg;
+    const el = this.root.querySelector('[data-error]');
+    if (el) {
+      el.textContent = msg;
+      el.hidden = false;
+    }
+  }
+
+  photoBlobs() {
+    return Object.fromEntries(
+      Object.entries(this.photos).map(([id, p]) => [id, p.blob])
+    );
+  }
+
+  methodLabel() {
+    return { whatsapp: 'WhatsApp', call: 'a direct call', email: 'email' }[this.method] || '';
+  }
+
+  // --- analysis + submission ----------------------------------------------
+
+  // After the last photo: run the AI estimate, then send the lead (photos +
+  // contact + estimate) once, then show the result. The lead is sent even if
+  // the AI estimate fails, so no enquiry is ever lost.
+  async runAnalysis() {
+    this.setStage('analyzing');
 
     try {
-      const blobs = Object.fromEntries(
-        Object.entries(this.photos).map(([id, p]) => [id, p.blob])
-      );
-      await submitLead({ photos: blobs, analysis: this.analysis, contact: { name, phone, email, consent } });
-      this.setStage('done');
+      this.analysis = await analyzePhotos(this.photoBlobs());
     } catch {
-      this.error = 'Submission failed. Please try again.';
-      this.stage = 'form';
-      this.render();
+      this.analysis = null;
     }
+
+    if (!this.submitted && this.contact) {
+      try {
+        await submitLead({
+          photos: this.photoBlobs(),
+          analysis: this.analysis,
+          contact: this.contact,
+          method: this.method,
+        });
+        this.submitted = true;
+      } catch {
+        // The estimate is still shown; the team can be reached via the page's
+        // other contact routes if this single POST failed.
+      }
+    }
+
+    this.setStage('result');
   }
 
   // --- rendering -----------------------------------------------------------
@@ -251,14 +275,72 @@ export class HairAnalysisWidget {
   }
 
   view_intro() {
+    const methods = [
+      { id: 'whatsapp', label: 'WhatsApp' },
+      { id: 'call', label: 'Direct call' },
+      { id: 'email', label: 'Email' },
+    ];
     return `
       <div class="hw-card hw-intro">
-        <span class="hw-eyebrow">AI hair check</span>
-        <h2 class="hw-title">Free preliminary hair analysis</h2>
-        <p class="hw-lead">Take four quick photos and get an instant estimate of your
-          hairline stage and graft range. Takes about a minute.</p>
-        <button class="hw-btn hw-btn--accent" data-action="start">Start free analysis</button>
-        <p class="hw-fineprint">Your photos are used only for this assessment.</p>
+        <span class="hw-eyebrow">Estecapelli AI</span>
+        <h2 class="hw-title hw-title--sm">Your analysis has two stages</h2>
+
+        <ol class="hw-stages">
+          <li class="hw-stage-item">
+            <span class="hw-stage-num">1</span>
+            <div class="hw-stage-text">
+              <strong>Instant AI pre-check — right here</strong>
+              <p>Our AI reviews your photos and gives a first, surface-level estimate in seconds.</p>
+            </div>
+          </li>
+          <li class="hw-stage-item">
+            <span class="hw-stage-num">2</span>
+            <div class="hw-stage-text">
+              <strong>Specialist review — our lab &amp; doctors</strong>
+              <p>Our medical team completes the estimate, corrects any error and prepares your personalised plan.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="hw-method">
+          <span class="hw-method-label">How should we send you the result?</span>
+          <div class="hw-method-options" role="radiogroup" aria-label="Preferred contact method">
+            ${methods
+              .map(
+                (m) => `
+              <button type="button" class="hw-chip ${this.method === m.id ? 'is-active' : ''}"
+                data-method="${m.id}" role="radio" aria-checked="${this.method === m.id ? 'true' : 'false'}">
+                ${esc(m.label)}
+              </button>`
+              )
+              .join('')}
+          </div>
+        </div>
+
+        <p class="hw-error" data-error role="alert" ${this.error ? '' : 'hidden'}>${esc(this.error)}</p>
+
+        <form class="hw-form hw-intro-form" novalidate>
+          <label class="hw-field">
+            <span>Full name</span>
+            <input name="name" type="text" autocomplete="name" required />
+          </label>
+          <label class="hw-field">
+            <span>Phone / WhatsApp</span>
+            <input name="phone" class="js-intl-phone" type="tel" autocomplete="tel" inputmode="tel" required />
+          </label>
+          <label class="hw-field">
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" inputmode="email" required />
+          </label>
+          <label class="hw-consent">
+            <input name="consent" type="checkbox" required />
+            <span>I agree Estecapelli may process my photos and contact details for this
+              assessment (KVKK / GDPR).</span>
+          </label>
+          <button class="hw-btn hw-btn--accent" type="submit">Submit my contacts &amp; start AI analysis</button>
+        </form>
+
+        <p class="hw-fineprint">Next, you'll take four quick photos. They are used only for this assessment.</p>
       </div>`;
   }
 
@@ -338,86 +420,59 @@ export class HairAnalysisWidget {
 
   view_result() {
     const a = this.analysis;
+    const via = this.methodLabel();
+    const viaSuffix = via ? ` via ${esc(via)}` : '';
+
+    // The AI estimate couldn't be produced, but the photos + contact were sent.
     if (!a) {
       return `
-        <div class="hw-card hw-result">
-          ${this.errorBanner()}
-          <button class="hw-btn hw-btn--accent" data-action="restart">Try again</button>
+        <div class="hw-card hw-result hw-result--plain">
+          <div class="hw-check" aria-hidden="true">✓</div>
+          <h2 class="hw-title hw-title--sm">Your photos have reached us</h2>
+          <p class="hw-lead">We couldn't generate the instant estimate this time, but your photos
+            and details reached our team. Our specialists will review them and contact you${viaSuffix}.</p>
         </div>`;
     }
+
+    // No identifiable hair/scalp in the photos.
+    if (a.status === 'no_hair_detected') {
+      return `
+        <div class="hw-card hw-result">
+          <span class="hw-eyebrow hw-eyebrow--warn">Couldn't read your photos</span>
+          <h2 class="hw-title hw-title--sm">We didn't detect your hair clearly</h2>
+          <p class="hw-lead">${
+            a.summary
+              ? esc(a.summary)
+              : "The photos didn't clearly show your hair and scalp. Please retake them in good light, filling the frame with your head."
+          }</p>
+          <button class="hw-btn hw-btn--accent" data-action="retake-all">Retake my photos</button>
+          <p class="hw-disclaimer">Your details were still sent to our team — they'll also reach out${viaSuffix}.</p>
+        </div>`;
+    }
+
+    // Minimal loss (≈ Norwood 1–2) → no transplant needed; hide the graft stat.
+    const noTransplant = a.transplant_recommended === false;
     return `
       <div class="hw-card hw-result">
-        <span class="hw-eyebrow">Preliminary estimate</span>
+        <span class="hw-eyebrow">Preliminary AI estimate</span>
         <div class="hw-result-headline">
           <div class="hw-stat">
             <span class="hw-stat-label">Hairline stage</span>
             <span class="hw-stat-value">Norwood ${esc(a.norwood_stage)}</span>
           </div>
-          <div class="hw-stat">
+          ${
+            noTransplant
+              ? ''
+              : `<div class="hw-stat">
             <span class="hw-stat-label">Estimated grafts</span>
             <span class="hw-stat-value">~${num(a.graft_range?.min)}–${num(a.graft_range?.max)}</span>
-          </div>
+          </div>`
+          }
         </div>
         ${a.summary ? `<p class="hw-lead">${esc(a.summary)}</p>` : ''}
-        <p class="hw-cta-text">This is an automatic estimate. If you'd like a doctor to review your
-          photos, send them along with your contact details and our team will get back to you.</p>
-        <button class="hw-btn hw-btn--accent" data-action="to-form">Send my photos to a doctor</button>
-        <p class="hw-disclaimer">This is a preliminary estimate generated automatically and is
-          <strong>not a medical diagnosis</strong>. A specialist will review your photos.</p>
-      </div>`;
-  }
-
-  view_form() {
-    const a = this.analysis;
-    return `
-      <div class="hw-card hw-form-card">
-        <h2 class="hw-title hw-title--sm">Get your accurate assessment</h2>
-        ${
-          a
-            ? `<p class="hw-form-note">Your estimate: <strong>Norwood ${esc(a.norwood_stage)}, ~${num(
-                a.graft_range?.min
-              )}–${num(a.graft_range?.max)} grafts</strong></p>`
-            : ''
-        }
-        ${this.errorBanner()}
-        <form class="hw-form" novalidate>
-          <label class="hw-field">
-            <span>Full name</span>
-            <input name="name" type="text" autocomplete="name" required />
-          </label>
-          <label class="hw-field">
-            <span>Phone / WhatsApp</span>
-            <input name="phone" class="js-intl-phone" type="tel" autocomplete="tel" inputmode="tel" required />
-          </label>
-          <label class="hw-field">
-            <span>Email</span>
-            <input name="email" type="email" autocomplete="email" inputmode="email" required />
-          </label>
-          <label class="hw-consent">
-            <input name="consent" type="checkbox" required />
-            <span>I consent to Estecapelli processing my photos and contact details for the
-              purpose of this assessment (KVKK / GDPR).</span>
-          </label>
-          <button class="hw-btn hw-btn--accent" type="submit">Submit</button>
-        </form>
-      </div>`;
-  }
-
-  view_submitting() {
-    return `
-      <div class="hw-card hw-analyzing">
-        <div class="hw-spinner" aria-hidden="true"></div>
-        <h2 class="hw-title hw-title--sm">Sending your request…</h2>
-      </div>`;
-  }
-
-  view_done() {
-    return `
-      <div class="hw-card hw-done">
-        <div class="hw-check" aria-hidden="true">✓</div>
-        <h2 class="hw-title hw-title--sm">Thank you!</h2>
-        <p class="hw-lead">Our team has received your photos and will contact you shortly with a
-          personalized assessment.</p>
+        <p class="hw-cta-text">A more precise analysis will be sent to you by our specialists${viaSuffix}.</p>
+        <p class="hw-disclaimer">This is an automatic, surface-level estimate and is
+          <strong>not a medical diagnosis</strong>.</p>
       </div>`;
   }
 
@@ -427,23 +482,34 @@ export class HairAnalysisWidget {
     this.root.querySelectorAll('[data-action]').forEach((el) => {
       el.addEventListener('click', (e) => {
         const action = e.currentTarget.dataset.action;
-        if (action === 'start') this.enterCaptureStep(0);
-        else if (action === 'shutter') this.capture();
+        if (action === 'shutter') this.capture();
         else if (action === 'retake') this.retake();
         else if (action === 'confirm') this.confirmStep();
-        else if (action === 'to-form') this.setStage('form');
-        else if (action === 'restart') this.runAnalysis();
+        else if (action === 'retake-all') this.enterCaptureStep(0);
+      });
+    });
+
+    // Contact-method chips (intro). Toggle in place — re-rendering here would
+    // wipe whatever the visitor has already typed into the form below.
+    this.root.querySelectorAll('[data-method]').forEach((el) => {
+      el.addEventListener('click', () => {
+        this.method = el.dataset.method;
+        this.root.querySelectorAll('[data-method]').forEach((c) => {
+          const on = c === el;
+          c.classList.toggle('is-active', on);
+          c.setAttribute('aria-checked', on ? 'true' : 'false');
+        });
       });
     });
 
     const file = this.root.querySelector('.hw-file');
     if (file) file.addEventListener('change', (e) => this.onFileFallback(e.target.files?.[0]));
 
-    const form = this.root.querySelector('.hw-form');
+    const form = this.root.querySelector('.hw-intro-form');
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        this.onSubmit(e.currentTarget);
+        this.onIntroSubmit(e.currentTarget);
       });
       this.initPhone(form);
     }

@@ -9,12 +9,13 @@
  * @param {object} args
  * @param {Record<string, Blob>} args.photos
  * @param {object} args.analysis        the preliminary result, sent along for context
- * @param {{name:string, phone:string, consent:boolean}} args.contact
+ * @param {{name:string, phone:string, email:string, consent:boolean}} args.contact
+ * @param {string} args.method          preferred contact channel (whatsapp|call|email)
  * @returns {Promise<object>}
  */
-import { CONFIG } from './config.js';
+import { CONFIG } from './config.js?v=2';
 
-export async function submitLead({ photos, analysis, contact }) {
+export async function submitLead({ photos, analysis, contact, method }) {
   // Front-end-only mode: pretend the lead was sent (no backend yet).
   if (CONFIG.mock) {
     await new Promise((r) => setTimeout(r, 1200));
@@ -26,6 +27,7 @@ export async function submitLead({ photos, analysis, contact }) {
   form.append('lead_phone', contact.phone);
   form.append('lead_email', contact.email || '');
   form.append('lead_consent', contact.consent ? '1' : '0');
+  form.append('lead_method', method || '');
   form.append('lead_source', 'hero-hair-analysis');
   form.append('analysis_json', JSON.stringify(analysis ?? {}));
   form.append('nonce', CONFIG.nonce);

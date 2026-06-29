@@ -57,6 +57,7 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 			'languages'    => '<path d="M4 5h7"/><path d="M9 3v2c0 4.4-3 7-6 7"/><path d="M5 9c0 2.5 3 5 7 6"/><path d="M13 21l4-9 4 9"/><path d="M14.5 17h5"/>',
 			'sparkles'     => '<path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z" fill="currentColor" stroke="none"/><path d="M19 14l.7 2L22 17l-2.3.7L19 20l-.7-2.3L16 17l2.3-.7z" fill="currentColor" stroke="none"/>',
 			'target'       => '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>',
+			'cpu'          => '<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>',
 			'atom'         => '<circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>',
 			'dna'          => '<path d="M5 4c0 4 14 4 14 8"/><path d="M5 20c0-4 14-4 14-8"/><path d="M7 6h10"/><path d="M7 18h10"/><path d="M9 10h6"/><path d="M9 14h6"/>',
 			'shield-check' => '<path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><polyline points="9 12 11.5 14.5 16 10"/>',

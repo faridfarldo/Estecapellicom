@@ -117,19 +117,17 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 	$content[] = array(
 		'type' => 'text',
 		'text' =>
-			"You are assisting a hair-transplant clinic with a BROAD, SURFACE-LEVEL screening estimate from patient-submitted photos. " .
-			"This is a quick first-impression screen, NOT a precise clinical diagnosis — an approximate, indicative read is exactly what's wanted. " .
-			"Looking at the hairline, crown and overall density — and the back/donor photo to gauge donor capacity — give:\n" .
-			"1) an approximate Norwood-Hamilton stage (integer 1-7),\n" .
-			"2) a wide, indicative FUE graft range for a transplant (realistic counts, usually 1000-5000; keep the range broad rather than a falsely exact number), and\n" .
-			"3) a short, friendly, encouraging 2-3 sentence summary the patient can read.\n" .
-			"Keep it general and reassuring, and make clear the exact plan is confirmed in a free in-person consultation. " .
-			"If the photos are unclear, still give your best broad estimate rather than refusing.",
+			"You are screening patient-submitted photos for a hair-transplant clinic. Give a BRIEF, surface-level first-impression estimate — NOT a clinical diagnosis. Be accurate and honest; do not invent detail you cannot see. Return:\n" .
+			"- status: \"ok\" normally. Use \"no_hair_detected\" if the photos do NOT clearly show a human head/scalp/hair (blank, too dark, an unrelated object, a face with no visible hairline, etc.) — in that case do not guess numbers.\n" .
+			"- norwood_stage: approximate Norwood-Hamilton stage, integer 1-7.\n" .
+			"- transplant_recommended: false when hair loss is minimal (around Norwood 1-2) and a transplant is NOT needed yet; true otherwise.\n" .
+			"- graft_range: a BROAD, indicative FUE graft range {min,max} (realistic, usually 1000-5000; keep it wide, not a falsely exact number). If transplant_recommended is false, set both min and max to 0.\n" .
+			"- summary: AT MOST TWO short sentences, plain and friendly. Cover only: whether the donor area looks good or limited, what their Norwood stage means in everyday words, and roughly why that many grafts. If transplant_recommended is false, say their hair loss is minimal and a transplant isn't needed at this stage. If status is \"no_hair_detected\", say you couldn't clearly see their hair and ask for clearer, well-lit photos. Do NOT write a long paragraph, and do NOT mention consultations, bookings or next steps — keep it short.",
 	);
 
 	$payload = array(
 		'model'         => ESTECAPELLI_ANTHROPIC_MODEL,
-		'max_tokens'    => 1024,
+		'max_tokens'    => 600,
 		'messages'      => array(
 			array( 'role' => 'user', 'content' => $content ),
 		),
@@ -141,8 +139,10 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 					'type'                 => 'object',
 					'additionalProperties' => false,
 					'properties'           => array(
-						'norwood_stage' => array( 'type' => 'integer', 'enum' => array( 1, 2, 3, 4, 5, 6, 7 ) ),
-						'graft_range'   => array(
+						'status'                 => array( 'type' => 'string', 'enum' => array( 'ok', 'no_hair_detected' ) ),
+						'norwood_stage'          => array( 'type' => 'integer', 'enum' => array( 1, 2, 3, 4, 5, 6, 7 ) ),
+						'transplant_recommended' => array( 'type' => 'boolean' ),
+						'graft_range'            => array(
 							'type'                 => 'object',
 							'additionalProperties' => false,
 							'properties'           => array(
@@ -151,9 +151,9 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 							),
 							'required'             => array( 'min', 'max' ),
 						),
-						'summary'       => array( 'type' => 'string' ),
+						'summary'                => array( 'type' => 'string' ),
 					),
-					'required'             => array( 'norwood_stage', 'graft_range', 'summary' ),
+					'required'             => array( 'status', 'norwood_stage', 'transplant_recommended', 'graft_range', 'summary' ),
 				),
 			),
 		),
@@ -226,6 +226,11 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 	$email   = sanitize_email( (string) $request->get_param( 'lead_email' ) );
 	$consent = '1' === (string) $request->get_param( 'lead_consent' );
 
+	// Preferred contact channel chosen up front (whatsapp | call | email).
+	$method        = sanitize_text_field( (string) $request->get_param( 'lead_method' ) );
+	$method_labels = array( 'whatsapp' => 'WhatsApp', 'call' => 'Direct call', 'email' => 'Email' );
+	$method_label  = isset( $method_labels[ $method ] ) ? $method_labels[ $method ] : ( $method ?: '-' );
+
 	$analysis = json_decode( (string) $request->get_param( 'analysis_json' ), true );
 	$norwood  = isset( $analysis['norwood_stage'] ) ? (int) $analysis['norwood_stage'] : 0;
 	$grange   = '';
@@ -249,6 +254,7 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		update_post_meta( $lead_id, 'lead_phone', $phone );
 		update_post_meta( $lead_id, 'lead_email', $email );
 		update_post_meta( $lead_id, 'lead_source', $source_label );
+		update_post_meta( $lead_id, 'lead_pref_contact', $method_label );
 		update_post_meta( $lead_id, 'lead_norwood', $norwood );
 		update_post_meta( $lead_id, 'lead_graft_range', $grange );
 		update_post_meta( $lead_id, 'lead_message', $summary );
@@ -274,6 +280,7 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		'Adı Soyadı: ' . $name,
 		'Email: ' . ( $email ?: '-' ),
 		'Telefon: ' . ( $phone ?: '-' ),
+		'Tercih edilen iletişim: ' . $method_label,
 		'Norwood: ' . ( $norwood ?: '-' ),
 		'Greft Aralığı: ' . ( $grange ?: '-' ),
 		'Analiz: ' . ( $summary ?: '-' ),

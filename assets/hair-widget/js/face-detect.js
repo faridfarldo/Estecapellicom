@@ -11,7 +11,7 @@
  * Side and donor steps don't use this — Face Mesh doesn't track profile/back
  * views, so those are manual captures.
  */
-import { CONFIG } from './config.js';
+import { CONFIG } from './config.js?v=2';
 
 const RAD2DEG = 180 / Math.PI;
 

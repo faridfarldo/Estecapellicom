@@ -1707,6 +1707,69 @@
 	}
 	.hal__option:hover .hal__option-cta { color: var(--hal-gold-soft); }
 
+	/* ---- AI option: deliberately distinct (cooler tone + animated border) ---- */
+	.hal__option--ai {
+		position: relative;
+		isolation: isolate;
+		background:
+			linear-gradient(160deg, oklch(32% 0.07 280 / 0.55), oklch(24% 0.06 250 / 0.5)),
+			var(--hal-card);
+		border-color: oklch(70% 0.15 280 / 0.45);
+		overflow: hidden;
+	}
+	/* animated gradient ring drawn with a masked border */
+	.hal__option--ai::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		padding: 1px;
+		background: linear-gradient(120deg,
+			oklch(78% 0.16 285 / 0.85),
+			oklch(82% 0.12 210 / 0.55),
+			oklch(84% 0.13 85 / 0.7),
+			oklch(78% 0.16 285 / 0.85));
+		background-size: 240% 240%;
+		-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+		-webkit-mask-composite: xor;
+		        mask-composite: exclude;
+		animation: hal-ai-border 7s linear infinite;
+		pointer-events: none;
+		z-index: 1;
+	}
+	@keyframes hal-ai-border {
+		to { background-position: 240% 240%; }
+	}
+	.hal__option--ai > * { position: relative; z-index: 2; }
+	.hal__option--ai:hover {
+		border-color: oklch(76% 0.16 285 / 0.7);
+		box-shadow: 0 24px 50px oklch(0% 0 0 / 0.45), 0 0 0 1px oklch(76% 0.16 285 / 0.45);
+	}
+	.hal__option--ai .hal__option-icon {
+		color: white;
+		background: linear-gradient(140deg, oklch(72% 0.16 285), oklch(62% 0.17 255));
+		box-shadow: 0 8px 22px oklch(60% 0.18 278 / 0.45);
+	}
+	.hal__option--ai .hal__option-cta { color: oklch(83% 0.12 285); }
+	.hal__option--ai:hover .hal__option-cta { color: oklch(90% 0.08 285); }
+	.hal__option-badge {
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.28rem 0.6rem;
+		border-radius: 9999px;
+		font-size: 0.6875rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: white;
+		background: linear-gradient(120deg, oklch(70% 0.16 285), oklch(62% 0.17 255));
+		box-shadow: 0 4px 14px oklch(60% 0.18 278 / 0.4);
+	}
+
 	/* ---- Forms ---- */
 	.hal__panel {
 		max-width: 720px;
