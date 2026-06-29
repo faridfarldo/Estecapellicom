@@ -295,7 +295,7 @@
 		font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
 		line-height: 1.6; color: oklch(88% 0.015 260); max-width: 46ch; margin: 0;
 	}
-	.hero-exp__media { position: relative; margin-bottom: clamp(32px, 5vw, 52px); }
+	.hero-exp__media { position: relative; margin-bottom: clamp(8px, 2vw, 18px); }
 	.hero-exp__photo {
 		position: relative; margin: 0; border-radius: 18px; overflow: hidden;
 		aspect-ratio: 4 / 4;
@@ -324,10 +324,12 @@
 		box-shadow: 0 8px 20px oklch(0% 0 0 / 0.35);
 	}
 	.hero-exp__cap strong { display: block; font-size: 0.8125rem; margin-bottom: 1px; }
-	/* Before pair, centred and straddling the photo's bottom edge. */
+	/* Before pair: sits in flow just BELOW the photo (using the space underneath),
+	   pulled up a touch so its top edge kisses the photo and the caption above it
+	   stays fully readable. Centred. */
 	.hero-exp__ba {
-		position: absolute; left: 50%; bottom: clamp(-44px, -4vw, -30px);
-		transform: translateX(-50%);
+		position: relative; z-index: 2;
+		margin: -14px auto 0; width: fit-content;
 		display: flex; gap: 3px; border-radius: 14px; overflow: hidden;
 		border: 3px solid white; box-shadow: 0 16px 40px oklch(0% 0 0 / 0.5);
 	}
