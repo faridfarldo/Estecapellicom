@@ -838,7 +838,7 @@
 		var N = originals.length;
 		if (N < 2) return;
 
-		var ROWS = 1.5; // tight window — neighbours fold away on the drum
+		var ROWS = 1.4; // tight window — neighbours fold away on the drum
 		var rowH = originals[0].offsetHeight;
 		if (!rowH) return;
 		var vpH = rowH * ROWS;
