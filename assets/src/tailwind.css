@@ -616,8 +616,8 @@
 		object-position: center;
 		transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
-	.hero-split__panel--exosome .hero-split__cover { transform: scale(1.18) translateX(-14%); }
-	.hero-split__panel--vita .hero-split__cover { transform: scale(1.18) translateX(14%); }
+	.hero-split__panel--exosome .hero-split__cover { transform: scale(1.32) translateX(-11%); }
+	.hero-split__panel--vita .hero-split__cover { transform: scale(1.32) translateX(11%); }
 
 	/* Video layer — JS injects the YouTube iframe on open and clears it on close. */
 	.hero-split__video {
@@ -629,9 +629,6 @@
 		transition: opacity 0.45s ease;
 		background: oklch(8% 0.02 265);
 	}
-	.hero-split__panel[data-open="true"] .hero-split__video { opacity: 1; pointer-events: auto; }
-	/* Fill the panel and let YouTube fit the whole video inside (no hard crop),
-	   so the playing clip sits fully in the frame. */
 	.hero-split__video iframe {
 		position: absolute;
 		inset: 0;
@@ -639,6 +636,46 @@
 		height: 100%;
 		border: 0;
 		display: block;
+	}
+
+	/* ---- Open state: the method takes over the stage as a clean, framed 16:9
+	   player (thick frame + shadow) on a dimmed backdrop. Clicking the dim area
+	   outside the video closes it back to the split. ---- */
+	.hero-split__panel[data-open="true"] {
+		clip-path: none;
+		z-index: 6;
+		display: grid;
+		place-items: center;
+		padding: clamp(0.85rem, 2.5vw, 2rem);
+		background: oklch(7% 0.02 265 / 0.82);
+		backdrop-filter: blur(3px);
+	}
+	.hero-split__panel[data-open="true"] .hero-split__cover,
+	.hero-split__panel[data-open="true"] .hero-split__scrim,
+	.hero-split__panel[data-open="true"] .hero-split__seam,
+	.hero-split__panel[data-open="true"] .hero-split__content {
+		opacity: 0;
+		pointer-events: none;
+	}
+	.hero-split__panel[data-open="true"] .hero-split__video {
+		position: relative;
+		inset: auto;
+		z-index: 5;
+		height: 100%;
+		width: auto;
+		aspect-ratio: 16 / 9;
+		max-width: 100%;
+		opacity: 1;
+		pointer-events: auto;
+		border-radius: 16px;
+		overflow: hidden;
+		border: 4px solid white;
+		box-shadow: 0 30px 70px oklch(0% 0 0 / 0.6);
+		background: black;
+	}
+	.hero-split__panel[data-open="true"] .hero-split__toggle {
+		z-index: 4;
+		cursor: zoom-out;
 	}
 
 	/* Tint + legibility overlay, sits above cover and video. */
@@ -847,6 +884,18 @@
 		}
 		.hero-split__panel--vita {
 			clip-path: polygon(0 calc(var(--split) + var(--slant)), 100% calc(var(--split) - var(--slant)), 100% 100%, 0 100%);
+		}
+
+		/* The seam runs horizontally on mobile, so nudge the products vertically
+		   into their own strip (Exosome up / VITA down). */
+		.hero-split__panel--exosome .hero-split__cover { transform: scale(1.3) translateY(-9%); }
+		.hero-split__panel--vita .hero-split__cover { transform: scale(1.3) translateY(9%); }
+
+		/* Open player: a proper 16:9 box centred on the dimmed stage. */
+		.hero-split__panel[data-open="true"] .hero-split__video {
+			height: auto;
+			width: 100%;
+			max-height: 100%;
 		}
 
 		/* Anchor each panel's copy to its own edge so the heading stays inside

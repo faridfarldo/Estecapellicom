@@ -314,9 +314,13 @@
 			}
 
 			function activate(key) {
-				stage.setAttribute('data-split-active', key);
+				// Toggle: clicking the already-open method (or clicking outside its
+				// video, which lands on its full-panel button) closes it back to the
+				// split. Otherwise open the clicked one and close the other.
+				var opening = stage.getAttribute('data-split-active') !== key;
+				stage.setAttribute('data-split-active', opening ? key : '');
 				toggles.forEach(function (t) {
-					var on = t.getAttribute('data-split-toggle') === key;
+					var on = opening && t.getAttribute('data-split-toggle') === key;
 					t.setAttribute('aria-pressed', on ? 'true' : 'false');
 					var panel = t.closest('[data-split-panel]');
 					if (panel) {
