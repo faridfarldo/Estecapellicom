@@ -111,18 +111,17 @@ foreach ( $result_ids as $rid ) {
 										<?php echo esc_html( $p['name'] ); ?><sup class="hero-split__tm"><?php echo esc_html( $p['trademark'] ); ?></sup>
 										<span class="hero-split__tag"><?php echo esc_html( $p['tag'] ); ?></span>
 									</span>
-
-									<?php if ( ! empty( $p['cta']['url'] ) ) : ?>
-										<div class="hero-split__detail">
-											<a class="btn btn-accent hero-split__cta" href="<?php echo esc_url( $p['cta']['url'] ); ?>">
-												<?php echo esc_html( $p['cta']['label'] ); ?>
-												<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
-											</a>
-										</div>
-									<?php endif; ?>
 								</div>
 							</div>
 						<?php endforeach; ?>
+					</div>
+
+					<?php $hs_learn = $panels['exosome']['cta']['url'] ?? ( $panels['vita']['cta']['url'] ?? home_url( '/en/' ) ); ?>
+					<div class="shell hero-split__more">
+						<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $hs_learn ); ?>">
+							<?php esc_html_e( 'Learn more', 'estecapelli' ); ?>
+							<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
+						</a>
 					</div>
 
 				</div>
