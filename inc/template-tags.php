@@ -1333,9 +1333,10 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 					'technique'   => 'DHI Vita',
 					'rating'      => 5,
 					'video_id'    => 'NJhvWUPd370',
-					// Poster + wall thumbnail pulled straight from the video's own
-					// frame (oardefault = the Short's full vertical thumbnail).
-					'image'       => 'https://i.ytimg.com/vi/NJhvWUPd370/oardefault.jpg',
+					// Big stage box = the YouTube video thumbnail; side playlist = the
+					// patient's own after-photo.
+					'poster'      => 'https://i.ytimg.com/vi/NJhvWUPd370/oardefault.jpg',
+					'photo'       => get_template_directory_uri() . '/assets/images/stories/alexandre-t-after.jpg',
 					'pre_title'   => __( 'Hairline redesigned, density restored from front to crown.', 'estecapelli' ),
 					'body'        => __( 'Alexandre came to our clinic from Ireland to redesign his hairline and improve density across the frontal area, mid-scalp and crown. Based on his desired hair model and donor capacity, we prioritised a natural, face-appropriate hairline first, then a balanced, homogeneous distribution through the mid-scalp and crown. The procedure was performed with the DHI Vita technique in a single session, transplanting 5,000 grafts in total — around 3,000 in the frontal area and hairline and roughly 2,000 across the mid-scalp and crown. The operation progressed normally, with PRP support applied at the end.', 'estecapelli' ),
 				),
@@ -1349,7 +1350,8 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 					'technique'   => 'FUE Vita',
 					'rating'      => 5,
 					'video_id'    => 'YrZleFBZ9j8',
-					'image'       => 'https://i.ytimg.com/vi/YrZleFBZ9j8/oardefault.jpg',
+					'poster'      => 'https://i.ytimg.com/vi/YrZleFBZ9j8/oardefault.jpg',
+					'photo'       => get_template_directory_uri() . '/assets/images/stories/craig-n-after.jpg',
 					'pre_title'   => __( 'A denser frontal hairline and a fuller crown.', 'estecapelli' ),
 					'body'        => __( 'Craig came to our clinic from Scotland to improve his hairline and increase density across the frontal area and crown. Based on his hair model and consultation plan, we prioritised a denser, more natural frontal hairline first, then a homogeneous graft distribution through the top and crown to cover the visible gaps. The procedure was performed with the FUE Vita technique in a single session, transplanting 5,400 grafts in total. Grafts were extracted evenly from the donor area with good quality, then implanted with attention to natural direction, density balance and overall coverage. The operation progressed normally, with PRP support applied at the end.', 'estecapelli' ),
 				),
@@ -1363,7 +1365,8 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 					'technique'   => 'Vita Protocol',
 					'rating'      => 5,
 					'video_id'    => 'crCXBnCyKNA',
-					'image'       => 'https://i.ytimg.com/vi/crCXBnCyKNA/oardefault.jpg',
+					'poster'      => 'https://i.ytimg.com/vi/crCXBnCyKNA/oardefault.jpg',
+					'photo'       => get_template_directory_uri() . '/assets/images/stories/dale-f-after.jpg',
 					'pre_title'   => __( 'Stronger density across front, mid-scalp and crown.', 'estecapelli' ),
 					'body'        => __( 'Dale came to our clinic from England to increase density across the frontal area, mid-scalp and crown. Based on his consultation plan and donor capacity, we focused on building stronger density in the front and crown first, while balancing the mid-scalp for an even result. The procedure was performed with the Vita protocol in a single session, transplanting 4,500 grafts in total. With a good-density donor area, the grafts were distributed to the planned coverage needs — higher density prioritised in the frontal area and crown, and the mid-scalp reinforced for a more homogeneous overall look. PRP support was applied at the end of the procedure.', 'estecapelli' ),
 				),
@@ -1377,7 +1380,8 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 					'technique'   => 'FUE Vita',
 					'rating'      => 5,
 					'video_id'    => '9R4HJY_PKJI',
-					'image'       => 'https://i.ytimg.com/vi/9R4HJY_PKJI/oardefault.jpg',
+					'poster'      => 'https://i.ytimg.com/vi/9R4HJY_PKJI/oardefault.jpg',
+					'photo'       => get_template_directory_uri() . '/assets/images/stories/danny-j-after.jpg',
 					'pre_title'   => __( 'Frontal density extended through the mid-scalp.', 'estecapelli' ),
 					'body'        => __( 'Danny came to our clinic from England to improve density in his frontal area and extend coverage toward the mid-scalp. Based on his consultation plan, we prioritised harvesting the maximum number of grafts and building a dense, natural-looking result in the thinning zones, aiming for good density up to the midsection. The procedure was performed with the FUE Vita technique in a single session, transplanting 5,000 grafts in total. Grafts were extracted homogeneously from the donor area with good quality, then implanted with attention to natural direction, density balance and frontal-to-mid-scalp coverage. The operation progressed normally, with PRP support applied at the end.', 'estecapelli' ),
 				),

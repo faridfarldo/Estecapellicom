@@ -65,7 +65,8 @@ $thumb = function ( $id ) {
 			<div class="stories__heroes">
 				<?php foreach ( $stories as $i => $story ) :
 					$is_active = ( 0 === $i );
-					$thumbnail = ! empty( $story['image'] ) ? $story['image'] : $thumb( $story['video_id'] );
+					// Big stage poster = the YouTube video's own thumbnail.
+					$thumbnail = ! empty( $story['poster'] ) ? $story['poster'] : $thumb( $story['video_id'] );
 					$initial   = mb_substr( $story['name'], 0, 1 );
 					?>
 					<article
@@ -154,7 +155,8 @@ $thumb = function ( $id ) {
 				<ul class="stories__wall-list" data-stories-wall>
 					<?php foreach ( $stories as $i => $story ) :
 						$is_active = ( 0 === $i );
-						$thumbnail = ! empty( $story['image'] ) ? $story['image'] : $thumb( $story['video_id'] );
+						// Side playlist thumbnail = the patient's own after-photo.
+						$thumbnail = ! empty( $story['photo'] ) ? $story['photo'] : $thumb( $story['video_id'] );
 						$initial   = mb_substr( $story['name'], 0, 1 );
 						?>
 						<li class="stories__wall-item">
