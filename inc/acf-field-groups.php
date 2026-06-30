@@ -904,6 +904,113 @@ function estecapelli_register_acf_field_groups() {
 			),
 		)
 	);
+
+	$home_loc = array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'estecapelli-homepage' ) ) );
+
+	/* ===== Hero — Signature split (Exosome / VITA) ===== */
+	$split_panel = function ( $p, $label ) {
+		return array(
+			'key' => 'field_hsp_' . $p, 'label' => $label, 'name' => $p, 'type' => 'group', 'layout' => 'block',
+			'sub_fields' => array(
+				array( 'key' => 'field_hsp_' . $p . '_name', 'label' => __( 'Name', 'estecapelli' ), 'name' => 'name', 'type' => 'text', 'wrapper' => array( 'width' => '50' ) ),
+				array( 'key' => 'field_hsp_' . $p . '_tag', 'label' => __( 'Tag', 'estecapelli' ), 'name' => 'tag', 'type' => 'text', 'wrapper' => array( 'width' => '50' ) ),
+				array( 'key' => 'field_hsp_' . $p . '_video', 'label' => __( 'YouTube video ID', 'estecapelli' ), 'name' => 'video', 'type' => 'text', 'wrapper' => array( 'width' => '50' ) ),
+				array( 'key' => 'field_hsp_' . $p . '_cover', 'label' => __( 'Cover image', 'estecapelli' ), 'name' => 'cover', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium', 'instructions' => __( 'Empty = keep current.', 'estecapelli' ), 'wrapper' => array( 'width' => '50' ) ),
+			),
+		);
+	};
+	acf_add_local_field_group(
+		array(
+			'key'        => 'group_home_split',
+			'title'      => __( 'Homepage — Hero Signature Split', 'estecapelli' ),
+			'location'   => $home_loc,
+			'menu_order' => 2,
+			'active'     => true,
+			'fields'     => array(
+				array(
+					'key' => 'field_hs_split', 'label' => __( 'Exosome / VITA', 'estecapelli' ), 'name' => 'signature_split', 'type' => 'group', 'layout' => 'block',
+					'instructions' => __( 'Empty fields keep the current content.', 'estecapelli' ),
+					'sub_fields' => array(
+						array(
+							'key' => 'field_hs_intro', 'label' => __( 'Intro', 'estecapelli' ), 'name' => 'intro', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_hs_intro_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_hs_intro_headline', 'label' => __( 'Headline', 'estecapelli' ), 'name' => 'headline', 'type' => 'text' ),
+								array( 'key' => 'field_hs_intro_body', 'label' => __( 'Body', 'estecapelli' ), 'name' => 'body', 'type' => 'text' ),
+								array( 'key' => 'field_hs_intro_hint', 'label' => __( 'Hint', 'estecapelli' ), 'name' => 'hint', 'type' => 'text' ),
+							),
+						),
+						array(
+							'key' => 'field_hs_panels', 'label' => __( 'Panels', 'estecapelli' ), 'name' => 'panels', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								$split_panel( 'vita', __( 'VITA panel', 'estecapelli' ) ),
+								$split_panel( 'exosome', __( 'Exosome panel', 'estecapelli' ) ),
+							),
+						),
+					),
+				),
+			),
+		)
+	);
+
+	/* ===== Hero — Slides 2 & 3 (Expert + Women) ===== */
+	acf_add_local_field_group(
+		array(
+			'key'        => 'group_home_hero_slides',
+			'title'      => __( 'Homepage — Hero Slides 2 & 3', 'estecapelli' ),
+			'location'   => $home_loc,
+			'menu_order' => 3,
+			'active'     => true,
+			'fields'     => array(
+				array(
+					'key' => 'field_hsl', 'label' => __( 'Hero slides', 'estecapelli' ), 'name' => 'hero_slides', 'type' => 'group', 'layout' => 'block',
+					'instructions' => __( 'Empty fields keep the current content.', 'estecapelli' ),
+					'sub_fields' => array(
+						array(
+							'key' => 'field_hsl_expert', 'label' => __( 'Slide 2 — Expert', 'estecapelli' ), 'name' => 'expert', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_hsl_e_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_hsl_e_headline', 'label' => __( 'Headline', 'estecapelli' ), 'name' => 'headline', 'type' => 'text' ),
+								array( 'key' => 'field_hsl_e_body', 'label' => __( 'Body', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 2 ),
+							),
+						),
+						array(
+							'key' => 'field_hsl_women', 'label' => __( 'Slide 3 — Women', 'estecapelli' ), 'name' => 'women', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_hsl_w_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_hsl_w_headline', 'label' => __( 'Headline', 'estecapelli' ), 'name' => 'headline', 'type' => 'text' ),
+								array( 'key' => 'field_hsl_w_body', 'label' => __( 'Body', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 3 ),
+								array( 'key' => 'field_hsl_w_video', 'label' => __( 'YouTube video ID', 'estecapelli' ), 'name' => 'video', 'type' => 'text' ),
+							),
+						),
+					),
+				),
+			),
+		)
+	);
+
+	/* ===== Trust stats strip ===== */
+	acf_add_local_field_group(
+		array(
+			'key'        => 'group_home_trust_stats',
+			'title'      => __( 'Homepage — Trust Stats', 'estecapelli' ),
+			'location'   => $home_loc,
+			'menu_order' => 4,
+			'active'     => true,
+			'fields'     => array(
+				array(
+					'key' => 'field_ts_list', 'label' => __( 'Stats', 'estecapelli' ), 'name' => 'trust_stats', 'type' => 'repeater', 'layout' => 'table',
+					'instructions' => __( 'The 4 numbers under the hero. Leave the whole list untouched to keep the current values.', 'estecapelli' ),
+					'min' => 0, 'button_label' => __( '+ Add stat', 'estecapelli' ),
+					'sub_fields' => array(
+						array( 'key' => 'field_ts_icon', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon', 'type' => 'text', 'instructions' => __( 'e.g. calendar, hair, globe, headset', 'estecapelli' ) ),
+						array( 'key' => 'field_ts_value', 'label' => __( 'Value', 'estecapelli' ), 'name' => 'value', 'type' => 'text' ),
+						array( 'key' => 'field_ts_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text' ),
+					),
+				),
+			),
+		)
+	);
 }
 
 /**
@@ -914,47 +1021,55 @@ function estecapelli_register_acf_field_groups() {
  */
 add_action( 'admin_init', 'estecapelli_seed_home_patient_stories' );
 function estecapelli_seed_home_patient_stories() {
-	if ( get_option( 'estecapelli_home_stories_seeded' ) ) {
-		return;
-	}
-	if ( ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) || ! function_exists( 'estecapelli_patient_stories_defaults' ) ) {
+	if ( ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) ) {
 		return;
 	}
 
-	$existing = get_field( 'home_patient_stories_list', 'option' );
-	if ( empty( $existing ) ) {
-		$d    = estecapelli_patient_stories_defaults();
-		$rows = array();
-		foreach ( $d['stories'] as $s ) {
-			$rows[] = array(
-				'key'        => $s['key'],
-				'name'       => $s['name'],
-				'rating'     => isset( $s['rating'] ) ? $s['rating'] : 5,
-				'country'    => isset( $s['country'] ) ? $s['country'] : '',
-				'flag'       => isset( $s['flag'] ) ? $s['flag'] : '',
-				'grafts'     => isset( $s['grafts'] ) ? $s['grafts'] : '',
-				'technique'  => isset( $s['technique'] ) ? $s['technique'] : '',
-				'video_id'   => isset( $s['video_id'] ) ? $s['video_id'] : '',
-				'pre_title'  => isset( $s['pre_title'] ) ? $s['pre_title'] : '',
-				'body'       => isset( $s['body'] ) ? $s['body'] : '',
-				'poster'     => '', // keep the theme frame (matched by Key)
-				'poster_pos' => isset( $s['poster_pos'] ) ? $s['poster_pos'] : '',
-				'photo'      => '', // keep the theme photo (matched by Key)
-				'photo_pos'  => isset( $s['photo_pos'] ) ? $s['photo_pos'] : '',
-			);
-		}
-		update_field( 'home_patient_stories_list', $rows, 'option' );
+	// Patient stories — seed once so the admin opens with the current 7 patients.
+	if ( ! get_option( 'estecapelli_home_stories_seeded' ) && function_exists( 'estecapelli_patient_stories_defaults' ) ) {
+		$existing = get_field( 'home_patient_stories_list', 'option' );
+		if ( empty( $existing ) ) {
+			$d    = estecapelli_patient_stories_defaults();
+			$rows = array();
+			foreach ( $d['stories'] as $s ) {
+				$rows[] = array(
+					'key'        => $s['key'],
+					'name'       => $s['name'],
+					'rating'     => isset( $s['rating'] ) ? $s['rating'] : 5,
+					'country'    => isset( $s['country'] ) ? $s['country'] : '',
+					'flag'       => isset( $s['flag'] ) ? $s['flag'] : '',
+					'grafts'     => isset( $s['grafts'] ) ? $s['grafts'] : '',
+					'technique'  => isset( $s['technique'] ) ? $s['technique'] : '',
+					'video_id'   => isset( $s['video_id'] ) ? $s['video_id'] : '',
+					'pre_title'  => isset( $s['pre_title'] ) ? $s['pre_title'] : '',
+					'body'       => isset( $s['body'] ) ? $s['body'] : '',
+					'poster'     => '', // keep the theme frame (matched by Key)
+					'poster_pos' => isset( $s['poster_pos'] ) ? $s['poster_pos'] : '',
+					'photo'      => '', // keep the theme photo (matched by Key)
+					'photo_pos'  => isset( $s['photo_pos'] ) ? $s['photo_pos'] : '',
+				);
+			}
+			update_field( 'home_patient_stories_list', $rows, 'option' );
 
-		if ( '' === (string) get_field( 'home_stories_eyebrow', 'option' ) ) {
-			update_field( 'home_stories_eyebrow', $d['eyebrow'], 'option' );
+			if ( '' === (string) get_field( 'home_stories_eyebrow', 'option' ) ) {
+				update_field( 'home_stories_eyebrow', $d['eyebrow'], 'option' );
+			}
+			if ( '' === (string) get_field( 'home_stories_headline', 'option' ) ) {
+				update_field( 'home_stories_headline', $d['headline'], 'option' );
+			}
+			if ( '' === (string) get_field( 'home_stories_lead', 'option' ) ) {
+				update_field( 'home_stories_lead', $d['lead'], 'option' );
+			}
 		}
-		if ( '' === (string) get_field( 'home_stories_headline', 'option' ) ) {
-			update_field( 'home_stories_headline', $d['headline'], 'option' );
-		}
-		if ( '' === (string) get_field( 'home_stories_lead', 'option' ) ) {
-			update_field( 'home_stories_lead', $d['lead'], 'option' );
-		}
+		update_option( 'estecapelli_home_stories_seeded', 1 );
 	}
 
-	update_option( 'estecapelli_home_stories_seeded', 1 );
+	// Trust stats — seed once (own flag, so it runs even though stories already did).
+	if ( ! get_option( 'estecapelli_trust_stats_seeded' ) && function_exists( 'estecapelli_trust_stats_defaults' ) ) {
+		$ts = get_field( 'trust_stats', 'option' );
+		if ( empty( $ts ) ) {
+			update_field( 'trust_stats', estecapelli_trust_stats_defaults(), 'option' );
+		}
+		update_option( 'estecapelli_trust_stats_seeded', 1 );
+	}
 }

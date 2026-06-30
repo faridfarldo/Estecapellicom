@@ -555,21 +555,59 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 	}
 }
 
-if ( ! function_exists( 'estecapelli_home_hero' ) ) {
+if ( ! function_exists( 'estecapelli_acf_overlay' ) ) {
 	/**
-	 * Homepage hero content (ACF override-ready).
-	 * Returns a single associative array that hero-home.php iterates over —
-	 * any field can later be overridden via an ACF option page without
-	 * touching the renderer.
+	 * Overlay ACF values onto built-in defaults without ever losing data.
+	 *
+	 * - Empty scalars (''/null) keep the default — so an editor only changes what
+	 *   they actually fill in.
+	 * - Associative arrays are merged recursively (edit one nested field, the rest
+	 *   stay default).
+	 * - List/repeater arrays replace the default only when the editor added rows;
+	 *   an empty repeater keeps the current list.
 	 */
-	function estecapelli_home_hero() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'home_hero', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
+	function estecapelli_acf_overlay( $defaults, $acf ) {
+		if ( ! is_array( $acf ) ) {
+			return $defaults;
+		}
+		$out = is_array( $defaults ) ? $defaults : array();
+		foreach ( $acf as $k => $v ) {
+			if ( is_array( $v ) ) {
+				$is_list = ( array() === $v ) || ( array_keys( $v ) === range( 0, count( $v ) - 1 ) );
+				if ( $is_list ) {
+					if ( ! empty( $v ) ) {
+						$out[ $k ] = $v;
+					}
+				} elseif ( isset( $out[ $k ] ) && is_array( $out[ $k ] ) ) {
+					$out[ $k ] = estecapelli_acf_overlay( $out[ $k ], $v );
+				} elseif ( ! empty( $v ) ) {
+					$out[ $k ] = $v;
+				}
+			} elseif ( '' !== $v && null !== $v ) {
+				$out[ $k ] = $v;
 			}
 		}
+		return $out;
+	}
+}
 
+if ( ! function_exists( 'estecapelli_home_hero' ) ) {
+	/**
+	 * Homepage hero content. ACF (Homepage Content → Hero) overlays the defaults
+	 * per-field; empty fields keep the built-in value.
+	 */
+	function estecapelli_home_hero() {
+		$defaults = estecapelli_home_hero_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
+		}
+		return estecapelli_acf_overlay( $defaults, get_field( 'home_hero', 'option' ) );
+	}
+}
+
+if ( ! function_exists( 'estecapelli_home_hero_defaults' ) ) {
+	/** Built-in hero content — the base the ACF editor overlays. */
+	function estecapelli_home_hero_defaults() {
 		return array(
 			'eyebrow'    => __( 'EST. 2010 · ISTANBUL, TÜRKİYE', 'estecapelli' ),
 			'headline'   => __( 'Aesthetic Excellence, Backed by Medical Trust.', 'estecapelli' ),
@@ -619,13 +657,17 @@ if ( ! function_exists( 'estecapelli_signature_split' ) ) {
 	 * ACF override: option 'signature_split' returns the full payload below.
 	 */
 	function estecapelli_signature_split() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'signature_split', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
-			}
+		$defaults = estecapelli_signature_split_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
 		}
+		return estecapelli_acf_overlay( $defaults, get_field( 'signature_split', 'option' ) );
+	}
+}
 
+if ( ! function_exists( 'estecapelli_signature_split_defaults' ) ) {
+	/** Built-in Exosome/VITA split content — the base the ACF editor overlays. */
+	function estecapelli_signature_split_defaults() {
 		$cta = home_url( '/en/contact' );
 		$img = get_template_directory_uri() . '/assets/images/techniques/';
 
@@ -675,13 +717,17 @@ if ( ! function_exists( 'estecapelli_hero_slides' ) ) {
 	 * placeholder-friendly and ACF-overridable via option 'hero_slides'.
 	 */
 	function estecapelli_hero_slides() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'hero_slides', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
-			}
+		$defaults = estecapelli_hero_slides_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
 		}
+		return estecapelli_acf_overlay( $defaults, get_field( 'hero_slides', 'option' ) );
+	}
+}
 
+if ( ! function_exists( 'estecapelli_hero_slides_defaults' ) ) {
+	/** Built-in hero slides 2 & 3 content — the base the ACF editor overlays. */
+	function estecapelli_hero_slides_defaults() {
 		$img      = get_template_directory_uri() . '/assets/images/';
 		$contact  = home_url( '/en/contact' );
 		$whatsapp = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_url() : $contact;
@@ -729,13 +775,18 @@ if ( ! function_exists( 'estecapelli_trust_stats' ) ) {
 	 * ACF override: option 'trust_stats' returns an array of {value,label}.
 	 */
 	function estecapelli_trust_stats() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'trust_stats', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
-			}
+		$defaults = estecapelli_trust_stats_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
 		}
+		$acf = get_field( 'trust_stats', 'option' );
+		return ( ! empty( $acf ) && is_array( $acf ) ) ? $acf : $defaults;
+	}
+}
 
+if ( ! function_exists( 'estecapelli_trust_stats_defaults' ) ) {
+	/** Built-in trust-stats — the base the ACF editor overlays. */
+	function estecapelli_trust_stats_defaults() {
 		return array(
 			array( 'icon' => 'calendar', 'value' => '15+',                           'label' => __( 'Years of Experience', 'estecapelli' ) ),
 			array( 'icon' => 'hair',     'value' => '+' . ESTECAPELLI_PATIENT_COUNT,  'label' => __( 'Happy Patients', 'estecapelli' ) ),
