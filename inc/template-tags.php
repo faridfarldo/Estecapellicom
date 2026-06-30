@@ -1415,6 +1415,21 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 					'pre_title'   => __( 'A natural hairline with balanced front-to-crown density.', 'estecapelli' ),
 					'body'        => __( 'Ricardo came to our clinic from Ireland to restore a natural hairline and improve density across the frontal area, temples and a small thinning area on the crown. Based on his consultation plan and his wish for a natural-looking result, we adjusted the frontal line to his facial structure and planned dense implantation in the front, with additional grafts placed in the temples and crown for overall balance. The procedure was performed with the DHI Vita technique in a single session, transplanting approximately 4,200 grafts. The grafts were extracted with good hair quality, then implanted with attention to natural direction, symmetry, density balance and frontal-to-crown coverage. The operation progressed normally, with PRP support at the end.', 'estecapelli' ),
 				),
+				array(
+					'key'         => 'sam-c',
+					'name'        => __( 'Sam C.', 'estecapelli' ),
+					'country'     => __( 'Ireland', 'estecapelli' ),
+					'country_iso' => 'IE',
+					'flag'        => '🇮🇪',
+					'grafts'      => '6,200',
+					'technique'   => 'FUE Vita',
+					'rating'      => 5,
+					'video_id'    => 'A6TO--UisSg',
+					'poster'      => 'https://i.ytimg.com/vi/A6TO--UisSg/oardefault.jpg',
+					'photo'       => get_template_directory_uri() . '/assets/images/stories/sam-c-after.jpg',
+					'pre_title'   => __( 'Full-coverage restoration in a single session.', 'estecapelli' ),
+					'body'        => __( 'Sam came to our clinic from Ireland to improve his hairline and increase overall density across the frontal area, mid-scalp and crown. Based on his consultation plan and his wish for full coverage in a single session, we planned maximum graft extraction and focused on building good density in the frontal hairline first, then distributed the remaining grafts through the mid-scalp and crown for balanced coverage. The procedure was performed with the FUE Vita technique in a single session, transplanting 6,200 grafts in total. Grafts were extracted homogeneously from the donor area with good quality, then implanted with attention to natural direction, density balance and overall coverage. The operation progressed normally, with PRP support at the end.', 'estecapelli' ),
+				),
 			),
 		);
 	}
