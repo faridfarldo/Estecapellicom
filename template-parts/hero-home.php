@@ -4,7 +4,7 @@
  *
  *   Slide 1: interactive Exosome/VITA diagonal split (estecapelli_signature_split).
  *   Slide 2: "most experienced" expert slide with patient photo + reviews badge.
- *   Slide 3: awards, Google review and a short intro video.
+ *   Slide 3: women's hair transplant — copy beside an auto-playing intro video.
  *
  * Slides 2 & 3 read from estecapelli_hero_slides(). Auto-advances; arrows + dots.
  *
@@ -21,7 +21,7 @@ $panels = $split['panels'];
 
 $slides = estecapelli_hero_slides();
 $exp    = $slides['expert'];
-$aw     = $slides['awards'];
+$women  = $slides['women'];
 
 // Real patient before/after sets for the "experience" slide. Each folder under
 // /assets/images/hero-results/{id}/ holds after.jpeg (the big result) plus
@@ -203,23 +203,36 @@ foreach ( $result_ids as $rid ) {
 				</div>
 			</div>
 
-			<!-- ===== Slide 3 — Awards & reviews ===== -->
-			<div class="hero-x__slide hero-x__slide--awards" data-hero-slide data-hero-title="<?php esc_attr_e( 'Awards & Reviews', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $exp['after'] ); ?>">
+			<!-- ===== Slide 3 — Women's hair transplant ===== -->
+			<?php
+			$women_vid   = $women['video'] ?? '';
+			$women_thumb = $women_vid ? 'https://i.ytimg.com/vi/' . rawurlencode( $women_vid ) . '/hqdefault.jpg' : '';
+			// Muted, looping autoplay — starts on its own with no click. Muted is
+			// required for browsers to allow unprompted autoplay; native controls let
+			// the visitor unmute. loop needs the playlist=<id> companion param.
+			$women_src = $women_vid ? 'https://www.youtube.com/embed/' . rawurlencode( $women_vid )
+				. '?autoplay=1&mute=1&loop=1&playlist=' . rawurlencode( $women_vid )
+				. '&controls=1&rel=0&modestbranding=1&playsinline=1' : '';
+			?>
+			<div class="hero-x__slide hero-x__slide--women" data-hero-slide data-hero-title="<?php esc_attr_e( 'Women’s Hair Transplant', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $women_thumb ); ?>">
 				<div class="hero-x__bg" aria-hidden="true">
 					<span class="hero-x__glow hero-x__glow--a"></span>
 					<span class="hero-x__glow hero-x__glow--b"></span>
 				</div>
 
-				<div class="shell hero-aw">
-					<div class="hero-aw__copy">
-						<?php if ( ! empty( $aw['eyebrow'] ) ) : ?>
-							<span class="hero-aw__eyebrow"><?php echo esc_html( $aw['eyebrow'] ); ?></span>
+				<div class="shell hero-wmn">
+					<div class="hero-wmn__copy">
+						<?php if ( ! empty( $women['eyebrow'] ) ) : ?>
+							<span class="hero-wmn__eyebrow"><?php echo esc_html( $women['eyebrow'] ); ?></span>
 						<?php endif; ?>
-						<h2 class="hero-aw__title"><?php echo esc_html( $aw['headline'] ); ?></h2>
+						<h2 class="hero-wmn__title"><?php echo esc_html( $women['headline'] ); ?></h2>
+						<?php if ( ! empty( $women['body'] ) ) : ?>
+							<p class="hero-wmn__lead"><?php echo esc_html( $women['body'] ); ?></p>
+						<?php endif; ?>
 
-						<?php if ( ! empty( $aw['points'] ) ) : ?>
-							<ul class="hero-aw__points">
-								<?php foreach ( $aw['points'] as $point ) : ?>
+						<?php if ( ! empty( $women['points'] ) ) : ?>
+							<ul class="hero-wmn__points">
+								<?php foreach ( $women['points'] as $point ) : ?>
 									<li>
 										<?php estecapelli_icon( 'check-circle', array( 'width' => 18, 'height' => 18 ) ); ?>
 										<?php echo esc_html( $point ); ?>
@@ -228,44 +241,23 @@ foreach ( $result_ids as $rid ) {
 							</ul>
 						<?php endif; ?>
 
-						<?php if ( ! empty( $aw['cta']['url'] ) ) : ?>
-							<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $aw['cta']['url'] ); ?>">
-								<?php echo esc_html( $aw['cta']['label'] ); ?>
+						<?php if ( ! empty( $women['cta']['url'] ) ) : ?>
+							<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $women['cta']['url'] ); ?>">
+								<?php echo esc_html( $women['cta']['label'] ); ?>
 								<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
 							</a>
 						<?php endif; ?>
 					</div>
 
-					<?php if ( ! empty( $aw['video'] ) ) : ?>
-						<div class="hero-aw__media">
-							<button type="button" class="hero-aw__video" data-stories-play="<?php echo esc_attr( $aw['video'] ); ?>" data-story-title="<?php esc_attr_e( 'Estecapelli — introduction', 'estecapelli' ); ?>">
-								<span class="hero-aw__video-ring" aria-hidden="true"></span>
-								<?php estecapelli_icon( 'play', array( 'width' => 26, 'height' => 26 ) ); ?>
-								<span class="hero-aw__video-label"><?php esc_html_e( 'Watch our intro', 'estecapelli' ); ?></span>
-							</button>
-						</div>
-					<?php endif; ?>
-				</div>
-
-				<div class="shell hero-aw__strip">
-					<?php if ( ! empty( $aw['awards'] ) ) : ?>
-						<ul class="hero-aw__badges">
-							<?php foreach ( $aw['awards'] as $award ) : ?>
-								<li><img src="<?php echo esc_url( $award['image'] ); ?>" alt="<?php echo esc_attr( $award['alt'] ); ?>" loading="lazy" /></li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
-
-					<?php if ( ! empty( $aw['review'] ) ) : ?>
-						<div class="hero-aw__review">
-							<span class="hero-aw__stars" aria-hidden="true">
-								<?php for ( $i = 0; $i < 5; $i++ ) {
-									estecapelli_icon( 'star', array( 'width' => 16, 'height' => 16 ) );
-								} ?>
-							</span>
-							<div class="hero-aw__review-text">
-								<strong><?php echo esc_html( $aw['review']['score'] . '/' . $aw['review']['out_of'] ); ?></strong>
-								<span><?php echo esc_html( $aw['review']['count'] ); ?></span>
+					<?php if ( $women_src ) : ?>
+						<div class="hero-wmn__media">
+							<div class="hero-wmn__video">
+								<iframe
+									src="<?php echo esc_url( $women_src ); ?>"
+									title="<?php esc_attr_e( 'Women’s hair transplant at Estecapelli', 'estecapelli' ); ?>"
+									allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+									allowfullscreen
+									loading="lazy"></iframe>
 							</div>
 						</div>
 					<?php endif; ?>

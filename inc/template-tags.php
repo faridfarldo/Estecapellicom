@@ -705,28 +705,18 @@ if ( ! function_exists( 'estecapelli_hero_slides' ) ) {
 				'years'    => array( 'from' => '2010', 'to' => '2025', 'label' => __( 'FIFTEEN YEARS', 'estecapelli' ) ),
 			),
 
-			// Slide 3 — awards, Google review, short intro video.
-			'awards' => array(
-				'eyebrow'  => __( '15 YEARS OF EXPERIENCE · +50,000 SUCCESSFUL TRANSPLANTS', 'estecapelli' ),
-				'headline' => __( 'Istanbul Hair Transplant Center — Natural, Permanent Results', 'estecapelli' ),
+			// Slide 3 — women's hair transplant, with an auto-playing intro video.
+			'women' => array(
+				'eyebrow'  => __( 'FOR WOMEN · DISCREET & NATURAL', 'estecapelli' ),
+				'headline' => __( 'Women’s Hair Transplant in Istanbul', 'estecapelli' ),
+				'body'     => __( 'Thinning along the parting, a receding hairline or overall loss of density affects women too. Our female-focused approach restores fullness with unshaven techniques, complete privacy and natural, permanent results.', 'estecapelli' ),
 				'points'   => array(
-					__( 'Expert medical team', 'estecapelli' ),
-					__( 'World-class medical expertise', 'estecapelli' ),
-					__( 'Natural results with the most advanced technology', 'estecapelli' ),
+					__( 'Unshaven, discreet techniques', 'estecapelli' ),
+					__( 'Natural hairline & density design', 'estecapelli' ),
+					__( 'Female patient privacy at every step', 'estecapelli' ),
 				),
 				'cta'      => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => $contact ),
-				'video'    => 'oINL-_dGV_M', // placeholder intro video (YouTube ID)
-				'review'   => array(
-					'score' => '4.9',
-					'out_of' => '5',
-					'count' => __( '5,800+ reviews', 'estecapelli' ),
-					'label' => __( 'Recommended by 50,000+ patients', 'estecapelli' ),
-				),
-				'awards'   => array(
-					array( 'image' => $img . 'badges/01-ministry-of-health.png', 'alt' => __( 'Ministry of Health licensed', 'estecapelli' ) ),
-					array( 'image' => $img . 'badges/02-tursab.png', 'alt' => __( 'TURSAB certified', 'estecapelli' ) ),
-					array( 'image' => $img . 'badges/03-heal-in-turkiye.webp', 'alt' => __( 'Heal in Türkiye', 'estecapelli' ) ),
-				),
+				'video'    => 'eT6ep9dk4BM', // Women's hair transplant intro (YouTube ID)
 			),
 		);
 	}
