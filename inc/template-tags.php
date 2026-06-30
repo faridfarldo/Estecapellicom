@@ -1319,20 +1319,23 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 			'headline' => __( 'Their results speak louder than any ad ever could.', 'estecapelli' ),
 			'lead'     => __( 'Hear, in their own words, how patients from around the world describe their Estecapelli journey — from first consultation to long-term result.', 'estecapelli' ),
 
-			// Placeholder stories — user will swap YouTube IDs and details later.
+			// Real patient stories — added one by one. Each may set 'image' (a real
+			// photo used for the poster + wall thumbnail); without it the renderer
+			// falls back to the YouTube thumbnail.
 			'stories' => array(
 				array(
-					'key'         => 'alexander-p',
-					'name'        => __( 'Alexander P.', 'estecapelli' ),
-					'country'     => __( 'Germany', 'estecapelli' ),
-					'country_iso' => 'DE',
-					'flag'        => '🇩🇪',
-					'grafts'      => '4,280',
-					'technique'   => 'DHI',
+					'key'         => 'alexandre-t',
+					'name'        => __( 'Alexandre T.', 'estecapelli' ),
+					'country'     => __( 'Ireland', 'estecapelli' ),
+					'country_iso' => 'IE',
+					'flag'        => '🇮🇪',
+					'grafts'      => '5,000',
+					'technique'   => 'DHI Vita',
 					'rating'      => 5,
-					'video_id'    => '',
-					'pre_title'   => __( 'A naturally fuller beard, designed graft by graft.', 'estecapelli' ),
-					'body'        => __( 'Using the DHI technique, 4,280 grafts were transferred from the scalp donor area to enhance the naturally sparse beard. The beard was designed according to the patient\'s preferences and facial structure. With moderate graft quality averaging 2.6 hairs per follicle, the procedure achieved natural and satisfying results.', 'estecapelli' ),
+					'video_id'    => 'NJhvWUPd370',
+					'image'       => get_template_directory_uri() . '/assets/images/stories/alexandre-t.jpg',
+					'pre_title'   => __( 'Hairline redesigned, density restored from front to crown.', 'estecapelli' ),
+					'body'        => __( 'Alexandre came to our clinic from Ireland to redesign his hairline and improve density across the frontal area, mid-scalp and crown. Based on his desired hair model and donor capacity, we prioritised a natural, face-appropriate hairline first, then a balanced, homogeneous distribution through the mid-scalp and crown. The procedure was performed with the DHI Vita technique in a single session, transplanting 5,000 grafts in total — around 3,000 in the frontal area and hairline and roughly 2,000 across the mid-scalp and crown. The operation progressed normally, with PRP support applied at the end.', 'estecapelli' ),
 				),
 				array(
 					'key'         => 'juan-cv',

@@ -65,7 +65,7 @@ $thumb = function ( $id ) {
 			<div class="stories__heroes">
 				<?php foreach ( $stories as $i => $story ) :
 					$is_active = ( 0 === $i );
-					$thumbnail = $thumb( $story['video_id'] );
+					$thumbnail = ! empty( $story['image'] ) ? $story['image'] : $thumb( $story['video_id'] );
 					$initial   = mb_substr( $story['name'], 0, 1 );
 					?>
 					<article
@@ -154,7 +154,7 @@ $thumb = function ( $id ) {
 				<ul class="stories__wall-list" data-stories-wall>
 					<?php foreach ( $stories as $i => $story ) :
 						$is_active = ( 0 === $i );
-						$thumbnail = $thumb( $story['video_id'] );
+						$thumbnail = ! empty( $story['image'] ) ? $story['image'] : $thumb( $story['video_id'] );
 						$initial   = mb_substr( $story['name'], 0, 1 );
 						?>
 						<li class="stories__wall-item">
