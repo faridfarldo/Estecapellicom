@@ -336,6 +336,15 @@
 				// isn't one, and would get the audio blocked/muted).
 				t.addEventListener('click', function () { activate(key); });
 			});
+
+			// The video now fills its wedge, covering the full-panel toggle, so a
+			// dedicated close button (sat above the iframe) returns to the split.
+			stage.querySelectorAll('[data-split-close]').forEach(function (c) {
+				c.addEventListener('click', function (e) {
+					e.stopPropagation();
+					activate(c.getAttribute('data-split-close'));
+				});
+			});
 		});
 	}
 

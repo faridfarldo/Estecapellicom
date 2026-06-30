@@ -638,15 +638,15 @@
 		display: block;
 	}
 
-	/* ---- Open state: the chosen method's wedge expands and plays its video IN
-	   PLACE — a 16:9 player sat inside the wedge, pushed to its straight edge and
-	   clear of the diagonal seam, with a shadow, so nothing is cut. The product
-	   stays faintly behind. Click the wedge outside the video to close. ---- */
+	/* ---- Open state: the chosen method's video plays IN PLACE, filling the very
+	   same wedge the cover sat in — no separate frame, no floating box. The iframe
+	   fills the panel and the wedge clip-path crops it to the diagonal, exactly
+	   where the product image was. Click the wedge outside the controls closes. ---- */
 	.hero-split__panel[data-open="true"] {
 		z-index: 5;
 	}
 	.hero-split__panel[data-open="true"] .hero-split__cover {
-		opacity: 0.28;
+		opacity: 0;
 	}
 	.hero-split__panel[data-open="true"] .hero-split__content {
 		opacity: 0;
@@ -654,27 +654,40 @@
 	}
 	.hero-split__panel[data-open="true"] .hero-split__video {
 		position: absolute;
-		inset: auto;
-		top: 50%;
-		transform: translateY(-50%);
+		inset: 0;
 		z-index: 4;
-		height: 80%;
-		width: auto;
-		aspect-ratio: 16 / 9;
-		max-width: 62%;
+		width: 100%;
+		height: 100%;
 		opacity: 1;
 		pointer-events: auto;
-		border-radius: 14px;
-		overflow: hidden;
-		box-shadow: 0 26px 60px oklch(0% 0 0 / 0.6);
 		background: black;
 	}
-	.hero-split__panel--exosome[data-open="true"] .hero-split__video { left: 6%; }
-	.hero-split__panel--vita[data-open="true"] .hero-split__video { right: 6%; }
 	.hero-split__panel[data-open="true"] .hero-split__toggle {
 		z-index: 3;
 		cursor: zoom-out;
 	}
+	/* Close button — hidden while collapsed, sits above the playing video. */
+	.hero-split__close {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		z-index: 6;
+		display: none;
+		place-items: center;
+		width: 38px;
+		height: 38px;
+		padding: 0;
+		font-size: 24px;
+		line-height: 1;
+		color: white;
+		background: oklch(0% 0 0 / 0.55);
+		border: 1px solid oklch(100% 0 0 / 0.3);
+		border-radius: 9999px;
+		cursor: pointer;
+		transition: background 0.2s ease;
+	}
+	.hero-split__close:hover { background: oklch(0% 0 0 / 0.8); }
+	.hero-split__panel[data-open="true"] .hero-split__close { display: grid; }
 
 	/* Tint + legibility overlay, sits above cover and video. */
 	.hero-split__scrim {
@@ -888,20 +901,6 @@
 		   into their own strip (Exosome up / VITA down). */
 		.hero-split__panel--exosome .hero-split__cover { transform: scale(1.3) translateY(-9%); }
 		.hero-split__panel--vita .hero-split__cover { transform: scale(1.3) translateY(9%); }
-
-		/* Open player on phones: the wedge runs full-width, so the 16:9 player sits
-		   centred horizontally inside the active (expanded) strip. */
-		.hero-split__panel[data-open="true"] .hero-split__video {
-			left: 50%;
-			right: auto;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			height: auto;
-			width: 86%;
-			max-width: 86%;
-		}
-		.hero-split__panel--exosome[data-open="true"] .hero-split__video { top: 37%; }
-		.hero-split__panel--vita[data-open="true"] .hero-split__video { top: 63%; }
 
 		/* Anchor each panel's copy to its own edge so the heading stays inside
 		   the visible strip when collapsed; full width, always left-aligned. */

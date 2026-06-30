@@ -88,6 +88,7 @@ foreach ( $result_ids as $rid ) {
 
 								<?php if ( ! empty( $p['video'] ) ) : ?>
 									<div class="hero-split__video" data-split-video data-video-id="<?php echo esc_attr( $p['video'] ); ?>" aria-hidden="true"></div>
+									<button type="button" class="hero-split__close" data-split-close="<?php echo esc_attr( $key ); ?>" aria-label="<?php esc_attr_e( 'Close video', 'estecapelli' ); ?>">&times;</button>
 								<?php endif; ?>
 
 								<span class="hero-split__scrim" aria-hidden="true"></span>
