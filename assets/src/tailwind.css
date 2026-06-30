@@ -448,16 +448,19 @@
 		align-items: center;
 		overflow: hidden;
 		color: white;
-		min-height: clamp(440px, 62vh, 620px);
-		padding-block: clamp(2.5rem, 5vw, 4.5rem);
+		/* Kept in step with the height the other two slides settle at, so the hero
+		   doesn't grow taller on this slide. */
+		min-height: clamp(360px, 42vh, 460px);
+		padding-block: clamp(2.25rem, 4vw, 3.5rem);
 		background: var(--color-brand-950);
 	}
-	/* The iframe is scaled to COVER the slide (16:9 cropped to fill), centred, and
-	   made inert so the whole area reads as a backdrop, not a clickable player. */
+	/* The iframe is scaled to COVER the slide (16:9 cropped to fill) and biased to
+	   the RIGHT (the subject sits on that side), so the left clears for the copy. It
+	   is made inert so the whole area reads as a backdrop, not a clickable player. */
 	.hero-wmn__bgvideo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 	.hero-wmn__bgvideo iframe {
 		position: absolute;
-		top: 50%; left: 50%;
+		top: 50%; left: 38%;
 		transform: translate(-50%, -50%);
 		width: 100vw;
 		height: 56.25vw;          /* 16:9 of the width */
@@ -471,9 +474,10 @@
 		background:
 			linear-gradient(90deg,
 				var(--color-brand-950) 0%,
-				oklch(11% 0.03 270 / 0.88) 30%,
-				oklch(11% 0.03 270 / 0.45) 56%,
-				transparent 80%),
+				var(--color-brand-950) 22%,
+				oklch(11% 0.03 270 / 0.82) 46%,
+				oklch(11% 0.03 270 / 0.35) 66%,
+				transparent 86%),
 			linear-gradient(0deg, oklch(8% 0.02 265 / 0.55) 0%, transparent 40%);
 	}
 	.hero-wmn { position: relative; z-index: 2; width: 100%; }
@@ -500,7 +504,7 @@
 
 	@media (max-width: 860px) {
 		.hero-exp, .hero-aw { grid-template-columns: 1fr; }
-		.hero-x__slide--women { min-height: clamp(420px, 78vh, 560px); }
+		.hero-x__slide--women { min-height: clamp(360px, 56vh, 460px); }
 		/* Stronger bottom-up scrim on phones so the copy stays readable over a
 		   busier frame. */
 		.hero-wmn__scrim {
