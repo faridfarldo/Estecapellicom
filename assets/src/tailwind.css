@@ -4474,27 +4474,18 @@
 	.stories__poster-thumb {
 		position: relative;
 		flex-shrink: 0;
-		width: 92px; height: 60px;
+		/* Square, like the big box — the photo fills it edge to edge with no bars. */
+		width: 64px; height: 64px;
 		border-radius: 8px;
 		overflow: hidden;
 		background: var(--color-brand-900);
 		display: inline-flex; align-items: center; justify-content: center;
 	}
-	/* Same blurred-fill treatment so the whole face shows (object-fit: contain)
-	   without cropping heads in the small thumbnail. */
-	.stories__poster-thumb::before {
-		content: "";
-		position: absolute; inset: 0; z-index: 0;
-		background-image: var(--poster-bg);
-		background-size: cover;
-		background-position: center;
-		filter: blur(10px) brightness(0.55);
-		transform: scale(1.25);
-	}
 	.stories__poster-thumb img {
 		position: absolute; inset: 0; z-index: 1;
 		width: 100%; height: 100%;
-		object-fit: contain;
+		object-fit: cover;
+		object-position: center 28%;
 	}
 	.stories__poster-thumb--placeholder {
 		background: linear-gradient(135deg, var(--color-brand-700) 0%, var(--color-brand-950) 100%);
