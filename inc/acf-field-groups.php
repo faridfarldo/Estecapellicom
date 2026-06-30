@@ -23,6 +23,21 @@ function estecapelli_register_acf_field_groups() {
 		return;
 	}
 
+	// Homepage content settings page — holds the option-scoped homepage fields.
+	if ( function_exists( 'acf_add_options_page' ) ) {
+		acf_add_options_page(
+			array(
+				'page_title' => __( 'Homepage Content', 'estecapelli' ),
+				'menu_title' => __( 'Homepage Content', 'estecapelli' ),
+				'menu_slug'  => 'estecapelli-homepage',
+				'capability' => 'edit_theme_options',
+				'position'   => 59,
+				'icon_url'   => 'dashicons-admin-home',
+				'redirect'   => false,
+			)
+		);
+	}
+
 	// Icons available in estecapelli_icon() — exposed as ACF dropdowns.
 	$icon_choices = array(
 		''             => __( '— None —', 'estecapelli' ),
@@ -832,4 +847,114 @@ function estecapelli_register_acf_field_groups() {
 			),
 		)
 	);
+
+	/* ===== Homepage — Patient Stories =====
+	   Edits overlay the theme defaults: any field left empty keeps the current
+	   value, and an empty image keeps the current photo (matched by Key). So the
+	   page never loses data and nothing has to be re-imported. */
+	acf_add_local_field_group(
+		array(
+			'key'                   => 'group_home_patient_stories',
+			'title'                 => __( 'Homepage — Patient Stories', 'estecapelli' ),
+			'location'              => array(
+				array(
+					array(
+						'param'    => 'options_page',
+						'operator' => '==',
+						'value'    => 'estecapelli-homepage',
+					),
+				),
+			),
+			'menu_order'            => 0,
+			'position'              => 'normal',
+			'style'                 => 'default',
+			'label_placement'       => 'top',
+			'instruction_placement' => 'label',
+			'active'                => true,
+			'fields'                => array(
+				array( 'key' => 'field_home_stories_eyebrow', 'label' => __( 'Section eyebrow', 'estecapelli' ), 'name' => 'home_stories_eyebrow', 'type' => 'text', 'instructions' => __( 'Small label above the heading. Empty = keep current.', 'estecapelli' ), 'wrapper' => array( 'width' => '30' ) ),
+				array( 'key' => 'field_home_stories_headline', 'label' => __( 'Section headline', 'estecapelli' ), 'name' => 'home_stories_headline', 'type' => 'text', 'instructions' => __( 'Empty = keep current.', 'estecapelli' ), 'wrapper' => array( 'width' => '70' ) ),
+				array( 'key' => 'field_home_stories_lead', 'label' => __( 'Section lead', 'estecapelli' ), 'name' => 'home_stories_lead', 'type' => 'textarea', 'rows' => 2, 'instructions' => __( 'Empty = keep current.', 'estecapelli' ) ),
+				array(
+					'key'          => 'field_home_stories_list',
+					'label'        => __( 'Patients', 'estecapelli' ),
+					'name'         => 'home_patient_stories_list',
+					'type'         => 'repeater',
+					'instructions' => __( 'Each row is a patient. Leave an image empty to keep the current one. Keep the Key unchanged so existing photos/videos stay matched.', 'estecapelli' ),
+					'min'          => 0,
+					'layout'       => 'block',
+					'button_label' => __( '+ Add Patient', 'estecapelli' ),
+					'sub_fields'   => array(
+						array( 'key' => 'field_hs_key', 'label' => __( 'Key', 'estecapelli' ), 'name' => 'key', 'type' => 'text', 'instructions' => __( 'Internal id, e.g. alexandre-t. Do not change for existing patients.', 'estecapelli' ), 'wrapper' => array( 'width' => '30' ) ),
+						array( 'key' => 'field_hs_name', 'label' => __( 'Name', 'estecapelli' ), 'name' => 'name', 'type' => 'text', 'wrapper' => array( 'width' => '40' ) ),
+						array( 'key' => 'field_hs_rating', 'label' => __( 'Rating (1–5)', 'estecapelli' ), 'name' => 'rating', 'type' => 'number', 'min' => 1, 'max' => 5, 'default_value' => 5, 'wrapper' => array( 'width' => '30' ) ),
+						array( 'key' => 'field_hs_country', 'label' => __( 'Country', 'estecapelli' ), 'name' => 'country', 'type' => 'text', 'wrapper' => array( 'width' => '40' ) ),
+						array( 'key' => 'field_hs_flag', 'label' => __( 'Flag emoji', 'estecapelli' ), 'name' => 'flag', 'type' => 'text', 'wrapper' => array( 'width' => '20' ) ),
+						array( 'key' => 'field_hs_grafts', 'label' => __( 'Grafts', 'estecapelli' ), 'name' => 'grafts', 'type' => 'text', 'wrapper' => array( 'width' => '20' ) ),
+						array( 'key' => 'field_hs_technique', 'label' => __( 'Technique', 'estecapelli' ), 'name' => 'technique', 'type' => 'text', 'wrapper' => array( 'width' => '20' ) ),
+						array( 'key' => 'field_hs_video', 'label' => __( 'YouTube video ID', 'estecapelli' ), 'name' => 'video_id', 'type' => 'text', 'instructions' => __( 'The id after /shorts/ or watch?v=', 'estecapelli' ), 'wrapper' => array( 'width' => '40' ) ),
+						array( 'key' => 'field_hs_pretitle', 'label' => __( 'Short caption', 'estecapelli' ), 'name' => 'pre_title', 'type' => 'text', 'wrapper' => array( 'width' => '60' ) ),
+						array( 'key' => 'field_hs_body', 'label' => __( 'Story', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 4 ),
+						array( 'key' => 'field_hs_poster', 'label' => __( 'Big-box image', 'estecapelli' ), 'name' => 'poster', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium', 'instructions' => __( 'Square (1:1). Empty = keep current frame.', 'estecapelli' ), 'wrapper' => array( 'width' => '50' ) ),
+						array( 'key' => 'field_hs_poster_pos', 'label' => __( 'Big-box focus', 'estecapelli' ), 'name' => 'poster_pos', 'type' => 'text', 'instructions' => __( 'Optional, e.g. center 60%.', 'estecapelli' ), 'wrapper' => array( 'width' => '50' ) ),
+						array( 'key' => 'field_hs_photo', 'label' => __( 'Playlist image', 'estecapelli' ), 'name' => 'photo', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium', 'instructions' => __( 'Square (1:1). Empty = keep current photo.', 'estecapelli' ), 'wrapper' => array( 'width' => '50' ) ),
+						array( 'key' => 'field_hs_photo_pos', 'label' => __( 'Playlist focus', 'estecapelli' ), 'name' => 'photo_pos', 'type' => 'text', 'instructions' => __( 'Optional, e.g. center 70%.', 'estecapelli' ), 'wrapper' => array( 'width' => '50' ) ),
+					),
+				),
+			),
+		)
+	);
+}
+
+/**
+ * One-time seed: copy the current Patient Stories defaults into the ACF options
+ * so the admin opens pre-filled with today's content (no re-import). Text only —
+ * images are left empty and fall back to the theme files by Key, so nothing is
+ * re-uploaded. Runs once, never overwrites anything already entered.
+ */
+add_action( 'admin_init', 'estecapelli_seed_home_patient_stories' );
+function estecapelli_seed_home_patient_stories() {
+	if ( get_option( 'estecapelli_home_stories_seeded' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) || ! function_exists( 'estecapelli_patient_stories_defaults' ) ) {
+		return;
+	}
+
+	$existing = get_field( 'home_patient_stories_list', 'option' );
+	if ( empty( $existing ) ) {
+		$d    = estecapelli_patient_stories_defaults();
+		$rows = array();
+		foreach ( $d['stories'] as $s ) {
+			$rows[] = array(
+				'key'        => $s['key'],
+				'name'       => $s['name'],
+				'rating'     => isset( $s['rating'] ) ? $s['rating'] : 5,
+				'country'    => isset( $s['country'] ) ? $s['country'] : '',
+				'flag'       => isset( $s['flag'] ) ? $s['flag'] : '',
+				'grafts'     => isset( $s['grafts'] ) ? $s['grafts'] : '',
+				'technique'  => isset( $s['technique'] ) ? $s['technique'] : '',
+				'video_id'   => isset( $s['video_id'] ) ? $s['video_id'] : '',
+				'pre_title'  => isset( $s['pre_title'] ) ? $s['pre_title'] : '',
+				'body'       => isset( $s['body'] ) ? $s['body'] : '',
+				'poster'     => '', // keep the theme frame (matched by Key)
+				'poster_pos' => isset( $s['poster_pos'] ) ? $s['poster_pos'] : '',
+				'photo'      => '', // keep the theme photo (matched by Key)
+				'photo_pos'  => isset( $s['photo_pos'] ) ? $s['photo_pos'] : '',
+			);
+		}
+		update_field( 'home_patient_stories_list', $rows, 'option' );
+
+		if ( '' === (string) get_field( 'home_stories_eyebrow', 'option' ) ) {
+			update_field( 'home_stories_eyebrow', $d['eyebrow'], 'option' );
+		}
+		if ( '' === (string) get_field( 'home_stories_headline', 'option' ) ) {
+			update_field( 'home_stories_headline', $d['headline'], 'option' );
+		}
+		if ( '' === (string) get_field( 'home_stories_lead', 'option' ) ) {
+			update_field( 'home_stories_lead', $d['lead'], 'option' );
+		}
+	}
+
+	update_option( 'estecapelli_home_stories_seeded', 1 );
 }

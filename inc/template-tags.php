@@ -1304,16 +1304,83 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 	 * country). The renderer shows one story as the hero and the rest in a
 	 * vertical "poster wall" the visitor can click to swap.
 	 *
-	 * ACF override: option 'home_patient_stories' returns the full payload.
+	 * ACF (Homepage Content options page) overlays the defaults per-field: any
+	 * empty field or image keeps the built-in value, matched by patient Key.
 	 */
 	function estecapelli_patient_stories() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'home_patient_stories', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
+		$defaults = estecapelli_patient_stories_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
+		}
+
+		$out = $defaults;
+
+		// Section text — overlay only the fields the editor actually filled in.
+		foreach ( array(
+			'eyebrow'  => 'home_stories_eyebrow',
+			'headline' => 'home_stories_headline',
+			'lead'     => 'home_stories_lead',
+		) as $k => $field ) {
+			$v = get_field( $field, 'option' );
+			if ( is_string( $v ) && '' !== $v ) {
+				$out[ $k ] = $v;
 			}
 		}
 
+		// Patient list — overlay each row onto the default with the same Key, so an
+		// empty field or image keeps the current value. No rows = pure defaults.
+		$rows = get_field( 'home_patient_stories_list', 'option' );
+		if ( ! empty( $rows ) && is_array( $rows ) ) {
+			$by_key = array();
+			foreach ( $defaults['stories'] as $s ) {
+				$by_key[ $s['key'] ] = $s;
+			}
+			$merged = array();
+			foreach ( $rows as $row ) {
+				$key  = ! empty( $row['key'] ) ? sanitize_title( $row['key'] ) : ( ! empty( $row['name'] ) ? sanitize_title( $row['name'] ) : '' );
+				$base = isset( $by_key[ $key ] ) ? $by_key[ $key ] : array(
+					'key'         => $key ? $key : 'patient',
+					'name'        => '',
+					'country'     => '',
+					'country_iso' => '',
+					'flag'        => '',
+					'grafts'      => '',
+					'technique'   => '',
+					'rating'      => 5,
+					'video_id'    => '',
+					'pre_title'   => '',
+					'body'        => '',
+				);
+				foreach ( array( 'name', 'country', 'flag', 'grafts', 'technique', 'video_id', 'pre_title', 'body', 'poster_pos', 'photo_pos' ) as $f ) {
+					if ( isset( $row[ $f ] ) && is_string( $row[ $f ] ) && '' !== $row[ $f ] ) {
+						$base[ $f ] = $row[ $f ];
+					}
+				}
+				if ( isset( $row['rating'] ) && '' !== $row['rating'] && null !== $row['rating'] ) {
+					$base['rating'] = (int) $row['rating'];
+				}
+				if ( ! empty( $row['poster'] ) ) {
+					$base['poster'] = is_array( $row['poster'] ) ? ( isset( $row['poster']['url'] ) ? $row['poster']['url'] : '' ) : $row['poster'];
+				}
+				if ( ! empty( $row['photo'] ) ) {
+					$base['photo'] = is_array( $row['photo'] ) ? ( isset( $row['photo']['url'] ) ? $row['photo']['url'] : '' ) : $row['photo'];
+				}
+				$merged[] = $base;
+			}
+			if ( ! empty( $merged ) ) {
+				$out['stories'] = $merged;
+			}
+		}
+
+		return $out;
+	}
+}
+
+if ( ! function_exists( 'estecapelli_patient_stories_defaults' ) ) {
+	/**
+	 * Built-in Patient Stories content — the base the ACF editor overlays.
+	 */
+	function estecapelli_patient_stories_defaults() {
 		return array(
 			'eyebrow'  => __( 'Real Stories', 'estecapelli' ),
 			'headline' => __( 'Their results speak louder than any ad ever could.', 'estecapelli' ),
