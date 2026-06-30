@@ -207,18 +207,26 @@ foreach ( $result_ids as $rid ) {
 			<?php
 			$women_vid   = $women['video'] ?? '';
 			$women_thumb = $women_vid ? 'https://i.ytimg.com/vi/' . rawurlencode( $women_vid ) . '/hqdefault.jpg' : '';
-			// Muted, looping autoplay — starts on its own with no click. Muted is
-			// required for browsers to allow unprompted autoplay; native controls let
-			// the visitor unmute. loop needs the playlist=<id> companion param.
+			// Full-bleed background video — autoplays muted and loops with no click and
+			// no YouTube chrome (controls=0), so it reads as a clean cinematic backdrop
+			// behind the copy, like the reference hero. Muted is required for unprompted
+			// autoplay; loop needs the playlist=<id> companion param.
 			$women_src = $women_vid ? 'https://www.youtube.com/embed/' . rawurlencode( $women_vid )
 				. '?autoplay=1&mute=1&loop=1&playlist=' . rawurlencode( $women_vid )
-				. '&controls=1&rel=0&modestbranding=1&playsinline=1' : '';
+				. '&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1' : '';
 			?>
 			<div class="hero-x__slide hero-x__slide--women" data-hero-slide data-hero-title="<?php esc_attr_e( 'Women’s Hair Transplant', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $women_thumb ); ?>">
-				<div class="hero-x__bg" aria-hidden="true">
-					<span class="hero-x__glow hero-x__glow--a"></span>
-					<span class="hero-x__glow hero-x__glow--b"></span>
-				</div>
+				<?php if ( $women_src ) : ?>
+					<div class="hero-wmn__bgvideo" aria-hidden="true">
+						<iframe
+							src="<?php echo esc_url( $women_src ); ?>"
+							title="<?php esc_attr_e( 'Women’s hair transplant at Estecapelli', 'estecapelli' ); ?>"
+							tabindex="-1"
+							allow="autoplay; encrypted-media; picture-in-picture"
+							frameborder="0"></iframe>
+					</div>
+				<?php endif; ?>
+				<span class="hero-wmn__scrim" aria-hidden="true"></span>
 
 				<div class="shell hero-wmn">
 					<div class="hero-wmn__copy">
@@ -248,19 +256,6 @@ foreach ( $result_ids as $rid ) {
 							</a>
 						<?php endif; ?>
 					</div>
-
-					<?php if ( $women_src ) : ?>
-						<div class="hero-wmn__media">
-							<div class="hero-wmn__video">
-								<iframe
-									src="<?php echo esc_url( $women_src ); ?>"
-									title="<?php esc_attr_e( 'Women’s hair transplant at Estecapelli', 'estecapelli' ); ?>"
-									allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-									allowfullscreen
-									loading="lazy"></iframe>
-							</div>
-						</div>
-					<?php endif; ?>
 				</div>
 			</div>
 
