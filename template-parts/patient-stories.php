@@ -92,7 +92,8 @@ $thumb = function ( $id ) {
 							aria-label="<?php echo esc_attr( sprintf( __( 'Play %s — %s', 'estecapelli' ), $story['name'], $story['pre_title'] ) ); ?>"
 						>
 							<?php if ( $thumbnail ) : ?>
-								<img class="stories__hero-thumb" src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async" />
+								<img class="stories__hero-thumb" src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async"
+									<?php if ( ! empty( $story['video_id'] ) ) : ?>onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/<?php echo esc_js( $story['video_id'] ); ?>/hqdefault.jpg';"<?php endif; ?> />
 							<?php else : ?>
 								<span class="stories__hero-placeholder" aria-hidden="true">
 									<span class="stories__hero-placeholder-initial"><?php echo esc_html( $initial ); ?></span>
