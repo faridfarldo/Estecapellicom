@@ -662,6 +662,11 @@
 		pointer-events: auto;
 		background: black;
 	}
+	/* The expanded wedge is centred off to its own side, but the YouTube clip
+	   centres at 50% of the full-width iframe — so nudge each open video toward
+	   its own side to close the black gap. */
+	.hero-split__panel--exosome[data-open="true"] .hero-split__video { transform: translateX(-12%); }
+	.hero-split__panel--vita[data-open="true"] .hero-split__video { transform: translateX(12%); }
 	.hero-split__panel[data-open="true"] .hero-split__toggle {
 		z-index: 3;
 		cursor: zoom-out;
