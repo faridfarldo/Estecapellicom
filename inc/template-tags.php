@@ -1333,7 +1333,9 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 					'technique'   => 'DHI Vita',
 					'rating'      => 5,
 					'video_id'    => 'NJhvWUPd370',
-					'image'       => get_template_directory_uri() . '/assets/images/stories/alexandre-t.jpg',
+					// Poster + wall thumbnail pulled straight from the video's own
+					// frame (oardefault = the Short's full vertical thumbnail).
+					'image'       => 'https://i.ytimg.com/vi/NJhvWUPd370/oardefault.jpg',
 					'pre_title'   => __( 'Hairline redesigned, density restored from front to crown.', 'estecapelli' ),
 					'body'        => __( 'Alexandre came to our clinic from Ireland to redesign his hairline and improve density across the frontal area, mid-scalp and crown. Based on his desired hair model and donor capacity, we prioritised a natural, face-appropriate hairline first, then a balanced, homogeneous distribution through the mid-scalp and crown. The procedure was performed with the DHI Vita technique in a single session, transplanting 5,000 grafts in total — around 3,000 in the frontal area and hairline and roughly 2,000 across the mid-scalp and crown. The operation progressed normally, with PRP support applied at the end.', 'estecapelli' ),
 				),
