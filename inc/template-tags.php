@@ -1395,8 +1395,13 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 					'technique'   => 'Exosome FUE',
 					'rating'      => 5,
 					'video_id'    => 'qeFHkZVpK1o',
-					'poster'      => 'https://i.ytimg.com/vi/qeFHkZVpK1o/oardefault.jpg',
+					// This video's own thumbnail shows a presenter, not Pascal, so the big
+					// box uses his own photo; his face sits low in the shot, so both boxes
+					// are framed downward onto it.
+					'poster'      => get_template_directory_uri() . '/assets/images/stories/pascal-s-after.jpg',
+					'poster_pos'  => 'center 62%',
 					'photo'       => get_template_directory_uri() . '/assets/images/stories/pascal-s-after.jpg',
+					'photo_pos'   => 'center 66%',
 					'pre_title'   => __( 'Frontal density extended toward the mid-scalp.', 'estecapelli' ),
 					'body'        => __( 'Pascal came to our clinic from Canada to improve density in his frontal area and extend coverage toward the mid-scalp. Based on his consultation plan and donor capacity, we planned maximum graft extraction to cover the frontal area up to the midsection with good density, with a second session planned for full coverage. The procedure was performed with the Exosome FUE technique, transplanting 5,000 grafts in this session. Grafts were extracted homogeneously from the donor area with good hair quality, then implanted with attention to natural direction, density balance and frontal-to-mid-scalp coverage. PRP support was applied at the end of the procedure.', 'estecapelli' ),
 				),

@@ -94,6 +94,7 @@ $thumb = function ( $id ) {
 						>
 							<?php if ( $thumbnail ) : ?>
 								<img class="stories__hero-thumb" src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async"
+									<?php if ( ! empty( $story['poster_pos'] ) ) : ?>style="object-position: <?php echo esc_attr( $story['poster_pos'] ); ?>"<?php endif; ?>
 									<?php if ( ! empty( $story['video_id'] ) ) : ?>onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/<?php echo esc_js( $story['video_id'] ); ?>/hqdefault.jpg';"<?php endif; ?> />
 							<?php else : ?>
 								<span class="stories__hero-placeholder" aria-hidden="true">
@@ -172,7 +173,7 @@ $thumb = function ( $id ) {
 							>
 								<span class="stories__poster-thumb<?php echo $thumbnail ? '' : ' stories__poster-thumb--placeholder'; ?>"<?php if ( $thumbnail ) : ?> style="--poster-bg:url('<?php echo esc_url( $thumbnail ); ?>')"<?php endif; ?>>
 									<?php if ( $thumbnail ) : ?>
-										<img src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async" />
+										<img src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async"<?php if ( ! empty( $story['photo_pos'] ) ) : ?> style="object-position: <?php echo esc_attr( $story['photo_pos'] ); ?>"<?php endif; ?> />
 									<?php else : ?>
 										<span class="stories__poster-initial" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
 									<?php endif; ?>
