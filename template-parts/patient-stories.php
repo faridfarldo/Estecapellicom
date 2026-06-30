@@ -87,6 +87,7 @@ $thumb = function ( $id ) {
 						<button
 							type="button"
 							class="stories__hero-poster<?php echo $thumbnail ? '' : ' stories__hero-poster--placeholder'; ?>"
+							<?php if ( $thumbnail ) : ?>style="--poster-bg:url('<?php echo esc_url( $thumbnail ); ?>')"<?php endif; ?>
 							data-stories-play="<?php echo esc_attr( $story['video_id'] ); ?>"
 							data-story-title="<?php echo esc_attr( $story['name'] . ' — ' . $story['pre_title'] ); ?>"
 							aria-label="<?php echo esc_attr( sprintf( __( 'Play %s — %s', 'estecapelli' ), $story['name'], $story['pre_title'] ) ); ?>"
@@ -169,7 +170,7 @@ $thumb = function ( $id ) {
 								data-active="<?php echo $is_active ? 'true' : 'false'; ?>"
 								aria-pressed="<?php echo $is_active ? 'true' : 'false'; ?>"
 							>
-								<span class="stories__poster-thumb<?php echo $thumbnail ? '' : ' stories__poster-thumb--placeholder'; ?>">
+								<span class="stories__poster-thumb<?php echo $thumbnail ? '' : ' stories__poster-thumb--placeholder'; ?>"<?php if ( $thumbnail ) : ?> style="--poster-bg:url('<?php echo esc_url( $thumbnail ); ?>')"<?php endif; ?>>
 									<?php if ( $thumbnail ) : ?>
 										<img src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async" />
 									<?php else : ?>
