@@ -460,12 +460,15 @@
 	.hero-wmn__bgvideo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 	.hero-wmn__bgvideo iframe {
 		position: absolute;
-		top: 50%; left: 38%;
+		top: 50%; left: 44%;
 		transform: translate(-50%, -50%);
-		width: 100vw;
-		height: 56.25vw;          /* 16:9 of the width */
-		min-width: 177.78vh;      /* …or 16:9 of the height, whichever covers */
-		min-height: 100%;
+		/* 30% wider than the slide so the bias toward the right never exposes a gap:
+		   the right edge always stays covered and the crop falls on the left, where
+		   the dark gradient sits. */
+		width: 130vw;
+		height: 73.125vw;         /* 16:9 of the width */
+		min-width: 231vh;         /* …or 16:9 of the height, whichever covers */
+		min-height: 130%;
 		border: 0;
 		pointer-events: none;
 	}
