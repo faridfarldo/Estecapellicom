@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<header class="hal__head">
 			<span class="hal__eyebrow">
 				<span class="hal__eyebrow-mark" aria-hidden="true"></span>
-				<?php esc_html_e( 'HAIR ANALYSIS LAB', 'estecapelli' ); ?>
+				<?php esc_html_e( 'Hair Analysis Lab', 'estecapelli' ); ?>
 			</span>
 			<h2 id="hal-title" class="hal__title">
 				<?php esc_html_e( 'Analysis With Estecapelli', 'estecapelli' ); ?>

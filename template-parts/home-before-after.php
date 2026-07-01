@@ -82,7 +82,7 @@ $gallery_url = home_url( '/en/before-after' );
 		<header class="home-ba__head">
 			<span class="home-ba__eyebrow">
 				<span class="home-ba__eyebrow-mark" aria-hidden="true"></span>
-				<?php esc_html_e( 'REAL PATIENTS · REAL RESULTS', 'estecapelli' ); ?>
+				<?php esc_html_e( 'Real Patients · Real Results', 'estecapelli' ); ?>
 			</span>
 			<h2 id="home-ba-title" class="home-ba__title"><?php esc_html_e( 'Before &amp; After', 'estecapelli' ); ?></h2>
 			<p class="home-ba__lead"><?php esc_html_e( 'Choose a hair-transplant technique to browse real patient results.', 'estecapelli' ); ?></p>

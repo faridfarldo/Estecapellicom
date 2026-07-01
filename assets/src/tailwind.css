@@ -6515,6 +6515,8 @@
 	.stories__eyebrow,
 	.journey__eyebrow,
 	.facilities__eyebrow,
+	.home-ba__eyebrow,
+	.hal__eyebrow,
 	.posts__eyebrow,
 	.hero-home__eyebrow,
 	.t-hero__eyebrow,
@@ -6551,6 +6553,8 @@
 	.stories__eyebrow-mark,
 	.journey__eyebrow-mark,
 	.facilities__eyebrow-mark,
+	.home-ba__eyebrow-mark,
+	.hal__eyebrow-mark,
 	.posts__eyebrow-mark,
 	.t-stats__eyebrow-mark,
 	.t-intro__eyebrow-mark,
@@ -6600,6 +6604,8 @@
 	/* Dark backgrounds: shift text from brand-700 to accent-300 */
 	.signature__eyebrow,
 	.journey__eyebrow,
+	.facilities__eyebrow,
+	.hal__eyebrow,
 	.t-hero__eyebrow,
 	.t-price__eyebrow,
 	.hero-home__eyebrow {
