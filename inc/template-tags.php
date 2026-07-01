@@ -1615,18 +1615,27 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 				array( 'type' => 'image', 'image' => $img . 'doctors/mehmet-hanifi-kutlar.jpg', 'caption' => __( 'Our medical team', 'estecapelli' ) ),
 			),
 
-			// Partner hotels — a rotating logo strip. Add 'image' => url to a
-			// logo entry to show a real logo instead of the text wordmark.
+			// Partner hotels — a rotating strip. Add 'image' => url to a logo entry
+			// to show a real logo instead of the text wordmark. 'stars' shows a small
+			// rating under the name (0/omit = hide). Source: partner-hotels sheet.
 			'partners' => array(
 				'title' => __( 'Our partner hotels', 'estecapelli' ),
 				'logos' => array(
-					array( 'label' => 'Crowne Plaza' ),
-					array( 'label' => 'Hilton' ),
-					array( 'label' => 'Radisson Blu' ),
-					array( 'label' => 'Sheraton' ),
-					array( 'label' => 'Mövenpick' ),
-					array( 'label' => 'Wyndham' ),
-					array( 'label' => 'Hyatt Regency' ),
+					array( 'label' => 'Hilton',            'stars' => 5 ),
+					array( 'label' => 'Grand Cevahir',     'stars' => 5 ),
+					array( 'label' => 'Crowne Plaza',      'stars' => 5 ),
+					array( 'label' => 'Craton',            'stars' => 5 ),
+					array( 'label' => 'The Elysium Taksim', 'stars' => 5 ),
+					array( 'label' => 'G Hotel',           'stars' => 5 ),
+					array( 'label' => 'Windsor',           'stars' => 5 ),
+					array( 'label' => 'Ramada',            'stars' => 4 ),
+					array( 'label' => 'Naz City',          'stars' => 4 ),
+					array( 'label' => 'Perahill',          'stars' => 4 ),
+					array( 'label' => 'Halifaks',          'stars' => 4 ),
+					array( 'label' => 'Urban',             'stars' => 4 ),
+					array( 'label' => 'Boursier',          'stars' => 4 ),
+					array( 'label' => 'Days Inn' ),
+					array( 'label' => 'La Quinta' ),
 				),
 			),
 		);

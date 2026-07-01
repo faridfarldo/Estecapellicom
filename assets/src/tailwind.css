@@ -4781,6 +4781,12 @@
 		transition: color 0.25s;
 	}
 	.facilities__logo:hover span { color: white; }
+	/* Name stacked over a small gold star rating. */
+	.facilities__logo-name { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; }
+	.facilities__logo-stars {
+		font-size: 0.72rem; line-height: 1; font-weight: 600;
+		letter-spacing: 0.08em; color: var(--color-accent-500); white-space: nowrap;
+	}
 	.facilities__logo img { height: 42px; width: auto; object-fit: contain; opacity: 0.7; filter: grayscale(1); transition: opacity 0.25s, filter 0.25s; }
 	.facilities__logo:hover img { opacity: 1; filter: grayscale(0); }
 

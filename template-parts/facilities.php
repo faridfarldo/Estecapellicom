@@ -99,7 +99,15 @@ $partners = $data['partners'] ?? array();
 								<?php if ( ! empty( $logo['image'] ) ) : ?>
 									<img src="<?php echo esc_url( $logo['image'] ); ?>" alt="<?php echo esc_attr( $logo['label'] ?? '' ); ?>" loading="lazy" decoding="async" />
 								<?php else : ?>
-									<span><?php echo esc_html( $logo['label'] ?? '' ); ?></span>
+									<span class="facilities__logo-name">
+										<?php echo esc_html( $logo['label'] ?? '' ); ?>
+										<?php if ( ! empty( $logo['stars'] ) ) : ?>
+											<small class="facilities__logo-stars" aria-label="<?php
+												/* translators: %d: number of stars. */
+												echo esc_attr( sprintf( _n( '%d star', '%d stars', (int) $logo['stars'], 'estecapelli' ), (int) $logo['stars'] ) );
+											?>"><?php echo str_repeat( '★', (int) $logo['stars'] ); ?></small>
+										<?php endif; ?>
+									</span>
 								<?php endif; ?>
 							</li>
 						<?php endforeach; ?>
