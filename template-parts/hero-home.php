@@ -205,27 +205,27 @@ foreach ( $result_ids as $rid ) {
 
 			<!-- ===== Slide 3 — Women's hair transplant ===== -->
 			<?php
-			$women_vid   = $women['video'] ?? '';
-			$women_thumb = $women_vid ? 'https://i.ytimg.com/vi/' . rawurlencode( $women_vid ) . '/hqdefault.jpg' : '';
-			// Full-bleed background video — autoplays muted and loops with no click and
-			// no YouTube chrome (controls=0), so it reads as a clean cinematic backdrop
-			// behind the copy, like the reference hero. Muted is required for unprompted
-			// autoplay; loop needs the playlist=<id> companion param.
-			$women_src = $women_vid ? 'https://www.youtube.com/embed/' . rawurlencode( $women_vid )
-				. '?autoplay=1&mute=1&loop=1&playlist=' . rawurlencode( $women_vid )
-				. '&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1&enablejsapi=1' : '';
+			// Self-hosted background clip (a short, muted, compressed loop cut from
+			// the clinic film). Beats a YouTube embed here: zero player chrome (no
+			// title, no play button), guaranteed muted autoplay, and it only loads
+			// when this slide is reached (preload="none" + JS play). The poster
+			// doubles as the nav mini-preview thumbnail.
+			$women_video  = get_template_directory_uri() . '/assets/videos/women-hero.mp4';
+			$women_poster = get_template_directory_uri() . '/assets/images/hero/women-hero-poster.jpg';
+			$women_thumb  = $women_poster;
 			?>
 			<div class="hero-x__slide hero-x__slide--women" data-hero-slide data-hero-title="<?php esc_attr_e( 'Women’s Hair Transplant', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $women_thumb ); ?>">
-				<?php if ( $women_src ) : ?>
-					<div class="hero-wmn__bgvideo" aria-hidden="true">
-						<iframe
-							src="<?php echo esc_url( $women_src ); ?>"
-							title="<?php esc_attr_e( 'Women’s hair transplant at Estecapelli', 'estecapelli' ); ?>"
-							tabindex="-1"
-							allow="autoplay; encrypted-media; picture-in-picture"
-							frameborder="0"></iframe>
-					</div>
-				<?php endif; ?>
+				<div class="hero-wmn__bgvideo" aria-hidden="true">
+					<video
+						class="hero-wmn__video"
+						muted
+						loop
+						playsinline
+						preload="none"
+						poster="<?php echo esc_url( $women_poster ); ?>">
+						<source src="<?php echo esc_url( $women_video ); ?>" type="video/mp4" />
+					</video>
+				</div>
 				<span class="hero-wmn__scrim" aria-hidden="true"></span>
 
 				<div class="shell hero-wmn">

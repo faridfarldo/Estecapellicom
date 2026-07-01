@@ -215,8 +215,7 @@
 		// (which has sound) is closed, and the women background video plays only
 		// while its own slide is on screen.
 		var splitStages = root.querySelectorAll('[data-split-stage]');
-		var wmnVideo = root.querySelector('.hero-wmn__bgvideo iframe');
-		var wmnSrc = wmnVideo ? wmnVideo.getAttribute('src') : '';
+		var wmnVideo = root.querySelector('.hero-wmn__video');
 		var wmnSlideIndex = -1;
 		slides.forEach(function (s, i) { if (s.querySelector('.hero-wmn__bgvideo')) { wmnSlideIndex = i; } });
 
@@ -226,27 +225,16 @@
 			root.querySelectorAll('[data-split-panel]').forEach(function (p) { p.setAttribute('data-open', 'false'); });
 			root.querySelectorAll('[data-split-toggle]').forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
 			splitStages.forEach(function (st) { st.setAttribute('data-split-active', ''); });
-			// Women background video: run it only on its slide, stop it otherwise.
+			// Women background video: a self-hosted muted <video> — play it only on
+			// its own slide, pause otherwise. Muted playback is always allowed to
+			// autoplay, so this is clean (no chrome) and reliable on mobile.
 			if (wmnVideo) {
 				if (activeIndex === wmnSlideIndex) {
-					if (!wmnVideo.getAttribute('src')) {
-						wmnVideo.setAttribute('src', wmnSrc);
-						// Mobile browsers often ignore the autoplay param on iframes,
-						// leaving YouTube's poster + centre play button visible. Once the
-						// player is loaded, force a muted play over the IFrame API so it
-						// starts on its own and the play button/title never linger.
-						wmnVideo.addEventListener('load', function onLoad() {
-							wmnVideo.removeEventListener('load', onLoad);
-							var w = wmnVideo.contentWindow;
-							if (!w) return;
-							try {
-								w.postMessage('{"event":"command","func":"mute","args":""}', '*');
-								w.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-							} catch (e) {}
-						});
-					}
+					wmnVideo.muted = true; // some browsers need this set explicitly
+					var p = wmnVideo.play();
+					if (p && p.catch) { p.catch(function () {}); }
 				} else {
-					wmnVideo.setAttribute('src', '');
+					wmnVideo.pause();
 				}
 			}
 		}

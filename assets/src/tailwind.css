@@ -454,22 +454,17 @@
 		padding-block: clamp(2.25rem, 4vw, 3.5rem);
 		background: var(--color-brand-950);
 	}
-	/* The iframe is scaled to COVER the slide (16:9 cropped to fill) and biased to
-	   the RIGHT (the subject sits on that side), so the left clears for the copy. It
-	   is made inert so the whole area reads as a backdrop, not a clickable player. */
+	/* Self-hosted <video> simply covers the slide — object-fit does the 16:9 crop,
+	   biased slightly right (where the subject sits) so the left stays clear for the
+	   copy. Inert so it reads as a backdrop, not a player. */
 	.hero-wmn__bgvideo { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-	.hero-wmn__bgvideo iframe {
+	.hero-wmn__video {
 		position: absolute;
-		top: 50%; left: 44%;
-		transform: translate(-50%, -50%);
-		/* 30% wider than the slide so the bias toward the right never exposes a gap:
-		   the right edge always stays covered and the crop falls on the left, where
-		   the dark gradient sits. */
-		width: 130vw;
-		height: 73.125vw;         /* 16:9 of the width */
-		min-width: 231vh;         /* …or 16:9 of the height, whichever covers */
-		min-height: 130%;
-		border: 0;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 62% center;
 		pointer-events: none;
 	}
 	.hero-wmn__scrim {
