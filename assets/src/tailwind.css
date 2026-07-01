@@ -522,7 +522,11 @@
 				oklch(10% 0.03 270 / 0.18) 52%,
 				transparent 68%);
 		}
-		.hero-wmn { display: flex; align-items: flex-end; }
+		/* Stretch the shell to the full slide height and push the copy to the very
+		   bottom (the slide itself is align-items:center, which was leaving the
+		   copy stranded in the middle). */
+		.hero-x__slide--women { align-items: stretch; }
+		.hero-wmn { display: flex; flex-direction: column; justify-content: flex-end; }
 		.hero-wmn__copy .btn { align-self: stretch; justify-content: center; }
 		/* Push the copy to the bottom and slim it down so it stops masking the
 		   video: drop the long paragraph, tighten the title and the points. */
