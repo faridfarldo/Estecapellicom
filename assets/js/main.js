@@ -229,7 +229,22 @@
 			// Women background video: run it only on its slide, stop it otherwise.
 			if (wmnVideo) {
 				if (activeIndex === wmnSlideIndex) {
-					if (!wmnVideo.getAttribute('src')) { wmnVideo.setAttribute('src', wmnSrc); }
+					if (!wmnVideo.getAttribute('src')) {
+						wmnVideo.setAttribute('src', wmnSrc);
+						// Mobile browsers often ignore the autoplay param on iframes,
+						// leaving YouTube's poster + centre play button visible. Once the
+						// player is loaded, force a muted play over the IFrame API so it
+						// starts on its own and the play button/title never linger.
+						wmnVideo.addEventListener('load', function onLoad() {
+							wmnVideo.removeEventListener('load', onLoad);
+							var w = wmnVideo.contentWindow;
+							if (!w) return;
+							try {
+								w.postMessage('{"event":"command","func":"mute","args":""}', '*');
+								w.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+							} catch (e) {}
+						});
+					}
 				} else {
 					wmnVideo.setAttribute('src', '');
 				}

@@ -213,7 +213,7 @@ foreach ( $result_ids as $rid ) {
 			// autoplay; loop needs the playlist=<id> companion param.
 			$women_src = $women_vid ? 'https://www.youtube.com/embed/' . rawurlencode( $women_vid )
 				. '?autoplay=1&mute=1&loop=1&playlist=' . rawurlencode( $women_vid )
-				. '&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1' : '';
+				. '&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1&enablejsapi=1' : '';
 			?>
 			<div class="hero-x__slide hero-x__slide--women" data-hero-slide data-hero-title="<?php esc_attr_e( 'Women’s Hair Transplant', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $women_thumb ); ?>">
 				<?php if ( $women_src ) : ?>
