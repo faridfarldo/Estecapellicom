@@ -59,7 +59,20 @@ function estecapelli_local_en_request( $query_vars ) {
 		return array( 'page_id' => $page->ID );
 	}
 
-	return $query_vars; // not a page → let the treatment CPT vars stand.
+	// Blog posts live at /en/blog/{slug} (the /en/blog/ base is baked into the
+	// post permalink). Resolve them here so the greedy treatment rewrite can't
+	// hijack the URL, exactly as we do for pages above.
+	if ( 0 === strpos( $rest, 'blog/' ) ) {
+		$post_slug = trim( substr( $rest, 5 ), '/' );
+		if ( '' !== $post_slug ) {
+			$post = get_page_by_path( $post_slug, OBJECT, 'post' );
+			if ( $post ) {
+				return array( 'p' => $post->ID );
+			}
+		}
+	}
+
+	return $query_vars; // not a page/post → let the treatment CPT vars stand.
 }
 
 /**
