@@ -890,7 +890,7 @@ if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
 		}
 
 		return array(
-			'eyebrow'    => __( 'WHAT WE TREAT', 'estecapelli' ),
+			'eyebrow'    => __( 'What We Treat', 'estecapelli' ),
 			'headline'   => __( 'Pick a field. See our signature treatments.', 'estecapelli' ),
 			'lead'       => __( 'Switch between tabs to explore the methods we are best known for in each field of care.', 'estecapelli' ),
 			'categories' => $categories,
@@ -927,7 +927,7 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 		$medical_tag = __( 'Medical Treatment', 'estecapelli' );
 
 		return array(
-			'eyebrow'    => __( 'WHAT WE TREAT', 'estecapelli' ),
+			'eyebrow'    => __( 'What We Treat', 'estecapelli' ),
 			'headline'   => __( 'Pick a field. See our signature treatments.', 'estecapelli' ),
 			'lead'       => __( 'Switch between tabs to explore the methods we are best known for in each field of care.', 'estecapelli' ),
 			'categories' => array(

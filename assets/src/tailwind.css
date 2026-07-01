@@ -4631,6 +4631,7 @@
 		opacity: 0.5;
 	}
 	.facilities__bg-mark {
+		display: none; /* decorative gold dots removed — read as stray specks */
 		position: absolute;
 		width: 8px; height: 8px;
 		border-radius: 9999px;
@@ -6602,6 +6603,7 @@
 	}
 
 	/* Dark backgrounds: shift text from brand-700 to accent-300 */
+	.services-home__eyebrow,
 	.signature__eyebrow,
 	.journey__eyebrow,
 	.facilities__eyebrow,
