@@ -454,7 +454,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
 						'media_type'    => 'image',
-						'image'         => '',
+						'image'         => array( 'url' => get_template_directory_uri() . '/assets/images/treatments/graft-extraction.webp', 'alt' => __( 'Follicle extraction with an ultra-fine micromotor', 'estecapelli' ), 'width' => 1448, 'height' => 1086 ),
 						'video_id'      => '',
 					),
 
@@ -615,7 +615,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
 						'media_type'    => 'image',
-						'image'         => '',
+						'image'         => array( 'url' => get_template_directory_uri() . '/assets/images/treatments/scalp-implant.webp', 'alt' => __( 'Direct hair implantation with a Choi pen', 'estecapelli' ), 'width' => 1448, 'height' => 1086 ),
 						'video_id'      => '',
 					),
 
@@ -635,7 +635,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'eyebrow'       => __( 'The Method', 'estecapelli' ),
 						'title'         => __( 'What is DHI Hair Transplantation?', 'estecapelli' ),
 						'body'          => '<p>' . esc_html__( 'DHI — Direct Hair Implantation — is a modern, highly effective hair transplant technique. Harvested follicles are loaded into a specialised Choi implanter pen and placed directly into the recipient area without first opening separate channels. This gives the surgeon precise control over the angle, direction and depth of every graft, enabling dense placement with minimal handling and a fast recovery.', 'estecapelli' ) . '</p>',
-						'image'         => '',
+						'image'         => array( 'url' => get_template_directory_uri() . '/assets/images/treatments/scalp-implant-macro.webp', 'alt' => __( 'Close-up of direct hair implantation', 'estecapelli' ), 'width' => 1254, 'height' => 1254 ),
 						'image_position' => 'right',
 						'cta'           => array( 'label' => '', 'url' => '' ),
 					),
@@ -877,7 +877,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
 						'media_type'    => 'image',
-						'image'         => '',
+						'image'         => array( 'url' => get_template_directory_uri() . '/assets/images/treatments/eyebrow-transplant.webp', 'alt' => __( 'Eyebrow transplant performed with a Choi implanter pen', 'estecapelli' ), 'width' => 1448, 'height' => 1086 ),
 						'video_id'      => '',
 					),
 
@@ -927,7 +927,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'lead'          => __( 'Designed around your facial proportions for a natural, lasting result. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
 							array( 'icon' => 'sparkles',     'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Eyebrow Design', 'estecapelli' ),       'body' => '<p>' . esc_html__( 'A natural eyebrow shape is drawn by taking your facial proportions, muscle structure and personal preferences into account. This is the most critical part of the procedure — the design determines the entire result, so it is agreed with you in detail before any follicles are placed.', 'estecapelli' ) . '</p>' ),
-							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'Single hair follicles are extracted from the nape at the back of the scalp using a specialised micromotor. Using only single follicles — rather than multi-hair grafts — is essential for the fine, hair-by-hair look that makes an eyebrow transplant appear completely natural.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Graft Harvesting', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'Hair follicles are carefully extracted from the donor area at the back of the scalp using a specialised micromotor. Since the donor area naturally contains a mixture of single-, double- and multi-hair follicular units, the extracted grafts are meticulously sorted under magnification. During this microscopic graft-sorting process, single-hair follicles are separated and selected for implantation, as they provide the soft, delicate and natural-looking appearance required for eyebrow transplantation.', 'estecapelli' ) . '</p>' ),
 							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'DHI Implantation', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'The DHI method is preferred for eyebrows: using special Choi pens, the channel is opened and the follicle implanted in one motion. This gives precise control over the very shallow angle and direction each brow hair needs to lie flat and grow naturally.', 'estecapelli' ) . '</p>' ),
 							array( 'icon' => 'calendar',     'eyebrow' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Procedure Duration', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'The procedure takes approximately two to three hours and is performed under local anaesthesia, so it is comfortable and pain-free. It is carried out as a day procedure, and you can return to your hotel or home the same day.', 'estecapelli' ) . '</p>' ),
 						),
@@ -948,13 +948,10 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'The Best Technique', 'estecapelli' ),
 						'title'         => __( 'Which Method Should Be Used for Eyebrow Transplantation?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'The most suitable technique for eyebrow transplantation is the DHI (Direct Hair Implantation) method. With the DHI method, we are able to achieve:', 'estecapelli' ) . '</p>'
-							. '<ul><li>' . esc_html__( 'More controlled direction of eyebrow hairs', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Channel opening and implantation performed simultaneously', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'More successful creation of natural angles', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Shorter recovery time compared to other techniques', 'estecapelli' ) . '</li>'
-							. '<li>' . esc_html__( 'Minimal trauma to the facial area', 'estecapelli' ) . '</li></ul>'
-							. '<p>' . esc_html__( 'The FUE method is not frequently preferred for the eyebrow area, as it results in a longer recovery period.', 'estecapelli' ) . '</p>',
+						'body'          => '<p>' . esc_html__( 'For eyebrow transplantation, both the DHI (Direct Hair Implantation) and Sapphire FUE techniques can be used, depending on the patient’s eyebrow condition, donor characteristics and the desired aesthetic outcome.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The DHI method uses specialised Choi implanter pens, allowing each graft to be implanted immediately after placement in a single step. This provides excellent control over angle, direction and depth — particularly useful for the very fine, hair-by-hair alignment required for natural-looking eyebrows.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The Sapphire FUE technique, on the other hand, involves first creating recipient channels with sapphire blades before placing the grafts, letting the surgeon carefully design the overall shape, symmetry and density distribution of the eyebrow area with high precision.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'In practice, both techniques are effective: DHI is often preferred for its direct control of hair direction at a micro level, while Sapphire FUE can be advantageous for structured design and precise planning of the eyebrow framework. The choice is always made based on individual anatomy and the most natural aesthetic result.', 'estecapelli' ) . '</p>',
 						'image'         => '',
 						'image_position' => 'left',
 						'cta'           => array( 'label' => __( 'Schedule Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
@@ -1026,7 +1023,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'cta_primary'   => array( 'label' => __( 'Free Consultation', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
 						'cta_secondary' => array( 'label' => __( 'Chat on WhatsApp', 'estecapelli' ), 'url' => $whatsapp ),
 						'media_type'    => 'image',
-						'image'         => '',
+						'image'         => array( 'url' => get_template_directory_uri() . '/assets/images/treatments/beard-transplant.webp', 'alt' => __( 'Beard transplant procedure at Estecapelli', 'estecapelli' ), 'width' => 1254, 'height' => 1254 ),
 						'video_id'      => '',
 					),
 
@@ -1046,8 +1043,9 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'intro',
 						'eyebrow'       => __( 'How It Works', 'estecapelli' ),
 						'title'         => __( 'How Does a Beard Transplant Work?', 'estecapelli' ),
-						'body'          => '<p>' . esc_html__( 'A beard transplant is a surgical procedure that restores fullness to the beard by transplanting hair follicles into sparse, uneven or hairless areas. At Estecapelli, our expert team creates a personalised beard design tailored to each individual’s facial features and expectations. The procedure is performed under local anaesthesia and is generally painless throughout. Recovery time varies from person to person, but most patients return to their social lives relatively quickly, and following the aftercare guidelines provided by our team helps speed up healing and ensures the best possible results.', 'estecapelli' ) . '</p>',
-						'image'         => '',
+						'body'          => '<p>' . esc_html__( 'A beard transplant is a surgical procedure that restores fullness to the beard by transplanting hair follicles into sparse, uneven or hairless areas. At Estecapelli, our expert team creates a personalised beard design tailored to each individual’s facial features and expectations. The procedure is performed under local anaesthesia and is generally painless throughout. Recovery time varies from person to person, but most patients return to their social lives relatively quickly, and following the aftercare guidelines provided by our team helps speed up healing and ensures the best possible results.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Depending on the beard area and the result you want, the grafts can be placed using either the Sapphire FUE technique or the DHI (Choi pen) method — your specialist recommends the most suitable approach during your consultation.', 'estecapelli' ) . '</p>',
+						'image'         => array( 'url' => get_template_directory_uri() . '/assets/images/treatments/beard-placement.webp', 'alt' => __( 'Placing beard grafts one by one', 'estecapelli' ), 'width' => 870, 'height' => 870 ),
 						'image_position' => 'left',
 						'cta'           => array( 'label' => '', 'url' => '' ),
 					),
