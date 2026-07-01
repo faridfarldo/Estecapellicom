@@ -4773,22 +4773,29 @@
 		from { transform: translateX(0); }
 		to   { transform: translateX(-50%); }
 	}
-	.facilities__logo { flex: 0 0 auto; }
-	.facilities__logo span {
-		font-size: clamp(1.1rem, 1.6vw, 1.6rem);
-		font-weight: 800; letter-spacing: 0.01em; white-space: nowrap;
-		color: oklch(70% 0.025 260);
-		transition: color 0.25s;
+	.facilities__logo {
+		flex: 0 0 auto;
+		display: inline-flex; flex-direction: column; align-items: center; gap: 8px;
 	}
-	.facilities__logo:hover span { color: white; }
-	/* Name stacked over a small gold star rating. */
-	.facilities__logo-name { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; }
+	/* Small, muted exterior photo above the name — kept subtle on purpose. */
+	.facilities__logo-photo {
+		width: 104px; height: 62px; object-fit: cover;
+		border-radius: 10px;
+		border: 1px solid oklch(100% 0 0 / 0.08);
+		opacity: 0.72; filter: grayscale(0.35);
+		transition: opacity 0.25s, filter 0.25s, transform 0.25s;
+	}
+	.facilities__logo:hover .facilities__logo-photo { opacity: 1; filter: grayscale(0); transform: translateY(-2px); }
+	.facilities__logo-name {
+		display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
+		font-size: 0.95rem; font-weight: 700; letter-spacing: 0.01em; white-space: nowrap;
+		color: oklch(72% 0.025 260); transition: color 0.25s;
+	}
+	.facilities__logo:hover .facilities__logo-name { color: white; }
 	.facilities__logo-stars {
-		font-size: 0.72rem; line-height: 1; font-weight: 600;
+		font-size: 0.7rem; line-height: 1; font-weight: 600;
 		letter-spacing: 0.08em; color: var(--color-accent-500); white-space: nowrap;
 	}
-	.facilities__logo img { height: 42px; width: auto; object-fit: contain; opacity: 0.7; filter: grayscale(1); transition: opacity 0.25s, filter 0.25s; }
-	.facilities__logo:hover img { opacity: 1; filter: grayscale(0); }
 
 	@media (max-width: 760px) {
 		.facilities__gallery { grid-template-columns: repeat(2, 1fr); }
