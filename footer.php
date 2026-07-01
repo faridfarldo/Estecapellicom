@@ -179,6 +179,15 @@ $sitemap    = estecapelli_footer_sitemap();
 
 <?php get_template_part( 'template-parts/lead-popup' ); ?>
 
+<!-- Floating WhatsApp button — present on every page, fixed bottom-right. -->
+<a class="float-wp" href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Chat on WhatsApp', 'estecapelli' ); ?>">
+	<?php estecapelli_icon( 'whatsapp', array( 'width' => 24, 'height' => 24 ) ); ?>
+	<span class="float-wp-text">
+		<strong><?php esc_html_e( 'Free Hair Analysis', 'estecapelli' ); ?></strong>
+		<span><?php esc_html_e( 'Reply in 2 minutes', 'estecapelli' ); ?></span>
+	</span>
+</a>
+
 <?php wp_footer(); ?>
 </body>
 </html>

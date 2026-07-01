@@ -20,49 +20,6 @@
 
 <header class="site-header" data-site-header>
 
-	<div class="topbar" data-topbar>
-		<div class="topbar-inner">
-			<div class="topbar-left">
-				<?php estecapelli_trustpilot_badge(); ?>
-				<span class="topbar-patients">
-					<?php
-					printf(
-						/* translators: 1: patient count, 2: country count */
-						esc_html__( '+%1$s Happy Patients from +%2$s Countries', 'estecapelli' ),
-						esc_html( ESTECAPELLI_PATIENT_COUNT ),
-						esc_html( ESTECAPELLI_COUNTRY_COUNT )
-					);
-					?>
-				</span>
-			</div>
-
-			<div class="topbar-right">
-				<div class="lang-switch" data-lang-switch>
-					<button type="button" class="lang-switch__toggle" aria-expanded="false" aria-controls="lang-menu">
-						<?php estecapelli_icon( 'globe', array( 'width' => 16, 'height' => 16 ) ); ?>
-						<span class="lang-switch__current">EN</span>
-						<?php estecapelli_icon( 'chevron-down', array( 'width' => 12, 'height' => 12, 'class' => 'chev' ) ); ?>
-					</button>
-					<ul class="lang-switch__menu" id="lang-menu" hidden>
-						<?php
-						$langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'FR' => 'French', 'IT' => 'Italian', 'ES' => 'Spanish', 'PL' => 'Polish', 'PT' => 'Portuguese' );
-						foreach ( $langs as $code => $name ) :
-							?>
-							<li><a href="#" data-lang="<?php echo esc_attr( strtolower( $code ) ); ?>"><span class="lang-code"><?php echo esc_html( $code ); ?></span> <?php echo esc_html( $name ); ?></a></li>
-							<?php
-						endforeach;
-						?>
-					</ul>
-				</div>
-
-				<a class="btn btn-whatsapp btn-sm" href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener">
-					<?php estecapelli_icon( 'whatsapp', array( 'width' => 16, 'height' => 16 ) ); ?>
-					<span><?php esc_html_e( 'WhatsApp', 'estecapelli' ); ?></span>
-				</a>
-			</div>
-		</div>
-	</div>
-
 	<div class="mainbar">
 		<div class="mainbar-inner">
 
@@ -89,24 +46,44 @@
 				</a>
 			</nav>
 
-			<div class="mainbar-cta">
-				<a class="btn btn-primary" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
-					<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
-					<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
-				</a>
-			</div>
+			<div class="mainbar-actions">
+				<div class="lang-switch" data-lang-switch>
+					<button type="button" class="lang-switch__toggle" aria-expanded="false" aria-controls="lang-menu">
+						<?php estecapelli_icon( 'globe', array( 'width' => 16, 'height' => 16 ) ); ?>
+						<span class="lang-switch__current">EN</span>
+						<?php estecapelli_icon( 'chevron-down', array( 'width' => 12, 'height' => 12, 'class' => 'chev' ) ); ?>
+					</button>
+					<ul class="lang-switch__menu" id="lang-menu" hidden>
+						<?php
+						$langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'FR' => 'French', 'IT' => 'Italian', 'ES' => 'Spanish', 'PL' => 'Polish', 'PT' => 'Portuguese' );
+						foreach ( $langs as $code => $name ) :
+							?>
+							<li><a href="#" data-lang="<?php echo esc_attr( strtolower( $code ) ); ?>"><span class="lang-code"><?php echo esc_html( $code ); ?></span> <?php echo esc_html( $name ); ?></a></li>
+							<?php
+						endforeach;
+						?>
+					</ul>
+				</div>
 
-			<button
-				class="nav-toggle"
-				type="button"
-				aria-expanded="false"
-				aria-controls="primary-nav"
-				aria-label="<?php esc_attr_e( 'Toggle menu', 'estecapelli' ); ?>"
-				data-nav-toggle
-			>
-				<?php estecapelli_icon( 'menu',  array( 'width' => 24, 'height' => 24, 'class' => 'icon-open' ) ); ?>
-				<?php estecapelli_icon( 'close', array( 'width' => 24, 'height' => 24, 'class' => 'icon-close' ) ); ?>
-			</button>
+				<div class="mainbar-cta">
+					<a class="btn btn-primary" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
+						<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
+						<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
+					</a>
+				</div>
+
+				<button
+					class="nav-toggle"
+					type="button"
+					aria-expanded="false"
+					aria-controls="primary-nav"
+					aria-label="<?php esc_attr_e( 'Toggle menu', 'estecapelli' ); ?>"
+					data-nav-toggle
+				>
+					<?php estecapelli_icon( 'menu',  array( 'width' => 24, 'height' => 24, 'class' => 'icon-open' ) ); ?>
+					<?php estecapelli_icon( 'close', array( 'width' => 24, 'height' => 24, 'class' => 'icon-close' ) ); ?>
+				</button>
+			</div>
 
 		</div>
 	</div>
