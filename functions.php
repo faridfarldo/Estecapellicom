@@ -29,6 +29,7 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/class-estecapelli-walker-nav-menu.php';
 require get_template_directory() . '/inc/post-types.php';
 require get_template_directory() . '/inc/acf-field-groups.php';
+require get_template_directory() . '/inc/blog-seed.php';
 require get_template_directory() . '/inc/engine.php';
 require get_template_directory() . '/inc/before-after.php';
 require get_template_directory() . '/inc/redirects.php';
