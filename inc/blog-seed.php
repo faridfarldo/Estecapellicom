@@ -36,6 +36,32 @@ if ( ! function_exists( 'estecapelli_blog_seed_articles' ) ) {
 	}
 }
 
+/**
+ * Blog posts must live under /blog/{slug} so that — with WPML's /en/ language
+ * prefix on production — they resolve at /en/blog/{slug} (the canonical live
+ * structure) instead of at the site root /{slug}.
+ *
+ * WordPress builds post URLs from the site's permalink structure, so we set a
+ * /blog/ base once. It's skipped if a /blog/ base is already configured, so it
+ * never clobbers a correct setting, and it only runs a single time. After it runs,
+ * WordPress's own canonical redirect sends the old /{slug} URLs to the new ones.
+ */
+add_action( 'admin_init', 'estecapelli_ensure_blog_permalink_base', 5 );
+function estecapelli_ensure_blog_permalink_base() {
+	if ( get_option( 'estecapelli_blog_permalink_base_v1' ) ) {
+		return;
+	}
+	$current = (string) get_option( 'permalink_structure' );
+	if ( false === strpos( $current, '/blog/' ) ) {
+		global $wp_rewrite;
+		if ( $wp_rewrite instanceof WP_Rewrite ) {
+			$wp_rewrite->set_permalink_structure( '/blog/%postname%/' );
+			$wp_rewrite->flush_rules( false );
+		}
+	}
+	update_option( 'estecapelli_blog_permalink_base_v1', 1 );
+}
+
 add_action( 'admin_init', 'estecapelli_seed_blog_posts' );
 function estecapelli_seed_blog_posts() {
 	if ( get_option( 'estecapelli_blog_seeded' ) ) {
