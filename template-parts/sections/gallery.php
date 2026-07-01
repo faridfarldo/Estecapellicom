@@ -62,11 +62,15 @@ $multi = count( $items ) > 1;
 				<?php foreach ( $items as $item ) :
 					$image = $item['image'] ?? array();
 					?>
+					<?php
+					$img_id  = $image['ID'] ?? $image['id'] ?? 0;
+					$img_alt = $image['alt'] ?? __( 'Before and after result', 'estecapelli' );
+					// Full-size URL for the click-to-enlarge lightbox.
+					$zoom_url = $img_id ? wp_get_attachment_image_url( (int) $img_id, 'full' ) : ( $image['url'] ?? '' );
+					?>
 					<li class="t-gallery__card">
-						<figure class="t-gallery__media">
+						<figure class="t-gallery__media" data-img-zoom="<?php echo esc_url( $zoom_url ); ?>" data-caption="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" role="button" tabindex="0" aria-label="<?php esc_attr_e( 'Enlarge result', 'estecapelli' ); ?>">
 							<?php
-							$img_id = $image['ID'] ?? $image['id'] ?? 0;
-							$img_alt = $image['alt'] ?? __( 'Before and after result', 'estecapelli' );
 							if ( $img_id ) {
 								// Responsive srcset — the browser downloads the size it needs.
 								echo wp_get_attachment_image(

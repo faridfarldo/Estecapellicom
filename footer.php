@@ -188,6 +188,17 @@ $sitemap    = estecapelli_footer_sitemap();
 	</span>
 </a>
 
+<!-- Global image lightbox — opened by any [data-img-zoom] element (before/after, etc.). -->
+<div class="img-lightbox" data-img-lightbox hidden role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Photo viewer', 'estecapelli' ); ?>">
+	<button type="button" class="img-lightbox__backdrop" data-img-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>"></button>
+	<figure class="img-lightbox__shell">
+		<button type="button" class="img-lightbox__close" data-img-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>">
+			<?php estecapelli_icon( 'close', array( 'width' => 22, 'height' => 22 ) ); ?>
+		</button>
+		<img class="img-lightbox__img" data-img-lightbox-img src="" alt="" />
+	</figure>
+</div>
+
 <?php wp_footer(); ?>
 </body>
 </html>

@@ -28,6 +28,7 @@ $grafts = (int) ( $card['grafts'] ?? 0 );
 				alt="<?php echo esc_attr( $before['alt'] ?: __( 'Before treatment', 'estecapelli' ) ); ?>"
 				loading="lazy"
 				decoding="async"
+				data-img-zoom="<?php echo esc_url( $before['url'] ); ?>"
 				width="<?php echo (int) ( $before['width'] ?? 800 ); ?>"
 				height="<?php echo (int) ( $before['height'] ?? 800 ); ?>"
 			/>
@@ -40,6 +41,7 @@ $grafts = (int) ( $card['grafts'] ?? 0 );
 				alt="<?php echo esc_attr( $after['alt'] ?: __( 'After treatment', 'estecapelli' ) ); ?>"
 				loading="lazy"
 				decoding="async"
+				data-img-zoom="<?php echo esc_url( $after['url'] ); ?>"
 				width="<?php echo (int) ( $after['width'] ?? 800 ); ?>"
 				height="<?php echo (int) ( $after['height'] ?? 800 ); ?>"
 			/>
