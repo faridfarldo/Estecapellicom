@@ -1078,13 +1078,17 @@ if ( ! function_exists( 'estecapelli_why_choose' ) ) {
 	 * ACF option 'home_why_choose' without touching the template.
 	 */
 	function estecapelli_why_choose() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'home_why_choose', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
-			}
+		$defaults = estecapelli_why_choose_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
 		}
+		return estecapelli_acf_overlay( $defaults, get_field( 'home_why_choose', 'option' ) );
+	}
+}
 
+if ( ! function_exists( 'estecapelli_why_choose_defaults' ) ) {
+	/** Built-in "Why Choose" content — the base the ACF editor overlays. */
+	function estecapelli_why_choose_defaults() {
 		return array(
 			'eyebrow'  => __( 'The Comparison', 'estecapelli' ),
 			'headline' => __( 'Global standards, Turkish expertise.', 'estecapelli' ),
@@ -1177,13 +1181,17 @@ if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
 	 * ACF override: option 'home_signature_methods' returns the full payload.
 	 */
 	function estecapelli_signature_methods() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'home_signature_methods', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
-			}
+		$defaults = estecapelli_signature_methods_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
 		}
+		return estecapelli_acf_overlay( $defaults, get_field( 'home_signature_methods', 'option' ) );
+	}
+}
 
+if ( ! function_exists( 'estecapelli_signature_methods_defaults' ) ) {
+	/** Built-in "Signature Methods" content — the base the ACF editor overlays. */
+	function estecapelli_signature_methods_defaults() {
 		$img = get_template_directory_uri() . '/assets/images/expertise/';
 
 		return array(
@@ -1257,13 +1265,17 @@ if ( ! function_exists( 'estecapelli_journey_steps' ) ) {
 	 * ACF override: option 'home_journey_steps' returns the full payload.
 	 */
 	function estecapelli_journey_steps() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'home_journey_steps', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
-			}
+		$defaults = estecapelli_journey_steps_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
 		}
+		return estecapelli_acf_overlay( $defaults, get_field( 'home_journey_steps', 'option' ) );
+	}
+}
 
+if ( ! function_exists( 'estecapelli_journey_steps_defaults' ) ) {
+	/** Built-in "Your Journey" content — the base the ACF editor overlays. */
+	function estecapelli_journey_steps_defaults() {
 		return array(
 			'eyebrow'  => __( 'Your Journey', 'estecapelli' ),
 			'headline' => __( 'From your first photo to twelve months later — we walk every step with you.', 'estecapelli' ),
@@ -1569,13 +1581,17 @@ if ( ! function_exists( 'estecapelli_facilities' ) ) {
 	 * ACF override: option 'home_facilities' returns the full payload.
 	 */
 	function estecapelli_facilities() {
-		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'home_facilities', 'option' );
-			if ( ! empty( $acf ) ) {
-				return $acf;
-			}
+		$defaults = estecapelli_facilities_defaults();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $defaults;
 		}
+		return estecapelli_acf_overlay( $defaults, get_field( 'home_facilities', 'option' ) );
+	}
+}
 
+if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
+	/** Built-in "Our Facilities" content — the base the ACF editor overlays. */
+	function estecapelli_facilities_defaults() {
 		$img     = get_template_directory_uri() . '/assets/images/';
 		$contact = home_url( '/en/contact' );
 

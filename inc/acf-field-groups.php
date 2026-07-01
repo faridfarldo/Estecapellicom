@@ -1011,6 +1011,140 @@ function estecapelli_register_acf_field_groups() {
 			),
 		)
 	);
+	/* ===== Why Choose ===== */
+	acf_add_local_field_group(
+		array(
+			'key'        => 'group_home_why_choose',
+			'title'      => __( 'Homepage — Why Choose', 'estecapelli' ),
+			'location'   => $home_loc,
+			'menu_order' => 5,
+			'active'     => true,
+			'fields'     => array(
+				array(
+					'key' => 'field_wc', 'label' => __( 'Why Choose', 'estecapelli' ), 'name' => 'home_why_choose', 'type' => 'group', 'layout' => 'block',
+					'instructions' => __( 'Empty fields keep the current content. (The 9 comparison rows stay as-is for now.)', 'estecapelli' ),
+					'sub_fields' => array(
+						array( 'key' => 'field_wc_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+						array( 'key' => 'field_wc_headline', 'label' => __( 'Headline', 'estecapelli' ), 'name' => 'headline', 'type' => 'text' ),
+						array( 'key' => 'field_wc_lead', 'label' => __( 'Lead', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 2 ),
+						array(
+							'key' => 'field_wc_intro', 'label' => __( 'Intro block', 'estecapelli' ), 'name' => 'intro', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_wc_intro_title', 'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text' ),
+								array( 'key' => 'field_wc_intro_body', 'label' => __( 'Body', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 3 ),
+								array( 'key' => 'field_wc_intro_caption', 'label' => __( 'Caption', 'estecapelli' ), 'name' => 'caption', 'type' => 'text' ),
+								array(
+									'key' => 'field_wc_intro_cta', 'label' => __( 'Button', 'estecapelli' ), 'name' => 'cta', 'type' => 'group', 'layout' => 'block',
+									'sub_fields' => array(
+										array( 'key' => 'field_wc_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'wrapper' => array( 'width' => '50' ) ),
+										array( 'key' => 'field_wc_cta_url', 'label' => __( 'URL', 'estecapelli' ), 'name' => 'url', 'type' => 'url', 'wrapper' => array( 'width' => '50' ) ),
+									),
+								),
+							),
+						),
+						array( 'key' => 'field_wc_us_label', 'label' => __( 'Our column label', 'estecapelli' ), 'name' => 'us_label', 'type' => 'text', 'wrapper' => array( 'width' => '25' ) ),
+						array( 'key' => 'field_wc_them_label', 'label' => __( 'Others column label', 'estecapelli' ), 'name' => 'them_label', 'type' => 'text', 'wrapper' => array( 'width' => '25' ) ),
+						array( 'key' => 'field_wc_us_tag', 'label' => __( 'Our tag', 'estecapelli' ), 'name' => 'us_tag', 'type' => 'text', 'wrapper' => array( 'width' => '25' ) ),
+						array( 'key' => 'field_wc_them_tag', 'label' => __( 'Others tag', 'estecapelli' ), 'name' => 'them_tag', 'type' => 'text', 'wrapper' => array( 'width' => '25' ) ),
+						array( 'key' => 'field_wc_footnote', 'label' => __( 'Footnote', 'estecapelli' ), 'name' => 'footnote', 'type' => 'text' ),
+					),
+				),
+			),
+		)
+	);
+
+	/* ===== Signature Methods (heading + button) ===== */
+	acf_add_local_field_group(
+		array(
+			'key'        => 'group_home_methods',
+			'title'      => __( 'Homepage — Signature Methods', 'estecapelli' ),
+			'location'   => $home_loc,
+			'menu_order' => 6,
+			'active'     => true,
+			'fields'     => array(
+				array(
+					'key' => 'field_sm', 'label' => __( 'Signature Methods', 'estecapelli' ), 'name' => 'home_signature_methods', 'type' => 'group', 'layout' => 'block',
+					'instructions' => __( 'Empty fields keep the current content. (The 3 method cards stay as-is for now.)', 'estecapelli' ),
+					'sub_fields' => array(
+						array( 'key' => 'field_sm_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+						array( 'key' => 'field_sm_headline', 'label' => __( 'Headline', 'estecapelli' ), 'name' => 'headline', 'type' => 'text' ),
+						array( 'key' => 'field_sm_lead', 'label' => __( 'Lead', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 2 ),
+						array(
+							'key' => 'field_sm_cta2', 'label' => __( 'Button', 'estecapelli' ), 'name' => 'cta_secondary', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_sm_cta2_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'wrapper' => array( 'width' => '50' ) ),
+								array( 'key' => 'field_sm_cta2_url', 'label' => __( 'URL', 'estecapelli' ), 'name' => 'url', 'type' => 'url', 'wrapper' => array( 'width' => '50' ) ),
+							),
+						),
+					),
+				),
+			),
+		)
+	);
+
+	/* ===== Your Journey (heading + closing) ===== */
+	acf_add_local_field_group(
+		array(
+			'key'        => 'group_home_journey',
+			'title'      => __( 'Homepage — Your Journey', 'estecapelli' ),
+			'location'   => $home_loc,
+			'menu_order' => 7,
+			'active'     => true,
+			'fields'     => array(
+				array(
+					'key' => 'field_jn', 'label' => __( 'Your Journey', 'estecapelli' ), 'name' => 'home_journey_steps', 'type' => 'group', 'layout' => 'block',
+					'instructions' => __( 'Empty fields keep the current content. (The 6 step cards stay as-is for now.)', 'estecapelli' ),
+					'sub_fields' => array(
+						array( 'key' => 'field_jn_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+						array( 'key' => 'field_jn_headline', 'label' => __( 'Headline', 'estecapelli' ), 'name' => 'headline', 'type' => 'text' ),
+						array( 'key' => 'field_jn_lead', 'label' => __( 'Lead', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 2 ),
+						array(
+							'key' => 'field_jn_closing', 'label' => __( 'Closing block', 'estecapelli' ), 'name' => 'closing', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_jn_closing_text', 'label' => __( 'Text', 'estecapelli' ), 'name' => 'text', 'type' => 'text' ),
+								array(
+									'key' => 'field_jn_closing_cta', 'label' => __( 'Button', 'estecapelli' ), 'name' => 'cta', 'type' => 'group', 'layout' => 'block',
+									'sub_fields' => array(
+										array( 'key' => 'field_jn_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'wrapper' => array( 'width' => '50' ) ),
+										array( 'key' => 'field_jn_cta_url', 'label' => __( 'URL', 'estecapelli' ), 'name' => 'url', 'type' => 'url', 'wrapper' => array( 'width' => '50' ) ),
+									),
+								),
+							),
+						),
+					),
+				),
+			),
+		)
+	);
+
+	/* ===== Our Facilities (heading + button) ===== */
+	acf_add_local_field_group(
+		array(
+			'key'        => 'group_home_facilities',
+			'title'      => __( 'Homepage — Our Facilities', 'estecapelli' ),
+			'location'   => $home_loc,
+			'menu_order' => 8,
+			'active'     => true,
+			'fields'     => array(
+				array(
+					'key' => 'field_fc', 'label' => __( 'Our Facilities', 'estecapelli' ), 'name' => 'home_facilities', 'type' => 'group', 'layout' => 'block',
+					'instructions' => __( 'Empty fields keep the current content. (The clinic gallery stays as-is for now.)', 'estecapelli' ),
+					'sub_fields' => array(
+						array( 'key' => 'field_fc_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+						array( 'key' => 'field_fc_headline', 'label' => __( 'Headline', 'estecapelli' ), 'name' => 'headline', 'type' => 'text' ),
+						array( 'key' => 'field_fc_lead', 'label' => __( 'Lead', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 2 ),
+						array(
+							'key' => 'field_fc_cta', 'label' => __( 'Button', 'estecapelli' ), 'name' => 'cta', 'type' => 'group', 'layout' => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_fc_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'wrapper' => array( 'width' => '50' ) ),
+								array( 'key' => 'field_fc_cta_url', 'label' => __( 'URL', 'estecapelli' ), 'name' => 'url', 'type' => 'url', 'wrapper' => array( 'width' => '50' ) ),
+							),
+						),
+					),
+				),
+			),
+		)
+	);
 }
 
 /**
