@@ -210,6 +210,32 @@
 			if (url) { el.style.backgroundImage = 'url("' + url + '")'; }
 		}
 
+		// ── Stop hero videos when the slide changes ──
+		// Changing slides must not leave a video playing: the Exosome/VITA video
+		// (which has sound) is closed, and the women background video plays only
+		// while its own slide is on screen.
+		var splitStages = root.querySelectorAll('[data-split-stage]');
+		var wmnVideo = root.querySelector('.hero-wmn__bgvideo iframe');
+		var wmnSrc = wmnVideo ? wmnVideo.getAttribute('src') : '';
+		var wmnSlideIndex = -1;
+		slides.forEach(function (s, i) { if (s.querySelector('.hero-wmn__bgvideo')) { wmnSlideIndex = i; } });
+
+		function stopHeroMedia(activeIndex) {
+			// Close any opened Exosome/VITA split video and collapse the split.
+			root.querySelectorAll('[data-split-video]').forEach(function (h) { h.innerHTML = ''; });
+			root.querySelectorAll('[data-split-panel]').forEach(function (p) { p.setAttribute('data-open', 'false'); });
+			root.querySelectorAll('[data-split-toggle]').forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
+			splitStages.forEach(function (st) { st.setAttribute('data-split-active', ''); });
+			// Women background video: run it only on its slide, stop it otherwise.
+			if (wmnVideo) {
+				if (activeIndex === wmnSlideIndex) {
+					if (!wmnVideo.getAttribute('src')) { wmnVideo.setAttribute('src', wmnSrc); }
+				} else {
+					wmnVideo.setAttribute('src', '');
+				}
+			}
+		}
+
 		function go(n) {
 			index = (n + slides.length) % slides.length;
 			track.style.transform = 'translateX(' + (-index * 100) + '%)';
@@ -218,6 +244,8 @@
 			// Arrows preview the slide they lead to (mini thumbnail).
 			setThumb(nextThumb, thumbAt(index + 1));
 			setThumb(prevThumb, thumbAt(index - 1));
+			// Stop/gate hero videos so nothing keeps playing after the switch.
+			stopHeroMedia(index);
 		}
 		function next() { go(index + 1); }
 		function prev() { go(index - 1); }
