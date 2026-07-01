@@ -572,7 +572,19 @@
 
 			posters.forEach(function (p) {
 				p.addEventListener('click', function () {
-					activate(p.getAttribute('data-stories-select'));
+					var key = p.getAttribute('data-stories-select');
+					activate(key);
+					// On stacked (mobile) layouts the playlist sits BELOW the video,
+					// so jump back up to the now-updated video if it isn't in view.
+					var activeHero = null;
+					heroes.forEach(function (h) { if (h.getAttribute('data-key') === key) { activeHero = h; } });
+					if (activeHero) {
+						var poster = activeHero.querySelector('.stories__hero-poster') || activeHero;
+						var rect = poster.getBoundingClientRect();
+						if (rect.top < 84 || rect.bottom > window.innerHeight) {
+							poster.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						}
+					}
 				});
 			});
 		});

@@ -4408,15 +4408,17 @@
 		background:
 			linear-gradient(180deg, oklch(0% 0 0 / 0.45) 0%, transparent 30%, transparent 60%, oklch(0% 0 0 / 0.55) 100%);
 	}
+	/* Caption sits at the BOTTOM-left of the frame (clear of the face) and is
+	   kept small; the play button lives bottom-right, so it never overlaps. */
 	.stories__hero-pretitle-card {
-		position: absolute; top: 1rem; left: 1rem; z-index: 3;
-		max-width: 60%;
-		padding: 8px 12px;
-		background: oklch(0% 0 0 / 0.45);
+		position: absolute; bottom: 1rem; left: 1rem; z-index: 3;
+		max-width: 56%;
+		padding: 5px 9px;
+		background: oklch(0% 0 0 / 0.5);
 		-webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
 		border: 1px solid oklch(100% 0 0 / 0.14);
-		border-radius: 10px;
-		font-size: 0.8125rem; font-weight: 600;
+		border-radius: 9px;
+		font-size: 0.6875rem; font-weight: 600;
 		line-height: 1.3;
 		color: white;
 		text-align: left;
@@ -4678,7 +4680,7 @@
 		.stories__hero { padding: 1.25rem; gap: 1rem; }
 		.stories__hero-poster { aspect-ratio: 4 / 3; }
 		.stories__hero-play { width: 52px; height: 52px; right: 0.875rem; bottom: 0.875rem; }
-		.stories__hero-pretitle-card { font-size: 0.75rem; max-width: 70%; padding: 6px 10px; }
+		.stories__hero-pretitle-card { font-size: 0.6875rem; max-width: 60%; padding: 5px 9px; bottom: 0.75rem; left: 0.75rem; }
 		.stories__hero-pill { padding: 0.4rem 0.7rem; }
 		.stories__hero-pill-value { font-size: 0.8125rem; }
 	}
