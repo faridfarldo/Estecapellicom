@@ -507,7 +507,12 @@
 
 	@media (max-width: 860px) {
 		.hero-exp, .hero-aw { grid-template-columns: 1fr; }
-		.hero-x__slide--women { min-height: clamp(360px, 56vh, 460px); }
+		.hero-x__slide--women { min-height: clamp(320px, 48vh, 400px); }
+		/* Trim the (tall) expert slide on phones so it stops dictating a very
+		   tall hero: tighter padding/gaps and a slightly smaller portrait. */
+		.hero-x__slide--expert { padding-block: clamp(1.25rem, 4vw, 2rem); }
+		.hero-exp { gap: 1.25rem; }
+		.hero-exp__copy { gap: 0.75rem; }
 		/* Stronger bottom-up scrim on phones so the copy stays readable over a
 		   busier frame. */
 		.hero-wmn__scrim {
@@ -524,19 +529,18 @@
 		   centred row under the photo instead of a lost corner card. */
 		/* Keep the after photo compact on phones so the after + before pair are both
 		   visible together without scrolling. */
-		.hero-exp__media { max-width: 320px; margin-inline: auto; }
+		.hero-exp__media { max-width: 272px; margin-inline: auto; }
 		.hero-exp__reviews { top: 8px; right: 8px; padding: 5px 9px; }
 		.hero-exp__reviews strong { font-size: 0.95rem; }
 		.hero-exp__seal { top: 6px; left: 6px; width: 54px; height: 54px; }
 		.hero-exp__ba figure { width: clamp(78px, 23vw, 94px); }
 		.hero-exp__arrow { width: 34px; height: 34px; }
 		.hero-aw__strip { justify-content: center; }
-		/* Plain chevron buttons on phones — the slide-preview thumbnail reads as a
-		   stray image floating over the photo, so drop it on small screens. */
-		.hero-x__nav { width: 40px; height: 56px; background: oklch(20% 0.03 260 / 0.55); }
-		.hero-x__nav-thumb { display: none; }
-		.hero-x__nav--prev { left: 6px; }
-		.hero-x__nav--next { right: 6px; }
+		/* Keep the slide-preview thumbnail on phones too so the arrows read as a
+		   mini preview of the next/prev slide, not a bare dark box. Just smaller. */
+		.hero-x__nav { width: 44px; height: 60px; border-radius: 12px; }
+		.hero-x__nav--prev { left: 8px; }
+		.hero-x__nav--next { right: 8px; }
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.hero-x__track { transition: none; }
@@ -970,9 +974,15 @@
 		/* Keep the interactive split, just rotate it: the diagonal seam runs
 		   horizontally so the two panels stack top (Exosome) / bottom (VITA)
 		   while the same --split / click-to-expand mechanism drives it. */
+		/* Shorter stacked stage on phones so the whole hero is (nearly) visible
+		   without scrolling — the click-to-expand mechanism is unchanged. */
+		.hero-split { padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 2.5vw, 1.75rem); }
+		.hero-split__intro { gap: 0.6rem; }
+		.hero-split__more { margin-top: 1rem; }
 		.hero-split__stage {
 			--slant: 4%;
-			height: clamp(540px, 86vh, 760px);
+			margin-top: clamp(1.25rem, 3vw, 2rem);
+			height: clamp(420px, 62vh, 560px);
 		}
 		.hero-split__panel--exosome {
 			clip-path: polygon(0 0, 100% 0, 100% calc(var(--split) - var(--slant)), 0 calc(var(--split) + var(--slant)));
