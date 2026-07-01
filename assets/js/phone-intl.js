@@ -102,16 +102,50 @@
 			loadUtils: function () { return import(UTILS_URL); }
 		});
 
-		// Fallback while utils loads (and if the CDN import ever fails): never let
-		// letters sit in a phone field.
+		var touched = false; // don't nag before the visitor has finished the field
+
+		// Returns: true = valid, false = invalid, null = can't tell yet (no utils).
+		function checkValidity() {
+			if (typeof iti.isValidNumber !== 'function') return null;
+			return iti.isValidNumber();
+		}
+
+		// Show/clear the red error for the current value. Only shows once the
+		// field has been "touched" (blurred or a submit was attempted).
+		function reflectValidity() {
+			var val = (input.value || '').trim();
+			if (!val) {
+				setError(input, ( touched && input.hasAttribute('required') ) ? 'Please enter your phone number.' : '');
+				return true; // empty handled at submit; not an "invalid number"
+			}
+			var valid = checkValidity();
+			if (valid === false) {
+				if (touched) {
+					var code = (typeof iti.getValidationError === 'function') ? iti.getValidationError() : -1;
+					setError(input, ERRORS[code] || ERRORS.default);
+				}
+				return false;
+			}
+			setError(input, ''); // valid, or utils not loaded yet
+			return true;
+		}
+
 		input.addEventListener('input', function () {
-			if (typeof iti.isValidNumber === 'function' && iti.isValidNumber() !== null) return; // utils ready → strictMode handles it
-			var cleaned = stripLetters(input.value);
-			if (cleaned !== input.value) { input.value = cleaned; }
+			// Fallback while utils loads / if the CDN import fails: never let
+			// letters sit in a phone field (strictMode covers it once loaded).
+			if (checkValidity() === null) {
+				var cleaned = stripLetters(input.value);
+				if (cleaned !== input.value) { input.value = cleaned; }
+			}
+			// Live feedback after the first interaction: turn red / clear as they type.
+			if (touched) { reflectValidity(); }
 		});
 
-		// Clear a shown error as soon as the visitor edits the field.
-		input.addEventListener('input', function () { setError(input, ''); });
+		// The moment they leave the field, validate and show the error in red.
+		input.addEventListener('blur', function () {
+			touched = true;
+			reflectValidity();
+		});
 
 		var form = input.closest('form');
 		if (!form) return;
@@ -119,6 +153,7 @@
 		// CAPTURE phase → runs before main.js's AJAX submit handler, so a bad
 		// number cancels the whole submit (AJAX or classic POST) for every form.
 		form.addEventListener('submit', function (e) {
+			touched = true;
 			var val = (input.value || '').trim();
 
 			// Required phone fields must not be empty.
@@ -132,28 +167,23 @@
 				return;
 			}
 
-			// isValidNumber() returns null until utils finishes loading; only
-			// enforce strict per-country validation once it's available.
-			var valid = (typeof iti.isValidNumber === 'function') ? iti.isValidNumber() : null;
+			var valid = checkValidity();
 			if (valid === false) {
 				e.preventDefault();
 				e.stopImmediatePropagation();
-				var code = (typeof iti.getValidationError === 'function') ? iti.getValidationError() : -1;
-				setError(input, ERRORS[code] || ERRORS.default);
+				reflectValidity();
 				input.focus();
 				return;
 			}
 
-			// Valid (or utils not loaded): store canonical E.164 for the CRM.
+			// Valid: store the canonical, country-prefixed number (E.164) for the
+			// CRM. We ONLY rewrite the field when the number is valid — never
+			// prepend a dial code to a wrong number. Form submits immediately
+			// after, so this value is what gets posted.
 			setError(input, '');
 			if (valid === true && typeof iti.getNumber === 'function') {
 				var e164 = iti.getNumber(); // e.g. +905321234567
-				if (e164) { input.value = e164; return; }
-			}
-			// Fallback prefix if utils never loaded.
-			if (val.charAt(0) !== '+') {
-				var data = iti.getSelectedCountryData();
-				if (data && data.dialCode) { input.value = '+' + data.dialCode + ' ' + val; }
+				if (e164) { input.value = e164; }
 			}
 		}, true);
 	});
