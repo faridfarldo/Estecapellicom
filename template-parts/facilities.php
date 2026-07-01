@@ -63,25 +63,19 @@ $partners = $data['partners'] ?? array();
 							<?php endif; ?>
 						</button>
 					<?php else : ?>
-						<figure class="facilities__media">
+						<button type="button" class="facilities__media facilities__media--photo" data-facilities-zoom="<?php echo esc_url( $item['image'] ); ?>" data-caption="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Enlarge photo: %s', 'estecapelli' ), $item['caption'] ?? '' ) ); ?>">
 							<img src="<?php echo esc_url( $item['image'] ); ?>" alt="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" loading="lazy" decoding="async" />
+							<span class="facilities__zoom" aria-hidden="true">
+								<?php estecapelli_icon( 'image', array( 'width' => 18, 'height' => 18 ) ); ?>
+							</span>
 							<?php if ( ! empty( $item['caption'] ) ) : ?>
-								<figcaption class="facilities__caption"><?php echo esc_html( $item['caption'] ); ?></figcaption>
+								<span class="facilities__caption"><?php echo esc_html( $item['caption'] ); ?></span>
 							<?php endif; ?>
-						</figure>
+						</button>
 					<?php endif; ?>
 				</li>
 			<?php endforeach; ?>
 		</ul>
-
-		<?php if ( ! empty( $data['cta']['url'] ) ) : ?>
-			<div class="facilities__foot">
-				<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $data['cta']['url'] ); ?>">
-					<?php echo esc_html( $data['cta']['label'] ); ?>
-					<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
-				</a>
-			</div>
-		<?php endif; ?>
 
 	</div>
 
@@ -115,5 +109,17 @@ $partners = $data['partners'] ?? array();
 			</div>
 		</div>
 	<?php endif; ?>
+
+	<!-- Image lightbox — opened by any [data-facilities-zoom] photo tile. -->
+	<div class="facilities__lightbox" data-facilities-lightbox hidden role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Photo viewer', 'estecapelli' ); ?>">
+		<button type="button" class="facilities__lightbox-backdrop" data-facilities-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>"></button>
+		<figure class="facilities__lightbox-shell">
+			<button type="button" class="facilities__lightbox-close" data-facilities-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>">
+				<?php estecapelli_icon( 'close', array( 'width' => 22, 'height' => 22 ) ); ?>
+			</button>
+			<img class="facilities__lightbox-img" data-facilities-lightbox-img src="" alt="" />
+			<figcaption class="facilities__lightbox-caption" data-facilities-lightbox-caption></figcaption>
+		</figure>
+	</div>
 
 </section>

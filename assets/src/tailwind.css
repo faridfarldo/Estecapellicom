@@ -4823,6 +4823,61 @@
 		margin-top: clamp(1.75rem, 3vw, 2.5rem);
 	}
 
+	/* Clickable photo tiles (open the image lightbox). */
+	.facilities__media--photo { cursor: zoom-in; }
+	.facilities__zoom {
+		position: absolute; top: 0.6rem; right: 0.6rem; z-index: 2;
+		display: grid; place-items: center;
+		width: 34px; height: 34px;
+		border-radius: 9999px;
+		color: white;
+		background: oklch(0% 0 0 / 0.45);
+		-webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+		border: 1px solid oklch(100% 0 0 / 0.2);
+		opacity: 0; transform: scale(0.9);
+		transition: opacity 0.25s, transform 0.25s;
+	}
+	.facilities__media--photo:hover .facilities__zoom,
+	.facilities__media--photo:focus-visible .facilities__zoom { opacity: 1; transform: scale(1); }
+
+	/* Image lightbox */
+	.facilities__lightbox {
+		position: fixed; inset: 0; z-index: 9999;
+		display: flex; align-items: center; justify-content: center;
+		padding: clamp(1rem, 4vw, 3rem);
+	}
+	.facilities__lightbox[hidden] { display: none; }
+	.facilities__lightbox-backdrop {
+		position: absolute; inset: 0; border: 0; padding: 0;
+		background: oklch(8% 0.02 265 / 0.82);
+		-webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+		cursor: zoom-out;
+	}
+	.facilities__lightbox-shell {
+		position: relative; z-index: 1; margin: 0;
+		max-width: min(1100px, 100%); max-height: 100%;
+		display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+	}
+	.facilities__lightbox-img {
+		display: block; max-width: 100%; max-height: 82vh;
+		border-radius: 14px; object-fit: contain;
+		box-shadow: 0 24px 60px oklch(0% 0 0 / 0.5);
+	}
+	.facilities__lightbox-caption {
+		color: white; font-size: 0.9375rem; font-weight: 600; text-align: center;
+	}
+	.facilities__lightbox-caption[hidden] { display: none; }
+	.facilities__lightbox-close {
+		position: absolute; top: -0.5rem; right: -0.5rem; z-index: 2;
+		display: grid; place-items: center;
+		width: 42px; height: 42px; border-radius: 9999px;
+		color: var(--color-brand-950); background: white;
+		box-shadow: 0 8px 24px oklch(0% 0 0 / 0.4);
+	}
+	@media (max-width: 540px) {
+		.facilities__lightbox-close { top: 0.25rem; right: 0.25rem; }
+	}
+
 	/* Partner-hotel logo strip */
 	.facilities__partners { margin-top: clamp(2.5rem, 5vw, 4rem); }
 	.facilities__partners-title {
@@ -4876,7 +4931,9 @@
 
 	@media (max-width: 760px) {
 		.facilities__gallery { grid-template-columns: repeat(2, 1fr); }
-		.facilities__tile--big { grid-column: span 2; grid-row: span 1; }
+		/* Give the lead video tile real height on phones (2 rows tall) so it reads
+		   as a proper video, not a thin strip. */
+		.facilities__tile--big { grid-column: span 2; grid-row: span 2; }
 		.facilities__bg-mark { display: none; }
 	}
 	@media (prefers-reduced-motion: reduce) {

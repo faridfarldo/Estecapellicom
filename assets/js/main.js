@@ -646,6 +646,51 @@
 		});
 	}
 
+	function initFacilitiesLightbox() {
+		var lightbox = document.querySelector('[data-facilities-lightbox]');
+		if (!lightbox) return;
+
+		var imgEl       = lightbox.querySelector('[data-facilities-lightbox-img]');
+		var capEl       = lightbox.querySelector('[data-facilities-lightbox-caption]');
+		var closeBtns   = lightbox.querySelectorAll('[data-facilities-lightbox-close]');
+		var triggers    = document.querySelectorAll('[data-facilities-zoom]');
+		var lastFocused = null;
+
+		function open(src, caption) {
+			if (!src) return;
+			lastFocused = document.activeElement;
+			imgEl.setAttribute('src', src);
+			imgEl.setAttribute('alt', caption || '');
+			if (capEl) {
+				capEl.textContent = caption || '';
+				capEl.hidden = !caption;
+			}
+			lightbox.removeAttribute('hidden');
+			lightbox.setAttribute('data-open', 'true');
+			document.body.classList.add('no-scroll');
+			var firstClose = lightbox.querySelector('.facilities__lightbox-close');
+			if (firstClose) firstClose.focus();
+		}
+
+		function close() {
+			lightbox.removeAttribute('data-open');
+			lightbox.setAttribute('hidden', '');
+			imgEl.setAttribute('src', '');
+			document.body.classList.remove('no-scroll');
+			if (lastFocused && typeof lastFocused.focus === 'function') { lastFocused.focus(); }
+		}
+
+		triggers.forEach(function (btn) {
+			btn.addEventListener('click', function () {
+				open(btn.getAttribute('data-facilities-zoom'), btn.getAttribute('data-caption') || '');
+			});
+		});
+		closeBtns.forEach(function (b) { b.addEventListener('click', close); });
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && lightbox.getAttribute('data-open') === 'true') { close(); }
+		});
+	}
+
 	function initCarousels() {
 		var carousels = document.querySelectorAll('[data-carousel]');
 		if (!carousels.length) return;
@@ -1006,6 +1051,7 @@
 		initCategoryTabs();
 		initPatientStories();
 		initStoriesLightbox();
+		initFacilitiesLightbox();
 		initCarousels();
 		initStepbooks();
 		initCopyLink();
