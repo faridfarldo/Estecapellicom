@@ -157,10 +157,6 @@ $error_msg  = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_
 							<?php esc_html_e( 'Send Request', 'estecapelli' ); ?>
 							<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
 						</button>
-						<a class="btn btn-ghost contact-form__wa" href="<?php echo esc_url( $wa_url ); ?>" target="_blank" rel="noopener">
-							<?php estecapelli_icon( 'whatsapp', array( 'width' => 18, 'height' => 18 ) ); ?>
-							<?php esc_html_e( 'Or chat on WhatsApp', 'estecapelli' ); ?>
-						</a>
 					</div>
 				</form>
 			</div>

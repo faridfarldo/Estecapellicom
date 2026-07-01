@@ -74,10 +74,6 @@ $wa_url = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_u
 					<span class="lead-popup__submit-label"><?php esc_html_e( 'Request a Free Consultation', 'estecapelli' ); ?></span>
 					<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
 				</button>
-				<a class="btn btn-ghost contact-form__wa" href="<?php echo esc_url( $wa_url ); ?>" target="_blank" rel="noopener">
-					<?php estecapelli_icon( 'whatsapp', array( 'width' => 18, 'height' => 18 ) ); ?>
-					<?php esc_html_e( 'Or chat on WhatsApp', 'estecapelli' ); ?>
-				</a>
 			</div>
 		</form>
 	</div>
