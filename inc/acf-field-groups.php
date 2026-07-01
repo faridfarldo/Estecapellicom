@@ -503,7 +503,8 @@ function estecapelli_register_acf_field_groups() {
 									'button_label' => __( '+ Add Member', 'estecapelli' ),
 									'layout'       => 'block',
 									'sub_fields'   => array(
-										array( 'key' => 'field_team_m_photo', 'label' => __( 'Photo', 'estecapelli' ), 'name' => 'photo', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium' ),
+										array( 'key' => 'field_team_m_photo', 'label' => __( 'Photo', 'estecapelli' ), 'name' => 'photo', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => __( 'Upload a photo, or leave empty and use the Photo URL below (for theme-bundled images).', 'estecapelli' ) ),
+										array( 'key' => 'field_team_m_photo_url', 'label' => __( 'Photo URL', 'estecapelli' ), 'name' => 'photo_url', 'type' => 'text', 'instructions' => __( 'Optional. Used only when no Photo is uploaded above.', 'estecapelli' ) ),
 										array( 'key' => 'field_team_m_name',  'label' => __( 'Name', 'estecapelli' ), 'name' => 'name', 'type' => 'text', 'required' => 1 ),
 										array( 'key' => 'field_team_m_role',  'label' => __( 'Position / role (e.g. Nurse)', 'estecapelli' ), 'name' => 'role', 'type' => 'text' ),
 										array(

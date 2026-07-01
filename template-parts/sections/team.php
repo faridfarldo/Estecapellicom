@@ -56,12 +56,15 @@ $initials = static function ( $name ) {
 				$role      = $m['role'] ?? '';
 				$photo     = $m['photo'] ?? array();
 				$languages = $m['languages'] ?? array();
+				// An uploaded ACF image wins; otherwise fall back to a plain URL
+				// (used for theme-bundled photos passed through the page seed).
+				$photo_src = ! empty( $photo['url'] ) ? $photo['url'] : ( $m['photo_url'] ?? '' );
 				?>
 				<li class="t-team__card">
 					<figure class="t-team__photo">
 						<span class="t-team__aura" aria-hidden="true"></span>
-						<?php if ( ! empty( $photo['url'] ) ) : ?>
-							<img class="t-team__img" src="<?php echo esc_url( $photo['url'] ); ?>" alt="<?php echo esc_attr( $photo['alt'] ?? $name ); ?>" loading="lazy" decoding="async" />
+						<?php if ( $photo_src ) : ?>
+							<img class="t-team__img" src="<?php echo esc_url( $photo_src ); ?>" alt="<?php echo esc_attr( $photo['alt'] ?? $name ); ?>" loading="lazy" decoding="async" />
 						<?php else : ?>
 							<span class="t-team__placeholder" aria-hidden="true"><?php echo esc_html( $initials( $name ) ); ?></span>
 						<?php endif; ?>

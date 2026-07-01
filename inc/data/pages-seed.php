@@ -439,55 +439,47 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 					$hero( __( 'Our Team', 'estecapelli' ), __( 'The people behind every transformation.', 'estecapelli' ), __( 'From your first message to the final follow-up, our multilingual medical, consulting and patient-care team is with you across every step of your journey.', 'estecapelli' ) ),
 					array(
 						'acf_fc_layout' => 'team',
-						'eyebrow'       => __( 'Clinical Care', 'estecapelli' ),
-						'title'         => __( 'Medical Team', 'estecapelli' ),
-						'lead'          => __( 'The nurses and technicians who care for you before, during and after every procedure.', 'estecapelli' ),
-						'variant'       => 'medical',
-						'members'       => array(
-							array( 'photo' => '', 'name' => __( 'Aylin Y.', 'estecapelli' ), 'role' => __( 'Registered Nurse', 'estecapelli' ),    'languages' => array() ),
-							array( 'photo' => '', 'name' => __( 'Selin K.', 'estecapelli' ), 'role' => __( 'Operating Room Nurse', 'estecapelli' ), 'languages' => array() ),
-							array( 'photo' => '', 'name' => __( 'Burak T.', 'estecapelli' ), 'role' => __( 'Surgical Technician', 'estecapelli' ),   'languages' => array() ),
-							array( 'photo' => '', 'name' => __( 'Derya A.', 'estecapelli' ), 'role' => __( 'Anaesthesia Nurse', 'estecapelli' ),     'languages' => array() ),
-							array( 'photo' => '', 'name' => __( 'Emre S.', 'estecapelli' ),  'role' => __( 'Patient Care Nurse', 'estecapelli' ),    'languages' => array() ),
-							array( 'photo' => '', 'name' => __( 'Zeynep M.', 'estecapelli' ),'role' => __( 'Recovery Nurse', 'estecapelli' ),        'languages' => array() ),
-						),
-					),
-					array(
-						'acf_fc_layout' => 'team',
 						'eyebrow'       => __( 'Your First Point of Contact', 'estecapelli' ),
 						'title'         => __( 'Medical Consultants', 'estecapelli' ),
 						'lead'          => __( 'Multilingual consultants who guide your journey in your own language — from first question to final result.', 'estecapelli' ),
 						'variant'       => 'consultant',
 						'members'       => array(
-							array( 'photo' => '', 'name' => __( 'Sara', 'estecapelli' ),   'role' => '', 'languages' => array(
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/marcus.webp',  'name' => __( 'Marcus', 'estecapelli' ),  'role' => '', 'languages' => array(
 								array( 'country' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
-								array( 'country' => 'sa', 'label' => __( 'Arabic', 'estecapelli' ) ),
-								array( 'country' => 'tr', 'label' => __( 'Turkish', 'estecapelli' ) ),
 							) ),
-							array( 'photo' => '', 'name' => __( 'Daniel', 'estecapelli' ), 'role' => '', 'languages' => array(
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/matthew.webp', 'name' => __( 'Matthew', 'estecapelli' ), 'role' => '', 'languages' => array(
 								array( 'country' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
-								array( 'country' => 'de', 'label' => __( 'German', 'estecapelli' ) ),
+							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/rachel.webp',  'name' => __( 'Rachel', 'estecapelli' ),  'role' => '', 'languages' => array(
+								array( 'country' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
+							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/roxane.webp',  'name' => __( 'Roxane', 'estecapelli' ),  'role' => '', 'languages' => array(
 								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
 							) ),
-							array( 'photo' => '', 'name' => __( 'Maria', 'estecapelli' ),  'role' => '', 'languages' => array(
-								array( 'country' => 'es', 'label' => __( 'Spanish', 'estecapelli' ) ),
-								array( 'country' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/sana.webp',    'name' => __( 'Sana', 'estecapelli' ),    'role' => '', 'languages' => array(
+								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
+								array( 'country' => 'sa', 'label' => __( 'Arabic', 'estecapelli' ) ),
+							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/melissa.webp', 'name' => __( 'Melissa', 'estecapelli' ), 'role' => '', 'languages' => array(
 								array( 'country' => 'it', 'label' => __( 'Italian', 'estecapelli' ) ),
 							) ),
-							array( 'photo' => '', 'name' => __( 'Olga', 'estecapelli' ),   'role' => '', 'languages' => array(
-								array( 'country' => 'ru', 'label' => __( 'Russian', 'estecapelli' ) ),
-								array( 'country' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/natalia.webp', 'name' => __( 'Natalia', 'estecapelli' ), 'role' => '', 'languages' => array(
+								array( 'country' => 'pl', 'label' => __( 'Polish', 'estecapelli' ) ),
+							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/cynthia.webp', 'name' => __( 'Cynthia', 'estecapelli' ), 'role' => '', 'languages' => array(
+								array( 'country' => 'pt', 'label' => __( 'Portuguese', 'estecapelli' ) ),
+							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/damla.webp',   'name' => __( 'Damla', 'estecapelli' ),   'role' => '', 'languages' => array(
 								array( 'country' => 'tr', 'label' => __( 'Turkish', 'estecapelli' ) ),
 							) ),
-							array( 'photo' => '', 'name' => __( 'Leyla', 'estecapelli' ),  'role' => '', 'languages' => array(
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/samet.webp',   'name' => __( 'Samet', 'estecapelli' ),   'role' => '', 'languages' => array(
 								array( 'country' => 'tr', 'label' => __( 'Turkish', 'estecapelli' ) ),
-								array( 'country' => 'sa', 'label' => __( 'Arabic', 'estecapelli' ) ),
-								array( 'country' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
 							) ),
-							array( 'photo' => '', 'name' => __( 'Sophie', 'estecapelli' ), 'role' => '', 'languages' => array(
-								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
-								array( 'country' => 'gb', 'label' => __( 'English', 'estecapelli' ) ),
-								array( 'country' => 'de', 'label' => __( 'German', 'estecapelli' ) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/hamza.webp',   'name' => __( 'Hamza', 'estecapelli' ),   'role' => '', 'languages' => array(
+								array( 'country' => 'pk', 'label' => __( 'Urdu', 'estecapelli' ) ),
+							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/wali.webp',    'name' => __( 'Wali', 'estecapelli' ),    'role' => '', 'languages' => array(
+								array( 'country' => 'pk', 'label' => __( 'Urdu', 'estecapelli' ) ),
 							) ),
 						),
 					),
