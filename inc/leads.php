@@ -123,6 +123,42 @@ function estecapelli_collect_lead() {
 }
 
 /**
+ * Basic server-side phone sanity check (defence-in-depth behind the browser's
+ * intl-tel-input validation). We can't run libphonenumber in PHP, so we assert
+ * the shape only: no letters, and a digit count within the E.164 range (a
+ * leading country prefix included). This rejects garbage like "abc" or "12".
+ *
+ * @param string $phone Raw submitted phone.
+ * @return bool
+ */
+function estecapelli_phone_looks_valid( $phone ) {
+	// Letters are never valid in a phone number.
+	if ( preg_match( '/[a-z]/i', $phone ) ) {
+		return false;
+	}
+	$digits = preg_replace( '/\D+/', '', $phone );
+	$len    = strlen( $digits );
+	// E.164 allows up to 15 digits; shortest usable international numbers are ~8.
+	return $len >= 8 && $len <= 15;
+}
+
+/**
+ * Map a lead WP_Error code to a visitor-facing message (used by the classic,
+ * no-JS POST path which redirects back with ?lead_error=<code>).
+ *
+ * @param string $code Error code from estecapelli_process_lead().
+ * @return string Empty string for unknown codes.
+ */
+function estecapelli_lead_error_message( $code ) {
+	$map = array(
+		'invalid_phone' => __( 'Please enter a valid phone number.', 'estecapelli' ),
+		'invalid_email' => __( 'Please enter a valid email address.', 'estecapelli' ),
+		'missing_name'  => __( 'Please enter your name.', 'estecapelli' ),
+	);
+	return $map[ $code ] ?? '';
+}
+
+/**
  * Human-readable source label, e.g. "Popup · Hair Transplant (/en/hair-transplant)".
  * This is what makes a lead attributable to a page/campaign.
  */
@@ -156,6 +192,15 @@ function estecapelli_process_lead( array $d ) {
 
 	if ( '' === $d['name'] ) {
 		return new WP_Error( 'missing_name', __( 'Name is required.', 'estecapelli' ) );
+	}
+
+	// Server-side safety net (the browser already blocks letters and checks the
+	// per-country format via intl-tel-input, but never trust the client).
+	if ( '' !== $d['phone'] && ! estecapelli_phone_looks_valid( $d['phone'] ) ) {
+		return new WP_Error( 'invalid_phone', __( 'Please enter a valid phone number.', 'estecapelli' ) );
+	}
+	if ( '' !== $d['email'] && ! is_email( $d['email'] ) ) {
+		return new WP_Error( 'invalid_email', __( 'Please enter a valid email address.', 'estecapelli' ) );
 	}
 
 	$source_label = estecapelli_lead_source_label( $d );
@@ -268,14 +313,17 @@ function estecapelli_handle_lead() {
 	if ( '' === $data['name'] ) {
 		return; // Name is the minimum required field.
 	}
-	estecapelli_process_lead( $data );
+	$result = estecapelli_process_lead( $data );
 
-	// Post/Redirect/Get → return to the submitting page with a success flag.
+	// Post/Redirect/Get → return to the submitting page. On a validation error
+	// come back with ?error=… instead of ?sent=1 so we never fake success.
 	$return = isset( $_POST['lead_return'] ) ? wp_validate_redirect( esc_url_raw( wp_unslash( $_POST['lead_return'] ) ), '' ) : '';
-	if ( $return ) {
-		$redirect = add_query_arg( 'sent', '1', $return ) . '#lead-form';
+	$base   = $return ?: home_url( '/en/contact' );
+	$anchor = $return ? '#lead-form' : '#contact-form';
+	if ( is_wp_error( $result ) ) {
+		$redirect = add_query_arg( 'lead_error', rawurlencode( $result->get_error_code() ), $base ) . $anchor;
 	} else {
-		$redirect = add_query_arg( 'sent', '1', home_url( '/en/contact' ) ) . '#contact-form';
+		$redirect = add_query_arg( 'sent', '1', $base ) . $anchor;
 	}
 	wp_safe_redirect( $redirect );
 	exit;

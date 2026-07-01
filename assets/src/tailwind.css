@@ -6975,6 +6975,27 @@
 	.contact-form__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-top: 0.5rem; }
 	.contact-form__wa { gap: 0.5rem; }
 
+	/* Invalid field state + inline error message (phone validation). */
+	.contact-form__field input[aria-invalid="true"] {
+		border-color: oklch(63% 0.2 25);
+		background: oklch(97% 0.02 25);
+	}
+	.contact-form__field input[aria-invalid="true"]:focus {
+		border-color: oklch(63% 0.2 25);
+		box-shadow: 0 0 0 3px oklch(63% 0.2 25 / 0.15);
+	}
+	.contact-form__error {
+		display: block; margin-top: 0.35rem;
+		font-size: 0.8125rem; font-weight: 600;
+		color: oklch(55% 0.2 25);
+	}
+	/* Error variant of the post-submit banner (no-JS classic path). */
+	.contact-alert--error {
+		background: oklch(96% 0.03 25);
+		border-color: oklch(80% 0.12 25);
+		color: oklch(50% 0.19 25);
+	}
+
 	/* Aside */
 	.contact-aside { display: flex; flex-direction: column; gap: 1.25rem; }
 	.contact-info {

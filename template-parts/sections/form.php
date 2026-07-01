@@ -32,6 +32,8 @@ if ( ! $title ) {
 $submit_label = $submit_label ?: __( 'Request a Free Consultation', 'estecapelli' );
 $return_url   = get_permalink();
 $sent         = isset( $_GET['sent'] ) && '1' === $_GET['sent']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$error_code   = isset( $_GET['lead_error'] ) ? sanitize_key( wp_unslash( $_GET['lead_error'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$error_msg    = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_lead_error_message( $error_code ) : '';
 ?>
 
 <section class="t-form" id="lead-form" aria-labelledby="t-form-<?php echo esc_attr( sanitize_title( $title ) ); ?>">
@@ -75,6 +77,10 @@ $sent         = isset( $_GET['sent'] ) && '1' === $_GET['sent']; // phpcs:ignore
 				<div class="contact-alert" role="status">
 					<?php estecapelli_icon( 'check-circle', array( 'width' => 20, 'height' => 20 ) ); ?>
 					<span><?php esc_html_e( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ); ?></span>
+				</div>
+			<?php elseif ( $error_msg ) : ?>
+				<div class="contact-alert contact-alert--error" role="alert">
+					<span><?php echo esc_html( $error_msg ); ?></span>
 				</div>
 			<?php endif; ?>
 

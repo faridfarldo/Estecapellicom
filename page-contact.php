@@ -35,7 +35,9 @@ $languages = array(
 	array( 'cc' => 'pt', 'label' => __( 'Portuguese', 'estecapelli' ) ),
 );
 
-$sent = isset( $_GET['sent'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$sent       = isset( $_GET['sent'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$error_code = isset( $_GET['lead_error'] ) ? sanitize_key( wp_unslash( $_GET['lead_error'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$error_msg  = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_lead_error_message( $error_code ) : '';
 ?>
 
 <div class="contact-page">
@@ -108,6 +110,10 @@ $sent = isset( $_GET['sent'] ); // phpcs:ignore WordPress.Security.NonceVerifica
 					<div class="contact-alert" role="status">
 						<?php estecapelli_icon( 'check-circle', array( 'width' => 20, 'height' => 20 ) ); ?>
 						<span><?php esc_html_e( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ); ?></span>
+					</div>
+				<?php elseif ( $error_msg ) : ?>
+					<div class="contact-alert contact-alert--error" role="alert">
+						<span><?php echo esc_html( $error_msg ); ?></span>
 					</div>
 				<?php endif; ?>
 
