@@ -687,7 +687,7 @@ if ( ! function_exists( 'estecapelli_signature_split_defaults' ) ) {
 					'trademark' => '®',
 					'tag'       => __( 'Treatment', 'estecapelli' ),
 					'cover'     => $img . 'vita-cover.webp',
-					'video'     => 'oINL-_dGV_M',
+					'video'     => '8C9DLaNJynU',
 					'cta'       => array(
 						'label' => __( 'Explore VITA®', 'estecapelli' ),
 						'url'   => $cta,
@@ -699,7 +699,7 @@ if ( ! function_exists( 'estecapelli_signature_split_defaults' ) ) {
 					'trademark' => '®',
 					'tag'       => __( 'Treatment', 'estecapelli' ),
 					'cover'     => $img . 'exosome-cover.webp',
-					'video'     => 'rb7IgHFZIto',
+					'video'     => '6_OK4rQ9cxE',
 					'cta'       => array(
 						'label' => __( 'Explore Exosome®', 'estecapelli' ),
 						'url'   => $cta,
