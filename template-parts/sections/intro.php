@@ -22,6 +22,8 @@ $position = $section['image_position'] ?? 'right';
 $cta      = $section['cta']            ?? array();
 $mtype    = ! empty( $section['media_type'] ) ? $section['media_type'] : 'image';
 $video_id = ! empty( $section['video_url'] ) ? estecapelli_youtube_id( $section['video_url'] ) : '';
+// Uploaded ACF image wins; otherwise fall back to a plain URL (theme-bundled).
+$image_src = ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' );
 
 if ( ! $title && ! $body ) {
 	return;
@@ -70,11 +72,11 @@ if ( ! $title && ! $body ) {
 					></iframe>
 				</div>
 			</figure>
-		<?php elseif ( 'image' === $mtype && ! empty( $image['url'] ) ) : ?>
+		<?php elseif ( 'image' === $mtype && $image_src ) : ?>
 			<figure class="t-intro__media">
 				<img
 					class="t-intro__img"
-					src="<?php echo esc_url( $image['url'] ); ?>"
+					src="<?php echo esc_url( $image_src ); ?>"
 					alt="<?php echo esc_attr( $image['alt'] ?? $title ); ?>"
 					width="<?php echo (int) ( $image['width']  ?? 1200 ); ?>"
 					height="<?php echo (int) ( $image['height'] ?? 800  ); ?>"

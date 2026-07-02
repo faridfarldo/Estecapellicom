@@ -16,11 +16,13 @@ $body    = $section['body']    ?? '';
 $footer  = $section['footer']  ?? '';
 $image   = $section['image']   ?? array();
 $items   = $section['items']   ?? array();
+// Uploaded ACF image wins; otherwise fall back to a plain URL (theme-bundled).
+$image_src = ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' );
 
 if ( ! $title || empty( $items ) ) { return; }
 ?>
 
-<section class="t-cand<?php echo ! empty( $image['url'] ) ? ' t-cand--with-image' : ''; ?>">
+<section class="t-cand<?php echo $image_src ? ' t-cand--with-image' : ''; ?>">
 	<div class="shell t-cand__shell">
 
 		<div class="t-cand__copy">
@@ -51,9 +53,9 @@ if ( ! $title || empty( $items ) ) { return; }
 			<?php endif; ?>
 		</div>
 
-		<?php if ( ! empty( $image['url'] ) ) : ?>
+		<?php if ( $image_src ) : ?>
 			<figure class="t-cand__media">
-				<img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>" loading="lazy" decoding="async" />
+				<img src="<?php echo esc_url( $image_src ); ?>" alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>" loading="lazy" decoding="async" />
 			</figure>
 		<?php endif; ?>
 

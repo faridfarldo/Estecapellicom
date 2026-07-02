@@ -30,6 +30,55 @@ function estecapelli_register_content_importer() {
 }
 
 /**
+ * Non-destructive merge for a page's flexible-content sections.
+ *
+ * Re-importing must NOT wipe media an editor uploaded in the panel. The seed
+ * only carries text and (occasionally) theme-bundled image URLs — it leaves the
+ * ACF image / gallery / video slots empty. So for each section, whenever the
+ * seed value for `image`, `video_id` or `items` is empty, we keep whatever is
+ * already stored on the post instead of overwriting it with nothing.
+ *
+ * Matching is by position AND layout type, so sections can never cross-map.
+ * Existing values are read RAW (unformatted) so they round-trip through
+ * update_field exactly as ACF stored them (image = attachment ID, etc.).
+ *
+ * @param array $new_sections Sections from the seed.
+ * @param int   $post_id      Target post.
+ * @return array Merged sections safe to pass to update_field().
+ */
+function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
+	if ( ! function_exists( 'get_field' ) ) {
+		return $new_sections;
+	}
+	$existing = get_field( 'page_sections', $post_id, false ); // raw values
+	if ( ! is_array( $existing ) || empty( $existing ) ) {
+		return $new_sections;
+	}
+
+	foreach ( $new_sections as $i => $section ) {
+		if ( ! isset( $existing[ $i ] ) || ! is_array( $existing[ $i ] ) ) {
+			continue;
+		}
+		$old = $existing[ $i ];
+
+		// Only merge same-type sections so positions can't drift across types.
+		$new_layout = $section['acf_fc_layout'] ?? '';
+		$old_layout = $old['acf_fc_layout'] ?? '';
+		if ( $new_layout && $old_layout && $new_layout !== $old_layout ) {
+			continue;
+		}
+
+		foreach ( array( 'image', 'video_id', 'items' ) as $key ) {
+			if ( array_key_exists( $key, $section ) && empty( $section[ $key ] ) && ! empty( $old[ $key ] ) ) {
+				$new_sections[ $i ][ $key ] = $old[ $key ];
+			}
+		}
+	}
+
+	return $new_sections;
+}
+
+/**
  * Find or create a page by slug + parent path; return its ID. Resolves the
  * parent_slug to a post_parent ID, walking the seed if the parent was just
  * created in the same run.
@@ -94,7 +143,7 @@ function estecapelli_import_page( array $data, array &$slug_to_id ) {
 	$slug_to_id[ $data['slug'] ] = $post_id;
 
 	if ( function_exists( 'update_field' ) && ! empty( $data['sections'] ) ) {
-		update_field( 'page_sections', $data['sections'], $post_id );
+		update_field( 'page_sections', estecapelli_merge_preserve_media( $data['sections'], $post_id ), $post_id );
 	}
 
 	return $post_id;
@@ -142,9 +191,9 @@ function estecapelli_import_treatment( array $data ) {
 		}
 	}
 
-	// Write ACF Flexible Content.
+	// Write ACF Flexible Content (preserving any uploaded media on re-import).
 	if ( function_exists( 'update_field' ) && ! empty( $data['sections'] ) ) {
-		update_field( 'page_sections', $data['sections'], $post_id );
+		update_field( 'page_sections', estecapelli_merge_preserve_media( $data['sections'], $post_id ), $post_id );
 	}
 
 	return $post_id;
@@ -475,7 +524,7 @@ function estecapelli_render_treatments_importer() {
 
 			<p class="description" style="max-width:740px; margin-top:1rem;">
 				<strong><?php esc_html_e( 'Heads-up:', 'estecapelli' ); ?></strong>
-				<?php esc_html_e( 'Re-importing overwrites the page_sections field with the seed data. Any edits made in the WordPress editor since the last import will be replaced.', 'estecapelli' ); ?>
+				<?php esc_html_e( 'Re-importing refreshes the section text from the seed, but PRESERVES any images, before/after galleries and videos you uploaded in the editor (kept whenever the seed leaves that slot empty). Manual text edits to a section are still replaced.', 'estecapelli' ); ?>
 			</p>
 		</form>
 	</div>

@@ -181,6 +181,13 @@ function estecapelli_register_acf_field_groups() {
 									'conditional_logic' => array( array( array( 'field' => 'field_hero_media_type', 'operator' => '==', 'value' => 'image' ) ) ),
 								),
 								array(
+									'key'          => 'field_hero_image_url',
+									'label'        => __( 'Image URL (fallback for theme-bundled images)', 'estecapelli' ),
+									'name'         => 'image_url',
+									'type'         => 'text',
+									'instructions' => __( 'Used only when no image is uploaded above.', 'estecapelli' ),
+								),
+								array(
 									'key'               => 'field_hero_video_id',
 									'label'             => __( 'YouTube video link', 'estecapelli' ),
 									'name'              => 'video_id',
@@ -300,6 +307,13 @@ function estecapelli_register_acf_field_groups() {
 									'type'          => 'image',
 									'return_format' => 'array',
 									'preview_size'  => 'medium',
+								),
+								array(
+									'key'          => 'field_cand_image_url',
+									'label'        => __( 'Side image URL (fallback for theme-bundled images)', 'estecapelli' ),
+									'name'         => 'image_url',
+									'type'         => 'text',
+									'instructions' => __( 'Used only when no image is uploaded above.', 'estecapelli' ),
 								),
 								array(
 									'key'          => 'field_cand_items',
@@ -636,6 +650,13 @@ function estecapelli_register_acf_field_groups() {
 									'return_format'     => 'array',
 									'preview_size'      => 'medium',
 									'conditional_logic' => array( array( array( 'field' => 'field_intro_media_type', 'operator' => '==', 'value' => 'image' ) ) ),
+								),
+								array(
+									'key'          => 'field_intro_image_url',
+									'label'        => __( 'Image URL (fallback for theme-bundled images)', 'estecapelli' ),
+									'name'         => 'image_url',
+									'type'         => 'text',
+									'instructions' => __( 'Used only when no image is uploaded above.', 'estecapelli' ),
 								),
 								array(
 									'key'               => 'field_intro_video_url',

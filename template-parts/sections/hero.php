@@ -69,11 +69,15 @@ if ( ! $title ) {
 
 		</div>
 
-		<?php if ( 'image' === $mtype && ! empty( $image['url'] ) ) : ?>
+		<?php
+		// Uploaded ACF image wins; otherwise fall back to a plain URL (theme-bundled).
+		$image_src = ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' );
+		?>
+		<?php if ( 'image' === $mtype && $image_src ) : ?>
 			<figure class="t-hero__visual">
 				<img
 					class="t-hero__img"
-					src="<?php echo esc_url( $image['url'] ); ?>"
+					src="<?php echo esc_url( $image_src ); ?>"
 					alt="<?php echo esc_attr( $image['alt'] ?? $title ); ?>"
 					width="<?php echo (int) ( $image['width']  ?? 1200 ); ?>"
 					height="<?php echo (int) ( $image['height'] ?? 800  ); ?>"
