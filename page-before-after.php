@@ -173,8 +173,9 @@ if ( function_exists( 'get_field' ) ) {
 									$image = $item['image'] ?? array();
 									if ( empty( $image['url'] ) ) { continue; }
 									?>
+									<?php $zoom_url = $image['sizes']['large'] ?? $image['url']; ?>
 									<li class="t-gallery__card">
-										<figure class="t-gallery__media">
+										<figure class="t-gallery__media" data-img-zoom="<?php echo esc_url( $zoom_url ); ?>" data-caption="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" role="button" tabindex="0" aria-label="<?php esc_attr_e( 'Enlarge result', 'estecapelli' ); ?>">
 											<img
 												src="<?php echo esc_url( $image['url'] ); ?>"
 												alt="<?php echo esc_attr( $image['alt'] ?: __( 'Before and after result', 'estecapelli' ) ); ?>"

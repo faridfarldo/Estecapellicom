@@ -168,7 +168,13 @@ $gallery_url = home_url( '/en/before-after' );
 					</button>
 
 					<figure class="home-ba__stage">
+						<button type="button" class="home-ba__nav home-ba__nav--prev" data-hba-prev aria-label="<?php esc_attr_e( 'Previous result', 'estecapelli' ); ?>">
+							<?php estecapelli_icon( 'chevron-left', array( 'width' => 24, 'height' => 24 ) ); ?>
+						</button>
 						<img class="home-ba__main" data-hba-main src="" alt="" decoding="async" />
+						<button type="button" class="home-ba__nav home-ba__nav--next" data-hba-next aria-label="<?php esc_attr_e( 'Next result', 'estecapelli' ); ?>">
+							<?php estecapelli_icon( 'chevron-right', array( 'width' => 24, 'height' => 24 ) ); ?>
+						</button>
 					</figure>
 
 					<ul class="home-ba__thumbs">
