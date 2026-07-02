@@ -122,40 +122,17 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 			"- norwood_stage: approximate Norwood-Hamilton stage, integer 1-7.\n" .
 			"- transplant_recommended: false when hair loss is minimal (around Norwood 1-2) and a transplant is NOT needed yet; true otherwise.\n" .
 			"- graft_range: a BROAD, indicative FUE graft range {min,max} (realistic, usually 1000-5000; keep it wide, not a falsely exact number). If transplant_recommended is false, set both min and max to 0.\n" .
-			"- summary: AT MOST TWO short sentences, plain and friendly. Cover only: whether the donor area looks good or limited, what their Norwood stage means in everyday words, and roughly why that many grafts. If transplant_recommended is false, say their hair loss is minimal and a transplant isn't needed at this stage. If status is \"no_hair_detected\", say you couldn't clearly see their hair and ask for clearer, well-lit photos. Do NOT write a long paragraph, and do NOT mention consultations, bookings or next steps — keep it short.",
+			"- summary: AT MOST TWO short sentences, plain and friendly. Cover only: whether the donor area looks good or limited, what their Norwood stage means in everyday words, and roughly why that many grafts. If transplant_recommended is false, say their hair loss is minimal and a transplant isn't needed at this stage. If status is \"no_hair_detected\", say you couldn't clearly see their hair and ask for clearer, well-lit photos. Do NOT write a long paragraph, and do NOT mention consultations, bookings or next steps — keep it short.\n\n" .
+			"Respond with ONLY a raw JSON object — no markdown, no code fences, no words before or after — with exactly these keys: status (\"ok\" or \"no_hair_detected\"), norwood_stage (integer 1-7), transplant_recommended (true/false), graft_range (object with integer \"min\" and \"max\"), summary (string).",
 	);
 
 	$payload = array(
-		'model'         => ESTECAPELLI_ANTHROPIC_MODEL,
-		'max_tokens'    => 600,
-		'messages'      => array(
+		'model'      => ESTECAPELLI_ANTHROPIC_MODEL,
+		'max_tokens' => 600,
+		// The prompt asks for a raw JSON object; we parse it from the text reply.
+		// (Kept plain for broad compatibility across models / API versions.)
+		'messages'   => array(
 			array( 'role' => 'user', 'content' => $content ),
-		),
-		// Structured output guarantees the exact JSON shape the widget expects.
-		'output_config' => array(
-			'format' => array(
-				'type'   => 'json_schema',
-				'schema' => array(
-					'type'                 => 'object',
-					'additionalProperties' => false,
-					'properties'           => array(
-						'status'                 => array( 'type' => 'string', 'enum' => array( 'ok', 'no_hair_detected' ) ),
-						'norwood_stage'          => array( 'type' => 'integer', 'enum' => array( 1, 2, 3, 4, 5, 6, 7 ) ),
-						'transplant_recommended' => array( 'type' => 'boolean' ),
-						'graft_range'            => array(
-							'type'                 => 'object',
-							'additionalProperties' => false,
-							'properties'           => array(
-								'min' => array( 'type' => 'integer' ),
-								'max' => array( 'type' => 'integer' ),
-							),
-							'required'             => array( 'min', 'max' ),
-						),
-						'summary'                => array( 'type' => 'string' ),
-					),
-					'required'             => array( 'status', 'norwood_stage', 'transplant_recommended', 'graft_range', 'summary' ),
-				),
-			),
 		),
 	);
 
@@ -187,18 +164,28 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 	}
 
 	$data = json_decode( $raw, true );
-	// Find the text block holding the structured JSON and decode it.
+	// Find the text block holding the JSON and decode it, tolerating markdown
+	// code fences or stray text around the object.
 	$analysis = null;
 	if ( ! empty( $data['content'] ) && is_array( $data['content'] ) ) {
 		foreach ( $data['content'] as $block ) {
-			if ( isset( $block['type'], $block['text'] ) && 'text' === $block['type'] ) {
-				$decoded = json_decode( $block['text'], true );
-				if ( is_array( $decoded ) && isset( $decoded['norwood_stage'], $decoded['graft_range'] ) ) {
-					$analysis = $decoded;
-					break;
-				}
+			if ( ! isset( $block['type'], $block['text'] ) || 'text' !== $block['type'] ) {
+				continue;
+			}
+			$text    = trim( (string) $block['text'] );
+			$text    = preg_replace( '/^```(?:json)?\s*|\s*```$/i', '', $text ); // strip ``` fences
+			$decoded = json_decode( $text, true );
+			if ( ! is_array( $decoded ) && preg_match( '/\{.*\}/s', $text, $m ) ) {
+				$decoded = json_decode( $m[0], true ); // extract the first {...}
+			}
+			if ( is_array( $decoded ) && isset( $decoded['norwood_stage'], $decoded['graft_range'] ) ) {
+				$analysis = $decoded;
+				break;
 			}
 		}
+	}
+	if ( ! $analysis ) {
+		error_log( 'Estecapelli hair-analyze parse failed. Body: ' . substr( $raw, 0, 1000 ) );
 	}
 
 	if ( ! $analysis ) {
