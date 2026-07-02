@@ -334,9 +334,11 @@
 					var id = holder.getAttribute('data-video-id');
 					if (!id) return;
 					// Played from a click (a user gesture), so autoplay WITH sound is
-					// allowed; native YouTube controls give play/pause/volume/fullscreen.
+					// allowed. controls=0 strips the progress/time bar and the title;
+					// cc_load_policy=0 keeps captions off — leaving just the centre
+					// play/pause overlay (click the video to toggle).
 					var src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) +
-						'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+						'?autoplay=1&rel=0&modestbranding=1&playsinline=1&controls=0&cc_load_policy=0&iv_load_policy=3&showinfo=0&fs=0&disablekb=1';
 					holder.innerHTML = '<iframe src="' + src + '" title="" ' +
 						'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
 				} else {

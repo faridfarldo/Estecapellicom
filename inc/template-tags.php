@@ -1243,7 +1243,7 @@ if ( ! function_exists( 'estecapelli_signature_methods_defaults' ) ) {
 					'title'      => __( 'VITA Treatment', 'estecapelli' ),
 					'subtitle'   => __( 'Power Derived from Vitamins', 'estecapelli' ),
 					'tease'      => __( 'A vitamin-cooled bath that keeps grafts strong out of the body.', 'estecapelli' ),
-					'image'      => $img . 'vita.jpg',
+					'image'      => get_template_directory_uri() . '/assets/images/techniques/vita-cover.webp',
 					'icon'       => 'sparkles',
 					'stat'       => __( 'Cool-Vapor', 'estecapelli' ),
 					'stat_label' => __( 'Vitamin-nourished grafts', 'estecapelli' ),
