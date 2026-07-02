@@ -65,9 +65,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hair-analysis/ailogo.webp' ); ?>" alt="" loading="lazy" decoding="async" />
 				</span>
 				<span class="hal__option-title"><?php esc_html_e( 'Analyse my photos with AI', 'estecapelli' ); ?></span>
-				<span class="hal__option-desc"><?php esc_html_e( 'Upload a few photos of your hair and our AI prepares your assessment.', 'estecapelli' ); ?></span>
+				<span class="hal__option-desc"><?php esc_html_e( 'We take your photos and analyse your hair condition with an AI we have specially trained.', 'estecapelli' ); ?></span>
 				<span class="hal__option-cta">
-					<?php esc_html_e( 'Upload photos', 'estecapelli' ); ?>
+					<?php esc_html_e( 'Start AI Analysis', 'estecapelli' ); ?>
 					<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
 				</span>
 			</button>

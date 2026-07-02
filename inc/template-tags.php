@@ -814,7 +814,7 @@ if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
 		// Icons aren't stored on terms — map the known category slugs.
 		$icons = array(
 			'hair-transplant'   => 'hair',
-			'plastic-surgery'   => 'face',
+			'plastic-surgery'   => 'sparkles',
 			'dental-treatment'  => 'tooth',
 			'medical-treatment' => 'medical-plus',
 		);
@@ -970,7 +970,7 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 				),
 				array(
 					'key'   => 'plastic-surgery',
-					'icon'  => 'face',
+					'icon'  => 'sparkles',
 					'label' => $plastic_tag,
 					'items' => array(
 						array(
