@@ -2872,6 +2872,12 @@
 		object-fit: cover;
 		display: block;
 	}
+	/* The hair-transplant feature shows the square AI logo — contain it so the
+	   whole mark is visible on the dark art panel instead of being cropped. */
+	[data-mega-key="hair-transplant"] .megamenu__feature-media {
+		object-fit: contain;
+		padding: 12px;
+	}
 	.megamenu__feature-art::after {
 		content: "";
 		position: absolute;

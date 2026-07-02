@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<section class="hal" aria-labelledby="hal-title" data-hal>
+<section class="hal" id="ai-analysis" aria-labelledby="hal-title" data-hal>
 
 	<div class="hal__bg" aria-hidden="true">
 		<span class="hal__glow hal__glow--a"></span>

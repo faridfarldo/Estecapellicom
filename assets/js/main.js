@@ -499,6 +499,17 @@
 			});
 		});
 
+		// Deep link: the header "Start AI Analysis" feature links to #ai-analysis
+		// and should land directly on the photo-analysis step, not the chooser.
+		function openFromHash() {
+			if (window.location.hash === '#ai-analysis') {
+				show('photos');
+				root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+		}
+		window.addEventListener('hashchange', openFromHash);
+		openFromHash();
+
 		root.querySelectorAll('[data-hal-back]').forEach(function (btn) {
 			btn.addEventListener('click', function () {
 				show(null);
