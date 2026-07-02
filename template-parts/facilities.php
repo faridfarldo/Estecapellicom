@@ -91,7 +91,7 @@ $partners = $data['partners'] ?? array();
 						<?php foreach ( $partners['logos'] as $logo ) : ?>
 							<li class="facilities__logo" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
 								<?php if ( ! empty( $logo['image'] ) ) : ?>
-									<img class="facilities__logo-photo" src="<?php echo esc_url( $logo['image'] ); ?>" alt="<?php echo esc_attr( $logo['label'] ?? '' ); ?>" loading="lazy" decoding="async" />
+									<img class="facilities__logo-photo" src="<?php echo esc_url( $logo['image'] ); ?>" alt="<?php echo esc_attr( $logo['label'] ?? '' ); ?>" loading="eager" decoding="async" />
 								<?php endif; ?>
 								<span class="facilities__logo-name">
 									<?php echo esc_html( $logo['label'] ?? '' ); ?>
