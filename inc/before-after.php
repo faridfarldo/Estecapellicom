@@ -112,6 +112,43 @@ function estecapelli_render_before_after_carousel( $treatment_id ) {
  *
  * @return array List of groups: [ 'term' => WP_Term, 'services' => [ 'service' => WP_Post, 'results' => WP_Post[] ] ].
  */
+/**
+ * Fixed display order for hair-transplant services (services block + before/after
+ * tabs). Lower = earlier; anything not listed sorts after, alphabetically.
+ *
+ * @param string $slug Treatment post slug.
+ * @return int
+ */
+function estecapelli_treatment_order_rank( $slug ) {
+	$order = array(
+		'exosome-fue-hair-transplant',
+		'vita-treatment',
+		'sapphire-fue-hair-transplant',
+		'dhi-hair-transplant',
+		'female-hair-transplant',
+		'beard-transplant',
+	);
+	$i = array_search( $slug, $order, true );
+	return ( false === $i ) ? 99 : $i;
+}
+
+/**
+ * uasort() comparator: order a group's `services` by the fixed rank above.
+ */
+function estecapelli_sort_services_by_rank( array &$services ) {
+	uasort(
+		$services,
+		function ( $a, $b ) {
+			$ra = estecapelli_treatment_order_rank( $a['service']->post_name );
+			$rb = estecapelli_treatment_order_rank( $b['service']->post_name );
+			if ( $ra !== $rb ) {
+				return $ra - $rb;
+			}
+			return strcmp( $a['service']->post_title, $b['service']->post_title );
+		}
+	);
+}
+
 function estecapelli_results_grouped() {
 	if ( ! function_exists( 'get_field' ) ) {
 		return array();
@@ -173,6 +210,10 @@ function estecapelli_results_grouped() {
 			return strcmp( $a['term']->name, $b['term']->name );
 		}
 	);
+
+	foreach ( $buckets as $__key => $__group ) {
+		estecapelli_sort_services_by_rank( $buckets[ $__key ]['services'] );
+	}
 
 	return array_values( $buckets );
 }
@@ -260,6 +301,10 @@ function estecapelli_gallery_grouped() {
 			return strcmp( $a['term']->name, $b['term']->name );
 		}
 	);
+
+	foreach ( $buckets as $__key => $__group ) {
+		estecapelli_sort_services_by_rank( $buckets[ $__key ]['services'] );
+	}
 
 	return array_values( $buckets );
 }

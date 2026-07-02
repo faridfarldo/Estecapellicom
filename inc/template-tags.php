@@ -863,8 +863,21 @@ if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
 				continue;
 			}
 
+			// Apply the fixed hair-transplant display order (others keep query order).
+			$posts = $query->posts;
+			if ( function_exists( 'estecapelli_treatment_order_rank' ) ) {
+				usort(
+					$posts,
+					function ( $a, $b ) {
+						$ra = estecapelli_treatment_order_rank( $a->post_name );
+						$rb = estecapelli_treatment_order_rank( $b->post_name );
+						return ( $ra !== $rb ) ? $ra - $rb : 0;
+					}
+				);
+			}
+
 			$items = array();
-			foreach ( $query->posts as $post ) {
+			foreach ( $posts as $post ) {
 				$items[] = array(
 					'tag'         => $term->name,
 					'title'       => get_the_title( $post ),
