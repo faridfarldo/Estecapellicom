@@ -1606,13 +1606,44 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 
 			// Mixed photo + video gallery of the clinic. type: image | video
 			// (video opens the shared patient-stories lightbox).
+			// Big video tile (left blank for now — swap in the clinic video later),
+			// then four room tiles. Each room tile carries a gallery of photos:
+			// the first is the cover; clicking opens the lightbox to browse them.
 			'gallery' => array(
 				array( 'type' => 'video', 'image' => $img . 'facilities/clinic.jpg', 'video' => 'oINL-_dGV_M', 'caption' => __( 'Clinic walkthrough', 'estecapelli' ) ),
-				array( 'type' => 'image', 'image' => $img . 'expertise/tricholab.jpg', 'caption' => __( 'TrichoLab analysis', 'estecapelli' ) ),
-				array( 'type' => 'image', 'image' => $img . 'expertise/vita.jpg', 'caption' => __( 'Operating theatre', 'estecapelli' ) ),
-				array( 'type' => 'image', 'image' => $img . 'facilities/clinic.jpg', 'caption' => __( 'Reception & lounge', 'estecapelli' ) ),
-				array( 'type' => 'image', 'image' => $img . 'expertise/exosome.png', 'caption' => __( 'Treatment suite', 'estecapelli' ) ),
-				array( 'type' => 'image', 'image' => $img . 'doctors/mehmet-hanifi-kutlar.jpg', 'caption' => __( 'Our medical team', 'estecapelli' ) ),
+				array(
+					'type'    => 'image',
+					'caption' => __( 'Hair Transplant Surgery Room', 'estecapelli' ),
+					'images'  => array(
+						$img . 'clinic/surgery/surgery-1.webp',
+						$img . 'clinic/surgery/surgery-2.webp',
+						$img . 'clinic/surgery/surgery-3.webp',
+					),
+				),
+				array(
+					'type'    => 'image',
+					'caption' => __( 'TrichoLab Room', 'estecapelli' ),
+					'images'  => array(
+						$img . 'clinic/tricolab/tricolab-1.webp',
+						$img . 'clinic/tricolab/tricolab-2.webp',
+					),
+				),
+				array(
+					'type'    => 'image',
+					'caption' => __( 'Washing Units', 'estecapelli' ),
+					'images'  => array(
+						$img . 'clinic/washing/washing-1.webp',
+						$img . 'clinic/washing/washing-2.webp',
+					),
+				),
+				array(
+					'type'    => 'image',
+					'caption' => __( 'Dental Clinic', 'estecapelli' ),
+					'images'  => array(
+						$img . 'clinic/dental/dental-1.webp',
+						$img . 'clinic/dental/dental-2.webp',
+					),
+				),
 			),
 
 			// Partner hotels — a rotating strip. Add 'image' => url to a logo entry

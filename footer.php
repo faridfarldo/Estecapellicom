@@ -188,14 +188,22 @@ $sitemap    = estecapelli_footer_sitemap();
 	</span>
 </a>
 
-<!-- Global image lightbox — opened by any [data-img-zoom] element (before/after, etc.). -->
+<!-- Global image lightbox — opened by any [data-img-zoom] (single) or
+     [data-img-gallery] (JSON array → browsable gallery with arrows). -->
 <div class="img-lightbox" data-img-lightbox hidden role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Photo viewer', 'estecapelli' ); ?>">
 	<button type="button" class="img-lightbox__backdrop" data-img-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>"></button>
 	<figure class="img-lightbox__shell">
 		<button type="button" class="img-lightbox__close" data-img-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>">
 			<?php estecapelli_icon( 'close', array( 'width' => 22, 'height' => 22 ) ); ?>
 		</button>
+		<button type="button" class="img-lightbox__nav img-lightbox__nav--prev" data-img-lightbox-prev aria-label="<?php esc_attr_e( 'Previous photo', 'estecapelli' ); ?>" hidden>
+			<?php estecapelli_icon( 'chevron-left', array( 'width' => 26, 'height' => 26 ) ); ?>
+		</button>
 		<img class="img-lightbox__img" data-img-lightbox-img src="" alt="" />
+		<button type="button" class="img-lightbox__nav img-lightbox__nav--next" data-img-lightbox-next aria-label="<?php esc_attr_e( 'Next photo', 'estecapelli' ); ?>" hidden>
+			<?php estecapelli_icon( 'chevron-right', array( 'width' => 26, 'height' => 26 ) ); ?>
+		</button>
+		<span class="img-lightbox__count" data-img-lightbox-count hidden></span>
 	</figure>
 </div>
 
