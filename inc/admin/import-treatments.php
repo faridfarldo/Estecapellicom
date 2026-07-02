@@ -30,6 +30,17 @@ function estecapelli_register_content_importer() {
 }
 
 /**
+ * Reduce an ACF image value to its attachment ID (accepts an ID or the
+ * formatted array get_field returns).
+ */
+function estecapelli_image_to_id( $img ) {
+	if ( is_array( $img ) ) {
+		return (int) ( $img['ID'] ?? $img['id'] ?? 0 );
+	}
+	return (int) $img;
+}
+
+/**
  * Non-destructive merge for a page's flexible-content sections.
  *
  * Re-importing must NOT wipe media an editor uploaded in the panel. The seed
@@ -38,9 +49,10 @@ function estecapelli_register_content_importer() {
  * seed value for `image`, `video_id` or `items` is empty, we keep whatever is
  * already stored on the post instead of overwriting it with nothing.
  *
- * Matching is by position AND layout type, so sections can never cross-map.
- * Existing values are read RAW (unformatted) so they round-trip through
- * update_field exactly as ACF stored them (image = attachment ID, etc.).
+ * We read the EXISTING value formatted (get_field default) — for flexible
+ * content the unformatted value is just an array of layout-name strings, not the
+ * row data — then reduce any image back to its attachment ID before writing, so
+ * update_field stores it correctly. Matching is by position AND layout type.
  *
  * @param array $new_sections Sections from the seed.
  * @param int   $post_id      Target post.
@@ -50,13 +62,13 @@ function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
 	if ( ! function_exists( 'get_field' ) ) {
 		return $new_sections;
 	}
-	$existing = get_field( 'page_sections', $post_id, false ); // raw values
+	$existing = get_field( 'page_sections', $post_id ); // formatted rows
 	if ( ! is_array( $existing ) || empty( $existing ) ) {
 		return $new_sections;
 	}
 
 	foreach ( $new_sections as $i => $section ) {
-		if ( ! isset( $existing[ $i ] ) || ! is_array( $existing[ $i ] ) ) {
+		if ( empty( $existing[ $i ] ) || ! is_array( $existing[ $i ] ) ) {
 			continue;
 		}
 		$old = $existing[ $i ];
@@ -68,10 +80,30 @@ function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
 			continue;
 		}
 
-		foreach ( array( 'image', 'video_id', 'items' ) as $key ) {
-			if ( array_key_exists( $key, $section ) && empty( $section[ $key ] ) && ! empty( $old[ $key ] ) ) {
-				$new_sections[ $i ][ $key ] = $old[ $key ];
+		// Preserve a single uploaded image (store its ID).
+		if ( array_key_exists( 'image', $section ) && empty( $section['image'] ) && ! empty( $old['image'] ) ) {
+			$id = estecapelli_image_to_id( $old['image'] );
+			if ( $id ) {
+				$new_sections[ $i ]['image'] = $id;
 			}
+		}
+
+		// Preserve an uploaded/entered video id (scalar).
+		if ( array_key_exists( 'video_id', $section ) && empty( $section['video_id'] ) && ! empty( $old['video_id'] ) ) {
+			$new_sections[ $i ]['video_id'] = $old['video_id'];
+		}
+
+		// Preserve uploaded gallery/repeater rows (before/after) when the seed
+		// has none — reducing each row's image back to an attachment ID.
+		if ( array_key_exists( 'items', $section ) && empty( $section['items'] ) && ! empty( $old['items'] ) && is_array( $old['items'] ) ) {
+			$rows = array();
+			foreach ( $old['items'] as $row ) {
+				if ( is_array( $row ) && array_key_exists( 'image', $row ) ) {
+					$row['image'] = estecapelli_image_to_id( $row['image'] );
+				}
+				$rows[] = $row;
+			}
+			$new_sections[ $i ]['items'] = $rows;
 		}
 	}
 
