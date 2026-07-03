@@ -105,6 +105,21 @@ function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
 			}
 			$new_sections[ $i ]['items'] = $rows;
 		}
+
+		// Preserve an uploaded photo-slider gallery (array of images → IDs). The
+		// seed never carries slider photos, so always keep the editor's when set.
+		if ( empty( $section['slider_images'] ) && ! empty( $old['slider_images'] ) && is_array( $old['slider_images'] ) ) {
+			$ids = array();
+			foreach ( $old['slider_images'] as $img ) {
+				$id = estecapelli_image_to_id( $img );
+				if ( $id ) {
+					$ids[] = $id;
+				}
+			}
+			if ( $ids ) {
+				$new_sections[ $i ]['slider_images'] = $ids;
+			}
+		}
 	}
 
 	return $new_sections;

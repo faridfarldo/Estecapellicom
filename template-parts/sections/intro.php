@@ -22,6 +22,7 @@ $position = $section['image_position'] ?? 'right';
 $cta      = $section['cta']            ?? array();
 $mtype    = ! empty( $section['media_type'] ) ? $section['media_type'] : 'image';
 $video_id = ! empty( $section['video_url'] ) ? estecapelli_youtube_id( $section['video_url'] ) : '';
+$slides   = ( 'slider' === $mtype && ! empty( $section['slider_images'] ) && is_array( $section['slider_images'] ) ) ? $section['slider_images'] : array();
 // Uploaded ACF image wins; otherwise fall back to a plain URL (theme-bundled).
 $image_src = ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' );
 
@@ -59,7 +60,45 @@ if ( ! $title && ! $body ) {
 			<?php endif; ?>
 		</div>
 
-		<?php if ( 'video' === $mtype && $video_id ) : ?>
+		<?php if ( 'slider' === $mtype && $slides ) : ?>
+			<?php
+			$slide_urls = array();
+			foreach ( $slides as $slide ) {
+				if ( ! empty( $slide['url'] ) ) {
+					$slide_urls[] = $slide['url'];
+				}
+			}
+			?>
+			<figure class="t-intro__media t-intro__media--slider" data-intro-slider>
+				<div class="t-intro__slides">
+					<?php foreach ( $slides as $s_index => $slide ) : ?>
+						<?php if ( empty( $slide['url'] ) ) { continue; } ?>
+						<img
+							class="t-intro__slide<?php echo 0 === $s_index ? ' is-active' : ''; ?>"
+							src="<?php echo esc_url( $slide['url'] ); ?>"
+							alt="<?php echo esc_attr( $slide['alt'] ?? $title ); ?>"
+							loading="lazy"
+							decoding="async"
+							data-img-zoom="<?php echo esc_url( $slide['url'] ); ?>"
+							data-img-gallery="<?php echo esc_attr( wp_json_encode( $slide_urls ) ); ?>"
+						/>
+					<?php endforeach; ?>
+				</div>
+				<?php if ( count( $slides ) > 1 ) : ?>
+					<button type="button" class="t-intro__slider-nav t-intro__slider-nav--prev" data-intro-slider-prev aria-label="<?php esc_attr_e( 'Previous photo', 'estecapelli' ); ?>">
+						<?php estecapelli_icon( 'chevron-left', array( 'width' => 22, 'height' => 22 ) ); ?>
+					</button>
+					<button type="button" class="t-intro__slider-nav t-intro__slider-nav--next" data-intro-slider-next aria-label="<?php esc_attr_e( 'Next photo', 'estecapelli' ); ?>">
+						<?php estecapelli_icon( 'chevron-right', array( 'width' => 22, 'height' => 22 ) ); ?>
+					</button>
+					<div class="t-intro__slider-dots" data-intro-slider-dots>
+						<?php foreach ( $slides as $d_index => $slide ) : ?>
+							<button type="button" class="t-intro__slider-dot<?php echo 0 === $d_index ? ' is-active' : ''; ?>" data-intro-slider-dot="<?php echo (int) $d_index; ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Go to photo %d', 'estecapelli' ), $d_index + 1 ) ); ?>"></button>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+			</figure>
+		<?php elseif ( 'video' === $mtype && $video_id ) : ?>
 			<figure class="t-intro__media t-intro__media--video">
 				<div class="t-intro__video">
 					<iframe

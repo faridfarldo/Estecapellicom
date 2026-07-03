@@ -1152,6 +1152,43 @@
 		});
 	}
 
+	function initIntroSliders() {
+		var sliders = document.querySelectorAll('[data-intro-slider]');
+		if (!sliders.length) return;
+
+		sliders.forEach(function (slider) {
+			var slides = Array.prototype.slice.call(slider.querySelectorAll('.t-intro__slide'));
+			if (slides.length < 2) return;
+
+			var dots = Array.prototype.slice.call(slider.querySelectorAll('[data-intro-slider-dot]'));
+			var prev = slider.querySelector('[data-intro-slider-prev]');
+			var next = slider.querySelector('[data-intro-slider-next]');
+			var index = 0;
+
+			function show(i) {
+				index = (i + slides.length) % slides.length;
+				slides.forEach(function (s, n) { s.classList.toggle('is-active', n === index); });
+				dots.forEach(function (d, n) { d.classList.toggle('is-active', n === index); });
+			}
+
+			if (prev) prev.addEventListener('click', function () { show(index - 1); });
+			if (next) next.addEventListener('click', function () { show(index + 1); });
+			dots.forEach(function (d) {
+				d.addEventListener('click', function () { show(parseInt(d.getAttribute('data-intro-slider-dot'), 10) || 0); });
+			});
+
+			// Touch swipe.
+			var startX = null;
+			slider.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+			slider.addEventListener('touchend', function (e) {
+				if (startX === null) return;
+				var dx = e.changedTouches[0].clientX - startX;
+				if (Math.abs(dx) > 40) { show(dx < 0 ? index + 1 : index - 1); }
+				startX = null;
+			});
+		});
+	}
+
 	ready(function () {
 		initMobileNav();
 		initLangSwitch();
@@ -1169,6 +1206,7 @@
 		initFacilitiesLightbox();
 		initImageLightbox();
 		initCarousels();
+		initIntroSliders();
 		initStepbooks();
 		initCopyLink();
 		initLeadPopup();
