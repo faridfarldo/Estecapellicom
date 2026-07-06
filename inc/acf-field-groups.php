@@ -36,7 +36,65 @@ function estecapelli_register_acf_field_groups() {
 				'redirect'   => false,
 			)
 		);
+
+		// Custom Icons — lets editors add their own SVG icons that then appear in
+		// every "Icon" dropdown across the site (rendered by estecapelli_icon()).
+		acf_add_options_page(
+			array(
+				'page_title' => __( 'Custom Icons', 'estecapelli' ),
+				'menu_title' => __( 'Custom Icons', 'estecapelli' ),
+				'menu_slug'  => 'estecapelli-icons',
+				'capability' => 'edit_theme_options',
+				'position'   => 60,
+				'icon_url'   => 'dashicons-art',
+				'redirect'   => false,
+			)
+		);
 	}
+
+	acf_add_local_field_group(
+		array(
+			'key'      => 'group_custom_icons',
+			'title'    => __( 'Custom Icons', 'estecapelli' ),
+			'fields'   => array(
+				array(
+					'key'          => 'field_custom_icons',
+					'label'        => __( 'Your Icons', 'estecapelli' ),
+					'name'         => 'custom_icons',
+					'type'         => 'repeater',
+					'layout'       => 'block',
+					'button_label' => __( '+ Add Icon', 'estecapelli' ),
+					'instructions' => __( 'Add your own icons here, then pick them by name in any “Icon” dropdown across the site. Tip: copy an outline icon from lucide.dev (24×24, stroke “currentColor”) so it matches the theme’s style and colour.', 'estecapelli' ),
+					'sub_fields'   => array(
+						array(
+							'key'          => 'field_custom_icon_key',
+							'label'        => __( 'Name', 'estecapelli' ),
+							'name'         => 'key',
+							'type'         => 'text',
+							'required'     => 1,
+							'instructions' => __( 'Lowercase, no spaces — e.g. sapphire-blade. This is what you pick in the Icon dropdowns.', 'estecapelli' ),
+							'wrapper'      => array( 'width' => '30' ),
+						),
+						array(
+							'key'          => 'field_custom_icon_svg',
+							'label'        => __( 'SVG code', 'estecapelli' ),
+							'name'         => 'svg',
+							'type'         => 'textarea',
+							'required'     => 1,
+							'rows'         => 5,
+							'instructions' => __( 'Paste the full <svg>…</svg> code. Only the shapes are kept; the theme adds size and colour. Scripts are stripped for safety.', 'estecapelli' ),
+							'wrapper'      => array( 'width' => '70' ),
+						),
+					),
+				),
+			),
+			'location' => array(
+				array(
+					array( 'param' => 'options_page', 'operator' => '==', 'value' => 'estecapelli-icons' ),
+				),
+			),
+		)
+	);
 
 	// Icons available in estecapelli_icon() — exposed as ACF dropdowns.
 	$icon_choices = array(
@@ -72,6 +130,13 @@ function estecapelli_register_acf_field_groups() {
 		'globe'        => 'globe',
 		'languages'    => 'languages',
 	);
+
+	// Append editor-defined custom icons so they show up in every icon dropdown.
+	if ( function_exists( 'estecapelli_custom_icons' ) ) {
+		foreach ( array_keys( estecapelli_custom_icons() ) as $custom_key ) {
+			$icon_choices[ $custom_key ] = $custom_key . ' ' . __( '(custom)', 'estecapelli' );
+		}
+	}
 
 	acf_add_local_field_group(
 		array(

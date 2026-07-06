@@ -83,7 +83,78 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 
 		$path = $paths[ $name ] ?? '';
 
+		// Fall back to an editor-defined custom icon (Appearance → Custom Icons).
+		if ( '' === $path ) {
+			$custom = estecapelli_custom_icons();
+			if ( isset( $custom[ $name ] ) ) {
+				$path = $custom[ $name ];
+			}
+		}
+
 		echo '<svg ' . $attr . '>' . $path . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+
+if ( ! function_exists( 'estecapelli_sanitize_icon_svg' ) ) {
+	/**
+	 * Sanitise pasted SVG markup for use as an icon. Keeps only the inner shape
+	 * elements (our wrapper supplies the <svg> tag, viewBox, size and colour) and
+	 * strips scripts, event handlers and anything not on the allow-list.
+	 *
+	 * @param string $svg Raw pasted markup (full <svg> or inner shapes).
+	 * @return string Safe inner-SVG markup.
+	 */
+	function estecapelli_sanitize_icon_svg( $svg ) {
+		$svg = (string) $svg;
+		// If a whole <svg> was pasted, keep only its inner markup.
+		if ( false !== stripos( $svg, '<svg' ) && preg_match( '#<svg[^>]*>(.*?)</svg>#is', $svg, $m ) ) {
+			$svg = $m[1];
+		}
+		$common  = array(
+			'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true,
+			'stroke-linejoin' => true, 'opacity' => true, 'transform' => true, 'fill-rule' => true, 'clip-rule' => true,
+		);
+		$allowed = array(
+			'path'     => $common + array( 'd' => true ),
+			'circle'   => $common + array( 'cx' => true, 'cy' => true, 'r' => true ),
+			'ellipse'  => $common + array( 'cx' => true, 'cy' => true, 'rx' => true, 'ry' => true ),
+			'rect'     => $common + array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true ),
+			'line'     => $common + array( 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true ),
+			'polyline' => $common + array( 'points' => true ),
+			'polygon'  => $common + array( 'points' => true ),
+			'g'        => $common,
+		);
+		return wp_kses( $svg, $allowed );
+	}
+}
+
+if ( ! function_exists( 'estecapelli_custom_icons' ) ) {
+	/**
+	 * Editor-defined custom icons from the Custom Icons options page.
+	 *
+	 * @return array [ key => sanitised inner-SVG markup ].
+	 */
+	function estecapelli_custom_icons() {
+		static $cache = null;
+		if ( null !== $cache ) {
+			return $cache;
+		}
+		$cache = array();
+		if ( ! function_exists( 'get_field' ) ) {
+			return $cache;
+		}
+		$rows = get_field( 'custom_icons', 'option' );
+		if ( empty( $rows ) || ! is_array( $rows ) ) {
+			return $cache;
+		}
+		foreach ( $rows as $row ) {
+			$key = sanitize_key( $row['key'] ?? '' );
+			$svg = (string) ( $row['svg'] ?? '' );
+			if ( '' !== $key && '' !== $svg ) {
+				$cache[ $key ] = estecapelli_sanitize_icon_svg( $svg );
+			}
+		}
+		return $cache;
 	}
 }
 
