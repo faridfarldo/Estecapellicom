@@ -207,12 +207,18 @@ foreach ( $result_ids as $rid ) {
 			// Full-screen patient portrait: the smile is the hero. Subject sits on
 			// the left, so the copy + CTA sit over the dark negative space on the
 			// right. Entrance animations replay each time the slide becomes active.
-			$dental_img = get_template_directory_uri() . '/assets/images/hero/dental-hero.webp';
-			$dental_cta = home_url( '/en/dental-treatment/' );
+			$dental_img    = get_template_directory_uri() . '/assets/images/hero/dental-hero.webp';
+			$dental_before = get_template_directory_uri() . '/assets/images/hero/dental-before.webp';
+			$dental_cta    = home_url( '/en/dental-treatment/' );
 			?>
 			<div class="hero-x__slide hero-x__slide--dental" data-hero-slide data-hero-title="<?php esc_attr_e( 'Estecapelli Dental', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $dental_img ); ?>">
 				<img class="hero-dnt__bg" src="<?php echo esc_url( $dental_img ); ?>" alt="<?php esc_attr_e( 'Estecapelli dental patient smiling', 'estecapelli' ); ?>" loading="lazy" decoding="async" />
 				<span class="hero-dnt__scrim" aria-hidden="true"></span>
+
+				<figure class="hero-dnt__before" aria-hidden="true">
+					<img src="<?php echo esc_url( $dental_before ); ?>" alt="" loading="lazy" decoding="async" />
+					<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
+				</figure>
 
 				<div class="shell hero-dnt">
 					<div class="hero-dnt__copy">
