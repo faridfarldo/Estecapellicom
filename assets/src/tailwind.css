@@ -6559,7 +6559,9 @@
 		filter: blur(40px);
 		z-index: -1;
 	}
-	.t-doctor__photo img { width: 100%; height: 100%; object-fit: cover; }
+	/* Bias the crop toward the top so the head/face is never cut off (portraits
+	   put the head near the top of the frame). */
+	.t-doctor__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
 	.t-doctor__copy { display: flex; flex-direction: column; gap: 0.75rem; }
 	.t-doctor__name {
 		margin: 0;
