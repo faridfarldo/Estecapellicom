@@ -83,11 +83,23 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 
 		$path = $paths[ $name ] ?? '';
 
-		// Fall back to an editor-defined custom icon (Appearance → Custom Icons).
+		// Editor-defined custom icon (Custom Icons page). These keep their own
+		// viewBox and are recoloured to the theme via fill="currentColor".
 		if ( '' === $path ) {
 			$custom = estecapelli_custom_icons();
 			if ( isset( $custom[ $name ] ) ) {
-				$path = $custom[ $name ];
+				$ic = $custom[ $name ];
+				printf(
+					'<svg class="icon icon--%1$s %2$s" width="%3$d" height="%4$d" viewBox="%5$s" fill="currentColor" stroke="none" %6$s>%7$s</svg>',
+					esc_attr( $name ),
+					esc_attr( $args['class'] ),
+					(int) $args['width'],
+					(int) $args['height'],
+					esc_attr( $ic['viewbox'] ),
+					$args['aria-label'] ? sprintf( 'role="img" aria-label="%s"', esc_attr( $args['aria-label'] ) ) : 'aria-hidden="true" focusable="false"',
+					$ic['inner'] // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
+				return;
 			}
 		}
 
@@ -128,11 +140,44 @@ if ( ! function_exists( 'estecapelli_sanitize_icon_svg' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_prepare_custom_svg' ) ) {
+	/**
+	 * Turn raw SVG markup into a safe payload for estecapelli_icon(): the inner
+	 * shapes (sanitised) plus the original viewBox, so any icon size/ratio works.
+	 *
+	 * @param string $raw Raw SVG file contents or pasted markup.
+	 * @return array{inner:string,viewbox:string}|null
+	 */
+	function estecapelli_prepare_custom_svg( $raw ) {
+		$raw = (string) $raw;
+		if ( function_exists( 'estecapelli_sanitize_svg_markup' ) ) {
+			$raw = estecapelli_sanitize_svg_markup( $raw );
+		}
+		if ( false === stripos( $raw, '<svg' ) ) {
+			return null;
+		}
+		$viewbox = '0 0 24 24';
+		if ( preg_match( '/viewBox\s*=\s*["\']([^"\']+)["\']/i', $raw, $m ) ) {
+			$viewbox = trim( $m[1] );
+		}
+		$inner = $raw;
+		if ( preg_match( '#<svg[^>]*>(.*)</svg>#is', $raw, $m ) ) {
+			$inner = $m[1];
+		}
+		$inner = estecapelli_sanitize_icon_svg( $inner ); // allow-list the shapes
+		if ( '' === trim( $inner ) ) {
+			return null;
+		}
+		return array( 'inner' => trim( $inner ), 'viewbox' => $viewbox );
+	}
+}
+
 if ( ! function_exists( 'estecapelli_custom_icons' ) ) {
 	/**
-	 * Editor-defined custom icons from the Custom Icons options page.
+	 * Editor-defined custom icons from the Custom Icons options page. Each row is
+	 * a name + an uploaded SVG file (legacy: pasted SVG code).
 	 *
-	 * @return array [ key => sanitised inner-SVG markup ].
+	 * @return array [ key => array{inner:string,viewbox:string} ].
 	 */
 	function estecapelli_custom_icons() {
 		static $cache = null;
@@ -149,9 +194,25 @@ if ( ! function_exists( 'estecapelli_custom_icons' ) ) {
 		}
 		foreach ( $rows as $row ) {
 			$key = sanitize_key( $row['key'] ?? '' );
-			$svg = (string) ( $row['svg'] ?? '' );
-			if ( '' !== $key && '' !== $svg ) {
-				$cache[ $key ] = estecapelli_sanitize_icon_svg( $svg );
+			if ( '' === $key ) {
+				continue;
+			}
+			$raw = '';
+			// Preferred: uploaded SVG file.
+			$file = $row['file'] ?? null;
+			if ( is_array( $file ) && ! empty( $file['ID'] ) ) {
+				$path = get_attached_file( (int) $file['ID'] );
+				if ( $path && is_readable( $path ) ) {
+					$raw = (string) file_get_contents( $path ); // phpcs:ignore
+				}
+			}
+			// Legacy fallback: pasted SVG code.
+			if ( '' === $raw && ! empty( $row['svg'] ) ) {
+				$raw = (string) $row['svg'];
+			}
+			$prepared = $raw ? estecapelli_prepare_custom_svg( $raw ) : null;
+			if ( $prepared ) {
+				$cache[ $key ] = $prepared;
 			}
 		}
 		return $cache;
