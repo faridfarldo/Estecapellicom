@@ -72,9 +72,15 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 			array(
 				'slug'          => 'op-dr-mehmet-palali',
 				'name'          => 'Op. Dr. Mehmet Palalı',
-				'position'      => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-				'bio'           => $surgeon_bio( __( 'Op. Dr. Mehmet Palalı', 'estecapelli' ) ),
-				'credentials'   => $surgeon_credentials,
+				'position'      => __( 'Ear, Nose & Throat (ENT) Specialist', 'estecapelli' ),
+				'bio'           => __( 'Op. Dr. Mehmet Palalı completed his medical degree at İstanbul University, Cerrahpaşa Faculty of Medicine, earning the title of Medical Doctor, and went on to complete his specialist training at Ankara Numune Training and Research Hospital, qualifying as an Ear, Nose and Throat (ENT) specialist. Over more than a decade he has practised across leading Turkish hospitals — including Yozgat State Hospital and Medilife Bağcılar Hospital — and today cares for patients at Özel Güneşli Erdem Hospital in Bağcılar, İstanbul, pairing precise surgical technique with a calm, patient-first approach.', 'estecapelli' ),
+				'credentials'   => array(
+					__( 'ENT Specialist — Otorhinolaryngology (Kulak Burun Boğaz)', 'estecapelli' ),
+					__( 'Medical degree — İstanbul University, Cerrahpaşa Faculty of Medicine (2007)', 'estecapelli' ),
+					__( 'ENT specialist training — Ankara Numune Training & Research Hospital (2013)', 'estecapelli' ),
+					__( '15+ years of clinical experience across leading Turkish hospitals', 'estecapelli' ),
+					__( 'Special interests — snoring & sleep apnoea, chronic sinusitis, nasal obstruction, tonsil disorders', 'estecapelli' ),
+				),
 				'menu_order'    => 2,
 				'old_page_path' => 'about-us/our-doctors/op-dr-mehmet-palali',
 			),
