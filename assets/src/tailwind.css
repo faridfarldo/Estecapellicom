@@ -2772,7 +2772,14 @@
 		font-weight: 600;
 		line-height: 1;
 		box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
-		transition: transform 200ms ease, box-shadow 200ms ease;
+		transition: transform 250ms ease, box-shadow 200ms ease, opacity 250ms ease;
+	}
+	/* Hidden once the footer scrolls into view (toggled by JS). */
+	.float-wp--hidden {
+		opacity: 0;
+		transform: translateY(24px) scale(0.9);
+		pointer-events: none;
+		visibility: hidden;
 	}
 	.float-wp:hover {
 		color: #fff;

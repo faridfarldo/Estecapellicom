@@ -1174,6 +1174,20 @@
 		});
 	}
 
+	// Hide the floating WhatsApp button once the footer is reached; show it again
+	// while scrolling back up above the footer.
+	function initFloatWhatsApp() {
+		var btn = document.querySelector('.float-wp');
+		var footer = document.querySelector('.site-footer');
+		if (!btn || !footer || !('IntersectionObserver' in window)) return;
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (e) {
+				btn.classList.toggle('float-wp--hidden', e.isIntersecting);
+			});
+		}, { threshold: 0 });
+		io.observe(footer);
+	}
+
 	function initIntroSliders() {
 		var sliders = document.querySelectorAll('[data-intro-slider]');
 		if (!sliders.length) return;
@@ -1229,6 +1243,7 @@
 		initImageLightbox();
 		initCarousels();
 		initIntroSliders();
+		initFloatWhatsApp();
 		initStepbooks();
 		initCopyLink();
 		initLeadPopup();
