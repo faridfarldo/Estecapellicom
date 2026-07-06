@@ -1761,7 +1761,7 @@
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		animation: home-ba-wall 22s linear infinite;
+		animation: home-ba-wall 55s linear infinite;
 	}
 	.home-ba__wall:hover .home-ba__walltrack { animation-play-state: paused; }
 	@keyframes home-ba-wall {
@@ -1903,18 +1903,21 @@
 	}
 	.home-ba__thumbs {
 		display: flex;
-		flex-wrap: nowrap;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-content: flex-start;
 		gap: 0.6rem;
-		/* Single row: centred when few, horizontally scrollable for many. */
-		width: fit-content;
-		max-width: 100%;
-		margin: 0.25rem auto 0;
-		padding-bottom: 6px;
+		/* Wrap all thumbnails into rows so every result is visible and clickable;
+		   if there are many, the block scrolls vertically (mouse-wheel friendly). */
+		width: 100%;
+		max-width: 780px;
+		margin: 0.5rem auto 0;
+		padding: 4px;
 		list-style: none;
-		overflow-x: auto;
-		scrollbar-width: none;
+		max-height: 232px;
+		overflow-y: auto;
+		scrollbar-width: thin;
 	}
-	.home-ba__thumbs::-webkit-scrollbar { display: none; }
 	.home-ba__thumbs li { flex: 0 0 auto; }
 	.home-ba__thumb {
 		flex: 0 0 auto;
