@@ -4,9 +4,9 @@
  *
  *   Slide 1: interactive Exosome/VITA diagonal split (estecapelli_signature_split).
  *   Slide 2: "most experienced" expert slide with patient photo + reviews badge.
- *   Slide 3: women's hair transplant — copy beside an auto-playing intro video.
+ *   Slide 3: Estecapelli Dental — a full-bleed patient portrait with animated copy.
  *
- * Slides 2 & 3 read from estecapelli_hero_slides(). Auto-advances; arrows + dots.
+ * Slide 2 reads from estecapelli_hero_slides(). Auto-advances; arrows + dots.
  *
  * @package Estecapelli
  */
@@ -21,7 +21,6 @@ $panels = $split['panels'];
 
 $slides = estecapelli_hero_slides();
 $exp    = $slides['expert'];
-$women  = $slides['women'];
 
 // Real patient before/after sets for the "experience" slide. Each folder under
 // /assets/images/hero-results/{id}/ holds after.jpeg (the big result) plus
@@ -203,58 +202,35 @@ foreach ( $result_ids as $rid ) {
 				</div>
 			</div>
 
-			<!-- ===== Slide 3 — Women's hair transplant ===== -->
+			<!-- ===== Slide 3 — Estecapelli Dental (full-bleed photo) ===== -->
 			<?php
-			// Self-hosted background clip (a short, muted, compressed loop cut from
-			// the clinic film). Beats a YouTube embed here: zero player chrome (no
-			// title, no play button), guaranteed muted autoplay, and it only loads
-			// when this slide is reached (preload="none" + JS play). The poster
-			// doubles as the nav mini-preview thumbnail.
-			$women_video  = get_template_directory_uri() . '/assets/videos/women-hero.mp4';
-			$women_poster = get_template_directory_uri() . '/assets/images/hero/women-hero-poster.jpg';
-			$women_thumb  = $women_poster;
+			// Full-screen patient portrait: the smile is the hero. Subject sits on
+			// the left, so the copy + CTA sit over the dark negative space on the
+			// right. Entrance animations replay each time the slide becomes active.
+			$dental_img = get_template_directory_uri() . '/assets/images/hero/dental-hero.webp';
+			$dental_cta = home_url( '/en/dental-treatment/' );
 			?>
-			<div class="hero-x__slide hero-x__slide--women" data-hero-slide data-hero-title="<?php esc_attr_e( 'Women’s Hair Transplant', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $women_thumb ); ?>">
-				<div class="hero-wmn__bgvideo" aria-hidden="true">
-					<video
-						class="hero-wmn__video"
-						muted
-						loop
-						playsinline
-						preload="none"
-						poster="<?php echo esc_url( $women_poster ); ?>">
-						<source src="<?php echo esc_url( $women_video ); ?>" type="video/mp4" />
-					</video>
-				</div>
-				<span class="hero-wmn__scrim" aria-hidden="true"></span>
+			<div class="hero-x__slide hero-x__slide--dental" data-hero-slide data-hero-title="<?php esc_attr_e( 'Estecapelli Dental', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $dental_img ); ?>">
+				<img class="hero-dnt__bg" src="<?php echo esc_url( $dental_img ); ?>" alt="<?php esc_attr_e( 'Estecapelli dental patient smiling', 'estecapelli' ); ?>" loading="lazy" decoding="async" />
+				<span class="hero-dnt__scrim" aria-hidden="true"></span>
 
-				<div class="shell hero-wmn">
-					<div class="hero-wmn__copy">
-						<?php if ( ! empty( $women['eyebrow'] ) ) : ?>
-							<span class="hero-wmn__eyebrow"><?php echo esc_html( $women['eyebrow'] ); ?></span>
-						<?php endif; ?>
-						<h2 class="hero-wmn__title"><?php echo esc_html( $women['headline'] ); ?></h2>
-						<?php if ( ! empty( $women['body'] ) ) : ?>
-							<p class="hero-wmn__lead"><?php echo esc_html( $women['body'] ); ?></p>
-						<?php endif; ?>
-
-						<?php if ( ! empty( $women['points'] ) ) : ?>
-							<ul class="hero-wmn__points">
-								<?php foreach ( $women['points'] as $point ) : ?>
-									<li>
-										<?php estecapelli_icon( 'check-circle', array( 'width' => 18, 'height' => 18 ) ); ?>
-										<?php echo esc_html( $point ); ?>
-									</li>
-								<?php endforeach; ?>
-							</ul>
-						<?php endif; ?>
-
-						<?php if ( ! empty( $women['cta']['url'] ) ) : ?>
-							<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $women['cta']['url'] ); ?>">
-								<?php echo esc_html( $women['cta']['label'] ); ?>
-								<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
-							</a>
-						<?php endif; ?>
+				<div class="shell hero-dnt">
+					<div class="hero-dnt__copy">
+						<span class="hero-dnt__eyebrow">
+							<?php estecapelli_icon( 'sparkles', array( 'width' => 14, 'height' => 14 ) ); ?>
+							<?php esc_html_e( 'Estecapelli Dental', 'estecapelli' ); ?>
+						</span>
+						<h2 class="hero-dnt__title"><?php esc_html_e( 'A Smile Designed Around You', 'estecapelli' ); ?></h2>
+						<p class="hero-dnt__lead"><?php esc_html_e( 'Hollywood smiles, veneers and full-mouth restorations — crafted by our specialists for a natural, confident result that lasts.', 'estecapelli' ); ?></p>
+						<ul class="hero-dnt__points">
+							<li><?php estecapelli_icon( 'check-circle', array( 'width' => 18, 'height' => 18 ) ); ?><?php esc_html_e( 'Hollywood Smile & porcelain veneers', 'estecapelli' ); ?></li>
+							<li><?php estecapelli_icon( 'check-circle', array( 'width' => 18, 'height' => 18 ) ); ?><?php esc_html_e( 'Implants & full-mouth restoration', 'estecapelli' ); ?></li>
+							<li><?php estecapelli_icon( 'check-circle', array( 'width' => 18, 'height' => 18 ) ); ?><?php esc_html_e( 'One trusted clinic, all-inclusive care', 'estecapelli' ); ?></li>
+						</ul>
+						<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $dental_cta ); ?>">
+							<?php esc_html_e( 'Explore Dental Treatments', 'estecapelli' ); ?>
+							<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
+						</a>
 					</div>
 				</div>
 			</div>
