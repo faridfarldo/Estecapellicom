@@ -653,11 +653,9 @@
 			height: var(--dnt-banner);
 			object-position: 42% 56%;
 		}
-		.hero-dnt__scrim {
-			top: 0; bottom: auto;
-			height: calc(var(--dnt-banner) + 2px);
-			background: linear-gradient(0deg, #0b0b0d 0%, oklch(6% 0.02 265 / 0.35) 42%, transparent 74%);
-		}
+		/* No gradient on mobile — the photo banner meets the dark copy panel with a
+		   clean edge. */
+		.hero-dnt__scrim { display: none; }
 		.hero-dnt {
 			display: block;
 			min-height: 0;
