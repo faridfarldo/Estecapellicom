@@ -564,13 +564,14 @@
 		position: absolute; inset: 0; z-index: 0;
 		width: 100%; height: 100%;
 		object-fit: cover; object-position: 32% center;
-		transform: scale(1.06);
+		transform: scale(1);
 	}
-	/* Slow Ken-Burns zoom while the slide is on screen. */
+	/* Slow, subtle Ken-Burns zoom while the slide is on screen (starts at the
+	   least-cropped baseline so more of the shot is visible). */
 	.hero-x__slide--dental[aria-hidden="false"] .hero-dnt__bg {
-		animation: hero-dnt-zoom 14s ease-out forwards;
+		animation: hero-dnt-zoom 16s ease-out forwards;
 	}
-	@keyframes hero-dnt-zoom { from { transform: scale(1.06); } to { transform: scale(1.15); } }
+	@keyframes hero-dnt-zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
 
 	.hero-dnt__scrim {
 		position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -680,7 +681,7 @@
 		.hero-x__slide--dental[aria-hidden="false"] .hero-dnt__bg,
 		.hero-x__slide--dental[aria-hidden="false"] .hero-dnt__copy > * { animation: none; }
 		.hero-dnt__copy > * { opacity: 1; }
-		.hero-dnt__bg { transform: scale(1.06); }
+		.hero-dnt__bg { transform: scale(1); }
 	}
 
 	/* ---------- Homepage hero — interactive diagonal split ---------- */
