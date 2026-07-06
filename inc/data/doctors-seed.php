@@ -41,6 +41,24 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 		return array(
 
 			array(
+				'slug'          => 'prof-dr-binnur-tuzun',
+				'name'          => 'Prof. Dr. Binnur Tüzün',
+				'position'      => __( 'Medical Director & Dermatology Specialist', 'estecapelli' ),
+				'bio'           => __( 'Prof. Dr. Binnur Tüzün is one of Turkey’s most respected dermatologists, with more than forty years of academic and clinical experience. She graduated from İstanbul University, Cerrahpaşa Faculty of Medicine in 1983 and qualified as a specialist in Dermatology and Venereology in 1989, becoming an Associate Professor of Dermatology in 1991 and a full Professor in 1995. Over her career she has held academic posts at Cerrahpaşa and at Trakya University Faculty of Medicine, directed the Experimental Animals Research Centre, contributed to numerous scientific studies and trained many physicians. Today, as Estecapelli’s Medical Director (Mesul Müdür), she leads the protection of our medical-quality standards, the management of patient-safety processes and the delivery of ethical healthcare — bringing her scientific approach and decades of experience to ensure care of the highest standard for our patients.', 'estecapelli' ),
+				'credentials'   => array(
+					__( 'Medical Director (Mesul Müdür) — Estecapelli', 'estecapelli' ),
+					__( '40+ years of medical and academic experience', 'estecapelli' ),
+					__( 'Professor of Dermatology since 1995', 'estecapelli' ),
+					__( 'Medical degree — İstanbul University, Cerrahpaşa Faculty of Medicine (1983)', 'estecapelli' ),
+					__( 'Specialist in Dermatology & Venereology (1989)', 'estecapelli' ),
+					__( 'Former academic — Trakya University Faculty of Medicine', 'estecapelli' ),
+					__( 'Former Director — Experimental Animals Research Centre', 'estecapelli' ),
+					__( 'Leadership in patient safety, quality management & ethical care', 'estecapelli' ),
+				),
+				'menu_order'    => 0,
+			),
+
+			array(
 				'slug'             => 'mehmet-hanifi-kutlar',
 				'name'             => 'Mehmet Hanifi Kutlar',
 				'position'         => __( 'Hair Transplant Specialist & Co-Founder', 'estecapelli' ),
@@ -53,7 +71,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Research background — supported by TÜBİTAK', 'estecapelli' ),
 				),
 				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/kutlar-resume.webp',
-				'menu_order'       => 0,
+				'menu_order'       => 1,
 				// Legacy page lived under Medical Director, so its URL changes —
 				// inc/redirects.php 301s the old path to the new profile.
 				'old_page_path'    => 'about-us/medical-director/mehmet-hanifi-kutlar',
@@ -72,7 +90,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Member — ASPS, ISAPS & TPRECD (Turkish Plastic Surgery Association)', 'estecapelli' ),
 					__( 'Special interests — breast, body contouring, facial & rhinoplasty aesthetics', 'estecapelli' ),
 				),
-				'menu_order'    => 1,
+				'menu_order'    => 2,
 				'old_page_path' => 'about-us/our-doctors/op-dr-hasan-celik',
 			),
 
@@ -88,7 +106,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( '15+ years of clinical experience across leading Turkish hospitals', 'estecapelli' ),
 					__( 'Special interests — snoring & sleep apnoea, chronic sinusitis, nasal obstruction, tonsil disorders', 'estecapelli' ),
 				),
-				'menu_order'    => 2,
+				'menu_order'    => 3,
 				'old_page_path' => 'about-us/our-doctors/op-dr-mehmet-palali',
 			),
 
@@ -98,7 +116,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 				'position'      => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
 				'bio'           => $surgeon_bio( __( 'Op. Dr. Necdet Derici', 'estecapelli' ) ),
 				'credentials'   => $surgeon_credentials,
-				'menu_order'    => 3,
+				'menu_order'    => 4,
 				'old_page_path' => 'about-us/our-doctors/op-dr-necdet-derici',
 			),
 
@@ -108,7 +126,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 				'position'      => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
 				'bio'           => $surgeon_bio( __( 'Op. Dr. Ali Durmuş', 'estecapelli' ) ),
 				'credentials'   => $surgeon_credentials,
-				'menu_order'    => 4,
+				'menu_order'    => 5,
 				'old_page_path' => 'about-us/our-doctors/op-dr-ali-durmus',
 			),
 
