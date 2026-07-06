@@ -41,22 +41,22 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 		return array(
 
 			array(
-				'slug'          => 'mehmet-hanifi-kutlar',
-				'name'          => 'Dr. Mehmet Hanifi Kutlar',
-				'position'      => __( 'Medical Director & Co-founder', 'estecapelli' ),
-				'bio'           => __( 'Dr. Mehmet Hanifi Kutlar is the Medical Director and co-founder of Estecapelli, overseeing clinical standards across hair restoration, plastic surgery, dental and non-surgical aesthetics. With more than 15 years in aesthetic medicine, he shaped the clinic’s treatment protocols and surgical-quality framework, and personally guides the medical team that delivers them every day. [Add one or two sentences on his background, training and the founding story of Estecapelli.]', 'estecapelli' ),
-				'credentials'   => array(
-					__( 'Medical Director & Co-founder — Estecapelli', 'estecapelli' ),
-					__( '15+ years in aesthetic medicine', 'estecapelli' ),
-					__( 'Medical degree — [University, year]', 'estecapelli' ),
-					__( 'Member — [Professional society]', 'estecapelli' ),
-					__( 'Areas of focus — [e.g. hair restoration, aesthetic medicine]', 'estecapelli' ),
-					__( 'Languages — [Turkish, English]', 'estecapelli' ),
+				'slug'             => 'mehmet-hanifi-kutlar',
+				'name'             => 'Mehmet Hanifi Kutlar',
+				'position'         => __( 'Hair Transplant Specialist & Co-Founder', 'estecapelli' ),
+				'bio'              => __( 'Mehmet Hanifi Kutlar is a hair-transplant specialist and co-founder of Estecapelli. Born in Istanbul in 1988, he studied health sciences at Süleyman Demirel, Nişantaşı and Üsküdar Universities and has spent his career at the forefront of hair restoration — training many of the specialists now working in clinics around the world. Alongside Estecapelli he co-founded the medical-travel group Bench Turizm, building an operation that today spans seven countries and serves patients from more than 47 nations, with his work featured across international press.', 'estecapelli' ),
+				'credentials'      => array(
+					__( 'Co-founder — Estecapelli & Bench Turizm', 'estecapelli' ),
+					__( 'Hair-transplant specialist — trainer of specialists worldwide', 'estecapelli' ),
+					__( 'Health-sciences education — Süleyman Demirel, Nişantaşı & Üsküdar Universities', 'estecapelli' ),
+					__( 'International reach — active in 7 countries, patients from 47+ nations', 'estecapelli' ),
+					__( 'Research background — supported by TÜBİTAK', 'estecapelli' ),
 				),
-				'menu_order'    => 0,
+				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/kutlar-resume.webp',
+				'menu_order'       => 0,
 				// Legacy page lived under Medical Director, so its URL changes —
 				// inc/redirects.php 301s the old path to the new profile.
-				'old_page_path' => 'about-us/medical-director/mehmet-hanifi-kutlar',
+				'old_page_path'    => 'about-us/medical-director/mehmet-hanifi-kutlar',
 			),
 
 			array(

@@ -22,6 +22,16 @@ while ( have_posts() ) :
 	$bio         = function_exists( 'get_field' ) ? (string) get_field( 'bio' ) : '';
 	$credentials = function_exists( 'get_field' ) ? get_field( 'credentials' ) : array();
 
+	// Résumé image: prefer a dedicated résumé photo (uploaded or theme-bundled
+	// URL); otherwise reuse the roster thumbnail. Never changes the thumbnail.
+	$resume_photo     = function_exists( 'get_field' ) ? get_field( 'resume_photo' ) : array();
+	$resume_photo_url = function_exists( 'get_field' ) ? (string) get_field( 'resume_photo_url' ) : '';
+	if ( is_array( $resume_photo ) && ! empty( $resume_photo['url'] ) ) {
+		$photo = $resume_photo;
+	} elseif ( '' !== $resume_photo_url ) {
+		$photo = array( 'url' => $resume_photo_url, 'alt' => $name );
+	}
+
 	// Build the profile section payload the shared renderer expects, then load
 	// the same template the page builder uses. This keeps one source of truth
 	// for the profile markup and styling.

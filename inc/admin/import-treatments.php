@@ -290,6 +290,9 @@ function estecapelli_import_doctor( array $data ) {
 			$data['credentials'] ?? array()
 		);
 		update_field( 'credentials', $credentials, $post_id );
+		// Theme-bundled résumé photo URL (thumbnail is left untouched). Only the
+		// url fallback is seeded; an editor-uploaded résumé photo wins over it.
+		update_field( 'resume_photo_url', $data['resume_photo_url'] ?? '', $post_id );
 	}
 
 	// Retire the legacy page so the content lives in one place and the doctor
