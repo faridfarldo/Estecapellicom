@@ -607,7 +607,9 @@
 
 	.hero-dnt {
 		position: relative; z-index: 2;
-		min-height: clamp(460px, 66vh, 640px);
+		/* Taller frame = the wide cover image crops far less top/bottom, so the
+		   whole face shows instead of a zoomed middle band. */
+		min-height: clamp(560px, 84vh, 860px);
 		display: flex; align-items: center; justify-content: flex-end;
 	}
 	.hero-dnt__copy {
