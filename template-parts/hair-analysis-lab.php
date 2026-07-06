@@ -35,10 +35,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php esc_html_e( 'Hair Analysis Lab', 'estecapelli' ); ?>
 			</span>
 			<h2 id="hal-title" class="hal__title">
-				<?php esc_html_e( 'Analysis With Estecapelli', 'estecapelli' ); ?>
+				<?php esc_html_e( 'Your Personalised Hair Plan, Powered by Estecapelli', 'estecapelli' ); ?>
 				<span class="hal__title-ai">AI</span>
 			</h2>
-			<p class="hal__lead"><?php esc_html_e( 'Get a personalised hair-loss assessment. Choose how you would like to begin.', 'estecapelli' ); ?></p>
+			<p class="hal__lead"><?php esc_html_e( 'We trained our AI on the results of more than 15,000 patients. Learning from their success stories, it analyses your condition and guides you to the treatment that fits you best.', 'estecapelli' ); ?></p>
 		</header>
 
 		<!-- Step 1: choose an option -->
