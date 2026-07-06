@@ -6228,14 +6228,14 @@
 		display: grid; place-items: center;
 		width: 48px; height: 48px;
 		border-radius: 14px;
-		background: var(--color-trust-50, var(--color-brand-50));
-		color: var(--color-trust-500);
+		background: oklch(48% 0.13 260 / 0.08);
+		color: var(--color-brand-600);
 		flex-shrink: 0;
 		transition: background 0.25s ease, color 0.25s ease;
 	}
 	.t-cand__check .icon { width: 32px; height: 32px; }
 	.t-cand__item:hover .t-cand__check {
-		background: var(--color-trust-500);
+		background: var(--color-brand-600);
 		color: white;
 	}
 	.t-cand__label { display: block; min-width: 0; }
@@ -6542,7 +6542,7 @@
 		font-size: 0.9375rem; font-weight: 500;
 		color: oklch(88% 0.02 260);
 	}
-	.t-price__feature-icon { color: var(--color-trust-500); flex-shrink: 0; margin-top: 2px; }
+	.t-price__feature-icon { color: var(--color-brand-600); flex-shrink: 0; margin-top: 2px; }
 	.t-price__cta { width: 100%; justify-content: center; margin-top: 0.25rem; }
 	.t-price__note {
 		margin: 1rem 0 0;
