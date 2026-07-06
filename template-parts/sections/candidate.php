@@ -16,6 +16,7 @@ $body    = $section['body']    ?? '';
 $footer  = $section['footer']  ?? '';
 $image   = $section['image']   ?? array();
 $items   = $section['items']   ?? array();
+$style   = ! empty( $section['list_style'] ) ? $section['list_style'] : 'cards';
 // Uploaded ACF image wins; otherwise fall back to a plain URL (theme-bundled).
 $image_src = ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' );
 
@@ -37,16 +38,24 @@ if ( ! $title || empty( $items ) ) { return; }
 				<p class="t-cand__body"><?php echo esc_html( $body ); ?></p>
 			<?php endif; ?>
 
-			<ul class="t-cand__list">
-				<?php foreach ( $items as $item ) : ?>
-					<li class="t-cand__item">
-						<span class="t-cand__check" aria-hidden="true">
-							<?php estecapelli_render_item_icon( array( 'icon' => $item['icon'] ?? 'check-circle', 'icon_file' => $item['icon_file'] ?? null ), array( 'width' => 22, 'height' => 22 ) ); ?>
-						</span>
-						<span class="t-cand__label"><?php echo esc_html( $item['label'] ); ?></span>
-					</li>
-				<?php endforeach; ?>
-			</ul>
+			<?php if ( 'bullets' === $style ) : ?>
+				<ul class="t-cand__bullets">
+					<?php foreach ( $items as $item ) : ?>
+						<li><?php echo esc_html( $item['label'] ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php else : ?>
+				<ul class="t-cand__list">
+					<?php foreach ( $items as $item ) : ?>
+						<li class="t-cand__item">
+							<span class="t-cand__check" aria-hidden="true">
+								<?php estecapelli_render_item_icon( array( 'icon' => $item['icon'] ?? 'check-circle', 'icon_file' => $item['icon_file'] ?? null ), array( 'width' => 22, 'height' => 22 ) ); ?>
+							</span>
+							<span class="t-cand__label"><?php echo esc_html( $item['label'] ); ?></span>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
 
 			<?php if ( $footer ) : ?>
 				<p class="t-cand__footer"><?php echo esc_html( $footer ); ?></p>

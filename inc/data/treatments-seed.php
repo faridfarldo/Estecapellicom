@@ -1177,6 +1177,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'eyebrow'       => __( 'Candidates', 'estecapelli' ),
 						'title'         => __( 'Who Can Have Rhinoplasty?', 'estecapelli' ),
 						'body'          => __( 'Rhinoplasty may be a suitable option for individuals who wish to improve both the appearance and function of their nose. Ideal candidates typically include:', 'estecapelli' ),
+						'list_style'    => 'bullets',
 						'image'         => '',
 						'items'         => array(
 							array( 'icon' => 'check-circle', 'label' => __( 'Adults whose facial growth and physical development are complete', 'estecapelli' ) ),

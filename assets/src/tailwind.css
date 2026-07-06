@@ -6239,6 +6239,20 @@
 		color: white;
 	}
 	.t-cand__label { display: block; min-width: 0; }
+	/* Simple bullet-list variant (no icon cards). */
+	.t-cand__bullets { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+	.t-cand__bullets li {
+		position: relative;
+		padding-left: 1.4rem;
+		font-size: 1rem; line-height: 1.6;
+		color: oklch(32% 0.02 260);
+	}
+	.t-cand__bullets li::before {
+		content: "";
+		position: absolute; left: 2px; top: 0.62em;
+		width: 7px; height: 7px; border-radius: 9999px;
+		background: var(--color-trust-500);
+	}
 	.t-cand__footer {
 		margin: 0.25rem 0 0;
 		max-width: 70ch;

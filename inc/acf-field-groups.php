@@ -306,6 +306,18 @@ function estecapelli_register_acf_field_groups() {
 								array( 'key' => 'field_cand_body',    'label' => __( 'Intro paragraph', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 3 ),
 								array( 'key' => 'field_cand_footer', 'label' => __( 'Closing paragraph (optional, after the list)', 'estecapelli' ), 'name' => 'footer', 'type' => 'textarea', 'rows' => 3 ),
 								array(
+									'key'           => 'field_cand_list_style',
+									'label'         => __( 'List style', 'estecapelli' ),
+									'name'          => 'list_style',
+									'type'          => 'radio',
+									'layout'        => 'horizontal',
+									'choices'       => array(
+										'cards'   => __( 'Icon cards', 'estecapelli' ),
+										'bullets' => __( 'Simple bullet list (no icons)', 'estecapelli' ),
+									),
+									'default_value' => 'cards',
+								),
+								array(
 									'key'           => 'field_cand_image',
 									'label'         => __( 'Side image (optional)', 'estecapelli' ),
 									'name'          => 'image',
