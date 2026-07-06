@@ -45,6 +45,25 @@ function estecapelli_sanitize_svg_markup( $svg ) {
 }
 
 /**
+ * Hide the built-in "Icon" dropdown in the icon repeaters so editors see only
+ * the "Upload icon" field. The dropdown is kept (functional) so existing/seed
+ * icons still render — it is just visually removed from the admin form.
+ */
+add_action(
+	'acf/input/admin_head',
+	function () {
+		echo '<style>'
+			. '.acf-field.estecapelli-icon-select,'
+			. '.acf-th[data-key="field_stat_icon"],'
+			. '.acf-th[data-key="field_step_icon"],'
+			. '.acf-th[data-key="field_book_item_icon"],'
+			. '.acf-th[data-key="field_cand_item_icon"],'
+			. '.acf-th[data-key="field_form_point_icon"]{display:none !important;}'
+			. '</style>';
+	}
+);
+
+/**
  * Allow the SVG mime type for capable users only.
  */
 add_filter(

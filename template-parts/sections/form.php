@@ -60,11 +60,7 @@ $error_msg    = function_exists( 'estecapelli_lead_error_message' ) ? estecapell
 					<?php foreach ( $points as $point ) : ?>
 						<?php if ( empty( $point['label'] ) ) { continue; } ?>
 						<li class="t-form__point">
-							<?php if ( ! empty( $point['icon'] ) ) : ?>
-								<?php estecapelli_icon( $point['icon'], array( 'width' => 20, 'height' => 20, 'class' => 't-form__point-icon' ) ); ?>
-							<?php else : ?>
-								<?php estecapelli_icon( 'check-circle', array( 'width' => 20, 'height' => 20, 'class' => 't-form__point-icon' ) ); ?>
-							<?php endif; ?>
+							<?php estecapelli_render_item_icon( array( 'icon' => ! empty( $point['icon'] ) ? $point['icon'] : 'check-circle', 'icon_file' => $point['icon_file'] ?? null ), array( 'width' => 20, 'height' => 20, 'class' => 't-form__point-icon' ) ); ?>
 							<span><?php echo esc_html( $point['label'] ); ?></span>
 						</li>
 					<?php endforeach; ?>

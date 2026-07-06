@@ -42,9 +42,9 @@ if ( empty( $stats ) ) {
 				if ( ! $value ) { continue; }
 				?>
 				<li class="t-stats__cell">
-					<?php if ( $icon ) : ?>
+					<?php if ( $icon || ! empty( $stat['icon_file'] ) ) : ?>
 						<span class="t-stats__icon" aria-hidden="true">
-							<?php estecapelli_icon( $icon, array( 'width' => 22, 'height' => 22 ) ); ?>
+							<?php estecapelli_render_item_icon( $stat, array( 'width' => 22, 'height' => 22 ) ); ?>
 						</span>
 					<?php endif; ?>
 					<span class="t-stats__value"><?php echo esc_html( $value ); ?></span>

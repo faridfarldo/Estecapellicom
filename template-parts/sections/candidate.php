@@ -41,7 +41,7 @@ if ( ! $title || empty( $items ) ) { return; }
 				<?php foreach ( $items as $item ) : ?>
 					<li class="t-cand__item">
 						<span class="t-cand__check" aria-hidden="true">
-							<?php estecapelli_icon( $item['icon'] ?? 'check-circle', array( 'width' => 22, 'height' => 22 ) ); ?>
+							<?php estecapelli_render_item_icon( array( 'icon' => $item['icon'] ?? 'check-circle', 'icon_file' => $item['icon_file'] ?? null ), array( 'width' => 22, 'height' => 22 ) ); ?>
 						</span>
 						<span class="t-cand__label"><?php echo esc_html( $item['label'] ); ?></span>
 					</li>

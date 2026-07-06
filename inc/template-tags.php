@@ -83,27 +83,55 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 
 		$path = $paths[ $name ] ?? '';
 
-		// Editor-defined custom icon (Custom Icons page). These keep their own
-		// viewBox and are recoloured to the theme via fill="currentColor".
-		if ( '' === $path ) {
-			$custom = estecapelli_custom_icons();
-			if ( isset( $custom[ $name ] ) ) {
-				$ic = $custom[ $name ];
+		echo '<svg ' . $attr . '>' . $path . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+
+if ( ! function_exists( 'estecapelli_render_item_icon' ) ) {
+	/**
+	 * Render an item's icon: an uploaded custom icon wins; otherwise the built-in
+	 * icon selected in the (hidden) dropdown / seeded default. Used by the
+	 * icon+text repeaters (stats, steps, stepbook, candidate, form points).
+	 *
+	 * @param array $item Repeater row (expects 'icon' string and/or 'icon_file').
+	 * @param array $args Passed through to estecapelli_icon() (width/height/class).
+	 */
+	function estecapelli_render_item_icon( $item, $args = array() ) {
+		$file = is_array( $item ) ? ( $item['icon_file'] ?? null ) : null;
+
+		if ( is_array( $file ) && ! empty( $file['ID'] ) ) {
+			$path = get_attached_file( (int) $file['ID'] );
+			$prepared = ( $path && is_readable( $path ) ) ? estecapelli_prepare_custom_svg( (string) file_get_contents( $path ) ) : null; // phpcs:ignore
+			if ( $prepared ) {
+				$w = (int) ( $args['width'] ?? 22 );
+				$h = (int) ( $args['height'] ?? 22 );
 				printf(
-					'<svg class="icon icon--%1$s %2$s" width="%3$d" height="%4$d" viewBox="%5$s" fill="currentColor" stroke="none" %6$s>%7$s</svg>',
-					esc_attr( $name ),
-					esc_attr( $args['class'] ),
-					(int) $args['width'],
-					(int) $args['height'],
-					esc_attr( $ic['viewbox'] ),
-					$args['aria-label'] ? sprintf( 'role="img" aria-label="%s"', esc_attr( $args['aria-label'] ) ) : 'aria-hidden="true" focusable="false"',
-					$ic['inner'] // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					'<svg class="icon icon--custom %1$s" width="%2$d" height="%3$d" viewBox="%4$s" fill="currentColor" stroke="none" aria-hidden="true" focusable="false">%5$s</svg>',
+					esc_attr( $args['class'] ?? '' ),
+					$w,
+					$h,
+					esc_attr( $prepared['viewbox'] ),
+					$prepared['inner'] // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
+				return;
+			}
+			// Non-SVG (e.g. PNG) upload: fall back to a plain <img>.
+			if ( ! empty( $file['url'] ) ) {
+				printf(
+					'<img class="icon icon--custom %1$s" src="%2$s" alt="" width="%3$d" height="%4$d" style="object-fit:contain" loading="lazy" decoding="async" />',
+					esc_attr( $args['class'] ?? '' ),
+					esc_url( $file['url'] ),
+					(int) ( $args['width'] ?? 22 ),
+					(int) ( $args['height'] ?? 22 )
 				);
 				return;
 			}
 		}
 
-		echo '<svg ' . $attr . '>' . $path . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$name = is_array( $item ) ? (string) ( $item['icon'] ?? '' ) : (string) $item;
+		if ( '' !== $name ) {
+			estecapelli_icon( $name, $args );
+		}
 	}
 }
 
@@ -169,53 +197,6 @@ if ( ! function_exists( 'estecapelli_prepare_custom_svg' ) ) {
 			return null;
 		}
 		return array( 'inner' => trim( $inner ), 'viewbox' => $viewbox );
-	}
-}
-
-if ( ! function_exists( 'estecapelli_custom_icons' ) ) {
-	/**
-	 * Editor-defined custom icons from the Custom Icons options page. Each row is
-	 * a name + an uploaded SVG file (legacy: pasted SVG code).
-	 *
-	 * @return array [ key => array{inner:string,viewbox:string} ].
-	 */
-	function estecapelli_custom_icons() {
-		static $cache = null;
-		if ( null !== $cache ) {
-			return $cache;
-		}
-		$cache = array();
-		if ( ! function_exists( 'get_field' ) ) {
-			return $cache;
-		}
-		$rows = get_field( 'custom_icons', 'option' );
-		if ( empty( $rows ) || ! is_array( $rows ) ) {
-			return $cache;
-		}
-		foreach ( $rows as $row ) {
-			$key = sanitize_key( $row['key'] ?? '' );
-			if ( '' === $key ) {
-				continue;
-			}
-			$raw = '';
-			// Preferred: uploaded SVG file.
-			$file = $row['file'] ?? null;
-			if ( is_array( $file ) && ! empty( $file['ID'] ) ) {
-				$path = get_attached_file( (int) $file['ID'] );
-				if ( $path && is_readable( $path ) ) {
-					$raw = (string) file_get_contents( $path ); // phpcs:ignore
-				}
-			}
-			// Legacy fallback: pasted SVG code.
-			if ( '' === $raw && ! empty( $row['svg'] ) ) {
-				$raw = (string) $row['svg'];
-			}
-			$prepared = $raw ? estecapelli_prepare_custom_svg( $raw ) : null;
-			if ( $prepared ) {
-				$cache[ $key ] = $prepared;
-			}
-		}
-		return $cache;
 	}
 }
 

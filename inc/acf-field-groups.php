@@ -36,70 +36,11 @@ function estecapelli_register_acf_field_groups() {
 				'redirect'   => false,
 			)
 		);
-
-		// Custom Icons — lets editors add their own SVG icons that then appear in
-		// every "Icon" dropdown across the site (rendered by estecapelli_icon()).
-		acf_add_options_page(
-			array(
-				'page_title' => __( 'Custom Icons', 'estecapelli' ),
-				'menu_title' => __( 'Custom Icons', 'estecapelli' ),
-				'menu_slug'  => 'estecapelli-icons',
-				'capability' => 'edit_theme_options',
-				'position'   => 60,
-				'icon_url'   => 'dashicons-art',
-				'redirect'   => false,
-			)
-		);
 	}
 
-	acf_add_local_field_group(
-		array(
-			'key'      => 'group_custom_icons',
-			'title'    => __( 'Custom Icons', 'estecapelli' ),
-			'fields'   => array(
-				array(
-					'key'          => 'field_custom_icons',
-					'label'        => __( 'Your Icons', 'estecapelli' ),
-					'name'         => 'custom_icons',
-					'type'         => 'repeater',
-					'layout'       => 'block',
-					'button_label' => __( '+ Add Icon', 'estecapelli' ),
-					'instructions' => __( 'Add your own icons here, then pick them by name in any “Icon” dropdown across the site (the dropdown sits right next to each item’s text). Upload an SVG file — the theme resizes it and recolours it to match the other icons automatically.', 'estecapelli' ),
-					'sub_fields'   => array(
-						array(
-							'key'          => 'field_custom_icon_key',
-							'label'        => __( 'Name', 'estecapelli' ),
-							'name'         => 'key',
-							'type'         => 'text',
-							'required'     => 1,
-							'instructions' => __( 'Lowercase, no spaces — e.g. sapphire-blade. This is what you pick in the Icon dropdowns.', 'estecapelli' ),
-							'wrapper'      => array( 'width' => '30' ),
-						),
-						array(
-							'key'           => 'field_custom_icon_file',
-							'label'         => __( 'Icon file (SVG)', 'estecapelli' ),
-							'name'          => 'file',
-							'type'          => 'image',
-							'return_format' => 'array',
-							'preview_size'  => 'thumbnail',
-							'library'       => 'all',
-							'mime_types'    => 'svg',
-							'required'      => 1,
-							'instructions'  => __( 'Upload an .svg file. It is recoloured to the theme colour, so a single-colour (solid) icon works best.', 'estecapelli' ),
-							'wrapper'       => array( 'width' => '70' ),
-						),
-					),
-				),
-			),
-			'location' => array(
-				array(
-					array( 'param' => 'options_page', 'operator' => '==', 'value' => 'estecapelli-icons' ),
-				),
-			),
-		)
-	);
-
-	// Icons available in estecapelli_icon() — exposed as ACF dropdowns.
+	// Icons available in estecapelli_icon() — exposed as ACF dropdowns. Hidden in
+	// the admin (see estecapelli-admin-icons.css) so each row shows only the
+	// "Upload icon" field, but kept so existing/seed icons keep rendering.
 	$icon_choices = array(
 		''             => __( '— None —', 'estecapelli' ),
 		'star'         => 'star',
@@ -133,13 +74,6 @@ function estecapelli_register_acf_field_groups() {
 		'globe'        => 'globe',
 		'languages'    => 'languages',
 	);
-
-	// Append editor-defined custom icons so they show up in every icon dropdown.
-	if ( function_exists( 'estecapelli_custom_icons' ) ) {
-		foreach ( array_keys( estecapelli_custom_icons() ) as $custom_key ) {
-			$icon_choices[ $custom_key ] = $custom_key . ' ' . __( '(custom)', 'estecapelli' );
-		}
-	}
 
 	acf_add_local_field_group(
 		array(
@@ -289,7 +223,8 @@ function estecapelli_register_acf_field_groups() {
 									'button_label' => __( '+ Add Stat', 'estecapelli' ),
 									'layout'     => 'table',
 									'sub_fields' => array(
-										array( 'key' => 'field_stat_icon',  'label' => __( 'Icon', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_stat_icon',  'label' => __( 'Icon (built-in)', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1, 'wrapper' => array( 'class' => 'estecapelli-icon-select' ) ),
+										array( 'key' => 'field_stat_icon_file', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon_file', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'library' => 'all', 'mime_types' => 'svg,png', 'instructions' => __( 'Upload your icon (SVG best). Empty = keep the current icon.', 'estecapelli' ) ),
 										array( 'key' => 'field_stat_value', 'label' => __( 'Value', 'estecapelli' ), 'name' => 'value', 'type' => 'text', 'required' => 1 ),
 										array( 'key' => 'field_stat_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
 									),
@@ -317,7 +252,8 @@ function estecapelli_register_acf_field_groups() {
 									'button_label' => __( '+ Add Step', 'estecapelli' ),
 									'layout'       => 'block',
 									'sub_fields'   => array(
-										array( 'key' => 'field_step_icon',  'label' => __( 'Icon', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_step_icon',  'label' => __( 'Icon (built-in)', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1, 'wrapper' => array( 'class' => 'estecapelli-icon-select' ) ),
+										array( 'key' => 'field_step_icon_file', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon_file', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'library' => 'all', 'mime_types' => 'svg,png', 'instructions' => __( 'Upload your icon (SVG best). Empty = keep the current icon.', 'estecapelli' ) ),
 										array( 'key' => 'field_step_time',  'label' => __( 'Time / phase', 'estecapelli' ), 'name' => 'time', 'type' => 'text' ),
 										array( 'key' => 'field_step_title', 'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
 										array( 'key' => 'field_step_body',  'label' => __( 'Body',  'estecapelli' ), 'name' => 'body',  'type' => 'textarea', 'rows' => 3 ),
@@ -346,7 +282,8 @@ function estecapelli_register_acf_field_groups() {
 									'button_label' => __( '+ Add Step', 'estecapelli' ),
 									'layout'       => 'block',
 									'sub_fields'   => array(
-										array( 'key' => 'field_book_item_icon',    'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon', 'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_book_item_icon',    'label' => __( 'Icon (built-in)', 'estecapelli' ), 'name' => 'icon', 'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1, 'wrapper' => array( 'class' => 'estecapelli-icon-select' ) ),
+										array( 'key' => 'field_book_item_icon_file', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon_file', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'library' => 'all', 'mime_types' => 'svg,png', 'instructions' => __( 'Upload your icon (SVG best). Empty = keep the current icon.', 'estecapelli' ) ),
 										array( 'key' => 'field_book_item_eyebrow', 'label' => __( 'Eyebrow / label (e.g. Step 1)', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
 										array( 'key' => 'field_book_item_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
 										array( 'key' => 'field_book_item_body',    'label' => __( 'Body (HTML allowed)', 'estecapelli' ), 'name' => 'body', 'type' => 'wysiwyg', 'tabs' => 'all', 'media_upload' => 0 ),
@@ -393,7 +330,8 @@ function estecapelli_register_acf_field_groups() {
 									'button_label' => __( '+ Add Criterion', 'estecapelli' ),
 									'layout'       => 'table',
 									'sub_fields'   => array(
-										array( 'key' => 'field_cand_item_icon',  'label' => __( 'Icon', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_cand_item_icon',  'label' => __( 'Icon (built-in)', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1, 'wrapper' => array( 'class' => 'estecapelli-icon-select' ) ),
+										array( 'key' => 'field_cand_item_icon_file', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon_file', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'library' => 'all', 'mime_types' => 'svg,png', 'instructions' => __( 'Upload your icon (SVG best). Empty = keep the current icon.', 'estecapelli' ) ),
 										array( 'key' => 'field_cand_item_label', 'label' => __( 'Criterion', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
 									),
 								),
@@ -792,7 +730,8 @@ function estecapelli_register_acf_field_groups() {
 									'button_label' => __( '+ Add Point', 'estecapelli' ),
 									'layout'       => 'table',
 									'sub_fields'   => array(
-										array( 'key' => 'field_form_point_icon',  'label' => __( 'Icon', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1 ),
+										array( 'key' => 'field_form_point_icon',  'label' => __( 'Icon (built-in)', 'estecapelli' ),  'name' => 'icon',  'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1, 'wrapper' => array( 'class' => 'estecapelli-icon-select' ) ),
+										array( 'key' => 'field_form_point_icon_file', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon_file', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'library' => 'all', 'mime_types' => 'svg,png', 'instructions' => __( 'Upload your icon (SVG best). Empty = keep the current icon.', 'estecapelli' ) ),
 										array( 'key' => 'field_form_point_label', 'label' => __( 'Text', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
 									),
 								),

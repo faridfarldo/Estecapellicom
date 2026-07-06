@@ -106,6 +106,28 @@ function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
 			$new_sections[ $i ]['items'] = $rows;
 		}
 
+		// Even when the seed DOES provide repeater rows, keep any per-row media an
+		// editor uploaded that the seed leaves empty — the uploaded custom icon
+		// (icon_file) and images — matched by position. Covers the icon+text
+		// repeaters (items, stats, points).
+		foreach ( array( 'items', 'stats', 'points' ) as $rep ) {
+			if ( empty( $section[ $rep ] ) || ! is_array( $section[ $rep ] ) || empty( $old[ $rep ] ) || ! is_array( $old[ $rep ] ) ) {
+				continue;
+			}
+			foreach ( $section[ $rep ] as $ri => $row ) {
+				if ( ! isset( $old[ $rep ][ $ri ] ) || ! is_array( $old[ $rep ][ $ri ] ) ) {
+					continue;
+				}
+				$oldrow = $old[ $rep ][ $ri ];
+				if ( empty( $row['icon_file'] ) && ! empty( $oldrow['icon_file'] ) ) {
+					$new_sections[ $i ][ $rep ][ $ri ]['icon_file'] = estecapelli_image_to_id( $oldrow['icon_file'] );
+				}
+				if ( array_key_exists( 'image', $row ) && empty( $row['image'] ) && ! empty( $oldrow['image'] ) ) {
+					$new_sections[ $i ][ $rep ][ $ri ]['image'] = estecapelli_image_to_id( $oldrow['image'] );
+				}
+			}
+		}
+
 		// Preserve an uploaded photo-slider gallery (array of images → IDs). The
 		// seed never carries slider photos, so always keep the editor's when set.
 		if ( empty( $section['slider_images'] ) && ! empty( $old['slider_images'] ) && is_array( $old['slider_images'] ) ) {

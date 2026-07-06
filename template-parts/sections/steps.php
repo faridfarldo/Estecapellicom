@@ -45,9 +45,9 @@ if ( empty( $items ) ) { return; }
 					?>
 					<li class="t-steps__item">
 						<div class="t-steps__top">
-							<?php if ( $icon ) : ?>
+							<?php if ( $icon || ! empty( $step['icon_file'] ) ) : ?>
 								<span class="t-steps__icon" aria-hidden="true">
-									<?php estecapelli_icon( $icon, array( 'width' => 22, 'height' => 22 ) ); ?>
+									<?php estecapelli_render_item_icon( $step, array( 'width' => 22, 'height' => 22 ) ); ?>
 								</span>
 							<?php else : ?>
 								<span></span>
