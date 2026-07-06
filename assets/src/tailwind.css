@@ -188,13 +188,17 @@
 
 	/* ---------- Homepage hero carousel (3 slides) ---------- */
 	.hero-x { position: relative; isolation: isolate; }
-	.hero-x__viewport { overflow: hidden; }
+	/* Height follows the ACTIVE slide (set by JS) instead of stretching every
+	   slide to the tallest one — otherwise a short slide (e.g. Dental) leaves a
+	   black gap below and pushes bottom-anchored elements off-screen. */
+	.hero-x__viewport { overflow: hidden; transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 	.hero-x__track {
 		display: flex;
-		align-items: stretch;
+		align-items: flex-start;
 		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 		will-change: transform;
 	}
+	.hero-x__slide { align-self: flex-start; }
 	.hero-x__slide { flex: 0 0 100%; min-width: 100%; }
 	.hero-x__slide > .hero-split { height: 100%; }
 
@@ -651,8 +655,8 @@
 		}
 		.hero-dnt__scrim {
 			top: 0; bottom: auto;
-			height: var(--dnt-banner);
-			background: linear-gradient(0deg, #0b0b0d 1%, oklch(6% 0.02 265 / 0.15) 55%, transparent 80%);
+			height: calc(var(--dnt-banner) + 2px);
+			background: linear-gradient(0deg, #0b0b0d 0%, oklch(6% 0.02 265 / 0.35) 42%, transparent 74%);
 		}
 		.hero-dnt {
 			display: block;

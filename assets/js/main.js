@@ -191,9 +191,17 @@
 		var root = document.querySelector('[data-hero-carousel]');
 		if (!root) return;
 		var track = root.querySelector('[data-hero-track]');
+		var viewport = root.querySelector('.hero-x__viewport');
 		var slides = Array.prototype.slice.call(root.querySelectorAll('[data-hero-slide]'));
 		var dots = Array.prototype.slice.call(root.querySelectorAll('[data-hero-dot]'));
 		if (!track || slides.length < 2) return;
+
+		// The viewport hugs the active slide's height (slides are top-aligned, not
+		// stretched) so no slide leaves a black gap or pushes content off-screen.
+		function syncHeight() {
+			var active = slides[index];
+			if (viewport && active) { viewport.style.height = active.offsetHeight + 'px'; }
+		}
 
 		var index = 0;
 		var timer = null;
@@ -249,6 +257,7 @@
 			setThumb(prevThumb, thumbAt(index - 1));
 			// Stop/gate hero videos so nothing keeps playing after the switch.
 			stopHeroMedia(index);
+			syncHeight();
 		}
 		function next() { go(index + 1); }
 		function prev() { go(index - 1); }
@@ -271,6 +280,19 @@
 		root.addEventListener('mouseleave', start);
 		root.addEventListener('focusin', stop);
 		root.addEventListener('focusout', start);
+
+		// Re-measure after layout settles (fonts/images) and on resize/orientation.
+		window.addEventListener('load', syncHeight);
+		var rzTimer = null;
+		window.addEventListener('resize', function () {
+			if (rzTimer) clearTimeout(rzTimer);
+			rzTimer = setTimeout(syncHeight, 150);
+		});
+		slides.forEach(function (s) {
+			s.querySelectorAll('img').forEach(function (img) {
+				if (!img.complete) { img.addEventListener('load', syncHeight, { once: true }); }
+			});
+		});
 
 		go(0);
 		start();
