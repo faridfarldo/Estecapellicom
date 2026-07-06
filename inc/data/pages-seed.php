@@ -394,13 +394,15 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 						),
 					),
 
-					// Who we are.
+					// About Us — brand story.
 					array(
 						'acf_fc_layout'  => 'intro',
 						'eyebrow'        => __( 'Who We Are', 'estecapelli' ),
-						'title'          => __( 'A global leader in hair restoration', 'estecapelli' ),
-						'body'           => '<p>' . esc_html__( 'Estecapelli is a global leader in hair restoration surgery, trusted by thousands of patients worldwide who seek excellence, safety, and truly transformative results.', 'estecapelli' ) . '</p>'
-							. '<p>' . esc_html__( 'Our clinic combines advanced medical technology with the expertise of a highly skilled and internationally experienced team. Through our patented techniques and patient-focused approach, we deliver natural-looking, long-lasting outcomes that go beyond restoring hair — helping our patients regain confidence, a youthful appearance, and a renewed sense of well-being.', 'estecapelli' ) . '</p>',
+						'title'          => __( 'A trusted name in hair transplantation', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'With more than 15 years of experience in the healthcare sector, Estecapelli is an internationally trusted name in hair transplantation. Founded in Turkey, our clinic quickly earned worldwide recognition through outstanding patient satisfaction and consistently successful operations — and today we serve patients on a global scale from our centres in Turkey and Chile.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Performing more than 2,500 hair transplants every year in Turkey alone, Estecapelli delivers natural, aesthetic and permanent results through innovative technology and personalised treatment plans. Our patented VITA and Exosome techniques accelerate the healing process while increasing graft survival rates — making a genuine difference in hair restoration.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'With our unlimited maximum-graft and fixed-price approach, we offer every patient the most ideal solution, and every operation is carried out meticulously by our expert, experienced Turkish medical team.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Our modern, hygienic clinical facilities, our international-standard approach to service, and a patient satisfaction proven across thousands of successful operations make Estecapelli a standout name in hair transplantation. Wherever you are in the world, Estecapelli is by your side to deliver the very best hair transplant experience.', 'estecapelli' ) . '</p>',
 						'image'          => '',
 						'image_position' => 'right',
 						'cta'            => array( 'label' => '', 'url' => '' ),
@@ -418,15 +420,48 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 						'cta'            => array( 'label' => '', 'url' => '' ),
 					),
 
-					// Our story.
+					// Exosome FUE.
 					array(
 						'acf_fc_layout'  => 'intro',
-						'eyebrow'        => __( 'Our Story', 'estecapelli' ),
-						'title'          => __( 'Proven in Türkiye, trusted worldwide', 'estecapelli' ),
-						'body'           => '<p>' . esc_html__( 'Our story began in Istanbul, Türkiye, where thousands of patients from around the world have experienced life-changing hair transformations.', 'estecapelli' ) . '</p>'
-							. '<p>' . esc_html__( 'The success we have achieved through our unique techniques and patient-centred approach has brought the Estecapelli experience to Santiago, Chile — and today, with the same passion for excellence, personalised care and natural results, we bring Estecapelli quality to many more locations around the world.', 'estecapelli' ) . '</p>',
+						'eyebrow'        => __( 'Our Technology', 'estecapelli' ),
+						'title'          => __( 'Discover Exosome FUE', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'The Exosome solution is derived from culture fluids containing mesenchymal stem cells obtained from the maternal umbilical cord. These remarkable stem cells possess extraordinary regenerative and reparative properties. By harnessing their natural ability to communicate with and rejuvenate the surrounding cells, the Exosome solution supports advanced tissue repair, promotes healthier cellular function and enhances overall skin vitality. The Exosome FUE technique is a patented Estecapelli application.', 'estecapelli' ) . '</p>',
 						'image'          => '',
 						'image_position' => 'right',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					// VITA Treatment.
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'Our Signature Method', 'estecapelli' ),
+						'title'          => __( 'Meet VITA Treatment', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'Developed by Estecapelli, VITA Treatment is a revolutionary technology that goes beyond conventional hair transplantation — boosting the vitality of the hair follicles, accelerating healing and delivering natural results.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Successfully applied for a full six years, this unique method has become Estecapelli’s signature treatment. To date, more than 10,000 patients have chosen VITA Treatment to achieve natural, dense and permanent hair. This success forms the foundation of Estecapelli’s internationally recognised success story.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'left',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					// Our mission.
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'What Drives Us', 'estecapelli' ),
+						'title'          => __( 'Our Mission', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'At Estecapelli, our mission is to provide our patients with lasting, aesthetic results using the latest medical technologies and innovative methods. Driven by our commitment to continuous improvement and innovation, our international collaborations and our expert team, we pursue excellence in the healthcare sector while continuing to deliver world-class service.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'right',
+						'cta'            => array( 'label' => '', 'url' => '' ),
+					),
+
+					// Our vision.
+					array(
+						'acf_fc_layout'  => 'intro',
+						'eyebrow'        => __( 'Looking Ahead', 'estecapelli' ),
+						'title'          => __( 'Our Vision', 'estecapelli' ),
+						'body'           => '<p>' . esc_html__( 'Our vision is to be a global leading brand in hair transplantation and medical aesthetics, pioneering the industry through our innovative practices and meticulous, detail-focused approach. With our centres in Turkey and Santiago, Chile, we aim to reach more patients and bring our superior-quality service to an ever-wider audience.', 'estecapelli' ) . '</p>',
+						'image'          => '',
+						'image_position' => 'left',
 						'cta'            => array( 'label' => __( 'Meet Our Doctors', 'estecapelli' ), 'url' => home_url( '/en/about-us/our-doctors' ) ),
 					),
 				),
