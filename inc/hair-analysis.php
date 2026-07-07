@@ -153,14 +153,34 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 	);
 
 	if ( is_wp_error( $response ) ) {
-		return new WP_REST_Response( array( 'ok' => false, 'error' => 'upstream_unreachable' ), 502 );
+		// Almost always means the host blocked/failed the outbound HTTPS call
+		// (firewall, no DNS, TLS/CA problem, or timeout). Surface the exact
+		// reason so it can be diagnosed from the browser Network tab.
+		error_log( 'Estecapelli hair-analyze unreachable: ' . $response->get_error_message() );
+		return new WP_REST_Response(
+			array( 'ok' => false, 'error' => 'upstream_unreachable', 'detail' => $response->get_error_message() ),
+			502
+		);
 	}
 
 	$code = wp_remote_retrieve_response_code( $response );
 	$raw  = wp_remote_retrieve_body( $response );
 	if ( 200 !== (int) $code ) {
 		error_log( 'Estecapelli hair-analyze API ' . $code . ': ' . $raw );
-		return new WP_REST_Response( array( 'ok' => false, 'error' => 'upstream_error' ), 502 );
+		// Pull the Anthropic error type/message (never contains the key) so the
+		// exact cause (auth, billing, request too large, rate limit…) is visible.
+		$api    = json_decode( $raw, true );
+		$detail = 'HTTP ' . $code;
+		if ( isset( $api['error']['type'] ) ) {
+			$detail .= ' — ' . $api['error']['type'];
+		}
+		if ( isset( $api['error']['message'] ) ) {
+			$detail .= ': ' . $api['error']['message'];
+		}
+		return new WP_REST_Response(
+			array( 'ok' => false, 'error' => 'upstream_error', 'detail' => $detail ),
+			502
+		);
 	}
 
 	$data = json_decode( $raw, true );
