@@ -222,7 +222,11 @@
 		.hero-exp { align-items: stretch; }
 		.hero-exp__copy { justify-content: center; }
 		.hero-exp__media { height: 100%; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0; }
-		.hero-exp__photo { min-height: 0; max-height: 100%; }
+		/* The photo takes the space that's LEFT after the before/after row, so
+		   both fit inside the shorter section instead of the photo hogging it all
+		   and pushing the thumbnails out of the slide. */
+		.hero-exp__photo { flex: 1 1 0; min-height: 0; height: auto; }
+		.hero-exp__controls { flex: 0 0 auto; }
 	}
 
 	/* Decorative background shared by slides 2 & 3. */
