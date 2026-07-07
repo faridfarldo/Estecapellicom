@@ -201,6 +201,17 @@
 	.hero-x__slide { align-self: flex-start; }
 	.hero-x__slide { flex: 0 0 100%; min-width: 100%; }
 	.hero-x__slide > .hero-split { height: 100%; }
+	/* All three slides share the dental slide's height so the carousel never
+	   jumps between slides and each reads at the same comfortable height.
+	   Content is centred, so a shorter slide just gains even top/bottom room. */
+	.hero-x__slide { min-height: clamp(560px, 84vh, 860px); }
+	/* Desktop only: the prev/next arrows sit at the far left & right edges, so
+	   keep the text content clear of them by reserving a gutter on each side.
+	   (On phones the arrows drop to the bottom, so this rule doesn't apply.) */
+	@media (min-width: 861px) {
+		.hero-x .hero-exp,
+		.hero-x .hero-dnt { max-width: min(var(--container-screen), calc(100vw - 220px)); }
+	}
 
 	/* Decorative background shared by slides 2 & 3. */
 	.hero-x__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
@@ -717,6 +728,12 @@
 			linear-gradient(160deg, var(--color-brand-950) 0%, oklch(11% 0.03 260) 60%, oklch(9% 0.025 265) 100%);
 		color: white;
 		padding-block: clamp(2.5rem, 4vw, 4.5rem) clamp(1.75rem, 3vw, 3rem);
+		/* Match the dental slide's height and centre the intro + stage + button
+		   vertically within it, so this slide is the same height as the others. */
+		min-height: clamp(560px, 84vh, 860px);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 	.hero-split__more {
 		position: relative;
