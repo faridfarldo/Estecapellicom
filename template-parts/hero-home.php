@@ -158,11 +158,6 @@ foreach ( $result_ids as $rid ) {
 									<span><?php echo esc_html( $exp['badge']['label'] ); ?></span>
 								</span>
 							<?php endif; ?>
-
-							<figcaption class="hero-exp__cap">
-								<strong><?php esc_html_e( 'After result', 'estecapelli' ); ?></strong>
-								<?php esc_html_e( 'Actual Estecapelli patient. Individual results may vary.', 'estecapelli' ); ?>
-							</figcaption>
 						</figure>
 
 						<div class="hero-exp__controls">
