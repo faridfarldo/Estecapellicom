@@ -49,11 +49,11 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 		// [bracketed] placeholder before relying on it.
 		// -------------------------------------------------------------------
 		$privacy_content =
-			  '<p><em>' . esc_html__( 'Last updated: June 2026', 'estecapelli' ) . '</em></p>'
+			  '<p><em>' . esc_html__( 'Last updated: July 2026', 'estecapelli' ) . '</em></p>'
 			. '<p>' . esc_html__( 'This Privacy Policy explains how Estecapelli collects, uses, stores and protects your personal data when you visit our website, contact us, or receive a consultation or treatment with us. Estecapelli is based in Istanbul, Türkiye and cares for patients from around the world. We are committed to handling your data lawfully, transparently and securely.', 'estecapelli' ) . '</p>'
 
 			. '<h2>' . esc_html__( '1. Who we are', 'estecapelli' ) . '</h2>'
-			. '<p>' . esc_html__( 'Estecapelli is a hair restoration, plastic surgery, dental and aesthetic clinic operating in Istanbul, Türkiye. For the purposes of data protection law, the data controller is [registered legal entity name], [registered address]. You can reach us about any privacy matter using the details in the Contact us section below.', 'estecapelli' ) . '</p>'
+			. '<p>' . esc_html__( 'Estecapelli is a hair restoration, plastic surgery, dental and aesthetic clinic operating in Istanbul, Türkiye. For the purposes of data protection law, the data controller is Bench Turizm Sağlık Hizmetleri Medikal Ürünler Dış Ticaret Ltd. Şti., registered at Cumhuriyet Mah. Yeni Yol 1 Sk. Now Bomonti Blok No: 2 İç Kapı No: 96 Şişli / İstanbul, Türkiye. You can reach us about any privacy matter using the details in the Contact us section below.', 'estecapelli' ) . '</p>'
 
 			. '<h2>' . esc_html__( '2. The information we collect', 'estecapelli' ) . '</h2>'
 			. '<p>' . esc_html__( 'Depending on how you interact with us, we may collect:', 'estecapelli' ) . '</p>'
@@ -87,9 +87,10 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 
 			. '<h2>' . esc_html__( '8. Your rights', 'estecapelli' ) . '</h2>'
 			. '<p>' . esc_html__( 'Subject to applicable law, you have the right to access your data; to have inaccurate data corrected; to request deletion; to restrict or object to certain processing; to data portability; and to withdraw consent at any time without affecting processing already carried out. You also have the right to complain to the relevant data protection authority. To exercise any of these rights, contact us using the details below.', 'estecapelli' ) . '</p>'
+			. '<p>' . esc_html__( 'If you are in Türkiye, the way we process your personal data under the Turkish Personal Data Protection Law (KVKK) — including the categories of data, the purposes of processing, the parties we share it with and how to exercise your statutory rights — is described in detail in our', 'estecapelli' ) . ' <a href="' . esc_url( home_url( '/en/kvkk-disclosure' ) ) . '">' . esc_html__( 'KVKK Data Processing Notice', 'estecapelli' ) . '</a>.</p>'
 
 			. '<h2>' . esc_html__( '9. Cookies', 'estecapelli' ) . '</h2>'
-			. '<p>' . esc_html__( 'Our website uses cookies and similar technologies to make the site work, to remember your preferences and to understand how the site is used. You can control cookies through your browser settings; disabling some cookies may affect how the site functions.', 'estecapelli' ) . '</p>'
+			. '<p>' . esc_html__( 'Our website uses cookies and similar technologies to make the site work, to remember your preferences and to understand how the site is used. You can control cookies through your browser settings; disabling some cookies may affect how the site functions.', 'estecapelli' ) . ' ' . esc_html__( 'For full details of the cookies we use, please see our', 'estecapelli' ) . ' <a href="' . esc_url( home_url( '/en/cookie-policy' ) ) . '">' . esc_html__( 'Cookie Policy', 'estecapelli' ) . '</a>.</p>'
 
 			. '<h2>' . esc_html__( '10. Security', 'estecapelli' ) . '</h2>'
 			. '<p>' . esc_html__( 'We use appropriate technical and organisational measures to protect your personal data against loss, misuse and unauthorised access. No method of transmission or storage is completely secure, but we work to safeguard your information at all times.', 'estecapelli' ) . '</p>'
@@ -104,11 +105,11 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 			. '<p>' . esc_html__( 'If you have any questions about this policy or how we handle your data, contact us at', 'estecapelli' ) . ' <a href="mailto:info@estecapelli.com">info@estecapelli.com</a> ' . esc_html__( 'or via our Contact page.', 'estecapelli' ) . '</p>';
 
 		$terms_content =
-			  '<p><em>' . esc_html__( 'Last updated: June 2026', 'estecapelli' ) . '</em></p>'
+			  '<p><em>' . esc_html__( 'Last updated: July 2026', 'estecapelli' ) . '</em></p>'
 			. '<p>' . esc_html__( 'These Terms govern your use of the Estecapelli website and the consultations, quotes and information we provide through it. By using this website or contacting us, you agree to these Terms. If you do not agree, please do not use the site.', 'estecapelli' ) . '</p>'
 
 			. '<h2>' . esc_html__( '1. About these terms', 'estecapelli' ) . '</h2>'
-			. '<p>' . esc_html__( 'This website is operated by Estecapelli, a clinic based in Istanbul, Türkiye. The operator is [registered legal entity name], [registered address]. We may update these Terms from time to time; the current version always applies.', 'estecapelli' ) . '</p>'
+			. '<p>' . esc_html__( 'This website is operated by Estecapelli, a clinic based in Istanbul, Türkiye. The operator is Bench Turizm Sağlık Hizmetleri Medikal Ürünler Dış Ticaret Ltd. Şti., registered at Cumhuriyet Mah. Yeni Yol 1 Sk. Now Bomonti Blok No: 2 İç Kapı No: 96 Şişli / İstanbul, Türkiye. We may update these Terms from time to time; the current version always applies.', 'estecapelli' ) . '</p>'
 
 			. '<h2>' . esc_html__( '2. Not medical advice', 'estecapelli' ) . '</h2>'
 			. '<p>' . esc_html__( 'The content on this website is provided for general information only and is not medical advice. It is not a substitute for a professional consultation, diagnosis or examination. Any treatment recommendation can only be confirmed after a personal assessment by our medical team. Always seek the advice of a qualified healthcare professional regarding your individual circumstances.', 'estecapelli' ) . '</p>'
@@ -139,6 +140,110 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 
 			. '<h2>' . esc_html__( '11. Contact us', 'estecapelli' ) . '</h2>'
 			. '<p>' . esc_html__( 'For any questions about these Terms, contact us at', 'estecapelli' ) . ' <a href="mailto:info@estecapelli.com">info@estecapelli.com</a> ' . esc_html__( 'or via our Contact page.', 'estecapelli' ) . '</p>';
+
+		// -------------------------------------------------------------------
+		// KVKK Data Processing Notice (Aydınlatma Metni). Mandatory disclosure
+		// under the Turkish Personal Data Protection Law (Law No. 6698). English
+		// rendering of the clinic's lawyer-prepared Turkish notice; the Turkish
+		// original is added as the Turkish translation via WPML.
+		// -------------------------------------------------------------------
+		$kvkk_content =
+			  '<p><em>' . esc_html__( 'Last updated: July 2026', 'estecapelli' ) . '</em></p>'
+			. '<p>' . esc_html__( 'As Bench Turizm Sağlık Hizmetleri Medikal Ürünler Dış Ticaret Ltd. Şti. (the “Company”), we attach the utmost importance to the security of your personal data. In this context, in accordance with the Turkish Personal Data Protection Law No. 6698 (the “KVKK”), we take the necessary measures to prevent the unlawful processing of and access to your personal data and to ensure its safekeeping. As data controller under the KVKK and related legislation, we process your personal data within the framework set out below.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '1. Data controller', 'estecapelli' ) . '</h2>'
+			. '<p><strong>' . esc_html__( 'Company:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Bench Turizm Sağlık Hizmetleri Medikal Ürünler Dış Ticaret Ltd. Şti.', 'estecapelli' ) . '<br>'
+			. '<strong>' . esc_html__( 'Address:', 'estecapelli' ) . '</strong> ' . esc_html__( 'Cumhuriyet Mah. Yeni Yol 1 Sk. Now Bomonti Blok No: 2 İç Kapı No: 96 Şişli / İstanbul, Türkiye', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '2. How your personal data is obtained', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Your personal data is obtained in accordance with the KVKK and related legislation for the purposes of mediating, carrying out and managing medical diagnosis, treatment and care services; planning and managing healthcare services and their financing; improving the quality of these services; performing activities foreseen or exempted by public authorities; and fulfilling our obligations regarding record-keeping, reporting and information.', 'estecapelli' ) . '</p>'
+			. '<p>' . esc_html__( 'Depending on the nature of the service provided to you, your personal data is collected and processed through any verbal, written, visual or electronic channel, for the purposes listed below and so that the Company can fully and properly perform its contractual and legal obligations. This collection and processing is based on the legal grounds set out in the KVKK, the Basic Law on Health Services No. 3359, Decree Law No. 663, the Regulation on International Health Tourism and Tourist Health, the Regulation on Private Health Institutions, the Regulation on Personal Health Data, and other Ministry of Health regulations and applicable legislation.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '3. The personal data we process', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Within the framework described above, the personal data — and in particular the special categories of personal data, led by your personal health data — that we process are as follows:', 'estecapelli' ) . '</p>'
+			. '<ul>'
+			. '<li><strong>' . esc_html__( 'Identity:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. first name, surname, date of birth, place of birth, national ID number, passport number for non-Turkish citizens, gender, social-security number, nationality, marital status.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Contact:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. telephone number, residential address, e-mail address.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Financial:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. bank account number, IBAN details.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Visual and audio records:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. photographs, call-centre voice recordings, CCTV footage recorded during your visit to our premises.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Health information:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. blood type, medical history, check-up results, consultation reports, operation details, treatment method applied, type of illness, medications used, medical values, test results.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Biometric / genetic data:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. fingerprint, palm print, genetic information.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Travel data:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. flight information, boarding card, tour route, accommodation details.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Physical space security:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. camera image recordings taken to ensure the security of our premises.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Transaction security:', 'estecapelli' ) . '</strong> ' . esc_html__( 'e.g. log records and IP addresses obtained while you use our website.', 'estecapelli' ) . '</li>'
+			. '</ul>'
+
+			. '<h2>' . esc_html__( '4. Purposes of processing', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Your general and special-category personal data listed above may be processed by the Company for the following purposes:', 'estecapelli' ) . '</p>'
+			. '<ul>'
+			. '<li>' . esc_html__( 'Protecting public health, preventive medicine, and carrying out medical diagnosis, treatment and care, pharmacy and laboratory activities.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Sharing requested information with the Ministry of Health, the Social Security Institution and other public institutions in accordance with applicable legislation.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Fulfilling legal and regulatory requirements.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Invoicing for our mediation and healthcare services.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Providing translation and interpreting services.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Informing you about your appointment through our call centre and digital channels.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Verifying your identity.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Planning and managing the internal operations of the institution.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Carrying out analysis in order to improve our healthcare services.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Providing training to our employees.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Monitoring and preventing abuse and unauthorised transactions.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Verifying your relationship with the institutions we have agreements with.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Responding to all your questions and complaints regarding our mediation and healthcare services.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Ensuring the control of transport services.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Carrying out advertising, promotion and marketing activities.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Measuring, increasing and researching patient satisfaction.', 'estecapelli' ) . '</li>'
+			. '</ul>'
+			. '<p>' . esc_html__( 'Your general and special-category personal data is stored with great care and in compliance with legislation, in physical and electronic archives held by the Company and its external service providers, taking every administrative and technical measure to ensure an appropriate level of security.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '5. Transfer of your personal data', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Within the framework of the legislation referred to above and for the purposes explained, your personal data obtained by the Company may be shared with:', 'estecapelli' ) . '</p>'
+			. '<ul>'
+			. '<li>' . esc_html__( 'Judicial authorities.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Laboratories, medical centres, medical-device suppliers and healthcare institutions in Türkiye or abroad with which we cooperate to mediate medical diagnosis and treatment.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Your authorised legal representatives, our Company officials and shareholders.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Third parties from whom we obtain advice, including the lawyers, tax advisers, accountants and auditors we work with.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Regulatory and supervisory bodies and official authorities.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Systems and natural or legal persons located in Türkiye or abroad.', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Our suppliers, support-service providers, archiving-service providers and business partners whose services we use or with whom we cooperate, and private-law persons in Türkiye and abroad. (You may obtain more detailed information by applying to the Company in writing.)', 'estecapelli' ) . '</li>'
+			. '</ul>'
+
+			. '<h2>' . esc_html__( '6. Destruction of your personal data', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'The Company stores the personal data it processes for the periods specified by legislation. Where no period is specified, personal data is retained for as long as required by the Company’s practices and the customs of commercial life, in connection with the services provided when the data was processed. Once these periods expire, the personal data is deleted, destroyed or anonymised on the first destruction date, in accordance with Article 7 of the KVKK.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( '7. Your rights and how to apply', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Under Article 11 of the KVKK you may submit your requests to the Company. In accordance with the KVKK and the Communiqué on the Procedures and Principles of Application to the Data Controller published on 10 March 2018, and current legislation, you may submit your request:', 'estecapelli' ) . '</p>'
+			. '<ul>'
+			. '<li>' . esc_html__( 'In person, by hand, to Cumhuriyet Mah. Yeni Yol 1 Sk. Now Bomonti Blok No: 2 İç Kapı No: 96 Şişli / İstanbul;', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'Via notary to the same address;', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'With a secure electronic or mobile signature to our registered electronic-mail (KEP) address benchturizm@hs01.kep.tr; or', 'estecapelli' ) . '</li>'
+			. '<li>' . esc_html__( 'From the e-mail address registered in our system, to info@estecapelli.com.', 'estecapelli' ) . '</li>'
+			. '</ul>'
+			. '<p>' . esc_html__( 'For a person other than the data subject to make a request, a notarised special power of attorney issued on behalf of the applicant by the data subject is required. Requests submitted properly to the Company are concluded within thirty days at the latest. If concluding the request requires an additional cost, the fee set in the tariff determined by the Personal Data Protection Board may be charged. Where the response is provided on a recording medium such as a CD or flash drive, a fee not exceeding the cost of the medium may be requested. The Company may request information from the applicant to determine whether they are the data subject, and may direct questions regarding the application in order to clarify the matters raised.', 'estecapelli' ) . '</p>';
+
+		// -------------------------------------------------------------------
+		// Cookie Policy (Çerez Politikası). English rendering of the clinic's
+		// lawyer-prepared Turkish policy; Turkish original added via WPML.
+		// -------------------------------------------------------------------
+		$cookie_content =
+			  '<p><em>' . esc_html__( 'Last updated: July 2026', 'estecapelli' ) . '</em></p>'
+			. '<p>' . esc_html__( 'This Cookie Policy has been prepared by Bench Turizm Sağlık Hizmetleri Medikal Ürünler Dış Ticaret Ltd. Şti. (the “Company”) as data controller, within the scope of Article 10 of the Turkish Personal Data Protection Law No. 6698, the related Communiqué on data-controller disclosure, Law No. 5651 on the Regulation of Internet Publications, Law No. 5809 on Electronic Communications and other applicable legislation.', 'estecapelli' ) . '</p>'
+			. '<p>' . esc_html__( 'We use cookies in certain areas of our website at https://www.estecapelli.com/. Cookies are small text files saved to your computer, mobile phone, tablet or other device through your browser when you visit our site. They help the site run more efficiently and allow us to offer you faster, personalised pages suited to your needs.', 'estecapelli' ) . '</p>'
+
+			. '<h2>' . esc_html__( 'Types of cookies', 'estecapelli' ) . '</h2>'
+			. '<h3>' . esc_html__( 'By duration of use', 'estecapelli' ) . '</h3>'
+			. '<p>' . esc_html__( 'Session cookies (temporary cookies) are used to maintain the continuity of your session and are deleted when you close your browser. Persistent cookies are not deleted when the browser is closed; they are removed automatically on a specific date or after a specific period.', 'estecapelli' ) . '</p>'
+			. '<h3>' . esc_html__( 'By purpose of use', 'estecapelli' ) . '</h3>'
+			. '<p>' . esc_html__( 'Depending on their purpose, cookies may be mandatory, functional, performance, analytics or advertising / marketing cookies:', 'estecapelli' ) . '</p>'
+			. '<ul>'
+			. '<li><strong>' . esc_html__( 'Mandatory cookies:', 'estecapelli' ) . '</strong> ' . esc_html__( 'used for purposes such as security and authentication so that the website works correctly, and to keep authentication and current session information from being lost.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Functional cookies:', 'estecapelli' ) . '</strong> ' . esc_html__( 'remember visitors’ preferences such as language and text font, so those preferences are recalled on later visits.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Performance and analytics cookies:', 'estecapelli' ) . '</strong> ' . esc_html__( 'help improve the site by gathering information about how visitors use it, checking that the site works as intended and helping detect errors — including measuring the effect of advertising on relevant individuals.', 'estecapelli' ) . '</li>'
+			. '<li><strong>' . esc_html__( 'Advertising and marketing cookies:', 'estecapelli' ) . '</strong> ' . esc_html__( 'used to personalise the adverts shown to users and to prevent already-displayed adverts from being shown again.', 'estecapelli' ) . '</li>'
+			. '</ul>'
+
+			. '<h2>' . esc_html__( 'Managing cookies', 'estecapelli' ) . '</h2>'
+			. '<p>' . esc_html__( 'Browsers generally accept cookies automatically. Using cookies is not mandatory in order to use our website, but if you set your browser not to accept cookies, the quality of your experience may decrease and various functions of the site may not work. In particular, technical (mandatory) cookies enable the essential functions of the website; if you disable them, some functions of the site may not work as intended.', 'estecapelli' ) . '</p>'
+			. '<p>' . esc_html__( 'The Company reserves the right to change the provisions of this Policy at any time. This Policy takes effect on the date it is published.', 'estecapelli' ) . '</p>';
 
 		return array(
 
@@ -851,6 +956,18 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 				'title'   => 'Terms',
 				'parent'  => null,
 				'content' => $terms_content,
+			),
+			array(
+				'slug'    => 'kvkk-disclosure',
+				'title'   => 'KVKK Data Processing Notice',
+				'parent'  => null,
+				'content' => $kvkk_content,
+			),
+			array(
+				'slug'    => 'cookie-policy',
+				'title'   => 'Cookie Policy',
+				'parent'  => null,
+				'content' => $cookie_content,
 			),
 
 		);

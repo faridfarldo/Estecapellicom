@@ -162,11 +162,15 @@ $sitemap    = estecapelli_footer_sitemap();
 				} else {
 					echo '<ul class="site-footer__legal-list">';
 					printf(
-						'<li><a href="%1$s">%2$s</a></li><li><a href="%3$s">%4$s</a></li>',
+						'<li><a href="%1$s">%2$s</a></li><li><a href="%3$s">%4$s</a></li><li><a href="%5$s">%6$s</a></li><li><a href="%7$s">%8$s</a></li>',
 						esc_url( home_url( '/en/privacy-policy' ) ),
 						esc_html__( 'Privacy Policy', 'estecapelli' ),
 						esc_url( home_url( '/en/terms' ) ),
-						esc_html__( 'Terms', 'estecapelli' )
+						esc_html__( 'Terms', 'estecapelli' ),
+						esc_url( home_url( '/en/cookie-policy' ) ),
+						esc_html__( 'Cookie Policy', 'estecapelli' ),
+						esc_url( home_url( '/en/kvkk-disclosure' ) ),
+						esc_html__( 'KVKK Notice', 'estecapelli' )
 					);
 					echo '</ul>';
 				}
