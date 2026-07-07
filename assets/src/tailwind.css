@@ -217,7 +217,14 @@
 		   split image band and the expert photo) is told to fill whatever vertical
 		   space is left, so the slides match height without clipping anything. */
 		.hero-x__slide { height: clamp(560px, 84vh, 860px); overflow: hidden; }
-		.hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; margin-top: clamp(0.75rem, 2vw, 1.5rem); }
+		/* Slide 1: the interactive image/video band is the star, so keep the intro
+		   header compact and hand the bulk of the height to the stage. */
+		.hero-split { padding-block: clamp(1.25rem, 2.5vw, 2rem) clamp(0.75rem, 1.5vw, 1.25rem); }
+		.hero-split__headline { font-size: clamp(1.75rem, 1rem + 2.3vw, 2.85rem); }
+		.hero-split__lead { font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem); }
+		.hero-split__intro { gap: 0.4rem; }
+		.hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; margin-top: clamp(0.75rem, 1.5vw, 1.25rem); }
+		.hero-split__more { margin-top: clamp(0.6rem, 1.2vw, 1rem); }
 		.hero-x__slide--expert { align-items: stretch; }
 		.hero-exp { align-items: stretch; }
 		.hero-exp__copy { justify-content: center; }
