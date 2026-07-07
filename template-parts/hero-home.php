@@ -63,18 +63,19 @@ foreach ( $result_ids as $rid ) {
 						<span class="hero-split__grid"></span>
 					</div>
 
+					<?php
+					// Compact header: just the headline + a small "tap to play" cue.
+					// The eyebrow, marketing lead and the old "Learn more" button were
+					// removed so the interactive Exosome/VITA stage below gets the
+					// height — the panels themselves are the call to action.
+					$hs_hint = ! empty( $intro['hint'] ) ? $intro['hint'] : __( 'Select a method to play', 'estecapelli' );
+					?>
 					<div class="shell hero-split__intro">
-						<?php if ( ! empty( $intro['eyebrow'] ) ) : ?>
-							<span class="hero-split__eyebrow"><?php echo esc_html( $intro['eyebrow'] ); ?></span>
-						<?php endif; ?>
 						<h1 id="hero-split-title" class="hero-split__headline"><?php echo esc_html( $intro['headline'] ); ?></h1>
-						<p class="hero-split__lead"><?php echo esc_html( $intro['body'] ); ?></p>
-						<?php if ( ! empty( $intro['hint'] ) ) : ?>
-							<span class="hero-split__hint">
-								<?php estecapelli_icon( 'sparkles', array( 'width' => 14, 'height' => 14 ) ); ?>
-								<?php echo esc_html( $intro['hint'] ); ?>
-							</span>
-						<?php endif; ?>
+						<span class="hero-split__hint">
+							<?php estecapelli_icon( 'sparkles', array( 'width' => 14, 'height' => 14 ) ); ?>
+							<?php echo esc_html( $hs_hint ); ?>
+						</span>
 					</div>
 
 					<div class="hero-split__stage" data-split-stage data-split-active="">
@@ -116,13 +117,6 @@ foreach ( $result_ids as $rid ) {
 						<?php endforeach; ?>
 					</div>
 
-					<?php $hs_learn = $panels['exosome']['cta']['url'] ?? ( $panels['vita']['cta']['url'] ?? home_url( '/en/' ) ); ?>
-					<div class="shell hero-split__more">
-						<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $hs_learn ); ?>">
-							<?php esc_html_e( 'Learn more', 'estecapelli' ); ?>
-							<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
-						</a>
-					</div>
 
 				</div>
 			</div>
