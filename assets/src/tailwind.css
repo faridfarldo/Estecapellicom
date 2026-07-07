@@ -547,11 +547,25 @@
 		.hero-exp__ba figure { width: clamp(78px, 23vw, 94px); }
 		.hero-exp__arrow { width: 34px; height: 34px; }
 		.hero-aw__strip { justify-content: center; }
-		/* Keep the slide-preview thumbnail on phones too so the arrows read as a
-		   mini preview of the next/prev slide, not a bare dark box. Just smaller. */
-		.hero-x__nav { width: 44px; height: 60px; border-radius: 12px; }
-		.hero-x__nav--prev { left: 8px; }
-		.hero-x__nav--next { right: 8px; }
+		/* On phones the slides stack and the copy fills the width, so the
+		   vertically-centred side arrows sat on top of the headline. Drop them into
+		   a bottom control band (corners, flanking the dots) and reserve space below
+		   each slide's content so nothing hides behind them. The thumbnail preview
+		   is kept — the arrows still read as a mini preview of the prev/next slide. */
+		.hero-x__nav {
+			top: auto; bottom: 12px; transform: none;
+			width: 46px; height: 46px; border-radius: 12px;
+		}
+		.hero-x__nav:hover { transform: none; }
+		.hero-x__nav--prev { left: 10px; }
+		.hero-x__nav--next { right: 10px; }
+		.hero-x__dots { bottom: 29px; }
+		/* Reserve the bottom band so slide content lifts clear of the arrows. */
+		.hero-x__slide--expert { padding-bottom: 78px; }
+		.hero-split { padding-bottom: calc(clamp(1rem, 2.5vw, 1.75rem) + 62px); }
+		.hero-dnt__before { bottom: 76px; }
+		/* Let a single long headline word wrap instead of being clipped off-screen. */
+		.hero-exp__title { overflow-wrap: break-word; hyphens: auto; }
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.hero-x__track { transition: none; }
