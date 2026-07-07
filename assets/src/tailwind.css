@@ -208,6 +208,10 @@
 	/* Desktop only: the prev/next arrows sit at the far left & right edges, so
 	   keep the text content clear of them by reserving a gutter on each side.
 	   (On phones the arrows drop to the bottom, so this rule doesn't apply.) */
+	/* NOTE: every rule below is prefixed with `.hero-x` on purpose. These sit
+	   earlier in the file than the base hero rules, so without the extra class
+	   (higher specificity) the later base rules would win and silently undo
+	   these overrides. */
 	@media (min-width: 861px) {
 		/* Keep the text content clear of the side arrows (reserve a gutter). */
 		.hero-x .hero-exp,
@@ -216,24 +220,25 @@
 		/* Make EVERY slide exactly the dental slide's height. The tall media (the
 		   split image band and the expert photo) is told to fill whatever vertical
 		   space is left, so the slides match height without clipping anything. */
-		.hero-x__slide { height: clamp(560px, 84vh, 860px); overflow: hidden; }
+		.hero-x .hero-x__slide { height: clamp(560px, 84vh, 860px); overflow: hidden; }
+
 		/* Slide 1: the interactive image/video band is the star, so keep the intro
 		   header compact and hand the bulk of the height to the stage. */
-		.hero-split { padding-block: clamp(1.25rem, 2.5vw, 2rem) clamp(0.75rem, 1.5vw, 1.25rem); }
-		.hero-split__headline { font-size: clamp(1.75rem, 1rem + 2.3vw, 2.85rem); }
-		.hero-split__lead { font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem); }
-		.hero-split__intro { gap: 0.4rem; }
-		.hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; margin-top: clamp(0.75rem, 1.5vw, 1.25rem); }
-		.hero-split__more { margin-top: clamp(0.6rem, 1.2vw, 1rem); }
-		.hero-x__slide--expert { align-items: stretch; }
-		.hero-exp { align-items: stretch; }
-		.hero-exp__copy { justify-content: center; }
-		.hero-exp__media { height: 100%; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0; }
-		/* The photo takes the space that's LEFT after the before/after row, so
-		   both fit inside the shorter section instead of the photo hogging it all
-		   and pushing the thumbnails out of the slide. */
-		.hero-exp__photo { flex: 1 1 0; min-height: 0; height: auto; }
-		.hero-exp__controls { flex: 0 0 auto; }
+		.hero-x .hero-split { padding-block: clamp(1.25rem, 2.5vw, 2rem) clamp(0.75rem, 1.5vw, 1.25rem); }
+		.hero-x .hero-split__headline { font-size: clamp(1.75rem, 1rem + 2.3vw, 2.85rem); }
+		.hero-x .hero-split__lead { font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem); }
+		.hero-x .hero-split__intro { gap: 0.4rem; }
+		.hero-x .hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; margin-top: clamp(0.75rem, 1.5vw, 1.25rem); }
+		.hero-x .hero-split__more { margin-top: clamp(0.6rem, 1.2vw, 1rem); }
+
+		/* Slide 2: let the photo fill the space left after the before/after row so
+		   both fit the shorter section instead of the photo hogging it all. */
+		.hero-x .hero-x__slide--expert { align-items: stretch; }
+		.hero-x .hero-exp { align-items: stretch; }
+		.hero-x .hero-exp__copy { justify-content: center; }
+		.hero-x .hero-exp__media { height: 100%; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0; }
+		.hero-x .hero-exp__photo { flex: 1 1 0; min-height: 0; height: auto; }
+		.hero-x .hero-exp__controls { flex: 0 0 auto; }
 	}
 
 	/* Decorative background shared by slides 2 & 3. */
