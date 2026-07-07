@@ -209,8 +209,20 @@
 	   keep the text content clear of them by reserving a gutter on each side.
 	   (On phones the arrows drop to the bottom, so this rule doesn't apply.) */
 	@media (min-width: 861px) {
+		/* Keep the text content clear of the side arrows (reserve a gutter). */
 		.hero-x .hero-exp,
 		.hero-x .hero-dnt { max-width: min(var(--container-screen), calc(100vw - 220px)); }
+
+		/* Make EVERY slide exactly the dental slide's height. The tall media (the
+		   split image band and the expert photo) is told to fill whatever vertical
+		   space is left, so the slides match height without clipping anything. */
+		.hero-x__slide { height: clamp(560px, 84vh, 860px); overflow: hidden; }
+		.hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; margin-top: clamp(0.75rem, 2vw, 1.5rem); }
+		.hero-x__slide--expert { align-items: stretch; }
+		.hero-exp { align-items: stretch; }
+		.hero-exp__copy { justify-content: center; }
+		.hero-exp__media { height: 100%; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0; }
+		.hero-exp__photo { min-height: 0; max-height: 100%; }
 	}
 
 	/* Decorative background shared by slides 2 & 3. */
