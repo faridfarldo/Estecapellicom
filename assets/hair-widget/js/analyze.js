@@ -10,7 +10,7 @@
  * @param {Record<string, Blob>} photos  keyed by step id (front/left/right/donor)
  * @returns {Promise<object>} analysis result
  */
-import { CONFIG } from './config.js?v=2';
+import { CONFIG, freshNonce } from './config.js?v=3';
 
 export async function analyzePhotos(photos) {
   // Front-end-only mode: return a placeholder estimate, no network call.
@@ -29,7 +29,9 @@ export async function analyzePhotos(photos) {
   const entries = await Promise.all(
     Object.entries(photos).map(async ([id, blob]) => [id, await blobToBase64(blob)])
   );
-  const payload = { photos: Object.fromEntries(entries), nonce: CONFIG.nonce };
+  // Fresh, uncached nonce — the baked-in page nonce may be stale behind a cache.
+  const nonce = await freshNonce();
+  const payload = { photos: Object.fromEntries(entries), nonce };
 
   const res = await fetch(CONFIG.analyzeUrl, {
     method: 'POST',

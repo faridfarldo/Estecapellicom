@@ -157,6 +157,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			imageBase: '<?php echo esc_url( $hw_base . 'image/' ); ?>',
 			analyzeUrl: '<?php echo esc_url_raw( rest_url( 'estecapelli/v1/analyze' ) ); ?>',
 			submitUrl: '<?php echo esc_url_raw( rest_url( 'estecapelli/v1/hair-lead' ) ); ?>',
+			nonceUrl: '<?php echo esc_url_raw( rest_url( 'estecapelli/v1/hair-nonce' ) ); ?>',
 			nonce: '<?php echo esc_js( wp_create_nonce( 'estecapelli_hair' ) ); ?>',
 			mock: <?php echo $hw_live ? 'false' : 'true'; ?>
 		};

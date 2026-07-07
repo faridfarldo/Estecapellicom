@@ -15,7 +15,12 @@ export const CONFIG = {
   submitUrl: OV.submitUrl || '/api/submit',
 
   // WordPress nonce for the theme REST routes (estecapelli_hair action).
+  // NOTE: the baked-in `nonce` below is a fallback only — it lives in the page
+  // HTML, so a full-page cache (plugin / Nginx / Cloudflare) can freeze it and
+  // it expires after ~12–24h, causing 403s for every visitor. Always prefer a
+  // fresh one from `nonceUrl` (uncached REST route) via freshNonce().
   nonce: OV.nonce || '',
+  nonceUrl: OV.nonceUrl || '',
 
   // Front-end-only mode: placeholder analysis, no network calls.
   mock: OV.mock !== undefined ? OV.mock : false,
@@ -83,3 +88,26 @@ export const CONFIG = {
     },
   ],
 };
+
+/**
+ * Fetch a FRESH WordPress nonce right before a request, so a cached page's
+ * stale/expired nonce can never cause a 403. Cache-busted and `no-store` so no
+ * caching layer can freeze it. Falls back to the baked-in nonce on any failure.
+ * @returns {Promise<string>}
+ */
+export async function freshNonce() {
+  if (!CONFIG.nonceUrl) return CONFIG.nonce;
+  try {
+    const res = await fetch(`${CONFIG.nonceUrl}?_=${Date.now()}`, { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.nonce) {
+        CONFIG.nonce = data.nonce;
+        return data.nonce;
+      }
+    }
+  } catch {
+    /* network hiccup — fall through to the baked-in nonce */
+  }
+  return CONFIG.nonce;
+}

@@ -51,7 +51,30 @@ add_action( 'rest_api_init', function () {
 			'permission_callback' => '__return_true',
 		)
 	);
+	// Fresh nonce for the widget. The nonce printed in the page HTML gets frozen
+	// by full-page caches and expires after ~12–24h → 403 for every visitor.
+	// This uncached route hands out a live nonce right before each submission.
+	register_rest_route(
+		'estecapelli/v1',
+		'/hair-nonce',
+		array(
+			'methods'             => 'GET',
+			'callback'            => 'estecapelli_hair_nonce',
+			'permission_callback' => '__return_true',
+		)
+	);
 } );
+
+/**
+ * Return a freshly-minted nonce for the widget, with caching disabled so no
+ * layer (plugin / server / CDN) can serve a stale one.
+ */
+function estecapelli_hair_nonce() {
+	nocache_headers();
+	$res = new WP_REST_Response( array( 'ok' => true, 'nonce' => wp_create_nonce( 'estecapelli_hair' ) ), 200 );
+	$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
+	return $res;
+}
 
 /**
  * Verify the widget nonce; returns a WP_REST_Response error or null on success.

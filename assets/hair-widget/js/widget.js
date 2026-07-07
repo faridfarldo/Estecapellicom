@@ -7,11 +7,11 @@
 // NOTE: the ?v=N query on these relative imports cache-busts the whole module
 // graph. Bump N (here AND in analyze.js / submit.js / camera.js / face-detect.js)
 // whenever you change any widget JS, so browsers never run a stale mix.
-import { CONFIG } from './config.js?v=2';
-import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=2';
-import { startFaceGate } from './face-detect.js?v=2';
-import { analyzePhotos } from './analyze.js?v=2';
-import { submitLead } from './submit.js?v=2';
+import { CONFIG } from './config.js?v=3';
+import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=3';
+import { startFaceGate } from './face-detect.js?v=3';
+import { analyzePhotos } from './analyze.js?v=3';
+import { submitLead } from './submit.js?v=3';
 
 const STEPS = CONFIG.steps;
 

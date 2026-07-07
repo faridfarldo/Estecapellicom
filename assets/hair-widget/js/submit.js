@@ -13,7 +13,7 @@
  * @param {string} args.method          preferred contact channel (whatsapp|call|email)
  * @returns {Promise<object>}
  */
-import { CONFIG } from './config.js?v=2';
+import { CONFIG, freshNonce } from './config.js?v=3';
 
 export async function submitLead({ photos, analysis, contact, method }) {
   // Front-end-only mode: pretend the lead was sent (no backend yet).
@@ -30,7 +30,8 @@ export async function submitLead({ photos, analysis, contact, method }) {
   form.append('lead_method', method || '');
   form.append('lead_source', 'hero-hair-analysis');
   form.append('analysis_json', JSON.stringify(analysis ?? {}));
-  form.append('nonce', CONFIG.nonce);
+  // Fresh, uncached nonce — the baked-in page nonce may be stale behind a cache.
+  form.append('nonce', await freshNonce());
 
   for (const [id, blob] of Object.entries(photos)) {
     form.append(`photo_${id}`, blob, `${id}.jpg`);
