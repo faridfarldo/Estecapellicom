@@ -594,25 +594,33 @@
 		.hero-exp__ba figure { width: clamp(78px, 23vw, 94px); }
 		.hero-exp__arrow { width: 34px; height: 34px; }
 		.hero-aw__strip { justify-content: center; }
-		/* On phones the slides stack and the copy fills the width, so the
-		   vertically-centred side arrows sat on top of the headline. Drop them into
-		   a bottom control band (corners, flanking the dots) and reserve space below
-		   each slide's content so nothing hides behind them. The thumbnail preview
-		   is kept — the arrows still read as a mini preview of the prev/next slide. */
+		/* Phones: keep the prev/next arrows at the vertical centre (small, at the
+		   very edges). The copy gets a side gutter so the arrows only ever overlap
+		   the imagery — never any text. */
 		.hero-x__nav {
-			top: auto; bottom: 12px; transform: none;
-			width: 46px; height: 46px; border-radius: 12px;
+			top: 50%; bottom: auto; transform: translateY(-50%);
+			width: 40px; height: 40px; border-radius: 11px;
 		}
-		.hero-x__nav:hover { transform: none; }
-		.hero-x__nav--prev { left: 10px; }
-		.hero-x__nav--next { right: 10px; }
-		.hero-x__dots { bottom: 29px; }
-		/* Reserve the bottom band so slide content lifts clear of the arrows. */
-		.hero-x__slide--expert { padding-bottom: 78px; }
-		.hero-split { padding-bottom: calc(clamp(1rem, 2.5vw, 1.75rem) + 62px); }
-		.hero-dnt__before { bottom: 76px; }
-		/* Let a single long headline word wrap instead of being clipped off-screen. */
-		.hero-exp__title { overflow-wrap: break-word; hyphens: auto; }
+		.hero-x__nav:hover { transform: translateY(-50%); }
+		.hero-x__nav--prev { left: 6px; }
+		.hero-x__nav--next { right: 6px; }
+		.hero-x__dots { bottom: 14px; }
+		.hero-x .hero-exp__copy,
+		.hero-x .hero-dnt__copy,
+		.hero-x .hero-split__intro { padding-inline: 50px; }
+		.hero-x .hero-exp__title { font-size: clamp(1.55rem, 5vw, 2.1rem); overflow-wrap: break-word; hyphens: auto; }
+		.hero-x .hero-split__headline { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+
+		/* Equal heights on phones too: pin every slide to the dental height and let
+		   the media fill the leftover space so nothing is clipped. */
+		.hero-x .hero-x__slide { height: clamp(560px, 84vh, 860px); overflow: hidden; }
+		.hero-x .hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; }
+		.hero-x .hero-dnt { min-height: 0; height: 100%; }
+		.hero-x__slide--expert { align-items: stretch; }
+		.hero-x .hero-exp { display: flex; flex-direction: column; height: 100%; }
+		.hero-x .hero-exp__media { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0; }
+		.hero-x .hero-exp__photo { flex: 1 1 0; min-height: 0; height: auto; }
+		.hero-x .hero-exp__controls { flex: 0 0 auto; }
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.hero-x__track { transition: none; }
