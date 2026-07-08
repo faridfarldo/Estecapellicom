@@ -505,6 +505,40 @@
 		});
 	}
 
+	// Plain before/after scroll galleries: left/right arrows nudge the row.
+	function initBAScroll() {
+		var scrollers = document.querySelectorAll('[data-ba-scroll]');
+		if (!scrollers.length) return;
+
+		scrollers.forEach(function (sc) {
+			var strip = sc.querySelector('[data-ba-strip]');
+			var prev  = sc.querySelector('[data-ba-prev]');
+			var next  = sc.querySelector('[data-ba-next]');
+			if (!strip) return;
+
+			function amount() { return Math.max(strip.clientWidth * 0.8, 220); }
+			if (prev) prev.addEventListener('click', function () { strip.scrollBy({ left: -amount(), behavior: 'smooth' }); });
+			if (next) next.addEventListener('click', function () { strip.scrollBy({ left: amount(), behavior: 'smooth' }); });
+
+			// Grey out an arrow at the corresponding end (skipped while the panel is
+			// hidden and has no measurable width — re-checked on scroll/resize).
+			function update() {
+				if (!strip.clientWidth) return;
+				var max = strip.scrollWidth - strip.clientWidth - 2;
+				if (prev) prev.classList.toggle('is-off', strip.scrollLeft <= 0);
+				if (next) next.classList.toggle('is-off', strip.scrollLeft >= max);
+			}
+			strip.addEventListener('scroll', update, { passive: true });
+			window.addEventListener('resize', update);
+			// Re-measure when this tab is revealed (its panel's [hidden] is removed).
+			var panel = sc.closest('[data-services-panel]');
+			if (panel && window.MutationObserver) {
+				new MutationObserver(update).observe(panel, { attributes: true, attributeFilter: ['hidden'] });
+			}
+			update();
+		});
+	}
+
 	function initHairAnalysisLab() {
 		var root = document.querySelector('[data-hal]');
 		if (!root) return;
@@ -1237,6 +1271,7 @@
 		initHeroResults();
 		initHeroSplit();
 		initHomeBaGallery();
+		initBAScroll();
 		initHairAnalysisLab();
 		initServicesTabs();
 		initCategoryTabs();

@@ -1906,22 +1906,53 @@
 	}
 
 	/* ---- Plain scroll gallery (techniques with only a few results) ----
-	   A normal horizontal, swipeable row of the real images (each once), at a
+	   A normal horizontal, arrow-driven row of the real images (each once), at a
 	   uniform height and natural aspect so nothing is cropped. */
+	.home-ba__scroller { position: relative; }
 	.home-ba__wall--scroll {
+		/* Contained (not full-bleed like the moving wall) so the side arrows sit
+		   at the row's own edges. */
+		width: auto;
+		margin-inline: 0;
+		-webkit-mask-image: none;
+		        mask-image: none;
 		overflow-x: auto;
 		overflow-y: hidden;
 		-webkit-overflow-scrolling: touch;
 		scroll-snap-type: x proximity;
 		scrollbar-width: thin;
 	}
+	.home-ba__sarrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 3;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 46px;
+		height: 46px;
+		border-radius: 9999px;
+		color: white;
+		background: oklch(18% 0.03 260 / 0.78);
+		border: 1px solid oklch(100% 0 0 / 0.22);
+		box-shadow: 0 6px 20px oklch(0% 0 0 / 0.4);
+		backdrop-filter: blur(8px);
+		cursor: pointer;
+		transition: background 0.2s, transform 0.2s, opacity 0.2s;
+	}
+	.home-ba__sarrow--prev { left: 8px; }
+	.home-ba__sarrow--next { right: 8px; }
+	.home-ba__sarrow:hover { background: oklch(24% 0.04 260 / 0.9); }
+	.home-ba__sarrow.is-off { opacity: 0.35; pointer-events: none; }
 	.home-ba__strip {
 		display: flex;
 		align-items: stretch;
 		gap: 0.75rem;
 		width: max-content;
 		margin: 0;
-		padding: 4px clamp(16px, 5vw, 80px) 16px;
+		/* Side padding clears the overlaid arrows (≈54px) at both ends. */
+		padding: 4px clamp(58px, 7vw, 72px) 16px;
 		list-style: none;
 	}
 	.home-ba__scell {

@@ -131,29 +131,37 @@ $gallery_url = home_url( '/en/before-after' );
 
 				<?php if ( $is_plain ) : ?>
 
-					<!-- Plain scroll gallery — real images once, side by side, swipeable.
-					     Click any photo to open the same viewer. -->
-					<div class="home-ba__wall home-ba__wall--scroll" data-hba-board>
-						<ul class="home-ba__strip">
-							<?php foreach ( $tech['images'] as $img ) : ?>
-								<li class="home-ba__scell">
-									<button
-										type="button"
-										class="home-ba__open"
-										data-hba-open
-										data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
-										data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
-										aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
-									>
-										<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
-									</button>
-								</li>
-							<?php endforeach; ?>
-						</ul>
+					<!-- Plain scroll gallery — real images once, side by side. Arrows scroll
+					     the row; clicking a photo enlarges it in the global lightbox (no
+					     gallery viewer for these techniques). -->
+					<div class="home-ba__scroller" data-ba-scroll>
+						<button type="button" class="home-ba__sarrow home-ba__sarrow--prev" data-ba-prev aria-label="<?php esc_attr_e( 'Scroll left', 'estecapelli' ); ?>">
+							<?php estecapelli_icon( 'chevron-left', array( 'width' => 22, 'height' => 22 ) ); ?>
+						</button>
+						<div class="home-ba__wall home-ba__wall--scroll" data-ba-strip>
+							<ul class="home-ba__strip">
+								<?php foreach ( $tech['images'] as $img ) : ?>
+									<li class="home-ba__scell">
+										<button
+											type="button"
+											class="home-ba__open"
+											data-img-zoom="<?php echo esc_url( $img['full'] ); ?>"
+											data-caption="<?php echo esc_attr( $img['alt'] ); ?>"
+											aria-label="<?php esc_attr_e( 'Enlarge photo', 'estecapelli' ); ?>"
+										>
+											<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
+										</button>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						</div>
+						<button type="button" class="home-ba__sarrow home-ba__sarrow--next" data-ba-next aria-label="<?php esc_attr_e( 'Scroll right', 'estecapelli' ); ?>">
+							<?php estecapelli_icon( 'chevron-right', array( 'width' => 22, 'height' => 22 ) ); ?>
+						</button>
 					</div>
 					<span class="home-ba__hint home-ba__hint--static" aria-hidden="true">
 						<?php estecapelli_icon( 'image', array( 'width' => 16, 'height' => 16 ) ); ?>
-						<?php esc_html_e( 'Swipe to browse · click any photo to open', 'estecapelli' ); ?>
+						<?php esc_html_e( 'Use the arrows to browse · click any photo to enlarge', 'estecapelli' ); ?>
 					</span>
 
 				<?php else : ?>
@@ -200,7 +208,9 @@ $gallery_url = home_url( '/en/before-after' );
 
 				<?php endif; ?>
 
-				<!-- Viewer: large image + thumbnail strip -->
+				<?php if ( ! $is_plain ) : ?>
+				<!-- Viewer: large image + thumbnail strip (unused by the plain scroll
+				     galleries, which enlarge via the global lightbox). -->
 				<div class="home-ba__viewer" data-hba-viewer hidden>
 					<button type="button" class="home-ba__back" data-hba-back>
 						<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
@@ -237,6 +247,7 @@ $gallery_url = home_url( '/en/before-after' );
 						<?php endforeach; ?>
 					</ul>
 				</div>
+				<?php endif; ?>
 
 			</div>
 		<?php endforeach; ?>
