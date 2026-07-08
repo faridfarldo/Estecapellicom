@@ -608,7 +608,11 @@
 		.hero-x .hero-exp__copy,
 		.hero-x .hero-dnt__copy,
 		.hero-x .hero-split__intro { padding-inline: 50px; }
-		.hero-x .hero-exp__title { font-size: clamp(1.55rem, 5vw, 2.1rem); overflow-wrap: break-word; hyphens: auto; }
+		/* Trim the expert copy so the after photo gets more height on phones. */
+		.hero-x .hero-exp__title { font-size: clamp(1.35rem, 4.4vw, 1.8rem); overflow-wrap: break-word; hyphens: auto; }
+		.hero-x .hero-exp__copy { gap: 0.55rem; }
+		.hero-x .hero-exp__lead { font-size: 0.9rem; line-height: 1.5; }
+		.hero-x .hero-exp__copy .btn { padding-block: 0.7rem; }
 		.hero-x .hero-split__headline { font-size: clamp(1.6rem, 6vw, 2.4rem); }
 
 		/* Equal heights on phones too: pin every slide to the dental height and let
@@ -1899,6 +1903,43 @@
 	@media (prefers-reduced-motion: reduce) {
 		.home-ba__walltrack { animation: none; }
 		.home-ba__wall { overflow-x: auto; }
+	}
+
+	/* ---- Plain scroll gallery (techniques with only a few results) ----
+	   A normal horizontal, swipeable row of the real images (each once), at a
+	   uniform height and natural aspect so nothing is cropped. */
+	.home-ba__wall--scroll {
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		scroll-snap-type: x proximity;
+		scrollbar-width: thin;
+	}
+	.home-ba__strip {
+		display: flex;
+		align-items: stretch;
+		gap: 0.75rem;
+		width: max-content;
+		margin: 0;
+		padding: 4px clamp(16px, 5vw, 80px) 16px;
+		list-style: none;
+	}
+	.home-ba__scell {
+		flex: 0 0 auto;
+		height: clamp(240px, 42vh, 420px);
+		scroll-snap-align: center;
+	}
+	.home-ba__wall--scroll .home-ba__open { width: auto; height: 100%; }
+	.home-ba__wall--scroll .home-ba__open img { width: auto; height: 100%; object-fit: contain; }
+	/* This technique's hint sits below the row (static), not floating over it. */
+	.home-ba__hint--static {
+		position: static;
+		left: auto;
+		bottom: auto;
+		transform: none;
+		display: flex;
+		width: fit-content;
+		margin: 0.9rem auto 0;
 	}
 
 	/* ---- Viewer (large image + thumbnails) ---- */

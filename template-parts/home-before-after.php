@@ -58,6 +58,7 @@ foreach ( $ht_group['services'] as $sb ) {
 
 	$techniques[] = array(
 		'id'     => $svc->ID,
+		'slug'   => $svc->post_name,
 		'title'  => get_the_title( $svc ),
 		'url'    => get_permalink( $svc ),
 		'images' => $images,
@@ -66,6 +67,12 @@ foreach ( $ht_group['services'] as $sb ) {
 if ( empty( $techniques ) ) {
 	return;
 }
+
+// These techniques have only a handful of results, so the auto-scrolling wall
+// (which repeats images to fill the row) looks thin. They render instead as a
+// plain, side-by-side horizontal scroll gallery — every real image, once, in a
+// row you can swipe through. The other techniques keep the moving wall.
+$plain_gallery_slugs = array( 'female-hair-transplant', 'beard-transplant' );
 
 $gallery_url = home_url( '/en/before-after' );
 ?>
@@ -120,45 +127,78 @@ $gallery_url = home_url( '/en/before-after' );
 				<?php echo $is_first ? '' : 'hidden'; ?>
 			>
 
-				<!-- Moving tableau wall — click any photo to open the gallery viewer.
-				     Images are emitted twice so the scroll loops seamlessly. -->
-				<?php
-				// Widen one half so the full-bleed wall always covers the viewport,
-				// then emit two identical halves for a seamless -50%→0 loop.
-				$half_imgs = $tech['images'];
-				while ( count( $half_imgs ) < 12 ) {
-					$half_imgs = array_merge( $half_imgs, $tech['images'] );
-				}
-				?>
-				<div class="home-ba__wall" data-hba-board>
-					<ul class="home-ba__walltrack">
-						<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
-							<?php foreach ( $half_imgs as $idx => $img ) :
-								// Every 5th tile is a big 2x2 block; the pattern is keyed to the
-								// real index so both copies match and the loop stays seamless.
-								$is_big = ( 0 === $idx % 5 );
-								?>
-								<li class="home-ba__cell<?php echo $is_big ? ' home-ba__cell--big' : ''; ?>" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
+				<?php $is_plain = in_array( $tech['slug'], $plain_gallery_slugs, true ); ?>
+
+				<?php if ( $is_plain ) : ?>
+
+					<!-- Plain scroll gallery — real images once, side by side, swipeable.
+					     Click any photo to open the same viewer. -->
+					<div class="home-ba__wall home-ba__wall--scroll" data-hba-board>
+						<ul class="home-ba__strip">
+							<?php foreach ( $tech['images'] as $img ) : ?>
+								<li class="home-ba__scell">
 									<button
 										type="button"
 										class="home-ba__open"
 										data-hba-open
 										data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
 										data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
-										<?php echo 1 === $dup ? 'tabindex="-1" aria-hidden="true"' : ''; ?>
 										aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
 									>
 										<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
 									</button>
 								</li>
 							<?php endforeach; ?>
-						<?php endfor; ?>
-					</ul>
-					<span class="home-ba__hint" aria-hidden="true">
+						</ul>
+					</div>
+					<span class="home-ba__hint home-ba__hint--static" aria-hidden="true">
 						<?php estecapelli_icon( 'image', array( 'width' => 16, 'height' => 16 ) ); ?>
-						<?php esc_html_e( 'Click any photo to open the gallery', 'estecapelli' ); ?>
+						<?php esc_html_e( 'Swipe to browse · click any photo to open', 'estecapelli' ); ?>
 					</span>
-				</div>
+
+				<?php else : ?>
+
+					<!-- Moving tableau wall — click any photo to open the gallery viewer.
+					     Images are emitted twice so the scroll loops seamlessly. -->
+					<?php
+					// Widen one half so the full-bleed wall always covers the viewport,
+					// then emit two identical halves for a seamless -50%→0 loop.
+					$half_imgs = $tech['images'];
+					while ( count( $half_imgs ) < 12 ) {
+						$half_imgs = array_merge( $half_imgs, $tech['images'] );
+					}
+					?>
+					<div class="home-ba__wall" data-hba-board>
+						<ul class="home-ba__walltrack">
+							<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
+								<?php foreach ( $half_imgs as $idx => $img ) :
+									// Every 5th tile is a big 2x2 block; the pattern is keyed to the
+									// real index so both copies match and the loop stays seamless.
+									$is_big = ( 0 === $idx % 5 );
+									?>
+									<li class="home-ba__cell<?php echo $is_big ? ' home-ba__cell--big' : ''; ?>" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
+										<button
+											type="button"
+											class="home-ba__open"
+											data-hba-open
+											data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
+											data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
+											<?php echo 1 === $dup ? 'tabindex="-1" aria-hidden="true"' : ''; ?>
+											aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
+										>
+											<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
+										</button>
+									</li>
+								<?php endforeach; ?>
+							<?php endfor; ?>
+						</ul>
+						<span class="home-ba__hint" aria-hidden="true">
+							<?php estecapelli_icon( 'image', array( 'width' => 16, 'height' => 16 ) ); ?>
+							<?php esc_html_e( 'Click any photo to open the gallery', 'estecapelli' ); ?>
+						</span>
+					</div>
+
+				<?php endif; ?>
 
 				<!-- Viewer: large image + thumbnail strip -->
 				<div class="home-ba__viewer" data-hba-viewer hidden>
