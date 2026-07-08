@@ -520,6 +520,28 @@
 			if (prev) prev.addEventListener('click', function () { strip.scrollBy({ left: -amount(), behavior: 'smooth' }); });
 			if (next) next.addEventListener('click', function () { strip.scrollBy({ left: amount(), behavior: 'smooth' }); });
 
+			// Click-and-drag to scroll with the mouse (touch/pen already scroll
+			// natively). A drag past a few px is flagged so the click it ends on is
+			// swallowed — otherwise letting go would open the lightbox.
+			var down = false, moved = false, startX = 0, startLeft = 0;
+			strip.addEventListener('pointerdown', function (e) {
+				if (e.pointerType !== 'mouse' || e.button !== 0) return;
+				down = true; moved = false; startX = e.clientX; startLeft = strip.scrollLeft;
+			});
+			strip.addEventListener('pointermove', function (e) {
+				if (!down) return;
+				var dx = e.clientX - startX;
+				if (!moved && Math.abs(dx) > 4) { moved = true; strip.classList.add('is-dragging'); }
+				if (moved) { strip.scrollLeft = startLeft - dx; e.preventDefault(); }
+			});
+			function endDrag() { down = false; strip.classList.remove('is-dragging'); }
+			strip.addEventListener('pointerup', endDrag);
+			strip.addEventListener('pointercancel', endDrag);
+			strip.addEventListener('pointerleave', endDrag);
+			strip.addEventListener('click', function (e) {
+				if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+			}, true);
+
 			// Grey out an arrow at the corresponding end (skipped while the panel is
 			// hidden and has no measurable width — re-checked on scroll/resize).
 			function update() {
