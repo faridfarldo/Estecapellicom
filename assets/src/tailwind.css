@@ -4936,7 +4936,7 @@
 
 	/* ---- Lightbox ---- */
 	.stories__lightbox {
-		position: fixed; inset: 0; z-index: 100;
+		position: fixed; inset: 0; z-index: 9999;
 		display: flex; align-items: center; justify-content: center;
 		padding: clamp(1rem, 3vw, 2rem);
 		opacity: 0;

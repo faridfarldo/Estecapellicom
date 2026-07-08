@@ -683,9 +683,19 @@
 		});
 	}
 
+	// Set by initStoriesLightbox so other overlays can stop the video when they open.
+	var closeStoriesVideo = function () {};
+
 	function initStoriesLightbox() {
 		var lightbox = document.querySelector('[data-stories-lightbox]');
 		if (!lightbox) return;
+
+		// The lightbox markup lives inside .stories, which sets `isolation: isolate`
+		// (a stacking context). A fixed child can't paint above later sections from
+		// there, so lift it to <body> — now its z-index wins page-wide.
+		if (lightbox.parentNode !== document.body) {
+			document.body.appendChild(lightbox);
+		}
 
 		var frame      = lightbox.querySelector('[data-stories-lightbox-frame]');
 		var titleEl    = lightbox.querySelector('[data-stories-lightbox-title]');
@@ -696,10 +706,12 @@
 		function open(videoId, title) {
 			if (!videoId) return;
 			lastFocused = document.activeElement;
+			// controls=0 strips YouTube's chrome (volume, CC, settings…); the video
+			// plays on open and a click toggles play/pause — nothing else.
 			frame.innerHTML =
 				'<iframe class="stories__lightbox-iframe" src="https://www.youtube.com/embed/' +
 				encodeURIComponent(videoId) +
-				'?autoplay=1&rel=0&modestbranding=1" title="' +
+				'?autoplay=1&rel=0&modestbranding=1&controls=0&fs=0&disablekb=1&iv_load_policy=3&cc_load_policy=0&playsinline=1" title="' +
 				(title || 'Patient story') +
 				'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 			if (titleEl) titleEl.textContent = title || '';
@@ -711,14 +723,16 @@
 		}
 
 		function close() {
+			if (lightbox.getAttribute('data-open') !== 'true') return;
 			lightbox.removeAttribute('data-open');
 			lightbox.setAttribute('hidden', '');
-			frame.innerHTML = '';
+			frame.innerHTML = ''; // Removing the iframe stops playback/audio.
 			document.body.classList.remove('no-scroll');
 			if (lastFocused && typeof lastFocused.focus === 'function') {
 				lastFocused.focus();
 			}
 		}
+		closeStoriesVideo = close;
 
 		triggers.forEach(function (btn) {
 			btn.addEventListener('click', function () {
@@ -811,6 +825,7 @@
 		function openGallery(list, start, alt) {
 			gallery = list.filter(Boolean);
 			if (!gallery.length) return;
+			closeStoriesVideo(); // Opening a photo gallery stops any playing clinic video.
 			index = Math.max(0, Math.min(start || 0, gallery.length - 1));
 			lastFocused = document.activeElement;
 			imgEl.setAttribute('alt', alt || '');
