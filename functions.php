@@ -117,10 +117,18 @@ add_filter( 'document_title_parts', function ( $parts ) {
  *
  * Note: this only produces pretty URLs when the site's permalink structure
  * is set to something other than "Plain" (Settings → Permalinks).
+ *
+ * IMPORTANT: we pass `false` for a SOFT flush. A hard flush (the default)
+ * rewrites the site's .htaccess between the `# BEGIN WordPress` markers, which
+ * WIPES any HTTPS-forcing rules placed inside that block (e.g. added by
+ * "Really Simple SSL" or by hand) — that made SSL break on every deploy, since
+ * every deploy bumps ESTECAPELLI_VERSION and triggers this. A soft flush only
+ * regenerates the `rewrite_rules` option in the DB (all that the treatment CPT
+ * needs) and never touches .htaccess.
  */
 function estecapelli_maybe_flush_rewrite_rules() {
 	if ( get_option( 'estecapelli_rewrite_version' ) !== ESTECAPELLI_VERSION ) {
-		flush_rewrite_rules();
+		flush_rewrite_rules( false ); // soft flush — do NOT rewrite .htaccess
 		update_option( 'estecapelli_rewrite_version', ESTECAPELLI_VERSION );
 	}
 }
