@@ -328,6 +328,9 @@
 			if (data[i].b1) b1.src = data[i].b1;
 			if (data[i].b2) b2.src = data[i].b2;
 			after.style.objectPosition = data[i].pos || 'center 20%';
+			// Optional per-patient zoom (for photos whose aspect ~matches the box).
+			after.style.transform = (data[i].scale && data[i].scale != 1) ? ('scale(' + data[i].scale + ')') : '';
+			after.style.transformOrigin = data[i].origin || '50% 50%';
 		}
 
 		var DELAY = 3500;

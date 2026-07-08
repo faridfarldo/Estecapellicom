@@ -29,22 +29,34 @@ $exp    = $slides['expert'];
 $result_ids  = array( 2, 4, 5, 8, 10, 12 );
 $result_base = get_template_directory_uri() . '/assets/images/hero-results/';
 // Per-patient framing for the big "after" shot (the photos have different
-// orientations and the face sits at a different height in each).
+// orientations and the face sits at a different height in each). The box is a
+// 3/4 portrait crop, so `pos` (object-position) only has room to slide the
+// crop along the axis where the photo overspills the box: a wide (landscape)
+// shot slides horizontally, a tall one vertically.
 $result_pos  = array(
 	2  => '50% 30%',
 	4  => '50% 12%',
-	5  => '50% 30%',
-	8  => '50% 35%',
+	5  => '58% 30%', // 16:9 shot — bias the horizontal crop so the face sits left of centre
+	8  => '50% 50%',
 	10 => '50% 35%',
 	12 => '50% 30%',
+);
+// Some photos are already ~3/4, so object-position alone can't recentre them —
+// a gentle zoom crops the empty margins and gives the framing room to move.
+// 'origin' is the scale pivot: a pivot ABOVE the face pushes the face DOWN, a
+// pivot to its LEFT pushes it RIGHT.
+$result_zoom = array(
+	8  => array( 'scale' => 1.28, 'origin' => '28% 8%' ), // pull the head down + right to centre it
 );
 $results     = array();
 foreach ( $result_ids as $rid ) {
 	$results[] = array(
-		'after' => $result_base . $rid . '/after.jpeg',
-		'b1'    => $result_base . $rid . '/b1.jpeg',
-		'b2'    => $result_base . $rid . '/b2.jpeg',
-		'pos'   => isset( $result_pos[ $rid ] ) ? $result_pos[ $rid ] : '50% 25%',
+		'after'  => $result_base . $rid . '/after.jpeg',
+		'b1'     => $result_base . $rid . '/b1.jpeg',
+		'b2'     => $result_base . $rid . '/b2.jpeg',
+		'pos'    => isset( $result_pos[ $rid ] ) ? $result_pos[ $rid ] : '50% 25%',
+		'scale'  => isset( $result_zoom[ $rid ]['scale'] )  ? (float) $result_zoom[ $rid ]['scale'] : 1.0,
+		'origin' => isset( $result_zoom[ $rid ]['origin'] ) ? $result_zoom[ $rid ]['origin'] : '50% 50%',
 	);
 }
 ?>
@@ -145,7 +157,7 @@ foreach ( $result_ids as $rid ) {
 
 					<div class="hero-exp__media" data-hero-results="<?php echo esc_attr( wp_json_encode( $results ) ); ?>">
 						<figure class="hero-exp__photo">
-							<img data-result-after src="<?php echo esc_url( $results[0]['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" style="object-position: <?php echo esc_attr( $results[0]['pos'] ); ?>;" decoding="async" />
+							<img data-result-after src="<?php echo esc_url( $results[0]['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" style="object-position: <?php echo esc_attr( $results[0]['pos'] ); ?>;<?php if ( 1.0 !== (float) $results[0]['scale'] ) : ?> transform: scale(<?php echo esc_attr( $results[0]['scale'] ); ?>); transform-origin: <?php echo esc_attr( $results[0]['origin'] ); ?>;<?php endif; ?>" decoding="async" />
 
 							<?php if ( ! empty( $exp['badge'] ) ) : ?>
 								<span class="hero-exp__reviews">
