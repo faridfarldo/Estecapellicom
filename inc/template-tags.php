@@ -1759,10 +1759,8 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 					'type'    => 'image',
 					'caption' => __( 'Washing Units', 'estecapelli' ),
 					'images'  => array(
-						$img . 'clinic/washing/washing-1.webp',
 						$img . 'clinic/washing/washing-2.webp',
 						$img . 'clinic/washing/washing-3.webp',
-						$img . 'clinic/washing/washing-4.webp',
 						$img . 'clinic/washing/washing-5.webp',
 					),
 				),
