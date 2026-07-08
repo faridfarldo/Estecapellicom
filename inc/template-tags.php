@@ -1736,7 +1736,7 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 			// then four room tiles. Each room tile carries a gallery of photos:
 			// the first is the cover; clicking opens the lightbox to browse them.
 			'gallery' => array(
-				array( 'type' => 'video', 'image' => $img . 'facilities/clinic.jpg', 'video' => 'oINL-_dGV_M', 'caption' => __( 'Clinic walkthrough', 'estecapelli' ) ),
+				array( 'type' => 'video', 'image' => $img . 'facilities/clinic.jpg', 'video' => 'uP3r9sn-EtM', 'caption' => __( 'Clinic walkthrough', 'estecapelli' ) ),
 				array(
 					'type'    => 'image',
 					'caption' => __( 'Hair Transplant Surgery Room', 'estecapelli' ),
@@ -1744,6 +1744,7 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 						$img . 'clinic/surgery/surgery-1.webp',
 						$img . 'clinic/surgery/surgery-2.webp',
 						$img . 'clinic/surgery/surgery-3.webp',
+						$img . 'clinic/surgery/surgery-4.webp',
 					),
 				),
 				array(
@@ -1760,6 +1761,9 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 					'images'  => array(
 						$img . 'clinic/washing/washing-1.webp',
 						$img . 'clinic/washing/washing-2.webp',
+						$img . 'clinic/washing/washing-3.webp',
+						$img . 'clinic/washing/washing-4.webp',
+						$img . 'clinic/washing/washing-5.webp',
 					),
 				),
 				array(
@@ -1767,7 +1771,6 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 					'caption' => __( 'Dental Clinic', 'estecapelli' ),
 					'images'  => array(
 						$img . 'clinic/dental/dental-1.webp',
-						$img . 'clinic/dental/dental-2.webp',
 					),
 				),
 			),

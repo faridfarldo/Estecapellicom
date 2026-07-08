@@ -68,13 +68,11 @@ $partners = $data['partners'] ?? array();
 						$imgs = ! empty( $item['images'] ) && is_array( $item['images'] ) ? array_values( array_filter( $item['images'] ) ) : array();
 						if ( empty( $imgs ) && ! empty( $item['image'] ) ) { $imgs = array( $item['image'] ); }
 						$cover = $imgs[0] ?? '';
-						$count = count( $imgs );
 						?>
 						<button type="button" class="facilities__media facilities__media--photo" data-img-gallery="<?php echo esc_attr( wp_json_encode( $imgs ) ); ?>" data-caption="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Open gallery: %s', 'estecapelli' ), $item['caption'] ?? '' ) ); ?>">
 							<img src="<?php echo esc_url( $cover ); ?>" alt="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" loading="lazy" decoding="async" />
 							<span class="facilities__zoom" aria-hidden="true">
 								<?php estecapelli_icon( 'image', array( 'width' => 18, 'height' => 18 ) ); ?>
-								<?php if ( $count > 1 ) : ?><span class="facilities__zoom-count"><?php echo (int) $count; ?></span><?php endif; ?>
 							</span>
 							<?php if ( ! empty( $item['caption'] ) ) : ?>
 								<span class="facilities__caption"><?php echo esc_html( $item['caption'] ); ?></span>
