@@ -1211,8 +1211,8 @@
 
 		/* The seam runs horizontally on mobile, so nudge the products vertically
 		   into their own strip (Exosome up / VITA down). */
-		.hero-split__panel--exosome .hero-split__cover { transform: scale(1.12) translateY(-7%); }
-		.hero-split__panel--vita .hero-split__cover { transform: scale(1.12) translateY(7%); }
+		.hero-split__panel--exosome .hero-split__cover { transform: scale(1.12) translateY(-14%); }
+		.hero-split__panel--vita .hero-split__cover { transform: scale(1.12) translateY(14%); }
 
 		/* Anchor each panel's copy to its own edge so the heading stays inside
 		   the visible strip when collapsed; full width, always left-aligned. */
