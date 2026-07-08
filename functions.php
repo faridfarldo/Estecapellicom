@@ -78,6 +78,32 @@ if ( ! function_exists( 'estecapelli_setup' ) ) {
 add_action( 'after_setup_theme', 'estecapelli_setup' );
 
 /**
+ * Strip a dangling separator from the <title>, e.g. "Estecapelli -".
+ *
+ * This happens when the Site Tagline is empty but the title template still ends
+ * with a separator + tagline (common with SEO plugins like Rank Math/Yoast, and
+ * possible with a blank tagline on the core title-tag). We clean it in three
+ * places so the fix holds no matter which is generating the title.
+ */
+function estecapelli_trim_title_separator( $title ) {
+	// Drop a trailing separator (-, –, —, |, ·, •, ~, :) plus surrounding space.
+	return preg_replace( '/\s*[-–—|·•~:]+\s*$/u', '', (string) $title );
+}
+add_filter( 'rank_math/frontend/title', 'estecapelli_trim_title_separator', 99 ); // Rank Math
+add_filter( 'wpseo_title', 'estecapelli_trim_title_separator', 99 );               // Yoast (harmless if absent)
+
+// Core title-tag path: drop any part that is blank or only a separator so the
+// join can't leave a trailing dash.
+add_filter( 'document_title_parts', function ( $parts ) {
+	foreach ( $parts as $key => $value ) {
+		if ( '' === trim( wp_strip_all_tags( (string) $value ), " \t\n\r\0\x0B-–—|·•~:" ) ) {
+			unset( $parts[ $key ] );
+		}
+	}
+	return $parts;
+} );
+
+/**
  * Flush rewrite rules once per theme version.
  *
  * The `treatment` CPT registers a `/treatments/%slug%/` permalink. Those
