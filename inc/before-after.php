@@ -120,13 +120,21 @@ function estecapelli_render_before_after_carousel( $treatment_id ) {
  * @return int
  */
 function estecapelli_treatment_order_rank( $slug ) {
+	// Sorting is always applied WITHIN a single category, so these ranks only
+	// ever compare same-category slugs — hair ranks never mix with plastic ones.
 	$order = array(
+		// Hair transplant.
 		'exosome-fue-hair-transplant',
 		'vita-treatment',
 		'sapphire-fue-hair-transplant',
 		'dhi-hair-transplant',
 		'female-hair-transplant',
 		'beard-transplant',
+		// Plastic surgery — these four lead; the rest keep query order after them.
+		'breast-aesthetics-breast-surgery', // Breast surgery
+		'rhinoplasty',                      // Nose surgery
+		'abdominoplasty-tummy-tuck',        // Tummy Tuck
+		'liposuction',                      // Lipo
 	);
 	$i = array_search( $slug, $order, true );
 	return ( false === $i ) ? 99 : $i;
