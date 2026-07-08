@@ -85,11 +85,6 @@ $uid   = 'book-' . sanitize_title( $title ) . '-' . wp_rand( 100, 999 );
 							<div class="t-book__page-copy">
 								<span class="t-book__watermark" aria-hidden="true"><?php echo esc_html( $num ); ?></span>
 								<div class="t-book__page-head">
-									<?php if ( $icon || ! empty( $step['icon_file'] ) ) : ?>
-										<span class="t-book__page-icon" aria-hidden="true">
-											<?php estecapelli_render_item_icon( $step, array( 'width' => 24, 'height' => 24 ) ); ?>
-										</span>
-									<?php endif; ?>
 									<div class="t-book__page-heading">
 										<?php if ( $kick ) : ?>
 											<span class="t-book__page-eyebrow"><?php echo esc_html( $kick ); ?></span>
