@@ -607,6 +607,9 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/gaia.webp', 'name' => __( 'Gaia', 'estecapelli' ), 'role' => '', 'languages' => array(
 								array( 'country' => 'it', 'label' => __( 'Italian', 'estecapelli' ) ),
 							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/emilia.webp', 'name' => __( 'Emilia', 'estecapelli' ), 'role' => '', 'languages' => array(
+								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
+							) ),
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/natalia.webp', 'name' => __( 'Natalia', 'estecapelli' ), 'role' => '', 'languages' => array(
 								array( 'country' => 'pl', 'label' => __( 'Polish', 'estecapelli' ) ),
 							) ),
