@@ -183,8 +183,7 @@ $error_msg  = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_
 							<span class="contact-info__icon"><?php estecapelli_icon( 'calendar', array( 'width' => 18, 'height' => 18 ) ); ?></span>
 							<span>
 								<span class="contact-info__k"><?php esc_html_e( 'Working hours', 'estecapelli' ); ?></span>
-								<?php esc_html_e( 'Monday – Saturday: 09:00 – 18:00 (GMT+3)', 'estecapelli' ); ?><br />
-								<?php esc_html_e( 'Sunday: Closed', 'estecapelli' ); ?>
+								<?php esc_html_e( 'Monday – Sunday: 09:00 – 18:00 (GMT+3)', 'estecapelli' ); ?>
 							</span>
 						</li>
 					</ul>
