@@ -39,10 +39,19 @@ if ( post_type_exists( 'doctor' ) ) {
 	if ( $doctor_posts ) {
 		$members = array_map(
 			static function ( $doc ) {
+				$photo = function_exists( 'get_field' ) ? get_field( 'photo', $doc->ID ) : array();
+				// Fall back to the theme-bundled résumé photo URL when no portrait
+				// has been uploaded (an uploaded photo always wins).
+				if ( empty( $photo['url'] ) && function_exists( 'get_field' ) ) {
+					$rurl = (string) get_field( 'resume_photo_url', $doc->ID );
+					if ( '' !== $rurl ) {
+						$photo = array( 'url' => $rurl, 'alt' => get_the_title( $doc ) );
+					}
+				}
 				return array(
 					'name'       => get_the_title( $doc ),
 					'position'   => function_exists( 'get_field' ) ? (string) get_field( 'position', $doc->ID ) : '',
-					'photo'      => function_exists( 'get_field' ) ? get_field( 'photo', $doc->ID ) : array(),
+					'photo'      => $photo,
 					'resume_url' => get_permalink( $doc ),
 				);
 			},

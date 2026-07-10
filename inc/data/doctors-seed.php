@@ -111,13 +111,20 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 			),
 
 			array(
-				'slug'          => 'op-dr-necdet-derici',
-				'name'          => 'Op. Dr. Necdet Derici',
-				'position'      => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-				'bio'           => $surgeon_bio( __( 'Op. Dr. Necdet Derici', 'estecapelli' ) ),
-				'credentials'   => $surgeon_credentials,
-				'menu_order'    => 4,
-				'old_page_path' => 'about-us/our-doctors/op-dr-necdet-derici',
+				'slug'             => 'op-dr-necdet-derici',
+				'name'             => 'Op. Dr. Necdet Derici',
+				'position'         => __( 'General Surgery Specialist', 'estecapelli' ),
+				'bio'              => __( 'Op. Dr. Necdet Derici is a specialist in General Surgery. He completed his medical education at İstanbul University, İstanbul Faculty of Medicine, and went on to complete his specialist training in general surgery. He cares for patients across the full breadth of general surgery, with particular interest in endocrine surgery — goiter, adrenal and parathyroid surgery — and laparoscopic surgery, including laparoscopic bariatric (obesity) and colon procedures. His practice also covers gastric surgery, hernia surgery, appendectomy, hiatal hernia and cholecystectomy, alongside gastrointestinal surgery — stomach cancers and ulcers, colon cancers and biliary-tract operations — and endoscopy.', 'estecapelli' ),
+				'credentials'      => array(
+					__( 'Specialist — General Surgery', 'estecapelli' ),
+					__( 'Medical degree — İstanbul University, İstanbul Faculty of Medicine', 'estecapelli' ),
+					__( 'Endocrine surgery — goiter, adrenal & parathyroid', 'estecapelli' ),
+					__( 'Laparoscopic surgery — bariatric & colon', 'estecapelli' ),
+					__( 'Gastrointestinal surgery & endoscopy', 'estecapelli' ),
+				),
+				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/necdet-derici.webp',
+				'menu_order'       => 4,
+				'old_page_path'    => 'about-us/our-doctors/op-dr-necdet-derici',
 			),
 
 			array(
