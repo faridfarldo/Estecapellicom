@@ -1353,7 +1353,7 @@ if ( ! function_exists( 'estecapelli_signature_methods_defaults' ) ) {
 					'title'      => __( 'TrichoLab', 'estecapelli' ),
 					'subtitle'   => __( 'Millimetric Hair & Scalp Analysis', 'estecapelli' ),
 					'tease'      => __( 'AI maps your scalp before a single graft is planned.', 'estecapelli' ),
-					'image'      => $img . 'tricholab.png',
+					'image'      => $img . 'tricholab.webp',
 					'icon'       => 'target',
 					'stat'       => __( 'Millimetric', 'estecapelli' ),
 					'stat_label' => __( 'Precision per scalp scan', 'estecapelli' ),
