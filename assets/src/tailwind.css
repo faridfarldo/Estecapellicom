@@ -5833,6 +5833,10 @@
 		position: absolute; inset: 0;
 		width: 100%; height: 100%;
 		object-fit: cover;
+		/* Bias the square crop toward the top of the frame: these are portrait
+		   patient selfies, so centring cut heads off / pushed faces too high.
+		   Revealing more above the head pulls the subject down into the frame. */
+		object-position: 50% 30%;
 		opacity: 0; transition: opacity 0.5s ease;
 		cursor: zoom-in;
 	}
