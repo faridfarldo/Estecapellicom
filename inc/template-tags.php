@@ -280,7 +280,7 @@ if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
 		return array(
 			'heading'  => __( 'Visit Us', 'estecapelli' ),
 			'address'  => __( 'Istanbul, Türkiye', 'estecapelli' ),
-			'phone'    => '+90 543 148 88 88',
+			'phone'    => '+90 541 541 0041',
 			'whatsapp' => ESTECAPELLI_WHATSAPP,
 			'email'    => 'info@estecapelli.com',
 			'socials'  => array(

@@ -14,7 +14,7 @@ if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {
-	define( 'ESTECAPELLI_WHATSAPP', '905431488888' );
+	define( 'ESTECAPELLI_WHATSAPP', '905415410041' );
 }
 
 if ( ! defined( 'ESTECAPELLI_PATIENT_COUNT' ) ) {
