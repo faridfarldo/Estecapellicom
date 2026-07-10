@@ -87,9 +87,6 @@ $secondary_label = ! empty( $secondary['label'] ) ? $secondary['label'] : ( $sec
 							<?php endif; ?>
 
 							<div class="signature__front-body">
-								<span class="signature__card-icon" aria-hidden="true">
-									<?php estecapelli_icon( $card['icon'], array( 'width' => 22, 'height' => 22 ) ); ?>
-								</span>
 								<h3 class="signature__card-title">
 									<?php echo esc_html( $card['title'] ); ?>
 									<span class="signature__card-subtitle"><?php echo esc_html( $card['subtitle'] ); ?></span>
