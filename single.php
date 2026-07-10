@@ -1,7 +1,7 @@
 <?php
 /**
  * Single post — article layout with featured image, content, tags, share,
- * author box and related posts.
+ * and related posts.
  *
  * @package Estecapelli
  */
@@ -87,16 +87,6 @@ while ( have_posts() ) :
 				<button type="button" class="single-post__share-btn" data-copy-link="<?php echo esc_url( $permal ); ?>" aria-label="<?php esc_attr_e( 'Copy link', 'estecapelli' ); ?>">
 					<?php estecapelli_icon( 'link', array( 'width' => 18, 'height' => 18 ) ); ?>
 				</button>
-			</div>
-
-			<div class="single-post__author-box">
-				<span class="single-post__avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 96, '', '', array( 'class' => 'single-post__avatar-img' ) ); ?></span>
-				<div class="single-post__author-info">
-					<span class="single-post__author-eyebrow"><?php esc_html_e( 'Written by', 'estecapelli' ); ?></span>
-					<span class="single-post__author-name"><?php echo esc_html( get_the_author() ); ?></span>
-					<?php $bio = get_the_author_meta( 'description' ); ?>
-					<p class="single-post__author-bio"><?php echo esc_html( $bio ? $bio : __( 'The Estecapelli medical and editorial team — sharing evidence-based guidance on hair restoration, plastic surgery and dental care.', 'estecapelli' ) ); ?></p>
-				</div>
 			</div>
 		</div>
 

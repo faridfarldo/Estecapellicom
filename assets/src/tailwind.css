@@ -7787,12 +7787,6 @@
 	.single-post__share-btn:hover { border-color: var(--color-brand-300, var(--color-brand-200)); color: var(--color-brand-950); }
 	.single-post__share-btn.is-copied { background: var(--color-trust-500); border-color: var(--color-trust-500); color: white; }
 
-	.single-post__author-box { display: flex; gap: 1.1rem; align-items: flex-start; margin-top: 2rem; padding: 1.4rem; border: 1px solid var(--color-brand-100); border-radius: 18px; background: linear-gradient(180deg, white, oklch(99% 0.006 260)); }
-	.single-post__avatar { flex-shrink: 0; }
-	.single-post__avatar-img { width: 56px; height: 56px; border-radius: 9999px; object-fit: cover; }
-	.single-post__author-eyebrow { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-brand-500, var(--color-brand-600)); }
-	.single-post__author-name { display: block; font-size: 1.0625rem; font-weight: 700; color: var(--color-brand-950); margin-top: 0.1rem; }
-	.single-post__author-bio { margin: 0.35rem 0 0; font-size: 0.9375rem; line-height: 1.6; color: oklch(42% 0.015 260); }
 
 	.single-related { padding-block: clamp(2.5rem, 5vw, 4rem); background: linear-gradient(180deg, white, oklch(98% 0.008 260)); margin-top: clamp(2rem, 4vw, 3rem); }
 	.single-related__title { margin: 0 0 clamp(1.25rem, 3vw, 2rem); font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); font-weight: 700; letter-spacing: -0.02em; color: var(--color-brand-950); text-align: center; }
