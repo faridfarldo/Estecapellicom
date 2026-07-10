@@ -59,7 +59,9 @@ while ( have_posts() ) :
 			<?php
 			// Build the article HTML once, add heading anchors, and derive the TOC.
 			list( $post_html, $toc_items ) = estecapelli_extract_toc( apply_filters( 'the_content', get_the_content() ) );
-			echo estecapelli_render_toc( $toc_items ); // Escaped inside the renderer.
+			if ( ! estecapelli_toc_is_hidden() ) {
+				echo estecapelli_render_toc( $toc_items ); // Escaped inside the renderer.
+			}
 			?>
 			<div class="single-post__content prose-content">
 				<?php

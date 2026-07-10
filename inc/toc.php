@@ -74,6 +74,64 @@ if ( ! function_exists( 'estecapelli_extract_toc' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_toc_is_hidden' ) ) {
+	/**
+	 * Whether the TOC is switched off for a given post/page via the editor toggle.
+	 *
+	 * @param int|null $post_id Defaults to the current post.
+	 * @return bool
+	 */
+	function estecapelli_toc_is_hidden( $post_id = null ) {
+		$post_id = $post_id ? $post_id : get_the_ID();
+		return $post_id && get_post_meta( $post_id, '_estecapelli_hide_toc', true );
+	}
+}
+
+/**
+ * Editor toggle: "Hide the table of contents" — a checkbox on posts and pages.
+ */
+if ( ! function_exists( 'estecapelli_toc_metabox' ) ) {
+	function estecapelli_toc_metabox( $post ) {
+		wp_nonce_field( 'estecapelli_toc_meta', 'estecapelli_toc_nonce' );
+		$hidden = (bool) get_post_meta( $post->ID, '_estecapelli_hide_toc', true );
+		?>
+		<label style="display:flex; gap:8px; align-items:flex-start; line-height:1.4;">
+			<input type="checkbox" name="estecapelli_hide_toc" value="1" <?php checked( $hidden ); ?> style="margin-top:2px;" />
+			<span><?php esc_html_e( 'Hide the “On this page” table of contents on this post/page.', 'estecapelli' ); ?></span>
+		</label>
+		<?php
+	}
+}
+
+add_action(
+	'add_meta_boxes',
+	function () {
+		foreach ( array( 'post', 'page' ) as $pt ) {
+			add_meta_box( 'estecapelli_toc', __( 'Table of Contents', 'estecapelli' ), 'estecapelli_toc_metabox', $pt, 'side', 'default' );
+		}
+	}
+);
+
+add_action(
+	'save_post',
+	function ( $post_id ) {
+		if ( ! isset( $_POST['estecapelli_toc_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['estecapelli_toc_nonce'] ) ), 'estecapelli_toc_meta' ) ) {
+			return;
+		}
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+		if ( ! empty( $_POST['estecapelli_hide_toc'] ) ) {
+			update_post_meta( $post_id, '_estecapelli_hide_toc', '1' );
+		} else {
+			delete_post_meta( $post_id, '_estecapelli_hide_toc' );
+		}
+	}
+);
+
 if ( ! function_exists( 'estecapelli_render_toc' ) ) {
 	/**
 	 * Render the TOC nav. Returns '' when there are too few sections to bother.
