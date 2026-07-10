@@ -279,7 +279,7 @@ if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
 		}
 		return array(
 			'heading'  => __( 'Visit Us', 'estecapelli' ),
-			'address'  => __( 'Istanbul, Türkiye', 'estecapelli' ),
+			'address'  => __( '19 Mayıs Mah. Dr. Hüsnü İsmet Öztürk Sk. Plaza Sitesi No: 1E/4, Şişli / İstanbul, Türkiye', 'estecapelli' ),
 			'phone'    => '+90 541 541 0041',
 			'whatsapp' => ESTECAPELLI_WHATSAPP,
 			'email'    => 'info@estecapelli.com',
