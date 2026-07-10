@@ -22,7 +22,11 @@ while ( have_posts() ) :
 				</header>
 
 				<div class="prose-content text-brand-900/90 leading-relaxed [&_p]:mb-4 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-brand-950 [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-brand-900 [&_h3]:mt-8 [&_h3]:mb-3 [&_a]:text-brand-600 [&_a]:underline hover:[&_a]:text-brand-700 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_img]:rounded-xl [&_img]:my-6">
-					<?php the_content(); ?>
+					<?php
+					list( $page_html, $page_toc ) = estecapelli_extract_toc( apply_filters( 'the_content', get_the_content() ) );
+					echo estecapelli_render_toc( $page_toc ); // Escaped inside the renderer.
+					echo $page_html; // phpcs:ignore WordPress.Security.EscapeOutput -- already run through the_content filters.
+					?>
 				</div>
 			</article>
 		</section>

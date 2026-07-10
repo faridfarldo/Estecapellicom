@@ -7764,6 +7764,58 @@
 	.single-post__media { margin: 0; padding-block: clamp(1rem, 2vw, 1.5rem); }
 	.single-post__img { width: 100%; max-height: 560px; object-fit: cover; border-radius: 24px; box-shadow: var(--shadow-card); }
 	.single-post__shell { max-width: 46rem; }
+
+	/* ---- Table of contents (blog posts + plain pages) ---- */
+	.toc {
+		margin: 1.75rem 0 2.25rem;
+		border: 1px solid var(--color-brand-100);
+		border-radius: 14px;
+		background: linear-gradient(180deg, oklch(99% 0.006 260), white);
+		box-shadow: 0 1px 2px oklch(0% 0 0 / 0.03);
+		overflow: hidden;
+	}
+	.toc__head {
+		display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+		width: 100%; margin: 0;
+		padding: 0.9rem 1.15rem;
+		background: none; border: 0; cursor: pointer;
+		font: inherit; text-align: left;
+	}
+	.toc__title {
+		font-size: 0.72rem; font-weight: 700;
+		letter-spacing: 0.1em; text-transform: uppercase;
+		color: var(--color-accent-600);
+	}
+	.toc__chevron { display: inline-flex; color: var(--color-brand-500, var(--color-brand-600)); transition: transform 0.25s ease; }
+	.toc.is-collapsed .toc__chevron { transform: rotate(-90deg); }
+	.toc__list {
+		margin: 0; padding: 0.15rem 0.85rem 0.9rem; list-style: none;
+		display: grid; gap: 0.1rem;
+		max-height: 60vh; overflow-y: auto;
+	}
+	.toc.is-collapsed .toc__list { display: none; }
+	.toc__item { margin: 0; }
+	.toc__item--h3 { margin-left: 0.9rem; }
+	/* Scoped under .toc so page prose's `a { underline/colour }` can't leak in. */
+	.toc .toc__link {
+		display: block;
+		padding: 0.34rem 0.6rem;
+		border-left: 2px solid transparent;
+		border-radius: 0 7px 7px 0;
+		font-size: 0.92rem; line-height: 1.4;
+		color: oklch(46% 0.015 260);
+		text-decoration: none;
+		transition: color 0.2s, border-color 0.2s, background 0.2s;
+	}
+	.toc .toc__item--h3 .toc__link { font-size: 0.86rem; color: oklch(52% 0.015 260); }
+	.toc .toc__link:hover { color: var(--color-brand-900); background: oklch(96% 0.01 260); text-decoration: none; }
+	.toc .toc__link.is-active {
+		color: var(--color-brand-800); font-weight: 600;
+		border-left-color: var(--color-accent-500);
+		background: oklch(97% 0.02 90 / 0.7);
+	}
+	/* Keep anchored headings clear of the sticky header when jumped to. */
+	.prose-content h2, .prose-content h3 { scroll-margin-top: 6rem; }
 	.single-post__content { font-size: 1.0625rem; line-height: 1.8; color: oklch(32% 0.015 260); padding-block: clamp(1rem, 2vw, 1.75rem); }
 	.single-post__content > * + * { margin-top: 1.25rem; }
 	.single-post__content h2 { margin-top: 2.25rem; font-size: 1.6rem; line-height: 1.25; letter-spacing: -0.02em; font-weight: 700; color: var(--color-brand-950); }

@@ -56,9 +56,14 @@ while ( have_posts() ) :
 		<?php endif; ?>
 
 		<div class="shell single-post__shell">
+			<?php
+			// Build the article HTML once, add heading anchors, and derive the TOC.
+			list( $post_html, $toc_items ) = estecapelli_extract_toc( apply_filters( 'the_content', get_the_content() ) );
+			echo estecapelli_render_toc( $toc_items ); // Escaped inside the renderer.
+			?>
 			<div class="single-post__content prose-content">
 				<?php
-				the_content();
+				echo $post_html; // phpcs:ignore WordPress.Security.EscapeOutput -- already run through the_content filters.
 				wp_link_pages(
 					array(
 						'before' => '<div class="single-post__pages">' . esc_html__( 'Pages:', 'estecapelli' ),

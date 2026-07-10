@@ -1026,6 +1026,60 @@
 		});
 	}
 
+	function initTOC() {
+		var toc = document.querySelector('[data-toc]');
+		if (!toc) return;
+
+		var links = Array.prototype.slice.call(toc.querySelectorAll('[data-toc-link]'));
+		if (!links.length) return;
+
+		// Collapse / expand.
+		var toggle = toc.querySelector('[data-toc-toggle]');
+		if (toggle) {
+			toggle.addEventListener('click', function () {
+				var collapsed = toc.classList.toggle('is-collapsed');
+				toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+			});
+		}
+
+		// Scroll-spy: highlight the section you're currently reading.
+		var headings = links
+			.map(function (l) { return document.getElementById(l.getAttribute('data-toc-link')); })
+			.filter(Boolean);
+		if (!headings.length) return;
+
+		var current = null;
+		function setActive(id) {
+			if (id === current) return;
+			current = id;
+			links.forEach(function (l) {
+				l.classList.toggle('is-active', l.getAttribute('data-toc-link') === id);
+			});
+		}
+
+		var ticking = false;
+		function measure() {
+			ticking = false;
+			var offset = 120; // clear the sticky header
+			var active = headings[0];
+			for (var i = 0; i < headings.length; i++) {
+				if (headings[i].getBoundingClientRect().top - offset <= 0) {
+					active = headings[i];
+				} else {
+					break;
+				}
+			}
+			if (active) setActive(active.id);
+		}
+		function onScroll() {
+			if (!ticking) { ticking = true; window.requestAnimationFrame(measure); }
+		}
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onScroll);
+		measure();
+	}
+
 	function initCopyLink() {
 		document.querySelectorAll('[data-copy-link]').forEach(function (btn) {
 			btn.addEventListener('click', function () {
@@ -1321,6 +1375,7 @@
 		initFloatWhatsApp();
 		initStepbooks();
 		initCopyLink();
+		initTOC();
 		initLeadPopup();
 		initTrustReel();
 	});
