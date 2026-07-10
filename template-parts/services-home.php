@@ -36,6 +36,15 @@ if ( empty( $data['categories'] ) ) {
 			<?php endif; ?>
 		</header>
 
+		<?php
+		// Custom uploaded tab icons per category (inlined so they inherit the tab
+		// colour via fill:currentColor). Unmapped categories keep the built-in icon.
+		$svc_tab_icons = array(
+			'hair-transplant'  => 'hair-transplant.svg',
+			'plastic-surgery'  => 'plastic-surgery.svg',
+			'dental-treatment' => 'dental.svg',
+		);
+		?>
 		<div class="services-home__tabs" role="tablist" aria-label="<?php esc_attr_e( 'Treatment categories', 'estecapelli' ); ?>" data-services-tablist>
 			<?php foreach ( $data['categories'] as $i => $cat ) :
 				$tab_id   = 'svc-tab-' . $cat['key'];
@@ -53,7 +62,22 @@ if ( empty( $data['categories'] ) ) {
 					data-services-tab
 				>
 					<span class="services-home__tab-icon" aria-hidden="true">
-						<?php estecapelli_icon( $cat['icon'], array( 'width' => 18, 'height' => 18 ) ); ?>
+						<?php
+						$svc_icon_file = isset( $svc_tab_icons[ $cat['key'] ] )
+							? get_template_directory() . '/assets/images/service-icons/' . $svc_tab_icons[ $cat['key'] ]
+							: '';
+						if ( $svc_icon_file && file_exists( $svc_icon_file ) ) {
+							// Trusted theme asset; strip the XML prolog/comments and force
+							// currentColor so the glyph matches the active/inactive tab colour.
+							$svc_svg = (string) file_get_contents( $svc_icon_file );
+							$svc_svg = preg_replace( '/<\?xml.*?\?>/s', '', $svc_svg );
+							$svc_svg = preg_replace( '/<!--.*?-->/s', '', $svc_svg );
+							$svc_svg = preg_replace( '/<svg\b/', '<svg fill="currentColor" focusable="false"', $svc_svg, 1 );
+							echo $svc_svg; // phpcs:ignore WordPress.Security.EscapeOutput
+						} else {
+							estecapelli_icon( $cat['icon'], array( 'width' => 18, 'height' => 18 ) );
+						}
+						?>
 					</span>
 					<span class="services-home__tab-label"><?php echo esc_html( $cat['label'] ); ?></span>
 				</button>

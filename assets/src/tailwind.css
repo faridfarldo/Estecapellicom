@@ -1492,6 +1492,9 @@
 		transition: opacity 0.25s;
 	}
 	.services-home__tab[aria-selected="true"] .services-home__tab-icon { opacity: 1; }
+	/* Inlined custom category SVGs: force size + inherit the tab colour. */
+	.services-home__tab-icon svg { display: block; width: 19px; height: 19px; fill: currentColor; }
+	.services-home__tab-icon svg path { fill: currentColor; }
 
 	.services-home__panel { animation: svc-fade 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
 	.services-home__panel[hidden] { display: none; }
