@@ -1866,7 +1866,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'footer'        => __( 'This procedure is not a method for weight loss. Instead, it effectively removes localised fat deposits that do not disappear despite overall weight loss.', 'estecapelli' ),
 					),
 					array(
-						'acf_fc_layout' => 'stepbook',
+						'acf_fc_layout' => 'steps',
 						'eyebrow'       => __( 'Techniques', 'estecapelli' ),
 						'title'         => __( 'Types of Liposuction', 'estecapelli' ),
 						'lead'          => __( 'At Estecapelli, different liposuction techniques are used to reach your body-contouring goals. The right method is chosen based on your fat distribution, skin elasticity and desired result. Swipe through the main options below.', 'estecapelli' ),

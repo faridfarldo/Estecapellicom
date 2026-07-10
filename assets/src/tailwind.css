@@ -5983,7 +5983,7 @@
 		box-shadow: var(--shadow-card);
 	}
 	.t-steps__top {
-		display: flex; align-items: center; justify-content: space-between;
+		display: flex; align-items: center; justify-content: flex-end;
 		gap: 0.75rem;
 	}
 	.t-steps__icon {
@@ -6020,6 +6020,15 @@
 		font-size: 0.875rem; line-height: 1.55;
 		color: oklch(40% 0.015 260);
 	}
+	/* Rich body (e.g. a technique's description + advantages list). */
+	.t-steps__item-body p { margin: 0 0 0.5rem; }
+	.t-steps__item-body p:last-child { margin-bottom: 0; }
+	.t-steps__item-body strong { color: var(--color-brand-900); font-weight: 700; }
+	.t-steps__item-body ul {
+		margin: 0.35rem 0 0; padding-left: 1.15rem;
+		list-style: disc; display: grid; gap: 0.3rem;
+	}
+	.t-steps__item-body li { margin: 0; }
 
 	/* ---- Step Book — booklet walk-through ---- */
 	.t-book {

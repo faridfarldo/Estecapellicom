@@ -41,25 +41,19 @@ if ( empty( $items ) ) { return; }
 
 			<ol class="t-steps__track ec-carousel__track" data-carousel-track>
 				<?php foreach ( $items as $i => $step ) :
-					$icon = $step['icon'] ?? '';
+					// Icon intentionally not rendered — this module is icon-free.
+					$label = ! empty( $step['time'] ) ? $step['time'] : ( $step['eyebrow'] ?? '' );
 					?>
 					<li class="t-steps__item">
 						<div class="t-steps__top">
-							<?php if ( $icon || ! empty( $step['icon_file'] ) ) : ?>
-								<span class="t-steps__icon" aria-hidden="true">
-									<?php estecapelli_render_item_icon( $step, array( 'width' => 22, 'height' => 22 ) ); ?>
-								</span>
-							<?php else : ?>
-								<span></span>
-							<?php endif; ?>
 							<span class="t-steps__num" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
 						</div>
-						<?php if ( ! empty( $step['time'] ) ) : ?>
-							<span class="t-steps__time"><?php echo esc_html( $step['time'] ); ?></span>
+						<?php if ( $label ) : ?>
+							<span class="t-steps__time"><?php echo esc_html( $label ); ?></span>
 						<?php endif; ?>
 						<h3 class="t-steps__item-title"><?php echo esc_html( $step['title'] ); ?></h3>
 						<?php if ( ! empty( $step['body'] ) ) : ?>
-							<p class="t-steps__item-body"><?php echo esc_html( $step['body'] ); ?></p>
+							<div class="t-steps__item-body"><?php echo wp_kses_post( $step['body'] ); ?></div>
 						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>
