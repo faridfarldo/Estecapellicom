@@ -1737,7 +1737,7 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 			// then four room tiles. Each room tile carries a gallery of photos:
 			// the first is the cover; clicking opens the lightbox to browse them.
 			'gallery' => array(
-				array( 'type' => 'video', 'image' => $img . 'facilities/clinic.jpg', 'video' => 'uP3r9sn-EtM', 'caption' => __( 'Clinic walkthrough', 'estecapelli' ) ),
+				array( 'type' => 'video', 'image' => $img . 'facilities/clinic-cover.webp', 'video' => 'uP3r9sn-EtM', 'caption' => __( 'Clinic walkthrough', 'estecapelli' ) ),
 				array(
 					'type'    => 'image',
 					'caption' => __( 'Hair Transplant Surgery Room', 'estecapelli' ),
