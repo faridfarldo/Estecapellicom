@@ -37,33 +37,29 @@ if ( ! function_exists( 'estecapelli_blog_seed_articles' ) ) {
 }
 
 /**
- * Blog posts must resolve at /en/blog/{slug} (the canonical live structure), not
- * at the site root /{slug}.
+ * Blog posts resolve at /{lang}/blog/{slug} — the canonical live structure.
  *
- * The theme serves /en/ WITHOUT WPML (pages via the local-en routing shim,
- * treatments bake /en/ into their CPT rewrite slug), so the blog does the same:
- * we bake /en/blog/ into the post permalink structure. The routing shim is taught
- * to resolve /en/blog/{slug} to the post (see local-en-routing.php) so the greedy
- * treatment rewrite can't hijack it. When WPML is later installed for the other
- * languages, switch this to /blog/%postname%/ and let WPML add the /en/ prefix.
+ * WPML adds the language prefix (/en/, /fr/…), so the permalink base must be
+ * /blog/%postname%/ and NOT bake /en/ in — otherwise WPML doubles it to
+ * /en/en/blog/. (Before WPML this was /en/blog/%postname%/; the v3 flag re-runs
+ * this once to switch the live site over now that WPML is active.)
  *
- * Runs once; skips if an /en/blog/ base is already configured. WordPress's own
- * canonical redirect sends the old /{slug} URLs to the new ones.
+ * Runs once per flag. WordPress's own canonical redirect sends the old URLs on.
  */
 add_action( 'admin_init', 'estecapelli_ensure_blog_permalink_base', 5 );
 function estecapelli_ensure_blog_permalink_base() {
-	if ( get_option( 'estecapelli_blog_permalink_base_v2' ) ) {
+	if ( get_option( 'estecapelli_blog_permalink_base_v3' ) ) {
 		return;
 	}
 	$current = (string) get_option( 'permalink_structure' );
-	if ( false === strpos( $current, '/en/blog/' ) ) {
+	if ( '/blog/%postname%/' !== $current ) {
 		global $wp_rewrite;
 		if ( $wp_rewrite instanceof WP_Rewrite ) {
-			$wp_rewrite->set_permalink_structure( '/en/blog/%postname%/' );
+			$wp_rewrite->set_permalink_structure( '/blog/%postname%/' );
 			$wp_rewrite->flush_rules( false );
 		}
 	}
-	update_option( 'estecapelli_blog_permalink_base_v2', 1 );
+	update_option( 'estecapelli_blog_permalink_base_v3', 1 );
 }
 
 add_action( 'admin_init', 'estecapelli_seed_blog_posts' );

@@ -33,13 +33,20 @@ function estecapelli_handle_legacy_redirects() {
 	// Drop the query string for matching.
 	$path = (string) strtok( $request, '?' );
 
+	// The full requested path (minus query), used to guard against self-redirects.
+	$current_path = trim( (string) $path, '/' );
+
 	// Strip leading slash and any /en/ (WPML) prefix.
 	$path = ltrim( $path, '/' );
 	$path = preg_replace( '#^en(/|$)#', '', $path );
 	$path = trim( $path, '/' );
 
-	// Empty after stripping = redirect to the English homepage.
+	// Empty after stripping = redirect to the English homepage — but never when we
+	// are already on /en/ (that would loop if /en/ itself 404s during setup).
 	if ( '' === $path ) {
+		if ( 'en' === $current_path || '' === $current_path ) {
+			return;
+		}
 		wp_safe_redirect( home_url( '/en/' ), 301 );
 		exit;
 	}
@@ -54,6 +61,10 @@ function estecapelli_handle_legacy_redirects() {
 				},
 				$rule['to']
 			);
+			// Never redirect a URL to itself.
+			if ( trim( $target, '/' ) === $current_path ) {
+				continue;
+			}
 			wp_safe_redirect( home_url( $target ), 301 );
 			exit;
 		}
