@@ -39,13 +39,11 @@ function estecapelli_register_treatment_cpt() {
 			'menu_icon'           => 'dashicons-heart',
 			'menu_position'       => 20,
 			'has_archive'         => false,
-			// Live URL structure is /{lang}/{category}/{service}. WPML adds the
-			// language prefix (/en/, /fr/…), so the rewrite slug must NOT bake it in
-			// — otherwise URLs double to /en/en/. The %treatment_category% tag is a
-			// real rewrite tag; its regex is tightened below (add_rewrite_tag) to the
-			// real category slugs so the rule can't hijack unrelated page paths. The
-			// displayed permalink is resolved in estecapelli_treatment_permalink().
-			'rewrite'             => array( 'slug' => '%treatment_category%', 'with_front' => false ),
+			// Live URL structure is /en/{category}/{service}. The %treatment_category%
+			// tag is a real rewrite tag (registered because treatment_category has
+			// rewrite enabled) so WordPress builds matching rules; the displayed
+			// permalink is resolved in estecapelli_treatment_permalink().
+			'rewrite'             => array( 'slug' => 'en/%treatment_category%', 'with_front' => false ),
 			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ),
 			'show_in_nav_menus'   => true,
 		)
@@ -101,10 +99,11 @@ function estecapelli_register_treatment_cpt() {
 			'menu_icon'           => 'dashicons-businessperson',
 			'menu_position'       => 22,
 			'has_archive'         => false,
-			// Profiles live at /{lang}/about-us/our-doctors/{slug} — the same path the
-			// old nested pages used, so existing links and SEO are preserved. WPML
-			// adds the language prefix, so it is NOT baked into the slug here.
-			'rewrite'             => array( 'slug' => 'about-us/our-doctors', 'with_front' => false ),
+			// Profiles live at /en/about-us/our-doctors/{slug} — the same path the
+			// old nested pages used, so existing links and SEO are preserved. The
+			// /en/ prefix is baked in to match the treatment CPT convention (WPML
+			// owns /en/ in production; see inc/local-en-routing.php).
+			'rewrite'             => array( 'slug' => 'en/about-us/our-doctors', 'with_front' => false ),
 			// Name = post title, ordering via page-attributes (menu_order). Photo,
 			// position, bio and credentials are ACF fields (see acf-field-groups.php)
 			// so the editor only ever sees a short, friendly form.
@@ -117,11 +116,10 @@ function estecapelli_register_treatment_cpt() {
 	// (about-us/our-doctors). WordPress resolves /about-us/our-doctors/{slug}
 	// as a child of that page first and 404s before the CPT rule ever runs, so
 	// register an explicit top-priority rule that maps the trailing slug
-	// straight to the doctor profile. WPML normally strips the language segment
-	// before rules run, but the optional 2-letter prefix keeps the rule matching
-	// whether or not the prefix is present.
+	// straight to the doctor profile. The optional `en/` prefix covers both the
+	// WPML production URLs and the local /en/ routing shim.
 	add_rewrite_rule(
-		'^(?:[a-z]{2}/)?about-us/our-doctors/([^/]+)/?$',
+		'^(?:en/)?about-us/our-doctors/([^/]+)/?$',
 		'index.php?doctor=$matches[1]',
 		'top'
 	);
@@ -148,22 +146,6 @@ function estecapelli_register_treatment_cpt() {
 			'show_admin_column' => true,
 			'rewrite'           => array( 'slug' => 'treatment-category', 'with_front' => false ),
 		)
-	);
-
-	// Tighten the %treatment_category% rewrite tag to the real category slugs.
-	// Registered after the taxonomy so it overrides the default `([^/]+)` regex.
-	// Without this, the greedy /{cat}/{service} treatment rule matches ANY two
-	// segments and hijacks real page paths (e.g. /about-us/our-team) → 404.
-	add_rewrite_tag( '%treatment_category%', '(hair-transplant|plastic-surgery|dental-treatment)', 'treatment_category=' );
-
-	// Real pages nested under the hair-transplant category still collide with the
-	// treatment rule (same first segment), so map them straight to the page at top
-	// priority. WPML adds the language prefix on output; the optional prefix here
-	// keeps the rule matching if the language segment is still present.
-	add_rewrite_rule(
-		'^(?:[a-z]{2}/)?hair-transplant/(tricholab|pre-hair-transplant-period|post-hair-transplant-period)/?$',
-		'index.php?pagename=hair-transplant/$matches[1]',
-		'top'
 	);
 }
 
