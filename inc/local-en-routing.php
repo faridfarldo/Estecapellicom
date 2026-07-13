@@ -51,9 +51,9 @@ function estecapelli_en_request( $query_vars ) {
 	if ( 0 === strpos( $rest, 'blog/' ) ) {
 		$slug = trim( substr( $rest, 5 ), '/' );
 		if ( '' !== $slug ) {
-			$post = get_page_by_path( $slug, OBJECT, 'post' );
-			if ( $post ) {
-				return array( 'p' => $post->ID );
+			$id = estecapelli_post_id_by_slug( $slug, 'post' );
+			if ( $id ) {
+				return array( 'p' => $id );
 			}
 		}
 	}
@@ -62,15 +62,17 @@ function estecapelli_en_request( $query_vars ) {
 
 	// 3) Doctor profile at about-us/our-doctors/{slug}.
 	if ( 3 === count( $parts ) && 'about-us' === $parts[0] && 'our-doctors' === $parts[1] ) {
-		if ( estecapelli_slug_is_post( $parts[2], 'doctor' ) ) {
-			return array( 'doctor' => $parts[2] );
+		$id = estecapelli_post_id_by_slug( $parts[2], 'doctor' );
+		if ( $id ) {
+			return array( 'p' => $id, 'post_type' => 'doctor' );
 		}
 	}
 
 	// 4) Treatment at {category}/{service} (e.g. hair-transplant/sapphire-fue-…).
 	if ( 2 === count( $parts ) ) {
-		if ( estecapelli_slug_is_post( $parts[1], 'treatment' ) ) {
-			return array( 'treatment' => $parts[1] );
+		$id = estecapelli_post_id_by_slug( $parts[1], 'treatment' );
+		if ( $id ) {
+			return array( 'p' => $id, 'post_type' => 'treatment' );
 		}
 	}
 
@@ -80,17 +82,16 @@ function estecapelli_en_request( $query_vars ) {
 }
 
 /**
- * Does a published post of this type exist with this slug?
+ * Return the ID of a published post of this type with this slug, or 0.
  *
- * Queried straight against the database on purpose: get_page_by_path() and
- * WP_Query are filtered by WPML's current language, which returns nothing for
- * these custom types during the request stage. A raw lookup always sees the
- * post, and the query var we hand back (?treatment=slug / ?doctor=slug) then
- * loads it correctly.
+ * Queried straight against the database on purpose, then handed back to WP as an
+ * ID (?p=ID). Slug-based lookups/queries are re-filtered by WPML's language in
+ * the /en/ request context and come back empty for these custom types — but an
+ * explicit post ID loads reliably, exactly as page_id does for pages.
  */
-function estecapelli_slug_is_post( $slug, $post_type ) {
+function estecapelli_post_id_by_slug( $slug, $post_type ) {
 	global $wpdb;
-	return (bool) $wpdb->get_var(
+	return (int) $wpdb->get_var(
 		$wpdb->prepare(
 			"SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s AND post_status = 'publish' LIMIT 1",
 			$slug,
