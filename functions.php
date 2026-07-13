@@ -36,6 +36,7 @@ require get_template_directory() . '/inc/before-after.php';
 require get_template_directory() . '/inc/toc.php';
 require get_template_directory() . '/inc/redirects.php';
 require get_template_directory() . '/inc/canonical.php';
+require get_template_directory() . '/inc/wpml-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/hair-analysis.php';
