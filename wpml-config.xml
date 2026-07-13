@@ -1,0 +1,41 @@
+<wpml-config>
+
+    <!--
+        Tells WPML / ACFML what the theme's custom content is and how to
+        translate it. WPML auto-loads this file from the theme root.
+
+        - Treatments and Doctors are translatable custom post types; they show
+          the English version as a fallback until a translation exists, so no
+          language is ever missing a page.
+        - Treatment Categories are translatable (their translated slugs form the
+          per-language URL base, e.g. greffe-de-cheveux).
+        - The ACF fields that hold the real content (page_sections for the
+          treatment/page body, and the doctor profile fields) are marked
+          "translate" so they appear in the translation editor. Media/URL fields
+          are "copy" (same asset across languages).
+    -->
+
+    <custom-types>
+        <custom-type translate="1" display-as-translated="1">treatment</custom-type>
+        <custom-type translate="1" display-as-translated="1">doctor</custom-type>
+    </custom-types>
+
+    <taxonomies>
+        <taxonomy translate="1">treatment_category</taxonomy>
+    </taxonomies>
+
+    <custom-fields>
+        <!-- Treatment & page body (ACF flexible content — ACFML translates the
+             nested section text/leads/bodies). -->
+        <custom-field action="translate">page_sections</custom-field>
+
+        <!-- Doctor profile -->
+        <custom-field action="translate">position</custom-field>
+        <custom-field action="translate">bio</custom-field>
+        <custom-field action="translate">credentials</custom-field>
+        <custom-field action="copy">photo</custom-field>
+        <custom-field action="copy">resume_photo</custom-field>
+        <custom-field action="copy">resume_photo_url</custom-field>
+    </custom-fields>
+
+</wpml-config>
