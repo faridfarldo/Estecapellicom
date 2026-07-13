@@ -39,11 +39,14 @@ function estecapelli_register_treatment_cpt() {
 			'menu_icon'           => 'dashicons-heart',
 			'menu_position'       => 20,
 			'has_archive'         => false,
-			// Live URL structure is /en/{category}/{service}. The %treatment_category%
-			// tag is a real rewrite tag (registered because treatment_category has
-			// rewrite enabled) so WordPress builds matching rules; the displayed
-			// permalink is resolved in estecapelli_treatment_permalink().
-			'rewrite'             => array( 'slug' => 'en/%treatment_category%', 'with_front' => false ),
+			// Live URL structure is /{lang}/{category}/{service}. WPML adds the
+			// language prefix and strips it from incoming requests, so the rewrite
+			// slug must NOT bake /en/ in — otherwise the rule never matches once
+			// WPML has removed the prefix. The %treatment_category% tag keeps its
+			// default regex (no restriction — a restricted regex breaks the rule's
+			// capture groups); the /en/ page shim resolves any real page that would
+			// otherwise be caught by this greedy two-segment rule.
+			'rewrite'             => array( 'slug' => '%treatment_category%', 'with_front' => false ),
 			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ),
 			'show_in_nav_menus'   => true,
 		)
@@ -99,11 +102,10 @@ function estecapelli_register_treatment_cpt() {
 			'menu_icon'           => 'dashicons-businessperson',
 			'menu_position'       => 22,
 			'has_archive'         => false,
-			// Profiles live at /en/about-us/our-doctors/{slug} — the same path the
-			// old nested pages used, so existing links and SEO are preserved. The
-			// /en/ prefix is baked in to match the treatment CPT convention (WPML
-			// owns /en/ in production; see inc/local-en-routing.php).
-			'rewrite'             => array( 'slug' => 'en/about-us/our-doctors', 'with_front' => false ),
+			// Profiles live at /{lang}/about-us/our-doctors/{slug} — same path the
+			// old nested pages used, so links and SEO are preserved. WPML adds the
+			// language prefix (and strips it from requests), so it is NOT baked in.
+			'rewrite'             => array( 'slug' => 'about-us/our-doctors', 'with_front' => false ),
 			// Name = post title, ordering via page-attributes (menu_order). Photo,
 			// position, bio and credentials are ACF fields (see acf-field-groups.php)
 			// so the editor only ever sees a short, friendly form.
