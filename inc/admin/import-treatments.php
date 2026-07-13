@@ -187,6 +187,24 @@ function estecapelli_import_page( array $data, array &$slug_to_id ) {
 	$full_path = implode( '/', $path_stack );
 	$existing  = get_page_by_path( $full_path, OBJECT, 'page' );
 
+	// If the page isn't where the seed now expects it, it may have moved under a
+	// new parent (e.g. TrichoLab relocated to /hair-transplant/tricholab). Fall
+	// back to a unique slug match so we update-and-move the existing page instead
+	// of creating a duplicate. Only reparent when the slug is unambiguous.
+	if ( ! $existing ) {
+		$by_slug = get_posts(
+			array(
+				'post_type'      => 'page',
+				'name'           => $data['slug'],
+				'post_status'    => 'any',
+				'posts_per_page' => 2,
+			)
+		);
+		if ( 1 === count( $by_slug ) ) {
+			$existing = $by_slug[0];
+		}
+	}
+
 	$post_args = array(
 		'post_type'    => 'page',
 		'post_title'   => $data['title'],

@@ -251,7 +251,10 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 			array(
 				'slug'   => 'tricholab',
 				'title'  => 'TrichoLab',
-				'parent' => null,
+				// Lives under Hair Transplant to match the indexed live URL
+				// /en/hair-transplant/tricholab (all internal links already point
+				// here; see template-tags.php + signature-methods.php).
+				'parent' => 'hair-transplant',
 				'sections' => array(
 					$hero( __( 'AI-Powered Hair Analysis', 'estecapelli' ), __( 'TrichoLab', 'estecapelli' ), __( 'An advanced AI-powered hair analysis system that examines the hair and scalp through high-resolution trichoscopic imaging — turning your scalp into precise data that drives a fully personalised transplant plan.', 'estecapelli' ) ),
 

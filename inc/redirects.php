@@ -85,9 +85,27 @@ function estecapelli_legacy_redirect_rules() {
 		array( 'from' => '#^treatments/vita/?$#i',    'to' => '/en/hair-transplant/vita-treatment' ),
 		array( 'from' => '#^treatments/([^/]+)/?$#i', 'to' => '/en/hair-transplant/$1' ),
 
-		// ---- TrichoLab moved out of the Hair Transplant category to a
-		//      standalone page at /en/tricholab. ----
-		array( 'from' => '#^hair-transplant/tricholab/?$#i', 'to' => '/en/tricholab' ),
+		// ---- TrichoLab lives at /en/hair-transplant/tricholab (the indexed
+		//      live URL). Catch any old standalone /en/tricholab link. ----
+		array( 'from' => '#^tricholab/?$#i', 'to' => '/en/hair-transplant/tricholab' ),
+
+		// ---- "Overview" pages: the live site had a thin overview page under
+		//      each category; the new theme's section landing already covers
+		//      that ground, so send the indexed overview URLs to the landing. ----
+		array( 'from' => '#^hair-transplant/hair-transplant-overview/?$#i', 'to' => '/en/hair-transplant' ),
+		array( 'from' => '#^plastic-surgery/plastic-surgery-overview/?$#i',  'to' => '/en/plastic-surgery' ),
+		array( 'from' => '#^dental-treatment/dental-treatment-overview/?$#i', 'to' => '/en/dental-treatment' ),
+
+		// ---- The DHI page had a nested "techniques comparison" child page.
+		//      Not rebuilt as a standalone page — fold it back into DHI. ----
+		array( 'from' => '#^hair-transplant/dhi-hair-transplant/.+$#i', 'to' => '/en/hair-transplant/dhi-hair-transplant' ),
+
+		// ---- Before/After: the 40 individual result pages are no longer thin
+		//      standalone pages (they surface through the gallery). Send every
+		//      indexed /en/before-after/{item} to the gallery. The gallery page
+		//      itself (/en/before-after) resolves normally and never reaches this
+		//      handler (is_404 gate). ----
+		array( 'from' => '#^before-after/.+$#i', 'to' => '/en/before-after' ),
 
 	);
 }
