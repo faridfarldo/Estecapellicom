@@ -62,16 +62,14 @@ function estecapelli_en_request( $query_vars ) {
 
 	// 3) Doctor profile at about-us/our-doctors/{slug}.
 	if ( 3 === count( $parts ) && 'about-us' === $parts[0] && 'our-doctors' === $parts[1] ) {
-		$doctor = get_page_by_path( $parts[2], OBJECT, 'doctor' );
-		if ( $doctor ) {
+		if ( estecapelli_slug_is_post( $parts[2], 'doctor' ) ) {
 			return array( 'doctor' => $parts[2] );
 		}
 	}
 
 	// 4) Treatment at {category}/{service} (e.g. hair-transplant/sapphire-fue-…).
 	if ( 2 === count( $parts ) ) {
-		$treatment = get_page_by_path( $parts[1], OBJECT, 'treatment' );
-		if ( $treatment ) {
+		if ( estecapelli_slug_is_post( $parts[1], 'treatment' ) ) {
 			return array( 'treatment' => $parts[1] );
 		}
 	}
@@ -79,6 +77,26 @@ function estecapelli_en_request( $query_vars ) {
 	// Nothing matched — let it fall through (e.g. before-after/{item}, which the
 	// legacy redirect handler sends to the gallery).
 	return $query_vars;
+}
+
+/**
+ * Does a published post of this type exist with this slug?
+ *
+ * Queried straight against the database on purpose: get_page_by_path() and
+ * WP_Query are filtered by WPML's current language, which returns nothing for
+ * these custom types during the request stage. A raw lookup always sees the
+ * post, and the query var we hand back (?treatment=slug / ?doctor=slug) then
+ * loads it correctly.
+ */
+function estecapelli_slug_is_post( $slug, $post_type ) {
+	global $wpdb;
+	return (bool) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s AND post_status = 'publish' LIMIT 1",
+			$slug,
+			$post_type
+		)
+	);
 }
 
 /**
