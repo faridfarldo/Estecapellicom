@@ -45,9 +45,9 @@ function estecapelli_image_to_id( $img ) {
  *
  * Re-importing must NOT wipe media an editor uploaded in the panel. The seed
  * only carries text and (occasionally) theme-bundled image URLs — it leaves the
- * ACF image / gallery / video slots empty. So for each section, whenever the
- * seed value for `image`, `video_id` or `items` is empty, we keep whatever is
- * already stored on the post instead of overwriting it with nothing.
+ * ACF image / gallery / video slots empty, and some optional media keys are
+ * omitted entirely. For each section, keep stored media whenever the seed
+ * value is empty or absent instead of overwriting it with nothing.
  *
  * We read the EXISTING value formatted (get_field default) — for flexible
  * content the unformatted value is just an array of layout-name strings, not the
@@ -81,16 +81,25 @@ function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
 		}
 
 		// Preserve a single uploaded image (store its ID).
-		if ( array_key_exists( 'image', $section ) && empty( $section['image'] ) && ! empty( $old['image'] ) ) {
+		if ( empty( $section['image'] ) && ! empty( $old['image'] ) ) {
 			$id = estecapelli_image_to_id( $old['image'] );
 			if ( $id ) {
 				$new_sections[ $i ]['image'] = $id;
 			}
 		}
 
-		// Preserve an uploaded/entered video id (scalar).
-		if ( array_key_exists( 'video_id', $section ) && empty( $section['video_id'] ) && ! empty( $old['video_id'] ) ) {
-			$new_sections[ $i ]['video_id'] = $old['video_id'];
+		// Preserve the selected media mode. This is essential when an editor has
+		// changed a seed's default image block to a YouTube video or slider.
+		if ( ! empty( $old['media_type'] ) ) {
+			$new_sections[ $i ]['media_type'] = $old['media_type'];
+		}
+
+		// Preserve uploaded/entered media URLs and video identifiers even when
+		// their optional key is absent from the seed row.
+		foreach ( array( 'image_url', 'video_id', 'video_url' ) as $media_key ) {
+			if ( empty( $section[ $media_key ] ) && ! empty( $old[ $media_key ] ) ) {
+				$new_sections[ $i ][ $media_key ] = $old[ $media_key ];
+			}
 		}
 
 		// Preserve uploaded gallery/repeater rows (before/after) when the seed
@@ -122,8 +131,13 @@ function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
 				if ( empty( $row['icon_file'] ) && ! empty( $oldrow['icon_file'] ) ) {
 					$new_sections[ $i ][ $rep ][ $ri ]['icon_file'] = estecapelli_image_to_id( $oldrow['icon_file'] );
 				}
-				if ( array_key_exists( 'image', $row ) && empty( $row['image'] ) && ! empty( $oldrow['image'] ) ) {
+				if ( empty( $row['image'] ) && ! empty( $oldrow['image'] ) ) {
 					$new_sections[ $i ][ $rep ][ $ri ]['image'] = estecapelli_image_to_id( $oldrow['image'] );
+				}
+				foreach ( array( 'video_id', 'video_url' ) as $media_key ) {
+					if ( empty( $row[ $media_key ] ) && ! empty( $oldrow[ $media_key ] ) ) {
+						$new_sections[ $i ][ $rep ][ $ri ][ $media_key ] = $oldrow[ $media_key ];
+					}
 				}
 			}
 		}

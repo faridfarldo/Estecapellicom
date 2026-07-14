@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.4' );
+	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.5' );
 }
 
 /**
@@ -226,10 +226,15 @@ function estecapelli_fr_hair_localize_urls( $value ) {
 					$relative = preg_replace( '#^/(?:en|fr)(?=/|$)#', '', $relative );
 				} while ( $relative !== $previous );
 				if ( $relative !== $original ) {
+					if ( '/before-after' === untrailingslashit( $relative ) ) {
+						$relative = '/avant-apres';
+					}
 					$value[ $key ] = $home . '/fr' . ( $relative ?: '/' );
 				}
 			} elseif ( 0 === strpos( $item, '/en/' ) ) {
-				$value[ $key ] = '/fr/' . substr( $item, 4 );
+				$relative      = '/' . substr( $item, 4 );
+				$relative      = '/before-after' === untrailingslashit( $relative ) ? '/avant-apres' : $relative;
+				$value[ $key ] = '/fr' . $relative;
 			}
 		} elseif ( is_array( $item ) ) {
 			$value[ $key ] = estecapelli_fr_hair_localize_urls( $item );
@@ -259,6 +264,50 @@ function estecapelli_fr_hair_normalize_media( $value ) {
 	}
 
 	return $value;
+}
+
+/**
+ * Verify that every non-empty source media value survived the ACF write.
+ *
+ * Attachment IDs can be mapped to language-specific attachment records by
+ * WPML, so this verifies presence and shape rather than requiring the saved
+ * numeric ID to be identical to the English one.
+ *
+ * @param mixed  $expected Media-bearing ACF value sent to update_field().
+ * @param mixed  $saved    Formatted ACF value read back from the French post.
+ * @param string $path     Diagnostic path.
+ * @return true|WP_Error
+ */
+function estecapelli_fr_hair_validate_media( $expected, $saved, $path = 'page_sections' ) {
+	$media_keys = array( 'image', 'icon_file', 'image_url', 'video_id', 'video_url', 'media_type', 'slider_images' );
+
+	if ( ! is_array( $expected ) ) {
+		return true;
+	}
+
+	foreach ( $expected as $key => $value ) {
+		$current_path = $path . '/' . $key;
+		if ( in_array( (string) $key, $media_keys, true ) ) {
+			$saved_media = is_array( $saved ) && array_key_exists( $key, $saved ) ? $saved[ $key ] : null;
+			if ( ! empty( $value ) && empty( $saved_media ) ) {
+				return new WP_Error( 'fr_hair_media_not_saved', sprintf( 'Media was not saved at %s.', $current_path ) );
+			}
+			if ( 'slider_images' === $key && is_array( $value ) && is_array( $saved_media ) && count( $saved_media ) < count( $value ) ) {
+				return new WP_Error( 'fr_hair_media_not_saved', sprintf( 'Not all slider images were saved at %s.', $current_path ) );
+			}
+			continue;
+		}
+
+		if ( is_array( $value ) ) {
+			$saved_value = isset( $saved[ $key ] ) && is_array( $saved[ $key ] ) ? $saved[ $key ] : array();
+			$result      = estecapelli_fr_hair_validate_media( $value, $saved_value, $current_path );
+			if ( is_wp_error( $result ) ) {
+				return $result;
+			}
+		}
+	}
+
+	return true;
 }
 
 /**
@@ -651,6 +700,10 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id ) {
 	$expected_title = $translation['sections'][0]['title'] ?? '';
 	if ( ! is_array( $saved_sections ) || ! $expected_title || $expected_title !== $saved_title ) {
 		return new WP_Error( 'fr_hair_acf_not_saved', sprintf( 'The French ACF content was not saved for %s.', $source_slug ) );
+	}
+	$media_saved = estecapelli_fr_hair_validate_media( $sections, $saved_sections );
+	if ( is_wp_error( $media_saved ) ) {
+		return $media_saved;
 	}
 
 	$thumbnail_id = get_post_thumbnail_id( $source_id );
