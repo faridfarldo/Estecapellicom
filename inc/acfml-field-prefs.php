@@ -1,29 +1,20 @@
 <?php
 /**
- * Tell ACFML which ACF fields to translate.
+ * Add ACFML preferences to PHP-registered ACF fields.
  *
- * Our field groups are registered in PHP (inc/acf-field-groups.php). Without an
- * explicit translation preference, ACFML treats every custom field as "don't
- * translate", so the WPML editor shows "Page Sections 0" — no strings to
- * translate — and translated pages keep the English text.
+ * ACFML synchronises local PHP fields from the arrays passed to
+ * acf_add_local_field_group(). The preferences therefore need to be present at
+ * registration time; adding them later with acf/load_field is too late for the
+ * local-field sync tool.
  *
- * We set the preference per field TYPE at load time, so it applies to every
- * current and future field with no per-field bookkeeping:
+ * The site uses the same section structure in every language:
  *
- *   - text / textarea / wysiwyg      → Translate (real copy).
- *   - group / repeater / flexible    → Translate, i.e. ACFML recurses into the
- *                                       sub-fields and translates each by its
- *                                       own type. ACFML is structure-aware, so
- *                                       it copies the flexible-content layout
- *                                       selector (hero, stepbook…) rather than
- *                                       translating it. inc/acfml-layout-guard
- *                                       is the belt-and-braces backup.
- *   - image / file / gallery         → Copy (same media in every language).
- *   - url / link                     → Copy (internal links are localised in
- *                                       the theme, not per-field).
+ *   - Flexible Content, Repeater, Group and all non-text fields are copied.
+ *   - Visitor-facing Text, Textarea and WYSIWYG values are translated.
+ *   - Text fields which contain technical identifiers are explicitly copied.
  *
- * `wpml_cf_preferences` values are WPML's own constants: 1 = Copy,
- * 2 = Translate, 3 = Copy once.
+ * `wpml_cf_preferences` uses WPML's numeric values: 1 = Copy, 2 = Translate.
+ * ACF safely ignores this extra field property when ACFML is not active.
  *
  * @package Estecapelli
  */
@@ -32,30 +23,94 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_filter( 'acf/load_field', 'estecapelli_acfml_field_pref' );
-function estecapelli_acfml_field_pref( $field ) {
-	if ( empty( $field['type'] ) || isset( $field['wpml_cf_preferences'] ) ) {
-		return $field; // nothing to type, or an explicit choice already set.
+/**
+ * Attach ACFML preferences to every field in a local field group.
+ *
+ * @param array $group ACF local field-group definition.
+ * @return array
+ */
+function estecapelli_acfml_prepare_field_group( $group ) {
+	if ( ! empty( $group['fields'] ) && is_array( $group['fields'] ) ) {
+		$group['fields'] = estecapelli_acfml_prepare_fields( $group['fields'] );
 	}
 
-	switch ( $field['type'] ) {
-		case 'text':
-		case 'textarea':
-		case 'wysiwyg':
-		case 'group':
-		case 'repeater':
-		case 'flexible_content':
-			$field['wpml_cf_preferences'] = 2; // Translate / recurse.
-			break;
+	return $group;
+}
 
-		case 'image':
-		case 'file':
-		case 'gallery':
-		case 'url':
-		case 'link':
-			$field['wpml_cf_preferences'] = 1; // Copy.
-			break;
+/**
+ * Recursively attach preferences to fields, layout sub-fields and nested rows.
+ *
+ * Existing explicit preferences win, so an exceptional field can always be
+ * configured directly beside its definition.
+ *
+ * @param array $fields ACF field definitions.
+ * @return array
+ */
+function estecapelli_acfml_prepare_fields( $fields ) {
+	foreach ( $fields as $index => $field ) {
+		if ( ! is_array( $field ) ) {
+			continue;
+		}
+
+		if ( ! isset( $field['wpml_cf_preferences'] ) ) {
+			$field['wpml_cf_preferences'] = estecapelli_acfml_preference_for_field( $field );
+		}
+
+		if ( ! empty( $field['sub_fields'] ) && is_array( $field['sub_fields'] ) ) {
+			$field['sub_fields'] = estecapelli_acfml_prepare_fields( $field['sub_fields'] );
+		}
+
+		if ( ! empty( $field['layouts'] ) && is_array( $field['layouts'] ) ) {
+			foreach ( $field['layouts'] as $layout_key => $layout ) {
+				if ( ! empty( $layout['sub_fields'] ) && is_array( $layout['sub_fields'] ) ) {
+					$layout['sub_fields'] = estecapelli_acfml_prepare_fields( $layout['sub_fields'] );
+				}
+				$field['layouts'][ $layout_key ] = $layout;
+			}
+		}
+
+		$fields[ $index ] = $field;
 	}
 
-	return $field;
+	return $fields;
+}
+
+/**
+ * Choose the ACFML preference for one field.
+ *
+ * Text-like fields are translated by default, except for an explicit list of
+ * structural values (asset URLs, video IDs, slugs, codes, names and counts).
+ * Every other field type is copied so layout selectors, row counts, media IDs,
+ * choices and relationships remain identical in every language.
+ *
+ * @param array $field ACF field definition.
+ * @return int 1 (Copy) or 2 (Translate).
+ */
+function estecapelli_acfml_preference_for_field( $field ) {
+	$copy_text_fields = array(
+		'field_hero_image_url',
+		'field_hero_video_id',
+		'field_cand_image_url',
+		'field_gal_grafts',
+		'field_team_m_photo_url',
+		'field_team_m_name',
+		'field_team_lang_country',
+		'field_docs_m_name',
+		'field_rel_category',
+		'field_intro_image_url',
+		'field_intro_video_url',
+		'field_doctor_resume_photo_url',
+	);
+
+	$key = isset( $field['key'] ) ? (string) $field['key'] : '';
+	if ( in_array( $key, $copy_text_fields, true ) ) {
+		return 1;
+	}
+
+	$type = isset( $field['type'] ) ? (string) $field['type'] : '';
+	if ( in_array( $type, array( 'text', 'textarea', 'wysiwyg' ), true ) ) {
+		return 2;
+	}
+
+	return 1;
 }

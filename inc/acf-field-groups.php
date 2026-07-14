@@ -75,8 +75,7 @@ function estecapelli_register_acf_field_groups() {
 		'languages'    => 'languages',
 	);
 
-	acf_add_local_field_group(
-		array(
+	$treatment_page_builder = array(
 			'key'                   => 'group_treatment_page_builder',
 			'title'                 => __( 'Treatment Page Builder', 'estecapelli' ),
 			'location'              => array(
@@ -674,8 +673,8 @@ function estecapelli_register_acf_field_groups() {
 					),
 				),
 			),
-		)
-	);
+		);
+	acf_add_local_field_group( estecapelli_acfml_prepare_field_group( $treatment_page_builder ) );
 
 	// ============================================================
 	// Before & After result fields
@@ -759,8 +758,7 @@ function estecapelli_register_acf_field_groups() {
 	// read these fields, so a new doctor appears on the site automatically with
 	// no page nesting and no roster editing.
 	// ============================================================
-	acf_add_local_field_group(
-		array(
+	$doctor_profile_fields = array(
 			'key'                   => 'group_doctor_fields',
 			'title'                 => __( 'Doctor Profile', 'estecapelli' ),
 			'location'              => array(
@@ -833,8 +831,8 @@ function estecapelli_register_acf_field_groups() {
 					),
 				),
 			),
-		)
-	);
+		);
+	acf_add_local_field_group( estecapelli_acfml_prepare_field_group( $doctor_profile_fields ) );
 
 	/* ===== Homepage — Patient Stories =====
 	   Edits overlay the theme defaults: any field left empty keeps the current
