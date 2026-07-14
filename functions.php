@@ -30,6 +30,7 @@ require get_template_directory() . '/inc/svg-support.php';
 require get_template_directory() . '/inc/class-estecapelli-walker-nav-menu.php';
 require get_template_directory() . '/inc/post-types.php';
 require get_template_directory() . '/inc/acf-field-groups.php';
+require get_template_directory() . '/inc/acfml-field-prefs.php';
 require get_template_directory() . '/inc/blog-seed.php';
 require get_template_directory() . '/inc/engine.php';
 require get_template_directory() . '/inc/acfml-layout-guard.php';
