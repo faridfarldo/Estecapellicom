@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.1' );
+	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.2' );
 }
 
 /**
@@ -426,6 +426,16 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id ) {
 		$target_id = estecapelli_fr_hair_raw_post_id( $translation['slug'] );
 	}
 
+	/*
+	 * WPML duplicates deliberately mirror their source post. Existing French
+	 * records may therefore accept our update and then immediately revert to
+	 * English. Removing this one marker is WPML's "Translate independently"
+	 * operation; the normal trid relationship remains intact.
+	 */
+	if ( $target_id ) {
+		delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
+	}
+
 	$post_args = array(
 		'post_type'    => 'treatment',
 		'post_title'   => $translation['title'],
@@ -455,6 +465,7 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id ) {
 			'source_language_code' => $source_language,
 		)
 	);
+	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
 	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'fr' );
 	if ( (int) $target_id !== $linked_target_id ) {
@@ -477,8 +488,15 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id ) {
 	if ( ! $target_post || $translation['slug'] !== $target_post->post_name ) {
 		return new WP_Error( 'fr_hair_slug_conflict', sprintf( 'The required French slug is already in use: %s.', $translation['slug'] ) );
 	}
+	if ( $translation['title'] !== $target_post->post_title ) {
+		return new WP_Error( 'fr_hair_title_not_saved', sprintf( 'The French title was not saved for %s.', $source_slug ) );
+	}
 
+	// The target term ID is already French; prevent WPML from adjusting it back
+	// to the English term while the admin request is running in English.
+	add_filter( 'wpml_disable_term_adjust_id', '__return_true' );
 	$term_result = wp_set_object_terms( $target_id, array( (int) $french_term_id ), 'treatment_category', false );
+	remove_filter( 'wpml_disable_term_adjust_id', '__return_true' );
 	if ( is_wp_error( $term_result ) ) {
 		return $term_result;
 	}
@@ -491,6 +509,15 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id ) {
 	$sections = estecapelli_fr_hair_localize_urls( $sections );
 	$sections = estecapelli_fr_hair_normalize_media( $sections );
 	update_field( 'field_treatment_sections', $sections, $target_id );
+
+	// Do not mark the migration complete unless ACF actually returns the French
+	// copy. This catches duplicate-sync or ACFML preference problems immediately.
+	$saved_sections = get_field( 'page_sections', $target_id );
+	$saved_title    = is_array( $saved_sections ) ? ( $saved_sections[0]['title'] ?? '' ) : '';
+	$expected_title = $translation['sections'][0]['title'] ?? '';
+	if ( ! is_array( $saved_sections ) || ! $expected_title || $expected_title !== $saved_title ) {
+		return new WP_Error( 'fr_hair_acf_not_saved', sprintf( 'The French ACF content was not saved for %s.', $source_slug ) );
+	}
 
 	$thumbnail_id = get_post_thumbnail_id( $source_id );
 	if ( $thumbnail_id ) {
