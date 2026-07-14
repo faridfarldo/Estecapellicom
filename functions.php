@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
-	define( 'ESTECAPELLI_VERSION', '1.22.0' );
+	define( 'ESTECAPELLI_VERSION', '1.23.0' );
 }
 
 if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {
@@ -39,6 +39,7 @@ require get_template_directory() . '/inc/redirects.php';
 require get_template_directory() . '/inc/canonical.php';
 require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/wpml-fix.php';
+require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/hair-analysis.php';
