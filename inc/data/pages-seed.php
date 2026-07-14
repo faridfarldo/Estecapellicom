@@ -265,6 +265,8 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 						'body'           => '<p>' . esc_html__( 'TrichoLab is an advanced AI-powered hair analysis system that examines the hair and scalp through high-resolution trichoscopic imaging. By measuring critical parameters with millimetric precision, it provides objective, data-driven insights that guide our specialists in planning the most effective treatment for each individual.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'The system evaluates a comprehensive range of factors, including hair follicle density, graft potential, hair shaft thickness, donor area capacity, hair loss mapping and miniaturisation rate. This level of detail allows our team to design a personalised treatment plan based on accurate, real-time data rather than estimation.', 'estecapelli' ) . '</p>',
 						'image'          => '',
+						// Section visual (text-URL fallback; file lives in the media library).
+						'image_url'      => 'https://estecapelli.com/wp-content/uploads/2026/06/what-is-tricholab.webp',
 						'image_position' => 'right',
 						'cta'            => array( 'label' => '', 'url' => '' ),
 					),
