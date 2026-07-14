@@ -1,0 +1,133 @@
+{
+  "source_slug": "hair-mesotherapy",
+  "slug": "mesotherapie-capillaire",
+  "title": "Mésothérapie capillaire",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Traitement capillaire non chirurgical",
+      "title": "Mésothérapie capillaire",
+      "lead": "Revitalisez vos follicules grâce à un mélange personnalisé de vitamines, de minéraux et d’acides aminés, administré directement dans le cuir chevelu par des micro-injections pratiquement indolores.",
+      "cta_primary": { "label": "Consultation gratuite" },
+      "cta_secondary": { "label": "Discuter sur WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Informations clés",
+      "stats": [
+        { "value": "4–6", "label": "Séances" },
+        { "value": "4–6 semaines", "label": "Intervalle" },
+        { "value": "Pratiquement indolore", "label": "Intervention" },
+        { "value": "Sans éviction", "label": "Récupération" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "L’approche",
+      "title": "Mésothérapie capillaire : l’approche personnalisée d’Estecapelli",
+      "body": "<p>La mésothérapie capillaire est une méthode rapide et efficace pour lutter contre la chute de cheveux et améliorer leur santé. Le traitement apporte directement aux follicules un mélange personnalisé de vitamines, de minéraux et d’acides aminés, afin de fournir les nutriments essentiels là où ils sont le plus utiles.</p><p>Chez Estecapelli, le protocole est soigneusement adapté à chaque patient : le cuir chevelu et les follicules sont analysés, le mélange est préparé selon les besoins individuels, puis administré par des micro-injections pratiquement indolores. Les séances sont courtes et confortables, et vous pouvez reprendre immédiatement vos activités quotidiennes.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Le déroulement",
+      "title": "Comment se déroule la mésothérapie capillaire ?",
+      "lead": "Découvrez le protocole Estecapelli étape par étape, de l’analyse du cuir chevelu à la définition d’un programme de séances personnalisé.",
+      "items": [
+        {
+          "eyebrow": "Étape 1",
+          "title": "Analyse",
+          "body": "<p>Les cheveux et le cuir chevelu sont soigneusement examinés afin d’évaluer la structure des follicules, l’état général du cuir chevelu et la cause de la chute. Chez Estecapelli, nous utilisons l’analyse TrichoLab, qui permet à nos spécialistes d’étudier la longueur, la qualité et la densité des follicules. Ces informations servent de base à un protocole précis et personnalisé, plutôt qu’à une formule identique pour tous.</p>"
+        },
+        {
+          "eyebrow": "Étape 2",
+          "title": "Préparation du mélange de mésothérapie",
+          "body": "<p>Une solution de mésothérapie sur mesure est préparée pour chaque patient. Elle associe de façon équilibrée des vitamines, des minéraux, des acides aminés et des facteurs de croissance essentiels à la santé des cheveux. Sa composition répond à vos besoins particuliers afin de renforcer les follicules, de stimuler la pousse et d’améliorer la qualité globale de la chevelure.</p>"
+        },
+        {
+          "eyebrow": "Étape 3",
+          "title": "Application",
+          "body": "<p>Le mélange personnalisé est injecté directement dans le cuir chevelu à l’aide de fines aiguilles, ce qui apporte les nutriments au plus près des follicules pileux. Une crème anesthésiante locale peut être appliquée si votre cuir chevelu est sensible. L’intervention est rapide, confortable et peu invasive ; vous pouvez donc reprendre immédiatement vos activités.</p>"
+        },
+        {
+          "eyebrow": "Étape 4",
+          "title": "Programme de traitement",
+          "body": "<p>Le protocole comprend généralement 4 à 6 séances espacées de 4 à 6 semaines. Le calendrier exact est adapté à l’importance de votre chute et à la réponse de vos cheveux. Des séances d’entretien périodiques peuvent ensuite être conseillées pour préserver les résultats.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Pourquoi la choisir",
+      "title": "Les avantages de la mésothérapie capillaire",
+      "body": "Un traitement complémentaire non invasif qui s’intègre facilement à votre quotidien :",
+      "items": [
+        { "label": "Renforce les follicules et favorise une nouvelle pousse" },
+        { "label": "Réduit la chute sans interrompre vos activités" },
+        { "label": "Mélange de vitamines et de minéraux personnalisé" },
+        { "label": "Séances confortables et pratiquement indolores" },
+        { "label": "Compatible avec les soins après une greffe capillaire" },
+        { "label": "Premiers résultats visibles après quelques séances" }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bon à savoir",
+      "title": "Mésothérapie capillaire — Questions fréquentes",
+      "items": [
+        {
+          "question": "Suis-je un bon candidat à la mésothérapie capillaire ?",
+          "answer": "<p>La mésothérapie convient aux hommes et aux femmes qui présentent une chute légère à modérée, des cheveux clairsemés, fragiles ou qui tombent, notamment en cas d’alopécie androgénétique ou d’effluvium télogène. Elle constitue également un excellent soin complémentaire après une greffe capillaire. Elle ne remplace pas la chirurgie en cas de calvitie avancée ; la cause de la chute doit donc d’abord être évaluée en détail par un spécialiste.</p>"
+        },
+        {
+          "question": "Combien de séances me faudra-t-il et quand verrai-je les résultats ?",
+          "answer": "<p>Un protocole classique comprend quatre à six séances espacées de quatre à six semaines. De nombreux patients constatent une diminution de la chute après les deux ou trois premières séances, puis une amélioration progressive de l’épaisseur et de la pousse pendant le reste du programme. Le nombre exact de séances dépend de l’importance de votre chute et de la réponse de vos cheveux.</p>"
+        },
+        {
+          "question": "La mésothérapie capillaire est-elle douloureuse et nécessite-t-elle une éviction sociale ?",
+          "answer": "<p>Elle est généralement pratiquement indolore : vous pouvez seulement ressentir de légers picotements, et une crème anesthésiante locale peut être utilisée sur les cuirs chevelus sensibles. Aucune éviction sociale n’est nécessaire. Les séances sont courtes et vous pouvez reprendre immédiatement votre routine, y compris votre travail.</p>"
+        },
+        {
+          "question": "Que contient exactement le mélange de mésothérapie ?",
+          "answer": "<p>La solution est un mélange personnalisé de vitamines, de minéraux, d’acides aminés et de facteurs de croissance qui nourrit directement les follicules. Sa formule n’est pas fixe : elle est adaptée aux résultats de l’analyse de votre cuir chevelu afin de cibler les carences et les fragilités propres à vos cheveux.</p>"
+        },
+        {
+          "question": "Peut-on l’associer à d’autres traitements ?",
+          "answer": "<p>Oui. La mésothérapie peut être associée au PRP et à des traitements médicaux comme le minoxidil. Elle est aussi fréquemment utilisée pour soutenir et renforcer les résultats d’une greffe DHI, FUE ou Sapphire FUE. Nos spécialistes déterminent la combinaison la mieux adaptée à vos objectifs.</p>"
+        },
+        {
+          "question": "Existe-t-il des effets secondaires ?",
+          "answer": "<p>Il s’agit d’une intervention sûre et peu invasive. Dans de rares cas, une rougeur temporaire, un léger gonflement ou des démangeaisons peuvent apparaître aux points d’injection ; ces réactions disparaissent spontanément en peu de temps.</p>"
+        },
+        {
+          "question": "Combien de temps les résultats durent-ils ?",
+          "answer": "<p>Les résultats de la mésothérapie peuvent durer longtemps, surtout lorsqu’elle est associée à une bonne hygiène de vie et à des soins capillaires adaptés. Toutefois, le traitement soutient et stimule les follicules existants sans éliminer définitivement les causes sous-jacentes de la chute. Des séances d’entretien peuvent donc être recommandées selon votre situation. Des traitements périodiques aident à préserver la densité, à maintenir la santé du cuir chevelu et à favoriser durablement une pousse plus forte et plus saine.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Résultats réels",
+      "title": "Mésothérapie capillaire — Avant et après",
+      "lead": "Découvrez l’amélioration de la densité et de la qualité des cheveux obtenue par nos patients au fil d’un protocole de mésothérapie. Les résultats se développent progressivement à mesure que les follicules sont nourris et renforcés.",
+      "cta": { "label": "Voir toute la galerie" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultation gratuite",
+      "title": "Prêt à renforcer vos cheveux ?",
+      "lead": "Partagez quelques informations avec nous. Notre équipe vous répondra avec un protocole de mésothérapie personnalisé, le nombre de séances recommandé et un devis sans engagement, généralement en quelques heures.",
+      "points": [
+        { "label": "Évaluation gratuite du cuir chevelu à partir de vos photos" },
+        { "label": "Mélange personnalisé de vitamines et de minéraux" },
+        { "label": "Réponse rapide de notre équipe dédiée aux patients" },
+        { "label": "Assistance multilingue à chaque étape" }
+      ],
+      "submit_label": "Demander une consultation gratuite"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Découvrir davantage",
+      "title": "Traitements associés"
+    }
+  ]
+}

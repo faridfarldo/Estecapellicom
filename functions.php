@@ -47,6 +47,7 @@ require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/hair-analysis.php';
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-treatments.php';
+	require get_template_directory() . '/inc/admin/import-fr-hair-treatments.php';
 }
 
 if ( ! function_exists( 'estecapelli_setup' ) ) {

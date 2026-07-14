@@ -1,0 +1,116 @@
+{
+  "source_slug": "vita-treatment",
+  "slug": "traitement-vita",
+  "title": "Traitement VITA",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Méthode signature Estecapelli",
+      "title": "Traitement VITA",
+      "lead": "Le protocole signature d’Estecapelli revitalise le cuir chevelu, nourrit les follicules et accélère la cicatrisation. Un sérum à base de vitamines protège la vitalité des greffons avant et pendant la transplantation afin d’optimiser leur survie et leur croissance.",
+      "cta_primary": { "label": "Consultation gratuite" },
+      "cta_secondary": { "label": "Discuter sur WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La méthode",
+      "title": "Qu’est-ce que le protocole VITA ?",
+      "body": "<p>Le protocole VITA est un traitement avancé en trois phases, développé exclusivement par les experts médicaux d’Estecapelli pour optimiser la survie des greffons et améliorer la réussite globale de votre greffe capillaire. Entièrement compatible avec les techniques Sapphire FUE et DHI, il associe une formule très enrichie en acides aminés, vitamines, facteurs de croissance et ATP afin de nourrir et de protéger les follicules tout au long de l’intervention.</p><p>Lors de la première phase, un sérum VITA riche en nutriments est appliqué sur le cuir chevelu par des microcanaux créés au dermaroller. Les principes actifs pénètrent ainsi en profondeur et préparent la zone receveuse à l’implantation. Dans la deuxième phase, après leur prélèvement, les greffons sont conservés dans le sérum VITA tandis qu’une thérapie par vapeur d’air froid associée à une solution saline les maintient hydratés, réduit le stress cellulaire et augmente leur taux de survie avant l’implantation.</p><p>Enfin, une séance de PRP, ou plasma riche en plaquettes, est réalisée immédiatement après l’intervention. Les propres facteurs de croissance du patient accélèrent la cicatrisation, favorisent la fixation des greffons et soutiennent une pousse plus forte et plus saine.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La science",
+      "title": "La technique signature d’Estecapelli — La force VITA issue des vitamines",
+      "body": "<p>La durée pendant laquelle les follicules restent hors du corps est un facteur critique qui influence directement la réussite de l’intervention. Après leur extraction, les greffons ne bénéficient plus de la circulation sanguine ni de l’apport en nutriments essentiels et s’affaiblissent progressivement.</p><p>Le protocole VITA intervient précisément pendant ces phases sensibles de l’opération en apportant aux greffons un soutien indispensable. Grâce à une solution de sérum vitaminé spécialement formulée et à l’application de vapeur d’air froid, il contribue de manière significative à préserver leur viabilité lors des techniques FUE comme DHI.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Pourquoi est-ce important ?",
+      "title": "Les avantages du protocole VITA",
+      "body": "Les vitamines, les minéraux, les facteurs de croissance et l’ATP contenus dans le sérum VITA renforcent les follicules et favorisent leur développement :",
+      "items": [
+        { "label": "Protège la vitalité des greffons hors du corps" },
+        { "label": "Améliore la survie et la fixation des greffons" },
+        { "label": "Nourrit les follicules avec des vitamines, des minéraux et de l’ATP" },
+        { "label": "Accélère le processus de cicatrisation" },
+        { "label": "S’associe aux interventions FUE et DHI" },
+        { "label": "Idéal pour les follicules fragiles, les cheveux fins ou les zones donneuses limitées" }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "L’intervention",
+      "title": "Comment le protocole VITA est-il appliqué ?",
+      "lead": "Un protocole en trois étapes qui s’intègre parfaitement à votre greffe Sapphire FUE ou DHI. Parcourez-les ci-dessous.",
+      "items": [
+        {
+          "eyebrow": "Étape 1",
+          "title": "Microneedling et sérum nutritif",
+          "body": "<p>Des microcanaux sont créés à l’aide d’un dermaroller, puis un sérum hautement concentré en vitamines, acides aminés, facteurs de croissance et minéraux est appliqué afin de stimuler la circulation sanguine. La zone donneuse est préparée pour un prélèvement fluide et bien nourri, tandis que la zone receveuse bénéficie d’un complexe vitaminé concentré, beaucoup mieux absorbé par le cuir chevelu grâce aux microcanaux.</p>"
+        },
+        {
+          "eyebrow": "Étape 2",
+          "title": "Sérum en vapeur froide sur les greffons",
+          "body": "<p>Le même sérum nutritif est mélangé à une solution saline dans le plateau de prélèvement, puis appliqué sur les greffons à l’aide d’une méthode par vapeur froide. La période passée hors du corps est la plus critique pour les follicules : les protéger à ce moment-là prévient leur détérioration, maximise leur survie et augmente leur potentiel de repousse après la transplantation.</p>"
+        },
+        {
+          "eyebrow": "Étape 3",
+          "title": "PRP après l’intervention",
+          "body": "<p>Le PRP, ou plasma riche en plaquettes, constitue la dernière étape du traitement. Cette thérapie régénérative est réalisée immédiatement après votre greffe afin de soutenir la cicatrisation et d’améliorer le résultat global. Une petite quantité de votre sang est prélevée, puis traitée dans une centrifugeuse pour isoler le plasma riche en plaquettes, qui contient une forte concentration de facteurs de croissance naturels. Le PRP est ensuite injecté avec précision dans les zones traitées du cuir chevelu. Il contribue à accélérer la réparation des tissus, à réduire l’inflammation, à améliorer la circulation sanguine et à créer un environnement favorable aux nouveaux greffons. En stimulant la cicatrisation et en nourrissant les follicules, il favorise leur fixation, une récupération plus rapide et la pousse de cheveux plus sains et plus épais.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bon à savoir",
+      "title": "Traitement VITA — Questions fréquentes",
+      "items": [
+        {
+          "question": "VITA est-il un traitement autonome ?",
+          "answer": "<p>Non. VITA est un protocole qui améliore une greffe capillaire, et non un traitement indépendant. Il est appliqué pendant votre intervention Sapphire FUE ou DHI afin de nourrir le cuir chevelu et de protéger les greffons, ce qui favorise leur survie et améliore le résultat global.</p>"
+        },
+        {
+          "question": "Pourquoi la survie des greffons est-elle si importante ?",
+          "answer": "<p>Le temps passé par les follicules hors du corps est l’un des principaux facteurs de réussite d’une greffe. Une fois prélevés, les greffons n’ont plus accès à la circulation sanguine ni aux nutriments et commencent à s’affaiblir. En les nourrissant et en les protégeant par le froid pendant cette période, VITA aide davantage de greffons à survivre et à pousser, pour un résultat plus dense et plus fourni.</p>"
+        },
+        {
+          "question": "À qui VITA profite-t-il le plus ?",
+          "answer": "<p>Le protocole est utile pour presque toutes les greffes, mais il est particulièrement intéressant pour les patients qui ont des follicules fragiles, des cheveux fins ou une zone donneuse limitée, lorsque chaque greffon compte. Votre chirurgien vous indiquera si l’ajout de VITA est pertinent dans votre cas.</p>"
+        },
+        {
+          "question": "VITA est-il compatible avec la FUE et la DHI ?",
+          "answer": "<p>Oui. Le protocole VITA est entièrement compatible avec les techniques Sapphire FUE et DHI. Il s’intègre naturellement à l’une comme à l’autre sans modifier le déroulement de votre greffe.</p>"
+        },
+        {
+          "question": "VITA modifie-t-il la récupération ou provoque-t-il des effets secondaires ?",
+          "answer": "<p>En nourrissant le cuir chevelu et les greffons, le protocole favorise une cicatrisation plus rapide et plus saine. Il utilise des vitamines, des minéraux, des acides aminés et des facteurs de croissance adaptés à l’organisme ; il n’ajoute donc ni éviction sociale significative ni effets secondaires particuliers à ceux de la greffe elle-même.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Résultats réels",
+      "title": "Greffes soutenues par VITA — Avant et après",
+      "lead": "Découvrez la densité et les résultats naturels obtenus lorsque le protocole VITA accompagne une greffe Sapphire FUE ou DHI : une meilleure survie des greffons pour une chevelure plus dense et plus saine.",
+      "cta": { "label": "Voir toute la galerie" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultation gratuite",
+      "title": "Vous souhaitez ajouter VITA à votre greffe ?",
+      "lead": "Partagez quelques informations avec nous. Notre équipe vous répondra avec un protocole de greffe personnalisé, vous expliquera comment VITA peut améliorer la survie de vos greffons et vous enverra un devis tout compris sans engagement, généralement en quelques heures.",
+      "points": [
+        { "label": "Évaluation gratuite du nombre de greffons à partir de vos photos" },
+        { "label": "Survie des greffons optimisée grâce au protocole VITA" },
+        { "label": "Réponse rapide de notre équipe dédiée aux patients" },
+        { "label": "Assistance multilingue à chaque étape" }
+      ],
+      "submit_label": "Demander une consultation gratuite"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Découvrir davantage",
+      "title": "Traitements associés"
+    }
+  ]
+}
