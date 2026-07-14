@@ -18,6 +18,19 @@
 
 <a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'estecapelli' ); ?></a>
 
+<?php
+$header_languages = estecapelli_header_languages();
+$current_language = reset( $header_languages );
+foreach ( $header_languages as $header_language ) {
+	if ( ! empty( $header_language['active'] ) ) {
+		$current_language = $header_language;
+		break;
+	}
+}
+$current_language_code = strtoupper( sanitize_key( $current_language['language_code'] ?? 'en' ) );
+$current_language_name = (string) ( $current_language['native_name'] ?? $current_language_code );
+?>
+
 <header class="site-header" data-site-header>
 
 	<div class="mainbar">
@@ -48,20 +61,40 @@
 
 			<div class="mainbar-actions">
 				<div class="lang-switch" data-lang-switch>
-					<button type="button" class="lang-switch__toggle" aria-expanded="false" aria-controls="lang-menu">
+					<button
+						type="button"
+						class="lang-switch__toggle"
+						aria-expanded="false"
+						aria-controls="header-language-menu"
+						aria-label="<?php echo esc_attr( sprintf( __( 'Choose language. Current language: %s', 'estecapelli' ), $current_language_name ) ); ?>"
+					>
 						<?php estecapelli_icon( 'globe', array( 'width' => 16, 'height' => 16 ) ); ?>
-						<span class="lang-switch__current">EN</span>
+						<span class="lang-switch__current"><?php echo esc_html( $current_language_code ); ?></span>
 						<?php estecapelli_icon( 'chevron-down', array( 'width' => 12, 'height' => 12, 'class' => 'chev' ) ); ?>
 					</button>
-					<ul class="lang-switch__menu" id="lang-menu" hidden>
-						<?php
-						$langs = array( 'EN' => 'English', 'TR' => 'Türkçe', 'FR' => 'French', 'IT' => 'Italian', 'ES' => 'Spanish', 'PL' => 'Polish', 'PT' => 'Portuguese' );
-						foreach ( $langs as $code => $name ) :
+					<ul class="lang-switch__menu" id="header-language-menu" hidden>
+						<?php foreach ( $header_languages as $language ) :
+							$code      = sanitize_key( $language['language_code'] ?? '' );
+							$name      = (string) ( $language['native_name'] ?? strtoupper( $code ) );
+							$url       = (string) ( $language['url'] ?? '' );
+							$is_active = ! empty( $language['active'] );
+							$flag      = (string) ( $language['country_flag_url'] ?? '' );
 							?>
-							<li><a href="#" data-lang="<?php echo esc_attr( strtolower( $code ) ); ?>"><span class="lang-code"><?php echo esc_html( $code ); ?></span> <?php echo esc_html( $name ); ?></a></li>
-							<?php
-						endforeach;
-						?>
+							<li class="<?php echo $is_active ? 'is-active' : ''; ?>">
+								<a
+									href="<?php echo esc_url( $url ); ?>"
+									lang="<?php echo esc_attr( $code ); ?>"
+									hreflang="<?php echo esc_attr( $code ); ?>"
+									<?php echo $is_active ? 'aria-current="page"' : ''; ?>
+								>
+									<?php if ( $flag ) : ?>
+										<img class="lang-switch__flag" src="<?php echo esc_url( $flag ); ?>" width="18" height="12" alt="" />
+									<?php endif; ?>
+									<span class="lang-code"><?php echo esc_html( strtoupper( $code ) ); ?></span>
+									<span class="lang-switch__name"><?php echo esc_html( $name ); ?></span>
+								</a>
+							</li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 

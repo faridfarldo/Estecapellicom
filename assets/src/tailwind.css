@@ -2673,20 +2673,26 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 4px;
-		padding: 4px 10px;
+		min-height: 38px;
+		padding: 7px 10px;
 		font-size: 0.75rem;
 		font-weight: 600;
 		color: oklch(35% 0.02 260);
-		border-radius: 6px;
-		transition: background 150ms, color 150ms;
+		background: white;
+		border: 1px solid var(--color-brand-100);
+		border-radius: 9999px;
+		transition: background 150ms, color 150ms, border-color 150ms, box-shadow 150ms;
 	}
 	.lang-switch__toggle:hover {
-		background: oklch(0% 0 0 / 0.05);
+		background: var(--color-brand-50);
+		border-color: var(--color-brand-200);
 		color: var(--color-brand-900);
 	}
 	.lang-switch__toggle[aria-expanded="true"] {
-		background: oklch(0% 0 0 / 0.05);
+		background: var(--color-brand-50);
+		border-color: var(--color-brand-300);
 		color: var(--color-brand-900);
+		box-shadow: 0 0 0 3px oklch(58% 0.13 260 / 0.12);
 	}
 	.lang-switch__toggle .chev {
 		transition: transform 200ms;
@@ -2697,7 +2703,9 @@
 		position: absolute;
 		top: calc(100% + 8px);
 		right: 0;
-		min-width: 200px;
+		width: max-content;
+		min-width: 210px;
+		max-width: calc(100vw - 2rem);
 		background: white;
 		border: 1px solid var(--color-brand-100);
 		border-radius: 12px;
@@ -2720,6 +2728,19 @@
 		transition: background 150ms;
 	}
 	.lang-switch__menu a:hover { background: var(--color-brand-50); color: var(--color-brand-700); }
+	.lang-switch__menu a[aria-current="page"] {
+		background: var(--color-brand-50);
+		color: var(--color-brand-800);
+		font-weight: 600;
+	}
+	.lang-switch__flag {
+		width: 18px;
+		height: 12px;
+		object-fit: cover;
+		border-radius: 2px;
+		box-shadow: 0 0 0 1px oklch(20% 0.02 260 / 0.12);
+		flex-shrink: 0;
+	}
 	.lang-code {
 		display: inline-block;
 		min-width: 22px;
@@ -2728,6 +2749,7 @@
 		color: var(--color-brand-500);
 		letter-spacing: 0.05em;
 	}
+	.lang-switch__name { flex: 1; white-space: nowrap; }
 
 	/* ---------- Main nav bar ---------- */
 	.mainbar { background: transparent; }
@@ -2757,6 +2779,8 @@
 	}
 	@media (max-width: 540px) {
 		.brand-logo { width: 130px; height: 38px; }
+		.mainbar-inner { gap: 0.5rem; padding-inline: 0.75rem; }
+		.lang-switch__toggle { min-height: 36px; padding-inline: 8px; }
 	}
 	.brand-wordmark {
 		font-weight: 700;
@@ -3224,7 +3248,6 @@
 	/* ---------- Mobile (≤1024px) ---------- */
 	@media (max-width: 1180px) {
 		.topbar-patients { display: none; }
-		.lang-switch__current { display: none; }
 		.trustpilot__name { display: none; }
 
 		.nav-toggle { display: inline-flex; }

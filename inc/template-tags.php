@@ -88,6 +88,56 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_header_languages' ) ) {
+	/**
+	 * Return WPML's active languages for the custom header switcher.
+	 *
+	 * WPML supplies the translated URL for the current object. Missing
+	 * translations deliberately link to that language's homepage instead of a
+	 * non-existent translated page. English is normalised to the indexed /en/
+	 * route because that prefix is owned by the theme on this installation.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	function estecapelli_header_languages() {
+		$languages = apply_filters(
+			'wpml_active_languages',
+			null,
+			array( 'skip_missing' => 0 )
+		);
+
+		if ( ! is_array( $languages ) || ! $languages ) {
+			return array(
+				array(
+					'active'           => 1,
+					'language_code'    => 'en',
+					'native_name'      => 'English',
+					'translated_name'  => 'English',
+					'country_flag_url' => '',
+					'url'              => home_url( '/en/' ),
+				),
+			);
+		}
+
+		$site_home = untrailingslashit( (string) get_option( 'home' ) );
+		foreach ( $languages as &$language ) {
+			$code = sanitize_key( $language['language_code'] ?? '' );
+			$url  = (string) ( $language['url'] ?? '' );
+
+			if ( 'en' !== $code || ! $site_home || 0 !== strpos( $url, $site_home ) ) {
+				continue;
+			}
+
+			$relative = substr( $url, strlen( $site_home ) );
+			$relative = preg_replace( '#^/en(?=/|$)#', '', $relative );
+			$language['url'] = $site_home . '/en' . ( $relative ?: '/' );
+		}
+		unset( $language );
+
+		return array_values( $languages );
+	}
+}
+
 if ( ! function_exists( 'estecapelli_render_item_icon' ) ) {
 	/**
 	 * Render an item's icon: an uploaded custom icon wins; otherwise the built-in
