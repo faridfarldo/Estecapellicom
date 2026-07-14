@@ -27,9 +27,12 @@ foreach ( $header_languages as $header_language ) {
 		break;
 	}
 }
-$current_language_code = strtoupper( sanitize_key( $current_language['language_code'] ?? 'en' ) );
+$current_language_slug = sanitize_key( $current_language['language_code'] ?? 'en' );
+$current_language_slug = $current_language_slug ?: 'en';
+$current_language_code = strtoupper( $current_language_slug );
 $current_language_name = (string) ( $current_language['native_name'] ?? $current_language_code );
 $current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' );
+$language_home_url     = untrailingslashit( (string) get_option( 'home' ) ) . '/' . $current_language_slug . '/';
 ?>
 
 <header class="site-header" data-site-header>
@@ -37,7 +40,7 @@ $current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' 
 	<div class="mainbar">
 		<div class="mainbar-inner">
 
-			<a class="brand-link" href="<?php echo esc_url( estecapelli_nav_url( '/en/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+			<a class="brand-link" href="<?php echo esc_url( $language_home_url ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				<?php estecapelli_brand_mark( 'header' ); ?>
 			</a>
 
