@@ -18,6 +18,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * De-duplicate TrichoLab.
+ *
+ * TrichoLab is intentionally a Page under Hair Transplant (ID matches the
+ * indexed /en/hair-transplant/tricholab URL). An older, leftover `treatment`
+ * post with the same slug still answers the bare /hair-transplant/tricholab URL,
+ * creating a duplicate. Rather than delete data, we 301 that treatment view to
+ * the canonical page. Runs before the legacy handler and is NOT gated on 404,
+ * because the stale treatment resolves with a 200.
+ */
+add_action( 'template_redirect', 'estecapelli_dedupe_tricholab', 0 );
+function estecapelli_dedupe_tricholab() {
+	if ( is_admin() || ! is_singular( 'treatment' ) ) {
+		return;
+	}
+	if ( 'tricholab' === get_post_field( 'post_name', get_queried_object_id() ) ) {
+		wp_safe_redirect( home_url( '/en/hair-transplant/tricholab/' ), 301 );
+		exit;
+	}
+}
+
 add_action( 'template_redirect', 'estecapelli_handle_legacy_redirects', 1 );
 function estecapelli_handle_legacy_redirects() {
 
