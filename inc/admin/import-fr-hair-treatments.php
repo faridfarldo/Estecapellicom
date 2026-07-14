@@ -652,7 +652,22 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $s
 		return new WP_Error( 'fr_hair_unlinked_source_post', sprintf( 'WPML language details are missing for %s.', $source_slug ) );
 	}
 
-	$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'fr' );
+	// Prefer the relationship that actually occupies the French slot in the
+	// source TRID. WPML's object-id cache may be stale after a failed import.
+	$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'fr' );
+	if ( $target_id ) {
+		$raw_target = get_post( $target_id );
+		if ( ! $raw_target || 'treatment' !== $raw_target->post_type || 'trash' === $raw_target->post_status || $target_id === $source_id ) {
+			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, 'fr' );
+			$target_id = 0;
+		}
+	}
+	if ( ! $target_id ) {
+		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'fr' );
+	}
+	if ( $target_id === $source_id ) {
+		$target_id = 0;
+	}
 	if ( ! $target_id ) {
 		$target_id = estecapelli_fr_hair_raw_post_id( $translation['slug'], $source_id );
 	}
@@ -700,11 +715,11 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $s
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
 	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'fr' );
-	if (
-		(int) $target_id !== $linked_target_id &&
-		! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'fr' )
-	) {
-		return new WP_Error( 'fr_hair_post_link_failed', sprintf( 'WPML did not link the French translation for %s.', $source_slug ) );
+	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'fr' ) ) {
+		$repaired = estecapelli_wpml_repair_relationship_raw( $target_id, $element_type, $trid, 'fr', $source_language );
+		if ( ! $repaired ) {
+			return new WP_Error( 'fr_hair_post_link_failed', sprintf( 'WPML did not link the French translation for %s.', $source_slug ) );
+		}
 	}
 
 	// Re-apply the canonical French slug after WPML has linked the translation.
