@@ -1,0 +1,264 @@
+{
+    "source_slug":  "liposuction",
+    "slug":  "liposuccion",
+    "title":  "Liposuccion",
+    "sections":  [
+                     {
+                         "acf_fc_layout":  "hero",
+                         "eyebrow":  "Remodelage corporel",
+                         "title":  "Liposuccion",
+                         "lead":  "Une intervention moderne de remodelage corporel qui réduit les amas graisseux localisés et tenaces afin de redessiner harmonieusement votre silhouette.",
+                         "cta_primary":  {
+                                             "label":  "Consultation gratuite"
+                                         },
+                         "cta_secondary":  {
+                                               "label":  "Discuter sur WhatsApp"
+                                           }
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’intervention",
+                         "title":  "Qu’est-ce que la liposuccion ?",
+                         "body":  "\u003cp\u003eLa liposuccion est une procédure moderne de remodelage corporel conçue pour réduire les amas graisseux localisés et remodeler les contours esthétiques. Au cours de la procédure, les cellules adipeuses sont retirées chirurgicalement, ce qui diminue définitivement leur nombre dans la zone traitée. Pour cette raison, la liposuccion constitue une solution efficace et fiable avec des résultats qui peuvent durer de nombreuses années.\u003c/p\u003e\u003cp\u003eLes techniques de liposuccion utilisées chez Estecapelli vont au-delà du simple amincissement du corps et aident à obtenir une apparence esthétique plus proportionnée.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Zones de traitement",
+                         "title":  "Quelles zones peuvent être modelées par liposuccion ?",
+                         "body":  "La liposuccion peut être pratiquée sur diverses zones du corps où la graisse a tendance à s’accumuler et résiste aux autres méthodes. Les domaines les plus couramment traités comprennent :",
+                         "items":  [
+                                       {
+                                           "label":  "Abdomen et ventre"
+                                       },
+                                       {
+                                           "label":  "Taille et flancs"
+                                       },
+                                       {
+                                           "label":  "Hanches et sacoches"
+                                       },
+                                       {
+                                           "label":  "Cuisses intérieures et extérieures"
+                                       },
+                                       {
+                                           "label":  "Retour"
+                                       },
+                                       {
+                                           "label":  "Bras et aisselles"
+                                       },
+                                       {
+                                           "label":  "Poitrine (pour traiter la gynécomastie chez les hommes)"
+                                       },
+                                       {
+                                           "label":  "Double menton et sous la mâchoire"
+                                       }
+                                   ],
+                         "footer":  "Cette intervention n’est pas une méthode de perte de poids. Elle élimine les amas graisseux localisés qui persistent malgré une perte de poids globale."
+                     },
+                     {
+                         "acf_fc_layout":  "steps",
+                         "eyebrow":  "Techniques",
+                         "title":  "Types de liposuccion",
+                         "lead":  "Chez Estecapelli, différentes techniques de liposuccion sont utilisées pour atteindre vos objectifs de remodelage corporel. La bonne méthode est choisie en fonction de votre répartition des graisses, de l’élasticité de votre peau et du résultat souhaité. Parcourez les principales options ci-dessous.",
+                         "items":  [
+                                       {
+                                           "eyebrow":  "Technique",
+                                           "title":  "Liposuccion Vaser",
+                                           "body":  "\u003cp\u003eLa liposuccion Vaser est une technique avancée qui utilise l\u0027énergie ultrasonore pour liquéfier les cellules adipeuses avant leur retrait, permettant ainsi un remodelage précis et doux du corps.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eAvantages :\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eCible la graisse avec précision\u003c/li\u003e\u003cli\u003eMini-invasive avec moins de traumatismes tissulaires\u003c/li\u003e\u003cli\u003eRésultats lisses et naturels\u003c/li\u003e\u003cli\u003eRécupération plus rapide par rapport à la liposuccion traditionnelle\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Technique",
+                                           "title":  "Liposuccion Laser",
+                                           "body":  "\u003cp\u003eLa liposuccion laser utilise une énergie laser intense pour décomposer les cellules adipeuses, tout en favorisant simultanément le raffermissement de la peau pour des contours plus lisses.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eAvantages :\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eFait fondre la graisse avec précision\u003c/li\u003e\u003cli\u003eSoutient le raffermissement de la peau\u003c/li\u003e\u003cli\u003ePeu invasif avec une récupération rapide\u003c/li\u003e\u003cli\u003eRésultats lisses et naturels\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Technique",
+                                           "title":  "Liposuccion tumescente",
+                                           "body":  "\u003cp\u003eLa liposuccion tumescente consiste à injecter une solution spéciale dans la zone ciblée avant l\u0027élimination de la graisse afin de minimiser les saignements et les ecchymoses. Aujourd\u0027hui, elle est souvent associée à d\u0027autres techniques de liposuccion pour de meilleurs résultats.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Technique",
+                                           "title":  "PAL (liposuccion assistée)",
+                                           "body":  "\u003cp\u003ePAL (Power Assisted Liposuccion) utilise des canules assistées par vibrations pour décomposer la graisse plus facilement et plus efficacement, rendant la procédure plus rapide et plus fluide.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eAvantages :\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eÉlimination de la graisse plus facile et plus rapide\u003c/li\u003e\u003cli\u003eMoins de fatigue du chirurgien, plus précis\u003c/li\u003e\u003cli\u003eMini-invasive avec des résultats plus fluides\u003c/li\u003e\u003cli\u003ePeut être combiné avec d\u0027autres techniques\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Technique",
+                                           "title":  "Liposuccion classique",
+                                           "body":  "\u003cp\u003eLa liposuccion traditionnelle est une technique conventionnelle d\u0027élimination des graisses réalisée manuellement sans appareil. Cela reste une option privilégiée dans certains cas.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Candidats",
+                         "title":  "Qui peut subir une liposuccion ?",
+                         "body":  "Si vous répondez à l’un de ces critères, vous pourriez être candidat à une liposuccion :",
+                         "items":  [
+                                       {
+                                           "label":  "Adultes ayant terminé leur phase de croissance"
+                                       },
+                                       {
+                                           "label":  "Les personnes présentant des zones graisseuses tenaces qui ne s’améliorent pas avec un régime alimentaire et de l’exercice"
+                                       },
+                                       {
+                                           "label":  "Ceux qui cherchent à définir les contours de leur corps"
+                                       },
+                                       {
+                                           "label":  "Personnes sans conditions médicales empêchant la chirurgie"
+                                       },
+                                       {
+                                           "label":  "Personnes ayant une bonne élasticité cutanée"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Important",
+                         "title":  "Quand la liposuccion n’est pas recommandée",
+                         "body":  "\u003cul\u003e\u003cli\u003ePériode de grossesse et d\u0027allaitement\u003c/li\u003e\u003cli\u003eMaladies chroniques graves\u003c/li\u003e\u003cli\u003eTroubles de la coagulation\u003c/li\u003e\u003cli\u003eObésité sévère\u003c/li\u003e\u003c/ul\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Avant l’intervention",
+                         "title":  "Préparation avant la liposuccion",
+                         "body":  "\u003cp\u003eLe processus préopératoire à Estecapelli est méticuleusement géré pour garantir une planification chirurgicale sûre.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’opération",
+                         "title":  "Comment se déroule la chirurgie de liposuccion ?",
+                         "body":  "\u003cp\u003eLa liposuccion est réalisée sous anesthésie locale ou générale. La technique choisie dépend de la quantité et des caractéristiques de la graisse à éliminer, ainsi que de la taille de la zone traitée.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eÉtapes générales :\u003c/strong\u003e\u003c/p\u003e\u003col\u003e\u003cli\u003eFaire de petites incisions\u003c/li\u003e\u003cli\u003eDécomposer la graisse à l\u0027aide de la technologie appropriée (Vaser, laser, etc.)\u003c/li\u003e\u003cli\u003eEnlever les cellules graisseuses avec des canules\u003c/li\u003e\u003cli\u003eContourner et façonner la zone\u003c/li\u003e\u003cli\u003eFermer les incisions avec un minimum cicatrisation\u003c/li\u003e\u003c/ol\u003e\u003cp\u003eDurée : 30 minutes à 3 heures, selon l\u0027ampleur de l\u0027intervention.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "steps",
+                         "eyebrow":  "Après l’intervention",
+                         "title":  "Processus de récupération après une liposuccion",
+                         "lead":  "Chez Estecapelli, nous accordons la priorité au confort en surveillant attentivement le processus de récupération post-liposuccion.",
+                         "items":  [
+                                       {
+                                           "time":  "Premiers jours",
+                                           "title":  "Vêtement de compression",
+                                           "body":  "Une légère douleur, des ecchymoses et un gonflement peuvent survenir. Commencez à utiliser un vêtement de compression."
+                                       },
+                                       {
+                                           "time":  "1ère semaine",
+                                           "title":  "Retour à la vie quotidienne",
+                                           "body":  "Le patient peut reprendre ses activités quotidiennes. La marche et les mouvements légers sont encouragés."
+                                       },
+                                       {
+                                           "time":  "2 à 3 semaines",
+                                           "title":  "L’enflure diminue",
+                                           "body":  "Le gonflement diminue considérablement. Un retour progressif aux activités sportives est possible."
+                                       },
+                                       {
+                                           "time":  "6 semaines – 3 mois",
+                                           "title":  "Les contours prennent forme",
+                                           "body":  "Les contours du corps commencent à prendre forme."
+                                       },
+                                       {
+                                           "time":  "3 à 6 mois",
+                                           "title":  "Résultats finaux",
+                                           "body":  "Les résultats finaux sont révélés."
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Suivi",
+                         "title":  "Points à considérer après une liposuccion",
+                         "body":  "Pour favoriser la guérison et protéger vos résultats, gardez les éléments suivants à l’esprit :",
+                         "items":  [
+                                       {
+                                           "label":  "Portez régulièrement le vêtement de compression recommandé"
+                                       },
+                                       {
+                                           "label":  "Évitez les sports intenses pendant un certain temps"
+                                       },
+                                       {
+                                           "label":  "Éloignez-vous des bains chauds, des saunas ou des environnements similaires"
+                                       },
+                                       {
+                                           "label":  "Buvez beaucoup d\u0027eau et gardez une alimentation équilibrée"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "gallery",
+                         "eyebrow":  "Résultats réels",
+                         "title":  "Liposuccion – Avant et après",
+                         "lead":  "Découvrez les contours plus lisses et plus définis obtenus par nos patients. Chaque résultat est adapté à chaque corps, la graisse étant éliminée avec précision pour une forme naturelle et proportionnée.",
+                         "cta":  {
+                                     "label":  "Voir toute la galerie"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "faq",
+                         "eyebrow":  "Bon à savoir",
+                         "title":  "Liposuccion – Foire aux questions",
+                         "items":  [
+                                       {
+                                           "question":  "La liposuccion est-elle une méthode de perte de poids ?",
+                                           "answer":  "\u003cp\u003eNon : la liposuccion est une intervention de remodelage corporel, et non une méthode d’amaigrissement. Elle élimine les amas graisseux localisés qui résistent au régime et à l’exercice afin d’affiner la silhouette, mais la variation sur la balance reste généralement faible. Elle donne les meilleurs résultats lorsque le poids est sain et stable et ne constitue pas un traitement de l’obésité.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelle technique me convient : Vaser, laser, PAL, tumescente ou classique ?",
+                                           "answer":  "\u003cp\u003eLa meilleure méthode dépend de la zone traitée, de la quantité et de la fermeté de la graisse, ainsi que de l\u0027élasticité de votre peau. Vaser utilise les ultrasons pour un contour précis et doux des zones définies, le laser ajoute un certain raffermissement de la peau, PAL accélère l\u0027élimination de volumes plus importants et la technique tumescente est souvent combinée avec les autres pour réduire les saignements et les ecchymoses. Après vous avoir examiné, votre chirurgien recommande la technique unique – ou la combinaison – qui donnera le résultat le plus doux et le plus naturel.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelles zones du corps peuvent être traitées ?",
+                                           "answer":  "\u003cp\u003eLa liposuccion peut traiter la plupart des zones où la graisse tenace s\u0027accumule : l\u0027abdomen, la taille, les flancs (poignées d\u0027amour), les hanches, les cuisses, les genoux, les bras, le dos, la ligne du soutien-gorge et le menton ou le cou. Plusieurs domaines peuvent souvent être abordés en une seule séance, et la procédure est fréquemment combinée avec d\u0027autres opérations telles qu\u0027une abdominoplastie ou une BBL. Votre chirurgien confirmera quelles zones conviennent lors de votre consultation.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelle anesthésie est utilisée et la procédure est-elle douloureuse ?",
+                                           "answer":  "\u003cp\u003eEn fonction du nombre et de la taille des zones, la liposuccion est réalisée sous anesthésie locale ou générale, afin que vous soyez à l\u0027aise tout au long. L\u0027opération dure généralement d\u0027une trentaine de minutes à trois heures. Ensuite, vous pouvez vous attendre à des douleurs, des ecchymoses et des gonflements pendant les premiers jours ou semaines, bien gérés avec des médicaments prescrits et un vêtement de compression.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Combien de temps dure la récupération et le séjour en Turquie ?",
+                                           "answer":  "\u003cp\u003eLa plupart des patients restent en Turquie pendant quelques jours, y compris un contrôle de suivi avant de rentrer chez eux. La récupération initiale prend environ une à deux semaines, lorsque beaucoup retournent au travail au bureau, et un vêtement de compression est porté pendant plusieurs semaines pour favoriser la guérison et lisser le contour. Les résultats finaux apparaissent progressivement à mesure que l\u0027enflure s\u0027installe, devenant généralement visibles au bout de trois à six mois.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Les résultats sont-ils permanents et naturels ?",
+                                           "answer":  "\u003cp\u003eLes cellules graisseuses éliminées lors de la liposuccion disparaissent définitivement, les zones traitées restent donc plus minces à long terme. Une prise de poids future importante peut cependant agrandir les cellules graisseuses restantes ailleurs, donc un poids stable préserve mieux votre résultat. Réalisé avec la bonne technique par un chirurgien expérimenté, le contour semble lisse, équilibré et naturel.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quand puis-je à nouveau faire de l\u0027exercice ?",
+                                           "answer":  "\u003cp\u003eLa marche douce est encouragée au bout de quelques jours pour favoriser la circulation et la guérison. Les activités légères reprennent au cours des deux premières semaines, tandis que les exercices intenses, le levage de charges lourdes et les entraînements à fort impact devraient attendre environ quatre à six semaines, une fois que votre chirurgien aura confirmé que vous êtes complètement guéri.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Tarifs",
+                         "title":  "Prix de la liposuccion",
+                         "body":  "\u003cp\u003eLe prix de la liposuccion dépend de plusieurs facteurs :\u003c/p\u003e\u003cul\u003e\u003cli\u003eQuantité de graisse à éliminer\u003c/li\u003e\u003cli\u003eNombre de zones à traiter\u003c/li\u003e\u003cli\u003eTechnique utilisée (Vaser, laser, classique, etc.)\u003c/li\u003e\u003cli\u003eDurée de l\u0027intervention\u003c/li\u003e\u003cli\u003eAttentes du patient\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLe prix le plus précis est déterminé après une consultation en ligne avec les spécialistes d\u0027Estecapelli.\u003c/p\u003e",
+                         "cta":  {
+                                     "label":  "Demandez un devis personnalisé"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "form",
+                         "eyebrow":  "Consultation gratuite",
+                         "title":  "Prêt à définir vos contours ?",
+                         "lead":  "Partagez quelques détails et notre équipe vous répondra avec un plan de liposuccion personnalisé et un devis tout compris sans engagement, généralement dans quelques heures.",
+                         "points":  [
+                                        {
+                                            "label":  "Évaluation gratuite à partir de vos photos"
+                                        },
+                                        {
+                                            "label":  "Devis tout compris, transparent et sans engagement"
+                                        },
+                                        {
+                                            "label":  "Réponse rapide de notre équipe dédiée aux patients"
+                                        },
+                                        {
+                                            "label":  "Accompagnement multilingue à chaque étape"
+                                        }
+                                    ],
+                         "submit_label":  "Demandez une consultation gratuite"
+                     },
+                     {
+                         "acf_fc_layout":  "related",
+                         "eyebrow":  "Pour aller plus loin",
+                         "title":  "Traitements associés"
+                     }
+                 ]
+}

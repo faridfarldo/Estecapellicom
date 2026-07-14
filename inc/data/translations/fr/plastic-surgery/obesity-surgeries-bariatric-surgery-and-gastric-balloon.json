@@ -1,0 +1,208 @@
+{
+    "source_slug":  "obesity-surgeries-bariatric-surgery-and-gastric-balloon",
+    "slug":  "chirurgies-de-l-obesite-chirurgie-bariatrique-et-ballon-gastrique",
+    "title":  "Chirurgies de l’obésité (chirurgie bariatrique et ballon gastrique)",
+    "sections":  [
+                     {
+                         "acf_fc_layout":  "hero",
+                         "eyebrow":  "Perte de poids",
+                         "title":  "Chirurgies de l’obésité (chirurgie bariatrique et ballon gastrique)",
+                         "lead":  "Perte de poids permanente et saine avec Estecapelli. Options chirurgicales et non chirurgicales adaptées à votre profil de santé et à vos objectifs.",
+                         "cta_primary":  {
+                                             "label":  "Consultation gratuite"
+                                         },
+                         "cta_secondary":  {
+                                               "label":  "Discuter sur WhatsApp"
+                                           }
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Aperçu",
+                         "title":  "Perte de poids permanente et saine avec Estecapelli",
+                         "body":  "\u003cp\u003eL\u0027obésité est devenue l\u0027un des problèmes de santé qui connaissent la croissance la plus rapide dans le monde. Définie comme un indice de masse corporelle supérieur à 30, l\u0027obésité affecte non seulement l\u0027apparence physique, mais entraîne également des maladies graves telles que des maladies cardiovasculaires, le diabète, l\u0027apnée du sommeil, l\u0027hypertension et des troubles articulaires.\u003c/p\u003e\u003cp\u003eEstecapelli fournit des solutions professionnelles pour une perte de poids durable et une vie plus saine grâce à des méthodes de chirurgie bariatrique standardisées au niveau international et à des traitements endoscopiques par ballon gastrique pour lutter contre l\u0027obésité.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’intervention",
+                         "title":  "Qu’est-ce que la chirurgie bariatrique ?",
+                         "body":  "\u003cp\u003eLa chirurgie bariatrique est un terme général désignant les interventions chirurgicales utilisées pour traiter l\u0027obésité sévère, visant à favoriser la perte de poids et à réduire les risques pour la santé liés à l\u0027obésité. Ces chirurgies agissent en modifiant le fonctionnement du système digestif :\u003c/p\u003e\u003cul\u003e\u003cli\u003ePour atteindre la satiété avec moins de nourriture\u003c/li\u003e\u003cli\u003ePour réduire l\u0027absorption des nutriments\u003c/li\u003e\u003cli\u003ePour modifier le métabolisme\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLa chirurgie bariatrique est l\u0027une des méthodes les plus efficaces pour obtenir une perte de poids durable chez les patients appropriés.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Candidats",
+                         "title":  "Qui peut subir une chirurgie bariatrique ?",
+                         "body":  "Les personnes qui répondent à un ou plusieurs des critères suivants peuvent être des candidats appropriés à la chirurgie bariatrique :",
+                         "items":  [
+                                       {
+                                           "label":  "Indice de masse corporelle (IMC) de 40 ou plus"
+                                       },
+                                       {
+                                           "label":  "IMC compris entre 35 et 40 dans des conditions telles que le diabète, l\u0027hypertension ou l\u0027apnée du sommeil"
+                                       },
+                                       {
+                                           "label":  "Ceux qui ne parviennent pas à obtenir des résultats malgré les efforts de perte de poids"
+                                       },
+                                       {
+                                           "label":  "Personnes confrontées à des limitations de mouvements dues à l’obésité"
+                                       },
+                                       {
+                                           "label":  "Personnes dont la qualité de vie est réduite en raison d’un excès de poids"
+                                       }
+                                   ],
+                         "footer":  "Chez Estecapelli, chaque patient est évalué selon une approche multidisciplinaire et le plan de traitement le plus approprié est créé en consultation avec la médecine interne, l\u0027endocrinologie et la cardiologie."
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Avant l’intervention",
+                         "title":  "Exigences préopératoires pour la chirurgie bariatrique",
+                         "body":  "\u003cp\u003eLe processus préopératoire est essentiel au succès de l\u0027intervention chirurgicale. Chez Estecapelli, la préparation préopératoire comprend les étapes suivantes :\u003c/p\u003e\u003cul\u003e\u003cli\u003eExamen physique détaillé\u003c/li\u003e\u003cli\u003ePrises de sang, ECG et test d\u0027effort si nécessaire\u003c/li\u003e\u003cli\u003eÉvaluation endoscopique\u003c/li\u003e\u003cli\u003eExamen des antécédents médicaux et de la prise de médicaments\u003c/li\u003e\u003cli\u003eS\u0027abstenir de consommer de l\u0027alcool et du tabac pendant au moins 6 mois\u003c/li\u003e\u003cli\u003eÉvaluations nutritionnelles et psychologiques\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eUne fois tous les résultats examinés, un programme chirurgical personnalisé un plan est élaboré pour le patient.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Méthodes",
+                         "title":  "Méthodes de chirurgie bariatrique",
+                         "body":  "Les méthodes les plus courantes incluent :",
+                         "items":  [
+                                       {
+                                           "label":  "Manchon gastrique (gastrectomie en manchon)"
+                                       },
+                                       {
+                                           "label":  "Bypass gastrique"
+                                       },
+                                       {
+                                           "label":  "Ballon gastrique (procédure endoscopique – non chirurgicale)"
+                                       },
+                                       {
+                                           "label":  "Anneau gastrique"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Après l’intervention",
+                         "title":  "Lignes directrices en matière de soins et de récupération après une chirurgie bariatrique",
+                         "body":  "\u003cp\u003eAprès une opération réussie, une perte de poids permanente est possible avec des habitudes de vie cohérentes. L\u0027équipe d\u0027experts d\u0027Estecapelli fournit aux patients une feuille de route détaillée pendant le parcours postopératoire :\u003c/p\u003e\u003cul\u003e\u003cli\u003eSuivez attentivement le plan nutritionnel\u003c/li\u003e\u003cli\u003eConsommez des liquides pendant les premières semaines\u003c/li\u003e\u003cli\u003ePassez progressivement à un régime riche en protéines\u003c/li\u003e\u003cli\u003eÉvitez les aliments sucrés et transformés\u003c/li\u003e\u003cli\u003ePrenez régulièrement des suppléments de vitamines et de minéraux\u003c/li\u003e\u003cli\u003eCommencez par des exercices légers et établissez progressivement une routine d\u0027entraînement cohérente\u003c/li\u003e\u003cli\u003eBoire beaucoup d\u0027eau\u003c/li\u003e\u003cli\u003eÉvitez l\u0027alcool et la caféine pendant les premiers mois\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLe processus de chirurgie post-bariatrique nécessite un soutien à la fois physique et psychologique. Estecapelli propose un suivi postopératoire et des conseils à tous les patients.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Option non chirurgicale",
+                         "title":  "Qu\u0027est-ce qu\u0027un ballon gastrique ?",
+                         "body":  "\u003cp\u003eLe ballon gastrique est un dispositif médical gonflable inséré dans l\u0027estomac par endoscopie, éliminant ainsi le besoin d\u0027une intervention chirurgicale. En réduisant la capacité de l\u0027estomac, le ballon aide les individus à se sentir rassasiés avec moins de nourriture, favorisant ainsi la perte de poids.\u003c/p\u003e\u003cul\u003e\u003cli\u003eLa procédure prend 20 à 30 minutes\u003c/li\u003e\u003cli\u003eUne sortie le jour même est possible\u003c/li\u003e\u003cli\u003eDes options pour des ballons de 6 ou 12 mois sont disponibles\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLe ballon gastrique est une méthode efficace de gestion du poids pour les patients qui préfèrent éviter une intervention chirurgicale ou qui ne sont pas des candidats appropriés pour une intervention chirurgicale.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Admissibilité",
+                         "title":  "Qui est éligible pour un ballon gastrique ?",
+                         "body":  "Un ballon gastrique peut être recommandé aux personnes présentant les conditions suivantes :",
+                         "items":  [
+                                       {
+                                           "label":  "Les personnes ayant un IMC compris entre 30 et 35 qui préfèrent éviter la chirurgie"
+                                       },
+                                       {
+                                           "label":  "Ceux qui ont besoin d’un premier pas de soutien vers la perte de poids"
+                                       },
+                                       {
+                                           "label":  "Les personnes ayant des problèmes de santé qui rendent la chirurgie inadaptée"
+                                       },
+                                       {
+                                           "label":  "Les personnes qui ne peuvent pas perdre de poids après l\u0027accouchement et qui présentent un excès de poids modéré."
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Important",
+                         "title":  "Quand un ballon gastrique ne doit pas être utilisé",
+                         "body":  "\u003cul\u003e\u003cli\u003eUlcère gastrique, gastrite et hernie hiatale\u003c/li\u003e\u003cli\u003eAbus de substances\u003c/li\u003e\u003cli\u003eTroubles alimentaires graves\u003c/li\u003e\u003cli\u003ePériode de grossesse et d\u0027allaitement\u003c/li\u003e\u003c/ul\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Pourquoi la Turquie",
+                         "title":  "Chirurgie de l\u0027obésité en Turquie",
+                         "body":  "\u003cp\u003eLa Turquie fait partie des pays les plus populaires au monde pour la chirurgie bariatrique. Les principales raisons sont :\u003c/p\u003e\u003cul\u003e\u003cli\u003eChirurgiens avec une expérience internationale\u003c/li\u003e\u003cli\u003eHôpitaux technologiquement avancés\u003c/li\u003e\u003cli\u003eTaux de réussite élevés\u003c/li\u003e\u003cli\u003ePrix plus abordables par rapport à l\u0027Europe et aux États-Unis\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eEstecapelli offre les services suivants aux patients venant de Turquie et de l\u0027étranger :\u003c/p\u003e\u003cul\u003e\u003cli\u003ePlans de traitement personnalisés\u003c/li\u003e\u003cli\u003eOptions hospitalières et hôtelières confortables\u003c/li\u003e\u003cli\u003eSuivi postopératoire programmes\u003c/li\u003e\u003c/ul\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "gallery",
+                         "eyebrow":  "Résultats réels",
+                         "title":  "Perte de poids – Avant et après",
+                         "lead":  "Découvrez les transformations qui changent la vie de nos patients grâce à la chirurgie bariatrique et au traitement par ballon gastrique. Chaque voyage est accompagné par notre équipe du début à la fin.",
+                         "cta":  {
+                                     "label":  "Voir toute la galerie"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "faq",
+                         "eyebrow":  "Bon à savoir",
+                         "title":  "Chirurgie bariatrique — Foire aux questions",
+                         "items":  [
+                                       {
+                                           "question":  "À qui s’adresse la chirurgie bariatrique ?",
+                                           "answer":  "\u003cp\u003eIl convient généralement aux adultes ayant un indice de masse corporelle (IMC) de 40 ou plus, ou un IMC de 35+ en cas de pathologies liées à l\u0027obésité telles que le diabète de type 2, l\u0027hypertension ou l\u0027apnée du sommeil. Les candidats qui ont eu du mal à perdre du poids grâce à un régime et à de l\u0027exercice uniquement sont évalués individuellement par notre équipe multidisciplinaire avant qu\u0027une décision ne soit prise.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelles procédures proposez-vous ?",
+                                           "answer":  "\u003cp\u003eNous proposons toute la gamme d\u0027options : manchon gastrique (gastrectomie en manchon), pontage gastrique et chirurgie de l\u0027anneau gastrique, ainsi que le ballon gastrique endoscopique non chirurgical. Le bon choix dépend de votre poids, de votre profil de santé et de vos objectifs, que nous confirmons lors de votre évaluation.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelle est la différence entre le manchon gastrique, le bypass et le ballon ?",
+                                           "answer":  "\u003cp\u003eUn manchon gastrique enlève définitivement une partie de l\u0027estomac afin que vous vous sentiez rassasié plus tôt. Un pontage gastrique redirige également une partie de l’intestin pour réduire l’absorption des calories, donnant souvent de meilleurs résultats pour des IMC plus élevés. Un ballon gastrique est un dispositif temporaire non chirurgical placé pendant 6 à 12 mois : idéal comme point de départ ou pour ceux qui préfèrent éviter la chirurgie.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Combien de poids vais-je perdre ?",
+                                           "answer":  "\u003cp\u003eGrâce à la chirurgie, les patients perdent généralement environ 60 à 80 % de leur excès de poids au cours des 12 à 18 premiers mois. Les résultats du ballon gastrique sont plus modestes. Dans tous les cas, le succès à long terme dépend du suivi du plan de nutrition et de style de vie recommandé après l\u0027intervention.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "La chirurgie bariatrique est-elle sûre et y aura-t-il de grandes cicatrices ?",
+                                           "answer":  "\u003cp\u003eRéalisée par laparoscopie (trou de serrure) par des chirurgiens expérimentés dans des hôpitaux entièrement équipés, la chirurgie bariatrique moderne est à la fois sûre et efficace. Étant donné que seules quelques petites incisions sont utilisées, les cicatrices sont minimes et la récupération est plus rapide qu\u0027avec une chirurgie ouverte.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Combien de temps dure la convalescence et combien de temps dois-je rester en Turquie ?",
+                                           "answer":  "\u003cp\u003eLa plupart des patients restent en Turquie pendant environ cinq à sept jours, y compris le temps d\u0027hospitalisation et un contrôle de suivi avant de rentrer chez eux. Le retour à la vie quotidienne prend généralement une à deux semaines, avec un rétablissement complet en quatre à six semaines environ. Le ballon gastrique ne nécessite qu\u0027un court séjour.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Est-ce que cela améliore d’autres problèmes de santé ?",
+                                           "answer":  "\u003cp\u003eOui. Une perte de poids significative entraîne souvent une amélioration marquée – et parfois une résolution – de maladies telles que le diabète de type 2, l\u0027hypertension artérielle, l\u0027apnée du sommeil, les douleurs articulaires et la stéatose hépatique, ainsi qu\u0027une amélioration majeure de la qualité de vie.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Vais-je devoir changer définitivement mon mode de vie ?",
+                                           "answer":  "\u003cp\u003eOui : des résultats durables dépendent d\u0027habitudes durables. Après votre procédure, vous suivrez un plan nutritionnel par étapes, prendrez les vitamines recommandées et établirez progressivement une routine d\u0027exercice régulière. Notre équipe assure un suivi et des conseils postopératoires pour vous aider à maintenir vos résultats à vie.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Tarifs",
+                         "title":  "Prix de la chirurgie de l’obésité",
+                         "body":  "\u003cp\u003eLes prix varient en fonction de facteurs tels que la méthode choisie, l\u0027état de santé du patient, le type de ballon préféré et la technique chirurgicale. Les prix les plus précis sont déterminés après une évaluation avec les spécialistes d\u0027Estecapelli.\u003c/p\u003e",
+                         "cta":  {
+                                     "label":  "Demandez un devis personnalisé"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "form",
+                         "eyebrow":  "Consultation gratuite",
+                         "title":  "Commencez votre parcours de perte de poids",
+                         "lead":  "Partagez quelques détails et notre équipe vous répondra avec un plan de perte de poids personnalisé et un devis tout compris sans engagement, généralement dans quelques heures.",
+                         "points":  [
+                                        {
+                                            "label":  "Évaluation gratuite de l\u0027option qui vous convient"
+                                        },
+                                        {
+                                            "label":  "Devis tout compris, transparent et sans engagement"
+                                        },
+                                        {
+                                            "label":  "Réponse rapide de notre équipe dédiée aux patients"
+                                        },
+                                        {
+                                            "label":  "Accompagnement multilingue à chaque étape"
+                                        }
+                                    ],
+                         "submit_label":  "Demandez une consultation gratuite"
+                     },
+                     {
+                         "acf_fc_layout":  "related",
+                         "eyebrow":  "Pour aller plus loin",
+                         "title":  "Traitements associés"
+                     }
+                 ]
+}

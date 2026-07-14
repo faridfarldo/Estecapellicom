@@ -1,0 +1,237 @@
+{
+    "source_slug":  "rhinoplasty",
+    "slug":  "rhinoplastie",
+    "title":  "Rhinoplastie",
+    "sections":  [
+                     {
+                         "acf_fc_layout":  "hero",
+                         "eyebrow":  "Esthétique du nez",
+                         "title":  "Rhinoplastie",
+                         "lead":  "Une intervention chirurgicale qui remodèle le nez en améliorant sa forme, sa taille et sa fonction. Elle peut être réalisée à des fins esthétiques comme pour corriger des problèmes respiratoires.",
+                         "cta_primary":  {
+                                             "label":  "Consultation gratuite"
+                                         },
+                         "cta_secondary":  {
+                                               "label":  "Discuter sur WhatsApp"
+                                           }
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’intervention",
+                         "title":  "Qu’est-ce que la rhinoplastie ?",
+                         "body":  "\u003cp\u003eLa rhinoplastie est une intervention chirurgicale visant à remodeler le nez en améliorant sa forme, sa taille et sa fonction. Elle peut être réalisée à des fins esthétiques ou pour corriger des problèmes respiratoires. Étant donné que le nez est l’élément le plus visible au centre du visage, même de légères modifications peuvent avoir un effet notable sur l’harmonie du visage et la confiance en soi.\u003c/p\u003e\u003cp\u003eChez Estecapelli, chaque rhinoplastie fait l’objet d’une planification personnalisée. Nos spécialistes évaluent l’ensemble de la structure faciale et tiennent compte des proportions et de l’équilibre du visage afin d’obtenir un résultat naturel. Toutes les interventions sont réalisées par des spécialistes ORL et des chirurgiens plasticiens expérimentés, pour assurer à la fois le raffinement esthétique et l’amélioration fonctionnelle.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Indications",
+                         "title":  "Pourquoi fait-on une rhinoplastie ?",
+                         "body":  "Les gens choisissent la rhinoplastie pour diverses raisons, liées à la fois à l’apparence esthétique et à des préoccupations fonctionnelles. Certaines des raisons les plus courantes incluent :",
+                         "items":  [
+                                       {
+                                           "label":  "Un nez qui paraît trop grand ou trop petit par rapport au visage"
+                                       },
+                                       {
+                                           "label":  "Une bosse visible sur l\u0027arête nasale"
+                                       },
+                                       {
+                                           "label":  "Une pointe nasale tombante, large ou mal définie"
+                                       },
+                                       {
+                                           "label":  "Narines asymétriques"
+                                       },
+                                       {
+                                           "label":  "Déformations causées par une blessure ou un traumatisme antérieur"
+                                       },
+                                       {
+                                           "label":  "Insatisfaction à l\u0027égard de la forme naturelle et génétiquement héritée du nez"
+                                       },
+                                       {
+                                           "label":  "Difficultés respiratoires causées par des problèmes structurels tels qu\u0027un septum dévié ou une courbure nasale interne"
+                                       }
+                                   ],
+                         "footer":  "Chez Estecapelli, l\u0027objectif de la rhinoplastie est de créer un nez d\u0027apparence naturelle qui complète les traits généraux du visage tout en améliorant la fonction respiratoire si nécessaire."
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Candidats",
+                         "title":  "Qui peut subir une rhinoplastie ?",
+                         "body":  "La rhinoplastie peut être une option appropriée pour les personnes qui souhaitent améliorer à la fois l\u0027apparence et la fonction de leur nez. Les candidats idéaux incluent généralement :",
+                         "items":  [
+                                       {
+                                           "label":  "Adultes dont la croissance faciale et le développement physique sont terminés"
+                                       },
+                                       {
+                                           "label":  "Les personnes insatisfaites de l’apparence ou de la forme de leur nez"
+                                       },
+                                       {
+                                           "label":  "Les personnes qui éprouvent des difficultés respiratoires dues à des problèmes nasaux structurels"
+                                       },
+                                       {
+                                           "label":  "Ceux qui présentent des déformations nasales causées par la génétique, une blessure ou un traumatisme antérieur"
+                                       },
+                                       {
+                                           "label":  "Les personnes recherchant une apparence du visage plus équilibrée, naturelle et harmonieuse"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Techniques",
+                         "title":  "Types de rhinoplastie",
+                         "body":  "\u003cul\u003e\u003cli\u003e\u003cstrong\u003eRhinoplastie ouverte\u003c/strong\u003e : la structure nasale est entièrement exposée grâce à une petite incision pratiquée sous les narines. Cette technique est particulièrement adaptée aux modifications structurelles importantes, aux déviations marquées et aux chirurgies de révision.\u003c/li\u003e\u003cli\u003e\u003cstrong\u003eRhinoplastie fermée\u003c/strong\u003e : toutes les incisions sont réalisées à l’intérieur du nez, sans cicatrice externe visible. Elle permet généralement une récupération plus rapide et limite le traumatisme tissulaire. Elle ne convient toutefois pas à toutes les anatomies ; l’indication est confirmée lors de l’examen médical.\u003c/li\u003e\u003cli\u003e\u003cstrong\u003eTipplastie (chirurgie de la pointe du nez)\u003c/strong\u003e : cette intervention esthétique remodèle uniquement la pointe du nez, sans modifier l’arête ni la structure osseuse. L’intervention est plus courte et la récupération généralement plus rapide.\u003c/li\u003e\u003cli\u003e\u003cstrong\u003eChirurgie de la déviation de la cloison nasale\u003c/strong\u003e : elle corrige la courbure du cartilage et de l’os situés sur la ligne médiane du nez. Son objectif principal est d’améliorer la respiration sans modifier l’apparence extérieure du nez.\u003c/li\u003e\u003c/ul\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Avant l’intervention",
+                         "title":  "Le processus préopératoire",
+                         "body":  "La phase préopératoire est essentielle pour une rhinoplastie réussie. Chez Estecapelli, chaque patient est soumis à une évaluation minutieuse pour garantir à la fois la sécurité et les meilleurs résultats possibles. Avant l\u0027intervention chirurgicale, les étapes suivantes sont effectuées :",
+                         "items":  [
+                                       {
+                                           "label":  "Examen des antécédents médicaux du patient et de son état de santé actuel"
+                                       },
+                                       {
+                                           "label":  "Discussion sur les attentes esthétiques et les résultats souhaités"
+                                       },
+                                       {
+                                           "label":  "Examen de la structure nasale interne et externe"
+                                       },
+                                       {
+                                           "label":  "Prises de sang et évaluation de l\u0027anesthésie"
+                                       },
+                                       {
+                                           "label":  "Photographies médicales pour analyse et planification chirurgicale"
+                                       },
+                                       {
+                                           "label":  "Arrêt temporaire des médicaments anticoagulants"
+                                       },
+                                       {
+                                           "label":  "Éviter l\u0027alcool et le tabac avant la chirurgie pour favoriser une bonne guérison"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’opération",
+                         "title":  "Comment se déroule la rhinoplastie ?",
+                         "body":  "\u003cp\u003eÉtapes opératoires :\u003c/p\u003e\u003col\u003e\u003cli\u003eAdministration de l\u0027anesthésie\u003c/li\u003e\u003cli\u003eRéalisation d\u0027incisions à l\u0027intérieur ou à l\u0027extérieur du nez\u003c/li\u003e\u003cli\u003eRemodelage du cartilage et de la structure osseuse\u003c/li\u003e\u003cli\u003eOuverture des voies respiratoires si nécessaire\u003c/li\u003e\u003cli\u003eAjustement esthétique de la pointe nasale\u003c/li\u003e\u003cli\u003eFermeture des incisions et pose d\u0027une attelle\u003c/li\u003e\u003c/ol\u003e\u003cp\u003eLa plupart des patients sortent le jour même ou le lendemain de la opération.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "steps",
+                         "eyebrow":  "Après l’intervention",
+                         "title":  "Le processus de récupération après une rhinoplastie",
+                         "lead":  "Un guide général sur le calendrier de récupération après une rhinoplastie.",
+                         "items":  [
+                                       {
+                                           "time":  "Premières 24 heures",
+                                           "title":  "Léger gonflement",
+                                           "body":  "Une légère douleur et un gonflement peuvent survenir."
+                                       },
+                                       {
+                                           "time":  "Première semaine",
+                                           "title":  "Les ecchymoses s’estompent",
+                                           "body":  "La plupart des ecchymoses commencent à disparaître."
+                                       },
+                                       {
+                                           "time":  "Jour 7",
+                                           "title":  "Attelle retirée",
+                                           "body":  "L\u0027attelle est généralement retirée."
+                                       },
+                                       {
+                                           "time":  "1 mois",
+                                           "title":  "Guérison majeure",
+                                           "body":  "Une guérison significative a lieu."
+                                       },
+                                       {
+                                           "time":  "6 à 12 mois",
+                                           "title":  "Forme finale",
+                                           "body":  "La forme finale du nez s\u0027installe progressivement et mûrit pleinement."
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Bon à savoir",
+                         "title":  "Risques de la rhinoplastie",
+                         "body":  "\u003cp\u003eComme toute intervention chirurgicale, la rhinoplastie comporte certains risques potentiels, tels qu\u0027un léger gonflement, un saignement temporaire, une infection ou des problèmes liés à la cicatrisation. Cependant, ces complications sont rares et peuvent être considérablement minimisées lorsque la procédure est réalisée par des chirurgiens expérimentés utilisant des techniques appropriées.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "gallery",
+                         "eyebrow":  "Résultats réels",
+                         "title":  "Rhinoplastie — Avant et après",
+                         "lead":  "Découvrez les nez raffinés et équilibrés obtenus par nos patients, toujours en harmonie avec le reste du visage. Chaque résultat est planifié autour de vos caractéristiques individuelles pour un look naturel.",
+                         "cta":  {
+                                     "label":  "Voir toute la galerie"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "faq",
+                         "eyebrow":  "Bon à savoir",
+                         "title":  "Rhinoplastie — FAQ",
+                         "items":  [
+                                       {
+                                           "question":  "Suis-je un bon candidat pour la rhinoplastie ?",
+                                           "answer":  "\u003cp\u003eLes bons candidats sont des adultes dont la croissance du visage est terminée – généralement à partir de la fin de l\u0027adolescence – qui sont en bonne santé générale et gênés par la forme, la taille ou la proportion du nez, ou par une difficulté respiratoire. Les attentes réalistes comptent : l’objectif est d’avoir un nez qui convient à votre visage, pas une copie de celui de quelqu’un d’autre. Lors de la consultation, votre chirurgien évalue votre structure nasale, votre type de peau et votre respiration pour confirmer leur adéquation et planifier le résultat avec vous.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelle est la différence entre une rhinoplastie ouverte et fermée ?",
+                                           "answer":  "\u003cp\u003eLors d’une rhinoplastie fermée, toutes les incisions sont pratiquées à l’intérieur des narines : il n’y a donc pas de cicatrice externe. Cette approche convient aux corrections plus limitées. La rhinoplastie ouverte ajoute une petite incision au niveau de la columelle, entre les narines, et offre au chirurgien une meilleure visibilité pour les interventions complexes ou de révision. Cette petite cicatrice est discrète et devient généralement imperceptible après la cicatrisation. Votre chirurgien recommande l’approche la plus fiable pour votre anatomie.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelle anesthésie est utilisée et combien de temps dure l’intervention chirurgicale ?",
+                                           "answer":  "\u003cp\u003eLa rhinoplastie est réalisée sous anesthésie générale, vous ne ressentez donc rien pendant l\u0027opération, qui dure généralement environ deux à trois heures selon la technique et selon que la correction fonctionnelle est incluse. Vous pouvez normalement rentrer chez vous ou à votre hôtel le jour même ou après une nuit, après un contrôle de routine.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Combien de temps dure la convalescence et le séjour en Turquie ?",
+                                           "answer":  "\u003cp\u003eLa plupart des patients restent en Turquie pendant environ sept jours, jusqu\u0027à ce que l\u0027attelle soit retirée et qu\u0027un contrôle de suivi soit effectué avant de rentrer chez eux. Un plâtre ou une attelle est porté pendant la première semaine, et l\u0027enflure et les ecchymoses autour des yeux disparaissent en une à deux semaines. La plupart des gens reprennent le travail et la routine légère dans les 10 à 14 jours, tandis que le nez continue de s\u0027affiner.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quand verrai-je le résultat final ?",
+                                           "answer":  "\u003cp\u003eVous remarquerez une nette différence une fois l\u0027attelle retirée, mais le nez se tasse progressivement à mesure que le gonflement profond disparaît. La majeure partie de la forme est apparente au bout de quelques mois, tandis que le résultat final, entièrement affiné, notamment au niveau de la pointe, apparaît sur environ six à douze mois. Votre chirurgien vous guide à travers chaque étape de la guérison.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "La rhinoplastie affectera-t-elle ma respiration ?",
+                                           "answer":  "\u003cp\u003eCela ne devrait pas aggraver la respiration – et cela l’améliore souvent. La rhinoplastie fonctionnelle peut être combinée à la procédure esthétique pour corriger des problèmes tels qu\u0027un septum dévié ou des voies respiratoires étroites, afin que vous puissiez traiter l\u0027apparence et la respiration en une seule opération. Informez votre chirurgien de toute congestion nasale ou difficulté respiratoire afin qu\u0027elle puisse être évaluée et traitée.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Les résultats sont-ils permanents et naturels ?",
+                                           "answer":  "\u003cp\u003eLa rhinoplastie donne des résultats permanents et, entre des mains expérimentées, le nez semble naturel et équilibré avec le reste de votre visage plutôt que « opéré ». Des changements mineurs peuvent se poursuivre au cours de la première année, à mesure que la guérison se termine. Un petit pourcentage de patients choisissent une révision mineure plus tard, dont votre chirurgien discutera honnêtement si jamais cela s\u0027avère pertinent.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Tarifs",
+                         "title":  "Prix de la rhinoplastie",
+                         "body":  "\u003cp\u003eLes tarifs de la rhinoplastie varient en fonction de la technique utilisée, de l\u0027étendue de la procédure, de vos besoins individuels et de votre anatomie. Un devis personnalisé est fourni suite à une consultation détaillée, garantissant une totale transparence avant toute prise de décision.\u003c/p\u003e",
+                         "cta":  {
+                                     "label":  "Demandez un devis personnalisé"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "form",
+                         "eyebrow":  "Consultation gratuite",
+                         "title":  "Prêt pour un nez qui convient à votre visage ?",
+                         "lead":  "Partagez quelques détails et notre équipe vous répondra avec un plan de rhinoplastie personnalisé et un devis tout compris sans engagement, généralement dans quelques heures.",
+                         "points":  [
+                                        {
+                                            "label":  "Évaluation gratuite à partir de vos photos"
+                                        },
+                                        {
+                                            "label":  "Devis tout compris, transparent et sans engagement"
+                                        },
+                                        {
+                                            "label":  "Réponse rapide de notre équipe dédiée aux patients"
+                                        },
+                                        {
+                                            "label":  "Accompagnement multilingue à chaque étape"
+                                        }
+                                    ],
+                         "submit_label":  "Demandez une consultation gratuite"
+                     },
+                     {
+                         "acf_fc_layout":  "related",
+                         "eyebrow":  "Pour aller plus loin",
+                         "title":  "Traitements associés"
+                     }
+                 ]
+}

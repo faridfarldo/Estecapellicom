@@ -1,0 +1,209 @@
+{
+    "source_slug":  "breast-aesthetics-breast-surgery",
+    "slug":  "esthetique-mammaire-chirurgie-mammaire",
+    "title":  "Esthétique mammaire",
+    "sections":  [
+                     {
+                         "acf_fc_layout":  "hero",
+                         "eyebrow":  "Chirurgie mammaire",
+                         "title":  "Esthétique mammaire",
+                         "lead":  "Obtenez des seins en harmonie avec votre corps, pleins et d’apparence naturelle. Notre planification personnalisée garantit des résultats esthétiques et équilibrés adaptés à votre silhouette et à vos objectifs uniques.",
+                         "cta_primary":  {
+                                             "label":  "Consultation gratuite"
+                                         },
+                         "cta_secondary":  {
+                                               "label":  "Discuter sur WhatsApp"
+                                           }
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’intervention",
+                         "title":  "Qu’est-ce que l’esthétique mammaire (chirurgie mammaire) ?",
+                         "body":  "\u003cp\u003eL\u0027esthétique des seins est le terme général désignant les interventions chirurgicales esthétiques réalisées pour améliorer la taille, la forme et la position des seins en harmonie avec les proportions du visage et du corps. Les procédures les plus couramment pratiquées comprennent l\u0027augmentation mammaire, la réduction mammaire et la chirurgie de lifting des seins.\u003c/p\u003e\u003cp\u003eChez Estecapelli, l\u0027esthétique mammaire ne se limite pas à l\u0027augmentation ou à la réduction des seins. Il s’agit de créer une silhouette équilibrée et naturelle qui complète l’ensemble du corps. Chaque plan de traitement est soigneusement personnalisé en fonction de l’anatomie et des objectifs esthétiques uniques de chaque patient. Notre objectif ultime est d\u0027aider les patients à se sentir mieux physiquement et émotionnellement, en obtenant une forme corporelle dans laquelle ils se sentent vraiment en confiance et à l\u0027aise.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "stepbook",
+                         "eyebrow":  "Les options",
+                         "title":  "Types de chirurgie mammaire",
+                         "lead":  "La bonne procédure dépend de votre anatomie, de vos objectifs et du look que vous souhaitez. Parcourez les principales options ci-dessous.",
+                         "items":  [
+                                       {
+                                           "eyebrow":  "Type",
+                                           "title":  "Augmentation mammaire",
+                                           "body":  "\u003cp\u003eL’augmentation mammaire augmente le volume des seins et améliore leur forme à l’aide d’implants en silicone ou, chez les patientes qui s’y prêtent, par transfert de graisse. Elle est notamment indiquée en cas de poitrine naturellement peu volumineuse ou de perte de volume après une grossesse, un allaitement ou une variation de poids.\u003c/p\u003e\u003cul\u003e\u003cli\u003eApporte du volume et rééquilibre la silhouette\u003c/li\u003e\u003cli\u003eForme et taille de l’implant choisies avec vous\u003c/li\u003e\u003cli\u003eIncision discrète et résultat naturel\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Type",
+                                           "title":  "Réduction mammaire",
+                                           "body":  "\u003cp\u003eLa réduction mammaire élimine l\u0027excès de tissu mammaire, de graisse et de peau pour créer une poitrine plus légère, plus ferme et plus proportionnée. Il soulage la tension du cou, du dos et des épaules, souvent causée par une poitrine trop volumineuse.\u003c/p\u003e\u003cul\u003e\u003cli\u003eSoulage l\u0027inconfort physique et les problèmes de posture\u003c/li\u003e\u003cli\u003eRemodèle et lifte en même temps\u003c/li\u003e\u003cli\u003eUne silhouette plus équilibrée et plus confortable\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Type",
+                                           "title":  "Lifting des seins (mastopexie)",
+                                           "body":  "\u003cp\u003eUn lifting des seins soulève et remodèle les seins affaissés en éliminant l\u0027excès de peau et en resserrant les tissus environnants, rétablissant ainsi une position plus ferme et plus jeune sans nécessairement en modifier la taille. Il peut être combiné avec un implant pour plus de volume.\u003c/p\u003e\u003cul\u003e\u003cli\u003eCorrige l\u0027affaissement après une grossesse, le vieillissement ou une perte de poids\u003c/li\u003e\u003cli\u003eRepositionne le mamelon pour un aspect naturel\u003c/li\u003e\u003cli\u003ePeut être combiné avec une augmentation de volume\u003c/li\u003e\u003c/ul\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Indications",
+                         "title":  "Quand une augmentation mammaire est-elle pratiquée ?",
+                         "body":  "La chirurgie d’augmentation mammaire est une solution idéale dans les cas suivants :",
+                         "items":  [
+                                       {
+                                           "label":  "Structure mammaire génétiquement petite"
+                                       },
+                                       {
+                                           "label":  "Des seins qui semblent petits par rapport aux proportions globales du corps"
+                                       },
+                                       {
+                                           "label":  "Perte de volume et de forme due au vieillissement, à la perte de poids, à la grossesse ou à l\u0027allaitement"
+                                       },
+                                       {
+                                           "label":  "Une différence de taille notable entre les deux seins"
+                                       },
+                                       {
+                                           "label":  "Asymétrie ou irrégularité qui affecte la confiance et l\u0027ajustement des vêtements"
+                                       },
+                                       {
+                                           "label":  "Restauration de volume après une chirurgie ou une reconstruction du cancer du sein"
+                                       }
+                                   ],
+                         "footer":  "Chez Estecapelli, l’objectif de l’augmentation mammaire n’est pas seulement d’augmenter le volume mais aussi de créer une forme mammaire d’apparence naturelle qui convient aux proportions corporelles, à la posture et aux attentes personnelles de la patiente."
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Comment ça marche",
+                         "title":  "Comment se déroule une augmentation mammaire ?",
+                         "body":  "\u003cp\u003eLa chirurgie d\u0027augmentation mammaire est réalisée sous anesthésie générale dans une salle d\u0027opération entièrement équipée et dure généralement entre 1,5 et 2 heures. Au cours de la procédure, les implants sont soigneusement placés pour obtenir le résultat le plus naturel et proportionné possible. Les patients sortent généralement le lendemain de l\u0027intervention chirurgicale, après un contrôle postopératoire de routine.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Sélection d\u0027implants",
+                         "title":  "Choisir un implant en silicone : rond ou en forme de larme ?",
+                         "body":  "\u003cp\u003eLes implants mammaires varient en termes de forme, de volume, de texture de surface et de contenu de remplissage. Le choix du bon implant est l’une des étapes les plus importantes pour obtenir un résultat naturel et proportionné, et l’option idéale diffère d’une patiente à l’autre en fonction de la structure corporelle, du tissu mammaire existant et des objectifs esthétiques personnels. Chez Estecapelli, la sélection des implants se fait en collaboration avec le patient grâce à une consultation détaillée et une évaluation minutieuse.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Détail chirurgical",
+                         "title":  "Site d\u0027incision et pose de l\u0027implant",
+                         "body":  "\u003cp\u003eLors d’une augmentation mammaire, l’incision peut être réalisée par l’un des trois abords suivants :\u003c/p\u003e\u003cul\u003e\u003cli\u003eAu niveau de l’aisselle\u003c/li\u003e\u003cli\u003eDans le sillon sous-mammaire\u003c/li\u003e\u003cli\u003eAutour de l’aréole\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLe choix de l’incision est défini avec la patiente pendant la consultation, en veillant à limiter les cicatrices visibles et à préserver les canaux galactophores.\u003c/p\u003e\u003cp\u003eLes implants peuvent être positionnés dans l’un des deux plans anatomiques suivants :\u003c/p\u003e\u003cul\u003e\u003cli\u003eAu-dessus du muscle, sous le tissu mammaire\u003c/li\u003e\u003cli\u003eSous le muscle\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLe positionnement sous-musculaire est souvent privilégié, car il tend à offrir un aspect plus naturel, un meilleur soutien à long terme et un risque plus faible de contracture capsulaire. L’option la mieux adaptée est déterminée après un examen détaillé et une planification personnalisée.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Pourquoi la Turquie et Estecapelli",
+                         "title":  "Esthétique mammaire en Turquie et avantages d\u0027Estecapelli",
+                         "body":  "La Turquie est l’une des destinations les plus prisées au monde pour l’esthétique mammaire. Les principales raisons incluent :",
+                         "items":  [
+                                       {
+                                           "label":  "Chirurgiens hautement expérimentés avec un solide historique de cas réussis"
+                                       },
+                                       {
+                                           "label":  "Une infrastructure clinique répondant aux normes internationales"
+                                       },
+                                       {
+                                           "label":  "Des soins de haute qualité à des coûts nettement plus abordables qu’en Europe et en Amérique du Nord"
+                                       }
+                                   ],
+                         "footer":  "Chez Estecapelli, ces avantages sont combinés à une approche personnalisée, garantissant que chaque patient reçoive l\u0027attention, l\u0027expertise et les résultats qu\u0027il mérite."
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Avant l’intervention",
+                         "title":  "Chirurgie d\u0027augmentation mammaire : processus préopératoire",
+                         "body":  "\u003cp\u003eLa partie la plus critique de l\u0027ensemble du processus consiste à établir une compréhension claire et mutuelle entre le chirurgien et le patient. Cela comprend une discussion ouverte sur les attentes esthétiques, la sélection des implants et l’apparence postopératoire attendue. Chez Estecapelli, chaque patient subit une consultation préopératoire approfondie pour s\u0027assurer qu\u0027il se sente pleinement informé, préparé et en confiance avant de procéder à l\u0027intervention chirurgicale.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Après l’intervention",
+                         "title":  "Le processus de récupération",
+                         "body":  "\u003cp\u003eL\u0027obtention d\u0027une apparence complètement réglée, naturelle et presque définitive nécessite généralement une période de 3 à 6 mois. Le processus de récupération après une chirurgie d\u0027augmentation mammaire est progressif et les patientes sont guidées de près à chaque étape pour garantir leur confort, leur sécurité et le meilleur résultat possible.\u003c/p\u003e",
+                         "cta":  {
+                                     "label":  "Planifier une consultation gratuite"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "gallery",
+                         "eyebrow":  "Résultats réels",
+                         "title":  "Esthétique mammaire – Avant et après",
+                         "lead":  "Découvrez les résultats naturels et équilibrés obtenus par nos patients – plus complets, plus liftés ou plus proportionnés, toujours en harmonie avec le corps. Chaque résultat est personnalisé, avec des incisions placées le plus discrètement possible.",
+                         "cta":  {
+                                     "label":  "Voir toute la galerie"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "faq",
+                         "eyebrow":  "Bon à savoir",
+                         "title":  "Esthétique mammaire – Questions fréquentes",
+                         "items":  [
+                                       {
+                                           "question":  "Quelle intervention mammaire me convient le mieux : augmentation, réduction ou lifting ?",
+                                           "answer":  "\u003cp\u003eCela dépend de votre préoccupation. L\u0027augmentation ajoute du volume et de la plénitude avec un implant ou un transfert de graisse ; la réduction élimine l\u0027excès de tissu pour soulager l\u0027inconfort et améliorer les proportions ; un lifting (mastopexie) remonte et remodèle les seins affaissés sans forcément en modifier la taille. De nombreux patients combinent un lifting avec une augmentation. Après vous avoir examiné et discuté de vos objectifs, votre chirurgien recommande l\u0027option (ou la combinaison) qui convient le mieux à votre anatomie.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Dois-je choisir des implants en silicone ou un transfert de graisse ?",
+                                           "answer":  "\u003cp\u003eLes implants en silicone sont le choix le plus courant et donnent une augmentation prévisible et durable de la taille et de la projection. Le transfert de graisse, qui utilise la liposuccion pour récolter votre propre graisse, convient aux patients qui souhaitent une amélioration modeste et très naturelle et qui disposent de suffisamment de graisse de donneur. Les implants offrent un changement de volume plus important, tandis que le transfert de graisse évite un corps étranger mais peut être partiellement réabsorbé. Votre chirurgien vous expliquera ce qui correspond à votre corps et à vos attentes.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Implants ronds ou en forme de larme, et sur ou sous le muscle ?",
+                                           "answer":  "\u003cp\u003eLes implants ronds ont tendance à donner plus de plénitude au pôle supérieur, tandis que les implants en forme de larme (anatomiques) suivent un profil naturel plus incliné — les deux peuvent paraître beaux et naturels chez le bon candidat. Le placement sous le muscle est souvent préféré pour un aspect plus naturel, un meilleur maintien des tissus à long terme et un risque moindre de contracture capsulaire. Le choix final de la forme, de la taille, du profil et de la poche est fait avec vous en fonction de votre monture, du tissu existant et du look souhaité.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quelle anesthésie est utilisée, quelle est la durée de l’intervention chirurgicale et est-elle douloureuse ?",
+                                           "answer":  "\u003cp\u003eLa chirurgie mammaire est réalisée sous anesthésie générale, vous ne ressentez donc rien pendant l\u0027opération, qui dure généralement une à deux heures. Ensuite, vous pouvez vous attendre à des tiraillements et à des douleurs modérées pendant les premiers jours, bien contrôlées avec les médicaments prescrits. Un soutien-gorge chirurgical de soutien et des mouvements doux vous aident à vous sentir plus à l\u0027aise pendant votre guérison.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Combien de temps dure la récupération et le séjour en Turquie ?",
+                                           "answer":  "\u003cp\u003eLa plupart des patients restent en Turquie pendant environ cinq à sept jours, y compris un contrôle de suivi avant de rentrer chez eux. La récupération initiale prend environ une à deux semaines, lorsque beaucoup retournent au travail au bureau et qu\u0027un soutien-gorge de soutien est porté pendant plusieurs semaines. Une apparence presque définitive et complètement réglée se développe généralement sur trois à six mois, à mesure que le gonflement disparaît et que les seins se ramollissent et se mettent en place.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Où sont les cicatrices et seront-elles visibles ?",
+                                           "answer":  "\u003cp\u003eL\u0027incision est placée aussi discrètement que possible : sous le pli mammaire, autour de l\u0027aréole ou à travers les aisselles pour une augmentation, avec des cicatrices de réduction et de lifting cachées le long des contours naturels. Les cicatrices sont plus visibles au début, puis s\u0027aplatissent et s\u0027estompent considérablement au cours des mois suivants avec des soins appropriés. Votre chirurgien choisit l\u0027approche qui minimise les cicatrices visibles et, le cas échéant, protège les conduits galactophores.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Les implants mammaires sont-ils sûrs et puis-je quand même allaiter ?",
+                                           "answer":  "\u003cp\u003eLes implants modernes, marqués CE et approuvés par la FDA, ont un excellent dossier de sécurité à long terme et sont utilisés dans le monde entier. La plupart des femmes peuvent encore allaiter après une augmentation, en particulier lorsque l\u0027incision et la pose de l\u0027implant sont prévues pour protéger les canaux galactophores. Informez votre chirurgien si l\u0027allaitement futur est important pour vous. Les implants n\u0027ont pas besoin d\u0027être remplacés de routine à une date fixe, mais vous devez assister à un suivi à long terme comme conseillé.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Les résultats sont-ils permanents et naturels ?",
+                                           "answer":  "\u003cp\u003eLes résultats sont durables et, avec le bon choix d\u0027implant, la bonne taille et la bonne technique, les seins semblent très naturels. Au fil des années, le vieillissement, la grossesse, l\u0027allaitement et les changements de poids peuvent encore affecter la forme des seins, et une révision est parfois choisie plus tard. Maintenir un poids stable et porter un bon maintien permet de préserver votre résultat le plus longtemps possible.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Tarifs",
+                         "title":  "Prix de l’esthétique mammaire",
+                         "body":  "\u003cp\u003eLes tarifs d\u0027esthétique mammaire, qu\u0027il s\u0027agisse d\u0027une augmentation, d\u0027une réduction ou d\u0027un lifting, varient en fonction de plusieurs facteurs. Ceux-ci incluent le type d’implant sélectionné, l’étendue de la procédure, les éventuels traitements supplémentaires tels qu’un lifting, une correction d’asymétrie ou des chirurgies combinées, ainsi que les besoins individuels et l’anatomie du patient. Un devis personnalisé est fourni suite à une consultation détaillée, garantissant une totale transparence avant toute prise de décision.\u003c/p\u003e",
+                         "cta":  {
+                                     "label":  "Demandez un devis personnalisé"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "form",
+                         "eyebrow":  "Consultation gratuite",
+                         "title":  "Prêt pour une silhouette naturellement équilibrée ?",
+                         "lead":  "Partagez quelques détails et notre équipe vous répondra avec un plan de chirurgie mammaire personnalisé et un devis tout compris sans engagement, généralement dans quelques heures.",
+                         "points":  [
+                                        {
+                                            "label":  "Évaluation gratuite à partir de vos photos"
+                                        },
+                                        {
+                                            "label":  "Devis tout compris, transparent et sans engagement"
+                                        },
+                                        {
+                                            "label":  "Réponse rapide de notre équipe dédiée aux patients"
+                                        },
+                                        {
+                                            "label":  "Accompagnement multilingue à chaque étape"
+                                        }
+                                    ],
+                         "submit_label":  "Demandez une consultation gratuite"
+                     },
+                     {
+                         "acf_fc_layout":  "related",
+                         "eyebrow":  "Pour aller plus loin",
+                         "title":  "Traitements associés"
+                     }
+                 ]
+}

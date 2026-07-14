@@ -1,0 +1,223 @@
+{
+    "source_slug":  "abdominoplasty-tummy-tuck",
+    "slug":  "abdominoplastie",
+    "title":  "Abdominoplastie",
+    "sections":  [
+                     {
+                         "acf_fc_layout":  "hero",
+                         "eyebrow":  "Remodelage corporel",
+                         "title":  "Abdominoplastie",
+                         "lead":  "Obtenez un ventre plus ferme et plus plat. Nous fournissons des résultats lisses et esthétiques adaptés à votre corps et à vos objectifs en corrigeant l’affaissement, le relâchement et la séparation musculaire.",
+                         "cta_primary":  {
+                                             "label":  "Consultation gratuite"
+                                         },
+                         "cta_secondary":  {
+                                               "label":  "Discuter sur WhatsApp"
+                                           }
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’intervention",
+                         "title":  "Qu’est-ce que l’abdominoplastie ?",
+                         "body":  "\u003cp\u003eL\u0027abdominoplastie est une procédure chirurgicale de remodelage du corps qui corrige l\u0027affaissement, le relâchement et les déformations de la région abdominale, ce qui donne une apparence plus ferme, plus plate et plus esthétique. Réalisée par l\u0027équipe d\u0027experts d\u0027Estecapelli, c\u0027est l\u0027une des procédures les plus efficaces pour remodeler l\u0027abdomen des femmes et des hommes.\u003c/p\u003e\u003cp\u003eAu fil du temps, la zone abdominale peut se relâcher en raison de changements de poids, du vieillissement, de la grossesse, de facteurs génétiques ou d\u0027une élasticité réduite de la peau. L\u0027abdominoplastie répond directement à ces problèmes, en redonnant à la section médiane une apparence plus jeune, plus en forme et plus équilibrée.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Candidats",
+                         "title":  "À qui s’adresse l’abdominoplastie ?",
+                         "body":  "Les femmes et les hommes adultes qui ne sont pas satisfaits de l’apparence de leur région abdominale et qui souffrent d’une ou plusieurs des affections suivantes peuvent être des candidats appropriés pour cette chirurgie :",
+                         "items":  [
+                                       {
+                                           "label":  "Affaissement suite à une prise ou une perte de poids importante"
+                                       },
+                                       {
+                                           "label":  "Peau lâche ou excédentaire après la grossesse"
+                                       },
+                                       {
+                                           "label":  "Séparation des muscles abdominaux (diastasis recti)"
+                                       },
+                                       {
+                                           "label":  "Structure abdominale génétiquement lâche ou faible"
+                                       },
+                                       {
+                                           "label":  "Excès de peau restant après liposuccion"
+                                       },
+                                       {
+                                           "label":  "Problèmes abdominaux qui ne peuvent être résolus par l’exercice seul"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "stepbook",
+                         "eyebrow":  "Les options",
+                         "title":  "Types d’abdominoplastie",
+                         "lead":  "La bonne technique dépend de votre anatomie, du degré d’affaissement et de vos objectifs. Parcourez les principales options ci-dessous.",
+                         "items":  [
+                                       {
+                                           "eyebrow":  "Type",
+                                           "title":  "Abdominoplastie complète",
+                                           "body":  "\u003cp\u003eL\u0027abdominoplastie complète est préférable pour les personnes présentant un affaissement avancé et une séparation musculaire dans toute la région abdominale. La procédure aborde l\u0027abdomen de manière globale à travers les étapes suivantes :\u003c/p\u003e\u003cul\u003e\u003cli\u003eToute la zone abdominale est resserrée\u003c/li\u003e\u003cli\u003eLe nombril est repositionné pour un aspect naturel\u003c/li\u003e\u003cli\u003eL\u0027excès de peau est retiré\u003c/li\u003e\u003cli\u003eLes muscles sous-jacents sont resserrés et réparés\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Type",
+                                           "title":  "Mini abdominoplastie",
+                                           "body":  "\u003cp\u003eUne mini abdominoplastie convient aux personnes présentant un léger affaissement limité à la zone située sous le nombril. Par rapport à une abdominoplastie complète, il s\u0027agit d\u0027une option moins invasive avec plusieurs avantages notables :\u003c/p\u003e\u003cul\u003e\u003cli\u003eIncision plus petite\u003c/li\u003e\u003cli\u003eTemps de récupération plus rapide\u003c/li\u003e\u003cli\u003ePas de repositionnement du nombril\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Type",
+                                           "title":  "Combinaison Liposuccion + Abdominoplastie",
+                                           "body":  "\u003cp\u003eCette combinaison est l\u0027approche idéale lorsqu\u0027un excès de graisse et un relâchement cutané sont présents au niveau de la région abdominale. La liposuccion est d\u0027abord effectuée pour éliminer la graisse indésirable, suivie de l\u0027élimination de l\u0027excès de peau pour un résultat plus lisse et plus profilé.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Type",
+                                           "title":  "Relooking de maman",
+                                           "body":  "\u003cp\u003eUn Mommy Makeover combine plusieurs procédures en une seule intervention chirurgicale pour les femmes qui cherchent à restaurer leur corps après l\u0027accouchement. Cela comprend généralement une abdominoplastie, un lifting ou une augmentation mammaire et une liposuccion, permettant aux patientes d\u0027obtenir une transformation complète en une seule période de récupération.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "L’opération",
+                         "title":  "Comment se déroule l’abdominoplastie ?",
+                         "body":  "\u003cp\u003eL\u0027abdominoplastie est réalisée sous anesthésie générale dans une salle d\u0027opération stérile et dure généralement entre 1,5 et 4 heures. La procédure suit ces étapes :\u003c/p\u003e\u003col\u003e\u003cli\u003eMarquage du relâchement cutané et des tissus\u003c/li\u003e\u003cli\u003eResserrement des muscles abdominaux\u003c/li\u003e\u003cli\u003eÉlimination de l\u0027excès de peau\u003c/li\u003e\u003cli\u003eRemodelage esthétique du nombril\u003c/li\u003e\u003cli\u003eFermeture des zones d\u0027incision avec des sutures esthétiques\u003c/li\u003e\u003c/ol\u003e\u003cp\u003eLa cicatrice de l\u0027incision est soigneusement placée le long de la ligne du bikini et s\u0027estompe progressivement avec le temps.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "steps",
+                         "eyebrow":  "Après l’intervention",
+                         "title":  "Processus de récupération après une abdominoplastie",
+                         "lead":  "Bien que le rétablissement varie d’une personne à l’autre, le processus général est le suivant.",
+                         "items":  [
+                                       {
+                                           "time":  "Jour 1",
+                                           "title":  "Étanchéité",
+                                           "body":  "Une sensation d’oppression au niveau de l’abdomen est normale. Le patient reste une nuit à l\u0027hôpital."
+                                       },
+                                       {
+                                           "time":  "Semaine 1",
+                                           "title":  "Corset et activité légère",
+                                           "body":  "Un retour progressif aux activités quotidiennes commence. Le corset doit être porté régulièrement comme conseillé."
+                                       },
+                                       {
+                                           "time":  "Semaines 2 à 6",
+                                           "title":  "Retour à la routine",
+                                           "body":  "L’enflure continue de diminuer progressivement et les marches légères peuvent être prolongées à mesure que le confort s’améliore. L\u0027activité physique est lentement réintroduite sous la direction du chirurgien, et la plupart des patients reprennent leur routine quotidienne normale au cours de cette période."
+                                       },
+                                       {
+                                           "time":  "3 mois",
+                                           "title":  "S\u0027installer",
+                                           "body":  "La zone abdominale commence à prendre une apparence plus naturelle et plus stable, et les cicatrices continuent de s\u0027estomper et de s\u0027adoucir avec le temps."
+                                       },
+                                       {
+                                           "time":  "6 à 12 mois",
+                                           "title":  "Résultat final",
+                                           "body":  "Le résultat final de l’intervention devient pleinement apparent et le contour abdominal est dans son état le plus raffiné et le plus naturel."
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Avantages",
+                         "title":  "Avantages de la chirurgie abdominale",
+                         "body":  "Une abdominoplastie offre une gamme d’avantages esthétiques et liés à la confiance :",
+                         "items":  [
+                                       {
+                                           "label":  "Un ventre plus plat et plus ferme"
+                                       },
+                                       {
+                                           "label":  "Suppression de la plupart des vergetures dans la zone traitée"
+                                       },
+                                       {
+                                           "label":  "Une taille plus fine et plus définie"
+                                       },
+                                       {
+                                           "label":  "Correction des changements post-grossesse au niveau de l\u0027abdomen"
+                                       },
+                                       {
+                                           "label":  "Des résultats plus durables et d’apparence naturelle"
+                                       },
+                                       {
+                                           "label":  "Un gain significatif de confiance en soi et d’image corporelle"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "gallery",
+                         "eyebrow":  "Résultats réels",
+                         "title":  "Abdominoplastie – Avant et après",
+                         "lead":  "Découvrez l’abdomen plus plat, plus ferme et plus profilé que nos patients obtiennent. Chaque résultat est adapté à chaque corps, la cicatrice étant discrètement placée le long de la ligne du bikini.",
+                         "cta":  {
+                                     "label":  "Voir toute la galerie"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "faq",
+                         "eyebrow":  "Bon à savoir",
+                         "title":  "Abdominoplastie – Foire aux questions",
+                         "items":  [
+                                       {
+                                           "question":  "Une abdominoplastie fait-elle perdre du poids ?",
+                                           "answer":  "\u003cp\u003ePas vraiment : l’abdominoplastie est une intervention de remodelage corporel, et non une méthode d’amaigrissement. Elle retire l’excès de peau relâchée et resserre les muscles abdominaux, ce qui affine et tonifie visiblement la silhouette, mais la variation réelle sur la balance reste généralement modeste. Elle donne les meilleurs résultats lorsque le poids est sain et stable.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quel type d’abdominoplastie me convient le mieux ?",
+                                           "answer":  "\u003cp\u003eCela dépend de votre relâchement cutané et de votre relâchement musculaire. Une mini abdominoplastie convient à un léger affaissement sous le nombril, une abdominoplastie complète concerne tout l\u0027abdomen avec une réparation musculaire, une combinaison de liposuccion est idéale lorsqu\u0027un excès de graisse est également présent et un mommy makeover regroupe plusieurs procédures après l\u0027accouchement. Votre chirurgien vous recommande la meilleure option après vous avoir examiné.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "L’opération est-elle douloureuse et quelle anesthésie est utilisée ?",
+                                           "answer":  "\u003cp\u003eL\u0027opération est réalisée sous anesthésie générale, vous ne ressentez donc rien pendant l\u0027opération. Ensuite, vous pouvez vous attendre à des tiraillements et à un inconfort modéré pendant les premiers jours, bien contrôlés avec les médicaments prescrits. Un corset de soutien et des mouvements doux vous aident à vous sentir plus à l\u0027aise pendant votre guérison.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Combien de temps dure la récupération et le séjour en Turquie ?",
+                                           "answer":  "\u003cp\u003eLa plupart des patients restent en Turquie pendant environ cinq à sept jours, y compris un contrôle de suivi avant de rentrer chez eux. La récupération initiale prend environ deux à trois semaines et un corset de compression est porté pendant plusieurs semaines. La récupération complète, y compris le retour à un exercice intense, prend environ six à huit semaines.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Y aura-t-il une cicatrice visible ?",
+                                           "answer":  "\u003cp\u003eOui, une abdominoplastie laisse une cicatrice, mais elle est soigneusement positionnée bas le long de la ligne du bikini afin qu\u0027elle reste cachée sous les sous-vêtements et les maillots de bain. Avec des soins appropriés, la cicatrice s\u0027aplatit et s\u0027estompe considérablement au cours des mois suivants.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Les résultats sont-ils permanents ?",
+                                           "answer":  "\u003cp\u003eLes résultats sont durables, notamment la réparation musculaire et l\u0027élimination des excès de peau. Maintenir un poids stable préserve mieux vos résultats : un gain de poids important ou une future grossesse peuvent à nouveau étirer la zone, donc une abdominoplastie est idéalement effectuée une fois que vous ne prévoyez pas d\u0027autres grossesses.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Quand puis-je à nouveau faire de l\u0027exercice ?",
+                                           "answer":  "\u003cp\u003eLa marche douce est encouragée au bout de quelques jours pour favoriser la circulation et la guérison. Les activités légères reprennent au cours des premières semaines, tandis que les exercices intenses, les entraînements de base et le levage de charges lourdes devraient attendre environ six à huit semaines, une fois que votre chirurgien aura confirmé que vous êtes complètement guéri.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Tarifs",
+                         "title":  "Prix de l’abdominoplastie en Turquie",
+                         "body":  "\u003cp\u003eLa Turquie est une destination mondialement appréciée pour l\u0027abdominoplastie, et pour cause :\u003c/p\u003e\u003cul\u003e\u003cli\u003eDes chirurgiens très expérimentés avec des résultats prouvés\u003c/li\u003e\u003cli\u003eUne infrastructure hospitalière bien équipée\u003c/li\u003e\u003cli\u003eDes normes de qualité internationales\u003c/li\u003e\u003cli\u003eDes prix plus abordables par rapport à l\u0027Europe et à l\u0027Amérique du Nord\u003c/li\u003e\u003cli\u003eDes services complets de soins et de soutien aux patients\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLes prix varient en fonction de la technique utilisée, de l\u0027expérience du chirurgien, des éventuelles procédures supplémentaires et de l\u0027étendue globale de la chirurgie. opération.\u003c/p\u003e",
+                         "cta":  {
+                                     "label":  "Demandez un devis personnalisé"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "form",
+                         "eyebrow":  "Consultation gratuite",
+                         "title":  "Prêt pour un ventre plus plat et plus ferme ?",
+                         "lead":  "Partagez quelques détails et notre équipe vous répondra avec un plan d’abdominoplastie personnalisé et un devis tout compris sans engagement, généralement dans quelques heures.",
+                         "points":  [
+                                        {
+                                            "label":  "Évaluation gratuite à partir de vos photos"
+                                        },
+                                        {
+                                            "label":  "Devis tout compris, transparent et sans engagement"
+                                        },
+                                        {
+                                            "label":  "Réponse rapide de notre équipe dédiée aux patients"
+                                        },
+                                        {
+                                            "label":  "Accompagnement multilingue à chaque étape"
+                                        }
+                                    ],
+                         "submit_label":  "Demandez une consultation gratuite"
+                     },
+                     {
+                         "acf_fc_layout":  "related",
+                         "eyebrow":  "Pour aller plus loin",
+                         "title":  "Traitements associés"
+                     }
+                 ]
+}

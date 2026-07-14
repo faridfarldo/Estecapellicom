@@ -1,0 +1,189 @@
+{
+    "source_slug":  "gynecomastia",
+    "slug":  "gynecomastie",
+    "title":  "Gynécomastie",
+    "sections":  [
+                     {
+                         "acf_fc_layout":  "hero",
+                         "eyebrow":  "Esthétique de la poitrine masculine",
+                         "title":  "Gynécomastie",
+                         "lead":  "Une solution chirurgicale pour l\u0027hypertrophie du tissu mammaire masculin — rétablissant un contour de poitrine plus plat, plus ferme et plus masculin avec des résultats d\u0027apparence naturelle.",
+                         "cta_primary":  {
+                                             "label":  "Consultation gratuite"
+                                         },
+                         "cta_secondary":  {
+                                               "label":  "Discuter sur WhatsApp"
+                                           }
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "La pathologie",
+                         "title":  "Qu’est-ce que la gynécomastie ?",
+                         "body":  "\u003cp\u003eLa gynécomastie est une affection caractérisée par un développement excessif du tissu mammaire chez l’homme, donnant à la poitrine un aspect plus volumineux. Les hommes possèdent naturellement du tissu et des glandes mammaires, que la testostérone maintient généralement peu développés. Un déséquilibre hormonal, une prise de poids, certains médicaments ou un problème de santé sous-jacent peuvent perturber cet équilibre et favoriser l’apparition d’une gynécomastie.\u003c/p\u003e\u003cp\u003eCette affection dépasse la seule dimension esthétique : elle peut affecter le bien-être psychologique, la confiance en soi et la vie sociale. Chez Estecapelli, la gynécomastie est prise en charge sous ses aspects médicaux et esthétiques afin de proposer à chaque patient une solution personnalisée et durable.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "candidate",
+                         "eyebrow":  "Causes",
+                         "title":  "Quelles sont les causes de la gynécomastie ?",
+                         "body":  "La gynécomastie peut se développer selon divers mécanismes. Les causes les plus courantes comprennent :",
+                         "items":  [
+                                       {
+                                           "label":  "Déséquilibre entre les œstrogènes (hormone féminine) et la testostérone (hormone masculine)"
+                                       },
+                                       {
+                                           "label":  "Accumulation de graisse au niveau de la poitrine en raison d\u0027une prise de poids excessive"
+                                       },
+                                       {
+                                           "label":  "Affaissement des tissus et de la peau causé par des cycles répétés de prise et de perte de poids"
+                                       },
+                                       {
+                                           "label":  "Effets secondaires hormonaux de certains médicaments"
+                                       },
+                                       {
+                                           "label":  "Maladies du foie, des reins et du système endocrinien"
+                                       },
+                                       {
+                                           "label":  "Changements hormonaux liés à l\u0027âge"
+                                       },
+                                       {
+                                           "label":  "Utilisation de stéroïdes anabolisants à des fins de musculation"
+                                       },
+                                       {
+                                           "label":  "Une diminution significative des niveaux de testostérone"
+                                       }
+                                   ],
+                         "footer":  "Dans de nombreux cas, une combinaison de ces facteurs contribue à la maladie, ce qui rend une évaluation médicale approfondie essentielle avant de déterminer l\u0027approche thérapeutique appropriée."
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Traitement",
+                         "title":  "Traitement de la gynécomastie : approches non chirurgicales et chirurgicales",
+                         "body":  "\u003cp\u003eLa méthode de traitement la plus appropriée est déterminée en fonction du type et du degré d\u0027augmentation mammaire, ainsi que de la cause sous-jacente. Une évaluation approfondie garantit que chaque patient reçoit une approche personnalisée pour des résultats sûrs et efficaces.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eDans les cas légers\u003c/strong\u003e avec une accumulation de graisse minime et un relâchement cutané : l\u0027élimination des tissus adipeux par liposuccion ou ses variantes, comme la liposuccion Vaser, peut suffire pour obtenir le contour souhaité.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eDans les cas avancés\u003c/strong\u003e avec une hypertrophie importante du tissu mammaire et un relâchement cutané : l\u0027ablation chirurgicale du tissu glandulaire combinée à une excision cutanée excessive est nécessaire pour obtenir un résultat plat et résultat d\u0027apparence naturelle.\u003c/p\u003e\u003cp\u003eChez Estecapelli, chaque patient est évalué individuellement. Une analyse détaillée est effectuée pour déterminer si l\u0027excès de tissu est constitué de tissu adipeux, de tissu mammaire glandulaire ferme ou d\u0027une combinaison des deux, garantissant ainsi la sélection du plan de traitement le plus approprié et le plus efficace.\u003c/p\u003e"
+                     },
+                     {
+                         "acf_fc_layout":  "stepbook",
+                         "eyebrow":  "L’opération",
+                         "title":  "Comment se déroule la chirurgie de la gynécomastie ?",
+                         "lead":  "La chirurgie de la gynécomastie est réalisée sous anesthésie générale dans une salle d\u0027opération entièrement équipée. La procédure est adaptée à l’état spécifique de chaque patient et son contenu varie en fonction du type et du degré de gynécomastie présente.",
+                         "items":  [
+                                       {
+                                           "eyebrow":  "Type de cas",
+                                           "title":  "Cas avec excès de tissu adipeux uniquement",
+                                           "body":  "\u003cul\u003e\u003cli\u003eLa liposuccion ou la liposuccion Vaser est la technique préférée\u003c/li\u003e\u003cli\u003eLes tissus adipeux sont retirés à l\u0027aide de canules insérées dans de très petites incisions dans la région de la poitrine\u003c/li\u003e\u003cli\u003eLorsque l\u0027élasticité de la peau est suffisante, un contour thoracique plat et naturel est obtenu sans avoir besoin d\u0027incisions cutanées supplémentaires\u003c/li\u003e\u003c/ul\u003e"
+                                       },
+                                       {
+                                           "eyebrow":  "Type de cas",
+                                           "title":  "Cas présentant à la fois une hypertrophie du tissu mammaire et un relâchement cutané",
+                                           "body":  "\u003cul\u003e\u003cli\u003eLe tissu mammaire glandulaire est enlevé chirurgicalement\u003c/li\u003e\u003cli\u003eL\u0027excès de peau est excisé et la poitrine est remodelée pour un contour plus ferme et plus plat\u003c/li\u003e\u003cli\u003eDes incisions en T inversé ou circulaires sont utilisées si nécessaire\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eLa durée moyenne de l\u0027intervention chirurgicale est d\u0027environ 1,5 à 2 heures.\u003c/p\u003e\u003cp\u003eLes procédures basées sur la liposuccion laissent des cicatrices minimes. Dans les interventions chirurgicales impliquant l\u0027ablation de tissus et de peau, les incisions sont stratégiquement placées dans les zones les plus discrètes possibles et s\u0027estompent considérablement avec le temps avec des soins appropriés.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "steps",
+                         "eyebrow":  "Après l’intervention",
+                         "title":  "Processus de récupération après une chirurgie de gynécomastie",
+                         "lead":  "La période postopératoire est généralement confortable et bien tolérée. Une légère douleur et une sensation de tiraillement le premier jour sont tout à fait normales et attendues.",
+                         "items":  [
+                                       {
+                                           "time":  "Premières 24 heures",
+                                           "title":  "Séjour à l\u0027hôpital",
+                                           "body":  "Le patient reste généralement à l’hôpital pendant une nuit et la douleur est bien gérée grâce aux médicaments prescrits."
+                                       },
+                                       {
+                                           "time":  "Première semaine",
+                                           "title":  "Vêtement de compression",
+                                           "body":  "Un gonflement, des ecchymoses et une sensibilité au niveau de la poitrine sont attendus. Le port d\u0027un vêtement de compression pendant cette période est essentiel pour une bonne cicatrisation et une bonne mise en forme."
+                                       },
+                                       {
+                                           "time":  "Semaines 2 à 3",
+                                           "title":  "L’œdème disparaît",
+                                           "body":  "L\u0027œdème disparaît en grande partie et les mouvements deviennent plus confortables. Les activités quotidiennes légères peuvent reprendre progressivement."
+                                       },
+                                       {
+                                           "time":  "1 mois et au-delà",
+                                           "title":  "Poitrine définie",
+                                           "body":  "La poitrine commence à prendre une apparence plus naturelle et définie. La reprise du sport, de l\u0027haltérophilie et des exercices intensifs sur la poitrine nécessite l\u0027approbation d\u0027un médecin pour garantir un rétablissement complet et en toute sécurité."
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "gallery",
+                         "eyebrow":  "Résultats réels",
+                         "title":  "Gynécomastie – Avant et après",
+                         "lead":  "Découvrez le contour de la poitrine plus plat, plus ferme et plus masculin obtenu par nos patients. Chaque résultat est planifié individuellement pour un aspect naturel et des cicatrices discrètes.",
+                         "cta":  {
+                                     "label":  "Voir toute la galerie"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "faq",
+                         "eyebrow":  "Bon à savoir",
+                         "title":  "Gynécomastie – Foire aux questions",
+                         "items":  [
+                                       {
+                                           "question":  "Qu’est-ce que la gynécomastie ?",
+                                           "answer":  "\u003cp\u003eLa gynécomastie est une hypertrophie du tissu mammaire chez l\u0027homme, donnant à la poitrine une apparence plus volumineuse et plus féminine. Cela peut être causé par un déséquilibre hormonal entre les œstrogènes et la testostérone, une prise de poids, certains médicaments, la consommation de stéroïdes anabolisants ou des problèmes de santé sous-jacents. C\u0027est très courant et, bien que médicalement inoffensif, peut affecter la confiance en soi. C\u0027est pourquoi de nombreux hommes choisissent un traitement.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Comment traite-t-on la gynécomastie ?",
+                                           "answer":  "\u003cp\u003eLe traitement dépend du fait que l\u0027excès soit constitué de tissu adipeux, de tissu glandulaire ferme ou d\u0027une combinaison. Les cas plus légers sont corrigés par liposuccion (souvent Vaser), tandis que les cas présentant un tissu glandulaire important ou une peau lâche nécessitent une ablation chirurgicale de la glande et, si nécessaire, un raffermissement de la peau. Votre chirurgien confirme la bonne approche après vous avoir examiné.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "L’opération est-elle douloureuse et quelle anesthésie est utilisée ?",
+                                           "answer":  "\u003cp\u003eL\u0027intervention est réalisée sous anesthésie générale, vous ne ressentez donc rien pendant l\u0027opération. Par la suite, la plupart des patients décrivent de légères douleurs et tiraillements plutôt qu\u0027une douleur importante, qui est bien contrôlée avec les médicaments prescrits et s\u0027atténue en quelques jours.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Combien de temps dure la récupération et le séjour en Turquie ?",
+                                           "answer":  "\u003cp\u003eLa plupart des patients restent en Turquie pendant environ trois à cinq jours, contrôle de suivi compris. Vous pouvez reprendre la vie quotidienne en une à deux semaines, tandis qu\u0027un vêtement de compression est porté pendant plusieurs semaines pour soutenir la mise en forme. Les exercices intenses et les exercices thoraciques reprennent après environ un mois, avec l\u0027approbation de votre chirurgien.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Y aura-t-il des cicatrices visibles ?",
+                                           "answer":  "\u003cp\u003eLes procédures de liposuccion uniquement laissent de minuscules marques à peine perceptibles. Lorsque le tissu glandulaire ou la peau est retiré, les incisions sont placées aussi discrètement que possible - souvent autour du bord de l\u0027aréole - et s\u0027estompent considérablement avec le temps avec des soins appropriés.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "Les résultats sont-ils permanents et peuvent-ils revenir ?",
+                                           "answer":  "\u003cp\u003eLe tissu glandulaire retiré ne repousse pas, les résultats sont donc durables. La récidive est rare, mais une prise de poids importante, l\u0027utilisation de stéroïdes ou un nouveau déséquilibre hormonal peuvent provoquer des changements : le maintien d\u0027un poids stable et d\u0027un mode de vie sain permet d\u0027obtenir des résultats optimaux.\u003c/p\u003e"
+                                       },
+                                       {
+                                           "question":  "La poitrine paraît-elle naturelle après ?",
+                                           "answer":  "\u003cp\u003eOui. Réalisée avec la bonne technique, la chirurgie de la gynécomastie crée un contour de poitrine plat, ferme et naturellement masculin. L\u0027objectif est toujours un résultat comme jamais opéré, en harmonie avec votre corps.\u003c/p\u003e"
+                                       }
+                                   ]
+                     },
+                     {
+                         "acf_fc_layout":  "intro",
+                         "eyebrow":  "Tarifs",
+                         "title":  "Prix de la chirurgie de la gynécomastie",
+                         "body":  "\u003cp\u003eLes prix de la chirurgie de gynécomastie peuvent varier en fonction de plusieurs facteurs, notamment :\u003c/p\u003e\u003cul\u003e\u003cli\u003eLa technique utilisée (liposuccion uniquement, ablation chirurgicale des glandes ou approche combinée)\u003c/li\u003e\u003cli\u003eLa gravité ou le degré de la gynécomastie\u003c/li\u003e\u003cli\u003eLes besoins individuels du patient et si des procédures supplémentaires sont nécessaires\u003c/li\u003e\u003cli\u003eLe plan chirurgical global et l\u0027approche thérapeutique\u003c/li\u003e\u003c/ul\u003e\u003cp\u003ePour cette raison, le prix le plus précis ne peut être déterminé qu\u0027après un examen en personne ou une pré-consultation en ligne avec les spécialistes d\u0027Estecapelli.\u003c/p\u003e",
+                         "cta":  {
+                                     "label":  "Demandez un devis personnalisé"
+                                 }
+                     },
+                     {
+                         "acf_fc_layout":  "form",
+                         "eyebrow":  "Consultation gratuite",
+                         "title":  "Restaurez votre confiance",
+                         "lead":  "Partagez quelques détails et notre équipe vous répondra avec un plan de traitement personnalisé pour la gynécomastie et un devis tout compris et sans engagement, généralement dans quelques heures. Votre demande est totalement confidentielle.",
+                         "points":  [
+                                        {
+                                            "label":  "Bilan gratuit et discret à partir de vos photos"
+                                        },
+                                        {
+                                            "label":  "Devis tout compris, transparent et sans engagement"
+                                        },
+                                        {
+                                            "label":  "Réponse rapide de notre équipe dédiée aux patients"
+                                        },
+                                        {
+                                            "label":  "Accompagnement multilingue à chaque étape"
+                                        }
+                                    ],
+                         "submit_label":  "Demandez une consultation gratuite"
+                     },
+                     {
+                         "acf_fc_layout":  "related",
+                         "eyebrow":  "Pour aller plus loin",
+                         "title":  "Traitements associés"
+                     }
+                 ]
+}

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
-	define( 'ESTECAPELLI_VERSION', '1.24.0' );
+	define( 'ESTECAPELLI_VERSION', '1.25.0' );
 }
 
 if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {
@@ -50,6 +50,7 @@ require get_template_directory() . '/inc/hair-analysis.php';
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-hair-treatments.php';
+	require get_template_directory() . '/inc/admin/import-fr-plastic-treatments.php';
 }
 
 if ( ! function_exists( 'estecapelli_setup' ) ) {
