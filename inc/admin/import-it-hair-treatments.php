@@ -486,6 +486,7 @@ function estecapelli_it_hair_category_unadjusted() {
 				'trid'                 => false,
 				'language_code'        => 'it',
 				'source_language_code' => null,
+				'check_duplicates'      => false,
 			)
 		);
 	}
@@ -528,6 +529,7 @@ function estecapelli_it_hair_category_unadjusted() {
 				'trid'                 => false,
 				'language_code'        => 'it',
 				'source_language_code' => null,
+				'check_duplicates'      => false,
 			)
 		);
 	}
@@ -579,6 +581,7 @@ function estecapelli_it_hair_category_unadjusted() {
 			'trid'                 => $trid,
 			'language_code'        => 'it',
 			'source_language_code' => $source_language,
+			'check_duplicates'      => false,
 		)
 	);
 
@@ -674,6 +677,7 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id ) 
 			'trid'                 => $trid,
 			'language_code'        => 'it',
 			'source_language_code' => $source_language,
+			'check_duplicates'      => false,
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );

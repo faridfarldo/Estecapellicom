@@ -499,6 +499,7 @@ function estecapelli_fr_hair_category_unadjusted( array $settings = array() ) {
 				'trid'                 => false,
 				'language_code'        => 'fr',
 				'source_language_code' => null,
+				'check_duplicates'      => false,
 			)
 		);
 	}
@@ -541,6 +542,7 @@ function estecapelli_fr_hair_category_unadjusted( array $settings = array() ) {
 				'trid'                 => false,
 				'language_code'        => 'fr',
 				'source_language_code' => null,
+				'check_duplicates'      => false,
 			)
 		);
 	}
@@ -592,6 +594,7 @@ function estecapelli_fr_hair_category_unadjusted( array $settings = array() ) {
 			'trid'                 => $trid,
 			'language_code'        => 'fr',
 			'source_language_code' => $source_language,
+			'check_duplicates'      => false,
 		)
 	);
 
@@ -691,6 +694,7 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $s
 			'trid'                 => $trid,
 			'language_code'        => 'fr',
 			'source_language_code' => $source_language,
+			'check_duplicates'      => false,
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
