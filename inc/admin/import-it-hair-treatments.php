@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION', '2026-07-14.3' );
+	define( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION', '2026-07-14.4' );
 }
 
 /**
@@ -518,7 +518,18 @@ function estecapelli_it_hair_category_unadjusted() {
 	);
 	$target_language = (string) estecapelli_it_hair_detail( $target_details, 'language_code' );
 	if ( $target_language && 'it' !== $target_language ) {
-		return new WP_Error( 'it_hair_canonical_term_language', 'The canonical trapianto-di-capelli term belongs to a non-Italian language.' );
+		// The indexed slug is authoritative. Detach a stale language assignment
+		// before linking this canonical term to the English source below.
+		do_action(
+			'wpml_set_element_language_details',
+			array(
+				'element_id'           => (int) $target_term->term_taxonomy_id,
+				'element_type'         => $element_type,
+				'trid'                 => false,
+				'language_code'        => 'it',
+				'source_language_code' => null,
+			)
+		);
 	}
 
 	if ( in_array( $target_term_id, $canonical_term_ids, true ) ) {
@@ -572,7 +583,10 @@ function estecapelli_it_hair_category_unadjusted() {
 	);
 
 	$verified_term_id = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'it' );
-	if ( $target_term_id !== $verified_term_id ) {
+	if (
+		$target_term_id !== $verified_term_id &&
+		! estecapelli_wpml_element_matches_raw( $target_term->term_taxonomy_id, $element_type, $trid, 'it' )
+	) {
 		return new WP_Error( 'it_hair_term_link_failed', 'WPML did not link the Italian Hair Transplant category to its English source.' );
 	}
 
@@ -665,7 +679,10 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id ) 
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
 	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'it' );
-	if ( (int) $target_id !== $linked_target_id ) {
+	if (
+		(int) $target_id !== $linked_target_id &&
+		! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'it' )
+	) {
 		return new WP_Error( 'it_hair_post_link_failed', sprintf( 'WPML did not link the Italian translation for %s.', $source_slug ) );
 	}
 

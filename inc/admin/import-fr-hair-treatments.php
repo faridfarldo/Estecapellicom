@@ -531,7 +531,18 @@ function estecapelli_fr_hair_category_unadjusted( array $settings = array() ) {
 	);
 	$target_language = (string) estecapelli_fr_hair_detail( $target_details, 'language_code' );
 	if ( $target_language && 'fr' !== $target_language ) {
-		return new WP_Error( 'fr_hair_canonical_term_language', sprintf( 'The canonical %s term belongs to a non-French language.', $target_slug ) );
+		// The indexed slug is authoritative. Detach a stale language assignment
+		// before linking this canonical term to the English source below.
+		do_action(
+			'wpml_set_element_language_details',
+			array(
+				'element_id'           => (int) $target_term->term_taxonomy_id,
+				'element_type'         => $element_type,
+				'trid'                 => false,
+				'language_code'        => 'fr',
+				'source_language_code' => null,
+			)
+		);
 	}
 
 	if ( in_array( $target_term_id, $canonical_term_ids, true ) ) {
@@ -585,7 +596,10 @@ function estecapelli_fr_hair_category_unadjusted( array $settings = array() ) {
 	);
 
 	$verified_term_id = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'fr' );
-	if ( $target_term_id !== $verified_term_id ) {
+	if (
+		$target_term_id !== $verified_term_id &&
+		! estecapelli_wpml_element_matches_raw( $target_term->term_taxonomy_id, $element_type, $trid, 'fr' )
+	) {
 		return new WP_Error( 'fr_hair_term_link_failed', sprintf( 'WPML did not link the French %s category to its English source.', $label ) );
 	}
 
@@ -682,7 +696,10 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $s
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
 	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'fr' );
-	if ( (int) $target_id !== $linked_target_id ) {
+	if (
+		(int) $target_id !== $linked_target_id &&
+		! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'fr' )
+	) {
 		return new WP_Error( 'fr_hair_post_link_failed', sprintf( 'WPML did not link the French translation for %s.', $source_slug ) );
 	}
 

@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Signature of the current slug tables. Bump when rows/languages are added so
  * the sweep re-runs against the new data.
  */
-define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v3-indexed-7-languages' );
+define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v4-indexed-pt-alias' );
 
 /**
  * treatment_category base slugs, keyed by the English (source) slug.
@@ -138,7 +138,8 @@ function estecapelli_slug_fix_terms( $map, $taxonomy ) {
 			continue;
 		}
 		foreach ( $by_lang as $lang => $slug ) {
-			$tr_id = apply_filters( 'wpml_object_id', $en_id, $taxonomy, false, $lang );
+			$wpml_lang = estecapelli_wpml_language_code( $lang );
+			$tr_id     = apply_filters( 'wpml_object_id', $en_id, $taxonomy, false, $wpml_lang );
 			if ( ! $tr_id || (int) $tr_id === (int) $en_id ) {
 				continue; // no translation in this language yet.
 			}
@@ -168,7 +169,8 @@ function estecapelli_slug_fix_posts( $map, $post_type ) {
 			continue;
 		}
 		foreach ( $by_lang as $lang => $slug ) {
-			$tr_id = apply_filters( 'wpml_object_id', $en_id, $post_type, false, $lang );
+			$wpml_lang = estecapelli_wpml_language_code( $lang );
+			$tr_id     = apply_filters( 'wpml_object_id', $en_id, $post_type, false, $wpml_lang );
 			if ( ! $tr_id || (int) $tr_id === (int) $en_id ) {
 				continue;
 			}
@@ -216,13 +218,14 @@ function estecapelli_slug_fix_pages( $map ) {
 		}
 
 		foreach ( $by_lang as $lang => $slug ) {
-			$target_id = (int) apply_filters( 'wpml_object_id', $source->ID, 'page', false, $lang );
+			$wpml_lang = estecapelli_wpml_language_code( $lang );
+			$target_id = (int) apply_filters( 'wpml_object_id', $source->ID, 'page', false, $wpml_lang );
 			if ( ! $target_id || $target_id === (int) $source->ID ) {
 				continue;
 			}
 			$target_parent = 0;
 			if ( $parent ) {
-				$translated_parent = (int) apply_filters( 'wpml_object_id', $parent->ID, 'page', false, $lang );
+				$translated_parent = (int) apply_filters( 'wpml_object_id', $parent->ID, 'page', false, $wpml_lang );
 				$target_parent     = ( $translated_parent && $translated_parent !== (int) $parent->ID )
 					? $translated_parent
 					: null;
@@ -283,4 +286,26 @@ function estecapelli_source_post_id( $slug, $post_type ) {
 	);
 	$source = $candidate ? (int) apply_filters( 'wpml_object_id', $candidate, $post_type, true, 'en' ) : 0;
 	return $source ?: $candidate;
+}
+
+/**
+ * Verify a WPML relationship directly from its source-of-truth table.
+ *
+ * WPML's object-id filter can retain the pre-update value for the remainder of
+ * an admin request. Importers use this raw check only after calling
+ * wpml_set_element_language_details, so a valid repair is not reported as a
+ * failure merely because a runtime cache is stale.
+ */
+function estecapelli_wpml_element_matches_raw( $element_id, $element_type, $trid, $language ) {
+	global $wpdb;
+	$table = $wpdb->prefix . 'icl_translations';
+	$row   = $wpdb->get_row(
+		$wpdb->prepare(
+			"SELECT trid, language_code FROM {$table} WHERE element_id = %d AND element_type = %s LIMIT 1",
+			(int) $element_id,
+			(string) $element_type
+		)
+	);
+
+	return $row && (int) $row->trid === (int) $trid && (string) $row->language_code === (string) $language;
 }

@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_PLASTIC_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_PLASTIC_IMPORT_VERSION', '2026-07-14.1' );
+	define( 'ESTECAPELLI_FR_PLASTIC_IMPORT_VERSION', '2026-07-14.2' );
 }
 
 /**

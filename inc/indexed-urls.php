@@ -53,6 +53,51 @@ function estecapelli_indexed_language_code( $language = '' ) {
 }
 
 /**
+ * Resolve an indexed public language code to the code active inside WPML.
+ *
+ * The live contract uses /pt/, while existing installations may still use
+ * WPML's built-in Portuguese (Portugal) code, pt-pt. Keep that implementation
+ * detail inside WPML and expose /pt/ everywhere publicly.
+ */
+function estecapelli_wpml_language_code( $language = '' ) {
+	$language = estecapelli_indexed_language_code( $language );
+	if ( 'pt' !== $language ) {
+		return $language;
+	}
+
+	$languages = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0 ) );
+	$codes     = array();
+	if ( is_array( $languages ) ) {
+		foreach ( $languages as $item ) {
+			$codes[] = strtolower( (string) ( $item['language_code'] ?? '' ) );
+		}
+	}
+
+	if ( in_array( 'pt', $codes, true ) ) {
+		return 'pt';
+	}
+	return in_array( 'pt-pt', $codes, true ) ? 'pt-pt' : 'pt';
+}
+
+/** Use the built-in pt-pt language for /pt/ requests when custom pt is absent. */
+function estecapelli_switch_portuguese_alias() {
+	if ( is_admin() ) {
+		return;
+	}
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path    = trim( (string) wp_parse_url( $request, PHP_URL_PATH ), '/' );
+	if ( 'pt' !== strtolower( (string) strtok( $path, '/' ) ) ) {
+		return;
+	}
+
+	$wpml_language = estecapelli_wpml_language_code( 'pt' );
+	if ( 'pt-pt' === $wpml_language ) {
+		do_action( 'wpml_switch_language', $wpml_language );
+	}
+}
+add_action( 'init', 'estecapelli_switch_portuguese_alias', 20 );
+
+/**
  * Site base without WPML's current-language suffix.
  */
 function estecapelli_unfiltered_home_url() {
@@ -450,9 +495,8 @@ function estecapelli_header_languages() {
 		);
 	}
 
-	// The built-in Portuguese (Portugal) language owns /pt-pt/. It is not part
-	// of the indexed contract and is hidden until the custom `pt` language is
-	// configured in WPML.
+	// Prefer a custom `pt` language when both Portuguese variants are active.
+	// Otherwise expose the built-in pt-pt language through the indexed /pt/ URL.
 	$has_custom_pt = false;
 	foreach ( $languages as $language ) {
 		if ( 'pt' === strtolower( (string) ( $language['language_code'] ?? '' ) ) ) {
@@ -465,7 +509,7 @@ function estecapelli_header_languages() {
 	$normalized  = array();
 	foreach ( $languages as $language ) {
 		$raw_code = strtolower( (string) ( $language['language_code'] ?? '' ) );
-		if ( 'pt-pt' === $raw_code && ! $has_custom_pt ) {
+		if ( 'pt-pt' === $raw_code && $has_custom_pt ) {
 			continue;
 		}
 
@@ -504,10 +548,11 @@ function estecapelli_translated_page_url( $english_path, $language = '' ) {
 	$source_id = (int) apply_filters( 'wpml_object_id', $source->ID, 'page', true, 'en' );
 	$source    = get_post( $source_id ?: $source->ID );
 
-	$language = estecapelli_indexed_language_code( $language );
-	$target   = 'en' === $language
+	$language      = estecapelli_indexed_language_code( $language );
+	$wpml_language = estecapelli_wpml_language_code( $language );
+	$target        = 'en' === $language
 		? (int) $source->ID
-		: (int) apply_filters( 'wpml_object_id', $source->ID, 'page', false, $language );
+		: (int) apply_filters( 'wpml_object_id', $source->ID, 'page', false, $wpml_language );
 	return get_permalink( $target ?: $source->ID );
 }
 
@@ -690,9 +735,13 @@ function estecapelli_indexed_request( $query_vars ) {
 		return $query_vars;
 	}
 
+	$wpml_language = estecapelli_wpml_language_code( $language );
+	if ( $wpml_language !== $language ) {
+		do_action( 'wpml_switch_language', $wpml_language );
+	}
 	$target_id = 'en' === $language
 		? $source_id
-		: (int) apply_filters( 'wpml_object_id', $source_id, $type, false, $language );
+		: (int) apply_filters( 'wpml_object_id', $source_id, $type, false, $wpml_language );
 	if ( ! $target_id ) {
 		return $query_vars;
 	}
@@ -701,7 +750,7 @@ function estecapelli_indexed_request( $query_vars ) {
 		? array( 'page_id' => $target_id )
 		: array( 'p' => $target_id, 'post_type' => $type );
 	if ( isset( $query_vars['lang'] ) ) {
-		$resolved['lang'] = $query_vars['lang'];
+		$resolved['lang'] = $wpml_language;
 	}
 	return $resolved;
 }
@@ -713,7 +762,7 @@ function estecapelli_preserve_indexed_canonical( $redirect_url, $requested_url )
 }
 add_filter( 'redirect_canonical', 'estecapelli_preserve_indexed_canonical', 999, 2 );
 
-/** Redirect the non-indexed WPML Portuguese alias after custom `pt` is active. */
+/** Redirect the non-indexed WPML Portuguese alias to the public /pt/ contract. */
 function estecapelli_redirect_pt_pt_alias() {
 	if ( is_admin() ) {
 		return;
@@ -724,17 +773,17 @@ function estecapelli_redirect_pt_pt_alias() {
 		return;
 	}
 
-	$languages = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0 ) );
-	$has_pt    = false;
+	$languages      = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0 ) );
+	$has_portuguese = false;
 	if ( is_array( $languages ) ) {
 		foreach ( $languages as $language ) {
-			if ( 'pt' === strtolower( (string) ( $language['language_code'] ?? '' ) ) ) {
-				$has_pt = true;
+			if ( in_array( strtolower( (string) ( $language['language_code'] ?? '' ) ), array( 'pt', 'pt-pt' ), true ) ) {
+				$has_portuguese = true;
 				break;
 			}
 		}
 	}
-	if ( ! $has_pt ) {
+	if ( ! $has_portuguese ) {
 		return;
 	}
 
@@ -787,21 +836,3 @@ function estecapelli_indexed_404_fallback() {
 	}
 }
 add_action( 'template_redirect', 'estecapelli_indexed_404_fallback', 0 );
-
-/** Warn administrators before Portuguese is created with its indexed code. */
-function estecapelli_pt_language_admin_notice() {
-	if ( ! current_user_can( 'manage_options' ) || ! defined( 'ICL_SITEPRESS_VERSION' ) ) {
-		return;
-	}
-	$languages = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0 ) );
-	$codes     = array();
-	if ( is_array( $languages ) ) {
-		foreach ( $languages as $language ) {
-			$codes[] = strtolower( (string) ( $language['language_code'] ?? '' ) );
-		}
-	}
-	if ( in_array( 'pt-pt', $codes, true ) && ! in_array( 'pt', $codes, true ) ) {
-		echo '<div class="notice notice-error"><p><strong>Estecapelli URL contract:</strong> replace WPML Portuguese (Portugal) <code>pt-pt</code> with a custom Portuguese language using code <code>pt</code> before publishing Portuguese content. Indexed URLs use <code>/pt/</code> exclusively.</p></div>';
-	}
-}
-add_action( 'admin_notices', 'estecapelli_pt_language_admin_notice' );
