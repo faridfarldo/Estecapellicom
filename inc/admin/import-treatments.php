@@ -364,6 +364,26 @@ function estecapelli_render_treatments_importer() {
 		$doctors    = estecapelli_doctors_seed();
 		$target     = sanitize_text_field( wp_unslash( $_POST['estecapelli_action'] ) );
 
+		// French Hair Transplant translations use the same familiar importer UI,
+		// but remain a separate, deliberately narrow and idempotent operation.
+		if ( '__fr_hair_treatments__' === $target && function_exists( 'estecapelli_run_fr_hair_import' ) ) {
+			$result = estecapelli_run_fr_hair_import();
+			if ( is_wp_error( $result ) ) {
+				update_option( 'estecapelli_fr_hair_import_error', $result->get_error_message(), false );
+				$messages[] = array(
+					'type' => 'error',
+					'text' => sprintf( 'French Hair Transplant translations - %s', esc_html( $result->get_error_message() ) ),
+				);
+			} else {
+				update_option( 'estecapelli_fr_hair_import_version', ESTECAPELLI_FR_HAIR_IMPORT_VERSION, false );
+				delete_option( 'estecapelli_fr_hair_import_error' );
+				$messages[] = array(
+					'type' => 'success',
+					'text' => sprintf( 'Imported or repaired %d French Hair Transplant translations.', count( $result ) ),
+				);
+			}
+		}
+
 		// Treatments.
 		foreach ( $treatments as $t ) {
 			if ( '__all__' !== $target && '__all_treatments__' !== $target && $t['slug'] !== $target ) {
@@ -493,6 +513,56 @@ function estecapelli_render_treatments_importer() {
 					<?php esc_html_e( 'Import / Re-import All Treatments', 'estecapelli' ); ?>
 				</button>
 			</p>
+
+			<?php if ( function_exists( 'estecapelli_fr_hair_manifest' ) ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'French Hair Transplant translations', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'Imports the complete French copy for the eight Hair Transplant treatments and repairs their WPML links. It is safe to run again.', 'estecapelli' ); ?>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:34%;"><?php esc_html_e( 'English source', 'estecapelli' ); ?></th>
+							<th style="width:38%;"><?php esc_html_e( 'French slug', 'estecapelli' ); ?></th>
+							<th style="width:28%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( estecapelli_fr_hair_manifest() as $source_slug => $french_slug ) :
+							$source_id    = estecapelli_source_post_id( $source_slug, 'treatment' );
+							$french_id    = $source_id ? (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'fr' ) : 0;
+							$needs_repair = $french_id && (
+								get_post_meta( $french_id, '_icl_lang_duplicate_of', true ) ||
+								get_post_field( 'post_title', $french_id ) === get_post_field( 'post_title', $source_id )
+							);
+							?>
+							<tr>
+								<td><code><?php echo esc_html( $source_slug ); ?></code></td>
+								<td><code><?php echo esc_html( $french_slug ); ?></code></td>
+								<td>
+									<?php if ( $needs_repair ) : ?>
+										<span style="color:#b26200;"><?php esc_html_e( 'Exists - needs repair', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $french_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+									<?php elseif ( $french_id && $french_id !== $source_id ) : ?>
+										<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $french_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+										| <a href="<?php echo esc_url( get_permalink( $french_id ) ); ?>" target="_blank"><?php esc_html_e( 'view', 'estecapelli' ); ?></a>
+									<?php else : ?>
+										<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+									<?php endif; ?>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+
+				<p style="margin-top:1.25rem;">
+					<button type="submit" name="estecapelli_action" value="__fr_hair_treatments__" class="button button-primary">
+						<?php esc_html_e( 'Import / Repair All 8 French Treatments', 'estecapelli' ); ?>
+					</button>
+				</p>
+			<?php endif; ?>
 
 			<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Pages', 'estecapelli' ); ?></h2>
 			<p class="description" style="max-width:740px;">

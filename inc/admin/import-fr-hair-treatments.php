@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.3' );
+	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.4' );
 }
 
 /**
@@ -297,11 +297,51 @@ function estecapelli_fr_hair_raw_post_id( $slug ) {
 }
 
 /**
+ * Find every taxonomy term using a slug without WPML language filtering.
+ *
+ * @param string $slug     Term slug.
+ * @param string $taxonomy Taxonomy name.
+ * @return int[]
+ */
+function estecapelli_fr_hair_term_ids_by_slug( $slug, $taxonomy ) {
+	global $wpdb;
+	$term_ids = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT t.term_id FROM {$wpdb->terms} t
+			 INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_id = t.term_id
+			 WHERE t.slug = %s AND tt.taxonomy = %s ORDER BY t.term_id ASC",
+			$slug,
+			$taxonomy
+		)
+	);
+	return array_map( 'intval', $term_ids );
+}
+
+/**
  * Create or repair the linked French Hair Transplant category.
  *
  * @return int|WP_Error French term ID.
  */
 function estecapelli_fr_hair_category() {
+	/*
+	 * WPML normally adjusts term IDs to the admin's current language. That is
+	 * useful in templates but unsafe while repairing an explicit French term:
+	 * wp_update_term() can otherwise compare/update a different translated ID.
+	 */
+	add_filter( 'wpml_disable_term_adjust_id', '__return_true' );
+	try {
+		return estecapelli_fr_hair_category_unadjusted();
+	} finally {
+		remove_filter( 'wpml_disable_term_adjust_id', '__return_true' );
+	}
+}
+
+/**
+ * Internal category repair with WPML's automatic term-ID adjustment disabled.
+ *
+ * @return int|WP_Error French term ID.
+ */
+function estecapelli_fr_hair_category_unadjusted() {
 	$taxonomy       = 'treatment_category';
 	$element_type   = apply_filters( 'wpml_element_type', $taxonomy );
 	$source_term_id = estecapelli_source_term_id( 'hair-transplant', $taxonomy );
@@ -329,9 +369,39 @@ function estecapelli_fr_hair_category() {
 		return new WP_Error( 'fr_hair_unlinked_source_term', 'WPML language details are missing for the English Hair Transplant category.' );
 	}
 
-	$linked_term_id    = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'fr' );
-	$canonical_term_id = estecapelli_source_term_id( 'greffe-de-cheveux', $taxonomy );
-	$target_term_id    = $canonical_term_id ?: $linked_term_id;
+	$linked_term_id     = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'fr' );
+	$canonical_term_ids = estecapelli_fr_hair_term_ids_by_slug( 'greffe-de-cheveux', $taxonomy );
+	$canonical_term_id  = 0;
+
+	// Prefer the term WPML already links when it owns the canonical slug.
+	if ( $linked_term_id && in_array( $linked_term_id, $canonical_term_ids, true ) ) {
+		$canonical_term_id = $linked_term_id;
+	} else {
+		// Duplicate slugs can exist after an interrupted WPML import. Prefer the
+		// candidate WPML already identifies as French rather than an arbitrary ID.
+		foreach ( $canonical_term_ids as $candidate_id ) {
+			$candidate = get_term( $candidate_id, $taxonomy );
+			if ( ! $candidate || is_wp_error( $candidate ) ) {
+				continue;
+			}
+			$candidate_details = apply_filters(
+				'wpml_element_language_details',
+				null,
+				array(
+					'element_id'   => (int) $candidate->term_taxonomy_id,
+					'element_type' => $taxonomy,
+				)
+			);
+			if ( 'fr' === (string) estecapelli_fr_hair_detail( $candidate_details, 'language_code' ) ) {
+				$canonical_term_id = $candidate_id;
+				break;
+			}
+		}
+	}
+	if ( ! $canonical_term_id && $canonical_term_ids ) {
+		$canonical_term_id = reset( $canonical_term_ids );
+	}
+	$target_term_id = $canonical_term_id ?: $linked_term_id;
 
 	/*
 	 * Some installations already contain the canonical French term, while WPML
@@ -367,6 +437,7 @@ function estecapelli_fr_hair_category() {
 			return $created;
 		}
 		$target_term_id = (int) $created['term_id'];
+		$canonical_term_ids[] = $target_term_id;
 	}
 
 	$target_term = get_term( $target_term_id, $taxonomy );
@@ -387,16 +458,37 @@ function estecapelli_fr_hair_category() {
 		return new WP_Error( 'fr_hair_canonical_term_language', 'The canonical greffe-de-cheveux term belongs to a non-French language.' );
 	}
 
-	$updated = wp_update_term(
-		$target_term_id,
-		$taxonomy,
-		array(
-			'name' => 'Greffe de cheveux',
-			'slug' => 'greffe-de-cheveux',
-		)
-	);
-	if ( is_wp_error( $updated ) ) {
-		return $updated;
+	if ( in_array( $target_term_id, $canonical_term_ids, true ) ) {
+		/*
+		 * Do not ask wp_update_term() to re-apply an already-canonical slug. If
+		 * WPML left duplicate rows with that slug, core correctly rejects the
+		 * update. Updating the display name directly is safe and leaves both the
+		 * term identity and URL untouched while we repair the WPML relationship.
+		 */
+		global $wpdb;
+		$name_updated = $wpdb->update(
+			$wpdb->terms,
+			array( 'name' => 'Greffe de cheveux' ),
+			array( 'term_id' => $target_term_id ),
+			array( '%s' ),
+			array( '%d' )
+		);
+		if ( false === $name_updated ) {
+			return new WP_Error( 'fr_hair_term_name_update_failed', 'The French Hair Transplant category name could not be updated.' );
+		}
+		clean_term_cache( $target_term_id, $taxonomy );
+	} else {
+		$updated = wp_update_term(
+			$target_term_id,
+			$taxonomy,
+			array(
+				'name' => 'Greffe de cheveux',
+				'slug' => 'greffe-de-cheveux',
+			)
+		);
+		if ( is_wp_error( $updated ) ) {
+			return $updated;
+		}
 	}
 
 	// Reload after wp_update_term() in case WordPress refreshed the term object.
