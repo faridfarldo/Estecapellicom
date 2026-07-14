@@ -9,11 +9,14 @@
  *
  * The golden rule of this migration is that every language URL must match the
  * live site exactly. Rather than hand-correcting slugs in the WPML UI (slow and
- * error-prone across 7 languages), we set them from the url-map here, in code,
- * deployed by git pull. The map is the single source of truth.
+ * error-prone across 7 languages), we set them from the url-map here, in code.
+ * The map is the single source of truth.
  *
- * Runs once per data-version on admin_init (like inc/wpml-fix.php). Bump the
- * version constant when a new language's tables are added below.
+ * This runs as a light sweep on admin load. It "settles" (stops running) once
+ * every mapped translation already has the right slug, and automatically wakes
+ * up again the moment a new translation is saved — so as you translate pages in
+ * WPML, their slugs self-correct with no re-deploy. Bump SIGNATURE whenever the
+ * tables below change (e.g. when a new language is added) to force a re-sweep.
  *
  * @package Estecapelli
  */
@@ -22,68 +25,95 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'admin_init', 'estecapelli_wpml_slug_fix' );
-function estecapelli_wpml_slug_fix() {
-	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) ) {
-		return; // WPML not active — nothing to translate.
-	}
+/**
+ * Signature of the current slug tables. Bump when rows/languages are added so
+ * the sweep re-runs against the new data.
+ */
+define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v2-fr' );
 
-	$version = 'estecapelli_wpml_slug_fix_v1'; // bump when adding languages/rows.
-	if ( get_option( $version ) ) {
-		return;
-	}
-
-	/*
-	 * treatment_category base slugs, keyed by the English (source) slug.
-	 * Value is a per-language map of the exact live slug.
-	 */
-	$category_slugs = array(
+/**
+ * treatment_category base slugs, keyed by the English (source) slug.
+ * Value is a per-language map of the exact live slug.
+ *
+ * @return array
+ */
+function estecapelli_slug_map_categories() {
+	return array(
 		'hair-transplant'  => array( 'fr' => 'greffe-de-cheveux' ),
 		'plastic-surgery'  => array( 'fr' => 'chirurgie-plastique' ),
 		'dental-treatment' => array( 'fr' => 'traitement-dentaire' ),
 	);
+}
 
-	/*
-	 * treatment post slugs, keyed by the English (source) slug. Slugs that are
-	 * intentionally identical across languages (tricholab, bbl,
-	 * plastic-surgery-overview) are simply omitted — WPML keeps them as-is.
-	 */
-	$treatment_slugs = array(
+/**
+ * treatment post slugs, keyed by the English (source) slug. Slugs that are
+ * intentionally identical across languages (tricholab, bbl,
+ * plastic-surgery-overview) are omitted — WPML keeps them as-is.
+ *
+ * @return array
+ */
+function estecapelli_slug_map_treatments() {
+	return array(
 		// Hair transplant.
-		'hair-transplant-overview'               => array( 'fr' => 'apercu-de-la-greffe-de-cheveux' ),
-		'sapphire-fue-hair-transplant'           => array( 'fr' => 'greffe-de-cheveux-fue-sapphire' ),
-		'dhi-hair-transplant'                     => array( 'fr' => 'greffe-de-cheveux-dhi' ),
-		'exosome-fue-hair-transplant'            => array( 'fr' => 'greffe-capillaire-exosome-fue' ),
-		'vita-treatment'                          => array( 'fr' => 'traitement-vita' ),
-		'female-hair-transplant'                  => array( 'fr' => 'greffe-de-cheveux-feminine' ),
-		'eyebrow-transplant'                      => array( 'fr' => 'transplantation-de-sourcils' ),
-		'beard-transplant'                        => array( 'fr' => 'transplantation-de-barbe' ),
-		'hair-mesotherapy'                        => array( 'fr' => 'mesotherapie-capillaire' ),
-		'pre-hair-transplant-period'              => array( 'fr' => 'periode-pre-transplantation-capillaire' ),
-		'post-hair-transplant-period'             => array( 'fr' => 'periode-post-greffe-de-cheveux' ),
-		'hair-transplant-techniques-comparison2'  => array( 'fr' => 'comparaison-des-techniques-de-greffe-de-cheveux-2' ),
+		'hair-transplant-overview'                                => array( 'fr' => 'apercu-de-la-greffe-de-cheveux' ),
+		'sapphire-fue-hair-transplant'                            => array( 'fr' => 'greffe-de-cheveux-fue-sapphire' ),
+		'dhi-hair-transplant'                                     => array( 'fr' => 'greffe-de-cheveux-dhi' ),
+		'exosome-fue-hair-transplant'                             => array( 'fr' => 'greffe-capillaire-exosome-fue' ),
+		'vita-treatment'                                          => array( 'fr' => 'traitement-vita' ),
+		'female-hair-transplant'                                  => array( 'fr' => 'greffe-de-cheveux-feminine' ),
+		'eyebrow-transplant'                                      => array( 'fr' => 'transplantation-de-sourcils' ),
+		'beard-transplant'                                        => array( 'fr' => 'transplantation-de-barbe' ),
+		'hair-mesotherapy'                                        => array( 'fr' => 'mesotherapie-capillaire' ),
+		'pre-hair-transplant-period'                              => array( 'fr' => 'periode-pre-transplantation-capillaire' ),
+		'post-hair-transplant-period'                             => array( 'fr' => 'periode-post-greffe-de-cheveux' ),
+		'hair-transplant-techniques-comparison2'                  => array( 'fr' => 'comparaison-des-techniques-de-greffe-de-cheveux-2' ),
 		// Plastic surgery.
-		'rhinoplasty'                             => array( 'fr' => 'rhinoplastie' ),
-		'breast-aesthetics-breast-surgery'        => array( 'fr' => 'esthetique-mammaire-chirurgie-mammaire' ),
-		'liposuction'                             => array( 'fr' => 'liposuccion' ),
-		'face-and-neck-lift-surgery'              => array( 'fr' => 'chirurgie-de-lifting-du-visage-et-du-cou' ),
-		'abdominoplasty-tummy-tuck'               => array( 'fr' => 'abdominoplastie' ),
-		'gynecomastia'                            => array( 'fr' => 'gynecomastie' ),
+		'rhinoplasty'                                             => array( 'fr' => 'rhinoplastie' ),
+		'breast-aesthetics-breast-surgery'                        => array( 'fr' => 'esthetique-mammaire-chirurgie-mammaire' ),
+		'liposuction'                                             => array( 'fr' => 'liposuccion' ),
+		'face-and-neck-lift-surgery'                              => array( 'fr' => 'chirurgie-de-lifting-du-visage-et-du-cou' ),
+		'abdominoplasty-tummy-tuck'                               => array( 'fr' => 'abdominoplastie' ),
+		'gynecomastia'                                            => array( 'fr' => 'gynecomastie' ),
 		'obesity-surgeries-bariatric-surgery-and-gastric-balloon' => array( 'fr' => 'chirurgies-de-l-obesite-chirurgie-bariatrique-et-ballon-gastrique' ),
 		// Dental.
-		'dental-treatment-overview'               => array( 'fr' => 'apercu-du-traitement-dentaire' ),
-		'dental-implant'                          => array( 'fr' => 'implant-dentaire' ),
-		'hollywood-smile'                         => array( 'fr' => 'sourire-hollywoodien' ),
+		'dental-treatment-overview'                               => array( 'fr' => 'apercu-du-traitement-dentaire' ),
+		'dental-implant'                                          => array( 'fr' => 'implant-dentaire' ),
+		'hollywood-smile'                                         => array( 'fr' => 'sourire-hollywoodien' ),
 	);
+}
 
-	$changed = 0;
-	$changed += estecapelli_slug_fix_terms( $category_slugs, 'treatment_category' );
-	$changed += estecapelli_slug_fix_posts( $treatment_slugs, 'treatment' );
+/**
+ * Light sweep on admin load. Corrects any mapped translation whose slug is
+ * wrong, then settles until new translation work invalidates it.
+ */
+add_action( 'admin_init', 'estecapelli_wpml_slug_sweep' );
+function estecapelli_wpml_slug_sweep() {
+	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) ) {
+		return; // WPML not active.
+	}
+	if ( get_option( 'estecapelli_slug_fix_settled' ) === ESTECAPELLI_SLUG_FIX_SIG ) {
+		return; // nothing changed since the last clean sweep.
+	}
+
+	$changed  = estecapelli_slug_fix_terms( estecapelli_slug_map_categories(), 'treatment_category' );
+	$changed += estecapelli_slug_fix_posts( estecapelli_slug_map_treatments(), 'treatment' );
 
 	if ( $changed ) {
-		flush_rewrite_rules( false );
+		flush_rewrite_rules( false ); // re-run next load to confirm it's settled.
+	} else {
+		update_option( 'estecapelli_slug_fix_settled', ESTECAPELLI_SLUG_FIX_SIG );
 	}
-	update_option( $version, time() );
+}
+
+/**
+ * Wake the sweep whenever a treatment or its category is saved — this is how a
+ * freshly-created WPML translation gets its slug corrected on the next load.
+ */
+add_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
+add_action( 'created_treatment_category', 'estecapelli_slug_fix_wake' );
+add_action( 'edited_treatment_category', 'estecapelli_slug_fix_wake' );
+function estecapelli_slug_fix_wake() {
+	delete_option( 'estecapelli_slug_fix_settled' );
 }
 
 /**
@@ -136,6 +166,8 @@ function estecapelli_slug_fix_posts( $map, $post_type ) {
 			if ( get_post_field( 'post_name', (int) $tr_id ) === $slug ) {
 				continue;
 			}
+			// Avoid re-entrancy through our own save_post hook.
+			remove_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
 			$res = wp_update_post(
 				array(
 					'ID'        => (int) $tr_id,
@@ -143,6 +175,7 @@ function estecapelli_slug_fix_posts( $map, $post_type ) {
 				),
 				true
 			);
+			add_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
 			if ( ! is_wp_error( $res ) ) {
 				$count++;
 			}
