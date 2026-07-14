@@ -37,7 +37,7 @@ $current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' 
 	<div class="mainbar">
 		<div class="mainbar-inner">
 
-			<a class="brand-link" href="<?php echo esc_url( home_url( '/en/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+			<a class="brand-link" href="<?php echo esc_url( estecapelli_nav_url( '/en/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				<?php estecapelli_brand_mark( 'header' ); ?>
 			</a>
 
@@ -55,7 +55,7 @@ $current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' 
 				);
 				?>
 
-				<a class="btn btn-primary site-nav__mobile-cta" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
+				<a class="btn btn-primary site-nav__mobile-cta" href="<?php echo esc_url( estecapelli_nav_url( '/en/contact' ) ); ?>">
 					<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
 				</a>
 			</nav>
@@ -104,7 +104,7 @@ $current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' 
 				</div>
 
 				<div class="mainbar-cta">
-					<a class="btn btn-primary" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
+					<a class="btn btn-primary" href="<?php echo esc_url( estecapelli_nav_url( '/en/contact' ) ); ?>">
 						<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
 						<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
 					</a>
