@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.2' );
+	define( 'ESTECAPELLI_FR_HAIR_IMPORT_VERSION', '2026-07-14.3' );
 }
 
 /**
@@ -302,8 +302,8 @@ function estecapelli_fr_hair_raw_post_id( $slug ) {
  * @return int|WP_Error French term ID.
  */
 function estecapelli_fr_hair_category() {
-	$taxonomy      = 'treatment_category';
-	$element_type  = apply_filters( 'wpml_element_type', $taxonomy );
+	$taxonomy       = 'treatment_category';
+	$element_type   = apply_filters( 'wpml_element_type', $taxonomy );
 	$source_term_id = estecapelli_source_term_id( 'hair-transplant', $taxonomy );
 
 	if ( ! $source_term_id ) {
@@ -315,9 +315,46 @@ function estecapelli_fr_hair_category() {
 		return new WP_Error( 'fr_hair_invalid_source_term', 'English Hair Transplant category could not be loaded.' );
 	}
 
-	$target_term_id = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'fr' );
-	if ( ! $target_term_id ) {
-		$target_term_id = estecapelli_source_term_id( 'greffe-de-cheveux', $taxonomy );
+	$source_details = apply_filters(
+		'wpml_element_language_details',
+		null,
+		array(
+			'element_id'   => (int) $source_term->term_taxonomy_id,
+			'element_type' => $taxonomy,
+		)
+	);
+	$trid            = (int) estecapelli_fr_hair_detail( $source_details, 'trid' );
+	$source_language = (string) estecapelli_fr_hair_detail( $source_details, 'language_code' );
+	if ( ! $trid || 'en' !== $source_language ) {
+		return new WP_Error( 'fr_hair_unlinked_source_term', 'WPML language details are missing for the English Hair Transplant category.' );
+	}
+
+	$linked_term_id    = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'fr' );
+	$canonical_term_id = estecapelli_source_term_id( 'greffe-de-cheveux', $taxonomy );
+	$target_term_id    = $canonical_term_id ?: $linked_term_id;
+
+	/*
+	 * Some installations already contain the canonical French term, while WPML
+	 * points the English source at a second auto-created French term. Preserve
+	 * both terms, detach only the incorrect translation relationship, and reuse
+	 * the term that already owns the live canonical slug.
+	 */
+	if ( $canonical_term_id && $linked_term_id && $canonical_term_id !== $linked_term_id ) {
+		$linked_term = get_term( $linked_term_id, $taxonomy );
+		if ( ! $linked_term || is_wp_error( $linked_term ) ) {
+			return new WP_Error( 'fr_hair_invalid_linked_term', 'The duplicate French Hair Transplant category could not be loaded.' );
+		}
+
+		do_action(
+			'wpml_set_element_language_details',
+			array(
+				'element_id'           => (int) $linked_term->term_taxonomy_id,
+				'element_type'         => $element_type,
+				'trid'                 => false,
+				'language_code'        => 'fr',
+				'source_language_code' => null,
+			)
+		);
 	}
 
 	if ( ! $target_term_id ) {
@@ -332,6 +369,24 @@ function estecapelli_fr_hair_category() {
 		$target_term_id = (int) $created['term_id'];
 	}
 
+	$target_term = get_term( $target_term_id, $taxonomy );
+	if ( ! $target_term || is_wp_error( $target_term ) ) {
+		return new WP_Error( 'fr_hair_invalid_target_term', 'French Hair Transplant category could not be loaded.' );
+	}
+
+	$target_details  = apply_filters(
+		'wpml_element_language_details',
+		null,
+		array(
+			'element_id'   => (int) $target_term->term_taxonomy_id,
+			'element_type' => $taxonomy,
+		)
+	);
+	$target_language = (string) estecapelli_fr_hair_detail( $target_details, 'language_code' );
+	if ( $target_language && 'fr' !== $target_language ) {
+		return new WP_Error( 'fr_hair_canonical_term_language', 'The canonical greffe-de-cheveux term belongs to a non-French language.' );
+	}
+
 	$updated = wp_update_term(
 		$target_term_id,
 		$taxonomy,
@@ -344,23 +399,10 @@ function estecapelli_fr_hair_category() {
 		return $updated;
 	}
 
+	// Reload after wp_update_term() in case WordPress refreshed the term object.
 	$target_term = get_term( $target_term_id, $taxonomy );
 	if ( ! $target_term || is_wp_error( $target_term ) ) {
 		return new WP_Error( 'fr_hair_invalid_target_term', 'French Hair Transplant category could not be loaded.' );
-	}
-
-	$source_details = apply_filters(
-		'wpml_element_language_details',
-		null,
-		array(
-			'element_id'   => (int) $source_term->term_taxonomy_id,
-			'element_type' => $taxonomy,
-		)
-	);
-	$trid           = (int) estecapelli_fr_hair_detail( $source_details, 'trid' );
-	$source_language = (string) estecapelli_fr_hair_detail( $source_details, 'language_code' );
-	if ( ! $trid || 'en' !== $source_language ) {
-		return new WP_Error( 'fr_hair_unlinked_source_term', 'WPML language details are missing for the English Hair Transplant category.' );
 	}
 
 	do_action(
@@ -374,8 +416,8 @@ function estecapelli_fr_hair_category() {
 		)
 	);
 
-	$linked_term_id = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'fr' );
-	if ( $target_term_id !== $linked_term_id ) {
+	$verified_term_id = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'fr' );
+	if ( $target_term_id !== $verified_term_id ) {
 		return new WP_Error( 'fr_hair_term_link_failed', 'WPML did not link the French Hair Transplant category to its English source.' );
 	}
 
