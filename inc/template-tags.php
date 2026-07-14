@@ -90,7 +90,7 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 
 if ( ! function_exists( 'estecapelli_header_languages' ) ) {
 	/**
-	 * Return WPML's active languages for the custom header switcher.
+	 * Return WPML's active languages for the theme's custom switchers.
 	 *
 	 * WPML supplies the translated URL for the current object. Missing
 	 * translations deliberately link to that language's homepage instead of a

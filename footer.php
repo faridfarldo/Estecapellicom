@@ -8,6 +8,18 @@
 $contact    = estecapelli_footer_contact();
 $treatments = estecapelli_footer_treatments();
 $sitemap    = estecapelli_footer_sitemap();
+
+$footer_languages = estecapelli_header_languages();
+$footer_language  = reset( $footer_languages );
+foreach ( $footer_languages as $language ) {
+	if ( ! empty( $language['active'] ) ) {
+		$footer_language = $language;
+		break;
+	}
+}
+$footer_language_code = strtoupper( sanitize_key( $footer_language['language_code'] ?? 'en' ) );
+$footer_language_name = (string) ( $footer_language['native_name'] ?? $footer_language_code );
+$footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 ?>
 </main><!-- /#main -->
 
@@ -100,6 +112,51 @@ $sitemap    = estecapelli_footer_sitemap();
 						<li><a href="<?php echo esc_url( $s['url'] ); ?>"><?php echo esc_html( $s['label'] ); ?></a></li>
 					<?php endforeach; ?>
 				</ul>
+
+				<div class="site-footer__language">
+					<h4 class="site-footer__sub-heading"><?php esc_html_e( 'Language', 'estecapelli' ); ?></h4>
+					<div class="lang-switch lang-switch--footer" data-lang-switch>
+						<button
+							type="button"
+							class="lang-switch__toggle"
+							aria-expanded="false"
+							aria-controls="footer-language-menu"
+							aria-label="<?php echo esc_attr( sprintf( __( 'Choose language. Current language: %s', 'estecapelli' ), $footer_language_name ) ); ?>"
+						>
+							<?php if ( $footer_language_flag ) : ?>
+								<img class="lang-switch__current-flag" src="<?php echo esc_url( $footer_language_flag ); ?>" width="20" height="14" alt="" />
+							<?php else : ?>
+								<?php estecapelli_icon( 'globe', array( 'width' => 16, 'height' => 16 ) ); ?>
+							<?php endif; ?>
+							<span class="lang-switch__current"><?php echo esc_html( $footer_language_code ); ?></span>
+							<?php estecapelli_icon( 'chevron-down', array( 'width' => 12, 'height' => 12, 'class' => 'chev' ) ); ?>
+						</button>
+						<ul class="lang-switch__menu" id="footer-language-menu" hidden>
+							<?php foreach ( $footer_languages as $language ) :
+								$code      = sanitize_key( $language['language_code'] ?? '' );
+								$name      = (string) ( $language['native_name'] ?? strtoupper( $code ) );
+								$url       = (string) ( $language['url'] ?? '' );
+								$is_active = ! empty( $language['active'] );
+								$flag      = (string) ( $language['country_flag_url'] ?? '' );
+								?>
+								<li class="<?php echo $is_active ? 'is-active' : ''; ?>">
+									<a
+										href="<?php echo esc_url( $url ); ?>"
+										lang="<?php echo esc_attr( $code ); ?>"
+										hreflang="<?php echo esc_attr( $code ); ?>"
+										<?php echo $is_active ? 'aria-current="page"' : ''; ?>
+									>
+										<?php if ( $flag ) : ?>
+											<img class="lang-switch__flag" src="<?php echo esc_url( $flag ); ?>" width="18" height="12" alt="" />
+										<?php endif; ?>
+										<span class="lang-code"><?php echo esc_html( strtoupper( $code ) ); ?></span>
+										<span class="lang-switch__name"><?php echo esc_html( $name ); ?></span>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				</div>
 			</div>
 
 			<!-- Column 4: Logo + Quick form -->
