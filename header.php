@@ -32,7 +32,7 @@ $current_language_slug = $current_language_slug ?: 'en';
 $current_language_code = strtoupper( $current_language_slug );
 $current_language_name = (string) ( $current_language['native_name'] ?? $current_language_code );
 $current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' );
-$language_home_url     = untrailingslashit( (string) get_option( 'home' ) ) . '/' . $current_language_slug . '/';
+$language_home_url     = trailingslashit( (string) get_option( 'home' ) );
 ?>
 
 <header class="site-header" data-site-header>
