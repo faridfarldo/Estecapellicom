@@ -37,6 +37,7 @@ require get_template_directory() . '/inc/acfml-layout-guard.php';
 require get_template_directory() . '/inc/before-after.php';
 require get_template_directory() . '/inc/toc.php';
 require get_template_directory() . '/inc/redirects.php';
+require get_template_directory() . '/inc/tricholab-sync.php';
 require get_template_directory() . '/inc/canonical.php';
 require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/wpml-fix.php';
