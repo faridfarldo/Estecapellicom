@@ -2698,6 +2698,14 @@
 		transition: transform 200ms;
 	}
 	.lang-switch__toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+	.lang-switch__current-flag {
+		width: 20px;
+		height: 14px;
+		object-fit: cover;
+		border-radius: 2px;
+		box-shadow: 0 0 0 1px oklch(20% 0.02 260 / 0.14);
+		flex-shrink: 0;
+	}
 
 	.lang-switch__menu {
 		position: absolute;

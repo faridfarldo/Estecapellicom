@@ -29,6 +29,7 @@ foreach ( $header_languages as $header_language ) {
 }
 $current_language_code = strtoupper( sanitize_key( $current_language['language_code'] ?? 'en' ) );
 $current_language_name = (string) ( $current_language['native_name'] ?? $current_language_code );
+$current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' );
 ?>
 
 <header class="site-header" data-site-header>
@@ -68,7 +69,11 @@ $current_language_name = (string) ( $current_language['native_name'] ?? $current
 						aria-controls="header-language-menu"
 						aria-label="<?php echo esc_attr( sprintf( __( 'Choose language. Current language: %s', 'estecapelli' ), $current_language_name ) ); ?>"
 					>
-						<?php estecapelli_icon( 'globe', array( 'width' => 16, 'height' => 16 ) ); ?>
+						<?php if ( $current_language_flag ) : ?>
+							<img class="lang-switch__current-flag" src="<?php echo esc_url( $current_language_flag ); ?>" width="20" height="14" alt="" />
+						<?php else : ?>
+							<?php estecapelli_icon( 'globe', array( 'width' => 16, 'height' => 16 ) ); ?>
+						<?php endif; ?>
 						<span class="lang-switch__current"><?php echo esc_html( $current_language_code ); ?></span>
 						<?php estecapelli_icon( 'chevron-down', array( 'width' => 12, 'height' => 12, 'class' => 'chev' ) ); ?>
 					</button>
