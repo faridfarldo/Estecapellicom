@@ -33,7 +33,7 @@ class Estecapelli_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
 		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
-		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+		$atts['href']   = ! empty( $item->url )        ? estecapelli_localize_theme_url( $item->url ) : '';
 
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {

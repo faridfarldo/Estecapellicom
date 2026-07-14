@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Signature of the current slug tables. Bump when rows/languages are added so
  * the sweep re-runs against the new data.
  */
-define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v2-fr' );
+define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v3-indexed-7-languages' );
 
 /**
  * treatment_category base slugs, keyed by the English (source) slug.
@@ -38,11 +38,12 @@ define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v2-fr' );
  * @return array
  */
 function estecapelli_slug_map_categories() {
-	return array(
-		'hair-transplant'  => array( 'fr' => 'greffe-de-cheveux' ),
-		'plastic-surgery'  => array( 'fr' => 'chirurgie-plastique' ),
-		'dental-treatment' => array( 'fr' => 'traitement-dentaire' ),
-	);
+	$maps = estecapelli_indexed_category_slugs();
+	foreach ( $maps as &$languages ) {
+		unset( $languages['en'] );
+	}
+	unset( $languages );
+	return $maps;
 }
 
 /**
@@ -53,33 +54,37 @@ function estecapelli_slug_map_categories() {
  * @return array
  */
 function estecapelli_slug_map_treatments() {
-	return array(
-		// Hair transplant.
-		'hair-transplant-overview'                                => array( 'fr' => 'apercu-de-la-greffe-de-cheveux' ),
-		'sapphire-fue-hair-transplant'                            => array( 'fr' => 'greffe-de-cheveux-fue-sapphire' ),
-		'dhi-hair-transplant'                                     => array( 'fr' => 'greffe-de-cheveux-dhi' ),
-		'exosome-fue-hair-transplant'                             => array( 'fr' => 'greffe-capillaire-exosome-fue' ),
-		'vita-treatment'                                          => array( 'fr' => 'traitement-vita' ),
-		'female-hair-transplant'                                  => array( 'fr' => 'greffe-de-cheveux-feminine' ),
-		'eyebrow-transplant'                                      => array( 'fr' => 'transplantation-de-sourcils' ),
-		'beard-transplant'                                        => array( 'fr' => 'transplantation-de-barbe' ),
-		'hair-mesotherapy'                                        => array( 'fr' => 'mesotherapie-capillaire' ),
-		'pre-hair-transplant-period'                              => array( 'fr' => 'periode-pre-transplantation-capillaire' ),
-		'post-hair-transplant-period'                             => array( 'fr' => 'periode-post-greffe-de-cheveux' ),
-		'hair-transplant-techniques-comparison2'                  => array( 'fr' => 'comparaison-des-techniques-de-greffe-de-cheveux-2' ),
-		// Plastic surgery.
-		'rhinoplasty'                                             => array( 'fr' => 'rhinoplastie' ),
-		'breast-aesthetics-breast-surgery'                        => array( 'fr' => 'esthetique-mammaire-chirurgie-mammaire' ),
-		'liposuction'                                             => array( 'fr' => 'liposuccion' ),
-		'face-and-neck-lift-surgery'                              => array( 'fr' => 'chirurgie-de-lifting-du-visage-et-du-cou' ),
-		'abdominoplasty-tummy-tuck'                               => array( 'fr' => 'abdominoplastie' ),
-		'gynecomastia'                                            => array( 'fr' => 'gynecomastie' ),
-		'obesity-surgeries-bariatric-surgery-and-gastric-balloon' => array( 'fr' => 'chirurgies-de-l-obesite-chirurgie-bariatrique-et-ballon-gastrique' ),
-		// Dental.
-		'dental-treatment-overview'                               => array( 'fr' => 'apercu-du-traitement-dentaire' ),
-		'dental-implant'                                          => array( 'fr' => 'implant-dentaire' ),
-		'hollywood-smile'                                         => array( 'fr' => 'sourire-hollywoodien' ),
-	);
+	$maps = estecapelli_indexed_treatment_slugs();
+	foreach ( $maps as &$languages ) {
+		unset( $languages['en'] );
+	}
+	unset( $languages );
+	return $maps;
+}
+
+/** Exact translated page leaf slugs, keyed by the English page path. */
+function estecapelli_slug_map_pages() {
+	$maps = array();
+	foreach ( estecapelli_indexed_route_contract() as $key => $routes ) {
+		if ( preg_match( '#^/en/(?:home|hair-transplant|plastic-surgery|dental-treatment|before-after|about-us|blog|contact)(?:/(?:our-doctors|medical-director|our-team))?$#', $key ) ) {
+			foreach ( $routes as $lang => $route ) {
+				if ( 'en' !== $lang ) {
+					$maps[ substr( $key, 4 ) ][ $lang ] = basename( $route );
+				}
+			}
+		}
+	}
+	return $maps;
+}
+
+/** Exact translated blog slugs, keyed by the English source slug. */
+function estecapelli_slug_map_posts() {
+	$maps = estecapelli_indexed_blog_slugs();
+	foreach ( $maps as &$languages ) {
+		unset( $languages['en'] );
+	}
+	unset( $languages );
+	return $maps;
 }
 
 /**
@@ -97,6 +102,8 @@ function estecapelli_wpml_slug_sweep() {
 
 	$changed  = estecapelli_slug_fix_terms( estecapelli_slug_map_categories(), 'treatment_category' );
 	$changed += estecapelli_slug_fix_posts( estecapelli_slug_map_treatments(), 'treatment' );
+	$changed += estecapelli_slug_fix_posts( estecapelli_slug_map_posts(), 'post' );
+	$changed += estecapelli_slug_fix_pages( estecapelli_slug_map_pages() );
 
 	if ( $changed ) {
 		flush_rewrite_rules( false ); // re-run next load to confirm it's settled.
@@ -110,6 +117,8 @@ function estecapelli_wpml_slug_sweep() {
  * freshly-created WPML translation gets its slug corrected on the next load.
  */
 add_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
+add_action( 'save_post_page', 'estecapelli_slug_fix_wake' );
+add_action( 'save_post_post', 'estecapelli_slug_fix_wake' );
 add_action( 'created_treatment_category', 'estecapelli_slug_fix_wake' );
 add_action( 'edited_treatment_category', 'estecapelli_slug_fix_wake' );
 function estecapelli_slug_fix_wake() {
@@ -167,7 +176,8 @@ function estecapelli_slug_fix_posts( $map, $post_type ) {
 				continue;
 			}
 			// Avoid re-entrancy through our own save_post hook.
-			remove_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
+			$save_hook = 'save_post_' . $post_type;
+			remove_action( $save_hook, 'estecapelli_slug_fix_wake' );
 			$res = wp_update_post(
 				array(
 					'ID'        => (int) $tr_id,
@@ -175,8 +185,63 @@ function estecapelli_slug_fix_posts( $map, $post_type ) {
 				),
 				true
 			);
-			add_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
+			add_action( $save_hook, 'estecapelli_slug_fix_wake' );
 			if ( ! is_wp_error( $res ) ) {
+				$count++;
+			}
+		}
+	}
+	return $count;
+}
+
+/**
+ * Correct translated page slugs and attach child pages to translated parents.
+ *
+ * @return int Number of pages updated.
+ */
+function estecapelli_slug_fix_pages( $map ) {
+	$count = 0;
+	foreach ( $map as $english_path => $by_lang ) {
+		$source = get_page_by_path( $english_path, OBJECT, 'page' );
+		if ( ! $source ) {
+			continue;
+		}
+		$source_id = (int) apply_filters( 'wpml_object_id', $source->ID, 'page', true, 'en' );
+		$source    = get_post( $source_id ?: $source->ID );
+		$parent_path = dirname( $english_path );
+		$parent      = '.' !== $parent_path ? get_page_by_path( $parent_path, OBJECT, 'page' ) : null;
+		if ( $parent ) {
+			$parent_id = (int) apply_filters( 'wpml_object_id', $parent->ID, 'page', true, 'en' );
+			$parent    = get_post( $parent_id ?: $parent->ID );
+		}
+
+		foreach ( $by_lang as $lang => $slug ) {
+			$target_id = (int) apply_filters( 'wpml_object_id', $source->ID, 'page', false, $lang );
+			if ( ! $target_id || $target_id === (int) $source->ID ) {
+				continue;
+			}
+			$target_parent = 0;
+			if ( $parent ) {
+				$translated_parent = (int) apply_filters( 'wpml_object_id', $parent->ID, 'page', false, $lang );
+				$target_parent     = ( $translated_parent && $translated_parent !== (int) $parent->ID )
+					? $translated_parent
+					: null;
+			}
+			$updates = array( 'ID' => $target_id );
+			if ( get_post_field( 'post_name', $target_id ) !== $slug ) {
+				$updates['post_name'] = $slug;
+			}
+			if ( null !== $target_parent && (int) wp_get_post_parent_id( $target_id ) !== $target_parent ) {
+				$updates['post_parent'] = $target_parent;
+			}
+			if ( 1 === count( $updates ) ) {
+				continue;
+			}
+
+			remove_action( 'save_post_page', 'estecapelli_slug_fix_wake' );
+			$result = wp_update_post( $updates, true );
+			add_action( 'save_post_page', 'estecapelli_slug_fix_wake' );
+			if ( ! is_wp_error( $result ) ) {
 				$count++;
 			}
 		}
@@ -190,7 +255,7 @@ function estecapelli_slug_fix_posts( $map, $post_type ) {
  */
 function estecapelli_source_term_id( $slug, $taxonomy ) {
 	global $wpdb;
-	return (int) $wpdb->get_var(
+	$candidate = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			"SELECT t.term_id FROM {$wpdb->terms} t
 			 INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_id = t.term_id
@@ -199,6 +264,8 @@ function estecapelli_source_term_id( $slug, $taxonomy ) {
 			$taxonomy
 		)
 	);
+	$source = $candidate ? (int) apply_filters( 'wpml_object_id', $candidate, $taxonomy, true, 'en' ) : 0;
+	return $source ?: $candidate;
 }
 
 /**
@@ -206,7 +273,7 @@ function estecapelli_source_term_id( $slug, $taxonomy ) {
  */
 function estecapelli_source_post_id( $slug, $post_type ) {
 	global $wpdb;
-	return (int) $wpdb->get_var(
+	$candidate = (int) $wpdb->get_var(
 		$wpdb->prepare(
 			"SELECT ID FROM {$wpdb->posts}
 			 WHERE post_name = %s AND post_type = %s AND post_status = 'publish' LIMIT 1",
@@ -214,4 +281,6 @@ function estecapelli_source_post_id( $slug, $post_type ) {
 			$post_type
 		)
 	);
+	$source = $candidate ? (int) apply_filters( 'wpml_object_id', $candidate, $post_type, true, 'en' ) : 0;
+	return $source ?: $candidate;
 }

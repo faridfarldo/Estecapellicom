@@ -26,11 +26,11 @@ $secondary = $data['cta_secondary'] ?? array();
 // shared consultation link empty, resolve sensible defaults so each card is
 // always connected to its own page and the consultation CTA opens the popup.
 $cta_fallbacks   = array(
-	'exosome'   => home_url( '/en/hair-transplant/exosome-fue-hair-transplant' ),
-	'tricholab' => home_url( '/en/hair-transplant/tricholab' ),
-	'vita'      => home_url( '/en/hair-transplant/vita-treatment' ),
+	'exosome'   => estecapelli_indexed_url( '/en/hair-transplant/exosome-fue-hair-transplant' ),
+	'tricholab' => estecapelli_indexed_url( '/en/hair-transplant/tricholab' ),
+	'vita'      => estecapelli_indexed_url( '/en/hair-transplant/vita-treatment' ),
 );
-$secondary_url   = ! empty( $secondary['url'] ) ? $secondary['url'] : home_url( '/en/contact' );
+$secondary_url   = ! empty( $secondary['url'] ) ? estecapelli_localize_theme_url( $secondary['url'] ) : estecapelli_indexed_url( '/en/contact' );
 $secondary_label = ! empty( $secondary['label'] ) ? $secondary['label'] : ( $secondary['title'] ?? __( 'Schedule a Free Consultation', 'estecapelli' ) );
 ?>
 

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
-	define( 'ESTECAPELLI_VERSION', '1.23.0' );
+	define( 'ESTECAPELLI_VERSION', '1.24.0' );
 }
 
 if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {
@@ -25,6 +25,7 @@ if ( ! defined( 'ESTECAPELLI_COUNTRY_COUNT' ) ) {
 	define( 'ESTECAPELLI_COUNTRY_COUNT', '40' );
 }
 
+require get_template_directory() . '/inc/indexed-urls.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/svg-support.php';
 require get_template_directory() . '/inc/class-estecapelli-walker-nav-menu.php';

@@ -27,7 +27,7 @@ $arch_desc   = get_the_archive_description();
 			<?php else : ?>
 				<p class="blog-hero__lead"><?php esc_html_e( 'Articles from the Estecapelli journal.', 'estecapelli' ); ?></p>
 			<?php endif; ?>
-			<a class="blog-hero__all" href="<?php echo esc_url( home_url( '/en/blog' ) ); ?>">
+			<a class="blog-hero__all" href="<?php echo esc_url( estecapelli_indexed_url( '/en/blog' ) ); ?>">
 				<?php estecapelli_icon( 'chevron-left', array( 'width' => 14, 'height' => 14 ) ); ?>
 				<?php esc_html_e( 'All articles', 'estecapelli' ); ?>
 			</a>

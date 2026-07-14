@@ -210,7 +210,7 @@ foreach ( $result_ids as $rid ) {
 			// right. Entrance animations replay each time the slide becomes active.
 			$dental_img    = get_template_directory_uri() . '/assets/images/hero/dental-hero.webp';
 			$dental_before = get_template_directory_uri() . '/assets/images/hero/dental-before.webp';
-			$dental_cta    = home_url( '/en/dental-treatment/' );
+			$dental_cta    = estecapelli_indexed_url( '/en/dental-treatment' );
 			?>
 			<div class="hero-x__slide hero-x__slide--dental" data-hero-slide data-hero-title="<?php esc_attr_e( 'Estecapelli Dental', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $dental_img ); ?>">
 				<img class="hero-dnt__bg" src="<?php echo esc_url( $dental_img ); ?>" alt="<?php esc_attr_e( 'Estecapelli dental patient smiling', 'estecapelli' ); ?>" loading="lazy" decoding="async" />

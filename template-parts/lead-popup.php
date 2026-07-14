@@ -37,7 +37,7 @@ $wa_url = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_u
 			<p class="lead-popup__lead"><?php esc_html_e( 'Leave your details and a medical consultant will get back to you shortly — no obligation.', 'estecapelli' ); ?></p>
 		</div>
 
-		<form class="lead-popup__form contact-form" method="post" action="<?php echo esc_url( home_url( '/en/contact' ) ); ?>" novalidate>
+		<form class="lead-popup__form contact-form" method="post" action="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>" novalidate>
 			<div class="contact-form__field">
 				<label for="pop-name"><?php esc_html_e( 'Full name', 'estecapelli' ); ?> <span aria-hidden="true">*</span></label>
 				<input id="pop-name" type="text" name="lead_name" required autocomplete="name" placeholder="<?php esc_attr_e( 'Name and surname', 'estecapelli' ); ?>" />
@@ -64,7 +64,7 @@ $wa_url = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_u
 			<input type="hidden" name="utm_campaign" value="" />
 			<input type="hidden" name="utm_content" value="" />
 			<input type="hidden" name="utm_term" value="" />
-			<input type="hidden" name="lead_return" value="<?php echo esc_url( home_url( '/en/contact' ) ); ?>" />
+			<input type="hidden" name="lead_return" value="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>" />
 			<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
 
 			<div class="lead-popup__feedback" role="status" aria-live="polite" hidden></div>

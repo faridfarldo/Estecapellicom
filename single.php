@@ -23,7 +23,7 @@ while ( have_posts() ) :
 
 		<header class="single-post__hero">
 			<div class="shell single-post__hero-shell">
-				<a class="single-post__back" href="<?php echo esc_url( home_url( '/en/blog' ) ); ?>">
+				<a class="single-post__back" href="<?php echo esc_url( estecapelli_indexed_url( '/en/blog' ) ); ?>">
 					<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
 					<?php esc_html_e( 'All articles', 'estecapelli' ); ?>
 				</a>

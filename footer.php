@@ -17,7 +17,7 @@ foreach ( $footer_languages as $language ) {
 		break;
 	}
 }
-$footer_language_code = strtoupper( sanitize_key( $footer_language['language_code'] ?? 'en' ) );
+$footer_language_code = strtoupper( estecapelli_indexed_language_code( $footer_language['language_code'] ?? 'en' ) );
 $footer_language_name = (string) ( $footer_language['native_name'] ?? $footer_language_code );
 $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 ?>
@@ -30,7 +30,7 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 			<p><?php esc_html_e( 'Speak with our medical team — free, no obligation. Get a personalized plan based on your goals.', 'estecapelli' ); ?></p>
 		</div>
 		<div class="cta-band__actions">
-			<a class="btn btn-accent btn-lg" href="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
+			<a class="btn btn-accent btn-lg" href="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>">
 				<?php esc_html_e( 'Get a Free Consultation', 'estecapelli' ); ?>
 				<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
 			</a>
@@ -165,7 +165,7 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 					<?php estecapelli_brand_mark( 'footer' ); ?>
 				</div>
 
-				<form class="lead-form" method="post" action="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
+				<form class="lead-form" method="post" action="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>">
 					<p class="lead-form__intro"><?php esc_html_e( 'Get a free consultation — leave your details and we will reach out.', 'estecapelli' ); ?></p>
 					<div class="lead-form__field">
 						<label for="lead-name" class="sr-only"><?php esc_html_e( 'Name and surname', 'estecapelli' ); ?></label>
@@ -220,13 +220,13 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 					echo '<ul class="site-footer__legal-list">';
 					printf(
 						'<li><a href="%1$s">%2$s</a></li><li><a href="%3$s">%4$s</a></li><li><a href="%5$s">%6$s</a></li><li><a href="%7$s">%8$s</a></li>',
-						esc_url( home_url( '/en/privacy-policy' ) ),
+						esc_url( estecapelli_translated_page_url( 'privacy-policy' ) ),
 						esc_html__( 'Privacy Policy', 'estecapelli' ),
-						esc_url( home_url( '/en/terms' ) ),
+						esc_url( estecapelli_translated_page_url( 'terms' ) ),
 						esc_html__( 'Terms', 'estecapelli' ),
-						esc_url( home_url( '/en/cookie-policy' ) ),
+						esc_url( estecapelli_translated_page_url( 'cookie-policy' ) ),
 						esc_html__( 'Cookie Policy', 'estecapelli' ),
-						esc_url( home_url( '/en/kvkk-disclosure' ) ),
+						esc_url( estecapelli_translated_page_url( 'kvkk-disclosure' ) ),
 						esc_html__( 'KVKK Notice', 'estecapelli' )
 					);
 					echo '</ul>';

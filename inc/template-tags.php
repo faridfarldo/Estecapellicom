@@ -88,119 +88,6 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 	}
 }
 
-if ( ! function_exists( 'estecapelli_header_languages' ) ) {
-	/**
-	 * Return WPML's active languages for the theme's custom switchers.
-	 *
-	 * WPML supplies the translated URL for the current object. Missing
-	 * translations deliberately link to that language's homepage instead of a
-	 * non-existent translated page. English is normalised to the indexed /en/
-	 * route because that prefix is owned by the theme on this installation.
-	 *
-	 * @return array<int,array<string,mixed>>
-	 */
-	function estecapelli_header_languages() {
-		$languages = apply_filters(
-			'wpml_active_languages',
-			null,
-			array( 'skip_missing' => 0 )
-		);
-
-		if ( ! is_array( $languages ) || ! $languages ) {
-			return array(
-				array(
-					'active'           => 1,
-					'language_code'    => 'en',
-					'native_name'      => 'English',
-					'translated_name'  => 'English',
-					'country_flag_url' => '',
-					'url'              => home_url( '/en/' ),
-				),
-			);
-		}
-
-		$site_home = untrailingslashit( (string) get_option( 'home' ) );
-		foreach ( $languages as &$language ) {
-			$code = sanitize_key( $language['language_code'] ?? '' );
-			$url  = (string) ( $language['url'] ?? '' );
-
-			if ( 'en' !== $code || ! $site_home || 0 !== strpos( $url, $site_home ) ) {
-				continue;
-			}
-
-			$relative = substr( $url, strlen( $site_home ) );
-			$relative = preg_replace( '#^/en(?=/|$)#', '', $relative );
-			$language['url'] = $site_home . '/en' . ( $relative ?: '/' );
-		}
-		unset( $language );
-
-		return array_values( $languages );
-	}
-}
-
-if ( ! function_exists( 'estecapelli_nav_url' ) ) {
-	/**
-	 * Return an indexed, language-specific URL for the coded header navigation.
-	 *
-	 * The English paths are the source keys used by the theme. French paths are
-	 * intentionally mapped to the live site's indexed slugs rather than created
-	 * by translating words at runtime.
-	 *
-	 * @param string $english_path Absolute path in the indexed English tree.
-	 * @return string
-	 */
-	function estecapelli_nav_url( $english_path ) {
-		$language = sanitize_key( (string) apply_filters( 'wpml_current_language', null ) );
-		if ( ! $language && defined( 'ICL_LANGUAGE_CODE' ) ) {
-			$language = sanitize_key( (string) ICL_LANGUAGE_CODE );
-		}
-
-		$english_path = '/' . ltrim( (string) $english_path, '/' );
-		$path_key     = untrailingslashit( $english_path );
-		$path_key     = $path_key ?: '/';
-
-		$paths = array(
-			'fr' => array(
-				'/en'                                                                                => '/fr/maison',
-				'/en/hair-transplant'                                                                => '/fr/greffe-de-cheveux',
-				'/en/hair-transplant/sapphire-fue-hair-transplant'                                   => '/fr/greffe-de-cheveux/greffe-de-cheveux-fue-sapphire',
-				'/en/hair-transplant/dhi-hair-transplant'                                            => '/fr/greffe-de-cheveux/greffe-de-cheveux-dhi',
-				'/en/hair-transplant/exosome-fue-hair-transplant'                                    => '/fr/greffe-de-cheveux/greffe-capillaire-exosome-fue',
-				'/en/hair-transplant/vita-treatment'                                                 => '/fr/greffe-de-cheveux/traitement-vita',
-				'/en/hair-transplant/female-hair-transplant'                                        => '/fr/greffe-de-cheveux/greffe-de-cheveux-feminine',
-				'/en/hair-transplant/hair-mesotherapy'                                              => '/fr/greffe-de-cheveux/mesotherapie-capillaire',
-				'/en/hair-transplant/beard-transplant'                                              => '/fr/greffe-de-cheveux/transplantation-de-barbe',
-				'/en/hair-transplant/eyebrow-transplant'                                            => '/fr/greffe-de-cheveux/transplantation-de-sourcils',
-				'/en/hair-transplant/pre-hair-transplant-period'                                    => '/fr/greffe-de-cheveux/periode-pre-transplantation-capillaire',
-				'/en/hair-transplant/post-hair-transplant-period'                                   => '/fr/greffe-de-cheveux/periode-post-greffe-de-cheveux',
-				'/en/hair-transplant/tricholab'                                                      => '/fr/greffe-de-cheveux/tricholab',
-				'/en/plastic-surgery'                                                                => '/fr/chirurgie-plastique',
-				'/en/plastic-surgery/rhinoplasty'                                                    => '/fr/chirurgie-plastique/rhinoplastie',
-				'/en/plastic-surgery/bbl'                                                            => '/fr/chirurgie-plastique/bbl',
-				'/en/plastic-surgery/liposuction'                                                    => '/fr/chirurgie-plastique/liposuccion',
-				'/en/plastic-surgery/breast-aesthetics-breast-surgery'                               => '/fr/chirurgie-plastique/esthetique-mammaire-chirurgie-mammaire',
-				'/en/plastic-surgery/abdominoplasty-tummy-tuck'                                      => '/fr/chirurgie-plastique/abdominoplastie',
-				'/en/plastic-surgery/gynecomastia'                                                   => '/fr/chirurgie-plastique/gynecomastie',
-				'/en/plastic-surgery/face-and-neck-lift-surgery'                                     => '/fr/chirurgie-plastique/chirurgie-de-lifting-du-visage-et-du-cou',
-				'/en/plastic-surgery/obesity-surgeries-bariatric-surgery-and-gastric-balloon'        => '/fr/chirurgie-plastique/chirurgies-de-l-obesite-chirurgie-bariatrique-et-ballon-gastrique',
-				'/en/dental-treatment'                                                               => '/fr/traitement-dentaire',
-				'/en/dental-treatment/dental-implant'                                                => '/fr/traitement-dentaire/implant-dentaire',
-				'/en/dental-treatment/hollywood-smile'                                               => '/fr/traitement-dentaire/sourire-hollywoodien',
-				'/en/before-after'                                                                   => '/fr/avant-apres',
-				'/en/about-us'                                                                       => '/fr/a-propos-de-nous',
-				'/en/about-us/our-doctors'                                                           => '/fr/a-propos-de-nous/nos-medecins',
-				'/en/about-us/our-team'                                                              => '/fr/a-propos-de-nous/notre-equipe',
-				'/en/blog'                                                                           => '/fr/blog',
-				'/en/contact'                                                                        => '/fr/contact',
-			),
-		);
-
-		$localized_path = $paths[ $language ][ $path_key ] ?? $english_path;
-
-		return home_url( $localized_path );
-	}
-}
-
 if ( ! function_exists( 'estecapelli_render_item_icon' ) ) {
 	/**
 	 * Render an item's icon: an uploaded custom icon wins; otherwise the built-in
@@ -416,16 +303,22 @@ if ( ! function_exists( 'estecapelli_footer_treatments' ) ) {
 		if ( function_exists( 'get_field' ) ) {
 			$acf = get_field( 'footer_treatments', 'option' );
 			if ( ! empty( $acf ) ) {
+				foreach ( $acf as &$item ) {
+					if ( ! empty( $item['url'] ) ) {
+						$item['url'] = estecapelli_localize_theme_url( $item['url'] );
+					}
+				}
+				unset( $item );
 				return $acf;
 			}
 		}
 		return array(
-			array( 'label' => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ), 'url' => home_url( '/en/hair-transplant/sapphire-fue-hair-transplant' ) ),
-			array( 'label' => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),  'url' => home_url( '/en/hair-transplant/exosome-fue-hair-transplant' ) ),
-			array( 'label' => __( 'DHI Hair Transplant', 'estecapelli' ),          'url' => home_url( '/en/hair-transplant/dhi-hair-transplant' ) ),
-			array( 'label' => __( 'VITA Treatment', 'estecapelli' ),               'url' => home_url( '/en/hair-transplant/vita-treatment' ) ),
-			array( 'label' => __( 'Female Hair Transplant', 'estecapelli' ),       'url' => home_url( '/en/hair-transplant/female-hair-transplant' ) ),
-			array( 'label' => __( 'Beard Transplant', 'estecapelli' ),             'url' => home_url( '/en/hair-transplant/beard-transplant' ) ),
+			array( 'label' => __( 'Sapphire FUE Hair Transplant', 'estecapelli' ), 'url' => estecapelli_indexed_url( '/en/hair-transplant/sapphire-fue-hair-transplant' ) ),
+			array( 'label' => __( 'Exosome FUE Hair Transplant', 'estecapelli' ),  'url' => estecapelli_indexed_url( '/en/hair-transplant/exosome-fue-hair-transplant' ) ),
+			array( 'label' => __( 'DHI Hair Transplant', 'estecapelli' ),          'url' => estecapelli_indexed_url( '/en/hair-transplant/dhi-hair-transplant' ) ),
+			array( 'label' => __( 'VITA Treatment', 'estecapelli' ),               'url' => estecapelli_indexed_url( '/en/hair-transplant/vita-treatment' ) ),
+			array( 'label' => __( 'Female Hair Transplant', 'estecapelli' ),       'url' => estecapelli_indexed_url( '/en/hair-transplant/female-hair-transplant' ) ),
+			array( 'label' => __( 'Beard Transplant', 'estecapelli' ),             'url' => estecapelli_indexed_url( '/en/hair-transplant/beard-transplant' ) ),
 		);
 	}
 }
@@ -438,17 +331,23 @@ if ( ! function_exists( 'estecapelli_footer_sitemap' ) ) {
 		if ( function_exists( 'get_field' ) ) {
 			$acf = get_field( 'footer_sitemap', 'option' );
 			if ( ! empty( $acf ) ) {
+				foreach ( $acf as &$item ) {
+					if ( ! empty( $item['url'] ) ) {
+						$item['url'] = estecapelli_localize_theme_url( $item['url'] );
+					}
+				}
+				unset( $item );
 				return $acf;
 			}
 		}
 		return array(
-			array( 'label' => __( 'Home', 'estecapelli' ),             'url' => home_url( '/en/' ) ),
-			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => home_url( '/en/about-us' ) ),
-			array( 'label' => __( 'Our Doctors', 'estecapelli' ),      'url' => home_url( '/en/about-us/our-doctors' ) ),
-			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => home_url( '/en/before-after' ) ),
-			array( 'label' => __( 'Treatments', 'estecapelli' ),       'url' => home_url( '/en/hair-transplant' ) ),
-			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => home_url( '/en/blog' ) ),
-			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => home_url( '/en/contact' ) ),
+			array( 'label' => __( 'Home', 'estecapelli' ),             'url' => estecapelli_indexed_url( '/en/home' ) ),
+			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => estecapelli_indexed_url( '/en/about-us' ) ),
+			array( 'label' => __( 'Our Doctors', 'estecapelli' ),      'url' => estecapelli_indexed_url( '/en/about-us/our-doctors' ) ),
+			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => estecapelli_indexed_url( '/en/before-after' ) ),
+			array( 'label' => __( 'Treatments', 'estecapelli' ),       'url' => estecapelli_indexed_url( '/en/hair-transplant' ) ),
+			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => estecapelli_indexed_url( '/en/blog' ) ),
+			array( 'label' => __( 'Contact', 'estecapelli' ),          'url' => estecapelli_indexed_url( '/en/contact' ) ),
 		);
 	}
 }

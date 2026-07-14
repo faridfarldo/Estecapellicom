@@ -1,8 +1,8 @@
 # Estecapelli — Live URL Map (migration master reference)
 
 Source: the 7 language sitemaps at https://estecapelli.com/sitemap.xml
-Captured: 2026-07-13. **595 indexed URLs** = 85 per language × 7 languages
-(en, tr, fr, it, es, pl, pt).
+Captured: 2026-07-13. **590 indexed URLs**: 85 each for EN and IT, and 84
+each for TR, FR, ES, PL and PT (en, tr, fr, it, es, pl, pt).
 
 **Golden rule of the migration:** every URL below must, on the new site, either
 load as a real page at the *same* address, or 301-redirect to the right place.
@@ -109,7 +109,7 @@ translates (our-doctors / medical-director tables in §1).
 
 ## 6. Before/After gallery  (`/{lang}/{before-after-base}/{ITEM}`)
 
-40 items. Item slugs are **identical across all languages** (language-neutral):
+35 items. Item slugs are **identical across all languages** (language-neutral):
 
 ```
 beforeafter-hairtransplant-vitatreatment-1 … -10   (10)
@@ -118,7 +118,7 @@ beforeafter-hairtransplant-exosome-1 … -5          (5)
 beforeafter-hairtransplant-dhi-1 … -3              (3)
 beforeafte_13   beforeafter_15   beforeafter_16   beforeafter_17   beforeafter_18   (5)
 ```
-(= 35 named + 5 numbered = 40)
+(= 30 named + 5 numbered = 35)
 
 ---
 

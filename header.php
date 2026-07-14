@@ -27,12 +27,11 @@ foreach ( $header_languages as $header_language ) {
 		break;
 	}
 }
-$current_language_slug = sanitize_key( $current_language['language_code'] ?? 'en' );
-$current_language_slug = $current_language_slug ?: 'en';
+$current_language_slug = estecapelli_indexed_language_code( $current_language['language_code'] ?? 'en' );
 $current_language_code = strtoupper( $current_language_slug );
 $current_language_name = (string) ( $current_language['native_name'] ?? $current_language_code );
 $current_language_flag = (string) ( $current_language['country_flag_url'] ?? '' );
-$language_home_url     = trailingslashit( (string) get_option( 'home' ) );
+$language_home_url     = estecapelli_language_root_url( $current_language_slug );
 ?>
 
 <header class="site-header" data-site-header>

@@ -106,9 +106,8 @@ function estecapelli_legacy_redirect_rules() {
 		array( 'from' => '#^home/?$#i', 'to' => '/en/' ),
 
 		// ---- Doctors moved from nested pages to the `doctor` post type. The
-		//      surgeons kept their /about-us/our-doctors/{slug} path, but the
-		//      Medical Director's profile moved out from under /medical-director/. ----
-		array( 'from' => '#^about-us/medical-director/mehmet-hanifi-kutlar/?$#i', 'to' => '/en/about-us/our-doctors/mehmet-hanifi-kutlar' ),
+		//      surgeons and Medical Director keep their exact indexed parents. ----
+		array( 'from' => '#^about-us/medical-director/mehmet-hanifi-kutlar/?$#i', 'to' => '/en/about-us/medical-director/mehmet-hanifi-kutlar' ),
 
 		// ---- Previous build shipped treatments at /treatments/{slug}/.
 		//      Canonical is now /en/{category}/{service}. Every treatment we

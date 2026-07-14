@@ -44,7 +44,7 @@ while ( have_posts() ) :
 		'credentials' => is_array( $credentials ) ? $credentials : array(),
 		'cta'         => array(
 			'label' => __( 'Book a Free Consultation', 'estecapelli' ),
-			'url'   => home_url( '/en/contact' ),
+			'url'   => estecapelli_indexed_url( '/en/contact' ),
 		),
 	);
 

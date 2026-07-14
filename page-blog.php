@@ -39,7 +39,7 @@ $cats = get_categories( array( 'hide_empty' => true ) );
 
 			<?php if ( ! empty( $cats ) && 1 === $paged ) : ?>
 				<nav class="blog-filters" aria-label="<?php esc_attr_e( 'Article categories', 'estecapelli' ); ?>">
-					<a class="blog-filter is-active" href="<?php echo esc_url( home_url( '/en/blog' ) ); ?>"><?php esc_html_e( 'All', 'estecapelli' ); ?></a>
+					<a class="blog-filter is-active" href="<?php echo esc_url( estecapelli_indexed_url( '/en/blog' ) ); ?>"><?php esc_html_e( 'All', 'estecapelli' ); ?></a>
 					<?php foreach ( $cats as $c ) : ?>
 						<a class="blog-filter" href="<?php echo esc_url( get_category_link( $c->term_id ) ); ?>"><?php echo esc_html( $c->name ); ?></a>
 					<?php endforeach; ?>
@@ -104,7 +104,7 @@ $cats = get_categories( array( 'hide_empty' => true ) );
 					echo wp_kses_post(
 						paginate_links(
 							array(
-								'base'      => esc_url_raw( add_query_arg( 'paged', '%#%', home_url( '/en/blog' ) ) ),
+								'base'      => esc_url_raw( add_query_arg( 'paged', '%#%', estecapelli_indexed_url( '/en/blog' ) ) ),
 								'format'    => '',
 								'current'   => $paged,
 								'total'     => $blog->max_num_pages,

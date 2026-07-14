@@ -74,7 +74,7 @@ if ( empty( $techniques ) ) {
 // row you can swipe through. The other techniques keep the moving wall.
 $plain_gallery_slugs = array( 'female-hair-transplant', 'beard-transplant' );
 
-$gallery_url = home_url( '/en/before-after' );
+$gallery_url = estecapelli_indexed_url( '/en/before-after' );
 ?>
 
 <section class="home-ba" aria-labelledby="home-ba-title">

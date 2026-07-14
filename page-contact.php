@@ -117,7 +117,7 @@ $error_msg  = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_
 					</div>
 				<?php endif; ?>
 
-				<form class="contact-form" method="post" action="<?php echo esc_url( home_url( '/en/contact' ) ); ?>">
+				<form class="contact-form" method="post" action="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>">
 					<div class="contact-form__row">
 						<div class="contact-form__field">
 							<label for="cf-name"><?php esc_html_e( 'Full name', 'estecapelli' ); ?> <span aria-hidden="true">*</span></label>

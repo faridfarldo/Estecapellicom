@@ -318,7 +318,7 @@ function estecapelli_handle_lead() {
 	// Post/Redirect/Get → return to the submitting page. On a validation error
 	// come back with ?error=… instead of ?sent=1 so we never fake success.
 	$return = isset( $_POST['lead_return'] ) ? wp_validate_redirect( esc_url_raw( wp_unslash( $_POST['lead_return'] ) ), '' ) : '';
-	$base   = $return ?: home_url( '/en/contact' );
+	$base   = $return ?: estecapelli_indexed_url( '/en/contact' );
 	$anchor = $return ? '#lead-form' : '#contact-form';
 	if ( is_wp_error( $result ) ) {
 		$redirect = add_query_arg( 'lead_error', rawurlencode( $result->get_error_code() ), $base ) . $anchor;
