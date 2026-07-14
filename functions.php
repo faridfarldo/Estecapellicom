@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_VERSION' ) ) {
-	define( 'ESTECAPELLI_VERSION', '1.29.0' );
+	define( 'ESTECAPELLI_VERSION', '1.30.0' );
 }
 
 if ( ! defined( 'ESTECAPELLI_WHATSAPP' ) ) {

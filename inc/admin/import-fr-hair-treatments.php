@@ -615,9 +615,10 @@ function estecapelli_fr_hair_category_unadjusted( array $settings = array() ) {
  * @param array<string,mixed> $translation Translation overlay.
  * @param int                 $french_term_id French category term ID.
  * @param callable            $seed_loader English source-seed resolver.
+ * @param bool                $force_relationship Replace a conflicting WPML slot directly.
  * @return int|WP_Error French post ID.
  */
-function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $seed_loader = 'estecapelli_fr_hair_source_seed' ) {
+function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $seed_loader = 'estecapelli_fr_hair_source_seed', $force_relationship = false ) {
 	$source_slug = $translation['source_slug'];
 	if ( ! is_callable( $seed_loader ) ) {
 		return new WP_Error( 'fr_hair_invalid_seed_loader', 'The French treatment source-seed resolver is invalid.' );
@@ -653,8 +654,12 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $s
 	}
 
 	// Prefer the relationship that actually occupies the French slot in the
-	// source TRID. WPML's object-id cache may be stale after a failed import.
-	$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'fr' );
+	// source TRID. A forced repair first prefers the exact indexed slug so a
+	// stale slot occupant cannot cause a different French post to be overwritten.
+	$target_id = $force_relationship ? estecapelli_fr_hair_raw_post_id( $translation['slug'], $source_id ) : 0;
+	if ( ! $target_id ) {
+		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'fr' );
+	}
 	if ( $target_id ) {
 		$raw_target = get_post( $target_id );
 		if ( ! $raw_target || 'treatment' !== $raw_target->post_type || 'trash' === $raw_target->post_status || $target_id === $source_id ) {
@@ -713,6 +718,13 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $s
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
+
+	if ( $force_relationship ) {
+		$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, 'fr', $source_language );
+		if ( ! $forced ) {
+			return new WP_Error( 'fr_hair_post_force_link_failed', sprintf( 'The French WPML relationship could not be rebuilt for %s.', $source_slug ) );
+		}
+	}
 
 	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'fr' );
 	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'fr' ) ) {

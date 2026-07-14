@@ -409,3 +409,68 @@ function estecapelli_wpml_repair_relationship_raw( $element_id, $element_type, $
 
 	return false !== $saved && estecapelli_wpml_element_matches_raw( $element_id, $element_type, $trid, $language );
 }
+
+/**
+ * Replace one WPML group/language slot with a known canonical element.
+ *
+ * This is reserved for explicit, version-controlled imports. Both the target's
+ * old relationship and the stale occupant of the requested slot are replaced
+ * atomically, while rows belonging to other element types/languages are left
+ * untouched.
+ */
+function estecapelli_wpml_replace_language_slot_raw( $element_id, $element_type, $trid, $language, $source_language ) {
+	global $wpdb;
+	$table = $wpdb->prefix . 'icl_translations';
+	$wpdb->query( 'START TRANSACTION' );
+
+	$translation_id = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT translation_id FROM {$table}
+			 WHERE element_id = %d AND element_type = %s
+			 ORDER BY translation_id ASC LIMIT 1",
+			(int) $element_id,
+			(string) $element_type
+		)
+	);
+	$slot_deleted   = $wpdb->query(
+		$wpdb->prepare(
+			"DELETE FROM {$table}
+			 WHERE trid = %d AND element_type = %s AND language_code = %s AND element_id <> %d",
+			(int) $trid,
+			(string) $element_type,
+			(string) $language,
+			(int) $element_id
+		)
+	);
+	$values         = array(
+		'trid'                 => (int) $trid,
+		'language_code'        => (string) $language,
+		'source_language_code' => (string) $source_language,
+	);
+	if ( $translation_id ) {
+		$saved = $wpdb->update(
+			$table,
+			$values,
+			array( 'translation_id' => $translation_id ),
+			array( '%d', '%s', '%s' ),
+			array( '%d' )
+		);
+	} else {
+		$values['element_type'] = (string) $element_type;
+		$values['element_id']   = (int) $element_id;
+		$saved                  = $wpdb->insert(
+			$table,
+			$values,
+			array( '%d', '%s', '%s', '%s', '%d' )
+		);
+	}
+
+	if ( false === $slot_deleted || false === $saved ) {
+		$wpdb->query( 'ROLLBACK' );
+		return false;
+	}
+
+	$valid = estecapelli_wpml_element_matches_raw( $element_id, $element_type, $trid, $language );
+	$wpdb->query( $valid ? 'COMMIT' : 'ROLLBACK' );
+	return $valid;
+}

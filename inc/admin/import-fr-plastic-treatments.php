@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_PLASTIC_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_PLASTIC_IMPORT_VERSION', '2026-07-14.4' );
+	define( 'ESTECAPELLI_FR_PLASTIC_IMPORT_VERSION', '2026-07-14.5' );
 }
 
 /**
@@ -108,6 +108,47 @@ function estecapelli_fr_plastic_load_translations() {
 	return $loaded;
 }
 
+/** Return the canonical French Plastic Surgery category. */
+function estecapelli_fr_plastic_category() {
+	return estecapelli_fr_hair_category(
+		array(
+			'source_slug' => 'plastic-surgery',
+			'target_slug' => 'chirurgie-plastique',
+			'target_name' => 'Chirurgie plastique',
+			'label'       => 'Plastic Surgery',
+		)
+	);
+}
+
+/**
+ * Force-import one French Plastic Surgery treatment from its validated overlay.
+ *
+ * @param string $source_slug English source slug.
+ * @return int|WP_Error French post ID.
+ */
+function estecapelli_import_one_fr_plastic_treatment( $source_slug ) {
+	if ( ! isset( estecapelli_fr_plastic_manifest()[ $source_slug ] ) ) {
+		return new WP_Error( 'fr_plastic_unknown_treatment', 'Unknown French Plastic Surgery treatment.' );
+	}
+
+	$translations = estecapelli_fr_plastic_load_translations();
+	if ( is_wp_error( $translations ) ) {
+		return $translations;
+	}
+	$french_term_id = estecapelli_fr_plastic_category();
+	if ( is_wp_error( $french_term_id ) ) {
+		return $french_term_id;
+	}
+
+	foreach ( $translations as $translation ) {
+		if ( $source_slug === $translation['source_slug'] ) {
+			return estecapelli_fr_hair_import_one( $translation, $french_term_id, 'estecapelli_fr_plastic_source_seed', true );
+		}
+	}
+
+	return new WP_Error( 'fr_plastic_translation_missing', 'The requested French translation overlay was not found.' );
+}
+
 /**
  * Run the complete French Plastic Surgery import.
  *
@@ -131,21 +172,14 @@ function estecapelli_run_fr_plastic_import() {
 		return $translations;
 	}
 
-	$french_term_id = estecapelli_fr_hair_category(
-		array(
-			'source_slug' => 'plastic-surgery',
-			'target_slug' => 'chirurgie-plastique',
-			'target_name' => 'Chirurgie plastique',
-			'label'       => 'Plastic Surgery',
-		)
-	);
+	$french_term_id = estecapelli_fr_plastic_category();
 	if ( is_wp_error( $french_term_id ) ) {
 		return $french_term_id;
 	}
 
 	$imported = array();
 	foreach ( $translations as $translation ) {
-		$result = estecapelli_fr_hair_import_one( $translation, $french_term_id, 'estecapelli_fr_plastic_source_seed' );
+		$result = estecapelli_fr_hair_import_one( $translation, $french_term_id, 'estecapelli_fr_plastic_source_seed', true );
 		if ( is_wp_error( $result ) ) {
 			return new WP_Error(
 				$result->get_error_code(),
@@ -156,6 +190,35 @@ function estecapelli_run_fr_plastic_import() {
 	}
 
 	return $imported;
+}
+
+add_action( 'admin_post_estecapelli_import_fr_plastic_treatment', 'estecapelli_handle_fr_plastic_manual_import' );
+/** Process an individual manual French Plastic Surgery import button. */
+function estecapelli_handle_fr_plastic_manual_import() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'You are not allowed to import treatments.', 'estecapelli' ) );
+	}
+
+	$source_slug = isset( $_GET['source'] ) ? sanitize_title( wp_unslash( $_GET['source'] ) ) : '';
+	check_admin_referer( 'estecapelli_import_fr_plastic_' . $source_slug );
+	$result = estecapelli_import_one_fr_plastic_treatment( $source_slug );
+	if ( is_wp_error( $result ) ) {
+		update_option( 'estecapelli_fr_plastic_import_error', $source_slug . ': ' . $result->get_error_message(), false );
+	} else {
+		$batch = estecapelli_run_fr_plastic_import();
+		if ( is_wp_error( $batch ) ) {
+			update_option( 'estecapelli_fr_plastic_import_error', $batch->get_error_message(), false );
+		} else {
+			update_option( 'estecapelli_fr_plastic_import_version', ESTECAPELLI_FR_PLASTIC_IMPORT_VERSION, false );
+			delete_option( 'estecapelli_fr_plastic_import_error' );
+			set_transient( 'estecapelli_fr_plastic_import_success', count( $batch ), 5 * MINUTE_IN_SECONDS );
+		}
+	}
+
+	wp_safe_redirect(
+		add_query_arg( 'page', 'estecapelli-treatment-importer', admin_url( 'tools.php' ) )
+	);
+	exit;
 }
 
 add_action( 'admin_init', 'estecapelli_maybe_import_fr_plastic_treatments', 90 );
