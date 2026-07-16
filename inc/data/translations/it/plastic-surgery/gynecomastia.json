@@ -1,0 +1,141 @@
+{
+  "source_slug": "gynecomastia",
+  "slug": "ginecomastia",
+  "title": "Ginecomastia",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Estetica del torace maschile",
+      "title": "Ginecomastia",
+      "lead": "Una soluzione chirurgica per l’aumento del tessuto mammario maschile, che ripristina un torace più piatto, tonico e maschile con risultati naturali.",
+      "cta_primary": { "label": "Consulenza gratuita" },
+      "cta_secondary": { "label": "Ci scriva su WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La condizione",
+      "title": "Che cos’è la ginecomastia?",
+      "body": "<p>La ginecomastia è una condizione caratterizzata da uno sviluppo eccessivo del tessuto mammario nell’uomo, che conferisce al torace un aspetto più voluminoso. Anche gli uomini possiedono naturalmente tessuto e ghiandole mammarie, che il testosterone mantiene generalmente poco sviluppati. Uno squilibrio ormonale, l’aumento di peso, alcuni farmaci o una patologia sottostante possono alterare questo equilibrio e favorire la comparsa della ginecomastia.</p><p>La condizione non riguarda soltanto l’estetica: può influire sul benessere psicologico, sulla fiducia in sé e sulla vita sociale. Presso Estecapelli, la ginecomastia viene valutata sia dal punto di vista medico sia estetico, per offrire a ogni paziente una soluzione personalizzata e duratura.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Cause",
+      "title": "Quali sono le cause della ginecomastia?",
+      "body": "La ginecomastia può svilupparsi attraverso diversi meccanismi. Le cause più comuni comprendono:",
+      "items": [
+        { "label": "Squilibrio tra estrogeni e testosterone" },
+        { "label": "Accumulo di grasso nella zona del torace dovuto a un importante aumento di peso" },
+        { "label": "Rilassamento dei tessuti e della pelle causato da ripetuti aumenti e perdite di peso" },
+        { "label": "Effetti ormonali indesiderati di alcuni farmaci" },
+        { "label": "Patologie del fegato, dei reni o del sistema endocrino" },
+        { "label": "Cambiamenti ormonali legati all’età" },
+        { "label": "Uso di steroidi anabolizzanti per il bodybuilding" },
+        { "label": "Riduzione significativa dei livelli di testosterone" }
+      ],
+      "footer": "In molti casi contribuisce una combinazione di fattori; una valutazione medica approfondita è quindi essenziale prima di definire il trattamento più appropriato."
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Trattamento",
+      "title": "Trattamento della ginecomastia: approcci non chirurgici e chirurgici",
+      "body": "<p>Il trattamento più appropriato viene definito in base al tipo e al grado di aumento mammario e alla causa sottostante. Una valutazione approfondita permette di offrire a ogni paziente un approccio personalizzato, sicuro ed efficace.</p><p><strong>Nei casi lievi</strong>, con un accumulo adiposo minimo e poca lassità cutanea, la rimozione del grasso mediante liposuzione o una sua variante, come VASER, può essere sufficiente per ottenere il profilo desiderato.</p><p><strong>Nei casi avanzati</strong>, con importante sviluppo del tessuto ghiandolare e rilassamento cutaneo, è necessario rimuovere chirurgicamente la ghiandola e, quando indicato, la pelle in eccesso, per ottenere un torace piatto e naturale.</p><p>Presso Estecapelli, ogni paziente viene valutato individualmente. Un’analisi accurata permette di stabilire se il volume in eccesso è costituito da grasso, tessuto ghiandolare compatto o una combinazione dei due e di scegliere così il piano di trattamento più efficace.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "L’operazione",
+      "title": "Come si svolge l’intervento per la ginecomastia?",
+      "lead": "L’intervento viene eseguito in anestesia generale, in una sala operatoria completamente attrezzata. La procedura è personalizzata sulla condizione del paziente e varia in base al tipo e al grado di ginecomastia.",
+      "items": [
+        {
+          "eyebrow": "Tipo di caso",
+          "title": "Casi con solo tessuto adiposo in eccesso",
+          "body": "<ul><li>Si preferisce la liposuzione tradizionale o VASER</li><li>Il grasso viene rimosso con cannule introdotte attraverso incisioni molto piccole nella zona del torace</li><li>Quando l’elasticità cutanea è adeguata, è possibile ottenere un torace piatto e naturale senza ulteriori incisioni sulla pelle</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo di caso",
+          "title": "Casi con tessuto ghiandolare aumentato e lassità cutanea",
+          "body": "<ul><li>Il tessuto ghiandolare mammario viene rimosso chirurgicamente</li><li>La pelle in eccesso viene asportata e il torace rimodellato per un profilo più piatto e tonico</li><li>Quando necessario, vengono utilizzate incisioni circolari o a T rovesciata</li></ul><p>La durata media dell’intervento è di circa 1,5–2 ore.</p><p>Le procedure basate sulla sola liposuzione lasciano cicatrici minime. Quando è necessario rimuovere tessuto e pelle, le incisioni vengono collocate nelle aree più discrete possibili e, con cure adeguate, si attenuano sensibilmente nel tempo.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Dopo l’intervento",
+      "title": "Il recupero dopo l’intervento per la ginecomastia",
+      "lead": "Il periodo postoperatorio è generalmente confortevole e ben tollerato. Un lieve dolore e una sensazione di tensione il primo giorno sono normali e attesi.",
+      "items": [
+        { "time": "Prime 24 ore", "title": "Permanenza in ospedale", "body": "Il paziente rimane generalmente una notte in ospedale e il dolore viene controllato efficacemente con i farmaci prescritti." },
+        { "time": "Prima settimana", "title": "Indumento compressivo", "body": "Gonfiore, lividi e sensibilità nella zona del torace sono normali. Indossare l’indumento compressivo è essenziale per favorire una corretta guarigione e definizione." },
+        { "time": "Settimane 2–3", "title": "L’edema si riduce", "body": "L’edema scompare in gran parte e i movimenti diventano più confortevoli. Le attività quotidiane leggere possono essere riprese gradualmente." },
+        { "time": "Da 1 mese", "title": "Torace più definito", "body": "Il torace inizia ad assumere un aspetto più naturale e definito. La ripresa dello sport, del sollevamento pesi e degli esercizi intensi per il petto richiede l’autorizzazione del medico, per garantire un recupero completo e sicuro." }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Risultati reali",
+      "title": "Ginecomastia — Prima e dopo",
+      "lead": "Scopra il profilo più piatto, tonico e maschile ottenuto dai nostri pazienti. Ogni risultato viene pianificato individualmente per offrire un aspetto naturale e cicatrici discrete.",
+      "cta": { "label": "Guardi l’intera galleria" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informazioni utili",
+      "title": "Ginecomastia — Domande frequenti",
+      "items": [
+        {
+          "question": "Che cos’è la ginecomastia?",
+          "answer": "<p>La ginecomastia è l’aumento del tessuto mammario nell’uomo, che conferisce al torace un aspetto più voluminoso. Può essere causata da uno squilibrio tra estrogeni e testosterone, aumento di peso, alcuni farmaci, steroidi anabolizzanti o problemi di salute sottostanti. È molto comune e spesso non pericolosa dal punto di vista medico, ma può influire sulla fiducia in sé; per questo molti uomini scelgono di trattarla.</p>"
+        },
+        {
+          "question": "Come viene trattata la ginecomastia?",
+          "answer": "<p>Il trattamento dipende dalla natura del volume in eccesso: tessuto adiposo, ghiandola compatta o una combinazione dei due. I casi più lievi vengono corretti mediante liposuzione, spesso VASER; quando è presente una componente ghiandolare importante o pelle lassa, è necessaria la rimozione chirurgica della ghiandola e, se indicato, il rassodamento cutaneo. Dopo la visita, il chirurgo confermerà l’approccio più adatto.</p>"
+        },
+        {
+          "question": "L’intervento è doloroso e quale anestesia viene utilizzata?",
+          "answer": "<p>La procedura viene eseguita in anestesia generale, quindi non avvertirà nulla durante l’operazione. Nei giorni successivi, la maggior parte dei pazienti descrive dolore lieve e tensione più che un fastidio importante; questi sintomi sono ben controllabili con i farmaci prescritti e si attenuano in pochi giorni.</p>"
+        },
+        {
+          "question": "Quanto durano il recupero e il soggiorno in Turchia?",
+          "answer": "<p>La maggior parte dei pazienti rimane in Turchia per circa 3–5 giorni, compresa una visita di controllo. È possibile riprendere la vita quotidiana entro 1–2 settimane, continuando a indossare l’indumento compressivo per diverse settimane per favorire la definizione. L’esercizio intenso e gli allenamenti del torace possono riprendere dopo circa un mese, con l’autorizzazione del chirurgo.</p>"
+        },
+        {
+          "question": "Rimarranno cicatrici visibili?",
+          "answer": "<p>Le procedure di sola liposuzione lasciano segni molto piccoli e difficili da notare. Quando si rimuovono la ghiandola o la pelle, le incisioni vengono collocate nel modo più discreto possibile, spesso lungo il bordo dell’areola, e con cure adeguate si attenuano sensibilmente nel tempo.</p>"
+        },
+        {
+          "question": "I risultati sono permanenti? La ginecomastia può tornare?",
+          "answer": "<p>Il tessuto ghiandolare rimosso non ricresce, quindi il risultato è duraturo. Una recidiva è rara, ma un importante aumento di peso, l’uso di steroidi o un nuovo squilibrio ormonale possono causare cambiamenti. Mantenere un peso stabile e uno stile di vita sano aiuta a preservare il risultato.</p>"
+        },
+        {
+          "question": "Il torace avrà un aspetto naturale dopo l’intervento?",
+          "answer": "<p>Sì. Quando viene eseguito con la tecnica corretta, l’intervento crea un profilo del torace piatto, tonico e naturalmente maschile. L’obiettivo è sempre ottenere un risultato armonioso con il corpo e privo di un aspetto artificiale.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Costi",
+      "title": "Costo dell’intervento per la ginecomastia",
+      "body": "<p>Il costo dell’intervento può variare in base a diversi fattori:</p><ul><li>Tecnica utilizzata, come sola liposuzione, rimozione chirurgica della ghiandola o approccio combinato</li><li>Gravità o grado della ginecomastia</li><li>Esigenze individuali e necessità di eventuali procedure aggiuntive</li><li>Piano chirurgico complessivo e strategia terapeutica</li></ul><p>Il preventivo più accurato può quindi essere definito soltanto dopo una visita in presenza o una consulenza preliminare online con gli specialisti di Estecapelli.</p>",
+      "cta": { "label": "Richieda un preventivo personalizzato" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulenza gratuita",
+      "title": "Ritrovi la fiducia in sé",
+      "lead": "Ci fornisca alcune informazioni e il nostro team Le risponderà con un piano personalizzato per la ginecomastia e un preventivo tutto incluso e senza impegno, generalmente entro poche ore. La Sua richiesta sarà trattata con la massima riservatezza.",
+      "points": [
+        { "label": "Valutazione gratuita e riservata a partire dalle Sue foto" },
+        { "label": "Preventivo tutto incluso, trasparente e senza impegno" },
+        { "label": "Risposta rapida dal nostro team dedicato all’assistenza dei pazienti" },
+        { "label": "Assistenza multilingue in ogni fase" }
+      ],
+      "submit_label": "Richieda una consulenza gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Scopra di più",
+      "title": "Trattamenti correlati"
+    }
+  ]
+}

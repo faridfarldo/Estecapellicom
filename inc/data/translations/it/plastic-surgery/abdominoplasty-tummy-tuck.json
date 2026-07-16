@@ -1,0 +1,163 @@
+{
+  "source_slug": "abdominoplasty-tummy-tuck",
+  "slug": "addominoplastica",
+  "title": "Addominoplastica",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Rimodellamento del corpo",
+      "title": "Addominoplastica",
+      "lead": "Ottenga un addome più piatto e tonico. Correggendo rilassamento cutaneo, lassità e separazione muscolare, offriamo risultati armoniosi e personalizzati sul Suo corpo e sui Suoi obiettivi.",
+      "cta_primary": { "label": "Consulenza gratuita" },
+      "cta_secondary": { "label": "Ci scriva su WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "L’intervento",
+      "title": "Che cos’è l’addominoplastica?",
+      "body": "<p>L’addominoplastica è un intervento di rimodellamento corporeo che corregge il rilassamento, la lassità e le alterazioni della regione addominale, offrendo un aspetto più piatto, tonico ed esteticamente armonioso. Eseguita dal team esperto di Estecapelli, è una delle procedure più efficaci per rimodellare l’addome di donne e uomini.</p><p>Con il tempo, la zona addominale può rilassarsi in seguito a variazioni di peso, invecchiamento, gravidanza, fattori genetici o ridotta elasticità cutanea. L’addominoplastica interviene direttamente su questi aspetti, restituendo alla parte centrale del corpo un profilo più giovane, tonico ed equilibrato.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Candidati",
+      "title": "A chi è indicata l’addominoplastica?",
+      "body": "Donne e uomini adulti insoddisfatti dell’aspetto della regione addominale e che presentano una o più delle seguenti condizioni possono essere candidati idonei:",
+      "items": [
+        { "label": "Rilassamento successivo a un importante aumento o perdita di peso" },
+        { "label": "Pelle lassa o in eccesso dopo la gravidanza" },
+        { "label": "Separazione dei muscoli addominali, o diastasi dei retti" },
+        { "label": "Struttura addominale geneticamente lassa o debole" },
+        { "label": "Pelle in eccesso rimasta dopo una liposuzione" },
+        { "label": "Alterazioni dell’addome che non possono essere corrette con il solo esercizio fisico" }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Le opzioni",
+      "title": "Tipi di addominoplastica",
+      "lead": "La tecnica più adatta dipende dalla Sua anatomia, dal grado di rilassamento e dai Suoi obiettivi. Esamini le principali opzioni.",
+      "items": [
+        {
+          "eyebrow": "Tipo",
+          "title": "Addominoplastica completa",
+          "body": "<p>L’addominoplastica completa è indicata per chi presenta rilassamento avanzato e separazione muscolare nell’intera regione addominale. L’intervento tratta l’addome in modo completo attraverso le seguenti fasi:</p><ul><li>Rassodamento di tutta la zona addominale</li><li>Riposizionamento dell’ombelico per un aspetto naturale</li><li>Rimozione della pelle in eccesso</li><li>Rafforzamento e riparazione dei muscoli sottostanti</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Mini-addominoplastica",
+          "body": "<p>La mini-addominoplastica è indicata in presenza di un rilassamento lieve e limitato alla zona sotto l’ombelico. Rispetto all’intervento completo, è una soluzione meno invasiva con diversi vantaggi:</p><ul><li>Incisione più corta</li><li>Recupero più rapido</li><li>Nessun riposizionamento dell’ombelico</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Liposuzione e addominoplastica combinate",
+          "body": "<p>Questa combinazione è ideale quando nella regione addominale sono presenti sia grasso in eccesso sia rilassamento cutaneo. La liposuzione rimuove prima i depositi adiposi indesiderati; successivamente viene eliminata la pelle in eccesso per ottenere un profilo più uniforme e definito.</p>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Mommy Makeover",
+          "body": "<p>Il Mommy Makeover riunisce più procedure in un unico intervento per le donne che desiderano recuperare la forma del corpo dopo il parto. Comprende generalmente addominoplastica, lifting o aumento del seno e liposuzione, consentendo una trasformazione più completa con un unico periodo di recupero.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "L’operazione",
+      "title": "Come si svolge l’addominoplastica?",
+      "body": "<p>L’addominoplastica viene eseguita in anestesia generale, in una sala operatoria sterile, e dura normalmente da 1,5 a 4 ore. Le principali fasi sono:</p><ol><li>Marcatura della lassità cutanea e dei tessuti</li><li>Rafforzamento dei muscoli addominali</li><li>Rimozione della pelle in eccesso</li><li>Rimodellamento estetico dell’ombelico</li><li>Chiusura delle incisioni con suture estetiche</li></ol><p>La cicatrice viene posizionata con cura in basso, lungo la linea del bikini, e si attenua gradualmente nel tempo.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Dopo l’intervento",
+      "title": "Il recupero dopo l’addominoplastica",
+      "lead": "Sebbene il recupero vari da persona a persona, il percorso generale è il seguente.",
+      "items": [
+        { "time": "1° giorno", "title": "Sensazione di tensione", "body": "Una sensazione di tensione nell’addome è normale. Il paziente rimane una notte in ospedale." },
+        { "time": "1ª settimana", "title": "Guaina e attività leggere", "body": "Inizia il graduale ritorno alle attività quotidiane. La guaina deve essere indossata regolarmente secondo le indicazioni ricevute." },
+        { "time": "Settimane 2–6", "title": "Ritorno alla routine", "body": "Il gonfiore continua a ridursi e le passeggiate possono essere prolungate man mano che aumenta il comfort. L’attività fisica viene reintrodotta gradualmente sotto la guida del chirurgo e la maggior parte dei pazienti riprende la normale routine quotidiana in questo periodo." },
+        { "time": "3 mesi", "title": "Assestamento", "body": "La zona addominale assume un aspetto più naturale e stabile, mentre le cicatrici continuano ad appiattirsi e schiarirsi." },
+        { "time": "6–12 mesi", "title": "Risultato definitivo", "body": "Il risultato dell’intervento diventa pienamente visibile e il profilo addominale raggiunge il suo aspetto più definito e naturale." }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Vantaggi",
+      "title": "I vantaggi della chirurgia addominale",
+      "body": "L’addominoplastica offre diversi benefici estetici e può migliorare la fiducia nel proprio corpo:",
+      "items": [
+        { "label": "Un addome più piatto e tonico" },
+        { "label": "Rimozione della maggior parte delle smagliature presenti nell’area trattata" },
+        { "label": "Un punto vita più sottile e definito" },
+        { "label": "Correzione delle modifiche addominali successive alla gravidanza" },
+        { "label": "Risultati duraturi e dall’aspetto naturale" },
+        { "label": "Un significativo miglioramento della fiducia in sé e dell’immagine corporea" }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Risultati reali",
+      "title": "Addominoplastica — Prima e dopo",
+      "lead": "Scopra l’addome più piatto, tonico e definito ottenuto dai nostri pazienti. Ogni risultato è personalizzato sul singolo corpo e la cicatrice viene posizionata discretamente lungo la linea del bikini.",
+      "cta": { "label": "Guardi l’intera galleria" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informazioni utili",
+      "title": "Addominoplastica — Domande frequenti",
+      "items": [
+        {
+          "question": "L’addominoplastica fa perdere peso?",
+          "answer": "<p>Non propriamente: l’addominoplastica è un intervento di rimodellamento del corpo, non un metodo per dimagrire. Rimuove la pelle rilassata in eccesso e rafforza i muscoli addominali, rendendo il profilo visibilmente più piatto e tonico, ma la variazione effettiva sulla bilancia è generalmente contenuta. I risultati migliori si ottengono quando il peso è sano e stabile.</p>"
+        },
+        {
+          "question": "Quale tipo di addominoplastica è più adatto a me?",
+          "answer": "<p>Dipende dal grado di lassità cutanea e muscolare. La mini-addominoplastica è indicata per un lieve rilassamento sotto l’ombelico; quella completa tratta l’intero addome e consente la riparazione muscolare; l’associazione con la liposuzione è ideale quando è presente anche grasso in eccesso; il Mommy Makeover combina più procedure dopo il parto. Dopo la visita, il chirurgo Le consiglierà la soluzione più adatta.</p>"
+        },
+        {
+          "question": "L’intervento è doloroso e quale anestesia viene utilizzata?",
+          "answer": "<p>L’operazione viene eseguita in anestesia generale, quindi non avvertirà nulla durante l’intervento. Nei primi giorni sono possibili tensione e fastidio moderato, generalmente ben controllati con i farmaci prescritti. Una guaina contenitiva e movimenti delicati aiutano a migliorare il comfort durante la guarigione.</p>"
+        },
+        {
+          "question": "Quanto durano il recupero e il soggiorno in Turchia?",
+          "answer": "<p>La maggior parte dei pazienti rimane in Turchia per circa 5–7 giorni, compresa una visita di controllo prima del rientro. Il recupero iniziale richiede in genere 2–3 settimane e la guaina compressiva viene indossata per diverse settimane. Il recupero completo, incluso il ritorno all’attività fisica intensa, richiede circa 6–8 settimane.</p>"
+        },
+        {
+          "question": "Rimarrà una cicatrice visibile?",
+          "answer": "<p>Sì, l’addominoplastica lascia una cicatrice, ma viene posizionata con attenzione in basso, lungo la linea del bikini, così da rimanere nascosta sotto la biancheria e il costume. Con cure adeguate, la cicatrice si appiattisce e si schiarisce sensibilmente nel corso dei mesi.</p>"
+        },
+        {
+          "question": "I risultati sono permanenti?",
+          "answer": "<p>I risultati sono duraturi, in particolare la riparazione muscolare e la rimozione della pelle in eccesso. Mantenere un peso stabile aiuta a preservarli: un aumento importante di peso o una futura gravidanza possono distendere nuovamente la zona. Per questo l’intervento viene idealmente programmato quando non si prevedono altre gravidanze.</p>"
+        },
+        {
+          "question": "Quando potrò riprendere l’attività fisica?",
+          "answer": "<p>Camminare lentamente è incoraggiato già dopo pochi giorni per favorire la circolazione e la guarigione. Le attività leggere vengono riprese nelle prime settimane, mentre gli esercizi intensi, l’allenamento degli addominali e il sollevamento di pesi devono attendere circa 6–8 settimane, dopo che il chirurgo avrà confermato la completa guarigione.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Costi",
+      "title": "Costo dell’addominoplastica in Turchia",
+      "body": "<p>La Turchia è una destinazione apprezzata a livello internazionale per l’addominoplastica grazie a:</p><ul><li>Chirurghi di grande esperienza con risultati documentati</li><li>Strutture ospedaliere ben attrezzate</li><li>Standard qualitativi internazionali</li><li>Costi più accessibili rispetto all’Europa e al Nord America</li><li>Servizi completi di assistenza e supporto al paziente</li></ul><p>Il costo varia in base alla tecnica utilizzata, all’esperienza del chirurgo, alle eventuali procedure aggiuntive e all’estensione complessiva dell’intervento.</p>",
+      "cta": { "label": "Richieda un preventivo personalizzato" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulenza gratuita",
+      "title": "Desidera un addome più piatto e tonico?",
+      "lead": "Ci fornisca alcune informazioni e il nostro team Le risponderà con un piano di addominoplastica personalizzato e un preventivo tutto incluso, gratuito e senza impegno, generalmente entro poche ore.",
+      "points": [
+        { "label": "Valutazione gratuita a partire dalle Sue foto" },
+        { "label": "Preventivo tutto incluso, trasparente e senza impegno" },
+        { "label": "Risposta rapida dal nostro team dedicato all’assistenza dei pazienti" },
+        { "label": "Assistenza multilingue in ogni fase" }
+      ],
+      "submit_label": "Richieda una consulenza gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Scopra di più",
+      "title": "Trattamenti correlati"
+    }
+  ]
+}
