@@ -1,0 +1,116 @@
+{
+  "source_slug": "vita-treatment",
+  "slug": "trattamento-vita",
+  "title": "Trattamento VITA",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Metodo esclusivo Estecapelli",
+      "title": "Trattamento VITA",
+      "lead": "Il protocollo esclusivo di Estecapelli rivitalizza il cuoio capelluto, nutre i follicoli e accelera la guarigione. Un siero derivato dalle vitamine protegge la vitalità degli innesti prima e durante il trapianto, massimizzandone la sopravvivenza e la crescita.",
+      "cta_primary": { "label": "Consulenza gratuita" },
+      "cta_secondary": { "label": "Ci scriva su WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Il metodo",
+      "title": "Che cos'è il protocollo VITA?",
+      "body": "<p>Il protocollo VITA è un trattamento avanzato in tre fasi, sviluppato in esclusiva dagli specialisti medici di Estecapelli per massimizzare la sopravvivenza degli innesti e migliorare il successo complessivo del trapianto di capelli. È pienamente compatibile sia con la tecnica Sapphire FUE sia con la DHI e combina una formula altamente concentrata di aminoacidi, vitamine, fattori di crescita e ATP per nutrire e proteggere i follicoli durante l'intero intervento.</p><p>Nella prima fase, un siero VITA ricco di nutrienti viene applicato sul cuoio capelluto attraverso microcanali creati con un dermaroller. In questo modo i principi attivi penetrano in profondità e preparano l'area ricevente all'impianto. Nella seconda fase, dopo il prelievo, gli innesti vengono conservati nel siero VITA e trattati con vapore ad aria fredda e soluzione salina per mantenerli idratati, ridurre lo stress cellulare e aumentarne la sopravvivenza prima dell'impianto.</p><p>Come fase finale, subito dopo l'intervento viene eseguita una seduta di PRP, plasma ricco di piastrine. I fattori di crescita dello stesso paziente contribuiscono ad accelerare la guarigione, migliorare la ritenzione degli innesti e promuovere una crescita più forte e sana.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La scienza",
+      "title": "La tecnica esclusiva Estecapelli — la forza VITA derivata dalle vitamine",
+      "body": "<p>Il periodo durante il quale i follicoli rimangono fuori dal corpo è un fattore critico che incide direttamente sul successo dell'intervento. Dopo il prelievo, l'apporto di sangue e nutrienti vitali viene interrotto e gli innesti iniziano gradualmente a indebolirsi.</p><p>Il protocollo VITA interviene proprio in queste fasi delicate, fornendo agli innesti un sostegno essenziale. Grazie a una soluzione vitaminica appositamente formulata e all'applicazione di vapore ad aria fredda, contribuisce in modo significativo a preservare la vitalità degli innesti sia nella FUE sia nella DHI.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Perché è importante",
+      "title": "I vantaggi del protocollo VITA",
+      "body": "Vitamine, minerali, fattori di crescita e ATP presenti nel siero VITA rinforzano i follicoli e ne sostengono uno sviluppo più vigoroso:",
+      "items": [
+        { "label": "Protegge la vitalità degli innesti fuori dal corpo" },
+        { "label": "Aumenta la sopravvivenza e la ritenzione degli innesti" },
+        { "label": "Nutre i follicoli con vitamine, minerali e ATP" },
+        { "label": "Accelera il processo di guarigione" },
+        { "label": "Si integra sia con la FUE sia con la DHI" },
+        { "label": "Ideale per follicoli deboli, capelli fini o aree donatrici limitate" }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "L'intervento",
+      "title": "Come viene applicato il protocollo VITA?",
+      "lead": "Un protocollo in tre fasi che si integra perfettamente nel trapianto Sapphire FUE o DHI. Scorra le fasi qui sotto.",
+      "items": [
+        {
+          "eyebrow": "Fase 1",
+          "title": "Microneedling e siero nutriente",
+          "body": "<p>Con un dermaroller vengono creati microcanali e viene applicato un siero ad alta concentrazione di vitamine, aminoacidi, fattori di crescita e minerali per stimolare la circolazione sanguigna. L'area donatrice viene preparata in modo ottimale per un prelievo uniforme e ben nutrito, mentre l'area ricevente assorbe il complesso vitaminico concentrato con maggiore efficacia grazie ai microcanali.</p>"
+        },
+        {
+          "eyebrow": "Fase 2",
+          "title": "Siero a vapore freddo sugli innesti",
+          "body": "<p>Lo stesso siero nutriente viene miscelato con soluzione salina nel contenitore di raccolta e applicato agli innesti mediante un sistema a vapore freddo. Il periodo in cui i follicoli si trovano fuori dal corpo è il momento più delicato: proteggerli in questa fase ne previene il deterioramento, massimizza la sopravvivenza e aumenta il potenziale di ricrescita dopo l'impianto.</p>"
+        },
+        {
+          "eyebrow": "Fase 3",
+          "title": "PRP dopo l'intervento",
+          "body": "<p>Il PRP, plasma ricco di piastrine, viene applicato come fase finale del trattamento, subito dopo il trapianto, per favorire la guarigione e migliorare il risultato complessivo. Un piccolo campione di sangue viene prelevato e lavorato in centrifuga per separare il plasma ad alta concentrazione di fattori di crescita naturali. Il PRP viene quindi iniettato con precisione nelle aree trattate del cuoio capelluto, dove aiuta ad accelerare la riparazione dei tessuti, ridurre l'infiammazione, migliorare la circolazione e creare un ambiente ottimale per i nuovi innesti. Stimolando la guarigione e nutrendo i follicoli, contribuisce a una maggiore ritenzione degli innesti, a un recupero più rapido e a una crescita più sana e folta.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Utile da sapere",
+      "title": "Trattamento VITA — Domande frequenti",
+      "items": [
+        {
+          "question": "VITA è un trattamento autonomo?",
+          "answer": "<p>No. VITA è un protocollo che potenzia il trapianto di capelli e non un trattamento autonomo. Viene applicato durante la procedura Sapphire FUE o DHI per nutrire il cuoio capelluto e proteggere gli innesti, contribuendo a migliorarne la sopravvivenza e il risultato complessivo.</p>"
+        },
+        {
+          "question": "Perché la sopravvivenza degli innesti è così importante?",
+          "answer": "<p>Il tempo trascorso dai follicoli fuori dal corpo è uno dei fattori che incidono maggiormente sul successo del trapianto. Una volta prelevati, gli innesti non ricevono più sangue e nutrienti e iniziano a indebolirsi. Nutrendo e proteggendo a freddo i follicoli in questa fase, VITA aiuta un numero maggiore di innesti a sopravvivere e crescere, favorendo un risultato più denso e pieno.</p>"
+        },
+        {
+          "question": "Chi beneficia maggiormente di VITA?",
+          "answer": "<p>Il protocollo può essere utile in quasi tutti i trapianti, ma offre un vantaggio particolare ai pazienti con follicoli deboli, capelli fini o un'area donatrice limitata, dove ogni innesto è prezioso. Dopo aver valutato la qualità dei capelli, la densità donatrice e il piano chirurgico, lo specialista Le indicherà se VITA rappresenta un beneficio concreto nel Suo caso.</p>"
+        },
+        {
+          "question": "VITA è compatibile sia con FUE sia con DHI?",
+          "answer": "<p>Sì. Il protocollo VITA è pienamente compatibile con Sapphire FUE e DHI e si integra senza modificare la tecnica chirurgica scelta. Il suo ruolo è sostenere i follicoli prima, durante e subito dopo l'impianto, indipendentemente dal metodo utilizzato.</p>"
+        },
+        {
+          "question": "VITA modifica il recupero o causa effetti collaterali?",
+          "answer": "<p>Nutrendo il cuoio capelluto e gli innesti, il protocollo sostiene una guarigione più rapida e sana. Utilizza vitamine, minerali, aminoacidi e fattori di crescita compatibili con l'organismo e non aggiunge tempi di recupero significativi né effetti collaterali specifici oltre a quelli normalmente associati al trapianto. L'idoneità viene comunque verificata durante la valutazione medica.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Risultati reali",
+      "title": "Trapianti con protocollo VITA — Prima e dopo",
+      "lead": "Osservi la densità e la naturalezza ottenute dai nostri pazienti quando il protocollo VITA sostiene un trapianto Sapphire FUE o DHI: una maggiore sopravvivenza degli innesti si traduce in capelli più folti e sani.",
+      "cta": { "label": "Guardi l'intera galleria" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulenza gratuita",
+      "title": "Desidera aggiungere VITA al Suo trapianto?",
+      "lead": "Ci fornisca alcune informazioni e il nostro team Le risponderà con un piano personalizzato, Le spiegherà come il protocollo VITA può migliorare la sopravvivenza degli innesti e Le invierà un preventivo tutto incluso e senza impegno, di solito nel giro di poche ore.",
+      "points": [
+        { "label": "Valutazione gratuita degli innesti a partire dalle Sue foto" },
+        { "label": "Massima sopravvivenza degli innesti con il protocollo VITA" },
+        { "label": "Risposta rapida dal nostro team dedicato all'assistenza dei pazienti" },
+        { "label": "Assistenza multilingue in ogni fase" }
+      ],
+      "submit_label": "Richieda una consulenza gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Scopra di più",
+      "title": "Trattamenti correlati"
+    }
+  ]
+}

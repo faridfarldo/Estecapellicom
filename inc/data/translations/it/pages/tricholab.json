@@ -1,0 +1,87 @@
+{
+  "source_slug": "tricholab",
+  "slug": "tricholab",
+  "title": "TrichoLab",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Analisi dei capelli con intelligenza artificiale",
+      "title": "TrichoLab",
+      "lead": "Un sistema avanzato basato sull'intelligenza artificiale che esamina capelli e cuoio capelluto mediante immagini tricoscopiche ad alta risoluzione, trasformando ogni dettaglio in dati precisi per un piano di trapianto completamente personalizzato.",
+      "cta_primary": { "label": "Consulenza gratuita" },
+      "cta_secondary": { "label": "Ci scriva su WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La tecnologia",
+      "title": "Che cos'è TrichoLab?",
+      "body": "<p>TrichoLab è un sistema avanzato di analisi capillare supportato dall'intelligenza artificiale che esamina capelli e cuoio capelluto mediante immagini tricoscopiche ad alta risoluzione. Misurando con precisione millimetrica parametri fondamentali, fornisce dati oggettivi che guidano i nostri specialisti nella pianificazione del trattamento più efficace per ogni paziente.</p><p>Il sistema valuta numerosi fattori, tra cui densità follicolare, potenziale degli innesti, spessore del fusto, capacità dell'area donatrice, distribuzione della caduta e tasso di miniaturizzazione. Questo livello di dettaglio consente al nostro team di creare un piano personalizzato basato su dati precisi e aggiornati, non su semplici stime.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Il percorso",
+      "title": "L'analisi TrichoLab presso Estecapelli",
+      "lead": "Dalle immagini ad alta risoluzione a un piano preciso e personalizzato. Scorra le fasi qui sotto.",
+      "items": [
+        {
+          "eyebrow": "Fase 1",
+          "title": "Scansione tricoscopica digitale",
+          "body": "<p>Il cuoio capelluto viene esaminato con microimmagini ad alta risoluzione che acquisiscono dettagli accurati dei follicoli.</p>"
+        },
+        {
+          "eyebrow": "Fase 2",
+          "title": "Analisi dei dati con intelligenza artificiale",
+          "body": "<p>Algoritmi avanzati trasformano le immagini in valori numerici precisi relativi alla densità e alla distribuzione follicolare.</p>"
+        },
+        {
+          "eyebrow": "Fase 3",
+          "title": "Piano di trattamento personalizzato",
+          "body": "<p>I dati diventano la base di un piano completamente individuale, compresa la stima esatta del numero di innesti richiesto.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Perché è importante",
+      "title": "Il ruolo di TrichoLab nella pianificazione del trapianto",
+      "body": "L'analisi scientifica protegge l'area donatrice e favorisce risultati naturali e simmetrici:",
+      "items": [
+        { "label": "Valutazione scientifica della capacità donatrice, senza prelievi eccessivi" },
+        { "label": "Calcolo accurato degli innesti, evitando una pianificazione insufficiente o eccessiva" },
+        { "label": "Disegno naturale e simmetrico basato sui capelli esistenti" },
+        { "label": "Protezione a lungo termine dell'area donatrice" },
+        { "label": "Tecnologia disponibile soltanto in un numero limitato di cliniche in Turchia" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Perché Estecapelli",
+      "title": "Perché scegliere TrichoLab presso Estecapelli?",
+      "body": "<p>TrichoLab è un sistema avanzato disponibile soltanto in un numero limitato di cliniche in Turchia. Presso Estecapelli rappresenta il punto di partenza del nostro lavoro e offre ai pazienti un livello di analisi che poche strutture sono in grado di garantire.</p><p>Ogni valutazione è oggettiva, misurabile e trasparente. Per ciascun paziente viene sviluppata una strategia realmente personalizzata, fondata su dati accurati anziché su ipotesi, con l'obiettivo di proteggere l'area donatrice e massimizzare i risultati nel lungo periodo.</p>",
+      "cta": { "label": "Prenoti una consulenza gratuita" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Utile da sapere",
+      "title": "TrichoLab — Domande frequenti",
+      "items": [
+        {
+          "question": "L'analisi TrichoLab è dolorosa?",
+          "answer": "<p>No. È un esame non invasivo che acquisisce immagini dettagliate del cuoio capelluto senza aghi, incisioni o fastidio. La scansione richiede poco tempo e, una volta conclusa, può riprendere immediatamente le normali attività.</p>"
+        },
+        {
+          "question": "Perché TrichoLab è importante per il mio trapianto?",
+          "answer": "<p>TrichoLab misura la densità, la qualità dei follicoli e la capacità dell'area donatrice, aiutando a calcolare gli innesti necessari senza impoverire la zona di prelievo. Questi dati rendono la pianificazione più accurata, naturale e sostenibile nel tempo. Il chirurgo li integra con la valutazione clinica e con il disegno della linea frontale.</p>"
+        },
+        {
+          "question": "Che cosa misura esattamente l'analisi TrichoLab?",
+          "answer": "<p>Il sistema esamina capelli e cuoio capelluto mediante immagini ad alta risoluzione e un software supportato dall'intelligenza artificiale. Misura densità, spessore dei fusti, distribuzione dei follicoli, capacità donatrice, schema della caduta e miniaturizzazione. Il risultato è una mappa oggettiva utilizzata per personalizzare il trattamento.</p>"
+        },
+        {
+          "question": "TrichoLab determina il numero esatto di innesti?",
+          "answer": "<p>TrichoLab fornisce una stima scientifica molto precisa del fabbisogno e della quantità prelevabile in sicurezza. La decisione finale non dipende però da un solo numero: lo specialista considera anche qualità dei capelli, obiettivi di densità, evoluzione futura della caduta e disegno della linea frontale. In questo modo il piano rimane realistico e tutela l'area donatrice.</p>"
+        }
+      ]
+    }
+  ]
+}

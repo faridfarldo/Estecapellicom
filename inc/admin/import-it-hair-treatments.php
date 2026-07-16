@@ -8,8 +8,7 @@
  * are updated in place; missing ones are created and linked to their English
  * originals.
  *
- * The manifest is deliberately narrow. It currently ships DHI and Sapphire FUE
- * so the Italian pipeline can be expanded in independently validated batches.
+ * The manifest covers every Hair Transplant treatment in the English seed.
  *
  * @package Estecapelli
  */
@@ -19,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION', '2026-07-14.4' );
+	define( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION', '2026-07-16.1' );
 }
 
 /**
@@ -29,8 +28,14 @@ if ( ! defined( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION' ) ) {
  */
 function estecapelli_it_hair_manifest() {
 	return array(
-		'dhi-hair-transplant'          => 'trapianto-di-capelli-dhi',
+		'exosome-fue-hair-transplant'  => 'trapianto-di-capelli-exosome-fue',
+		'female-hair-transplant'       => 'trapianto-di-capelli-femminile',
+		'hair-mesotherapy'             => 'mesoterapia-per-capelli',
 		'sapphire-fue-hair-transplant' => 'trapianto-di-capelli-fue-sapphire',
+		'dhi-hair-transplant'          => 'trapianto-di-capelli-dhi',
+		'vita-treatment'               => 'trattamento-vita',
+		'eyebrow-transplant'           => 'trapianto-di-sopracciglia',
+		'beard-transplant'             => 'beard-trapianto-di-barba',
 	);
 }
 
@@ -208,12 +213,11 @@ function estecapelli_it_hair_overlay( array $base, array $overlay, $path = 'page
 }
 
 /**
- * Point seeded internal English links at the Italian language directory.
+ * Point seeded internal links at their exact Italian live-contract route.
  *
- * Italian translates two of the section bases that appear in the hair seed, so
- * the leaf is remapped after the language prefix is normalised: contact →
- * contatto and before-after → prima-dopo. Any other leaf keeps its slug and is
- * only re-prefixed with /it.
+ * Unknown URLs are preserved rather than translated or guessed. Every known
+ * destination is resolved through inc/indexed-urls.php, whose values are
+ * captured verbatim from tools/live-urls-all.txt.
  *
  * @param mixed $value ACF value.
  * @return mixed
@@ -223,36 +227,19 @@ function estecapelli_it_hair_localize_urls( $value ) {
 		return $value;
 	}
 
-	$leaf_map = array(
-		'/before-after' => '/prima-dopo',
-		'/contact'      => '/contatto',
-	);
-
-	$home = untrailingslashit( (string) get_option( 'home' ) );
 	foreach ( $value as $key => $item ) {
 		if ( 'url' === $key && is_string( $item ) ) {
-			$relative = null;
-			if ( $home && 0 === strpos( $item, $home . '/' ) ) {
-				$relative = substr( $item, strlen( $home ) );
-			} elseif ( 0 === strpos( $item, '/en/' ) || 0 === strpos( $item, '/it/' ) ) {
-				$relative = $item;
-			}
-
-			if ( null !== $relative ) {
-				$original = $relative;
-				do {
-					$previous = $relative;
-					$relative = preg_replace( '#^/(?:en|it)(?=/|$)#', '', $relative );
-				} while ( $relative !== $previous );
-
-				if ( $relative !== $original || 0 === strpos( $item, '/en/' ) ) {
-					$leaf = untrailingslashit( $relative );
-					if ( isset( $leaf_map[ $leaf ] ) ) {
-						$relative = $leaf_map[ $leaf ];
-					}
-					$localized = '/it' . ( $relative ?: '/' );
-					$value[ $key ] = $home && 0 === strpos( $item, $home . '/' ) ? $home . $localized : $localized;
+			$route_key = function_exists( 'estecapelli_indexed_route_key' ) ? estecapelli_indexed_route_key( $item ) : '';
+			if ( $route_key && estecapelli_indexed_route_path( $route_key, 'it' ) ) {
+				$parts  = wp_parse_url( $item );
+				$suffix = '';
+				if ( is_array( $parts ) && ! empty( $parts['query'] ) ) {
+					$suffix .= '?' . $parts['query'];
 				}
+				if ( is_array( $parts ) && ! empty( $parts['fragment'] ) ) {
+					$suffix .= '#' . $parts['fragment'];
+				}
+				$value[ $key ] = estecapelli_indexed_url( $route_key . $suffix, 'it' );
 			}
 		} elseif ( is_array( $item ) ) {
 			$value[ $key ] = estecapelli_it_hair_localize_urls( $item );
@@ -260,6 +247,33 @@ function estecapelli_it_hair_localize_urls( $value ) {
 	}
 
 	return $value;
+}
+
+/**
+ * Keep the standard treatment-page sequence: gallery before the richer FAQ.
+ *
+ * @param array<int,array<string,mixed>> $sections ACF flexible sections.
+ * @return array<int,array<string,mixed>>
+ */
+function estecapelli_it_hair_order_sections( array $sections ) {
+	$gallery_index = null;
+	$faq_index     = null;
+	foreach ( $sections as $index => $section ) {
+		$layout = $section['acf_fc_layout'] ?? '';
+		if ( 'gallery' === $layout && null === $gallery_index ) {
+			$gallery_index = $index;
+		}
+		if ( 'faq' === $layout && null === $faq_index ) {
+			$faq_index = $index;
+		}
+	}
+
+	if ( null !== $gallery_index && null !== $faq_index && $gallery_index > $faq_index ) {
+		$gallery = array_splice( $sections, $gallery_index, 1 );
+		array_splice( $sections, $faq_index, 0, $gallery );
+	}
+
+	return array_values( $sections );
 }
 
 /**
@@ -740,6 +754,7 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $
 	if ( is_wp_error( $sections ) ) {
 		return $sections;
 	}
+	$sections = estecapelli_it_hair_order_sections( $sections );
 	$sections = estecapelli_it_hair_localize_urls( $sections );
 	$sections = estecapelli_it_hair_normalize_media( $sections );
 	update_field( 'field_treatment_sections', $sections, $target_id );

@@ -1,0 +1,87 @@
+{
+  "source_slug": "hair-transplant",
+  "slug": "trapianto-di-capelli",
+  "title": "Trapianto di Capelli",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Trapianto di capelli",
+      "title": "Ripristino dei capelli progettato per una densità naturale.",
+      "lead": "Dalla FUE con lame in zaffiro ai nostri protocolli brevettati Exosome e VITA, ogni piano Estecapelli viene costruito sulle caratteristiche del Suo cuoio capelluto, dell'area donatrice e dei Suoi obiettivi.",
+      "cta_primary": { "label": "Consulenza gratuita" },
+      "cta_secondary": { "label": "Ci scriva su WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Da dove iniziare",
+      "title": "Un trapianto pianificato interamente su di Lei",
+      "body": "<p>La caduta dei capelli non è mai identica da una persona all'altra e anche la soluzione corretta deve essere individuale. Presso Estecapelli ogni percorso inizia con una valutazione approfondita del cuoio capelluto, dell'area donatrice, delle caratteristiche dei capelli e della densità desiderata, mai con un pacchetto standard. Su questa base consigliamo la tecnica, il numero di innesti e l'approccio in grado di offrire il risultato più naturale.</p><p>I nostri chirurghi operano esclusivamente in strutture di livello ospedaliero, utilizzando i metodi FUE e DHI di riferimento, potenziati dai protocolli Sapphire, Exosome e VITA sviluppati da Estecapelli. Che si tratti di ricostruire una linea frontale arretrata, aumentare la densità o definire sopracciglia e barba, l'obiettivo rimane lo stesso: un risultato che appaia da sempre Suo.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Perché i pazienti scelgono Estecapelli",
+      "stats": [
+        { "value": "6 tecniche", "label": "FUE, DHI, Sapphire, Exosome, VITA e altre" },
+        { "value": "Locale", "label": "Anestesia: sveglio e confortevole" },
+        { "value": "Circa 3 giorni", "label": "Permanenza tipica in Turchia" },
+        { "value": "Permanenti", "label": "Innesti resistenti alla futura caduta" }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "I nostri trattamenti",
+      "title": "Scopra i trattamenti per il trapianto di capelli"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Risultati reali",
+      "title": "Trapianto di capelli — Prima e dopo",
+      "lead": "Osservi la densità e le linee frontali naturali ottenute dai nostri pazienti. Ogni risultato viene progettato sullo schema di crescita individuale per un aspetto del tutto naturale.",
+      "cta": { "label": "Guardi l'intera galleria" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulenza gratuita",
+      "title": "Scopra quale trapianto è più adatto a Lei",
+      "lead": "Ci invii alcune fotografie e il nostro team medico Le risponderà con la tecnica consigliata, una stima degli innesti e un preventivo tutto incluso e senza impegno, di solito nel giro di poche ore.",
+      "points": [
+        { "label": "Valutazione gratuita degli innesti a partire dalle Sue foto" },
+        { "label": "Preventivo trasparente, tutto incluso e senza impegno" },
+        { "label": "Risposta rapida dal nostro team dedicato all'assistenza dei pazienti" },
+        { "label": "Assistenza multilingue in ogni fase" }
+      ],
+      "submit_label": "Richieda una consulenza gratuita"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Utile da sapere",
+      "title": "Trapianto di capelli — Domande frequenti",
+      "items": [
+        {
+          "question": "Quale tecnica di trapianto è più adatta a me?",
+          "answer": "<p>Non esiste una tecnica migliore in assoluto: la scelta dipende dal grado di caduta, dalla qualità e dall'estensione dell'area donatrice, dalla zona da coprire e dallo stile di vita. FUE e DHI sono entrambe metodiche di riferimento, mentre i protocolli Sapphire, Exosome e VITA offrono vantaggi specifici per guarigione, densità o sopravvivenza degli innesti. Dopo aver esaminato le Sue fotografie, i nostri specialisti consigliano il metodo più adatto a ottenere un risultato naturale e duraturo nel Suo caso.</p>"
+        },
+        {
+          "question": "Sono un buon candidato per il trapianto di capelli?",
+          "answer": "<p>La maggior parte degli adulti con una caduta stabilizzata e un'area donatrice sana nella parte posteriore e laterale del cuoio capelluto può essere idonea, compresi gli uomini con alopecia androgenetica e molte donne con diradamento. Le condizioni generali di salute contano più dell'età. Una consulenza gratuita con fotografie consente al nostro team di confermare l'idoneità e stimare il numero di innesti necessario.</p>"
+        },
+        {
+          "question": "L'intervento è doloroso e quale anestesia viene utilizzata?",
+          "answer": "<p>La procedura viene eseguita in anestesia locale, quindi rimane sveglio ma non avverte dolore durante la seduta. La maggior parte dei pazienti riferisce soltanto un lieve fastidio nella fase iniziale di applicazione dell'anestetico. L'intervento dura in genere da sei a otto ore in base al numero di innesti e può rientrare in hotel lo stesso giorno.</p>"
+        },
+        {
+          "question": "Quanto tempo devo rimanere in Turchia?",
+          "answer": "<p>La maggior parte dei pazienti programma una permanenza di circa tre giorni. Questo periodo comprende la consulenza e l'intervento, il primo lavaggio e le istruzioni postoperatorie personalizzate prima del rientro. Il nostro team aiuta a coordinare hotel e trasferimenti aeroportuali per rendere il viaggio semplice e sereno.</p>"
+        },
+        {
+          "question": "Quando vedrò i risultati e saranno permanenti?",
+          "answer": "<p>I capelli trapiantati cadono generalmente nelle prime settimane, un fenomeno del tutto normale. La nuova crescita inizia intorno al terzo o quarto mese, una densità visibile si sviluppa tra il sesto e il nono mese e il risultato finale matura in circa dodici mesi. Poiché gli innesti provengono da aree geneticamente resistenti alla caduta, continuano a crescere in modo permanente e possono essere tagliati, lavati e acconciati normalmente.</p>"
+        },
+        {
+          "question": "Il risultato apparirà naturale?",
+          "answer": "<p>Sì. I fattori più importanti sono il disegno della linea frontale e l'angolazione, la direzione e la densità di ogni follicolo impiantato. I nostri specialisti definiscono la linea insieme a Lei prima dell'intervento e inseriscono gli innesti uno a uno seguendo lo schema di crescita naturale, affinché il risultato si integri perfettamente con i capelli esistenti.</p>"
+        }
+      ]
+    }
+  ]
+}

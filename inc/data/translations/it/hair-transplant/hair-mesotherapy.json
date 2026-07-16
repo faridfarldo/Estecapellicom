@@ -1,0 +1,133 @@
+{
+  "source_slug": "hair-mesotherapy",
+  "slug": "mesoterapia-per-capelli",
+  "title": "Mesoterapia per Capelli",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Trattamento non chirurgico",
+      "title": "Mesoterapia per Capelli",
+      "lead": "Rivitalizzi i follicoli con una miscela personalizzata di vitamine, minerali e aminoacidi, somministrata direttamente nel cuoio capelluto mediante microiniezioni pressoché indolori.",
+      "cta_primary": { "label": "Consulenza gratuita" },
+      "cta_secondary": { "label": "Ci scriva su WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Informazioni chiave",
+      "stats": [
+        { "value": "4–6", "label": "Sedute" },
+        { "value": "4–6 settimane", "label": "Intervallo" },
+        { "value": "Quasi indolore", "label": "Procedura" },
+        { "value": "Nessuna pausa", "label": "Recupero" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "L'approccio",
+      "title": "Mesoterapia per capelli: l'approccio personalizzato Estecapelli",
+      "body": "<p>La mesoterapia per capelli è un metodo rapido ed efficace per contrastare la caduta e migliorare la salute della chioma. Il trattamento porta direttamente ai follicoli una miscela personalizzata di vitamine, minerali e aminoacidi, fornendo i nutrienti essenziali esattamente dove servono.</p><p>Presso Estecapelli il percorso viene adattato con precisione: analizziamo il cuoio capelluto e i follicoli, prepariamo la miscela in base alle esigenze individuali e la somministriamo tramite microiniezioni pressoché indolori. Le sedute sono brevi e confortevoli e può tornare subito alle normali attività.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Il percorso",
+      "title": "Come viene eseguita la mesoterapia per capelli?",
+      "lead": "Il percorso Estecapelli, dall'analisi del cuoio capelluto a un programma di sedute personalizzato. Scorra le fasi qui sotto.",
+      "items": [
+        {
+          "eyebrow": "Fase 1",
+          "title": "Analisi",
+          "body": "<p>Capelli e cuoio capelluto vengono valutati con attenzione per comprendere la struttura dei follicoli, le condizioni generali della cute e la causa della caduta. Presso Estecapelli utilizziamo l'analisi TrichoLab, che consente di esaminare lunghezza, qualità e densità dei follicoli: la base per un piano preciso e personalizzato, non per una miscela uguale per tutti.</p>"
+        },
+        {
+          "eyebrow": "Fase 2",
+          "title": "Preparazione della miscela mesoterapica",
+          "body": "<p>Per ogni paziente viene preparata una soluzione personalizzata con un equilibrio accurato di vitamine, minerali, aminoacidi e fattori di crescita essenziali per la salute dei capelli. La composizione viene adattata alle esigenze specifiche per rinforzare i follicoli, stimolare la crescita e migliorare la qualità complessiva della chioma.</p>"
+        },
+        {
+          "eyebrow": "Fase 3",
+          "title": "Applicazione",
+          "body": "<p>La miscela viene iniettata direttamente nel cuoio capelluto mediante aghi sottilissimi, portando i nutrienti fino ai follicoli. In caso di cute particolarmente sensibile può essere applicata una crema anestetica locale. La procedura è rapida, confortevole e mininvasiva, perciò può riprendere immediatamente le attività quotidiane.</p>"
+        },
+        {
+          "eyebrow": "Fase 4",
+          "title": "Programma di trattamento",
+          "body": "<p>In genere si eseguono da quattro a sei sedute a intervalli di quattro-sei settimane. Il calendario viene adattato al grado di caduta e alla risposta dei capelli; successivamente possono essere consigliate sedute periodiche di mantenimento per preservare i risultati.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Perché sceglierla",
+      "title": "I vantaggi della mesoterapia per capelli",
+      "body": "Un trattamento di supporto non chirurgico che si integra facilmente nella vita quotidiana:",
+      "items": [
+        { "label": "Rinforza i follicoli e favorisce la nuova crescita" },
+        { "label": "Riduce la caduta senza tempi di inattività" },
+        { "label": "Miscela personalizzata di vitamine e minerali" },
+        { "label": "Sedute confortevoli e pressoché indolori" },
+        { "label": "Compatibile con l'assistenza dopo il trapianto" },
+        { "label": "Miglioramenti visibili nel corso di poche sedute" }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Utile da sapere",
+      "title": "Mesoterapia per capelli — Domande frequenti",
+      "items": [
+        {
+          "question": "Sono un buon candidato per la mesoterapia?",
+          "answer": "<p>La mesoterapia è indicata per uomini e donne nelle fasi iniziali o moderate della caduta, in presenza di capelli diradati, deboli o soggetti a perdita, anche nei casi di alopecia androgenetica e telogen effluvium. Rappresenta inoltre un valido supporto dopo un trapianto. Non sostituisce la chirurgia nelle calvizie avanzate, perciò la causa della caduta deve essere prima valutata in modo approfondito da uno specialista.</p>"
+        },
+        {
+          "question": "Quante sedute servono e quando vedrò i risultati?",
+          "answer": "<p>Un ciclo tipico comprende da quattro a sei sedute, distanziate di quattro-sei settimane. Molti pazienti notano una riduzione della caduta dopo le prime due o tre sedute, mentre spessore e nuova crescita migliorano progressivamente durante il programma completo. Il numero esatto viene personalizzato in base all'entità della caduta e alla risposta dei capelli.</p>"
+        },
+        {
+          "question": "La mesoterapia è dolorosa e richiede tempi di recupero?",
+          "answer": "<p>La procedura è generalmente pressoché indolore: può avvertire solo un lieve pizzicore e, per una cute sensibile, è possibile applicare una crema anestetica. Non sono previsti tempi di inattività; le sedute sono brevi e può tornare subito al lavoro e alle normali attività.</p>"
+        },
+        {
+          "question": "Che cosa contiene la miscela mesoterapica?",
+          "answer": "<p>La soluzione è una combinazione personalizzata di vitamine, minerali, aminoacidi e fattori di crescita che nutrono direttamente i follicoli. Non utilizziamo una formula standard: la miscela viene adattata ai risultati dell'analisi del cuoio capelluto, così da intervenire sulle carenze e sulle debolezze specifiche dei Suoi capelli.</p>"
+        },
+        {
+          "question": "Può essere abbinata ad altri trattamenti?",
+          "answer": "<p>Sì. La mesoterapia può essere associata al PRP e a trattamenti medici come il minoxidil ed è spesso utilizzata per sostenere e rinforzare i risultati dopo un trapianto DHI, FUE o Sapphire FUE. I nostri specialisti definiscono la combinazione più appropriata in base alla diagnosi e ai Suoi obiettivi.</p>"
+        },
+        {
+          "question": "Ci sono effetti collaterali?",
+          "answer": "<p>È una procedura sicura e mininvasiva. Raramente possono comparire arrossamento temporaneo, lieve gonfiore o prurito nei punti di iniezione, che si risolvono spontaneamente in breve tempo. Una corretta valutazione preliminare riduce ulteriormente il rischio di reazioni indesiderate.</p>"
+        },
+        {
+          "question": "Quanto durano i risultati?",
+          "answer": "<p>I risultati possono durare a lungo, soprattutto se associati a uno stile di vita sano e a una corretta cura dei capelli. Tuttavia, la mesoterapia sostiene e stimola i follicoli esistenti senza eliminare definitivamente le cause della caduta; per questo possono essere consigliate sedute di mantenimento in base alla condizione individuale. I trattamenti periodici aiutano a preservare la densità, la salute del cuoio capelluto e una crescita più forte nel tempo.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Risultati reali",
+      "title": "Mesoterapia per capelli — Prima e dopo",
+      "lead": "Osservi il miglioramento della densità e della qualità dei capelli ottenuto dai nostri pazienti durante un ciclo di mesoterapia. I risultati si sviluppano gradualmente, seduta dopo seduta, mentre i follicoli vengono nutriti e rinforzati.",
+      "cta": { "label": "Guardi l'intera galleria" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulenza gratuita",
+      "title": "Pronto a rinforzare i Suoi capelli?",
+      "lead": "Ci fornisca alcune informazioni e il nostro team Le risponderà con un programma di mesoterapia personalizzato, il numero di sedute consigliato e un preventivo senza impegno, di solito nel giro di poche ore.",
+      "points": [
+        { "label": "Valutazione gratuita del cuoio capelluto a partire dalle Sue foto" },
+        { "label": "Miscela personalizzata di vitamine e minerali" },
+        { "label": "Risposta rapida dal nostro team dedicato all'assistenza dei pazienti" },
+        { "label": "Assistenza multilingue in ogni fase" }
+      ],
+      "submit_label": "Richieda una consulenza gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Scopra di più",
+      "title": "Trattamenti correlati"
+    }
+  ]
+}
