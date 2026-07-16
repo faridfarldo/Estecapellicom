@@ -55,6 +55,7 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-it-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';
+	require get_template_directory() . '/inc/admin/import-fr-blog.php';
 }
 
 if ( ! function_exists( 'estecapelli_setup' ) ) {
