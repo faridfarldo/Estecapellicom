@@ -1657,7 +1657,6 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 						$img . 'clinic/surgery/surgery-1.webp',
 						$img . 'clinic/surgery/surgery-2.webp',
 						$img . 'clinic/surgery/surgery-3.webp',
-						$img . 'clinic/surgery/surgery-4.webp',
 					),
 				),
 				array(
@@ -1670,11 +1669,11 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 				),
 				array(
 					'type'    => 'image',
-					'caption' => __( 'Washing Units', 'estecapelli' ),
+					'caption' => __( 'Lobby', 'estecapelli' ),
 					'images'  => array(
-						$img . 'clinic/washing/washing-2.webp',
-						$img . 'clinic/washing/washing-3.webp',
-						$img . 'clinic/washing/washing-5.webp',
+						$img . 'clinic/lobby/lobby-1.webp',
+						$img . 'clinic/lobby/lobby-2.webp',
+						$img . 'clinic/lobby/lobby-3.webp',
 					),
 				),
 				array(
