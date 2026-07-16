@@ -63,8 +63,12 @@ if ( empty( $data['categories'] ) ) {
 				>
 					<span class="services-home__tab-icon" aria-hidden="true">
 						<?php
-						$svc_icon_file = isset( $svc_tab_icons[ $cat['key'] ] )
-							? get_template_directory() . '/assets/images/service-icons/' . $svc_tab_icons[ $cat['key'] ]
+						// Prefer the English source slug (icon_key) so translated
+						// categories resolve to the same uploaded SVG; fall back to
+						// the category key for ACF-override payloads.
+						$svc_icon_key = ! empty( $cat['icon_key'] ) ? $cat['icon_key'] : $cat['key'];
+						$svc_icon_file = isset( $svc_tab_icons[ $svc_icon_key ] )
+							? get_template_directory() . '/assets/images/service-icons/' . $svc_tab_icons[ $svc_icon_key ]
 							: '';
 						if ( $svc_icon_file && file_exists( $svc_icon_file ) ) {
 							// Trusted theme asset; strip the XML prolog/comments and force

@@ -957,9 +957,11 @@ if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
 			return array();
 		}
 
+		// Order by each term's English source slug so translated categories keep
+		// the same field-of-care sequence as the English homepage.
 		usort( $terms, function ( $a, $b ) use ( $order ) {
-			$ia = array_search( $a->slug, $order, true );
-			$ib = array_search( $b->slug, $order, true );
+			$ia = array_search( estecapelli_wpml_source_term_slug( $a ), $order, true );
+			$ib = array_search( estecapelli_wpml_source_term_slug( $b ), $order, true );
 			$ia = ( false === $ia ) ? PHP_INT_MAX : $ia;
 			$ib = ( false === $ib ) ? PHP_INT_MAX : $ib;
 			return $ia <=> $ib;
@@ -989,14 +991,16 @@ if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
 				continue;
 			}
 
-			// Apply the fixed hair-transplant display order (others keep query order).
+			// Apply the fixed hair-transplant display order (others keep query
+			// order). Rank on the English source slug so translated treatments
+			// sort identically to the English homepage.
 			$posts = $query->posts;
 			if ( function_exists( 'estecapelli_treatment_order_rank' ) ) {
 				usort(
 					$posts,
 					function ( $a, $b ) {
-						$ra = estecapelli_treatment_order_rank( $a->post_name );
-						$rb = estecapelli_treatment_order_rank( $b->post_name );
+						$ra = estecapelli_treatment_order_rank( estecapelli_wpml_source_post_slug( $a ) );
+						$rb = estecapelli_treatment_order_rank( estecapelli_wpml_source_post_slug( $b ) );
 						return ( $ra !== $rb ) ? $ra - $rb : 0;
 					}
 				);
@@ -1015,11 +1019,15 @@ if ( ! function_exists( 'estecapelli_home_services_from_treatments' ) ) {
 				);
 			}
 
+			// English source slug drives the icon (SVG file + fallback glyph) so
+			// every translated category shows the same icon as the English tab.
+			$source_slug  = estecapelli_wpml_source_term_slug( $term );
 			$categories[] = array(
-				'key'   => $term->slug,
-				'icon'  => $icons[ $term->slug ] ?? 'medical-plus',
-				'label' => $term->name,
-				'items' => $items,
+				'key'      => $term->slug,
+				'icon_key' => $source_slug,
+				'icon'     => $icons[ $source_slug ] ?? 'medical-plus',
+				'label'    => $term->name,
+				'items'    => $items,
 			);
 		}
 		wp_reset_postdata();

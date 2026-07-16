@@ -272,6 +272,61 @@ function estecapelli_source_term_id( $slug, $taxonomy ) {
 }
 
 /**
+ * English source slug of a term, regardless of the current language.
+ *
+ * Theme lookups (tab icons, field-of-care ordering) are keyed to the English
+ * category slugs. A translated term carries its own localized slug, so we
+ * resolve it back to its English original via WPML before matching. Falls back
+ * to the term's own slug when WPML is inactive or no English link exists.
+ *
+ * @param WP_Term|int $term     Term object or id.
+ * @param string      $taxonomy Taxonomy (required when $term is an id).
+ * @return string English slug, or '' when the term cannot be resolved.
+ */
+function estecapelli_wpml_source_term_slug( $term, $taxonomy = '' ) {
+	if ( ! $term instanceof WP_Term ) {
+		$term = get_term( (int) $term, $taxonomy );
+	}
+	if ( ! $term instanceof WP_Term ) {
+		return '';
+	}
+
+	$english_id = (int) apply_filters( 'wpml_object_id', $term->term_id, $term->taxonomy, false, 'en' );
+	if ( $english_id && $english_id !== (int) $term->term_id ) {
+		$english = get_term( $english_id, $term->taxonomy );
+		if ( $english instanceof WP_Term ) {
+			return $english->slug;
+		}
+	}
+	return $term->slug;
+}
+
+/**
+ * English source slug (post_name) of a post, regardless of the current language.
+ *
+ * Mirrors estecapelli_wpml_source_term_slug() for treatment card ordering, which
+ * is keyed to the English post slugs. Falls back to the post's own slug.
+ *
+ * @param WP_Post|int $post Post object or id.
+ * @return string English post_name, or '' when the post cannot be resolved.
+ */
+function estecapelli_wpml_source_post_slug( $post ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return '';
+	}
+
+	$english_id = (int) apply_filters( 'wpml_object_id', $post->ID, $post->post_type, false, 'en' );
+	if ( $english_id && $english_id !== (int) $post->ID ) {
+		$english = get_post( $english_id );
+		if ( $english instanceof WP_Post ) {
+			return $english->post_name;
+		}
+	}
+	return $post->post_name;
+}
+
+/**
  * The English (source) post id, found by raw post_name lookup.
  */
 function estecapelli_source_post_id( $slug, $post_type ) {
