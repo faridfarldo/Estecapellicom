@@ -277,6 +277,11 @@ function estecapelli_gallery_grouped() {
 		do_action( 'wpml_switch_language', $default_lang );
 	}
 
+	// Fetch every language's treatments (suppress_filters bypasses WPML's own
+	// language filter, which is unreliable for a switched secondary query) and
+	// keep only the default-language originals — the ones that actually hold the
+	// gallery images. Their fields/terms are read below in the default-language
+	// context, exactly like the working English page.
 	$treatment_ids = get_posts(
 		array(
 			'post_type'        => 'treatment',
@@ -285,7 +290,7 @@ function estecapelli_gallery_grouped() {
 			'orderby'          => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
 			'fields'           => 'ids',
 			'no_found_rows'    => true,
-			'suppress_filters' => false,
+			'suppress_filters' => true,
 		)
 	);
 
@@ -293,6 +298,17 @@ function estecapelli_gallery_grouped() {
 	$buckets = array();
 
 	foreach ( (array) $treatment_ids as $tid ) {
+		if ( $default_lang ) {
+			$post_lang = apply_filters(
+				'wpml_element_language_code',
+				null,
+				array( 'element_id' => (int) $tid, 'element_type' => 'post_treatment' )
+			);
+			if ( $post_lang && $post_lang !== $default_lang ) {
+				continue; // A translation — its gallery is empty; skip it.
+			}
+		}
+
 		// Gather every image from all gallery sections on this treatment.
 		$items = estecapelli_collect_gallery_items( get_field( 'page_sections', $tid ) );
 		if ( empty( $items ) ) {
