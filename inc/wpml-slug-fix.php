@@ -449,16 +449,29 @@ function estecapelli_wpml_replace_language_slot_raw( $element_id, $element_type,
 			(string) $element_type
 		)
 	);
-	$slot_deleted   = $wpdb->query(
-		$wpdb->prepare(
-			"DELETE FROM {$table}
-			 WHERE trid = %d AND element_type = %s AND language_code = %s AND element_id <> %d",
-			(int) $trid,
-			(string) $element_type,
-			(string) $language,
-			(int) $element_id
+	// Clear the slot by its real unique key. WPML's `trid_lang` index is on
+	// (trid, language_code) alone, so a conflicting occupant must be removed
+	// regardless of its element_type — and a stale row with a NULL element_id
+	// (which `element_id <> %d` silently skips) would otherwise survive and
+	// collide with the write below. We exclude only our own translation row.
+	$slot_deleted   = $translation_id
+		? $wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$table}
+				 WHERE trid = %d AND language_code = %s AND translation_id <> %d",
+				(int) $trid,
+				(string) $language,
+				(int) $translation_id
+			)
 		)
-	);
+		: $wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$table}
+				 WHERE trid = %d AND language_code = %s",
+				(int) $trid,
+				(string) $language
+			)
+		);
 	if ( false === $slot_deleted ) {
 		estecapelli_wpml_set_slot_error(
 			sprintf( 'clearing the %s slot in trid %d failed: %s', $language, (int) $trid, $wpdb->last_error ?: 'unknown DB error' )
