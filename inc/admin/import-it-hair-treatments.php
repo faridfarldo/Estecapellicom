@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION', '2026-07-16.1' );
+	define( 'ESTECAPELLI_IT_HAIR_IMPORT_VERSION', '2026-07-16.2' );
 }
 
 /**
@@ -247,33 +247,6 @@ function estecapelli_it_hair_localize_urls( $value ) {
 	}
 
 	return $value;
-}
-
-/**
- * Keep the standard treatment-page sequence: gallery before the richer FAQ.
- *
- * @param array<int,array<string,mixed>> $sections ACF flexible sections.
- * @return array<int,array<string,mixed>>
- */
-function estecapelli_it_hair_order_sections( array $sections ) {
-	$gallery_index = null;
-	$faq_index     = null;
-	foreach ( $sections as $index => $section ) {
-		$layout = $section['acf_fc_layout'] ?? '';
-		if ( 'gallery' === $layout && null === $gallery_index ) {
-			$gallery_index = $index;
-		}
-		if ( 'faq' === $layout && null === $faq_index ) {
-			$faq_index = $index;
-		}
-	}
-
-	if ( null !== $gallery_index && null !== $faq_index && $gallery_index > $faq_index ) {
-		$gallery = array_splice( $sections, $gallery_index, 1 );
-		array_splice( $sections, $faq_index, 0, $gallery );
-	}
-
-	return array_values( $sections );
 }
 
 /**
@@ -754,7 +727,6 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $
 	if ( is_wp_error( $sections ) ) {
 		return $sections;
 	}
-	$sections = estecapelli_it_hair_order_sections( $sections );
 	$sections = estecapelli_it_hair_localize_urls( $sections );
 	$sections = estecapelli_it_hair_normalize_media( $sections );
 	update_field( 'field_treatment_sections', $sections, $target_id );
