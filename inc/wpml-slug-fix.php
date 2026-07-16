@@ -411,6 +411,19 @@ function estecapelli_wpml_repair_relationship_raw( $element_id, $element_type, $
 }
 
 /**
+ * Return (and clear) the diagnostic for the last language-slot replacement.
+ *
+ * estecapelli_wpml_replace_language_slot_raw() returns only a bool, so when a
+ * forced import fails the underlying reason (which SQL step failed, the DB error
+ * and the group's row state) is stashed here for the caller to surface.
+ *
+ * @return string Human-readable diagnostic, or '' if the last call succeeded.
+ */
+function estecapelli_wpml_last_slot_error() {
+	return (string) apply_filters( 'estecapelli_wpml_last_slot_error', '' );
+}
+
+/**
  * Replace one WPML group/language slot with a known canonical element.
  *
  * This is reserved for explicit, version-controlled imports. Both the target's
@@ -421,6 +434,10 @@ function estecapelli_wpml_repair_relationship_raw( $element_id, $element_type, $
 function estecapelli_wpml_replace_language_slot_raw( $element_id, $element_type, $trid, $language, $source_language ) {
 	global $wpdb;
 	$table = $wpdb->prefix . 'icl_translations';
+
+	// Reset the diagnostic for this attempt.
+	estecapelli_wpml_set_slot_error( '' );
+
 	$wpdb->query( 'START TRANSACTION' );
 
 	$translation_id = (int) $wpdb->get_var(
@@ -442,6 +459,14 @@ function estecapelli_wpml_replace_language_slot_raw( $element_id, $element_type,
 			(int) $element_id
 		)
 	);
+	if ( false === $slot_deleted ) {
+		estecapelli_wpml_set_slot_error(
+			sprintf( 'clearing the %s slot in trid %d failed: %s', $language, (int) $trid, $wpdb->last_error ?: 'unknown DB error' )
+		);
+		$wpdb->query( 'ROLLBACK' );
+		return false;
+	}
+
 	$values         = array(
 		'trid'                 => (int) $trid,
 		'language_code'        => (string) $language,
@@ -465,12 +490,79 @@ function estecapelli_wpml_replace_language_slot_raw( $element_id, $element_type,
 		);
 	}
 
-	if ( false === $slot_deleted || false === $saved ) {
+	if ( false === $saved ) {
+		estecapelli_wpml_set_slot_error(
+			sprintf(
+				'%s row for element %d could not be written into trid %d: %s',
+				$translation_id ? 'updating the' : 'inserting a',
+				(int) $element_id,
+				(int) $trid,
+				$wpdb->last_error ?: 'unknown DB error'
+			)
+		);
 		$wpdb->query( 'ROLLBACK' );
 		return false;
 	}
 
 	$valid = estecapelli_wpml_element_matches_raw( $element_id, $element_type, $trid, $language );
+	if ( ! $valid ) {
+		estecapelli_wpml_set_slot_error(
+			sprintf(
+				'the write did not stick — element %d still does not occupy the %s slot in trid %d. Current group rows: %s',
+				(int) $element_id,
+				$language,
+				(int) $trid,
+				estecapelli_wpml_describe_group_raw( $trid, $element_type )
+			)
+		);
+	}
 	$wpdb->query( $valid ? 'COMMIT' : 'ROLLBACK' );
 	return $valid;
+}
+
+/**
+ * Store the diagnostic for the most recent language-slot replacement attempt.
+ *
+ * @param string $message Diagnostic text ('' clears it).
+ */
+function estecapelli_wpml_set_slot_error( $message ) {
+	remove_all_filters( 'estecapelli_wpml_last_slot_error' );
+	$message = (string) $message;
+	add_filter(
+		'estecapelli_wpml_last_slot_error',
+		static function () use ( $message ) {
+			return $message;
+		}
+	);
+}
+
+/**
+ * Summarise the rows of one WPML translation group for diagnostics.
+ *
+ * @param int    $trid         Translation group id.
+ * @param string $element_type WPML element type.
+ * @return string One row per relationship: "lang=element_id(post_status)".
+ */
+function estecapelli_wpml_describe_group_raw( $trid, $element_type ) {
+	global $wpdb;
+	$table = $wpdb->prefix . 'icl_translations';
+	$rows  = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT t.language_code, t.element_id, p.post_status
+			 FROM {$table} t
+			 LEFT JOIN {$wpdb->posts} p ON p.ID = t.element_id
+			 WHERE t.trid = %d AND t.element_type = %s
+			 ORDER BY t.language_code",
+			(int) $trid,
+			(string) $element_type
+		)
+	);
+	if ( ! $rows ) {
+		return '(none)';
+	}
+	$parts = array();
+	foreach ( $rows as $row ) {
+		$parts[] = sprintf( '%s=%d(%s)', $row->language_code, (int) $row->element_id, $row->post_status ?: 'missing' );
+	}
+	return implode( ', ', $parts );
 }

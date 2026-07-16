@@ -722,7 +722,18 @@ function estecapelli_fr_hair_import_one( array $translation, $french_term_id, $s
 	if ( $force_relationship ) {
 		$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, 'fr', $source_language );
 		if ( ! $forced ) {
-			return new WP_Error( 'fr_hair_post_force_link_failed', sprintf( 'The French WPML relationship could not be rebuilt for %s.', $source_slug ) );
+			$reason = estecapelli_wpml_last_slot_error();
+			return new WP_Error(
+				'fr_hair_post_force_link_failed',
+				sprintf(
+					'The French WPML relationship could not be rebuilt for %s (English post #%d, French post #%d, trid %d)%s',
+					$source_slug,
+					(int) $source_id,
+					(int) $target_id,
+					(int) $trid,
+					$reason ? ' — ' . $reason : '.'
+				)
+			);
 		}
 	}
 
