@@ -1,0 +1,197 @@
+{
+    "source_slug": "dental-implant",
+    "slug": "implant-dentaire",
+    "title": "Implant dentaire",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Remplacement dentaire permanent",
+            "title": "Implant dentaire",
+            "lead": "Remplacez vos dents manquantes par des solutions permanentes à l’aspect naturel. Des racines en titane biocompatible offrent des résultats solides, esthétiques et durables.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Le traitement",
+            "title": "Qu’est-ce qu’un implant dentaire ?",
+            "body": "<p>Un implant dentaire est une méthode de traitement moderne qui rétablit la fonction naturelle et l’aspect esthétique de la dent en plaçant des racines en titane biocompatible dans l’os de la mâchoire pour remplacer les dents manquantes. L’implant remplit le rôle de la racine perdue et, associé à la dent prothétique posée par-dessus, offre la solution la plus proche d’une dent naturelle, tant sur le plan de l’apparence que de la fonction.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Pourquoi c’est important",
+            "title": "Pourquoi choisir les implants dentaires ?",
+            "body": "La perte d’une dent est bien plus qu’un simple problème esthétique. Une mastication altérée peut nuire au système digestif, une résorption de l’os de la mâchoire peut se développer avec le temps, et les dents voisines peuvent progressivement se déplacer et se détériorer. Les implants dentaires constituent la solution de traitement la plus idéale pour les raisons suivantes :",
+            "items": [
+                {
+                    "label": "Comblent durablement l’espace laissé par les dents manquantes"
+                },
+                {
+                    "label": "Protègent l’os de la mâchoire et préviennent sa perte"
+                },
+                {
+                    "label": "Préservent les dents saines voisines sans les endommager"
+                },
+                {
+                    "label": "Rétablissent une force de mastication au plus proche des dents naturelles"
+                },
+                {
+                    "label": "Améliorent l’esthétique du visage et l’apparence générale"
+                },
+                {
+                    "label": "Offrent une solution durable et à vie"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Le déroulement",
+            "title": "Comment pose-t-on un implant dentaire ?",
+            "lead": "Le traitement implantaire suit un processus structuré, conçu pour offrir des résultats sûrs, durables et d’aspect naturel. Les principales étapes du traitement sont les suivantes.",
+            "items": [
+                {
+                    "eyebrow": "Étape 1",
+                    "title": "Examen clinique et imagerie",
+                    "body": "<p>L’os de la mâchoire est analysé en profondeur à l’aide de radiographies panoramiques et d’une tomographie numérique. La densité osseuse, la taille de l’implant et la zone à traiter sont soigneusement évaluées afin d’établir un plan implantaire personnalisé, et la santé bucco-dentaire globale ainsi que les antécédents médicaux du patient sont examinés.</p>"
+                },
+                {
+                    "eyebrow": "Étape 2",
+                    "title": "Planification du traitement",
+                    "body": "<p>Un plan de traitement personnalisé est préparé en fonction du nombre de dents manquantes, de la structure de la mâchoire et de la santé bucco-dentaire globale. Si des procédures préalables telles qu’une greffe osseuse ou une extraction dentaire sont nécessaires, elles sont intégrées au plan.</p>"
+                },
+                {
+                    "eyebrow": "Étape 3",
+                    "title": "Pose de l’implant",
+                    "body": "<p>Sous anesthésie locale, la racine implantaire en titane est soigneusement placée dans l’os de la mâchoire, ce qui prend généralement de 15 à 30 minutes par implant. Une légère gêne ou un gonflement dans les jours suivants font partie du processus normal de cicatrisation.</p>"
+                },
+                {
+                    "eyebrow": "Étape 4",
+                    "title": "Ostéo-intégration",
+                    "body": "<p>Une période de cicatrisation d’environ 2 à 3 mois permet à la racine en titane de s’intégrer pleinement à l’os environnant, créant une base solide et stable pour la dent prothétique.</p>"
+                },
+                {
+                    "eyebrow": "Étape 5",
+                    "title": "Structure prothétique",
+                    "body": "<p>Une fois l’ostéo-intégration terminée, une dent prothétique sur mesure est fixée. Des prothèses en porcelaine, en zircone ou hybrides peuvent être utilisées, conçues pour s’harmoniser à la couleur, la forme et la taille des dents naturelles voisines.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Avantages",
+            "title": "Les avantages des implants dentaires",
+            "body": "Les implants constituent la référence pour remplacer les dents manquantes :",
+            "items": [
+                {
+                    "label": "Offrent un aspect et une sensation de dent naturelle"
+                },
+                {
+                    "label": "Garantissent une performance de mastication maximale"
+                },
+                {
+                    "label": "Aucune intervention n’est réalisée sur les dents saines voisines"
+                },
+                {
+                    "label": "Préservent la santé bucco-dentaire à long terme"
+                },
+                {
+                    "label": "Soutiennent l’esthétique du visage et préviennent le risque d’affaissement facial"
+                },
+                {
+                    "label": "Offrent une utilisation à vie avec des soins et un entretien appropriés"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Pourquoi la Turquie",
+            "title": "Pourquoi les implants dentaires sont-ils prisés en Turquie ?",
+            "body": "<p>La Turquie est devenue l’une des destinations les plus prisées au monde pour le traitement implantaire, grâce à ses cliniques accréditées à l’international, ses chirurgiens expérimentés et ses tarifs avantageux. Notre clinique d’Istanbul offre aux patients qui se déplacent pour un traitement implantaire une expérience complète de tourisme médical, comprenant des transferts VIP, une aide à l’hébergement et un plan de traitement personnalisé et complet.</p>",
+            "cta": {
+                "label": "Planifiez votre visite"
+            }
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Résultats réels",
+            "title": "Implants dentaires — Avant et après",
+            "lead": "Découvrez comment un sourire complet est rétabli grâce au traitement implantaire. Chaque cas est planifié individuellement pour un aspect naturel, une occlusion confortable et un résultat durable.",
+            "cta": {
+                "label": "Voir toute la galerie"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bon à savoir",
+            "title": "Implants dentaires — Foire aux questions",
+            "items": [
+                {
+                    "question": "Qui est un bon candidat pour un implant dentaire ?",
+                    "answer": "<p>La plupart des adultes en bonne santé générale ayant perdu une ou plusieurs dents et disposant d’un os de mâchoire sain en quantité suffisante sont de bons candidats. Des affections comme un diabète non contrôlé, une maladie des gencives avancée ou une perte osseuse importante n’excluent pas nécessairement le traitement, mais elles sont d’abord évaluées et prises en charge. Un court examen avec radiographies ou scanner 3D permet à nos dentistes de confirmer votre éligibilité et de définir le bon plan.</p>"
+                },
+                {
+                    "question": "Combien de temps dure l’ensemble du traitement ?",
+                    "answer": "<p>Du début à la fin, le traitement implantaire s’étend généralement sur deux à quatre mois. L’implant lui-même est posé lors d’un rendez-vous court, mais il lui faut ensuite environ deux à trois mois pour fusionner avec l’os (ostéo-intégration) avant que la dent définitive soit posée. Dans certains cas où la qualité osseuse est bonne, les implants à mise en charge immédiate ou le jour même peuvent réduire considérablement ce délai.</p>"
+                },
+                {
+                    "question": "La procédure est-elle douloureuse ?",
+                    "answer": "<p>La pose est réalisée sous anesthésie locale : vous ne ressentez donc aucune douleur pendant l’intervention elle-même. Ensuite, il est normal d’avoir un léger gonflement ou une sensibilité pendant quelques jours, facilement soulagés par de simples antalgiques et des soins appropriés. La plupart des patients comparent la récupération à celle d’une extraction dentaire de routine.</p>"
+                },
+                {
+                    "question": "Que faire si je n’ai pas assez d’os dans la mâchoire ?",
+                    "answer": "<p>Un volume osseux insuffisant est fréquent après une perte dentaire ancienne et constitue rarement un obstacle. Des procédures comme la greffe osseuse ou l’élévation du sinus permettent de reconstituer le volume d’os nécessaire pour soutenir un implant de manière sûre. Si cela est nécessaire, cela est planifié à l’avance et peut ajouter un délai de cicatrisation avant la pose de l’implant.</p>"
+                },
+                {
+                    "question": "Les implants peuvent-ils remplacer plusieurs ou toutes mes dents ?",
+                    "answer": "<p>Oui. Un seul implant peut remplacer une dent, tandis que quelques implants peuvent soutenir un bridge pour plusieurs dents manquantes. Pour une arcade complète, des traitements comme le All-on-4 ou le All-on-6 utilisent seulement quatre à six implants pour ancrer un ensemble de dents fixes complet — une alternative stable et confortable aux prothèses amovibles.</p>"
+                },
+                {
+                    "question": "Les implants ont-ils un aspect et une sensation naturels ?",
+                    "answer": "<p>Oui. La racine en titane reste dissimulée dans l’os, et la dent prothétique sur mesure posée par-dessus est assortie à la couleur, la forme et la taille de vos dents naturelles. Parce que l’implant est solidement ancré, il vous permet de mordre, mastiquer et parler comme avec une vraie dent — sans le mouvement associé aux prothèses.</p>"
+                },
+                {
+                    "question": "Combien de temps durent les implants dentaires ?",
+                    "answer": "<p>La racine implantaire est conçue pour être une solution à vie et, avec de bons soins, peut durer des décennies. La couronne visible posée par-dessus peut finir par montrer des signes d’usure après de nombreuses années et peut être renouvelée sans remplacer l’implant. Une hygiène quotidienne, des gencives saines et des contrôles réguliers sont les clés d’un succès à long terme.</p>"
+                },
+                {
+                    "question": "Le tabac ou l’âge influencent-ils le traitement implantaire ?",
+                    "answer": "<p>Il n’y a pas de limite d’âge supérieure — ce qui compte, c’est la santé de l’os et des gencives plutôt que l’âge. Le tabac, en revanche, ralentit la cicatrisation et augmente le risque d’échec de l’implant ; réduire ou arrêter de fumer autour de la période du traitement améliore donc nettement le résultat. Votre dentiste vous donnera des conseils adaptés lors de votre bilan.</p>"
+                },
+                {
+                    "question": "Comment prendre soin de mon implant ?",
+                    "answer": "<p>Prendre soin d’un implant est identique à l’entretien des dents naturelles : brossez-vous les dents deux fois par jour, nettoyez les espaces interdentaires avec du fil ou une brossette, et effectuez des contrôles dentaires réguliers. Une bonne hygiène quotidienne préserve la santé de la gencive environnante et protège la stabilité de l’implant sur le long terme.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consultation gratuite",
+            "title": "Recevez votre plan de traitement implantaire",
+            "lead": "Partagez quelques détails et notre équipe vous répondra avec un plan de traitement implantaire personnalisé et un devis tout compris et sans engagement, généralement en quelques heures.",
+            "points": [
+                {
+                    "label": "Bilan de traitement gratuit à partir de vos photos ou de votre radiographie"
+                },
+                {
+                    "label": "Devis tout compris, transparent et sans engagement"
+                },
+                {
+                    "label": "Réponse rapide de notre équipe dédiée aux patients"
+                },
+                {
+                    "label": "Accompagnement multilingue à chaque étape"
+                }
+            ],
+            "submit_label": "Demandez une consultation gratuite"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Pour aller plus loin",
+            "title": "Traitements associés"
+        }
+    ]
+}

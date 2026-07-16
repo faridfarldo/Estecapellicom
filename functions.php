@@ -52,6 +52,7 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-fr-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-plastic-treatments.php';
+	require get_template_directory() . '/inc/admin/import-fr-dental-treatments.php';
 }
 
 if ( ! function_exists( 'estecapelli_setup' ) ) {
