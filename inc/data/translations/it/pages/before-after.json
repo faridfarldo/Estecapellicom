@@ -1,0 +1,19 @@
+{
+    "source_slug": "before-after",
+    "slug": "prima-dopo",
+    "title": "Prima e dopo",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Prima e dopo",
+            "title": "Risultati reali, pazienti reali.",
+            "lead": "Scopri i risultati prima e dopo dei nostri trattamenti di trapianto di capelli, chirurgia plastica e odontoiatria. Ogni immagine racconta il percorso di un paziente che ci ha affidato la propria trasformazione.",
+            "cta_primary": {
+                "label": "Consulenza gratuita"
+            },
+            "cta_secondary": {
+                "label": "Chatta su WhatsApp"
+            }
+        }
+    ]
+}

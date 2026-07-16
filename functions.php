@@ -44,6 +44,7 @@ require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/wpml-fix.php';
 require get_template_directory() . '/inc/fr-string-fallbacks.php';
 require get_template_directory() . '/inc/it-navigation.php';
+require get_template_directory() . '/inc/it-string-fallbacks.php';
 require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
@@ -53,9 +54,12 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-fr-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-hair-pages.php';
+	require get_template_directory() . '/inc/admin/import-it-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-dental-treatments.php';
+	require get_template_directory() . '/inc/admin/import-it-dental-treatments.php';
+	require get_template_directory() . '/inc/admin/import-it-doctors.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-blog.php';
 }

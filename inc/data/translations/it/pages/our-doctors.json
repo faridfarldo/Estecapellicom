@@ -1,0 +1,47 @@
+{
+    "source_slug": "our-doctors",
+    "slug": "i-nostri-medici",
+    "title": "I nostri medici",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "I nostri medici",
+            "title": "Chirurghi che seguono personalmente ogni intervento.",
+            "lead": "Conosci i chirurghi qualificati che eseguono gli interventi presso Estecapelli, selezionati personalmente per esperienza, risultati e attenzione al paziente.",
+            "cta_primary": {
+                "label": "Consulenza gratuita"
+            },
+            "cta_secondary": {
+                "label": "Chatta su WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "doctors",
+            "eyebrow": "Chirurghi qualificati",
+            "title": "Conosci i nostri chirurghi",
+            "lead": "Ogni intervento è seguito personalmente da uno dei nostri chirurghi specializzati. Apri il curriculum per conoscere formazione, qualifiche e aree di competenza.",
+            "members": [
+                {
+                    "name": "Dr. Mehmet Hanifi Kutlar",
+                    "position": "Specialista in trapianto di capelli e cofondatore"
+                },
+                {
+                    "name": "Op. Dr. Hasan Çelik",
+                    "position": "Chirurgo estetico, plastico e ricostruttivo"
+                },
+                {
+                    "name": "Op. Dr. Mehmet Palalı",
+                    "position": "Specialista in otorinolaringoiatria"
+                },
+                {
+                    "name": "Op. Dr. Necdet Derici",
+                    "position": "Specialista in chirurgia generale"
+                },
+                {
+                    "name": "Op. Dr. Ali Durmuş",
+                    "position": "Chirurgo plastico e ricostruttivo"
+                }
+            ]
+        }
+    ]
+}

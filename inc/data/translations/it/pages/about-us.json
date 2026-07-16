@@ -1,0 +1,80 @@
+{
+    "source_slug": "about-us",
+    "slug": "chi-siamo",
+    "title": "Chi siamo",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Chi è Estecapelli",
+            "title": "Eccellenza estetica sostenuta dalla fiducia medica.",
+            "lead": "Estecapelli è una clinica con sede a Istanbul specializzata nel trapianto di capelli, nella chirurgia plastica, nei trattamenti dentali e nella medicina estetica non chirurgica. Uniamo medici qualificati, strutture di livello ospedaliero e un approccio centrato sul paziente per offrire risultati affidabili.",
+            "cta_primary": {
+                "label": "Consulenza gratuita"
+            },
+            "cta_secondary": {
+                "label": "Chatta su WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Scelti in tutto il mondo",
+            "stats": [
+                {
+                    "value": "15+",
+                    "label": "Anni di esperienza"
+                },
+                {
+                    "value": "50.000+",
+                    "label": "Trapianti di capelli"
+                },
+                {
+                    "value": "40+",
+                    "label": "Paesi serviti"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Assistenza ai pazienti"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Chi siamo",
+            "title": "Un nome di fiducia nel trapianto di capelli",
+            "body": "<p>Con oltre 15 anni di esperienza nel settore sanitario, Estecapelli è un punto di riferimento internazionale nel trapianto di capelli. Fondata in Turchia, la nostra clinica ha ottenuto rapidamente riconoscimento a livello mondiale grazie all'elevata soddisfazione dei pazienti e a risultati costantemente positivi. Oggi accogliamo pazienti da tutto il mondo nei nostri centri in Turchia e in Cile.</p><p>Con oltre 2.500 trapianti di capelli eseguiti ogni anno nella sola Turchia, Estecapelli offre risultati naturali, estetici e permanenti grazie a tecnologie innovative e piani di trattamento personalizzati. Le nostre tecniche brevettate VITA ed Exosome favoriscono una guarigione più rapida e aumentano la sopravvivenza degli innesti, facendo una differenza concreta nel ripristino dei capelli.</p><p>Grazie al nostro approccio a prezzo fisso e al numero massimo di innesti senza limiti prestabiliti, proponiamo a ogni paziente la soluzione più adatta. Ogni intervento viene eseguito con la massima attenzione dal nostro team medico turco, esperto e qualificato.</p><p>Le moderne strutture cliniche, gli elevati standard igienici, un servizio conforme agli standard internazionali e la soddisfazione comprovata di migliaia di pazienti rendono Estecapelli un nome distintivo nel settore. Ovunque tu sia, Estecapelli è al tuo fianco per offrirti la migliore esperienza possibile di trapianto di capelli.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Perché la Turchia",
+            "title": "Risultati di livello mondiale, senza costi gonfiati",
+            "body": "<p>Perché pagare di più nel Regno Unito, negli Stati Uniti o in Europa? Estecapelli unisce eccellenza medica, tecniche riconosciute a livello internazionale e prezzi competitivi per offrire risultati di trapianto di capelli di livello mondiale a una frazione del costo.</p><p>Le nostre strutture all'avanguardia in Turchia garantiscono la stessa qualità assistenziale delle migliori cliniche internazionali, senza prezzi eccessivi. Con chirurghi esperti, piani personalizzati e un'assistenza completa, ricevi un valore eccezionale senza alcun compromesso sulla qualità.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "La nostra tecnologia",
+            "title": "Scopri Exosome FUE",
+            "body": "<p>La soluzione Exosome deriva da fluidi di coltura contenenti cellule staminali mesenchimali ottenute dal cordone ombelicale materno. Queste cellule possiedono straordinarie proprietà rigenerative e riparatrici. Sfruttando la loro capacità naturale di comunicare con le cellule circostanti e rivitalizzarle, la soluzione Exosome favorisce la riparazione dei tessuti, una funzione cellulare più sana e una migliore vitalità generale della pelle. La tecnica Exosome FUE è un'applicazione brevettata di Estecapelli.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Il nostro metodo esclusivo",
+            "title": "Scopri il trattamento VITA",
+            "body": "<p>Sviluppato da Estecapelli, il trattamento VITA è una tecnologia rivoluzionaria che va oltre il trapianto di capelli convenzionale: stimola la vitalità dei follicoli, accelera la guarigione e favorisce risultati naturali.</p><p>Applicato con successo da oltre sei anni, questo metodo esclusivo è diventato il trattamento distintivo di Estecapelli. A oggi più di 10.000 pazienti hanno scelto VITA per ottenere capelli naturali, folti e permanenti. Questo successo è alla base del riconoscimento internazionale di Estecapelli.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Ciò che ci guida",
+            "title": "La nostra missione",
+            "body": "<p>La missione di Estecapelli è offrire ai pazienti risultati duraturi ed esteticamente armoniosi attraverso le più recenti tecnologie mediche e metodi innovativi. Grazie al nostro impegno nel miglioramento continuo, alle collaborazioni internazionali e a un team di esperti, perseguiamo l'eccellenza nel settore sanitario continuando a fornire un servizio di livello mondiale.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Uno sguardo al futuro",
+            "title": "La nostra visione",
+            "body": "<p>La nostra visione è diventare un marchio leader a livello mondiale nel trapianto di capelli e nella medicina estetica, guidando il settore attraverso pratiche innovative e un approccio meticoloso, attento a ogni dettaglio. Con i nostri centri in Turchia e a Santiago del Cile, desideriamo raggiungere un numero sempre maggiore di pazienti e rendere il nostro servizio di alta qualità accessibile a un pubblico più ampio.</p>",
+            "cta": {
+                "label": "Conosci i nostri medici"
+            }
+        }
+    ]
+}

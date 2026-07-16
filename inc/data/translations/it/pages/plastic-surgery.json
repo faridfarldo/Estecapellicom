@@ -1,0 +1,113 @@
+{
+    "source_slug": "plastic-surgery",
+    "slug": "chirurgia-plastica",
+    "title": "Chirurgia plastica",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Chirurgia plastica",
+            "title": "Chirurgia estetica progettata intorno a te.",
+            "lead": "Rinoplastica, BBL, chirurgia del seno, lifting di viso e collo e molto altro, eseguiti da chirurghi qualificati in strutture di livello ospedaliero.",
+            "cta_primary": {
+                "label": "Consulenza gratuita"
+            },
+            "cta_secondary": {
+                "label": "Chatta su WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Il nostro approccio",
+            "title": "Chirurgia estetica eseguita in sicurezza e con naturalezza",
+            "body": "<p>La chirurgia plastica è una scelta profondamente personale e il risultato giusto deve rispecchiarti: equilibrato, naturale e proporzionato, mai eccessivo. Presso Estecapelli ogni intervento è eseguito da chirurghi plastici qualificati in strutture accreditate di livello ospedaliero, con anestesia, monitoraggio e assistenza postoperatoria conformi agli standard di una clinica di eccellenza.</p><p>Dalla rinoplastica e dal ringiovanimento del viso al rimodellamento corporeo, alla chirurgia del seno e alla chirurgia bariatrica, il tuo percorso inizia con una consulenza trasparente. Valutiamo ciò che è realmente possibile, pianifichiamo l'intervento in base alla tua anatomia e ai tuoi obiettivi e ti assistiamo durante il recupero con un team dedicato che parla la tua lingua.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Perché i pazienti scelgono Estecapelli",
+            "stats": [
+                {
+                    "value": "Qualificati",
+                    "label": "Chirurghi plastici esperti"
+                },
+                {
+                    "value": "Livello ospedaliero",
+                    "label": "Strutture accreditate e completamente attrezzate"
+                },
+                {
+                    "value": "Assistenza completa",
+                    "label": "Dal primo messaggio fino al recupero"
+                },
+                {
+                    "value": "Tutto incluso",
+                    "label": "Preventivi trasparenti e senza impegno"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "I nostri trattamenti",
+            "title": "Scopri gli interventi di chirurgia plastica"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Risultati reali",
+            "title": "Chirurgia plastica: prima e dopo",
+            "lead": "Guarda i risultati prima e dopo di pazienti reali. Ogni trasformazione viene pianificata individualmente per ottenere un risultato naturale ed equilibrato.",
+            "cta": {
+                "label": "Visualizza tutta la galleria"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consulenza gratuita",
+            "title": "Pianifica il tuo intervento con i nostri chirurghi",
+            "lead": "Raccontaci cosa desideri ottenere: il nostro team medico ti risponderà con un piano personalizzato e un preventivo tutto incluso e senza impegno, generalmente entro poche ore.",
+            "points": [
+                {
+                    "label": "Valutazione da parte di chirurghi qualificati"
+                },
+                {
+                    "label": "Aspettative realistiche e trasparenti fin dall'inizio"
+                },
+                {
+                    "label": "Risposta rapida dal nostro team dedicato ai pazienti"
+                },
+                {
+                    "label": "Assistenza multilingue in ogni fase"
+                }
+            ],
+            "submit_label": "Richiedi una consulenza gratuita"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Informazioni utili",
+            "title": "Chirurgia plastica: domande frequenti",
+            "items": [
+                {
+                    "question": "Come posso sapere quale intervento è più adatto a me?",
+                    "answer": "<p>Il percorso inizia sempre con una consulenza. Ascoltiamo ciò che desideri migliorare, valutiamo la tua anatomia e spieghiamo quale intervento, o combinazione di interventi, può offrire un risultato naturale ed equilibrato. Siamo altrettanto chiari su ciò che non è consigliabile, perché il piano corretto deve essere sicuro e realistico per te, non semplicemente corrispondere a una richiesta.</p>"
+                },
+                {
+                    "question": "I chirurghi sono qualificati e le strutture sono sicure?",
+                    "answer": "<p>Sì. Tutti gli interventi vengono eseguiti da chirurghi plastici qualificati in strutture accreditate di livello ospedaliero, dotate di anestesia e monitoraggio completi. Prima dell'intervento la tua idoneità viene verificata attraverso gli esami necessari e la valutazione della storia clinica; durante tutto il soggiorno sarai seguito da personale sanitario qualificato.</p>"
+                },
+                {
+                    "question": "Quale tipo di anestesia viene utilizzato?",
+                    "answer": "<p>La maggior parte degli interventi di chirurgia plastica viene eseguita in anestesia generale, somministrata da un anestesista specializzato; alcune procedure meno invasive possono essere effettuate con sedazione o anestesia locale. L'opzione più adatta viene confermata durante la valutazione preoperatoria in base all'intervento e al tuo stato di salute.</p>"
+                },
+                {
+                    "question": "Quanto dura il recupero e quanti giorni devo restare in Turchia?",
+                    "answer": "<p>La durata del recupero dipende dall'intervento. Molti pazienti restano in Turchia da cinque a dieci giorni, così possiamo monitorare la prima fase di guarigione e rimuovere eventuali punti o drenaggi prima del viaggio. Riceverai un programma di recupero chiaro e scritto e il nostro team resterà disponibile anche dopo il tuo rientro.</p>"
+                },
+                {
+                    "question": "Rimarranno cicatrici visibili?",
+                    "answer": "<p>Alcuni interventi lasciano cicatrici, ma quando possibile i nostri chirurghi posizionano le incisioni in aree discrete e naturalmente nascoste, utilizzando tecniche di sutura accurate per mantenerle il più sottili possibile. Le cicatrici tendono a schiarirsi sensibilmente nei mesi successivi e ti forniremo indicazioni specifiche per favorire una corretta guarigione.</p>"
+                },
+                {
+                    "question": "I risultati sono permanenti?",
+                    "answer": "<p>Molti risultati, come quelli della rinoplastica o del rimodellamento del seno e del corpo, sono duraturi. Tuttavia, l'invecchiamento naturale, importanti variazioni di peso e lo stile di vita continuano a influire sul corpo nel tempo. Mantenere un peso stabile e abitudini sane aiuta a preservare il risultato il più a lungo possibile.</p>"
+                }
+            ]
+        }
+    ]
+}

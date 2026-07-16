@@ -1,0 +1,197 @@
+{
+    "source_slug": "dental-implant",
+    "slug": "impianto-dentale",
+    "title": "Impianto dentale",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Sostituzione dentale permanente",
+            "title": "Impianto dentale",
+            "lead": "Sostituisci i denti mancanti con una soluzione permanente e dall'aspetto naturale. Le radici in titanio biocompatibile offrono risultati solidi, estetici e duraturi.",
+            "cta_primary": {
+                "label": "Consulenza gratuita"
+            },
+            "cta_secondary": {
+                "label": "Chatta su WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Il trattamento",
+            "title": "Che cos'è un impianto dentale?",
+            "body": "<p>L'impianto dentale è un trattamento moderno che ripristina la funzione naturale e l'estetica del dente inserendo una radice in titanio biocompatibile nell'osso mascellare al posto del dente mancante. L'impianto sostituisce la radice perduta e, insieme alla protesi applicata sopra, offre la soluzione più simile a un dente naturale sia nell'aspetto sia nella funzionalità.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Perché è importante",
+            "title": "Perché scegliere gli impianti dentali?",
+            "body": "La perdita di un dente non è soltanto un problema estetico. Una masticazione compromessa può influire negativamente sulla digestione, nel tempo può verificarsi il riassorbimento dell'osso mascellare e i denti vicini possono spostarsi e deteriorarsi. Gli impianti dentali rappresentano una soluzione ideale per i seguenti motivi:",
+            "items": [
+                {
+                    "label": "Colmano in modo permanente lo spazio lasciato dai denti mancanti"
+                },
+                {
+                    "label": "Proteggono l'osso mascellare e ne prevengono il riassorbimento"
+                },
+                {
+                    "label": "Preservano i denti sani adiacenti senza danneggiarli"
+                },
+                {
+                    "label": "Ripristinano una forza masticatoria molto simile a quella dei denti naturali"
+                },
+                {
+                    "label": "Migliorano l'estetica del viso e l'aspetto complessivo"
+                },
+                {
+                    "label": "Offrono una soluzione duratura, potenzialmente per tutta la vita"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Il percorso",
+            "title": "Come viene inserito un impianto dentale?",
+            "lead": "Il trattamento implantare segue un percorso strutturato, progettato per offrire risultati sicuri, duraturi e naturali. Le fasi principali sono le seguenti.",
+            "items": [
+                {
+                    "eyebrow": "Fase 1",
+                    "title": "Visita clinica e diagnostica per immagini",
+                    "body": "<p>L'osso mascellare viene analizzato in modo approfondito con radiografie panoramiche e tomografia digitale. Densità ossea, dimensione dell'impianto e area da trattare vengono valutate attentamente per creare un piano personalizzato; vengono inoltre esaminate la salute orale generale e la storia clinica del paziente.</p>"
+                },
+                {
+                    "eyebrow": "Fase 2",
+                    "title": "Pianificazione del trattamento",
+                    "body": "<p>Il piano viene definito in base al numero di denti mancanti, alla struttura della mascella e alla salute orale complessiva. Se sono necessarie procedure preliminari, come un innesto osseo o un'estrazione, vengono integrate nel programma di trattamento.</p>"
+                },
+                {
+                    "eyebrow": "Fase 3",
+                    "title": "Inserimento dell'impianto",
+                    "body": "<p>In anestesia locale, la radice implantare in titanio viene inserita con precisione nell'osso mascellare; la procedura richiede generalmente da 15 a 30 minuti per ogni impianto. Un lieve fastidio o gonfiore nei giorni successivi rientra nel normale processo di guarigione.</p>"
+                },
+                {
+                    "eyebrow": "Fase 4",
+                    "title": "Osteointegrazione",
+                    "body": "<p>Un periodo di guarigione di circa due-tre mesi permette alla radice in titanio di integrarsi completamente con l'osso circostante, creando una base solida e stabile per la protesi dentale.</p>"
+                },
+                {
+                    "eyebrow": "Fase 5",
+                    "title": "Applicazione della protesi",
+                    "body": "<p>Una volta completata l'osteointegrazione, viene fissata una protesi realizzata su misura. Possono essere utilizzate soluzioni in porcellana, zirconia o materiali ibridi, progettate per armonizzarsi con colore, forma e dimensioni dei denti naturali vicini.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Vantaggi",
+            "title": "I vantaggi degli impianti dentali",
+            "body": "Gli impianti rappresentano lo standard di riferimento per sostituire i denti mancanti:",
+            "items": [
+                {
+                    "label": "Offrono aspetto e sensazione simili a quelli di un dente naturale"
+                },
+                {
+                    "label": "Garantiscono la massima efficienza masticatoria"
+                },
+                {
+                    "label": "Non richiedono interventi sui denti sani adiacenti"
+                },
+                {
+                    "label": "Preservano la salute orale nel lungo periodo"
+                },
+                {
+                    "label": "Sostengono l'estetica del viso e riducono il rischio di cedimento dei tessuti"
+                },
+                {
+                    "label": "Possono durare tutta la vita con cure e manutenzione adeguate"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Perché la Turchia",
+            "title": "Perché scegliere gli impianti dentali in Turchia?",
+            "body": "<p>La Turchia è diventata una delle destinazioni più richieste al mondo per l'implantologia grazie a cliniche accreditate secondo standard internazionali, professionisti esperti e costi competitivi. La nostra clinica di Istanbul offre ai pazienti internazionali un percorso completo di turismo sanitario, con trasferimenti VIP, assistenza per l'alloggio e un piano di trattamento completo e personalizzato.</p>",
+            "cta": {
+                "label": "Pianifica la tua visita"
+            }
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Risultati reali",
+            "title": "Impianti dentali: prima e dopo",
+            "lead": "Scopri come il trattamento implantare può ripristinare un sorriso completo. Ogni caso viene pianificato individualmente per ottenere un aspetto naturale, un'occlusione confortevole e un risultato duraturo.",
+            "cta": {
+                "label": "Visualizza tutta la galleria"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Informazioni utili",
+            "title": "Impianti dentali: domande frequenti",
+            "items": [
+                {
+                    "question": "Chi è un buon candidato per un impianto dentale?",
+                    "answer": "<p>La maggior parte degli adulti in buone condizioni generali, con uno o più denti mancanti e una quantità adeguata di osso mascellare sano, è un buon candidato. Condizioni come diabete non controllato, malattia gengivale avanzata o importante perdita ossea non escludono necessariamente il trattamento, ma devono essere prima valutate e gestite. Una visita con radiografie o scansione 3D consente ai nostri dentisti di confermare l'idoneità e definire il piano corretto.</p>"
+                },
+                {
+                    "question": "Quanto dura l'intero trattamento?",
+                    "answer": "<p>Dall'inizio alla fine, il trattamento implantare richiede generalmente da due a quattro mesi. L'impianto viene inserito in un appuntamento relativamente breve, ma necessita poi di circa due-tre mesi per integrarsi con l'osso prima dell'applicazione del dente definitivo. In alcuni casi, quando la qualità ossea è favorevole, gli impianti a carico immediato possono ridurre sensibilmente i tempi.</p>"
+                },
+                {
+                    "question": "La procedura è dolorosa?",
+                    "answer": "<p>L'inserimento viene eseguito in anestesia locale, quindi non si avverte dolore durante la procedura. Nei giorni successivi sono normali un lieve gonfiore o sensibilità, facilmente controllabili con comuni antidolorifici e le corrette cure postoperatorie. Molti pazienti paragonano il recupero a quello di una normale estrazione dentale.</p>"
+                },
+                {
+                    "question": "Cosa succede se non ho abbastanza osso mascellare?",
+                    "answer": "<p>Una quantità ossea insufficiente è frequente dopo la perdita di un dente avvenuta molto tempo prima e raramente rappresenta un ostacolo definitivo. Procedure come l'innesto osseo o il rialzo del seno mascellare possono ricostruire il volume necessario per sostenere l'impianto in sicurezza. Se richieste, vengono pianificate in anticipo e possono comportare un ulteriore periodo di guarigione.</p>"
+                },
+                {
+                    "question": "Gli impianti possono sostituire più denti o un'intera arcata?",
+                    "answer": "<p>Sì. Un singolo impianto può sostituire un dente, mentre alcuni impianti possono sostenere un ponte per più denti mancanti. Per un'intera arcata, trattamenti come All-on-4 o All-on-6 utilizzano quattro-sei impianti per ancorare una dentatura fissa completa, offrendo un'alternativa stabile e confortevole alle protesi mobili.</p>"
+                },
+                {
+                    "question": "Gli impianti hanno un aspetto e una sensazione naturali?",
+                    "answer": "<p>Sì. La radice in titanio rimane nascosta nell'osso e la protesi realizzata su misura viene abbinata al colore, alla forma e alle dimensioni dei denti naturali. Poiché l'impianto è saldamente ancorato, permette di mordere, masticare e parlare come con un vero dente, senza i movimenti tipici delle protesi rimovibili.</p>"
+                },
+                {
+                    "question": "Quanto durano gli impianti dentali?",
+                    "answer": "<p>La radice implantare è progettata come soluzione di lunga durata e, con una corretta cura, può rimanere stabile per decenni. La corona visibile può mostrare segni di usura dopo molti anni ed essere sostituita senza cambiare l'impianto. Igiene quotidiana, gengive sane e controlli periodici sono fondamentali per il successo nel lungo periodo.</p>"
+                },
+                {
+                    "question": "Il fumo o l'età influenzano il trattamento implantare?",
+                    "answer": "<p>Non esiste un limite massimo di età prestabilito: contano soprattutto la salute dell'osso e delle gengive. Il fumo, invece, rallenta la guarigione e aumenta il rischio di insuccesso; ridurlo o sospenderlo nel periodo del trattamento migliora significativamente le probabilità di un buon risultato. Il dentista fornirà indicazioni personalizzate durante la valutazione.</p>"
+                },
+                {
+                    "question": "Come devo prendermi cura dell'impianto?",
+                    "answer": "<p>La cura è simile a quella dei denti naturali: lavare i denti due volte al giorno, pulire gli spazi interdentali con filo o scovolino e sottoporsi a controlli regolari. Una buona igiene quotidiana mantiene sana la gengiva circostante e protegge la stabilità dell'impianto nel lungo periodo.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consulenza gratuita",
+            "title": "Ricevi il tuo piano di trattamento implantare",
+            "lead": "Condividi alcune informazioni e il nostro team ti risponderà con un piano implantare personalizzato e un preventivo tutto incluso e senza impegno, generalmente entro poche ore.",
+            "points": [
+                {
+                    "label": "Valutazione gratuita dalle tue foto o radiografie"
+                },
+                {
+                    "label": "Preventivo tutto incluso, trasparente e senza impegno"
+                },
+                {
+                    "label": "Risposta rapida dal nostro team dedicato ai pazienti"
+                },
+                {
+                    "label": "Assistenza multilingue in ogni fase"
+                }
+            ],
+            "submit_label": "Richiedi una consulenza gratuita"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Scopri anche",
+            "title": "Trattamenti correlati"
+        }
+    ]
+}

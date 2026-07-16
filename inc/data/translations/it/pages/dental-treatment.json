@@ -1,0 +1,113 @@
+{
+    "source_slug": "dental-treatment",
+    "slug": "trattamento-dentale",
+    "title": "Trattamento dentale",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Trattamento dentale",
+            "title": "Cure dentali con un approccio personale.",
+            "lead": "Dal singolo impianto dentale alla trasformazione completa con Hollywood Smile, ogni piano è progettato intorno al sorriso che desideri e alla funzionalità di cui hai bisogno.",
+            "cta_primary": {
+                "label": "Consulenza gratuita"
+            },
+            "cta_secondary": {
+                "label": "Chatta su WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Il nostro approccio",
+            "title": "Una masticazione sana e un sorriso che ami",
+            "body": "<p>Un bel sorriso non riguarda soltanto l'aspetto: dipende da denti e gengive sani e da una corretta funzionalità masticatoria. Presso Estecapelli il trattamento inizia con una valutazione orale completa, affinché estetica e funzione siano pianificate insieme, sia che tu debba sostituire un dente mancante sia che desideri ridisegnare completamente il sorriso.</p><p>Il nostro team odontoiatrico combina la moderna pianificazione digitale con materiali di alta qualità per offrire risultati naturali e duraturi. Dall'impianto che ripristina la forza di un dente naturale a un Hollywood Smile su misura, ogni piano viene costruito intorno al sorriso che desideri e all'occlusione di cui hai bisogno, con spiegazioni chiare prima dell'inizio di qualsiasi trattamento.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Perché i pazienti scelgono Estecapelli",
+            "stats": [
+                {
+                    "value": "Digitale",
+                    "label": "Design del sorriso pianificato prima di iniziare"
+                },
+                {
+                    "value": "Premium",
+                    "label": "Materiali di alta qualità e lunga durata"
+                },
+                {
+                    "value": "Naturale",
+                    "label": "Risultati in armonia con il viso e l'occlusione"
+                },
+                {
+                    "value": "Tutto incluso",
+                    "label": "Preventivi trasparenti e senza impegno"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "I nostri trattamenti",
+            "title": "Scopri i trattamenti dentali"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Risultati reali",
+            "title": "Trattamenti dentali: prima e dopo",
+            "lead": "Scopri i sorrisi con cui i nostri pazienti tornano a casa. Ogni risultato è progettato per apparire naturale e armonizzarsi con il viso, le labbra e l'occlusione della persona.",
+            "cta": {
+                "label": "Visualizza tutta la galleria"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consulenza gratuita",
+            "title": "Progetta il tuo nuovo sorriso",
+            "lead": "Inviaci una foto del tuo sorriso: il nostro team odontoiatrico ti risponderà con un piano personalizzato e un preventivo tutto incluso e senza impegno, generalmente entro poche ore.",
+            "points": [
+                {
+                    "label": "Valutazione gratuita del sorriso dalle tue foto"
+                },
+                {
+                    "label": "Preventivo tutto incluso, trasparente e senza impegno"
+                },
+                {
+                    "label": "Risposta rapida dal nostro team dedicato ai pazienti"
+                },
+                {
+                    "label": "Assistenza multilingue in ogni fase"
+                }
+            ],
+            "submit_label": "Richiedi una consulenza gratuita"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Informazioni utili",
+            "title": "Trattamenti dentali: domande frequenti",
+            "items": [
+                {
+                    "question": "Qual è la differenza tra impianti dentali e Hollywood Smile?",
+                    "answer": "<p>Un impianto dentale sostituisce un dente mancante a partire dalla radice, ripristinando la piena capacità masticatoria attraverso una vite in titanio e una corona. Hollywood Smile è invece una trasformazione estetica che ridisegna l'aspetto dei denti visibili con faccette o corone, per ottenere un sorriso più luminoso e uniforme. Molti pazienti combinano i due trattamenti: impianti per sostituire i denti mancanti e faccette per perfezionare il sorriso.</p>"
+                },
+                {
+                    "question": "Quanto dura il trattamento dentale e quanti viaggi sono necessari?",
+                    "answer": "<p>Un Hollywood Smile con faccette o corone può generalmente essere completato in un solo viaggio di circa cinque-sette giorni. Gli impianti richiedono un periodo di guarigione dopo l'inserimento e spesso prevedono due visite distanziate di alcuni mesi, oppure una fase di pianificazione seguita dalla riabilitazione definitiva. Prima del viaggio definiamo con precisione il tuo calendario.</p>"
+                },
+                {
+                    "question": "Il trattamento dentale è doloroso?",
+                    "answer": "<p>Il trattamento viene eseguito in anestesia locale, quindi non dovresti avvertire dolore durante la procedura. Una lieve sensibilità o un modesto fastidio successivo sono normali e si controllano facilmente con comuni antidolorifici. Il nostro team protegge il tuo comfort in ogni fase e ti spiega in anticipo cosa aspettarti.</p>"
+                },
+                {
+                    "question": "I nuovi denti avranno un aspetto naturale?",
+                    "answer": "<p>Sì. Utilizziamo il design digitale del sorriso per pianificare forma, dimensione e tonalità dei denti in proporzione a labbra, gengive e viso, affinché il risultato sia adatto a te e non appaia artificiale. Potrai visionare e modificare il progetto prima di qualsiasi lavoro definitivo.</p>"
+                },
+                {
+                    "question": "Quanto durano i risultati?",
+                    "answer": "<p>Gli impianti dentali sono progettati per durare decenni, spesso per tutta la vita, con una corretta igiene orale e controlli regolari. Faccette e corone di alta qualità durano generalmente molti anni prima di richiedere una sostituzione. Prendersi cura di denti e gengive e sottoporsi a visite periodiche è il modo migliore per proteggere il risultato.</p>"
+                },
+                {
+                    "question": "Sono un candidato idoneo?",
+                    "answer": "<p>La maggior parte delle persone può sottoporsi al trattamento, ma la scelta corretta dipende dalla salute di denti e gengive e dalla quantità di osso disponibile per gli impianti. Una consulenza con fotografie e, se necessario, una radiografia eseguita all'arrivo consentono al nostro team di confermare il piano migliore e individuare eventuali condizioni da trattare prima.</p>"
+                }
+            ]
+        }
+    ]
+}
