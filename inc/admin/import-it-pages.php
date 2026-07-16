@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_PAGES_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_PAGES_IMPORT_VERSION', '2026-07-16.2' );
+	define( 'ESTECAPELLI_IT_PAGES_IMPORT_VERSION', '2026-07-16.3' );
 }
 
 /** English page slug => exact indexed Italian leaf slug. */
@@ -34,10 +34,6 @@ function estecapelli_it_pages_manifest() {
 /** Template-rendered pages with no ACF page_sections overlay. */
 function estecapelli_it_template_pages_manifest() {
 	return array(
-		'home' => array(
-			'slug'  => 'home',
-			'title' => 'Home',
-		),
 		'blog' => array(
 			'slug'  => 'blog',
 			'title' => 'Blog',
@@ -133,45 +129,6 @@ function estecapelli_it_template_page_raw_target_id( $slug, $source_id ) {
 	return 0;
 }
 
-/**
- * Resolve the English source for a template-rendered page.
- *
- * The indexed homepage route is `/en/home`, but the WordPress Front Page can
- * legitimately have a different database slug. Prefer the exact route slug,
- * then fall back to the configured static front page and its English WPML
- * translation.
- */
-function estecapelli_it_template_page_source_id( $source_slug ) {
-	$source_id = estecapelli_source_post_id( $source_slug, 'page' );
-	if ( $source_id || 'home' !== $source_slug ) {
-		return (int) $source_id;
-	}
-
-	$front_id = (int) get_option( 'page_on_front' );
-	if ( ! $front_id ) {
-		return 0;
-	}
-
-	$english_id = (int) apply_filters( 'wpml_object_id', $front_id, 'page', true, 'en' );
-	foreach ( array_unique( array( $english_id, $front_id ) ) as $candidate_id ) {
-		$candidate = get_post( $candidate_id );
-		$details   = $candidate ? apply_filters(
-			'wpml_element_language_details',
-			null,
-			array(
-				'element_id'   => (int) $candidate_id,
-				'element_type' => 'page',
-			)
-		) : null;
-		$language  = (string) estecapelli_it_hair_detail( $details, 'language_code' );
-		if ( $candidate && 'page' === $candidate->post_type && 'publish' === $candidate->post_status && 'en' === $language ) {
-			return (int) $candidate_id;
-		}
-	}
-
-	return 0;
-}
-
 /** Import or repair a template-rendered Italian page without touching posts. */
 function estecapelli_it_template_page_import_one( $source_slug, array $translation ) {
 	$route = estecapelli_indexed_route_path( '/en/' . $source_slug, 'it' );
@@ -179,19 +136,9 @@ function estecapelli_it_template_page_import_one( $source_slug, array $translati
 		return new WP_Error( 'it_template_pages_indexed_slug_mismatch', sprintf( 'The Italian template-page slug does not match the indexed URL contract: %s.', $source_slug ) );
 	}
 
-	$source_id = estecapelli_it_template_page_source_id( $source_slug );
+	$source_id = estecapelli_source_post_id( $source_slug, 'page' );
 	if ( ! $source_id ) {
-		// The theme can render its homepage without a static English page. When
-		// the canonical Italian Home already exists, keep it and let the import
-		// continue instead of requiring a WPML relationship with a non-existent
-		// English post.
-		if ( 'home' === $source_slug ) {
-			$existing_home_id = estecapelli_it_template_page_raw_target_id( $translation['slug'], 0 );
-			if ( $existing_home_id ) {
-				return (int) $existing_home_id;
-			}
-		}
-		return new WP_Error( 'it_template_pages_missing_source_post', sprintf( 'Published English page not found: %s. For home, configure a static Front Page in WordPress.', $source_slug ) );
+		return new WP_Error( 'it_template_pages_missing_source_post', sprintf( 'Published English page not found: %s.', $source_slug ) );
 	}
 	$source_post = get_post( $source_id );
 	if ( ! $source_post ) {

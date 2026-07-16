@@ -136,7 +136,8 @@ function estecapelli_unfiltered_home_url() {
  */
 function estecapelli_indexed_section_slugs() {
 	return array(
-		'home'             => array( 'en' => 'home', 'tr' => 'ana-sayfa', 'fr' => 'maison', 'it' => 'home', 'es' => 'inicio', 'pl' => 'strona-glowna', 'pt' => 'inicio' ),
+		// Home is the language root. It intentionally has no leaf slug.
+		'home'             => array( 'en' => '', 'tr' => '', 'fr' => '', 'it' => '', 'es' => '', 'pl' => '', 'pt' => '' ),
 		'hair-transplant'  => array( 'en' => 'hair-transplant', 'tr' => 'sac-ekimi', 'fr' => 'greffe-de-cheveux', 'it' => 'trapianto-di-capelli', 'es' => 'trasplante-capilar', 'pl' => 'przeszczep-wlosow', 'pt' => 'transplante-capilar' ),
 		'plastic-surgery'  => array( 'en' => 'plastic-surgery', 'tr' => 'estetik-cerrahi', 'fr' => 'chirurgie-plastique', 'it' => 'chirurgia-plastica', 'es' => 'cirugia-plastica', 'pl' => 'chirurgia-plastyczna', 'pt' => 'cirurgia-plastica' ),
 		'dental-treatment' => array( 'en' => 'dental-treatment', 'tr' => 'dis-tedavisi', 'fr' => 'traitement-dentaire', 'it' => 'trattamento-dentale', 'es' => 'tratamiento-dental', 'pl' => 'leczenie-stomatologiczne', 'pt' => 'tratamento-dentario' ),
@@ -144,6 +145,19 @@ function estecapelli_indexed_section_slugs() {
 		'about-us'         => array( 'en' => 'about-us', 'tr' => 'hakkimizda', 'fr' => 'a-propos-de-nous', 'it' => 'chi-siamo', 'es' => 'sobre-nosotros', 'pl' => 'o-nas', 'pt' => 'sobre-nos' ),
 		'blog'             => array( 'en' => 'blog', 'tr' => 'blog', 'fr' => 'blog', 'it' => 'blog', 'es' => 'blog', 'pl' => 'blog', 'pt' => 'blog' ),
 		'contact'          => array( 'en' => 'contact', 'tr' => 'iletisim', 'fr' => 'contact', 'it' => 'contatto', 'es' => 'contacto', 'pl' => 'kontakt', 'pt' => 'contato' ),
+	);
+}
+
+/** Old homepage leaf slugs retained only for canonical redirects. */
+function estecapelli_legacy_home_slugs() {
+	return array(
+		'en' => 'home',
+		'tr' => 'ana-sayfa',
+		'fr' => 'maison',
+		'it' => 'home',
+		'es' => 'inicio',
+		'pl' => 'strona-glowna',
+		'pt' => 'inicio',
 	);
 }
 
@@ -268,9 +282,11 @@ function estecapelli_indexed_route_contract() {
 	$about    = estecapelli_indexed_about_slugs();
 
 	foreach ( $sections as $source_slug => $localized ) {
-		$key = '/en/' . $source_slug;
+		$key = 'home' === $source_slug ? '/en' : '/en/' . $source_slug;
 		foreach ( $langs as $lang ) {
-			$routes[ $key ][ $lang ] = '/' . $lang . '/' . $localized[ $lang ];
+			$routes[ $key ][ $lang ] = 'home' === $source_slug
+				? '/' . $lang . '/'
+				: '/' . $lang . '/' . $localized[ $lang ];
 		}
 	}
 
@@ -342,9 +358,14 @@ function estecapelli_indexed_route_key( $path ) {
 		$reverse = array();
 		foreach ( estecapelli_indexed_route_contract() as $key => $localized ) {
 			foreach ( $localized as $route ) {
-				$reverse[ $route ] = $key;
+				$normalized_route             = untrailingslashit( $route ) ?: '/';
+				$reverse[ $normalized_route ] = $key;
 			}
 		}
+		foreach ( estecapelli_legacy_home_slugs() as $language => $slug ) {
+			$reverse[ '/' . $language . '/' . $slug ] = '/en';
+		}
+		$reverse['/pt-pt/inicio'] = '/en';
 	}
 	return $reverse[ $path ] ?? '';
 }
@@ -356,8 +377,8 @@ function estecapelli_indexed_route_path( $english_path, $language = '' ) {
 	$language     = estecapelli_indexed_language_code( $language );
 	$english_path = '/' . trim( (string) wp_parse_url( $english_path, PHP_URL_PATH ), '/' );
 	$english_path = untrailingslashit( $english_path );
-	if ( '/en' === $english_path || '/' === $english_path ) {
-		$english_path = '/en/home';
+	if ( in_array( $english_path, array( '/', '/en', '/en/home' ), true ) ) {
+		$english_path = '/en';
 	}
 
 	$routes = estecapelli_indexed_route_contract();
@@ -387,7 +408,7 @@ function estecapelli_indexed_url( $english_path, $language = '' ) {
 
 /** Exact indexed homepage used by the clickable logo. */
 function estecapelli_language_root_url( $language = '' ) {
-	return estecapelli_indexed_url( '/en/home', $language );
+	return estecapelli_indexed_url( '/en', $language );
 }
 
 /**
@@ -488,7 +509,7 @@ function estecapelli_header_languages() {
 				'native_name'      => 'English',
 				'translated_name'  => 'English',
 				'country_flag_url' => '',
-				'url'              => estecapelli_indexed_url( '/en/home', 'en' ),
+				'url'              => estecapelli_indexed_url( '/en', 'en' ),
 			),
 		);
 	}
@@ -517,7 +538,7 @@ function estecapelli_header_languages() {
 			$language['url'] = estecapelli_indexed_url( $current_key, $code );
 		} else {
 			// Unknown/missing translations must not introduce a guessed route.
-			$language['url'] = estecapelli_indexed_url( '/en/home', $code );
+			$language['url'] = estecapelli_indexed_url( '/en', $code );
 		}
 		$normalized[] = $language;
 	}
@@ -559,8 +580,8 @@ function estecapelli_translated_page_url( $english_path, $language = '' ) {
  */
 function estecapelli_indexed_home_url_filter( $url, $path ) {
 	$source = '/' . trim( (string) wp_parse_url( (string) $path, PHP_URL_PATH ), '/' );
-	if ( '/en' === $source ) {
-		$source = '/en/home';
+	if ( '/en/home' === $source ) {
+		$source = '/en';
 	}
 	if ( isset( estecapelli_indexed_route_contract()[ $source ] ) ) {
 		return estecapelli_indexed_url( $source );
@@ -568,6 +589,34 @@ function estecapelli_indexed_home_url_filter( $url, $path ) {
 	return estecapelli_localize_theme_url( $url );
 }
 add_filter( 'home_url', 'estecapelli_indexed_home_url_filter', 999, 2 );
+
+/** Redirect every retired homepage leaf URL to its language root. */
+function estecapelli_redirect_legacy_language_home() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path    = strtolower( untrailingslashit( (string) wp_parse_url( $request, PHP_URL_PATH ) ) );
+	$targets = array();
+	foreach ( estecapelli_legacy_home_slugs() as $language => $slug ) {
+		$targets[ '/' . $language . '/' . $slug ] = $language;
+	}
+	$targets['/pt-pt/inicio'] = 'pt';
+
+	if ( ! isset( $targets[ $path ] ) ) {
+		return;
+	}
+
+	$query  = (string) wp_parse_url( $request, PHP_URL_QUERY );
+	$target = estecapelli_unfiltered_home_url() . '/' . $targets[ $path ] . '/';
+	if ( $query ) {
+		$target .= '?' . $query;
+	}
+	wp_safe_redirect( $target, 301 );
+	exit;
+}
+add_action( 'template_redirect', 'estecapelli_redirect_legacy_language_home', -2 );
 
 /**
  * English source ID and indexed language for a translated object.
@@ -806,7 +855,7 @@ function estecapelli_indexed_404_fallback() {
 		return;
 	}
 
-	$fallback = '/en/home';
+	$fallback = '/en';
 	$slug     = basename( $key );
 	if ( 0 === strpos( $key, '/en/before-after/' ) ) {
 		$fallback = '/en/before-after';

@@ -1,4 +1,4 @@
-https://estecapelli.com/en/home
+https://estecapelli.com/en/
 https://estecapelli.com/en/hair-transplant
 https://estecapelli.com/en/plastic-surgery
 https://estecapelli.com/en/dental-treatment
@@ -83,7 +83,7 @@ https://estecapelli.com/en/about-us/our-doctors/op-dr-mehmet-palali
 https://estecapelli.com/en/about-us/our-doctors/op-dr-necdet-derici
 https://estecapelli.com/en/about-us/our-doctors/op-dr-ali-durmus
 https://estecapelli.com/en/hair-transplant/dhi-hair-transplant/hair-transplant-techniques-comparison2
-https://estecapelli.com/tr/ana-sayfa
+https://estecapelli.com/tr/
 https://estecapelli.com/tr/sac-ekimi
 https://estecapelli.com/tr/estetik-cerrahi
 https://estecapelli.com/tr/dis-tedavisi
@@ -167,7 +167,7 @@ https://estecapelli.com/tr/hakkimizda/doktorlarimiz/op-dr-mehmet-palali
 https://estecapelli.com/tr/hakkimizda/doktorlarimiz/op-dr-necdet-derici
 https://estecapelli.com/tr/hakkimizda/doktorlarimiz/op-dr-ali-durmus
 https://estecapelli.com/tr/sac-ekimi/dhi-sac-ekimi/sac-ekimi-teknikleri-karsilastirmasi-2
-https://estecapelli.com/fr/maison
+https://estecapelli.com/fr/
 https://estecapelli.com/fr/greffe-de-cheveux
 https://estecapelli.com/fr/chirurgie-plastique
 https://estecapelli.com/fr/traitement-dentaire
@@ -251,7 +251,7 @@ https://estecapelli.com/fr/a-propos-de-nous/nos-medecins/op-dr-mehmet-palali
 https://estecapelli.com/fr/a-propos-de-nous/nos-medecins/op-dr-necdet-derici
 https://estecapelli.com/fr/a-propos-de-nous/nos-medecins/op-dr-ali-durmus
 https://estecapelli.com/fr/greffe-de-cheveux/greffe-de-cheveux-dhi/comparaison-des-techniques-de-greffe-de-cheveux-2
-https://estecapelli.com/it/home
+https://estecapelli.com/it/
 https://estecapelli.com/it/trapianto-di-capelli
 https://estecapelli.com/it/chirurgia-plastica
 https://estecapelli.com/it/trattamento-dentale
@@ -336,7 +336,7 @@ https://estecapelli.com/it/chi-siamo/i-nostri-medici/op-dr-mehmet-palali
 https://estecapelli.com/it/chi-siamo/i-nostri-medici/op-dr-necdet-derici
 https://estecapelli.com/it/chi-siamo/i-nostri-medici/op-dr-ali-durmus
 https://estecapelli.com/it/trapianto-di-capelli/trapianto-di-capelli-dhi/confronto-tra-tecniche-di-trapianto-capillare-2
-https://estecapelli.com/es/inicio
+https://estecapelli.com/es/
 https://estecapelli.com/es/trasplante-capilar
 https://estecapelli.com/es/cirugia-plastica
 https://estecapelli.com/es/tratamiento-dental
@@ -420,7 +420,7 @@ https://estecapelli.com/es/sobre-nosotros/nuestros-doctores/op-dr-mehmet-palali
 https://estecapelli.com/es/sobre-nosotros/nuestros-doctores/op-dr-necdet-derici
 https://estecapelli.com/es/sobre-nosotros/nuestros-doctores/op-dr-ali-durmus
 https://estecapelli.com/es/trasplante-capilar/trasplante-de-cabello-dhi/comparacion-de-tecnicas-de-trasplante-capilar-2
-https://estecapelli.com/pl/strona-glowna
+https://estecapelli.com/pl/
 https://estecapelli.com/pl/przeszczep-wlosow
 https://estecapelli.com/pl/chirurgia-plastyczna
 https://estecapelli.com/pl/leczenie-stomatologiczne
@@ -504,7 +504,7 @@ https://estecapelli.com/pl/o-nas/nasi-lekarze/op-dr-mehmet-palali
 https://estecapelli.com/pl/o-nas/nasi-lekarze/op-dr-necdet-derici
 https://estecapelli.com/pl/o-nas/nasi-lekarze/op-dr-ali-durmus
 https://estecapelli.com/pl/przeszczep-wlosow/przeszczep-wlosow-dhi/porownanie-technik-przeszczepu-wlosow-2
-https://estecapelli.com/pt/inicio
+https://estecapelli.com/pt/
 https://estecapelli.com/pt/transplante-capilar
 https://estecapelli.com/pt/cirurgia-plastica
 https://estecapelli.com/pt/tratamento-dentario
@@ -588,4 +588,3 @@ https://estecapelli.com/pt/sobre-nos/nossos-medicos/op-dr-mehmet-palali
 https://estecapelli.com/pt/sobre-nos/nossos-medicos/op-dr-necdet-derici
 https://estecapelli.com/pt/sobre-nos/nossos-medicos/op-dr-ali-durmus
 https://estecapelli.com/pt/transplante-capilar/transplante-capilar-dhi/comparacao-das-tecnicas-de-transplante-capilar-2
-

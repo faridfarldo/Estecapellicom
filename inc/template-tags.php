@@ -341,7 +341,7 @@ if ( ! function_exists( 'estecapelli_footer_sitemap' ) ) {
 			}
 		}
 		return array(
-			array( 'label' => __( 'Home', 'estecapelli' ),             'url' => estecapelli_indexed_url( '/en/home' ) ),
+			array( 'label' => __( 'Home', 'estecapelli' ),             'url' => estecapelli_indexed_url( '/en' ) ),
 			array( 'label' => __( 'About Us', 'estecapelli' ),         'url' => estecapelli_indexed_url( '/en/about-us' ) ),
 			array( 'label' => __( 'Our Doctors', 'estecapelli' ),      'url' => estecapelli_indexed_url( '/en/about-us/our-doctors' ) ),
 			array( 'label' => __( 'Before & After', 'estecapelli' ),   'url' => estecapelli_indexed_url( '/en/before-after' ) ),

@@ -31,7 +31,7 @@ function estecapelli_is_italian_request() {
  */
 function estecapelli_it_nav_route_labels() {
 	return array(
-		'/en/home'                                                                                             => 'Home',
+		'/en'                                                                                                  => 'Home',
 		'/en/hair-transplant'                                                                                  => 'Trapianto di capelli',
 		'/en/hair-transplant/sapphire-fue-hair-transplant'                                                     => 'Trapianto di capelli FUE Sapphire',
 		'/en/hair-transplant/dhi-hair-transplant'                                                              => 'Trapianto di capelli DHI',
@@ -73,7 +73,7 @@ function estecapelli_it_nav_route_labels() {
  */
 function estecapelli_it_nav_source_title_routes() {
 	return array(
-		'Home'                              => '/en/home',
+		'Home'                              => '/en',
 		'Hair Transplant'                    => '/en/hair-transplant',
 		'Sapphire FUE Hair Transplant'       => '/en/hair-transplant/sapphire-fue-hair-transplant',
 		'DHI Hair Transplant'                => '/en/hair-transplant/dhi-hair-transplant',
