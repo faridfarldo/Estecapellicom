@@ -43,6 +43,7 @@ require get_template_directory() . '/inc/canonical.php';
 require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/wpml-fix.php';
 require get_template_directory() . '/inc/fr-string-fallbacks.php';
+require get_template_directory() . '/inc/it-navigation.php';
 require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';

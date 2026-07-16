@@ -385,11 +385,9 @@ function estecapelli_indexed_url( $english_path, $language = '' ) {
 	return $url;
 }
 
-/**
- * Bare language root used only by the clickable logo.
- */
+/** Exact indexed homepage used by the clickable logo. */
 function estecapelli_language_root_url( $language = '' ) {
-	return estecapelli_unfiltered_home_url() . '/' . estecapelli_indexed_language_code( $language ) . '/';
+	return estecapelli_indexed_url( '/en/home', $language );
 }
 
 /**
@@ -518,9 +516,8 @@ function estecapelli_header_languages() {
 		if ( $current_key && empty( $language['missing'] ) && estecapelli_indexed_route_path( $current_key, $code ) ) {
 			$language['url'] = estecapelli_indexed_url( $current_key, $code );
 		} else {
-			$language['url'] = ! empty( $language['url'] )
-				? estecapelli_normalize_wpml_url( $language['url'], $code )
-				: estecapelli_indexed_url( '/en/home', $code );
+			// Unknown/missing translations must not introduce a guessed route.
+			$language['url'] = estecapelli_indexed_url( '/en/home', $code );
 		}
 		$normalized[] = $language;
 	}
