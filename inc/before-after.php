@@ -266,6 +266,16 @@ function estecapelli_gallery_grouped() {
 	}
 
 	$default_lang = apply_filters( 'wpml_default_language', null );
+	$current_lang = apply_filters( 'wpml_current_language', null );
+	$translate    = $default_lang && $current_lang && $default_lang !== $current_lang;
+
+	// Before/after photos are uploaded on the original (default-language)
+	// treatments and are language-neutral; translated treatments carry empty
+	// galleries. Gather everything in the default language — the path known to be
+	// populated — then localize the visible labels for the current request.
+	if ( $translate ) {
+		do_action( 'wpml_switch_language', $default_lang );
+	}
 
 	$treatment_ids = get_posts(
 		array(
@@ -275,32 +285,16 @@ function estecapelli_gallery_grouped() {
 			'orderby'          => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
 			'fields'           => 'ids',
 			'no_found_rows'    => true,
-			// Only the current language's treatments — get_posts() otherwise
-			// defaults suppress_filters to true and returns every language.
 			'suppress_filters' => false,
 		)
 	);
-	if ( empty( $treatment_ids ) ) {
-		return array();
-	}
 
 	// Bucket: cat_term_id => [ 'term' => WP_Term, 'services' => [ service_id => [...] ] ].
 	$buckets = array();
 
-	foreach ( $treatment_ids as $tid ) {
+	foreach ( (array) $treatment_ids as $tid ) {
 		// Gather every image from all gallery sections on this treatment.
 		$items = estecapelli_collect_gallery_items( get_field( 'page_sections', $tid ) );
-
-		// Before/after photos are uploaded on the English original and are
-		// language-neutral, so a translated treatment usually has an empty
-		// gallery. Fall back to the source-language treatment's images (the
-		// localized service title and category name still come from $tid below).
-		if ( empty( $items ) && $default_lang ) {
-			$source_tid = (int) apply_filters( 'wpml_object_id', $tid, 'treatment', false, $default_lang );
-			if ( $source_tid && $source_tid !== $tid ) {
-				$items = estecapelli_collect_gallery_items( get_field( 'page_sections', $source_tid ) );
-			}
-		}
 		if ( empty( $items ) ) {
 			continue;
 		}
@@ -322,6 +316,7 @@ function estecapelli_gallery_grouped() {
 	}
 
 	// Fixed priority for the main categories, then alphabetical for the rest.
+	// Done in the default language so category slugs and rank meta are reliable.
 	$cat_order = array( 'hair-transplant' => 0, 'plastic-surgery' => 1, 'dental-treatment' => 2 );
 	uasort(
 		$buckets,
@@ -339,5 +334,46 @@ function estecapelli_gallery_grouped() {
 		estecapelli_sort_services_by_rank( $buckets[ $__key ]['services'] );
 	}
 
+	if ( $translate ) {
+		do_action( 'wpml_switch_language', $current_lang );
+		$buckets = estecapelli_localize_gallery_buckets( $buckets, $current_lang );
+	}
+
 	return array_values( $buckets );
+}
+
+/**
+ * Localize gallery buckets for display: swap the category name and each service
+ * post to the current language when a translation exists. The English category
+ * slug is kept so tab IDs and the fixed category ordering stay stable; the
+ * language-neutral before/after images are left untouched.
+ *
+ * @param array<int,array<string,mixed>> $buckets Buckets built in the default language.
+ * @param string                         $lang    Target language code.
+ * @return array<int,array<string,mixed>>
+ */
+function estecapelli_localize_gallery_buckets( array $buckets, $lang ) {
+	foreach ( $buckets as $key => $group ) {
+		$loc_term_id = (int) apply_filters( 'wpml_object_id', $group['term']->term_id, 'treatment_category', false, $lang );
+		if ( $loc_term_id && $loc_term_id !== (int) $group['term']->term_id ) {
+			$loc_term = get_term( $loc_term_id, 'treatment_category' );
+			if ( $loc_term && ! is_wp_error( $loc_term ) ) {
+				$display_term       = clone $group['term'];
+				$display_term->name = $loc_term->name;
+				$buckets[ $key ]['term'] = $display_term;
+			}
+		}
+
+		foreach ( $group['services'] as $svc_id => $svc ) {
+			$loc_id = (int) apply_filters( 'wpml_object_id', $svc_id, 'treatment', false, $lang );
+			if ( $loc_id && $loc_id !== (int) $svc_id ) {
+				$loc_post = get_post( $loc_id );
+				if ( $loc_post ) {
+					$buckets[ $key ]['services'][ $svc_id ]['service'] = $loc_post;
+				}
+			}
+		}
+	}
+
+	return $buckets;
 }
