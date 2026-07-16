@@ -390,12 +390,32 @@ function estecapelli_page_template_router( $template ) {
 	if ( ! is_page() ) {
 		return $template;
 	}
-	$map  = array(
+	$map     = array(
 		'contact'      => 'page-contact.php',
 		'blog'         => 'page-blog.php',
 		'before-after' => 'page-before-after.php',
 	);
-	$slug = get_post_field( 'post_name', get_queried_object_id() );
+	$page_id = get_queried_object_id();
+	$slug    = get_post_field( 'post_name', $page_id );
+
+	// Templates are keyed by the default-language (English) slug. A translated
+	// page carries a localized slug (e.g. avant-apres, prima-e-dopo, contatti),
+	// so resolve it back to its English original before matching — otherwise the
+	// translation falls through to the generic page.php and renders only its ACF
+	// hero instead of the coded template.
+	if ( ! isset( $map[ $slug ] ) ) {
+		$default_lang = apply_filters( 'wpml_default_language', null );
+		if ( $default_lang ) {
+			$source_id = (int) apply_filters( 'wpml_object_id', $page_id, 'page', true, $default_lang );
+			if ( $source_id && $source_id !== (int) $page_id ) {
+				$source_slug = get_post_field( 'post_name', $source_id );
+				if ( $source_slug && isset( $map[ $source_slug ] ) ) {
+					$slug = $source_slug;
+				}
+			}
+		}
+	}
+
 	if ( isset( $map[ $slug ] ) ) {
 		$found = locate_template( $map[ $slug ] );
 		if ( $found ) {
