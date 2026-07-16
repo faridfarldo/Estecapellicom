@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_BLOG_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_BLOG_IMPORT_VERSION', '2026-07-16.1' );
+	define( 'ESTECAPELLI_FR_BLOG_IMPORT_VERSION', '2026-07-16.2' );
 }
 
 /**
@@ -280,6 +280,147 @@ function estecapelli_fr_blog_import_one( $source_slug ) {
 }
 
 /**
+ * Ensure the French blog landing page exists and is WPML-linked.
+ *
+ * The blog landing is a section-less `page` (slug "blog") routed to page-blog.php
+ * by slug in inc/leads.php. Without a French copy at the same slug, /fr/blog 404s.
+ * It carries no ACF sections — page-blog.php renders the (language-filtered) post
+ * archive itself — so only the WPML link and slug matter here.
+ *
+ * @return int|WP_Error French blog page ID.
+ */
+function estecapelli_fr_blog_ensure_landing_page() {
+	$source_slug  = 'blog';
+	$french_slug  = 'blog';
+	$french_title = 'Blog';
+
+	$source_id = estecapelli_source_post_id( $source_slug, 'page' );
+	if ( ! $source_id ) {
+		return new WP_Error( 'fr_blog_missing_landing_source', 'Published English blog landing page not found.' );
+	}
+	$source_post = get_post( $source_id );
+	if ( ! $source_post ) {
+		return new WP_Error( 'fr_blog_invalid_landing_source', 'English blog landing page could not be loaded.' );
+	}
+
+	$element_type    = apply_filters( 'wpml_element_type', 'page' );
+	$source_details  = apply_filters(
+		'wpml_element_language_details',
+		null,
+		array(
+			'element_id'   => $source_id,
+			'element_type' => 'page',
+		)
+	);
+	$trid            = (int) estecapelli_fr_hair_detail( $source_details, 'trid' );
+	$source_language = (string) estecapelli_fr_hair_detail( $source_details, 'language_code' );
+	if ( ! $trid || 'en' !== $source_language ) {
+		return new WP_Error( 'fr_blog_landing_unlinked', 'WPML language details are missing for the blog landing page.' );
+	}
+
+	$target_id = estecapelli_fr_page_raw_post_id( $french_slug, $source_id );
+	if ( ! $target_id ) {
+		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'fr' );
+	}
+	if ( $target_id ) {
+		$raw_target = get_post( $target_id );
+		if ( ! $raw_target || 'page' !== $raw_target->post_type || 'trash' === $raw_target->post_status || $target_id === $source_id ) {
+			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, 'fr' );
+			$target_id = 0;
+		}
+	}
+	if ( ! $target_id ) {
+		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, 'fr' );
+	}
+	if ( $target_id === $source_id ) {
+		$target_id = 0;
+	}
+	if ( ! $target_id ) {
+		$target_id = estecapelli_fr_page_raw_post_id( $french_slug, $source_id );
+	}
+
+	if ( $target_id ) {
+		delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
+	}
+
+	$post_args = array(
+		'post_type'    => 'page',
+		'post_title'   => $french_title,
+		'post_name'    => $french_slug,
+		'post_status'  => 'publish',
+		'post_content' => '',
+		'post_parent'  => 0,
+		'menu_order'   => (int) $source_post->menu_order,
+	);
+	if ( $target_id ) {
+		$post_args['ID'] = $target_id;
+		$target_id       = wp_update_post( $post_args, true );
+	} else {
+		$target_id = wp_insert_post( $post_args, true );
+	}
+	if ( is_wp_error( $target_id ) ) {
+		return $target_id;
+	}
+
+	// Mirror any assigned page template (page-blog.php also applies by slug, but
+	// keep the meta in parity with the English source).
+	$page_template = get_page_template_slug( $source_id );
+	if ( $page_template ) {
+		update_post_meta( (int) $target_id, '_wp_page_template', $page_template );
+	}
+
+	do_action(
+		'wpml_set_element_language_details',
+		array(
+			'element_id'           => (int) $target_id,
+			'element_type'         => $element_type,
+			'trid'                 => $trid,
+			'language_code'        => 'fr',
+			'source_language_code' => $source_language,
+			'check_duplicates'     => false,
+		)
+	);
+	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
+
+	$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, 'fr', $source_language );
+	if ( ! $forced ) {
+		$reason = estecapelli_wpml_last_slot_error();
+		return new WP_Error(
+			'fr_blog_landing_force_link_failed',
+			'The French WPML relationship could not be rebuilt for the blog landing page' . ( $reason ? ' — ' . $reason : '.' )
+		);
+	}
+
+	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, 'fr' );
+	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'fr' ) ) {
+		$repaired = estecapelli_wpml_repair_relationship_raw( $target_id, $element_type, $trid, 'fr', $source_language );
+		if ( ! $repaired ) {
+			return new WP_Error( 'fr_blog_landing_link_failed', 'WPML did not link the French blog landing page.' );
+		}
+	}
+
+	// Re-apply the canonical French slug/title after WPML linking.
+	$target_id = wp_update_post(
+		array(
+			'ID'          => (int) $target_id,
+			'post_title'  => $french_title,
+			'post_name'   => $french_slug,
+			'post_parent' => 0,
+		),
+		true
+	);
+	if ( is_wp_error( $target_id ) ) {
+		return $target_id;
+	}
+	$target_post = get_post( $target_id );
+	if ( ! $target_post || $french_slug !== $target_post->post_name ) {
+		return new WP_Error( 'fr_blog_landing_slug_conflict', sprintf( 'The required French blog slug is already in use: %s.', $french_slug ) );
+	}
+
+	return (int) $target_id;
+}
+
+/**
  * Run the complete French blog import.
  *
  * @return array<string,int>|WP_Error Source slug => French post ID.
@@ -295,6 +436,14 @@ function estecapelli_run_fr_blog_import() {
 	}
 
 	$imported = array();
+
+	// The blog landing page must exist in French first so /fr/blog resolves.
+	$landing = estecapelli_fr_blog_ensure_landing_page();
+	if ( is_wp_error( $landing ) ) {
+		return new WP_Error( $landing->get_error_code(), sprintf( 'blog landing: %s', $landing->get_error_message() ) );
+	}
+	$imported['blog'] = $landing;
+
 	foreach ( array_keys( estecapelli_fr_blog_manifest() ) as $source_slug ) {
 		$result = estecapelli_fr_blog_import_one( $source_slug );
 		if ( is_wp_error( $result ) ) {

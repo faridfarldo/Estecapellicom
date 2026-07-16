@@ -42,6 +42,7 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 	}
 
 	$strings = array(
+		// Journal / blog UI.
 		'From the Journal'                        => 'Le journal',
 		'Articles from the Estecapelli journal.' => 'Articles du journal Estecapelli.',
 		'All articles'                            => 'Tous les articles',
@@ -50,6 +51,68 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 		'Newer'                                   => 'Plus récents',
 		'Older'                                   => 'Plus anciens',
 		'No articles found here yet.'             => 'Aucun article trouvé pour le moment.',
+
+		// Contact page (page-contact.php) — hardcoded UI, not ACF sections.
+		'Hello Estecapelli, I would like to book a free consultation.' => 'Bonjour Estecapelli, je souhaite réserver une consultation gratuite.',
+		'Hello Estecapelli, I would like a free analysis. Here are my photos:' => 'Bonjour Estecapelli, je souhaite une analyse gratuite. Voici mes photos :',
+		'Contact Us'                              => 'Contactez-nous',
+		'Let’s start your journey'                => 'Commençons votre parcours',
+		'Reach our team by WhatsApp, phone or email — or leave your details and a medical consultant will get back to you in your own language.' => 'Contactez notre équipe par WhatsApp, téléphone ou e-mail — ou laissez-nous vos coordonnées et un consultant médical vous répondra dans votre langue.',
+		'We usually reply within an hour'         => 'Nous répondons généralement en moins d’une heure',
+		'Chat with us now'                        => 'Discutez avec nous maintenant',
+		'Call'                                    => 'Appeler',
+		'Email'                                   => 'E-mail',
+		'Request a free consultation'             => 'Demandez une consultation gratuite',
+		'Tell us a little about you and we’ll be in touch shortly.' => 'Parlez-nous un peu de vous et nous vous recontacterons rapidement.',
+		'Thank you! Your request has been received — our team will contact you shortly.' => 'Merci ! Votre demande a bien été reçue — notre équipe vous contactera sous peu.',
+		'Full name'                               => 'Nom complet',
+		'Name and surname'                        => 'Nom et prénom',
+		'Phone'                                   => 'Téléphone',
+		'Phone number'                            => 'Numéro de téléphone',
+		'Interested in'                           => 'Intéressé(e) par',
+		'Select a treatment'                      => 'Sélectionnez un traitement',
+		'Hair Transplant'                         => 'Greffe de cheveux',
+		'Plastic Surgery'                         => 'Chirurgie plastique',
+		'Dental Treatment'                        => 'Traitement dentaire',
+		'Not sure yet'                            => 'Je ne sais pas encore',
+		'Tell us about your goals, or any questions you have…' => 'Parlez-nous de vos objectifs ou de vos questions…',
+		'Send Request'                            => 'Envoyer la demande',
+		'Visit & reach us'                        => 'Nous rendre visite',
+		'Address'                                 => 'Adresse',
+		'Working hours'                           => 'Horaires d’ouverture',
+		'Monday – Sunday: 09:00 – 18:00 (GMT+3)'  => 'Lundi – Dimanche : 09h00 – 18h00 (GMT+3)',
+		'What happens next?'                      => 'Que se passe-t-il ensuite ?',
+		'We review your request and reach out to understand your goals.' => 'Nous étudions votre demande et vous contactons pour comprendre vos objectifs.',
+		'You receive a free, personalised treatment plan and quote.' => 'Vous recevez un plan de traitement personnalisé et un devis, gratuitement.',
+		'We arrange your dates, travel and stay — and welcome you to Istanbul.' => 'Nous organisons vos dates, votre voyage et votre séjour — et vous accueillons à Istanbul.',
+		'Send your photos, get a free analysis'   => 'Envoyez vos photos, recevez une analyse gratuite',
+		'Share a few photos of your hair, face or smile and our specialists will assess your case and recommend the right approach — at no cost and with no obligation.' => 'Partagez quelques photos de vos cheveux, de votre visage ou de votre sourire : nos spécialistes évalueront votre cas et vous recommanderont la meilleure approche — gratuitement et sans engagement.',
+		'Send Photos on WhatsApp'                 => 'Envoyer des photos sur WhatsApp',
+		'Talk to us in your own language'         => 'Parlez-nous dans votre langue',
+		'Estecapelli clinic location'             => 'Emplacement de la clinique Estecapelli',
+
+		// Doctor profile / roster UI (single-doctor.php, sections/doctors.php).
+		'Book a Free Consultation'                => 'Réserver une consultation gratuite',
+		'View Résumé'                             => 'Voir le CV',
+
+		// Before & After gallery (page-before-after.php).
+		'Real Results'                            => 'Résultats réels',
+		'Results will appear here soon.'          => 'Les résultats apparaîtront bientôt ici.',
+		'Treatment categories'                    => 'Catégories de traitement',
+		'%s services'                             => '%s — services',
+		'View treatment'                          => 'Voir le traitement',
+		'grafts'                                  => 'greffons',
+		'Enlarge result'                          => 'Agrandir le résultat',
+		'Before and after result'                => 'Résultat avant/après',
+
+		// Language chip labels shown on the contact page.
+		'English'                                 => 'Anglais',
+		'Türkçe'                                  => 'Turc',
+		'French'                                  => 'Français',
+		'Italian'                                 => 'Italien',
+		'Spanish'                                 => 'Espagnol',
+		'Polish'                                  => 'Polonais',
+		'Portuguese'                              => 'Portugais',
 	);
 
 	return $strings[ $text ] ?? $translation;

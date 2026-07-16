@@ -236,10 +236,36 @@ function estecapelli_results_grouped() {
  *
  * @return array List of groups: [ 'term' => WP_Term, 'services' => [ [ 'service' => WP_Post, 'items' => array[] ] ] ].
  */
+/**
+ * Collect every gallery image from a treatment's ACF sections.
+ *
+ * @param mixed $sections Value of the `page_sections` ACF field.
+ * @return array<int,array<string,mixed>> Gallery items that carry an image URL.
+ */
+function estecapelli_collect_gallery_items( $sections ) {
+	if ( empty( $sections ) || ! is_array( $sections ) ) {
+		return array();
+	}
+	$items = array();
+	foreach ( $sections as $section ) {
+		if ( 'gallery' !== ( $section['acf_fc_layout'] ?? '' ) || empty( $section['items'] ) || ! is_array( $section['items'] ) ) {
+			continue;
+		}
+		foreach ( $section['items'] as $item ) {
+			if ( ! empty( $item['image']['url'] ) ) {
+				$items[] = $item;
+			}
+		}
+	}
+	return $items;
+}
+
 function estecapelli_gallery_grouped() {
 	if ( ! function_exists( 'get_field' ) ) {
 		return array();
 	}
+
+	$default_lang = apply_filters( 'wpml_default_language', null );
 
 	$treatment_ids = get_posts(
 		array(
@@ -259,21 +285,17 @@ function estecapelli_gallery_grouped() {
 	$buckets = array();
 
 	foreach ( $treatment_ids as $tid ) {
-		$sections = get_field( 'page_sections', $tid );
-		if ( empty( $sections ) || ! is_array( $sections ) ) {
-			continue;
-		}
-
 		// Gather every image from all gallery sections on this treatment.
-		$items = array();
-		foreach ( $sections as $section ) {
-			if ( 'gallery' !== ( $section['acf_fc_layout'] ?? '' ) || empty( $section['items'] ) || ! is_array( $section['items'] ) ) {
-				continue;
-			}
-			foreach ( $section['items'] as $item ) {
-				if ( ! empty( $item['image']['url'] ) ) {
-					$items[] = $item;
-				}
+		$items = estecapelli_collect_gallery_items( get_field( 'page_sections', $tid ) );
+
+		// Before/after photos are uploaded on the English original and are
+		// language-neutral, so a translated treatment usually has an empty
+		// gallery. Fall back to the source-language treatment's images (the
+		// localized service title and category name still come from $tid below).
+		if ( empty( $items ) && $default_lang ) {
+			$source_tid = (int) apply_filters( 'wpml_object_id', $tid, 'treatment', false, $default_lang );
+			if ( $source_tid && $source_tid !== $tid ) {
+				$items = estecapelli_collect_gallery_items( get_field( 'page_sections', $source_tid ) );
 			}
 		}
 		if ( empty( $items ) ) {
