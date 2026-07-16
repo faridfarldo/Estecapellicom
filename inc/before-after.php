@@ -269,12 +269,15 @@ function estecapelli_gallery_grouped() {
 
 	$treatment_ids = get_posts(
 		array(
-			'post_type'      => 'treatment',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
-			'fields'         => 'ids',
-			'no_found_rows'  => true,
+			'post_type'        => 'treatment',
+			'post_status'      => 'publish',
+			'posts_per_page'   => -1,
+			'orderby'          => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+			'fields'           => 'ids',
+			'no_found_rows'    => true,
+			// Only the current language's treatments — get_posts() otherwise
+			// defaults suppress_filters to true and returns every language.
+			'suppress_filters' => false,
 		)
 	);
 	if ( empty( $treatment_ids ) ) {

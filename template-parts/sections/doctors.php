@@ -29,10 +29,13 @@ $members = $section['members'] ?? array();
 if ( post_type_exists( 'doctor' ) ) {
 	$doctor_posts = get_posts(
 		array(
-			'post_type'      => 'doctor',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'orderby'        => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+			'post_type'        => 'doctor',
+			'post_status'      => 'publish',
+			'posts_per_page'   => -1,
+			'orderby'          => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+			// get_posts() defaults suppress_filters to true, which bypasses WPML's
+			// language filter and leaks every language's doctors onto one page.
+			'suppress_filters' => false,
 		)
 	);
 
