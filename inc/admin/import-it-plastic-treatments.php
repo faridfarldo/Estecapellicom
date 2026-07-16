@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_PLASTIC_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_PLASTIC_IMPORT_VERSION', '2026-07-16.1' );
+	define( 'ESTECAPELLI_IT_PLASTIC_IMPORT_VERSION', '2026-07-16.2' );
 }
 
 /** @return array<string,string> English source slug => indexed Italian slug. */
