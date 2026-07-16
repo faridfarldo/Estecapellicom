@@ -1,0 +1,113 @@
+{
+    "source_slug": "dental-treatment",
+    "slug": "leczenie-stomatologiczne",
+    "title": "Leczenie stomatologiczne",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Leczenie stomatologiczne",
+            "title": "Opieka stomatologiczna z indywidualnym podejściem.",
+            "lead": "Od pojedynczego implantu zębowego po pełną metamorfozę uśmiechu Hollywood Smile — każdy plan tworzymy z myślą o wyglądzie, którego oczekujesz, oraz prawidłowym zgryzie.",
+            "cta_primary": {
+                "label": "Bezpłatna konsultacja"
+            },
+            "cta_secondary": {
+                "label": "Napisz na WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Nasze podejście",
+            "title": "Zdrowy zgryz i uśmiech, który pokochasz",
+            "body": "<p>Piękny uśmiech to nie tylko wygląd — zależy również od zdrowych zębów i dziąseł oraz prawidłowo funkcjonującego zgryzu. W Estecapelli leczenie zaczyna się od pełnej oceny stanu jamy ustnej, dzięki czemu estetyka i funkcja są planowane razem, niezależnie od tego, czy potrzebujesz zastąpić brakujący ząb, czy całkowicie odmienić swój uśmiech.</p><p>Nasz zespół stomatologiczny łączy nowoczesne planowanie cyfrowe z wysokiej jakości materiałami, aby zapewnić naturalnie wyglądające i trwałe rezultaty. Od implantów przywracających wytrzymałość naturalnego zęba po indywidualnie zaprojektowany Hollywood Smile — każdy plan odpowiada wyglądowi, którego oczekujesz, i potrzebom Twojego zgryzu, a wszystkie etapy wyjaśniamy przed rozpoczęciem leczenia.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Dlaczego pacjenci wybierają Estecapelli",
+            "stats": [
+                {
+                    "value": "Cyfrowo",
+                    "label": "Projekt uśmiechu zaplanowany przed rozpoczęciem leczenia"
+                },
+                {
+                    "value": "Premium",
+                    "label": "Wysokiej jakości, trwałe materiały"
+                },
+                {
+                    "value": "Naturalnie",
+                    "label": "Rezultaty dopasowane do twarzy i zgryzu"
+                },
+                {
+                    "value": "All inclusive",
+                    "label": "Przejrzyste wyceny bez zobowiązań"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Nasze zabiegi",
+            "title": "Poznaj zabiegi stomatologiczne"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Prawdziwe rezultaty",
+            "title": "Leczenie stomatologiczne — przed i po",
+            "lead": "Zobacz uśmiechy, z którymi nasi pacjenci wracają do domu. Każdy rezultat projektujemy tak, aby wyglądał naturalnie i współgrał z twarzą, ustami oraz zgryzem danej osoby.",
+            "cta": {
+                "label": "Zobacz całą galerię"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Bezpłatna konsultacja",
+            "title": "Zaprojektuj swój nowy uśmiech",
+            "lead": "Prześlij nam zdjęcie swojego uśmiechu. Nasz zespół stomatologiczny przygotuje indywidualny plan oraz niezobowiązującą wycenę all inclusive — zwykle w ciągu kilku godzin.",
+            "points": [
+                {
+                    "label": "Bezpłatna ocena uśmiechu na podstawie zdjęć"
+                },
+                {
+                    "label": "Przejrzysta wycena all inclusive bez zobowiązań"
+                },
+                {
+                    "label": "Szybka odpowiedź naszego zespołu opieki nad pacjentem"
+                },
+                {
+                    "label": "Wielojęzyczne wsparcie na każdym etapie"
+                }
+            ],
+            "submit_label": "Poproś o bezpłatną konsultację"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Przydatne informacje",
+            "title": "Leczenie stomatologiczne — najczęściej zadawane pytania",
+            "items": [
+                {
+                    "question": "Czym różnią się implanty zębowe od Hollywood Smile?",
+                    "answer": "<p>Implant zębowy zastępuje brakujący ząb od korzenia, przywracając pełną siłę żucia za pomocą tytanowego wszczepu i korony. Hollywood Smile to estetyczna metamorfoza, która zmienia wygląd widocznych zębów przy użyciu licówek lub koron, aby uśmiech był jaśniejszy i bardziej równy. Wielu pacjentów łączy oba rozwiązania — implanty uzupełniają braki, a licówki doskonalą wygląd uśmiechu.</p>"
+                },
+                {
+                    "question": "Jak długo trwa leczenie stomatologiczne i ile wizyt w Turcji jest potrzebnych?",
+                    "answer": "<p>Hollywood Smile z licówkami lub koronami można zazwyczaj wykonać podczas jednego pobytu trwającego około pięciu–siedmiu dni. Implanty wymagają okresu gojenia po wszczepieniu, dlatego często potrzebne są dwie wizyty w odstępie kilku miesięcy albo konsultacja planująca i późniejsze wykonanie ostatecznej odbudowy. Dokładny harmonogram ustalamy przed Twoją podróżą.</p>"
+                },
+                {
+                    "question": "Czy leczenie stomatologiczne jest bolesne?",
+                    "answer": "<p>Zabiegi przeprowadzamy w znieczuleniu miejscowym, dlatego podczas procedury nie powinieneś odczuwać bólu. Po leczeniu może wystąpić niewielka wrażliwość lub dyskomfort, które łatwo kontroluje się standardowymi lekami przeciwbólowymi. Nasz zespół dba o Twój komfort na każdym etapie i wcześniej dokładnie wyjaśnia, czego możesz się spodziewać.</p>"
+                },
+                {
+                    "question": "Czy moje nowe zęby będą wyglądać naturalnie?",
+                    "answer": "<p>Tak. Korzystamy z cyfrowego projektowania uśmiechu, aby zaplanować kształt, wielkość i odcień zębów w odpowiednich proporcjach do ust, dziąseł i twarzy. Dzięki temu efekt pasuje do Ciebie i nie wygląda sztucznie. Projekt możesz zobaczyć i skorygować przed wykonaniem ostatecznej pracy.</p>"
+                },
+                {
+                    "question": "Jak długo utrzymują się rezultaty?",
+                    "answer": "<p>Implanty zębowe są projektowane na dziesięciolecia, a przy prawidłowej higienie jamy ustnej i regularnych kontrolach często służą przez całe życie. Wysokiej jakości licówki i korony zwykle wytrzymują wiele lat, zanim będą wymagały wymiany. Dbanie o zęby i dziąsła oraz regularne wizyty kontrolne to najlepszy sposób ochrony rezultatów.</p>"
+                },
+                {
+                    "question": "Czy kwalifikuję się do leczenia?",
+                    "answer": "<p>Większość osób może skorzystać z leczenia, ale właściwy wybór zależy od zdrowia zębów i dziąseł oraz ilości naturalnej kości dostępnej dla implantów. Konsultacja na podstawie zdjęć, a w razie potrzeby także zdjęcia rentgenowskiego wykonanego po przyjeździe, pozwala naszemu zespołowi potwierdzić najlepszy plan i wskazać problemy, które trzeba wcześniej wyleczyć.</p>"
+                }
+            ]
+        }
+    ]
+}

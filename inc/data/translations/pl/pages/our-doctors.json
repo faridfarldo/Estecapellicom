@@ -1,0 +1,47 @@
+{
+    "source_slug": "our-doctors",
+    "slug": "nasi-lekarze",
+    "title": "Nasi lekarze",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Nasi lekarze",
+            "title": "Chirurdzy, którzy osobiście prowadzą każdy zabieg.",
+            "lead": "Poznaj wykwalifikowanych chirurgów wykonujących zabiegi w Estecapelli — starannie wybranych ze względu na doświadczenie, osiągane rezultaty i troskę o pacjenta.",
+            "cta_primary": {
+                "label": "Bezpłatna konsultacja"
+            },
+            "cta_secondary": {
+                "label": "Napisz na WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "doctors",
+            "eyebrow": "Wykwalifikowani chirurdzy",
+            "title": "Poznaj naszych chirurgów",
+            "lead": "Każdy zabieg jest osobiście prowadzony przez jednego z naszych chirurgów specjalistów. Otwórz życiorys, aby poznać jego wykształcenie, kwalifikacje i obszary specjalizacji.",
+            "members": [
+                {
+                    "name": "Dr. Mehmet Hanifi Kutlar",
+                    "position": "Specjalista transplantacji włosów i współzałożyciel"
+                },
+                {
+                    "name": "Op. Dr. Hasan Çelik",
+                    "position": "Chirurg estetyczny, plastyczny i rekonstrukcyjny"
+                },
+                {
+                    "name": "Op. Dr. Mehmet Palalı",
+                    "position": "Specjalista otorynolaryngologii"
+                },
+                {
+                    "name": "Op. Dr. Necdet Derici",
+                    "position": "Specjalista chirurgii ogólnej"
+                },
+                {
+                    "name": "Op. Dr. Ali Durmuş",
+                    "position": "Chirurg plastyczny i rekonstrukcyjny"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "source_slug": "contact",
+    "slug": "kontakt",
+    "title": "Kontakt",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Skontaktuj się z nami",
+            "title": "Jesteśmy tutaj, aby odpowiedzieć na Twoje pytania.",
+            "lead": "Skontaktuj się z naszym zespołem przez WhatsApp, telefon lub e-mail albo umów bezpłatną konsultację online z jednym z naszych konsultantów medycznych.",
+            "cta_primary": {
+                "label": "Bezpłatna konsultacja"
+            },
+            "cta_secondary": {
+                "label": "Napisz na WhatsApp"
+            }
+        }
+    ]
+}

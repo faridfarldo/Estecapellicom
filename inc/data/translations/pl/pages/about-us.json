@@ -1,0 +1,80 @@
+{
+    "source_slug": "about-us",
+    "slug": "o-nas",
+    "title": "O nas",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "O Estecapelli",
+            "title": "Doskonałość estetyczna oparta na zaufaniu medycznym.",
+            "lead": "Estecapelli to klinika z siedzibą w Stambule, specjalizująca się w transplantacji włosów, chirurgii plastycznej, leczeniu stomatologicznym i niechirurgicznej medycynie estetycznej. Łączymy wykwalifikowanych lekarzy, placówki o standardzie szpitalnym i podejście skoncentrowane na pacjencie, aby zapewniać rezultaty, którym można zaufać.",
+            "cta_primary": {
+                "label": "Bezpłatna konsultacja"
+            },
+            "cta_secondary": {
+                "label": "Napisz na WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Zaufanie pacjentów z całego świata",
+            "stats": [
+                {
+                    "value": "15+",
+                    "label": "Lat doświadczenia"
+                },
+                {
+                    "value": "50 000+",
+                    "label": "Transplantacji włosów"
+                },
+                {
+                    "value": "40+",
+                    "label": "Obsługiwanych krajów"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Wsparcie dla pacjentów"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Kim jesteśmy",
+            "title": "Zaufana marka w transplantacji włosów",
+            "body": "<p>Dzięki ponad 15-letniemu doświadczeniu w branży medycznej Estecapelli jest uznaną międzynarodową marką w dziedzinie transplantacji włosów. Klinika powstała w Turcji i szybko zdobyła światowe uznanie dzięki wysokiemu zadowoleniu pacjentów oraz konsekwentnie dobrym rezultatom. Dziś przyjmujemy pacjentów z całego świata w naszych ośrodkach w Turcji i Chile.</p><p>Tylko w Turcji wykonujemy ponad 2500 transplantacji włosów rocznie. Estecapelli zapewnia naturalne, estetyczne i trwałe rezultaty dzięki innowacyjnym technologiom oraz indywidualnym planom leczenia. Nasze opatentowane techniki VITA i Exosome wspierają szybsze gojenie i zwiększają przeżywalność graftów, realnie podnosząc skuteczność odbudowy włosów.</p><p>Dzięki stałym cenom i maksymalnej liczbie graftów bez z góry ustalonego limitu oferujemy każdemu pacjentowi rozwiązanie najlepiej dopasowane do jego potrzeb. Każdy zabieg przeprowadza z najwyższą starannością nasz doświadczony i wykwalifikowany turecki zespół medyczny.</p><p>Nowoczesne placówki, wysokie standardy higieny, obsługa zgodna z międzynarodowymi normami oraz potwierdzone zadowolenie tysięcy pacjentów wyróżniają Estecapelli w branży. Niezależnie od tego, gdzie mieszkasz, jesteśmy przy Tobie, aby zapewnić Ci najlepsze możliwe doświadczenie transplantacji włosów.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Dlaczego Turcja",
+            "title": "Rezultaty na światowym poziomie bez zawyżonych kosztów",
+            "body": "<p>Dlaczego płacić więcej w Wielkiej Brytanii, Stanach Zjednoczonych lub Europie? Estecapelli łączy medyczną doskonałość, uznane na świecie techniki i konkurencyjne ceny, oferując transplantację włosów na światowym poziomie za ułamek typowych kosztów.</p><p>Nasze nowoczesne placówki w Turcji zapewniają taki sam poziom opieki jak czołowe kliniki międzynarodowe, bez zawyżonych cen. Doświadczeni chirurdzy, indywidualne plany i kompleksowe wsparcie dają wyjątkową wartość bez kompromisów w zakresie jakości.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Nasza technologia",
+            "title": "Poznaj Exosome FUE",
+            "body": "<p>Preparat Exosome powstaje z płynów hodowlanych zawierających mezenchymalne komórki macierzyste pozyskiwane z pępowiny matczynej. Komórki te mają wyjątkowe właściwości regeneracyjne i naprawcze. Wykorzystując ich naturalną zdolność komunikowania się z otaczającymi komórkami i pobudzania ich, preparat Exosome wspiera odbudowę tkanek, zdrowsze funkcjonowanie komórek i ogólną poprawę kondycji skóry. Technika Exosome FUE jest opatentowanym rozwiązaniem Estecapelli.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Nasza autorska metoda",
+            "title": "Poznaj kurację VITA",
+            "body": "<p>Opracowana przez Estecapelli kuracja VITA to przełomowa technologia wykraczająca poza konwencjonalną transplantację włosów — pobudza żywotność mieszków włosowych, przyspiesza gojenie i wspiera naturalne rezultaty.</p><p>Ta autorska metoda jest z powodzeniem stosowana od ponad sześciu lat i stała się znakiem rozpoznawczym Estecapelli. Dotychczas ponad 10 000 pacjentów wybrało VITA, aby uzyskać naturalne, gęste i trwałe włosy. Ten sukces stanowi podstawę międzynarodowego uznania naszej marki.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Co nami kieruje",
+            "title": "Nasza misja",
+            "body": "<p>Misją Estecapelli jest zapewnianie pacjentom trwałych i estetycznie harmonijnych rezultatów dzięki najnowszym technologiom medycznym oraz innowacyjnym metodom. Poprzez ciągłe doskonalenie, międzynarodową współpracę i pracę zespołu ekspertów dążymy do najwyższych standardów w opiece zdrowotnej, niezmiennie oferując usługi na światowym poziomie.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Spojrzenie w przyszłość",
+            "title": "Nasza wizja",
+            "body": "<p>Naszą wizją jest pozycja światowego lidera w transplantacji włosów i medycynie estetycznej oraz wyznaczanie kierunku rozwoju branży poprzez innowacyjne praktyki i skrupulatne podejście do każdego szczegółu. Dzięki ośrodkom w Turcji i Santiago w Chile chcemy docierać do coraz większej liczby pacjentów i udostępniać nasze wysokiej jakości usługi jeszcze szerszemu gronu osób.</p>",
+            "cta": {
+                "label": "Poznaj naszych lekarzy"
+            }
+        }
+    ]
+}
