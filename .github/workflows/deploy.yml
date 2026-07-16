@@ -14,14 +14,16 @@ jobs:
     steps:
       - name: Call cPanel UAPI VersionControl::update + VersionControlDeployment::create
         env:
-          CPANEL_HOST:      ${{ secrets.CPANEL_HOST }}
+          # The site's cPanel service has a valid certificate on this endpoint.
+          # The legacy secret host currently fails TLS verification (curl 60).
+          CPANEL_API_HOST:  estecapelli.com:2083
           CPANEL_USERNAME:  ${{ secrets.CPANEL_USERNAME }}
           CPANEL_TOKEN:     ${{ secrets.CPANEL_TOKEN }}
           CPANEL_REPO_ROOT: ${{ secrets.CPANEL_REPO_ROOT }}
         run: |
           set -euo pipefail
 
-          for var in CPANEL_HOST CPANEL_USERNAME CPANEL_TOKEN CPANEL_REPO_ROOT; do
+          for var in CPANEL_API_HOST CPANEL_USERNAME CPANEL_TOKEN CPANEL_REPO_ROOT; do
             if [ -z "${!var:-}" ]; then
               echo "::error::Missing required secret: $var"
               exit 1
@@ -32,7 +34,7 @@ jobs:
           # often leave a trailing newline in GitHub secrets which then breaks the API
           # (cPanel rejects ".../estecapelli\n" as "not a valid repository_root").
           strip_ws() { printf '%s' "$1" | tr -d '\r\n' | sed -E 's:^[[:space:]]+|[[:space:]]+$::g'; }
-          CPANEL_HOST=$(strip_ws "$CPANEL_HOST")
+          CPANEL_API_HOST=$(strip_ws "$CPANEL_API_HOST")
           CPANEL_USERNAME=$(strip_ws "$CPANEL_USERNAME")
           CPANEL_TOKEN=$(strip_ws "$CPANEL_TOKEN")
           CPANEL_REPO_ROOT=$(strip_ws "$CPANEL_REPO_ROOT")
@@ -52,7 +54,7 @@ jobs:
               --output "$response_file" \
               --write-out "%{http_code}" \
               -H "$auth_header" \
-              "https://${CPANEL_HOST}/execute/${endpoint}?repository_root=${encoded_path}")
+              "https://${CPANEL_API_HOST}/execute/${endpoint}?repository_root=${encoded_path}")
 
             echo "::group::${label} (HTTP $http_code)"
             cat "$response_file"
