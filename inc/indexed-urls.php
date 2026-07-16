@@ -754,6 +754,72 @@ function estecapelli_indexed_acf_link( $value ) {
 add_filter( 'acf/format_value/type=link', 'estecapelli_indexed_acf_link', 999 );
 
 /**
+ * Resolve a translated post from WPML's relationship table.
+ *
+ * Fresh imports can leave WPML's persistent object-id cache holding the old
+ * "missing translation" result. The translation table is the source of truth,
+ * so indexed requests use it as a fallback before treating a live URL as a
+ * 404. The localized slug fallback also covers legacy records whose English
+ * Page hierarchy does not match the public route hierarchy.
+ */
+function estecapelli_indexed_raw_translation_id( $source_id, $post_type, $language, $localized_slug = '' ) {
+	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) && ! defined( 'WPML_VERSION' ) ) {
+		return 0;
+	}
+
+	global $wpdb;
+	$table        = $wpdb->prefix . 'icl_translations';
+	$element_type = (string) apply_filters( 'wpml_element_type', $post_type );
+	$target_id    = 0;
+
+	if ( $source_id ) {
+		$target_id = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT target.element_id
+				 FROM {$table} source
+				 INNER JOIN {$table} target
+				 ON target.trid = source.trid
+				 AND target.element_type = source.element_type
+				 INNER JOIN {$wpdb->posts} post ON post.ID = target.element_id
+				 WHERE source.element_id = %d
+				 AND source.element_type = %s
+				 AND target.language_code = %s
+				 AND post.post_type = %s
+				 AND post.post_status = 'publish'
+				 ORDER BY target.translation_id ASC LIMIT 1",
+				(int) $source_id,
+				$element_type,
+				(string) $language,
+				(string) $post_type
+			)
+		);
+	}
+
+	if ( ! $target_id && $localized_slug ) {
+		$target_id = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT post.ID
+				 FROM {$wpdb->posts} post
+				 INNER JOIN {$table} translation
+				 ON translation.element_id = post.ID
+				 AND translation.element_type = %s
+				 WHERE post.post_name = %s
+				 AND post.post_type = %s
+				 AND post.post_status = 'publish'
+				 AND translation.language_code = %s
+				 ORDER BY translation.translation_id ASC LIMIT 1",
+				$element_type,
+				(string) $localized_slug,
+				(string) $post_type,
+				(string) $language
+			)
+		);
+	}
+
+	return $target_id;
+}
+
+/**
  * Resolve every exact indexed treatment, doctor, page and blog route directly.
  * This removes any dependency on translated CPT rewrite bases or term order.
  */
@@ -766,8 +832,10 @@ function estecapelli_indexed_request( $query_vars ) {
 
 	$path     = trim( (string) wp_parse_url( $request, PHP_URL_PATH ), '/' );
 	$language = estecapelli_indexed_language_code( (string) strtok( $path, '/' ) );
-	$type     = 'page';
-	$slug     = basename( $key );
+	$type           = 'page';
+	$slug           = basename( $key );
+	$route          = estecapelli_indexed_route_path( $key, $language );
+	$localized_slug = $route ? basename( $route ) : '';
 
 	$is_hair_care_page = in_array( $slug, estecapelli_indexed_hair_care_page_slugs(), true );
 	if ( ! $is_hair_care_page && isset( estecapelli_indexed_treatment_slugs()[ $slug ] ) ) {
@@ -785,7 +853,7 @@ function estecapelli_indexed_request( $query_vars ) {
 	if ( 'page' === $type ) {
 		$source_path = trim( substr( $key, 3 ), '/' );
 		$source      = get_page_by_path( $source_path, OBJECT, 'page' );
-		if ( ! $source && $is_hair_care_page ) {
+		if ( ! $source ) {
 			// Older imports may contain the right Page without its expected
 			// English parent. Resolve the leaf directly and let WPML map it back
 			// to the English source instead of falling through to the landing.
@@ -818,6 +886,12 @@ function estecapelli_indexed_request( $query_vars ) {
 	$target_id = 'en' === $language
 		? $source_id
 		: (int) apply_filters( 'wpml_object_id', $source_id, $type, false, $wpml_language );
+	if ( 'en' !== $language ) {
+		$raw_target_id = estecapelli_indexed_raw_translation_id( $source_id, $type, $wpml_language, $localized_slug );
+		if ( $raw_target_id ) {
+			$target_id = $raw_target_id;
+		}
+	}
 	if ( ! $target_id ) {
 		return $query_vars;
 	}
