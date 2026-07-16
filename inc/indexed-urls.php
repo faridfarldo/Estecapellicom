@@ -240,6 +240,23 @@ function estecapelli_indexed_blog_slugs() {
 }
 
 /**
+ * Hair-transplant leaf routes stored as hierarchical Page records.
+ *
+ * They share the public treatment URL structure, but must never be resolved as
+ * `treatment` posts. Treating them as CPT entries makes WordPress fall back to
+ * the Hair Transplant landing when the matching treatment post does not exist.
+ *
+ * @return string[]
+ */
+function estecapelli_indexed_hair_care_page_slugs() {
+	return array(
+		'tricholab',
+		'pre-hair-transplant-period',
+		'post-hair-transplant-period',
+	);
+}
+
+/**
  * Category owning an English treatment slug.
  */
 function estecapelli_indexed_treatment_category( $slug ) {
@@ -752,7 +769,8 @@ function estecapelli_indexed_request( $query_vars ) {
 	$type     = 'page';
 	$slug     = basename( $key );
 
-	if ( '/en/hair-transplant/tricholab' !== $key && isset( estecapelli_indexed_treatment_slugs()[ $slug ] ) ) {
+	$is_hair_care_page = in_array( $slug, estecapelli_indexed_hair_care_page_slugs(), true );
+	if ( ! $is_hair_care_page && isset( estecapelli_indexed_treatment_slugs()[ $slug ] ) ) {
 		$type = 'treatment';
 	} elseif ( 0 === strpos( $key, '/en/blog/' ) ) {
 		$type = 'post';
@@ -767,6 +785,18 @@ function estecapelli_indexed_request( $query_vars ) {
 	if ( 'page' === $type ) {
 		$source_path = trim( substr( $key, 3 ), '/' );
 		$source      = get_page_by_path( $source_path, OBJECT, 'page' );
+		if ( ! $source && $is_hair_care_page ) {
+			// Older imports may contain the right Page without its expected
+			// English parent. Resolve the leaf directly and let WPML map it back
+			// to the English source instead of falling through to the landing.
+			$source_id = (int) $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = 'page' AND post_status = 'publish' ORDER BY ID ASC LIMIT 1",
+					$slug
+				)
+			);
+			$source = $source_id ? get_post( $source_id ) : null;
+		}
 		$source_id   = $source ? (int) apply_filters( 'wpml_object_id', $source->ID, 'page', true, 'en' ) : 0;
 	} else {
 		$source_id = (int) $wpdb->get_var(
