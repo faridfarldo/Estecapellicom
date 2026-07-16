@@ -1,0 +1,113 @@
+{
+    "source_slug": "dental-treatment",
+    "slug": "traitement-dentaire",
+    "title": "Traitement dentaire",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Traitement dentaire",
+            "title": "Des soins dentaires avec une touche personnelle.",
+            "lead": "De l’implant dentaire unitaire à une transformation complète du sourire hollywoodien, chaque plan est construit autour du sourire que vous souhaitez et de l’occlusion dont vous avez besoin.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Notre approche",
+            "title": "Une occlusion saine et un sourire que vous aimez",
+            "body": "<p>Un beau sourire ne se résume pas à l’apparence — il dépend de dents et de gencives saines et d’une occlusion fonctionnelle. Chez Estecapelli, le traitement commence par un bilan bucco-dentaire complet afin que l’esthétique et la fonction soient planifiées ensemble, que vous ayez besoin de remplacer une dent manquante ou de redessiner entièrement votre sourire.</p><p>Notre équipe dentaire associe une planification numérique moderne à des matériaux de haute qualité pour offrir des résultats naturels et durables. De l’implant dentaire qui rétablit la force d’une dent naturelle à un sourire hollywoodien sur mesure, chaque plan est construit autour du sourire que vous souhaitez et de l’occlusion dont vous avez besoin — et expliqué clairement avant le début de tout traitement.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Pourquoi les patients choisissent Estecapelli",
+            "stats": [
+                {
+                    "value": "Numérique",
+                    "label": "Design du sourire planifié avant de commencer"
+                },
+                {
+                    "value": "Premium",
+                    "label": "Des matériaux de haute qualité et durables"
+                },
+                {
+                    "value": "Naturel",
+                    "label": "Des résultats assortis à votre visage et à votre occlusion"
+                },
+                {
+                    "value": "Tout compris",
+                    "label": "Des devis transparents et sans engagement"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Nos traitements",
+            "title": "Explorez les traitements dentaires"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Résultats réels",
+            "title": "Traitement dentaire — Avant et après",
+            "lead": "Découvrez les sourires avec lesquels repartent nos patients. Chaque résultat est conçu pour paraître naturel et s’adapter au visage, aux lèvres et à l’occlusion de la personne.",
+            "cta": {
+                "label": "Voir toute la galerie"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consultation gratuite",
+            "title": "Concevez votre nouveau sourire",
+            "lead": "Envoyez-nous une photo de votre sourire et notre équipe dentaire vous répondra avec un plan de traitement personnalisé et un devis tout compris et sans engagement — généralement en quelques heures.",
+            "points": [
+                {
+                    "label": "Bilan gratuit du sourire à partir de vos photos"
+                },
+                {
+                    "label": "Devis tout compris, transparent et sans engagement"
+                },
+                {
+                    "label": "Réponse rapide de notre équipe dédiée aux patients"
+                },
+                {
+                    "label": "Accompagnement multilingue à chaque étape"
+                }
+            ],
+            "submit_label": "Demandez une consultation gratuite"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bon à savoir",
+            "title": "Traitement dentaire — Foire aux questions",
+            "items": [
+                {
+                    "question": "Quelle est la différence entre les implants dentaires et un sourire hollywoodien ?",
+                    "answer": "<p>Un implant dentaire remplace une dent manquante depuis la racine, rétablissant toute la force de mastication grâce à une vis en titane et une couronne. Un sourire hollywoodien est une transformation esthétique qui redessine l’apparence de vos dents visibles à l’aide de facettes ou de couronnes, pour un rendu plus lumineux et régulier. De nombreux patients associent les deux — des implants pour remplacer les dents manquantes et des facettes pour parfaire le sourire.</p>"
+                },
+                {
+                    "question": "Combien de temps dure le traitement dentaire et combien de voyages sont nécessaires ?",
+                    "answer": "<p>Un sourire hollywoodien avec facettes ou couronnes peut généralement être réalisé en un seul voyage d’environ cinq à sept jours. Les implants dentaires nécessitent une période de cicatrisation après la pose, ils demandent donc souvent deux visites espacées de quelques mois, ou une consultation de planification suivie de la restauration finale. Nous établissons votre calendrier exact avant votre voyage.</p>"
+                },
+                {
+                    "question": "Le traitement dentaire est-il douloureux ?",
+                    "answer": "<p>Le traitement est réalisé sous anesthésie locale : vous ne devriez pas ressentir de douleur pendant l’intervention. Une légère sensibilité ou gêne ensuite est normale et facilement soulagée par de simples antalgiques. Notre équipe veille à votre confort à chaque étape et vous explique exactement ce à quoi vous attendre.</p>"
+                },
+                {
+                    "question": "Mes nouvelles dents auront-elles l’air naturel ?",
+                    "answer": "<p>Oui. Nous utilisons le design numérique du sourire pour planifier la forme, la taille et la teinte de vos dents en proportion de vos lèvres, gencives et visage, afin que le résultat vous convienne plutôt que de paraître artificiel. Vous pouvez revoir et ajuster le plan avant tout travail définitif, pour être certain d’être satisfait du rendu final.</p>"
+                },
+                {
+                    "question": "Combien de temps durent les résultats ?",
+                    "answer": "<p>Les implants dentaires sont conçus pour durer des décennies — souvent toute une vie — avec une bonne hygiène bucco-dentaire et des contrôles réguliers. Les facettes et couronnes de haute qualité durent généralement de nombreuses années avant de devoir être remplacées. Prendre soin de ses dents et de ses gencives et effectuer des visites dentaires régulières est le meilleur moyen de protéger votre investissement.</p>"
+                },
+                {
+                    "question": "Suis-je un candidat approprié ?",
+                    "answer": "<p>La plupart des personnes sont éligibles, mais le bon traitement dépend de la santé de vos dents et gencives et de la quantité d’os naturel disponible pour les implants. Une consultation avec photos — et, si nécessaire, une radiographie réalisée à votre arrivée — permet à notre équipe dentaire de confirmer le meilleur plan pour vous et de repérer tout ce qui doit être traité au préalable.</p>"
+                }
+            ]
+        }
+    ]
+}

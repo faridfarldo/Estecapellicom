@@ -1,0 +1,103 @@
+{
+    "source_slug": "tricholab",
+    "slug": "tricholab",
+    "title": "TrichoLab",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Analyse capillaire par IA",
+            "title": "TrichoLab",
+            "lead": "Un système avancé d’analyse capillaire assisté par IA qui examine les cheveux et le cuir chevelu grâce à une imagerie trichoscopique haute résolution — transformant votre cuir chevelu en données précises qui guident un plan de greffe entièrement personnalisé.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "La technologie",
+            "title": "Qu’est-ce que TrichoLab ?",
+            "body": "<p>TrichoLab est un système avancé d’analyse capillaire assisté par IA qui examine les cheveux et le cuir chevelu grâce à une imagerie trichoscopique haute résolution. En mesurant des paramètres essentiels avec une précision millimétrique, il fournit des données objectives qui guident nos spécialistes dans la planification du traitement le plus efficace pour chaque personne.</p><p>Le système évalue un large éventail de facteurs : densité des follicules pileux, potentiel de greffons, épaisseur de la tige capillaire, capacité de la zone donneuse, cartographie de la perte de cheveux et taux de miniaturisation. Ce niveau de détail permet à notre équipe de concevoir un plan de traitement personnalisé fondé sur des données précises et en temps réel plutôt que sur une estimation.</p>"
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Le déroulement",
+            "title": "L’analyse capillaire avec TrichoLab chez Estecapelli",
+            "lead": "De l’imagerie haute résolution à un plan précis et personnalisé. Faites défiler les étapes ci-dessous.",
+            "items": [
+                {
+                    "eyebrow": "Étape 1",
+                    "title": "Scan trichoscopique numérique",
+                    "body": "<p>Le cuir chevelu est examiné par micro-imagerie haute résolution, capturant des visuels détaillés des follicules pileux.</p>"
+                },
+                {
+                    "eyebrow": "Étape 2",
+                    "title": "Analyse des données par IA",
+                    "body": "<p>Des algorithmes avancés transforment les données d’imagerie en valeurs numériques précises de densité et de répartition folliculaire.</p>"
+                },
+                {
+                    "eyebrow": "Étape 3",
+                    "title": "Plan de traitement personnalisé",
+                    "body": "<p>Les données servent de base à un plan entièrement personnalisé, incluant le nombre exact de greffons nécessaires.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Pourquoi c’est important",
+            "title": "L’importance de TrichoLab dans la planification de la greffe",
+            "body": "L’analyse scientifique protège votre zone donneuse et garantit des résultats naturels et symétriques :",
+            "items": [
+                {
+                    "label": "Évaluation scientifique de la capacité de la zone donneuse — sans surexploitation"
+                },
+                {
+                    "label": "Calcul précis des greffons, éliminant la sous- et la sur-planification"
+                },
+                {
+                    "label": "Un design naturel et symétrique fondé sur vos cheveux existants"
+                },
+                {
+                    "label": "Protection à long terme de la zone donneuse"
+                },
+                {
+                    "label": "Disponible dans un nombre restreint de cliniques en Turquie"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Pourquoi Estecapelli",
+            "title": "Pourquoi TrichoLab chez Estecapelli ?",
+            "body": "<p>TrichoLab est un système d’analyse avancé disponible dans un nombre restreint de cliniques en Turquie ; chez Estecapelli, il est au cœur de tout ce que nous faisons, offrant à nos patients un niveau d’analyse que peu de cliniques peuvent proposer.</p><p>Chaque évaluation est objective, mesurable et totalement transparente. Une stratégie de greffe véritablement personnalisée est élaborée pour chaque patient, fondée sur des données précises plutôt que sur des suppositions, protégeant la zone donneuse et maximisant les résultats à long terme.</p>",
+            "cta": {
+                "label": "Planifier une consultation gratuite"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bon à savoir",
+            "title": "TrichoLab — Foire aux questions",
+            "items": [
+                {
+                    "question": "L’analyse TrichoLab est-elle douloureuse ?",
+                    "answer": "<p>Pas du tout. Il s’agit d’un processus d’imagerie non invasif qui se contente de scanner le cuir chevelu — sans aiguille, sans inconfort.</p>"
+                },
+                {
+                    "question": "Pourquoi TrichoLab est-il important pour ma greffe ?",
+                    "answer": "<p>Il calcule le nombre exact de greffons dont vous avez besoin et protège votre zone donneuse, pour un plan précis, naturel et durable.</p>"
+                },
+                {
+                    "question": "Qu’est-ce que l’analyse TrichoLab exactement ?",
+                    "answer": "<p>TrichoLab est un système avancé d’analyse capillaire qui examine les cheveux et le cuir chevelu par imagerie haute résolution et logiciel assisté par IA, mesurant la densité capillaire, l’épaisseur des cheveux, la capacité de la zone donneuse et le schéma de chute.</p>"
+                },
+                {
+                    "question": "TrichoLab détermine-t-il le nombre exact de greffons ?",
+                    "answer": "<p>TrichoLab renforce la planification en appuyant le besoin en greffons sur des données scientifiques. La décision finale est prise en tenant compte de facteurs cliniques tels que l’évaluation d’un expert et le design de la ligne frontale.</p>"
+                }
+            ]
+        }
+    ]
+}

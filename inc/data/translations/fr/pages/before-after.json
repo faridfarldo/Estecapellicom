@@ -1,0 +1,19 @@
+{
+    "source_slug": "before-after",
+    "slug": "avant-apres",
+    "title": "Avant & Après",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Avant & Après",
+            "title": "De vrais résultats, de vrais patients.",
+            "lead": "Parcourez les montages avant-après de nos traitements de greffe capillaire, de chirurgie plastique et dentaires. Chaque image représente un patient qui nous a confié sa transformation.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        }
+    ]
+}

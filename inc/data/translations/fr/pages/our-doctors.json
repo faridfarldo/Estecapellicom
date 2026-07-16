@@ -1,0 +1,47 @@
+{
+    "source_slug": "our-doctors",
+    "slug": "nos-medecins",
+    "title": "Nos médecins",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Nos médecins",
+            "title": "Des chirurgiens qui dirigent chaque intervention.",
+            "lead": "Rencontrez les chirurgiens certifiés qui réalisent chaque opération chez Estecapelli — chacun personnellement sélectionné pour son expérience, ses résultats et ses soins aux patients.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "doctors",
+            "eyebrow": "Chirurgiens certifiés",
+            "title": "Rencontrez les chirurgiens",
+            "lead": "Chaque opération est menée personnellement par l’un de nos chirurgiens spécialisés. Ouvrez un CV pour découvrir sa formation, ses qualifications et ses domaines d’expertise.",
+            "members": [
+                {
+                    "name": "Dr. Mehmet Hanifi Kutlar",
+                    "position": "Directeur médical et cofondateur"
+                },
+                {
+                    "name": "Op. Dr. Hasan Çelik",
+                    "position": "Chirurgien plasticien et reconstructeur"
+                },
+                {
+                    "name": "Op. Dr. Mehmet Palalı",
+                    "position": "Chirurgien plasticien et reconstructeur"
+                },
+                {
+                    "name": "Op. Dr. Necdet Derici",
+                    "position": "Chirurgien plasticien et reconstructeur"
+                },
+                {
+                    "name": "Op. Dr. Ali Durmuş",
+                    "position": "Chirurgien plasticien et reconstructeur"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,113 @@
+{
+    "source_slug": "our-team",
+    "slug": "notre-equipe",
+    "title": "Notre équipe",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Notre équipe",
+            "title": "Les personnes derrière chaque transformation.",
+            "lead": "De votre premier message jusqu’au suivi final, notre équipe multilingue — médicale, conseil et service aux patients — vous accompagne à chaque étape de votre parcours.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "team",
+            "eyebrow": "Votre premier point de contact",
+            "title": "Conseillers médicaux",
+            "lead": "Des conseillers multilingues qui guident votre parcours dans votre propre langue — de la première question au résultat final.",
+            "members": [
+                {
+                    "name": "Marcus",
+                    "languages": [
+                        { "label": "Anglais" }
+                    ]
+                },
+                {
+                    "name": "Matthew",
+                    "languages": [
+                        { "label": "Anglais" }
+                    ]
+                },
+                {
+                    "name": "Rachel",
+                    "languages": [
+                        { "label": "Anglais" }
+                    ]
+                },
+                {
+                    "name": "Roxane",
+                    "languages": [
+                        { "label": "Français" }
+                    ]
+                },
+                {
+                    "name": "Sana",
+                    "languages": [
+                        { "label": "Français" },
+                        { "label": "Arabe" },
+                        { "label": "Espagnol" }
+                    ]
+                },
+                {
+                    "name": "Melissa",
+                    "languages": [
+                        { "label": "Italien" }
+                    ]
+                },
+                {
+                    "name": "Gaia",
+                    "languages": [
+                        { "label": "Italien" }
+                    ]
+                },
+                {
+                    "name": "Emilia",
+                    "languages": [
+                        { "label": "Français" }
+                    ]
+                },
+                {
+                    "name": "Natalia",
+                    "languages": [
+                        { "label": "Polonais" }
+                    ]
+                },
+                {
+                    "name": "Cynthia",
+                    "languages": [
+                        { "label": "Portugais" }
+                    ]
+                },
+                {
+                    "name": "Damla",
+                    "languages": [
+                        { "label": "Turc" }
+                    ]
+                },
+                {
+                    "name": "Samet",
+                    "languages": [
+                        { "label": "Turc" }
+                    ]
+                },
+                {
+                    "name": "Hamza",
+                    "languages": [
+                        { "label": "Ourdou" }
+                    ]
+                },
+                {
+                    "name": "Wali",
+                    "languages": [
+                        { "label": "Ourdou" }
+                    ]
+                }
+            ]
+        }
+    ]
+}

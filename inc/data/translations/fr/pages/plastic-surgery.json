@@ -1,0 +1,113 @@
+{
+    "source_slug": "plastic-surgery",
+    "slug": "chirurgie-plastique",
+    "title": "Chirurgie plastique",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Chirurgie plastique",
+            "title": "La chirurgie esthétique, pensée pour vous.",
+            "lead": "Rhinoplastie, BBL, esthétique mammaire, lifting du visage et du cou et bien plus — réalisés par des chirurgiens certifiés dans des installations de niveau hospitalier.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Notre approche",
+            "title": "Une chirurgie esthétique réalisée en toute sécurité et avec naturel",
+            "body": "<p>La chirurgie plastique est une décision profondément personnelle, et le bon résultat est celui qui vous ressemble — équilibré, naturel et proportionné — jamais excessif. Chez Estecapelli, chaque intervention est réalisée par des chirurgiens plasticiens certifiés dans des installations entièrement accréditées, de niveau hospitalier, avec l’anesthésie, la surveillance et les soins post-opératoires que l’on attend d’une clinique de premier plan.</p><p>De la rhinoplastie et du rajeunissement facial au remodelage corporel, à l’esthétique mammaire et à la chirurgie bariatrique, votre parcours commence par une consultation honnête. Nous discutons de ce qui est réellement réalisable, planifions l’intervention autour de votre anatomie et de vos objectifs, et vous accompagnons durant la récupération avec une équipe dédiée aux patients qui parle votre langue.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Pourquoi les patients choisissent Estecapelli",
+            "stats": [
+                {
+                    "value": "Certifiés",
+                    "label": "Chirurgiens plasticiens expérimentés"
+                },
+                {
+                    "value": "Niveau hospitalier",
+                    "label": "Installations accréditées et entièrement équipées"
+                },
+                {
+                    "value": "De bout en bout",
+                    "label": "Un suivi du premier message à la récupération"
+                },
+                {
+                    "value": "Tout compris",
+                    "label": "Des devis transparents et sans engagement"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Nos traitements",
+            "title": "Explorez les interventions de chirurgie plastique"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Résultats réels",
+            "title": "Chirurgie plastique — Avant et après",
+            "lead": "Parcourez les résultats avant-après de vrais patients. Chaque transformation est planifiée autour de la personne pour un résultat naturel et équilibré.",
+            "cta": {
+                "label": "Voir toute la galerie"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consultation gratuite",
+            "title": "Planifiez votre intervention avec nos chirurgiens",
+            "lead": "Dites-nous ce que vous souhaitez obtenir et notre équipe médicale vous répondra avec un plan personnalisé et un devis tout compris et sans engagement — généralement en quelques heures.",
+            "points": [
+                {
+                    "label": "Évaluation par des chirurgiens certifiés"
+                },
+                {
+                    "label": "Des attentes réalistes et honnêtes dès le départ"
+                },
+                {
+                    "label": "Réponse rapide de notre équipe dédiée aux patients"
+                },
+                {
+                    "label": "Accompagnement multilingue à chaque étape"
+                }
+            ],
+            "submit_label": "Demandez une consultation gratuite"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bon à savoir",
+            "title": "Chirurgie plastique — Foire aux questions",
+            "items": [
+                {
+                    "question": "Comment savoir quelle intervention me convient ?",
+                    "answer": "<p>Tout commence par une consultation. Nous écoutons ce qui vous gêne et ce que vous aimeriez changer, évaluons votre anatomie et expliquons quelle intervention — ou combinaison — permettra d’obtenir un résultat naturel et équilibré. Nous sommes tout aussi clairs sur ce qui n’est pas conseillé, car le bon plan est celui qui est sûr et réaliste pour vous, et non simplement celui que vous demandez.</p>"
+                },
+                {
+                    "question": "Les chirurgiens sont-ils qualifiés et les installations sûres ?",
+                    "answer": "<p>Oui. Toutes les interventions sont réalisées par des chirurgiens plasticiens certifiés dans des installations accréditées, de niveau hospitalier, avec anesthésie et surveillance complètes. Votre sécurité est évaluée avant l’opération grâce aux analyses nécessaires et à un examen de vos antécédents médicaux, et vous êtes pris en charge tout au long de votre séjour par un personnel médical qualifié.</p>"
+                },
+                {
+                    "question": "Quel type d’anesthésie est utilisé ?",
+                    "answer": "<p>La plupart des interventions de chirurgie plastique sont réalisées sous anesthésie générale administrée par un anesthésiste spécialisé, tandis que certains traitements plus légers peuvent se faire sous sédation ou anesthésie locale. La bonne option est confirmée lors de votre bilan pré-opératoire en fonction de l’intervention et de votre état de santé.</p>"
+                },
+                {
+                    "question": "Combien de temps dure la récupération et combien de jours dois-je rester en Turquie ?",
+                    "answer": "<p>La récupération dépend de l’intervention. De nombreux patients restent en Turquie environ cinq à dix jours afin que nous puissions surveiller la cicatrisation initiale et retirer sutures ou drains avant leur voyage. Nous vous remettons une chronologie de récupération claire et écrite et restons disponibles pour vos questions de suivi après votre retour.</p>"
+                },
+                {
+                    "question": "Y aura-t-il des cicatrices visibles ?",
+                    "answer": "<p>Certaines interventions chirurgicales laissent des cicatrices, mais nos chirurgiens placent les incisions dans des endroits discrets et naturellement dissimulés dès que possible et utilisent des techniques de fermeture soignées pour les garder aussi fines que possible. Les cicatrices s’estompent généralement de façon notable au fil des mois suivants, et nous vous conseillons sur les soins pour favoriser une bonne cicatrisation.</p>"
+                },
+                {
+                    "question": "Les résultats sont-ils permanents ?",
+                    "answer": "<p>De nombreux résultats, comme la rhinoplastie ou le remodelage mammaire et corporel, sont durables. Cependant, le vieillissement naturel, les variations de poids importantes et le mode de vie continuent d’influencer votre corps avec le temps. Maintenir un poids stable et une hygiène de vie saine aide à préserver votre résultat le plus longtemps possible, et nous vous conseillons à ce sujet lors de votre consultation.</p>"
+                }
+            ]
+        }
+    ]
+}

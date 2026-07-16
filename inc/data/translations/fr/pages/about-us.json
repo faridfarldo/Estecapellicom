@@ -1,0 +1,80 @@
+{
+    "source_slug": "about-us",
+    "slug": "a-propos-de-nous",
+    "title": "À propos de nous",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "À propos d’Estecapelli",
+            "title": "L’excellence esthétique, portée par la confiance médicale.",
+            "lead": "Estecapelli est une clinique basée à Istanbul, spécialisée dans la restauration capillaire, la chirurgie plastique, les soins dentaires et l’esthétique non chirurgicale. Nous associons des chirurgiens certifiés, des installations de niveau hospitalier et une philosophie centrée sur le patient pour offrir des résultats dignes de confiance.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "La confiance dans le monde entier",
+            "stats": [
+                {
+                    "value": "15+",
+                    "label": "Années d’expérience"
+                },
+                {
+                    "value": "+50 000",
+                    "label": "Greffes de cheveux"
+                },
+                {
+                    "value": "+40",
+                    "label": "Pays desservis"
+                },
+                {
+                    "value": "24/7",
+                    "label": "Assistance aux patients"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Qui nous sommes",
+            "title": "Un nom de confiance dans la greffe de cheveux",
+            "body": "<p>Forte de plus de 15 ans d’expérience dans le secteur de la santé, Estecapelli est un nom reconnu à l’international dans la greffe de cheveux. Fondée en Turquie, notre clinique a rapidement gagné une reconnaissance mondiale grâce à une satisfaction patient exceptionnelle et à des opérations constamment réussies — et nous accompagnons aujourd’hui des patients à l’échelle mondiale depuis nos centres en Turquie et au Chili.</p><p>Réalisant plus de 2 500 greffes de cheveux chaque année rien qu’en Turquie, Estecapelli offre des résultats naturels, esthétiques et permanents grâce à une technologie innovante et des plans de traitement personnalisés. Nos techniques brevetées VITA et Exosome accélèrent la cicatrisation tout en augmentant le taux de survie des greffons — faisant une véritable différence dans la restauration capillaire.</p><p>Avec notre approche à greffons maximum illimités et à prix fixe, nous offrons à chaque patient la solution la plus idéale, et chaque opération est menée avec minutie par notre équipe médicale turque, experte et expérimentée.</p><p>Nos installations cliniques modernes et hygiéniques, notre approche du service aux standards internationaux et une satisfaction patient éprouvée sur des milliers d’opérations réussies font d’Estecapelli un nom qui se démarque dans la greffe de cheveux. Où que vous soyez dans le monde, Estecapelli est à vos côtés pour vous offrir la meilleure expérience de greffe de cheveux.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Pourquoi la Turquie",
+            "title": "Des résultats de classe mondiale, sans le prix gonflé",
+            "body": "<p>Pourquoi payer plus au Royaume-Uni, aux États-Unis ou en Europe ? Chez Estecapelli, nous associons excellence médicale, techniques accréditées à l’international et tarifs compétitifs pour offrir des résultats de greffe de cheveux de classe mondiale à une fraction du coût.</p><p>Nos installations à la pointe de la technologie en Turquie offrent la même qualité de soins que celle des meilleures cliniques du monde — sans les prix gonflés. Avec des chirurgiens expérimentés, des plans de traitement personnalisés et un suivi complet, vous bénéficiez d’une valeur exceptionnelle qui ne fait jamais de compromis sur la qualité.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Notre technologie",
+            "title": "Découvrez l’Exosome FUE",
+            "body": "<p>La solution Exosome est issue de fluides de culture contenant des cellules souches mésenchymateuses obtenues du cordon ombilical maternel. Ces remarquables cellules souches possèdent des propriétés régénératrices et réparatrices extraordinaires. En exploitant leur capacité naturelle à communiquer avec les cellules environnantes et à les revitaliser, la solution Exosome favorise une réparation tissulaire avancée, une fonction cellulaire plus saine et une meilleure vitalité globale de la peau. La technique Exosome FUE est une application brevetée d’Estecapelli.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Notre méthode signature",
+            "title": "Découvrez le traitement VITA",
+            "body": "<p>Développé par Estecapelli, le traitement VITA est une technologie révolutionnaire qui va au-delà de la greffe de cheveux conventionnelle — stimulant la vitalité des follicules pileux, accélérant la cicatrisation et offrant des résultats naturels.</p><p>Appliquée avec succès pendant six années complètes, cette méthode unique est devenue le traitement signature d’Estecapelli. À ce jour, plus de 10 000 patients ont choisi le traitement VITA pour obtenir des cheveux naturels, denses et permanents. Ce succès constitue le fondement de la réussite internationalement reconnue d’Estecapelli.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Ce qui nous anime",
+            "title": "Notre mission",
+            "body": "<p>Chez Estecapelli, notre mission est d’offrir à nos patients des résultats durables et esthétiques grâce aux dernières technologies médicales et à des méthodes innovantes. Portés par notre engagement envers l’amélioration continue et l’innovation, nos collaborations internationales et notre équipe d’experts, nous visons l’excellence dans le secteur de la santé tout en continuant d’offrir un service de classe mondiale.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Regarder vers l’avenir",
+            "title": "Notre vision",
+            "body": "<p>Notre vision est de devenir une marque leader mondiale de la greffe de cheveux et de l’esthétique médicale, pionnière du secteur grâce à nos pratiques innovantes et à notre approche méticuleuse, axée sur le détail. Avec nos centres en Turquie et à Santiago, au Chili, nous souhaitons atteindre davantage de patients et proposer notre service de qualité supérieure à un public toujours plus large.</p>",
+            "cta": {
+                "label": "Rencontrez nos médecins"
+            }
+        }
+    ]
+}

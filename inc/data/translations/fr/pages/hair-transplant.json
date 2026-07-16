@@ -1,0 +1,113 @@
+{
+    "source_slug": "hair-transplant",
+    "slug": "greffe-de-cheveux",
+    "title": "Greffe de cheveux",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Greffe de cheveux",
+            "title": "La restauration capillaire, conçue pour une densité naturelle.",
+            "lead": "De la FUE à lame de saphir à nos protocoles brevetés Exosome et VITA, chaque plan de greffe Estecapelli est construit autour de votre cuir chevelu, de votre zone donneuse et de vos objectifs.",
+            "cta_primary": {
+                "label": "Consultation gratuite"
+            },
+            "cta_secondary": {
+                "label": "Discuter sur WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Par où commencer",
+            "title": "Une greffe de cheveux entièrement pensée pour vous",
+            "body": "<p>La perte de cheveux est rarement identique d’une personne à l’autre, la bonne solution ne l’est donc pas non plus. Chez Estecapelli, chaque plan débute par une évaluation détaillée de votre cuir chevelu, de votre zone donneuse, des caractéristiques de vos cheveux et de la densité que vous souhaitez atteindre — jamais une formule unique. À partir de là, nous recommandons la technique, le nombre de greffons et l’approche qui vous donneront le résultat le plus naturel.</p><p>Nos chirurgiens travaillent exclusivement dans des installations de niveau hospitalier avec les méthodes de référence FUE et DHI, enrichies par nos propres protocoles Sapphire, Exosome et VITA. Que vous restauriez une ligne frontale dégarnie, ajoutiez de la densité ou redessiniez sourcils et barbe, l’objectif est toujours le même : un résultat qui semble avoir toujours été le vôtre.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Pourquoi les patients choisissent Estecapelli",
+            "stats": [
+                {
+                    "value": "6 techniques",
+                    "label": "FUE, DHI, Sapphire, Exosome, VITA et plus"
+                },
+                {
+                    "value": "Locale",
+                    "label": "Anesthésie — éveillé et confortable"
+                },
+                {
+                    "value": "~3 jours",
+                    "label": "Séjour habituel en Turquie"
+                },
+                {
+                    "value": "Permanent",
+                    "label": "Greffons résistants à la chute future"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Nos traitements",
+            "title": "Explorez les traitements de greffe de cheveux"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Résultats réels",
+            "title": "Greffe de cheveux — Avant et après",
+            "lead": "Découvrez la densité naturelle et les lignes frontales obtenues par nos patients. Chaque résultat est conçu autour de la pousse individuelle pour un rendu totalement naturel.",
+            "cta": {
+                "label": "Voir toute la galerie"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consultation gratuite",
+            "title": "Découvrez quelle greffe de cheveux vous convient",
+            "lead": "Envoyez-nous quelques photos et notre équipe médicale vous répondra avec la technique recommandée, une estimation du nombre de greffons et un devis tout compris et sans engagement — généralement en quelques heures.",
+            "points": [
+                {
+                    "label": "Évaluation gratuite des greffons à partir de vos photos"
+                },
+                {
+                    "label": "Devis tout compris, transparent et sans engagement"
+                },
+                {
+                    "label": "Réponse rapide de notre équipe dédiée aux patients"
+                },
+                {
+                    "label": "Accompagnement multilingue à chaque étape"
+                }
+            ],
+            "submit_label": "Demandez une consultation gratuite"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bon à savoir",
+            "title": "Greffe de cheveux — Foire aux questions",
+            "items": [
+                {
+                    "question": "Quelle technique de greffe de cheveux me convient le mieux ?",
+                    "answer": "<p>Il n’existe pas de technique universellement meilleure — le bon choix dépend de votre degré de perte de cheveux, de la qualité et de la taille de votre zone donneuse, de la zone à couvrir et de votre mode de vie. La FUE et la DHI sont toutes deux des méthodes de référence, tandis que nos protocoles Sapphire, Exosome et VITA apportent des avantages spécifiques en matière de cicatrisation, de densité ou de survie des greffons. Après examen de vos photos, nos chirurgiens recommandent la méthode qui vous donnera le résultat le plus naturel et durable pour votre cas.</p>"
+                },
+                {
+                    "question": "Suis-je un bon candidat pour une greffe de cheveux ?",
+                    "answer": "<p>La plupart des adultes présentant une perte de cheveux stable et une zone donneuse saine à l’arrière et sur les côtés du cuir chevelu sont éligibles, y compris les hommes touchés par la calvitie androgénétique et de nombreuses femmes aux cheveux clairsemés. Une bonne santé générale compte davantage que l’âge. Une consultation gratuite avec photos permet à notre équipe de confirmer votre éligibilité et d’estimer le nombre de greffons nécessaires.</p>"
+                },
+                {
+                    "question": "L’intervention est-elle douloureuse et quelle anesthésie est utilisée ?",
+                    "answer": "<p>L’intervention est réalisée sous anesthésie locale : vous restez éveillé mais ne ressentez aucune douleur pendant la séance. La plupart des patients ne décrivent qu’un léger inconfort lors de la première application de l’anesthésiant. Une séance dure généralement de six à huit heures selon le nombre de greffons, et vous rentrez à votre hôtel le jour même.</p>"
+                },
+                {
+                    "question": "Combien de temps dois-je rester en Turquie ?",
+                    "answer": "<p>La plupart des patients prévoient environ trois jours en Turquie. Cela couvre la consultation et le jour de l’intervention, un premier lavage et un briefing personnalisé de soins avec notre équipe avant votre retour. Nous aidons à coordonner votre hôtel et vos transferts aéroport pour que tout le séjour se déroule au mieux.</p>"
+                },
+                {
+                    "question": "Quand verrai-je les résultats, et sont-ils permanents ?",
+                    "answer": "<p>Les cheveux greffés tombent généralement durant les premières semaines, ce qui est tout à fait normal. La nouvelle pousse commence vers le troisième au quatrième mois, une densité visible se développe vers six à neuf mois, et le résultat final mûrit vers douze mois environ. Comme les greffons sont prélevés dans des zones génétiquement résistantes à la chute, ils continuent de pousser de façon permanente — vous pouvez couper, laver et coiffer vos cheveux comme d’habitude.</p>"
+                },
+                {
+                    "question": "Le résultat aura-t-il l’air naturel ?",
+                    "answer": "<p>Oui. Les facteurs les plus importants pour un aspect naturel sont le design de la ligne frontale et l’angle, la direction et la densité de chaque follicule implanté. Nos chirurgiens dessinent votre ligne frontale avec vous à l’avance et implantent les greffons un à un pour respecter votre schéma de pousse naturel, afin que le résultat se fonde parfaitement avec vos cheveux existants et paraisse avoir toujours été là.</p>"
+                }
+            ]
+        }
+    ]
+}
