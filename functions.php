@@ -53,6 +53,7 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-hair-treatments.php';
+	require get_template_directory() . '/inc/admin/import-pl-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-hair-pages.php';
 	require get_template_directory() . '/inc/admin/import-it-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-plastic-treatments.php';

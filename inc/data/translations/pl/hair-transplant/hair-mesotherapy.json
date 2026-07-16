@@ -1,0 +1,171 @@
+{
+  "source_slug": "hair-mesotherapy",
+  "slug": "mezoterapia-wlosow",
+  "title": "Mezoterapia włosów",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Niechirurgiczne leczenie włosów",
+      "title": "Mezoterapia włosów",
+      "lead": "Zrewitalizuj swoje mieszki włosowe dzięki dostosowanej mieszance witamin, minerałów i aminokwasów dostarczanej bezpośrednio do skóry głowy poprzez bezbolesne mikrozastrzyki.",
+      "cta_primary": {
+        "label": "Bezpłatna konsultacja"
+      },
+      "cta_secondary": {
+        "label": "Napisz do nas na WhatsAppie"
+      }
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Najważniejsze informacje",
+      "stats": [
+        {
+          "value": "4–6",
+          "label": "Liczba sesji"
+        },
+        {
+          "value": "4–6 tygodni",
+          "label": "Odstęp między sesjami"
+        },
+        {
+          "value": "Bezbolesny",
+          "label": "Zabieg"
+        },
+        {
+          "value": "Bez okresu rekonwalescencji",
+          "label": "Rekonwalescencja"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Podejście",
+      "title": "Mezoterapia włosów: spersonalizowane podejście do leczenia Estecapelli",
+      "body": "<p>Mezoterapia włosów to szybki i skuteczny sposób na ograniczenie wypadania włosów i poprawę ich kondycji. Podczas zabiegu indywidualnie dobrana mieszanka witamin, minerałów i aminokwasów trafia bezpośrednio do skóry głowy, dostarczając niezbędne składniki odżywcze tam, gdzie są najbardziej potrzebne.</p><p>W Estecapelli cały proces dopasowujemy do pacjenta: analizujemy skórę głowy i mieszki włosowe, przygotowujemy mieszankę odpowiadającą indywidualnym potrzebom i podajemy ją za pomocą niemal bezbolesnych mikroiniekcji. Sesje są krótkie i komfortowe, a po zabiegu można od razu wrócić do codziennych zajęć.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Proces",
+      "title": "Jak przebiega mezoterapia włosów?",
+      "lead": "Proces aplikacji Estecapelli krok po kroku, od analizy skóry głowy po spersonalizowany program sesji. Zapoznaj się z kolejnymi etapami poniżej.",
+      "items": [
+        {
+          "eyebrow": "Krok 1",
+          "title": "Analiza",
+          "body": "<p>Włosy i skóra głowy są dokładnie oceniane, aby poznać strukturę mieszków włosowych, ogólny stan skóry głowy i przyczynę wypadania włosów. W Estecapelli odbywa się to za pomocą analizy TrichoLab, która pozwala naszym specjalistom zbadać długość, jakość i gęstość mieszków włosowych – co stanowi podstawę precyzyjnego, spersonalizowanego planu leczenia, a nie jednego koktajlu pasującego do wszystkich.</p>"
+        },
+        {
+          "eyebrow": "Krok 2",
+          "title": "Przygotowanie mieszanki do mezoterapii",
+          "body": "<p>Dla każdego pacjenta przygotowywany jest indywidualny roztwór mezoterapii, zawierający starannie zbilansowaną kombinację witamin, minerałów, aminokwasów i czynników wzrostu niezbędnych dla zdrowych włosów. Mieszanka jest dostosowana do Twoich konkretnych potrzeb — aby wspierać siłę mieszków włosowych, stymulować wzrost i poprawiać ogólną jakość włosów.</p>"
+        },
+        {
+          "eyebrow": "Krok 3",
+          "title": "Aplikacja",
+          "body": "<p>Dostosowaną mieszankę wstrzykiwa się bezpośrednio w skórę głowy za pomocą cienkich igieł, dostarczając składniki odżywcze bezpośrednio do mieszków włosowych. W przypadku osób o wrażliwej skórze głowy można zastosować miejscowo krem znieczulający. Zabieg jest szybki, wygodny i małoinwazyjny, dzięki czemu można od razu wrócić do codziennych zajęć.</p>"
+        },
+        {
+          "eyebrow": "Krok 4",
+          "title": "Program leczenia",
+          "body": "<p>Program leczenia obejmuje zazwyczaj 4–6 sesji w odstępach 4–6 tygodni. Dokładny harmonogram jest dostosowywany do poziomu wypadania włosów i reakcji włosów, po czym zaleca się okresowe sesje pielęgnacyjne, aby zachować rezultaty.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Dlaczego warto",
+      "title": "Zalety mezoterapii włosów",
+      "body": "Wspomagający, nieinwazyjny zabieg, który pasuje do Twojego codziennego życia:",
+      "items": [
+        {
+          "label": "Wzmacnia mieszki włosowe i wspomaga wzrost nowych"
+        },
+        {
+          "label": "Zmniejsza wypadanie włosów bez przerwy w codziennych aktywnościach"
+        },
+        {
+          "label": "Spersonalizowany koktajl witaminowo-mineralny"
+        },
+        {
+          "label": "Bezbolesne i komfortowe sesje"
+        },
+        {
+          "label": "Może wspierać pielęgnację po przeszczepie włosów"
+        },
+        {
+          "label": "Szybkie i widoczne rezultaty już po kilku sesjach"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Warto wiedzieć",
+      "title": "Mezoterapia włosów — często zadawane pytania",
+      "items": [
+        {
+          "question": "Czy jestem dobrym kandydatem do mezoterapii włosów?",
+          "answer": "<p>Mezoterapia jest odpowiednia dla kobiet i mężczyzn we wczesnym lub umiarkowanym stadium wypadania włosów — przy przerzedzeniu, osłabieniu lub nadmiernym wypadaniu, w tym w przebiegu łysienia androgenowego i telogenowego. Sprawdza się również jako leczenie wspomagające po przeszczepie włosów. Nie zastępuje zabiegu chirurgicznego w przypadku zaawansowanego łysienia, dlatego jego przyczynę powinien najpierw dokładnie ocenić specjalista.</p>"
+        },
+        {
+          "question": "Ile sesji będę potrzebować i kiedy zobaczę rezultaty?",
+          "answer": "<p>Typowy kurs składa się z czterech do sześciu sesji w odstępie czterech do sześciu tygodni. Wielu pacjentów zauważa zmniejszone wypadanie włosów po pierwszych dwóch lub trzech sesjach, poprawę grubości i powstawanie nowego wzrostu w trakcie całego programu. Dokładna liczba jest ustalana indywidualnie w zależności od nasilenia wypadania włosów i reakcji włosów.</p>"
+        },
+        {
+          "question": "Czy mezoterapia włosów jest bolesna i czy wymaga rekonwalescencji?",
+          "answer": "<p>Zazwyczaj jest to zabieg bezbolesny — możesz odczuwać jedynie lekkie kłucie, a w przypadku wrażliwej skóry głowy można zastosować miejscowo krem znieczulający. Zabieg nie wymaga rekonwalescencji: sesje są krótkie i od razu po nich można wrócić do codziennych zajęć, w tym do pracy.</p>"
+        },
+        {
+          "question": "Co właściwie kryje się w mieszance do mezoterapii?",
+          "answer": "<p>Preparat zawiera indywidualnie dobrany koktajl witamin, minerałów, aminokwasów i czynników wzrostu, które bezpośrednio odżywiają mieszki włosowe. Zamiast ustalonej formuły, mieszanka jest dostosowywana do analizy skóry głowy, tak aby skupiać się na konkretnych brakach i słabościach występujących we włosach.</p>"
+        },
+        {
+          "question": "Czy mezoterapię można łączyć z innymi zabiegami?",
+          "answer": "<p>Tak. Dobrze łączy się z PRP i zabiegami medycznymi, takimi jak minoksydyl i często jest stosowany w celu wsparcia i wzmocnienia wyników po przeszczepieniu DHI, FUE lub Sapphire FUE. Nasi specjaliści projektują najlepszą kombinację dla Twoich celów.</p>"
+        },
+        {
+          "question": "Czy są jakieś skutki uboczne?",
+          "answer": "<p>To bezpieczna i małoinwazyjna procedura. Rzadko w miejscach wstrzyknięcia może pojawić się przejściowe zaczerwienienie, łagodny obrzęk lub swędzenie, które samoistnie ustąpi w krótkim czasie.</p>"
+        },
+        {
+          "question": "Jak długo utrzymują się rezultaty?",
+          "answer": "<p>Rezultaty mezoterapii mogą być długotrwałe, szczególnie w połączeniu ze zdrowym trybem życia i odpowiednią pielęgnacją włosów. Ponieważ jednak zabieg wspomaga i stymuluje istniejące mieszki włosowe, a nie trwale powstrzymuje przyczyny wypadania włosów, w zależności od indywidualnego stanu pacjenta mogą być zalecane sesje podtrzymujące. Okresowe zabiegi pomagają zachować gęstość włosów, zdrowie skóry głowy i z czasem wspomagają silniejszy, zdrowszy wzrost włosów.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Prawdziwe rezultaty",
+      "title": "Mezoterapia włosów — przed i po",
+      "lead": "Zobacz poprawę gęstości i jakości włosów, jaką osiągają nasi pacjenci w trakcie mezoterapii. Wyniki narastają stopniowo w trakcie sesji, gdy mieszki włosowe są odżywione i wzmocnione.",
+      "cta": {
+        "label": "Zobacz pełną galerię"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Bezpłatna konsultacja",
+      "title": "Gotowy na wzmocnienie włosów?",
+      "lead": "Podaj kilka szczegółów, a nasz zespół prześle spersonalizowany plan mezoterapii, zalecaną liczbę sesji i niezobowiązującą wycenę – zwykle w ciągu kilku godzin.",
+      "points": [
+        {
+          "label": "Bezpłatna ocena skóry głowy na podstawie Twoich zdjęć"
+        },
+        {
+          "label": "Spersonalizowany koktajl witaminowo-mineralny"
+        },
+        {
+          "label": "Szybka odpowiedź od dedykowanego zespołu opieki nad pacjentem"
+        },
+        {
+          "label": "Wielojęzyczne wsparcie na każdym kroku"
+        }
+      ],
+      "submit_label": "Poproś o bezpłatną konsultację"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Dowiedz się więcej",
+      "title": "Powiązane zabiegi"
+    }
+  ]
+}

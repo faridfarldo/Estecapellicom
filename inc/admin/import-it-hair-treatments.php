@@ -40,18 +40,19 @@ function estecapelli_it_hair_manifest() {
 }
 
 /**
- * Ensure every non-empty visitor-facing seed value has an Italian counterpart.
+ * Ensure every non-empty visitor-facing seed value has a translated counterpart.
  *
  * These names correspond to text, textarea and WYSIWYG ACF fields. Structural
  * selectors, media, URLs and relationship values intentionally stay in English
  * source data and are copied by ACFML.
  *
  * @param array  $source      English seed value.
- * @param array  $translation Italian overlay value.
- * @param string $path        Diagnostic path.
+ * @param array  $translation  Translated overlay value.
+ * @param string $path         Diagnostic path.
+ * @param string $language_name Target language name for errors.
  * @return true|WP_Error
  */
-function estecapelli_it_hair_validate_coverage( array $source, array $translation, $path = 'page_sections' ) {
+function estecapelli_it_hair_validate_coverage( array $source, array $translation, $path = 'page_sections', $language_name = 'Italian' ) {
 	$text_fields = array(
 		'eyebrow',
 		'title',
@@ -75,7 +76,7 @@ function estecapelli_it_hair_validate_coverage( array $source, array $translatio
 
 		if ( is_array( $value ) ) {
 			$translated_value = isset( $translation[ $key ] ) && is_array( $translation[ $key ] ) ? $translation[ $key ] : array();
-			$result           = estecapelli_it_hair_validate_coverage( $value, $translated_value, $current_path );
+			$result           = estecapelli_it_hair_validate_coverage( $value, $translated_value, $current_path, $language_name );
 			if ( is_wp_error( $result ) ) {
 				return $result;
 			}
@@ -91,7 +92,7 @@ function estecapelli_it_hair_validate_coverage( array $source, array $translatio
 
 		if ( in_array( $key, $text_fields, true ) && '' !== trim( wp_strip_all_tags( (string) $value ) ) ) {
 			if ( ! array_key_exists( $key, $translation ) || '' === trim( wp_strip_all_tags( (string) $translation[ $key ] ) ) ) {
-				return new WP_Error( 'it_hair_copy_missing', sprintf( 'Italian copy is missing at %s.', $current_path ) );
+				return new WP_Error( 'it_hair_copy_missing', sprintf( '%s copy is missing at %s.', $language_name, $current_path ) );
 			}
 		}
 	}
@@ -213,16 +214,17 @@ function estecapelli_it_hair_overlay( array $base, array $overlay, $path = 'page
 }
 
 /**
- * Point seeded internal links at their exact Italian live-contract route.
+ * Point seeded internal links at their exact target-language live route.
  *
  * Unknown URLs are preserved rather than translated or guessed. Every known
  * destination is resolved through inc/indexed-urls.php, whose values are
  * captured verbatim from tools/live-urls-all.txt.
  *
- * @param mixed $value ACF value.
+ * @param mixed  $value    ACF value.
+ * @param string $language Indexed target language.
  * @return mixed
  */
-function estecapelli_it_hair_localize_urls( $value ) {
+function estecapelli_it_hair_localize_urls( $value, $language = 'it' ) {
 	if ( ! is_array( $value ) ) {
 		return $value;
 	}
@@ -230,7 +232,7 @@ function estecapelli_it_hair_localize_urls( $value ) {
 	foreach ( $value as $key => $item ) {
 		if ( 'url' === $key && is_string( $item ) ) {
 			$route_key = function_exists( 'estecapelli_indexed_route_key' ) ? estecapelli_indexed_route_key( $item ) : '';
-			if ( $route_key && estecapelli_indexed_route_path( $route_key, 'it' ) ) {
+			if ( $route_key && estecapelli_indexed_route_path( $route_key, $language ) ) {
 				$parts  = wp_parse_url( $item );
 				$suffix = '';
 				if ( is_array( $parts ) && ! empty( $parts['query'] ) ) {
@@ -239,10 +241,10 @@ function estecapelli_it_hair_localize_urls( $value ) {
 				if ( is_array( $parts ) && ! empty( $parts['fragment'] ) ) {
 					$suffix .= '#' . $parts['fragment'];
 				}
-				$value[ $key ] = estecapelli_indexed_url( $route_key . $suffix, 'it' );
+				$value[ $key ] = estecapelli_indexed_url( $route_key . $suffix, $language );
 			}
 		} elseif ( is_array( $item ) ) {
-			$value[ $key ] = estecapelli_it_hair_localize_urls( $item );
+			$value[ $key ] = estecapelli_it_hair_localize_urls( $item, $language );
 		}
 	}
 
@@ -368,15 +370,15 @@ function estecapelli_it_hair_term_ids_by_slug( $slug, $taxonomy ) {
 }
 
 /**
- * Create or repair a linked Italian treatment category.
+ * Create or repair a linked translated treatment category.
  *
  * @param array<string,string> $settings Source and target category settings.
- * @return int|WP_Error Italian term ID.
+ * @return int|WP_Error Target-language term ID.
  */
 function estecapelli_it_hair_category( array $settings = array() ) {
 	/*
 	 * WPML normally adjusts term IDs to the admin's current language. That is
-	 * useful in templates but unsafe while repairing an explicit Italian term:
+	 * useful in templates but unsafe while repairing an explicit translated term:
 	 * wp_update_term() can otherwise compare/update a different translated ID.
 	 */
 	add_filter( 'wpml_disable_term_adjust_id', '__return_true' );
@@ -391,18 +393,22 @@ function estecapelli_it_hair_category( array $settings = array() ) {
  * Internal category repair with WPML's automatic term-ID adjustment disabled.
  *
  * @param array<string,string> $settings Source and target category settings.
- * @return int|WP_Error Italian term ID.
+ * @return int|WP_Error Target-language term ID.
  */
 function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 	$settings = wp_parse_args(
 		$settings,
 		array(
-			'source_slug' => 'hair-transplant',
-			'target_slug' => 'trapianto-di-capelli',
-			'target_name' => 'Trapianto di capelli',
-			'label'       => 'Hair Transplant',
+			'source_slug'         => 'hair-transplant',
+			'target_slug'         => 'trapianto-di-capelli',
+			'target_name'         => 'Trapianto di capelli',
+			'target_language'      => 'it',
+			'target_language_name' => 'Italian',
+			'label'               => 'Hair Transplant',
 		)
 	);
+	$target_language      = (string) $settings['target_language'];
+	$target_language_name = (string) $settings['target_language_name'];
 
 	$taxonomy       = 'treatment_category';
 	$element_type   = apply_filters( 'wpml_element_type', $taxonomy );
@@ -431,7 +437,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 		return new WP_Error( 'it_hair_unlinked_source_term', sprintf( 'WPML language details are missing for the English %s category.', $settings['label'] ) );
 	}
 
-	$linked_term_id     = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'it' );
+	$linked_term_id     = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, $target_language );
 	$canonical_term_ids = estecapelli_it_hair_term_ids_by_slug( $settings['target_slug'], $taxonomy );
 	$canonical_term_id  = 0;
 
@@ -440,7 +446,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 		$canonical_term_id = $linked_term_id;
 	} else {
 		// Duplicate slugs can exist after an interrupted WPML import. Prefer the
-		// candidate WPML already identifies as Italian rather than an arbitrary ID.
+		// candidate WPML already identifies as the target language rather than an arbitrary ID.
 		foreach ( $canonical_term_ids as $candidate_id ) {
 			$candidate = get_term( $candidate_id, $taxonomy );
 			if ( ! $candidate || is_wp_error( $candidate ) ) {
@@ -454,7 +460,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 					'element_type' => $taxonomy,
 				)
 			);
-			if ( 'it' === (string) estecapelli_it_hair_detail( $candidate_details, 'language_code' ) ) {
+			if ( $target_language === (string) estecapelli_it_hair_detail( $candidate_details, 'language_code' ) ) {
 				$canonical_term_id = $candidate_id;
 				break;
 			}
@@ -466,15 +472,15 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 	$target_term_id = $canonical_term_id ?: $linked_term_id;
 
 	/*
-	 * Some installations already contain the canonical Italian term, while WPML
-	 * points the English source at a second auto-created Italian term. Preserve
+	 * Some installations already contain the canonical translated term, while
+	 * WPML points the English source at a second auto-created term. Preserve
 	 * both terms, detach only the incorrect translation relationship, and reuse
 	 * the term that already owns the live canonical slug.
 	 */
 	if ( $canonical_term_id && $linked_term_id && $canonical_term_id !== $linked_term_id ) {
 		$linked_term = get_term( $linked_term_id, $taxonomy );
 		if ( ! $linked_term || is_wp_error( $linked_term ) ) {
-			return new WP_Error( 'it_hair_invalid_linked_term', sprintf( 'The duplicate Italian %s category could not be loaded.', $settings['label'] ) );
+			return new WP_Error( 'it_hair_invalid_linked_term', sprintf( 'The duplicate %s %s category could not be loaded.', $target_language_name, $settings['label'] ) );
 		}
 
 		do_action(
@@ -483,7 +489,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 				'element_id'           => (int) $linked_term->term_taxonomy_id,
 				'element_type'         => $element_type,
 				'trid'                 => false,
-				'language_code'        => 'it',
+				'language_code'        => $target_language,
 				'source_language_code' => null,
 				'check_duplicates'      => false,
 			)
@@ -505,7 +511,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 
 	$target_term = get_term( $target_term_id, $taxonomy );
 	if ( ! $target_term || is_wp_error( $target_term ) ) {
-		return new WP_Error( 'it_hair_invalid_target_term', sprintf( 'Italian %s category could not be loaded.', $settings['label'] ) );
+		return new WP_Error( 'it_hair_invalid_target_term', sprintf( '%s %s category could not be loaded.', $target_language_name, $settings['label'] ) );
 	}
 
 	$target_details  = apply_filters(
@@ -516,8 +522,8 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 			'element_type' => $taxonomy,
 		)
 	);
-	$target_language = (string) estecapelli_it_hair_detail( $target_details, 'language_code' );
-	if ( $target_language && 'it' !== $target_language ) {
+	$current_language = (string) estecapelli_it_hair_detail( $target_details, 'language_code' );
+	if ( $current_language && $settings['target_language'] !== $current_language ) {
 		// The indexed slug is authoritative. Detach a stale language assignment
 		// before linking this canonical term to the English source below.
 		do_action(
@@ -526,7 +532,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 				'element_id'           => (int) $target_term->term_taxonomy_id,
 				'element_type'         => $element_type,
 				'trid'                 => false,
-				'language_code'        => 'it',
+				'language_code'        => $settings['target_language'],
 				'source_language_code' => null,
 				'check_duplicates'      => false,
 			)
@@ -549,7 +555,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 			array( '%d' )
 		);
 		if ( false === $name_updated ) {
-			return new WP_Error( 'it_hair_term_name_update_failed', sprintf( 'The Italian %s category name could not be updated.', $settings['label'] ) );
+			return new WP_Error( 'it_hair_term_name_update_failed', sprintf( 'The %s %s category name could not be updated.', $target_language_name, $settings['label'] ) );
 		}
 		clean_term_cache( $target_term_id, $taxonomy );
 	} else {
@@ -569,7 +575,7 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 	// Reload after wp_update_term() in case WordPress refreshed the term object.
 	$target_term = get_term( $target_term_id, $taxonomy );
 	if ( ! $target_term || is_wp_error( $target_term ) ) {
-		return new WP_Error( 'it_hair_invalid_target_term', sprintf( 'Italian %s category could not be loaded.', $settings['label'] ) );
+		return new WP_Error( 'it_hair_invalid_target_term', sprintf( '%s %s category could not be loaded.', $target_language_name, $settings['label'] ) );
 	}
 
 	do_action(
@@ -578,35 +584,45 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 			'element_id'           => (int) $target_term->term_taxonomy_id,
 			'element_type'         => $element_type,
 			'trid'                 => $trid,
-			'language_code'        => 'it',
+			'language_code'        => $settings['target_language'],
 			'source_language_code' => $source_language,
 			'check_duplicates'      => false,
 		)
 	);
 
-	$verified_term_id = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'it' );
+	$verified_term_id = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, $settings['target_language'] );
 	if (
 		$target_term_id !== $verified_term_id &&
-		! estecapelli_wpml_element_matches_raw( $target_term->term_taxonomy_id, $element_type, $trid, 'it' )
+		! estecapelli_wpml_element_matches_raw( $target_term->term_taxonomy_id, $element_type, $trid, $settings['target_language'] )
 	) {
-		return new WP_Error( 'it_hair_term_link_failed', sprintf( 'WPML did not link the Italian %s category to its English source.', $settings['label'] ) );
+		return new WP_Error( 'it_hair_term_link_failed', sprintf( 'WPML did not link the %s %s category to its English source.', $target_language_name, $settings['label'] ) );
 	}
 
 	return $target_term_id;
 }
 
 /**
- * Create or update one Italian treatment and its ACF translation.
+ * Create or update one localized treatment and its ACF translation.
  *
  * @param array<string,mixed> $translation     Translation overlay.
- * @param int                 $italian_term_id Italian category term ID.
+ * @param int                 $target_term_id Target-language category term ID.
  * @param callable|string     $seed_loader     English source-seed resolver.
- * @return int|WP_Error Italian post ID.
+ * @param array<string,string> $settings       Target language settings.
+ * @return int|WP_Error Target-language post ID.
  */
-function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $seed_loader = 'estecapelli_it_hair_source_seed' ) {
-	$source_slug = $translation['source_slug'];
+function estecapelli_it_hair_import_one( array $translation, $target_term_id, $seed_loader = 'estecapelli_it_hair_source_seed', array $settings = array() ) {
+	$settings = wp_parse_args(
+		$settings,
+		array(
+			'language_code' => 'it',
+			'language_name' => 'Italian',
+		)
+	);
+	$target_language      = (string) $settings['language_code'];
+	$target_language_name = (string) $settings['language_name'];
+	$source_slug          = $translation['source_slug'];
 	if ( ! is_callable( $seed_loader ) ) {
-		return new WP_Error( 'it_hair_invalid_seed_loader', 'The Italian treatment source-seed resolver is invalid.' );
+		return new WP_Error( 'it_hair_invalid_seed_loader', sprintf( 'The %s treatment source-seed resolver is invalid.', $target_language_name ) );
 	}
 	$seed = call_user_func( $seed_loader, $source_slug );
 	if ( is_wp_error( $seed ) ) {
@@ -638,13 +654,13 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $
 		return new WP_Error( 'it_hair_unlinked_source_post', sprintf( 'WPML language details are missing for %s.', $source_slug ) );
 	}
 
-	$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'it' );
+	$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, $target_language );
 	if ( ! $target_id ) {
 		$target_id = estecapelli_it_hair_raw_post_id( $translation['slug'] );
 	}
 
 	/*
-	 * WPML duplicates deliberately mirror their source post. Existing Italian
+	 * WPML duplicates deliberately mirror their source post. Existing translated
 	 * records may therefore accept our update and then immediately revert to
 	 * English. Removing this one marker is WPML's "Translate independently"
 	 * operation; the normal trid relationship remains intact.
@@ -678,22 +694,22 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $
 			'element_id'           => (int) $target_id,
 			'element_type'         => $element_type,
 			'trid'                 => $trid,
-			'language_code'        => 'it',
+			'language_code'        => $target_language,
 			'source_language_code' => $source_language,
 			'check_duplicates'      => false,
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
-	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'it' );
+	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, $target_language );
 	if (
 		(int) $target_id !== $linked_target_id &&
-		! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'it' )
+		! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, $target_language )
 	) {
-		return new WP_Error( 'it_hair_post_link_failed', sprintf( 'WPML did not link the Italian translation for %s.', $source_slug ) );
+		return new WP_Error( 'it_hair_post_link_failed', sprintf( 'WPML did not link the %s translation for %s.', $target_language_name, $source_slug ) );
 	}
 
-	// Re-apply the canonical Italian slug after WPML has linked the translation.
+	// Re-apply the canonical translated slug after WPML has linked the translation.
 	$target_id = wp_update_post(
 		array(
 			'ID'         => (int) $target_id,
@@ -707,16 +723,16 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $
 	}
 	$target_post = get_post( $target_id );
 	if ( ! $target_post || $translation['slug'] !== $target_post->post_name ) {
-		return new WP_Error( 'it_hair_slug_conflict', sprintf( 'The required Italian slug is already in use: %s.', $translation['slug'] ) );
+		return new WP_Error( 'it_hair_slug_conflict', sprintf( 'The required %s slug is already in use: %s.', $target_language_name, $translation['slug'] ) );
 	}
 	if ( $translation['title'] !== $target_post->post_title ) {
-		return new WP_Error( 'it_hair_title_not_saved', sprintf( 'The Italian title was not saved for %s.', $source_slug ) );
+		return new WP_Error( 'it_hair_title_not_saved', sprintf( 'The %s title was not saved for %s.', $target_language_name, $source_slug ) );
 	}
 
-	// The target term ID is already Italian; prevent WPML from adjusting it back
+	// The target term ID is already translated; prevent WPML from adjusting it back
 	// to the English term while the admin request is running in English.
 	add_filter( 'wpml_disable_term_adjust_id', '__return_true' );
-	$term_result = wp_set_object_terms( $target_id, array( (int) $italian_term_id ), 'treatment_category', false );
+	$term_result = wp_set_object_terms( $target_id, array( (int) $target_term_id ), 'treatment_category', false );
 	remove_filter( 'wpml_disable_term_adjust_id', '__return_true' );
 	if ( is_wp_error( $term_result ) ) {
 		return $term_result;
@@ -727,17 +743,17 @@ function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $
 	if ( is_wp_error( $sections ) ) {
 		return $sections;
 	}
-	$sections = estecapelli_it_hair_localize_urls( $sections );
+	$sections = estecapelli_it_hair_localize_urls( $sections, $target_language );
 	$sections = estecapelli_it_hair_normalize_media( $sections );
 	update_field( 'field_treatment_sections', $sections, $target_id );
 
-	// Do not mark the migration complete unless ACF actually returns the Italian
+	// Do not mark the migration complete unless ACF actually returns the translated
 	// copy. This catches duplicate-sync or ACFML preference problems immediately.
 	$saved_sections = get_field( 'page_sections', $target_id );
 	$saved_title    = is_array( $saved_sections ) ? ( $saved_sections[0]['title'] ?? '' ) : '';
 	$expected_title = $translation['sections'][0]['title'] ?? '';
 	if ( ! is_array( $saved_sections ) || ! $expected_title || $expected_title !== $saved_title ) {
-		return new WP_Error( 'it_hair_acf_not_saved', sprintf( 'The Italian ACF content was not saved for %s.', $source_slug ) );
+		return new WP_Error( 'it_hair_acf_not_saved', sprintf( 'The %s ACF content was not saved for %s.', $target_language_name, $source_slug ) );
 	}
 	$media_saved = estecapelli_it_hair_validate_media( $sections, $saved_sections );
 	if ( is_wp_error( $media_saved ) ) {

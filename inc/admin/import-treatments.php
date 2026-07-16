@@ -418,6 +418,25 @@ function estecapelli_render_treatments_importer() {
 			}
 		}
 
+		// Polish Hair Transplant translations can be re-run as one idempotent batch.
+		if ( '__pl_hair_treatments__' === $target && function_exists( 'estecapelli_run_pl_hair_import' ) ) {
+			$result = estecapelli_run_pl_hair_import();
+			if ( is_wp_error( $result ) ) {
+				update_option( 'estecapelli_pl_hair_import_error', $result->get_error_message(), false );
+				$messages[] = array(
+					'type' => 'error',
+					'text' => sprintf( 'Polish Hair Transplant translations - %s', esc_html( $result->get_error_message() ) ),
+				);
+			} else {
+				update_option( 'estecapelli_pl_hair_import_version', ESTECAPELLI_PL_HAIR_IMPORT_VERSION, false );
+				delete_option( 'estecapelli_pl_hair_import_error' );
+				$messages[] = array(
+					'type' => 'success',
+					'text' => sprintf( 'Imported or repaired %d Polish Hair Transplant translations.', count( $result ) ),
+				);
+			}
+		}
+
 		// Treatments.
 		foreach ( $treatments as $t ) {
 			if ( '__all__' !== $target && '__all_treatments__' !== $target && $t['slug'] !== $target ) {
@@ -821,6 +840,56 @@ function estecapelli_render_treatments_importer() {
 				<p style="margin-top:1.25rem;">
 					<button type="submit" name="estecapelli_action" value="__it_hair_treatments__" class="button button-primary">
 						<?php esc_html_e( 'Import / Repair All Italian Treatments', 'estecapelli' ); ?>
+					</button>
+				</p>
+			<?php endif; ?>
+
+			<?php if ( function_exists( 'estecapelli_pl_hair_manifest' ) ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Polish Hair Transplant translations', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'Imports the Polish copy for all eight Hair Transplant treatments and repairs their WPML links. It is safe to run again.', 'estecapelli' ); ?>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:34%;"><?php esc_html_e( 'English source', 'estecapelli' ); ?></th>
+							<th style="width:38%;"><?php esc_html_e( 'Polish slug', 'estecapelli' ); ?></th>
+							<th style="width:28%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( estecapelli_pl_hair_manifest() as $source_slug => $polish_slug ) :
+							$source_id    = estecapelli_source_post_id( $source_slug, 'treatment' );
+							$polish_id    = $source_id ? (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'pl' ) : 0;
+							$needs_repair = $polish_id && (
+								get_post_meta( $polish_id, '_icl_lang_duplicate_of', true ) ||
+								get_post_field( 'post_title', $polish_id ) === get_post_field( 'post_title', $source_id )
+							);
+							?>
+							<tr>
+								<td><code><?php echo esc_html( $source_slug ); ?></code></td>
+								<td><code><?php echo esc_html( $polish_slug ); ?></code></td>
+								<td>
+									<?php if ( $needs_repair ) : ?>
+										<span style="color:#b26200;"><?php esc_html_e( 'Exists - needs repair', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $polish_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+									<?php elseif ( $polish_id && $polish_id !== $source_id ) : ?>
+										<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $polish_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+										| <a href="<?php echo esc_url( get_permalink( $polish_id ) ); ?>" target="_blank"><?php esc_html_e( 'view', 'estecapelli' ); ?></a>
+									<?php else : ?>
+										<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+									<?php endif; ?>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+
+				<p style="margin-top:1.25rem;">
+					<button type="submit" name="estecapelli_action" value="__pl_hair_treatments__" class="button button-primary">
+						<?php esc_html_e( 'Import / Repair All Polish Treatments', 'estecapelli' ); ?>
 					</button>
 				</p>
 			<?php endif; ?>
