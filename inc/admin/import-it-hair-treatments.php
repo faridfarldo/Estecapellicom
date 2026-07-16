@@ -381,11 +381,12 @@ function estecapelli_it_hair_term_ids_by_slug( $slug, $taxonomy ) {
 }
 
 /**
- * Create or repair the linked Italian Hair Transplant category.
+ * Create or repair a linked Italian treatment category.
  *
+ * @param array<string,string> $settings Source and target category settings.
  * @return int|WP_Error Italian term ID.
  */
-function estecapelli_it_hair_category() {
+function estecapelli_it_hair_category( array $settings = array() ) {
 	/*
 	 * WPML normally adjusts term IDs to the admin's current language. That is
 	 * useful in templates but unsafe while repairing an explicit Italian term:
@@ -393,7 +394,7 @@ function estecapelli_it_hair_category() {
 	 */
 	add_filter( 'wpml_disable_term_adjust_id', '__return_true' );
 	try {
-		return estecapelli_it_hair_category_unadjusted();
+		return estecapelli_it_hair_category_unadjusted( $settings );
 	} finally {
 		remove_filter( 'wpml_disable_term_adjust_id', '__return_true' );
 	}
@@ -402,20 +403,31 @@ function estecapelli_it_hair_category() {
 /**
  * Internal category repair with WPML's automatic term-ID adjustment disabled.
  *
+ * @param array<string,string> $settings Source and target category settings.
  * @return int|WP_Error Italian term ID.
  */
-function estecapelli_it_hair_category_unadjusted() {
+function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
+	$settings = wp_parse_args(
+		$settings,
+		array(
+			'source_slug' => 'hair-transplant',
+			'target_slug' => 'trapianto-di-capelli',
+			'target_name' => 'Trapianto di capelli',
+			'label'       => 'Hair Transplant',
+		)
+	);
+
 	$taxonomy       = 'treatment_category';
 	$element_type   = apply_filters( 'wpml_element_type', $taxonomy );
-	$source_term_id = estecapelli_source_term_id( 'hair-transplant', $taxonomy );
+	$source_term_id = estecapelli_source_term_id( $settings['source_slug'], $taxonomy );
 
 	if ( ! $source_term_id ) {
-		return new WP_Error( 'it_hair_missing_source_term', 'English Hair Transplant category was not found.' );
+		return new WP_Error( 'it_hair_missing_source_term', sprintf( 'English %s category was not found.', $settings['label'] ) );
 	}
 
 	$source_term = get_term( $source_term_id, $taxonomy );
 	if ( ! $source_term || is_wp_error( $source_term ) ) {
-		return new WP_Error( 'it_hair_invalid_source_term', 'English Hair Transplant category could not be loaded.' );
+		return new WP_Error( 'it_hair_invalid_source_term', sprintf( 'English %s category could not be loaded.', $settings['label'] ) );
 	}
 
 	$source_details = apply_filters(
@@ -429,11 +441,11 @@ function estecapelli_it_hair_category_unadjusted() {
 	$trid            = (int) estecapelli_it_hair_detail( $source_details, 'trid' );
 	$source_language = (string) estecapelli_it_hair_detail( $source_details, 'language_code' );
 	if ( ! $trid || 'en' !== $source_language ) {
-		return new WP_Error( 'it_hair_unlinked_source_term', 'WPML language details are missing for the English Hair Transplant category.' );
+		return new WP_Error( 'it_hair_unlinked_source_term', sprintf( 'WPML language details are missing for the English %s category.', $settings['label'] ) );
 	}
 
 	$linked_term_id     = (int) apply_filters( 'wpml_object_id', $source_term_id, $taxonomy, false, 'it' );
-	$canonical_term_ids = estecapelli_it_hair_term_ids_by_slug( 'trapianto-di-capelli', $taxonomy );
+	$canonical_term_ids = estecapelli_it_hair_term_ids_by_slug( $settings['target_slug'], $taxonomy );
 	$canonical_term_id  = 0;
 
 	// Prefer the term WPML already links when it owns the canonical slug.
@@ -475,7 +487,7 @@ function estecapelli_it_hair_category_unadjusted() {
 	if ( $canonical_term_id && $linked_term_id && $canonical_term_id !== $linked_term_id ) {
 		$linked_term = get_term( $linked_term_id, $taxonomy );
 		if ( ! $linked_term || is_wp_error( $linked_term ) ) {
-			return new WP_Error( 'it_hair_invalid_linked_term', 'The duplicate Italian Hair Transplant category could not be loaded.' );
+			return new WP_Error( 'it_hair_invalid_linked_term', sprintf( 'The duplicate Italian %s category could not be loaded.', $settings['label'] ) );
 		}
 
 		do_action(
@@ -493,9 +505,9 @@ function estecapelli_it_hair_category_unadjusted() {
 
 	if ( ! $target_term_id ) {
 		$created = wp_insert_term(
-			'Trapianto di capelli',
+			$settings['target_name'],
 			$taxonomy,
-			array( 'slug' => 'trapianto-di-capelli' )
+			array( 'slug' => $settings['target_slug'] )
 		);
 		if ( is_wp_error( $created ) ) {
 			return $created;
@@ -506,7 +518,7 @@ function estecapelli_it_hair_category_unadjusted() {
 
 	$target_term = get_term( $target_term_id, $taxonomy );
 	if ( ! $target_term || is_wp_error( $target_term ) ) {
-		return new WP_Error( 'it_hair_invalid_target_term', 'Italian Hair Transplant category could not be loaded.' );
+		return new WP_Error( 'it_hair_invalid_target_term', sprintf( 'Italian %s category could not be loaded.', $settings['label'] ) );
 	}
 
 	$target_details  = apply_filters(
@@ -544,13 +556,13 @@ function estecapelli_it_hair_category_unadjusted() {
 		global $wpdb;
 		$name_updated = $wpdb->update(
 			$wpdb->terms,
-			array( 'name' => 'Trapianto di capelli' ),
+			array( 'name' => $settings['target_name'] ),
 			array( 'term_id' => $target_term_id ),
 			array( '%s' ),
 			array( '%d' )
 		);
 		if ( false === $name_updated ) {
-			return new WP_Error( 'it_hair_term_name_update_failed', 'The Italian Hair Transplant category name could not be updated.' );
+			return new WP_Error( 'it_hair_term_name_update_failed', sprintf( 'The Italian %s category name could not be updated.', $settings['label'] ) );
 		}
 		clean_term_cache( $target_term_id, $taxonomy );
 	} else {
@@ -558,8 +570,8 @@ function estecapelli_it_hair_category_unadjusted() {
 			$target_term_id,
 			$taxonomy,
 			array(
-				'name' => 'Trapianto di capelli',
-				'slug' => 'trapianto-di-capelli',
+				'name' => $settings['target_name'],
+				'slug' => $settings['target_slug'],
 			)
 		);
 		if ( is_wp_error( $updated ) ) {
@@ -570,7 +582,7 @@ function estecapelli_it_hair_category_unadjusted() {
 	// Reload after wp_update_term() in case WordPress refreshed the term object.
 	$target_term = get_term( $target_term_id, $taxonomy );
 	if ( ! $target_term || is_wp_error( $target_term ) ) {
-		return new WP_Error( 'it_hair_invalid_target_term', 'Italian Hair Transplant category could not be loaded.' );
+		return new WP_Error( 'it_hair_invalid_target_term', sprintf( 'Italian %s category could not be loaded.', $settings['label'] ) );
 	}
 
 	do_action(
@@ -590,7 +602,7 @@ function estecapelli_it_hair_category_unadjusted() {
 		$target_term_id !== $verified_term_id &&
 		! estecapelli_wpml_element_matches_raw( $target_term->term_taxonomy_id, $element_type, $trid, 'it' )
 	) {
-		return new WP_Error( 'it_hair_term_link_failed', 'WPML did not link the Italian Hair Transplant category to its English source.' );
+		return new WP_Error( 'it_hair_term_link_failed', sprintf( 'WPML did not link the Italian %s category to its English source.', $settings['label'] ) );
 	}
 
 	return $target_term_id;
@@ -599,13 +611,17 @@ function estecapelli_it_hair_category_unadjusted() {
 /**
  * Create or update one Italian treatment and its ACF translation.
  *
- * @param array<string,mixed> $translation    Translation overlay.
+ * @param array<string,mixed> $translation     Translation overlay.
  * @param int                 $italian_term_id Italian category term ID.
+ * @param callable|string     $seed_loader     English source-seed resolver.
  * @return int|WP_Error Italian post ID.
  */
-function estecapelli_it_hair_import_one( array $translation, $italian_term_id ) {
+function estecapelli_it_hair_import_one( array $translation, $italian_term_id, $seed_loader = 'estecapelli_it_hair_source_seed' ) {
 	$source_slug = $translation['source_slug'];
-	$seed        = estecapelli_it_hair_source_seed( $source_slug );
+	if ( ! is_callable( $seed_loader ) ) {
+		return new WP_Error( 'it_hair_invalid_seed_loader', 'The Italian treatment source-seed resolver is invalid.' );
+	}
+	$seed = call_user_func( $seed_loader, $source_slug );
 	if ( is_wp_error( $seed ) ) {
 		return $seed;
 	}
