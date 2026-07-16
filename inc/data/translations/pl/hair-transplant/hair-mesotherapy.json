@@ -7,7 +7,7 @@
       "acf_fc_layout": "hero",
       "eyebrow": "Niechirurgiczne leczenie włosów",
       "title": "Mezoterapia włosów",
-      "lead": "Zrewitalizuj swoje mieszki włosowe dzięki dostosowanej mieszance witamin, minerałów i aminokwasów dostarczanej bezpośrednio do skóry głowy poprzez bezbolesne mikrozastrzyki.",
+      "lead": "Zrewitalizuj mieszki włosowe dzięki indywidualnie dobranej mieszance witamin, minerałów i aminokwasów podawanej bezpośrednio do skóry głowy za pomocą niemal bezbolesnych mikroiniekcji.",
       "cta_primary": {
         "label": "Bezpłatna konsultacja"
       },
@@ -52,7 +52,7 @@
         {
           "eyebrow": "Krok 1",
           "title": "Analiza",
-          "body": "<p>Włosy i skóra głowy są dokładnie oceniane, aby poznać strukturę mieszków włosowych, ogólny stan skóry głowy i przyczynę wypadania włosów. W Estecapelli odbywa się to za pomocą analizy TrichoLab, która pozwala naszym specjalistom zbadać długość, jakość i gęstość mieszków włosowych – co stanowi podstawę precyzyjnego, spersonalizowanego planu leczenia, a nie jednego koktajlu pasującego do wszystkich.</p>"
+          "body": "<p>Dokładnie oceniamy włosy i skórę głowy, aby poznać strukturę mieszków, ogólny stan skóry oraz przyczynę wypadania włosów. Analiza TrichoLab pozwala naszym specjalistom zbadać długość, jakość i gęstość włosów oraz kondycję mieszków. Na tej podstawie opracowujemy precyzyjny, spersonalizowany plan leczenia, zamiast stosować jeden preparat u wszystkich pacjentów.</p>"
         },
         {
           "eyebrow": "Krok 2",
@@ -78,7 +78,7 @@
       "body": "Wspomagający, nieinwazyjny zabieg, który pasuje do Twojego codziennego życia:",
       "items": [
         {
-          "label": "Wzmacnia mieszki włosowe i wspomaga wzrost nowych"
+          "label": "Wzmacnia mieszki włosowe i wspomaga wzrost nowych włosów"
         },
         {
           "label": "Zmniejsza wypadanie włosów bez przerwy w codziennych aktywnościach"
@@ -116,15 +116,15 @@
         },
         {
           "question": "Co właściwie kryje się w mieszance do mezoterapii?",
-          "answer": "<p>Preparat zawiera indywidualnie dobrany koktajl witamin, minerałów, aminokwasów i czynników wzrostu, które bezpośrednio odżywiają mieszki włosowe. Zamiast ustalonej formuły, mieszanka jest dostosowywana do analizy skóry głowy, tak aby skupiać się na konkretnych brakach i słabościach występujących we włosach.</p>"
+          "answer": "<p>Preparat zawiera indywidualnie dobrany koktajl witamin, minerałów, aminokwasów i czynników wzrostu, które bezpośrednio odżywiają mieszki włosowe. Zamiast standardowej formuły stosowanej u wszystkich mieszankę dobieramy na podstawie analizy skóry głowy, aby odpowiadała konkretnym niedoborom i potrzebom Twoich włosów.</p>"
         },
         {
           "question": "Czy mezoterapię można łączyć z innymi zabiegami?",
-          "answer": "<p>Tak. Dobrze łączy się z PRP i zabiegami medycznymi, takimi jak minoksydyl i często jest stosowany w celu wsparcia i wzmocnienia wyników po przeszczepieniu DHI, FUE lub Sapphire FUE. Nasi specjaliści projektują najlepszą kombinację dla Twoich celów.</p>"
+          "answer": "<p>Tak. Mezoterapię można łączyć z PRP i leczeniem farmakologicznym, na przykład minoksydylem. Często stosuje się ją również w celu wsparcia i wzmocnienia rezultatów po przeszczepie DHI, FUE lub Sapphire FUE. Nasi specjaliści dobierają najlepsze połączenie terapii do Twoich potrzeb.</p>"
         },
         {
           "question": "Czy są jakieś skutki uboczne?",
-          "answer": "<p>To bezpieczna i małoinwazyjna procedura. Rzadko w miejscach wstrzyknięcia może pojawić się przejściowe zaczerwienienie, łagodny obrzęk lub swędzenie, które samoistnie ustąpi w krótkim czasie.</p>"
+          "answer": "<p>To bezpieczny i małoinwazyjny zabieg. Rzadko w miejscach wkłuć pojawia się przejściowe zaczerwienienie, łagodny obrzęk lub świąd. Objawy te zwykle ustępują samoistnie w krótkim czasie.</p>"
         },
         {
           "question": "Jak długo utrzymują się rezultaty?",

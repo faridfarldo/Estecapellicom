@@ -24,7 +24,7 @@
           "label": "Znieczulenie"
         },
         {
-          "value": "Implantator Choi",
+          "value": "Implanter Choi",
           "label": "Implantacja"
         },
         {
@@ -52,12 +52,12 @@
         {
           "eyebrow": "Etap 1",
           "title": "Konsultacja i planowanie",
-          "body": "<p>Struktura Twoich włosów, obszar dawczy i cele są analizowane za pomocą TrichoLab wspieranego przez sztuczną inteligencję w celu opracowania w pełni spersonalizowanego planu. Oceniana jest liczba graftów i wyznaczana jest naturalna linia włosów, dlatego każdy szczegół jest uzgadniany przed rozpoczęciem zabiegu.</p>"
+          "body": "<p>Za pomocą wspomaganej sztuczną inteligencją analizy TrichoLab oceniamy strukturę Twoich włosów i obszar dawczy oraz omawiamy cele zabiegu, aby opracować w pełni spersonalizowany plan. Szacujemy liczbę graftów i wyznaczamy naturalną linię włosów, a każdy szczegół uzgadniamy przed rozpoczęciem zabiegu.</p>"
         },
         {
           "eyebrow": "Etap 2",
           "title": "Znieczulenie miejscowe",
-          "body": "<p>W okolicy dawcy i biorcy stosuje się znieczulenie miejscowe, co zapewnia wygodną i bezbolesną procedurę. Pozostajesz przytomny i zrelaksowany przez cały czas i możesz słuchać muzyki lub oglądać film podczas sesji.</p>"
+          "body": "<p>W obszarze dawczym i biorczym stosujemy znieczulenie miejscowe, dzięki czemu zabieg przebiega komfortowo i bez bólu. Przez całą sesję pozostajesz przytomny i zrelaksowany; możesz słuchać muzyki lub oglądać film.</p>"
         },
         {
           "eyebrow": "Etap 3",
@@ -66,8 +66,8 @@
         },
         {
           "eyebrow": "Etap 4",
-          "title": "Implantacja za pomocą Choi Pen",
-          "body": "<p>Grafty wszczepia się bezpośrednio za pomocą implantera Choi pod dokładnym kątem, na głębokość i w odpowiednim kierunku — nie są najpierw otwierane żadne osobne kanały. To bezpośrednie umieszczenie pozwala na uzyskanie bardzo dużej gęstości pomiędzy istniejącymi włosami, a przy odpowiednim rozplanowaniu, często bez golenia, można uzyskać całkowicie naturalny efekt.</p>"
+          "title": "Implantacja za pomocą implantera Choi",
+          "body": "<p>Grafty wszczepia się bezpośrednio za pomocą implantera Choi pod precyzyjnie dobranym kątem, na odpowiednią głębokość i we właściwym kierunku — bez wcześniejszego otwierania oddzielnych kanałów. Bezpośrednia implantacja umożliwia uzyskanie dużej gęstości pomiędzy istniejącymi włosami i, przy właściwym planie, często nie wymaga golenia, zapewniając całkowicie naturalny efekt.</p>"
         }
       ]
     },
@@ -104,7 +104,7 @@
       "acf_fc_layout": "intro",
       "eyebrow": "Kandydaci",
       "title": "Kto może poddać się przeszczepowi włosów?",
-      "body": "<p><strong>Wiek.</strong> Nie ma ścisłego limitu wieku w przypadku przeszczepu włosów, ale kandydaci na ogół mają powyżej 25 lat, kiedy schematy wypadania włosów stają się bardziej przewidywalne. Jednocześnie, utrata włosów może być zaawansowana nawet w wieku 22–24 lat, dlatego przy planowaniu przeszczepu stopień łysienia u pacjenta jest tak samo ważny jak wiek.</p><p><strong>Obszar dawcy.</strong> Skuteczny przeszczep włosów wymaga zdrowych mieszków włosowych, które można bezpiecznie pobrać. Głównym obszarem dawczym jest zwykle tył i boki skóry głowy, gdzie włosy są genetycznie odporne na przerzedzanie. Jakość i gęstość obszaru dawczego określa, ile graftów można przeszczepić.</p><p><strong>Rodzaj wypadania włosów.</strong> Najlepszymi kandydatami są zazwyczaj osoby z łysieniem androgenowym u mężczyzn lub kobiet, ponieważ ten typ zwykle dotyczy tylko niektórych obszarów skóry głowy, więc obszar dawczy prawdopodobnie pozostanie nienaruszony. Inne rodzaje łysienia, np. łysienie plackowate, wymagają bardziej specjalistycznej oceny.</p><p><strong>Zdrowie.</strong> Aby przeszczep włosów był skuteczny, nie powinny występować żadne schorzenia, które mogłyby mieć wpływ na zabieg lub gojenie, takie jak niekontrolowana cukrzyca, poważne problemy z sercem lub wątrobą, aktywne infekcje skóry głowy lub choroby autoimmunologiczne. Dokładna ocena lekarska przed zabiegiem gwarantuje, że jest on bezpieczny i skuteczny.</p>"
+      "body": "<p><strong>Wiek.</strong> Nie ma ścisłego limitu wieku dla przeszczepu włosów, jednak kandydaci mają zazwyczaj ponad 25 lat, gdy wzorzec wypadania staje się bardziej przewidywalny. Utrata włosów może być zaawansowana również w wieku 22–24 lat, dlatego przy planowaniu zabiegu stopień łysienia jest równie ważny jak wiek.</p><p><strong>Obszar dawczy.</strong> Skuteczny przeszczep wymaga zdrowych mieszków, które można bezpiecznie pobrać. Głównym obszarem dawczym jest zwykle tył i boki skóry głowy, gdzie włosy są genetycznie odporne na przerzedzanie. Jakość i gęstość tego obszaru określają liczbę graftów możliwych do przeszczepienia.</p><p><strong>Rodzaj wypadania włosów.</strong> Najlepszymi kandydatami są zazwyczaj osoby z łysieniem androgenowym typu męskiego lub żeńskiego, ponieważ ten rodzaj łysienia obejmuje zwykle tylko określone obszary skóry głowy, pozostawiając obszar dawczy nienaruszony. Inne postacie, na przykład łysienie plackowate, wymagają bardziej specjalistycznej oceny.</p><p><strong>Stan zdrowia.</strong> Na zabieg i gojenie mogą wpływać między innymi niekontrolowana cukrzyca, poważne choroby serca lub wątroby, aktywne infekcje skóry głowy i choroby autoimmunologiczne. Dokładna kwalifikacja lekarska przed zabiegiem pozwala ocenić bezpieczeństwo i szanse na dobry rezultat.</p>"
     },
     {
       "acf_fc_layout": "intro",
@@ -122,7 +122,7 @@
       "items": [
         {
           "question": "Jaka jest różnica między DHI i FUE?",
-          "answer": "<p>Obydwa pobierają mieszki włosowe w ten sam sposób; różnica polega na implantacji. W przypadku FUE najpierw otwierane są kanały w obszarze biorczym, a następnie umieszczane są grafty, podczas gdy DHI używa implantera Choi do otwarcia miejsca i umieszczenia mieszka włosowego jednym bezpośrednim ruchem. Daje to chirurgowi precyzyjną kontrolę nad kątem, głębokością i gęstością, umożliwia bardzo gęste rozmieszczenie włosów i – przy odpowiednim planie – często pozwala uniknąć golenia istniejących włosów.</p>"
+          "answer": "<p>W obu metodach mieszki włosowe pobiera się w ten sam sposób; różnica dotyczy implantacji. W FUE najpierw tworzy się kanały w obszarze biorczym, a następnie umieszcza w nich grafty. W DHI implanter Choi tworzy miejsce i osadza graft jednym bezpośrednim ruchem. Zapewnia to precyzyjną kontrolę kąta, głębokości i gęstości, umożliwia gęste rozmieszczenie włosów i — przy odpowiednim planie — często pozwala uniknąć golenia istniejących włosów.</p>"
         },
         {
           "question": "Czy DHI naprawdę nie wymaga golenia? Czy mogę zatrzymać włosy?",
@@ -133,8 +133,8 @@
           "answer": "<p>DHI to doskonały wybór w przypadku wczesnej i umiarkowanej utraty włosów, rozproszonego przerzedzania, mniejszych lub docelowych obszarów, korekty linii włosów i każdego, kto chce ultraprecyzyjnego, gęstego umieszczenia bez golenia. Najlepsi kandydaci to zazwyczaj osoby w wieku powyżej 25 lat, posiadające zdrowy obszar dawczy i ustabilizowane wypadanie włosów; bezpłatna konsultacja ze zdjęciami potwierdzi, czy kwalifikujesz się do zabiegu.</p>"
         },
         {
-          "question": "Czy DHI jest bolesne i jak wygląda rekonwalescencja?",
-          "answer": "<p>Zabieg przeprowadzany jest w znieczuleniu miejscowym, dzięki czemu podczas zabiegu nie odczuwa się bólu. Ponieważ DHI jest małoinwazyjne i nie powoduje otwartych kanałów, powrót do zdrowia jest szybki — łagodne zaczerwienienie i małe strupy znikają w ciągu kilku dni, a większość pacjentów szybko wraca do codziennego życia, unikając forsownej aktywności, słońca i pływania przez pierwsze kilka tygodni.</p>"
+          "question": "Czy zabieg DHI jest bolesny i jak wygląda rekonwalescencja?",
+          "answer": "<p>Zabieg przeprowadza się w znieczuleniu miejscowym, dlatego podczas sesji nie odczuwa się bólu. DHI jest techniką małoinwazyjną i nie wymaga wcześniejszego otwierania kanałów, dzięki czemu rekonwalescencja przebiega szybko. Łagodne zaczerwienienie i małe strupki znikają w ciągu kilku dni, a większość pacjentów szybko wraca do codziennych zajęć, unikając intensywnego wysiłku, słońca i pływania przez pierwsze kilka tygodni.</p>"
         },
         {
           "question": "Kiedy zobaczę rezultaty i czy wypadanie włosów jest normalne?",
@@ -142,7 +142,7 @@
         },
         {
           "question": "Czy rezultaty są trwałe i naturalnie wyglądające?",
-          "answer": "<p>Tak. Mieszki pobierane są z obszarów genetycznie odpornych na wypadanie włosów, dzięki czemu rosną trwale. Bezpośrednia implantacja pod kontrolowanym kątem zapewnia całkowicie naturalną linię i gęstość włosów — możesz normalnie ciąć, myć i stylizować włosy. Istniejące, nieprzeszczepione włosy z czasem mogą nadal być cienkie, dlatego można zalecić pielęgnację wspomagającą, aby chronić ogólny wygląd.</p>"
+          "answer": "<p>Tak. Mieszki pobiera się z obszarów genetycznie odpornych na wypadanie włosów, dlatego ich wzrost jest trwały. Bezpośrednia implantacja pod kontrolowanym kątem zapewnia naturalną linię i gęstość włosów — można je normalnie ciąć, myć i stylizować. Istniejące, nieprzeszczepione włosy mogą z czasem nadal się przerzedzać, dlatego w celu utrzymania ogólnego efektu można zalecić leczenie wspomagające.</p>"
         }
       ]
     },

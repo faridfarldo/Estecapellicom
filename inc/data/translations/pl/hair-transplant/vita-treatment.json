@@ -7,7 +7,7 @@
       "acf_fc_layout": "hero",
       "eyebrow": "Autorska metoda Estecapelli",
       "title": "Leczenie VITA",
-      "lead": "Autorski protokół Estecapelli rewitalizuje skórę głowy, odżywia mieszki włosowe i przyspiesza gojenie. Serum na bazie witamin chroni żywotność graftów przed i w trakcie przeszczepiania, aby zmaksymalizować przeżycie i wzrost.",
+      "lead": "Autorski protokół Estecapelli rewitalizuje skórę głowy, odżywia mieszki włosowe i wspiera gojenie. Serum na bazie witamin chroni żywotność graftów przed przeszczepem i w jego trakcie, aby zwiększyć ich przeżywalność oraz potencjał wzrostu.",
       "cta_primary": {
         "label": "Bezpłatna konsultacja"
       },
@@ -19,13 +19,13 @@
       "acf_fc_layout": "intro",
       "eyebrow": "Metoda",
       "title": "Czym jest protokół VITA?",
-      "body": "<p>Protokół VITA to zaawansowana, trójfazowa terapia opracowana przez ekspertów medycznych Estecapelli w celu zwiększenia przeżywalności graftów i skuteczności przeszczepu włosów. Można go w pełni zintegrować zarówno z metodą Sapphire FUE, jak i DHI. Formuła zawierająca aminokwasy, witaminy, czynniki wzrostu i ATP odżywia oraz chroni mieszki włosowe podczas całego zabiegu.</p><p>W pierwszej fazie na skórę głowy nakładane jest bogate w składniki odżywcze serum VITA. Mikrokanaliki utworzone dermarollerem ułatwiają wnikanie składników aktywnych i przygotowują obszar biorczy do implantacji. W drugiej fazie pobrane grafty są przechowywane w serum VITA z roztworem soli fizjologicznej i poddawane działaniu zimnej pary. Pomaga to utrzymać odpowiednie nawodnienie, ograniczyć stres komórkowy i zwiększyć ich przeżywalność przed implantacją.</p><p>Trzecim etapem jest pojedynczy zabieg PRP (osoczem bogatopłytkowym) wykonywany bezpośrednio po przeszczepie. Wykorzystuje on naturalne czynniki wzrostu pacjenta, aby przyspieszyć gojenie, wspierać utrzymanie graftów oraz sprzyjać silniejszemu i zdrowszemu wzrostowi włosów.</p>"
+      "body": "<p>Protokół VITA to zaawansowana, trójfazowa terapia opracowana przez ekspertów medycznych Estecapelli w celu zwiększenia przeżywalności graftów i skuteczności przeszczepu włosów. Można go w pełni zintegrować zarówno z metodą Sapphire FUE, jak i DHI. Formuła zawierająca aminokwasy, witaminy, czynniki wzrostu i ATP odżywia oraz chroni mieszki włosowe podczas całego zabiegu.</p><p>W pierwszej fazie na skórę głowy nakłada się bogate w składniki odżywcze serum VITA. Mikrokanały utworzone dermarollerem ułatwiają wnikanie składników aktywnych i przygotowują obszar biorczy do implantacji. W drugiej fazie pobrane grafty przechowuje się w serum VITA połączonym z roztworem soli fizjologicznej i poddaje działaniu zimnej pary. Pomaga to utrzymać odpowiednie nawodnienie, ograniczyć stres komórkowy i zwiększyć ich przeżywalność przed implantacją.</p><p>Trzeci etap to pojedynczy zabieg PRP (osoczem bogatopłytkowym) wykonywany bezpośrednio po przeszczepie. Wykorzystuje naturalne czynniki wzrostu pacjenta, aby wspierać gojenie, poprawiać przyjęcie graftów oraz sprzyjać silniejszemu i zdrowszemu wzrostowi włosów.</p>"
     },
     {
       "acf_fc_layout": "intro",
       "eyebrow": "Nauka",
       "title": "Autorska technika Estecapelli — siła witamin w protokole VITA",
-      "body": "<p>Okres, w którym mieszki włosowe pozostają poza ciałem, jest krytycznym czynnikiem bezpośrednio wpływającym na powodzenie zabiegu. Po ekstrakcji graftów ich dostęp do krążenia i niezbędnych składników odżywczych zostaje przerwany, co prowadzi do stopniowego osłabienia.</p><p>Protokół VITA działa na tych kluczowych etapach operacji, zapewniając przeszczepom niezbędne wsparcie. Dzięki specjalnie opracowanemu roztworowi serum witaminowego i aplikacji zimnego powietrza w znaczący sposób przyczynia się do utrzymania żywotności graftów zarówno w technice FUE, jak i DHI.</p>"
+      "body": "<p>Czas, przez który mieszki włosowe pozostają poza organizmem, jest istotnym czynnikiem wpływającym na powodzenie zabiegu. Po pobraniu grafty tracą dostęp do krążenia i niezbędnych składników odżywczych, co prowadzi do ich stopniowego osłabienia.</p><p>Protokół VITA zapewnia graftom wsparcie na tych kluczowych etapach. Specjalnie opracowane serum witaminowe i działanie zimnej pary pomagają utrzymać ich żywotność zarówno podczas zabiegu FUE, jak i DHI.</p>"
     },
     {
       "acf_fc_layout": "candidate",
@@ -49,30 +49,30 @@
           "label": "Można go łączyć z procedurami FUE i DHI"
         },
         {
-          "label": "Idealny do słabych mieszków włosowych, delikatnych włosów lub ograniczonych obszarów dawczych"
+          "label": "Szczególnie korzystny przy słabych mieszkach, cienkich włosach lub ograniczonym obszarze dawczym"
         }
       ]
     },
     {
       "acf_fc_layout": "stepbook",
       "eyebrow": "Zabieg",
-      "title": "Jak stosuje się Protokół VITA?",
+      "title": "Jak stosuje się protokół VITA?",
       "lead": "Trzyetapowy protokół, który płynnie integruje się z przeszczepem Sapphire FUE lub DHI. Zapoznaj się z kolejnymi etapami poniżej.",
       "items": [
         {
           "eyebrow": "Etap 1",
           "title": "Mikronakłuwanie i aplikacja serum odżywczego",
-          "body": "<p>Mikrokanaliki tworzone są za pomocą dermarollera i nakładane jest wysoce skoncentrowane serum z witaminami, aminokwasami, czynnikami wzrostu i minerałami w celu pobudzenia krążenia krwi. Obszar dawczy jest idealnie przygotowany do sprawnego i dobrze odżywionego zbioru, podczas gdy obszar biorczy jest odżywiony skoncentrowanym kompleksem witamin, który skóra głowy wchłania znacznie skuteczniej dzięki mikrokanalikom.</p>"
+          "body": "<p>Za pomocą dermarollera tworzy się mikrokanały, a następnie nakłada silnie skoncentrowane serum z witaminami, aminokwasami, czynnikami wzrostu i minerałami, aby pobudzić krążenie krwi. Obszar dawczy zostaje przygotowany do sprawnego pobrania graftów, a obszar biorczy otrzymuje skoncentrowany kompleks witamin, którego wchłanianie ułatwiają mikrokanały.</p>"
         },
         {
           "eyebrow": "Etap 2",
           "title": "Serum i zimna para dla graftów",
-          "body": "<p>To samo odżywcze serum miesza się z solą fizjologiczną w pojemniku do przechowywania graftów i nakłada na pobrane grafty metodą zimnej pary. Jest to kluczowy etap – podczas gdy mieszki włosowe znajdują się na zewnątrz ciała – dlatego ochrona ich w tym miejscu zapobiega pogorszeniu się, maksymalizuje przeżycie i zwiększa ich potencjał odrastania po przeszczepie.</p>"
+          "body": "<p>To samo odżywcze serum łączy się z solą fizjologiczną w pojemniku do przechowywania graftów, które następnie poddaje się działaniu zimnej pary. Jest to kluczowy etap, ponieważ mieszki znajdują się poza organizmem. Ochrona w tym czasie pomaga zachować ich kondycję, zwiększa przeżywalność i wspiera potencjał wzrostu po przeszczepie.</p>"
         },
         {
           "eyebrow": "Etap 3",
           "title": "PRP po zabiegu",
-          "body": "<p>PRP (osocze bogatopłytkowe) stosowane jest jako ostatni etap zabiegu – terapia regeneracyjna wykonywana bezpośrednio po przeszczepieniu włosów, która wspomaga gojenie i poprawia ogólny efekt. Mała próbka krwi jest pobierana i przetwarzana w wirówce w celu oddzielenia osocza bogatego w płytki krwi, które zawiera wysokie stężenie naturalnych czynników wzrostu. Następnie PRP jest ostrożnie wstrzykiwane w leczone obszary skóry głowy, gdzie pomaga przyspieszyć naprawę tkanek, zmniejszyć stan zapalny, poprawić krążenie krwi i stworzyć optymalne środowisko dla nowo przeszczepionych graftów. Stymulując proces gojenia i odżywiając mieszki włosowe, PRP przyczynia się do silniejszego zatrzymania przeszczepu, szybszej regeneracji oraz zdrowszego i grubszego wzrostu włosów.</p>"
+          "body": "<p>PRP (osocze bogatopłytkowe) stosuje się jako ostatni etap zabiegu. Ta terapia regeneracyjna, wykonywana bezpośrednio po przeszczepie włosów, wspiera gojenie i ogólny efekt. Niewielką próbkę krwi przetwarza się w wirówce, aby oddzielić osocze bogate w płytki krwi i naturalne czynniki wzrostu. Następnie PRP ostrożnie wstrzykuje się w leczone obszary skóry głowy, gdzie wspomaga naprawę tkanek, ogranicza stan zapalny, poprawia krążenie i tworzy korzystne środowisko dla nowo przeszczepionych graftów. Wspierając gojenie i odżywiając mieszki, PRP pomaga graftom lepiej się przyjąć oraz sprzyja szybszej regeneracji i zdrowszemu wzrostowi włosów.</p>"
         }
       ]
     },
@@ -91,7 +91,7 @@
         },
         {
           "question": "Kto najwięcej skorzysta na VITA?",
-          "answer": "<p>Jest to cenne w przypadku niemal każdego graftu, ale szczególnie u pacjentów ze słabymi mieszkami włosowymi, cienkimi włosami lub ograniczonym obszarem dawczym, gdzie liczy się każdy pojedynczy przeszczep. Twój chirurg doradzi, czy w Twoim konkretnym przypadku warto dodać VITA.</p>"
+          "answer": "<p>Protokół może wspierać niemal każdy przeszczep, ale jest szczególnie korzystny u pacjentów ze słabymi mieszkami, cienkimi włosami lub ograniczonym obszarem dawczym, gdzie liczy się każdy graft. Chirurg doradzi, czy w Twoim przypadku warto zastosować VITA.</p>"
         },
         {
           "question": "Czy VITA współpracuje zarówno z FUE, jak i DHI?",
@@ -107,7 +107,7 @@
       "acf_fc_layout": "gallery",
       "eyebrow": "Prawdziwe rezultaty",
       "title": "Przeszczep włosów wspierany protokołem VITA — przed i po",
-      "lead": "Zobacz, jaką gęstość i naturalne rezultaty osiągają nasi pacjenci, gdy protokół VITA wspiera ich przeszczep Sapphire FUE lub DHI — większa przeżywalność graftów, co przekłada się na pełniejszą, zdrowszą głowę włosów.",
+      "lead": "Zobacz gęste, naturalne rezultaty osiągnięte przez pacjentów, których przeszczep Sapphire FUE lub DHI wspierał protokół VITA. Większa przeżywalność graftów może przełożyć się na pełniejsze i zdrowsze włosy.",
       "cta": {
         "label": "Zobacz pełną galerię"
       }
@@ -116,7 +116,7 @@
       "acf_fc_layout": "form",
       "eyebrow": "Bezpłatna konsultacja",
       "title": "Chcesz dodać VITA do swojego przeszczepu?",
-      "lead": "Podaj kilka szczegółów, a nasz zespół prześle w odpowiedzi spersonalizowany plan przeszczepu, wyjaśni, w jaki sposób protokół VITA może zwiększyć przeżywalność graftów i prześle niezobowiązującą wycenę pakietu – zwykle w ciągu kilku godzin.",
+      "lead": "Podaj kilka szczegółów, a nasz zespół przygotuje spersonalizowany plan przeszczepu, wyjaśni, w jaki sposób protokół VITA może zwiększyć przeżywalność graftów, oraz przedstawi niezobowiązującą wycenę pakietu — zwykle w ciągu kilku godzin.",
       "points": [
         {
           "label": "Bezpłatna ocena liczby graftów na podstawie zdjęć"

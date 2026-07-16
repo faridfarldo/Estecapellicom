@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION', '2026-07-16.1' );
+	define( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION', '2026-07-16.2' );
 }
 
 /**
