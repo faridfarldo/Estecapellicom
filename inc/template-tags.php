@@ -1658,6 +1658,7 @@ if ( ! function_exists( 'estecapelli_facilities_defaults' ) ) {
 						$img . 'clinic/surgery/surgery-2.webp',
 						$img . 'clinic/surgery/surgery-3.webp',
 						$img . 'clinic/surgery/surgery-4.webp',
+						$img . 'clinic/surgery/surgery-5.webp',
 					),
 				),
 				array(
