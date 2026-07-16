@@ -418,9 +418,12 @@ function estecapelli_render_treatments_importer() {
 			}
 		}
 
-		// Polish Hair Transplant translations can be re-run as one idempotent batch.
-		if ( '__pl_hair_treatments__' === $target && function_exists( 'estecapelli_run_pl_hair_import' ) ) {
-			$result = estecapelli_run_pl_hair_import();
+		// Polish Hair Transplant translations run one page per request. Saving all
+		// eight flexible-content pages together can exceed ACFML's execution time.
+		$pl_hair_prefix = '__pl_hair_treatment__';
+		if ( 0 === strpos( $target, $pl_hair_prefix ) && function_exists( 'estecapelli_run_pl_hair_import' ) ) {
+			$source_slug = substr( $target, strlen( $pl_hair_prefix ) );
+			$result      = estecapelli_run_pl_hair_import( $source_slug );
 			if ( is_wp_error( $result ) ) {
 				update_option( 'estecapelli_pl_hair_import_error', $result->get_error_message(), false );
 				$messages[] = array(
@@ -428,11 +431,10 @@ function estecapelli_render_treatments_importer() {
 					'text' => sprintf( 'Polish Hair Transplant translations - %s', esc_html( $result->get_error_message() ) ),
 				);
 			} else {
-				update_option( 'estecapelli_pl_hair_import_version', ESTECAPELLI_PL_HAIR_IMPORT_VERSION, false );
 				delete_option( 'estecapelli_pl_hair_import_error' );
 				$messages[] = array(
 					'type' => 'success',
-					'text' => sprintf( 'Imported or repaired %d Polish Hair Transplant translations.', count( $result ) ),
+					'text' => sprintf( 'Imported or repaired Polish Hair Transplant translation: %s.', esc_html( $source_slug ) ),
 				);
 			}
 		}
@@ -847,15 +849,16 @@ function estecapelli_render_treatments_importer() {
 			<?php if ( function_exists( 'estecapelli_pl_hair_manifest' ) ) : ?>
 				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Polish Hair Transplant translations', 'estecapelli' ); ?></h2>
 				<p class="description" style="max-width:740px;">
-					<?php esc_html_e( 'Imports the Polish copy for all eight Hair Transplant treatments and repairs their WPML links. It is safe to run again.', 'estecapelli' ); ?>
+					<?php esc_html_e( 'Imports one Polish treatment per request to stay within the server execution limit. Each action is idempotent and safe to run again.', 'estecapelli' ); ?>
 				</p>
 
 				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
 					<thead>
 						<tr>
-							<th style="width:34%;"><?php esc_html_e( 'English source', 'estecapelli' ); ?></th>
-							<th style="width:38%;"><?php esc_html_e( 'Polish slug', 'estecapelli' ); ?></th>
-							<th style="width:28%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+							<th style="width:28%;"><?php esc_html_e( 'English source', 'estecapelli' ); ?></th>
+							<th style="width:32%;"><?php esc_html_e( 'Polish slug', 'estecapelli' ); ?></th>
+							<th style="width:24%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+							<th style="width:16%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -882,16 +885,15 @@ function estecapelli_render_treatments_importer() {
 										<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
 									<?php endif; ?>
 								</td>
+								<td>
+									<button type="submit" name="estecapelli_action" value="<?php echo esc_attr( '__pl_hair_treatment__' . $source_slug ); ?>" class="button button-primary">
+										<?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?>
+									</button>
+								</td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
-
-				<p style="margin-top:1.25rem;">
-					<button type="submit" name="estecapelli_action" value="__pl_hair_treatments__" class="button button-primary">
-						<?php esc_html_e( 'Import / Repair All Polish Treatments', 'estecapelli' ); ?>
-					</button>
-				</p>
 			<?php endif; ?>
 
 			<?php if ( function_exists( 'estecapelli_fr_blog_manifest' ) ) : ?>

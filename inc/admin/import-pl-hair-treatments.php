@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION', '2026-07-16.2' );
+	define( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION', '2026-07-16.3' );
 }
 
 /**
@@ -92,11 +92,21 @@ function estecapelli_pl_hair_load_translations() {
 }
 
 /**
- * Import all eight Polish Hair Transplant treatment pages.
+ * Import one Polish Hair Transplant treatment page.
  *
+ * ACFML can exceed the server execution limit when several flexible-content
+ * translations are saved in one request. Keeping this operation deliberately
+ * single-page also prevents a failed import from taking down every admin page.
+ *
+ * @param string $source_slug English treatment slug from the manifest.
  * @return array<string,int>|WP_Error Source slug => Polish post ID.
  */
-function estecapelli_run_pl_hair_import() {
+function estecapelli_run_pl_hair_import( $source_slug ) {
+	$source_slug = (string) $source_slug;
+	if ( ! isset( estecapelli_pl_hair_manifest()[ $source_slug ] ) ) {
+		return new WP_Error( 'pl_hair_invalid_source', sprintf( 'Unknown Polish Hair Transplant source: %s.', $source_slug ) );
+	}
+
 	if ( ! function_exists( 'update_field' ) ) {
 		return new WP_Error( 'pl_hair_acf_missing', 'ACF is required for the Polish Hair Transplant import.' );
 	}
@@ -130,6 +140,10 @@ function estecapelli_run_pl_hair_import() {
 
 	$imported = array();
 	foreach ( $translations as $translation ) {
+		if ( $source_slug !== $translation['source_slug'] ) {
+			continue;
+		}
+
 		$result = estecapelli_it_hair_import_one(
 			$translation,
 			$polish_term_id,
@@ -149,57 +163,4 @@ function estecapelli_run_pl_hair_import() {
 	}
 
 	return $imported;
-}
-
-add_action( 'admin_init', 'estecapelli_maybe_import_pl_hair_treatments', 83 );
-/**
- * Run once after deployment; failed runs remain retryable.
- */
-function estecapelli_maybe_import_pl_hair_treatments() {
-	if (
-		get_option( 'estecapelli_pl_hair_import_version' ) === ESTECAPELLI_PL_HAIR_IMPORT_VERSION ||
-		! current_user_can( 'manage_options' ) ||
-		( function_exists( 'wp_doing_ajax' ) && wp_doing_ajax() )
-	) {
-		return;
-	}
-
-	$result = estecapelli_run_pl_hair_import();
-	if ( is_wp_error( $result ) ) {
-		update_option( 'estecapelli_pl_hair_import_error', $result->get_error_message(), false );
-		return;
-	}
-
-	update_option( 'estecapelli_pl_hair_import_version', ESTECAPELLI_PL_HAIR_IMPORT_VERSION, false );
-	delete_option( 'estecapelli_pl_hair_import_error' );
-	set_transient( 'estecapelli_pl_hair_import_success', count( $result ), 5 * MINUTE_IN_SECONDS );
-}
-
-add_action( 'admin_notices', 'estecapelli_pl_hair_import_notice' );
-/**
- * Show the automatic importer result to administrators.
- */
-function estecapelli_pl_hair_import_notice() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
-	$success_count = get_transient( 'estecapelli_pl_hair_import_success' );
-	if ( false !== $success_count ) {
-		delete_transient( 'estecapelli_pl_hair_import_success' );
-		printf(
-			'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
-			esc_html( sprintf( 'Polish Hair Transplant translations imported successfully: %d treatments.', (int) $success_count ) )
-		);
-		return;
-	}
-
-	$error = get_option( 'estecapelli_pl_hair_import_error' );
-	if ( $error ) {
-		printf(
-			'<div class="notice notice-error"><p><strong>%s</strong> %s</p></div>',
-			esc_html( 'Polish Hair Transplant import could not finish.' ),
-			esc_html( $error )
-		);
-	}
 }
