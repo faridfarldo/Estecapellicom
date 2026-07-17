@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_DOCTORS_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_DOCTORS_IMPORT_VERSION', '2026-07-16.1' );
+	define( 'ESTECAPELLI_IT_DOCTORS_IMPORT_VERSION', '2026-07-17.1' );
 }
 
 /** Indexed English doctor slug => exact indexed Italian slug. */
@@ -288,8 +288,18 @@ function estecapelli_it_doctor_import_one( array $translation, $language_code = 
 	return (int) $target_id;
 }
 
-/** Run the complete Italian doctor import. */
-function estecapelli_run_it_doctors_import() {
+/**
+ * Run the Italian doctor import.
+ *
+ * @param string $source_slug Import only this doctor; empty imports all.
+ * @return array<string,int>|WP_Error
+ */
+function estecapelli_run_it_doctors_import( $source_slug = '' ) {
+	$source_slug = (string) $source_slug;
+	if ( '' !== $source_slug && ! isset( estecapelli_it_doctors_manifest()[ $source_slug ] ) ) {
+		return new WP_Error( 'it_doctors_invalid_source', sprintf( 'Unknown Italian doctor source: %s.', $source_slug ) );
+	}
+
 	if ( ! function_exists( 'update_field' ) ) {
 		return new WP_Error( 'it_doctors_acf_missing', 'ACF is required for the Italian doctor import.' );
 	}
@@ -308,15 +318,113 @@ function estecapelli_run_it_doctors_import() {
 	}
 
 	$imported = array();
-	foreach ( $translations as $source_slug => $translation ) {
+	foreach ( $translations as $slug => $translation ) {
+		if ( '' !== $source_slug && $source_slug !== $slug ) {
+			continue;
+		}
+
 		$result = estecapelli_it_doctor_import_one( $translation );
 		if ( is_wp_error( $result ) ) {
-			return new WP_Error( $result->get_error_code(), sprintf( '%s: %s', $source_slug, $result->get_error_message() ) );
+			return new WP_Error( $result->get_error_code(), sprintf( '%s: %s', $slug, $result->get_error_message() ) );
 		}
-		$imported[ $source_slug ] = $result;
+		$imported[ $slug ] = $result;
+	}
+
+	// An empty result is not a success: reporting one would hide a manifest whose
+	// source slug never matched the requested import.
+	if ( ! $imported ) {
+		return new WP_Error(
+			'it_doctors_nothing_imported',
+			sprintf( 'No Italian doctor overlay was applied for %s.', $source_slug ? $source_slug : 'any doctor' )
+		);
 	}
 
 	return $imported;
+}
+
+add_action( 'admin_menu', 'estecapelli_register_it_doctors_importer' );
+/** Register the dedicated Italian doctor importer. */
+function estecapelli_register_it_doctors_importer() {
+	add_management_page(
+		__( 'Italian Doctors Importer', 'estecapelli' ),
+		__( 'Italian Doctors', 'estecapelli' ),
+		'manage_options',
+		'estecapelli-italian-doctors-importer',
+		'estecapelli_render_it_doctors_importer'
+	);
+}
+
+add_action( 'admin_post_estecapelli_import_it_doctor', 'estecapelli_handle_it_doctor_import' );
+/** Process one Italian doctor and return to the importer. */
+function estecapelli_handle_it_doctor_import() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'You are not allowed to import content.', 'estecapelli' ) );
+	}
+	check_admin_referer( 'estecapelli_import_it_doctor' );
+
+	$source_slug = isset( $_POST['source'] ) ? sanitize_title( wp_unslash( $_POST['source'] ) ) : '';
+	$result      = estecapelli_run_it_doctors_import( $source_slug );
+	if ( is_wp_error( $result ) ) {
+		set_transient( 'estecapelli_it_doctors_import_error', $source_slug . ': ' . $result->get_error_message(), 5 * MINUTE_IN_SECONDS );
+	} else {
+		set_transient( 'estecapelli_it_doctors_import_success', $source_slug, 5 * MINUTE_IN_SECONDS );
+	}
+
+	wp_safe_redirect( add_query_arg( 'page', 'estecapelli-italian-doctors-importer', admin_url( 'tools.php' ) ) );
+	exit;
+}
+
+/** Render the one-doctor-per-request importer screen. */
+function estecapelli_render_it_doctors_importer() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$success = get_transient( 'estecapelli_it_doctors_import_success' );
+	$error   = get_transient( 'estecapelli_it_doctors_import_error' );
+	delete_transient( 'estecapelli_it_doctors_import_success' );
+	delete_transient( 'estecapelli_it_doctors_import_error' );
+	?>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'Italian Doctors Importer', 'estecapelli' ); ?></h1>
+		<p><?php esc_html_e( 'Imports one Italian doctor profile per request. English owns the portrait and structure; the position, biography and credentials are translated.', 'estecapelli' ); ?></p>
+		<?php if ( $success ) : ?>
+			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( sprintf( 'Italian doctor imported or repaired: %s.', $success ) ); ?></p></div>
+		<?php elseif ( $error ) : ?>
+			<div class="notice notice-error"><p><strong><?php esc_html_e( 'Italian doctor import could not finish.', 'estecapelli' ); ?></strong> <?php echo esc_html( $error ); ?></p></div>
+		<?php endif; ?>
+
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<input type="hidden" name="action" value="estecapelli_import_it_doctor">
+			<?php wp_nonce_field( 'estecapelli_import_it_doctor' ); ?>
+			<table class="widefat striped" style="max-width:980px;margin-top:1rem;">
+				<thead><tr><th><?php esc_html_e( 'English source', 'estecapelli' ); ?></th><th><?php esc_html_e( 'Status', 'estecapelli' ); ?></th><th><?php esc_html_e( 'Action', 'estecapelli' ); ?></th></tr></thead>
+				<tbody>
+					<?php foreach ( estecapelli_it_doctors_manifest() as $source_slug => $italian_slug ) :
+						$source_id = estecapelli_source_post_id( $source_slug, 'doctor' );
+						$linked_id = $source_id ? (int) apply_filters( 'wpml_object_id', $source_id, 'doctor', false, 'it' ) : 0;
+						$exists    = ( $linked_id && $linked_id !== $source_id );
+						?>
+						<tr>
+							<td><code><?php echo esc_html( $source_slug ); ?></code></td>
+							<td>
+								<?php if ( ! $source_id ) : ?>
+									<span style="color:#b26200;"><?php esc_html_e( 'English profile missing — run the English doctor import first', 'estecapelli' ); ?></span>
+								<?php elseif ( $exists ) : ?>
+									<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+									— <a href="<?php echo esc_url( get_edit_post_link( $linked_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+								<?php else : ?>
+									<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+								<?php endif; ?>
+							</td>
+							<td><button type="submit" name="source" value="<?php echo esc_attr( $source_slug ); ?>" class="button button-primary"><?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?></button></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<?php
 }
 
 add_action( 'admin_init', 'estecapelli_maybe_import_it_doctors', 94 );
