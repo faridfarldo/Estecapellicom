@@ -362,6 +362,203 @@ function estecapelli_import_doctor( array $data ) {
 	return $post_id;
 }
 
+/**
+ * Give an English treatment back to English after a translation import took it.
+ *
+ * A translation import could once adopt the English original when a treatment
+ * keeps the same slug in every language (bbl). The adopted post was rewritten in
+ * the translated language and reassigned to it, leaving its WPML group with no
+ * English element: /en/<slug> stops resolving and every later import for that
+ * slug is refused. The engine no longer does this; this repairs the records it
+ * already damaged, then rebuilds the English copy from the seed.
+ *
+ * @param string $source_slug English treatment slug.
+ * @return string|WP_Error Success message.
+ */
+function estecapelli_repair_hijacked_treatment_source( $source_slug ) {
+	global $wpdb;
+
+	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) && ! defined( 'WPML_VERSION' ) ) {
+		return new WP_Error( 'repair_wpml_missing', 'WPML is required to repair a treatment source.' );
+	}
+
+	$seed = null;
+	foreach ( estecapelli_treatments_seed() as $treatment ) {
+		if ( $source_slug === ( $treatment['slug'] ?? '' ) ) {
+			$seed = $treatment;
+			break;
+		}
+	}
+	if ( ! $seed ) {
+		return new WP_Error( 'repair_missing_seed', sprintf( 'No English seed defines the treatment %s.', $source_slug ) );
+	}
+
+	$element_type  = apply_filters( 'wpml_element_type', 'treatment' );
+	$candidate_ids = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts}
+			 WHERE post_name = %s AND post_type = 'treatment' AND post_status <> 'trash'
+			 ORDER BY ID ASC",
+			$source_slug
+		)
+	);
+	$candidate_ids = array_map( 'intval', (array) $candidate_ids );
+	if ( ! $candidate_ids ) {
+		return new WP_Error( 'repair_missing_post', sprintf( 'No treatment post uses the slug %s.', $source_slug ) );
+	}
+
+	// Never touch a slug that still has its English post; the damage is specific.
+	$languages = array();
+	foreach ( $candidate_ids as $candidate_id ) {
+		$details                    = apply_filters(
+			'wpml_element_language_details',
+			null,
+			array(
+				'element_id'   => $candidate_id,
+				'element_type' => 'treatment',
+			)
+		);
+		$languages[ $candidate_id ] = array(
+			'language' => (string) estecapelli_it_hair_detail( $details, 'language_code' ),
+			'trid'     => (int) estecapelli_it_hair_detail( $details, 'trid' ),
+		);
+
+		if ( 'en' === $languages[ $candidate_id ]['language'] ) {
+			return new WP_Error(
+				'repair_not_needed',
+				sprintf( '%s already has an English source (ID %d). Nothing to repair.', $source_slug, $candidate_id )
+			);
+		}
+	}
+
+	$hijacked_id = 0;
+	foreach ( $languages as $candidate_id => $state ) {
+		if ( $state['trid'] && ! estecapelli_wpml_group_element_id_raw( $state['trid'], $element_type, 'en' ) ) {
+			$hijacked_id = (int) $candidate_id;
+			break;
+		}
+	}
+	if ( ! $hijacked_id ) {
+		return new WP_Error(
+			'repair_no_candidate',
+			sprintf( 'No post using the slug %s is an English original whose language was reassigned.', $source_slug )
+		);
+	}
+
+	$trid          = $languages[ $hijacked_id ]['trid'];
+	$taken_by      = $languages[ $hijacked_id ]['language'];
+	$restore_args  = array(
+		'element_id'           => $hijacked_id,
+		'element_type'         => $element_type,
+		'trid'                 => $trid,
+		'language_code'        => 'en',
+		'source_language_code' => null,
+		'check_duplicates'     => false,
+	);
+
+	do_action( 'wpml_set_element_language_details', $restore_args );
+
+	if ( ! estecapelli_wpml_element_matches_raw( $hijacked_id, $element_type, $trid, 'en' ) ) {
+		$repaired = estecapelli_wpml_repair_relationship_raw( $hijacked_id, $element_type, $trid, 'en', null );
+		if ( ! $repaired ) {
+			return new WP_Error(
+				'repair_language_failed',
+				sprintf( 'WPML refused to return post %d to English. %s', $hijacked_id, estecapelli_wpml_last_slot_error() )
+			);
+		}
+	}
+
+	/*
+	 * The post still holds translated copy, so rebuild English from the seed.
+	 * This admin request may be running in any language, which would otherwise
+	 * resolve the seed's category to that language's term and re-translate the
+	 * post we just recovered.
+	 */
+	$previous_language = apply_filters( 'wpml_current_language', null );
+	do_action( 'wpml_switch_language', 'en' );
+	add_filter( 'wpml_disable_term_adjust_id', '__return_true' );
+
+	$restored = estecapelli_import_treatment( $seed );
+
+	remove_filter( 'wpml_disable_term_adjust_id', '__return_true' );
+	do_action( 'wpml_switch_language', $previous_language );
+
+	if ( is_wp_error( $restored ) ) {
+		return $restored;
+	}
+
+	return sprintf(
+		'Post %d was registered as "%s"; it is English again and its copy was rebuilt from the seed. Re-import the %s translations to create their own posts.',
+		$hijacked_id,
+		$taken_by,
+		$source_slug
+	);
+}
+
+/**
+ * Treatments whose English post was taken over by a translation import.
+ *
+ * @return array<string,array<string,mixed>> Slug => post ID and the language holding it.
+ */
+function estecapelli_hijacked_treatment_sources() {
+	global $wpdb;
+
+	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) && ! defined( 'WPML_VERSION' ) ) {
+		return array();
+	}
+
+	$element_type = apply_filters( 'wpml_element_type', 'treatment' );
+	$hijacked     = array();
+
+	foreach ( estecapelli_treatments_seed() as $treatment ) {
+		$slug = $treatment['slug'] ?? '';
+		if ( ! $slug ) {
+			continue;
+		}
+
+		$candidate_ids = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts}
+				 WHERE post_name = %s AND post_type = 'treatment' AND post_status <> 'trash'
+				 ORDER BY ID ASC",
+				$slug
+			)
+		);
+
+		$has_english = false;
+		$candidate   = array();
+		foreach ( array_map( 'intval', (array) $candidate_ids ) as $candidate_id ) {
+			$details  = apply_filters(
+				'wpml_element_language_details',
+				null,
+				array(
+					'element_id'   => $candidate_id,
+					'element_type' => 'treatment',
+				)
+			);
+			$language = (string) estecapelli_it_hair_detail( $details, 'language_code' );
+			$trid     = (int) estecapelli_it_hair_detail( $details, 'trid' );
+
+			if ( 'en' === $language ) {
+				$has_english = true;
+				break;
+			}
+			if ( ! $candidate && $trid && ! estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'en' ) ) {
+				$candidate = array(
+					'id'       => $candidate_id,
+					'language' => $language,
+				);
+			}
+		}
+
+		if ( ! $has_english && $candidate ) {
+			$hijacked[ $slug ] = $candidate;
+		}
+	}
+
+	return $hijacked;
+}
+
 function estecapelli_render_treatments_importer() {
 
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -377,6 +574,20 @@ function estecapelli_render_treatments_importer() {
 		$pages      = estecapelli_pages_seed();
 		$doctors    = estecapelli_doctors_seed();
 		$target     = sanitize_text_field( wp_unslash( $_POST['estecapelli_action'] ) );
+
+		// Return an English treatment taken over by a translation import.
+		if ( 0 === strpos( $target, '__repair_source__' ) ) {
+			$repair_slug = substr( $target, strlen( '__repair_source__' ) );
+			$result      = estecapelli_repair_hijacked_treatment_source( $repair_slug );
+			$messages[]  = array(
+				'type' => is_wp_error( $result ) ? 'error' : 'success',
+				'text' => sprintf(
+					'Repair English source (%s) - %s',
+					esc_html( $repair_slug ),
+					esc_html( is_wp_error( $result ) ? $result->get_error_message() : $result )
+				),
+			);
+		}
 
 		// French Hair Transplant translations use the same familiar importer UI,
 		// but remain a separate, deliberately narrow and idempotent operation.
@@ -588,6 +799,49 @@ function estecapelli_render_treatments_importer() {
 					<?php esc_html_e( 'Import / Re-import All Treatments', 'estecapelli' ); ?>
 				</button>
 			</p>
+
+			<?php $hijacked_sources = estecapelli_hijacked_treatment_sources(); ?>
+			<?php if ( $hijacked_sources ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'English sources needing repair', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'These treatments have no English post: a translation import took the English original over and reassigned it to its own language. Repairing returns the post to English and rebuilds its copy from the seed. Re-import that language afterwards so the translation gets its own post.', 'estecapelli' ); ?>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:40%;"><?php esc_html_e( 'English source', 'estecapelli' ); ?></th>
+							<th style="width:40%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+							<th style="width:20%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( $hijacked_sources as $hijacked_slug => $hijacked_state ) : ?>
+							<tr>
+								<td><code><?php echo esc_html( $hijacked_slug ); ?></code></td>
+								<td>
+									<span style="color:#b26200;">
+										<?php
+										printf(
+											/* translators: 1: post ID, 2: WPML language code. */
+											esc_html__( 'Post %1$d is registered as "%2$s"', 'estecapelli' ),
+											(int) $hijacked_state['id'],
+											esc_html( $hijacked_state['language'] )
+										);
+										?>
+									</span>
+									- <a href="<?php echo esc_url( get_edit_post_link( $hijacked_state['id'] ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+								</td>
+								<td>
+									<button type="submit" name="estecapelli_action" value="__repair_source__<?php echo esc_attr( $hijacked_slug ); ?>" class="button">
+										<?php esc_html_e( 'Repair English source', 'estecapelli' ); ?>
+									</button>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endif; ?>
 
 			<?php if ( function_exists( 'estecapelli_fr_hair_manifest' ) ) : ?>
 				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'French Hair Transplant translations', 'estecapelli' ); ?></h2>
