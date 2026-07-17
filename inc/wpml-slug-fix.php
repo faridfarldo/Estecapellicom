@@ -328,19 +328,32 @@ function estecapelli_wpml_source_post_slug( $post ) {
 
 /**
  * The English (source) post id, found by raw post_name lookup.
+ *
+ * A slug can be held by several posts at once, because WPML allows a translation
+ * to keep its English slug (bbl does so in every language). Every candidate is
+ * therefore resolved to English rather than trusting an arbitrary first row.
  */
 function estecapelli_source_post_id( $slug, $post_type ) {
 	global $wpdb;
-	$candidate = (int) $wpdb->get_var(
+	$candidate_ids = $wpdb->get_col(
 		$wpdb->prepare(
 			"SELECT ID FROM {$wpdb->posts}
-			 WHERE post_name = %s AND post_type = %s AND post_status = 'publish' LIMIT 1",
+			 WHERE post_name = %s AND post_type = %s AND post_status = 'publish'
+			 ORDER BY ID ASC",
 			$slug,
 			$post_type
 		)
 	);
-	$source = $candidate ? (int) apply_filters( 'wpml_object_id', $candidate, $post_type, true, 'en' ) : 0;
-	return $source ?: $candidate;
+	$candidate_ids = array_map( 'intval', (array) $candidate_ids );
+
+	foreach ( $candidate_ids as $candidate_id ) {
+		$source = (int) apply_filters( 'wpml_object_id', $candidate_id, $post_type, false, 'en' );
+		if ( $source ) {
+			return $source;
+		}
+	}
+
+	return $candidate_ids ? $candidate_ids[0] : 0;
 }
 
 /**

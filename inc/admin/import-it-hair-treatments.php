@@ -331,21 +331,53 @@ function estecapelli_it_hair_detail( $details, $key ) {
 }
 
 /**
- * Find an untranslated post by its exact slug without WPML query filtering.
+ * Find a translated post this import may adopt, by its exact slug.
  *
- * @param string $slug Italian post slug.
- * @return int
+ * WPML can lose the relationship of an already-imported translation, so an
+ * orphaned post carrying the canonical translated slug is adopted rather than
+ * duplicated. The English source must never be adopted: a few treatments (bbl)
+ * keep one slug in every language, so a slug match alone would hand back the
+ * English original and rewrite it in the target language.
+ *
+ * @param string $slug            Canonical translated post slug.
+ * @param int    $source_id       English source post ID, never adoptable.
+ * @param string $target_language Target language code.
+ * @return int Adoptable post ID, or 0 when a new post must be inserted.
  */
-function estecapelli_it_hair_raw_post_id( $slug ) {
+function estecapelli_it_hair_adoptable_post_id( $slug, $source_id, $target_language ) {
 	global $wpdb;
-	return (int) $wpdb->get_var(
+	$candidate_ids = $wpdb->get_col(
 		$wpdb->prepare(
 			"SELECT ID FROM {$wpdb->posts}
 			 WHERE post_name = %s AND post_type = 'treatment' AND post_status <> 'trash'
-			 ORDER BY ID ASC LIMIT 1",
+			 ORDER BY ID ASC",
 			$slug
 		)
 	);
+
+	foreach ( array_map( 'intval', (array) $candidate_ids ) as $candidate_id ) {
+		if ( $candidate_id === (int) $source_id ) {
+			continue;
+		}
+
+		$details  = apply_filters(
+			'wpml_element_language_details',
+			null,
+			array(
+				'element_id'   => $candidate_id,
+				'element_type' => 'treatment',
+			)
+		);
+		$language = (string) estecapelli_it_hair_detail( $details, 'language_code' );
+
+		// Adopt only an orphan or a post already in the target language; another
+		// language's translation is never ours to overwrite.
+		if ( '' === $language || $target_language === $language ) {
+			return $candidate_id;
+		}
+	}
+
+	return 0;
 }
 
 /**
@@ -651,12 +683,21 @@ function estecapelli_it_hair_import_one( array $translation, $target_term_id, $s
 	$trid           = (int) estecapelli_it_hair_detail( $source_details, 'trid' );
 	$source_language = (string) estecapelli_it_hair_detail( $source_details, 'language_code' );
 	if ( ! $trid || 'en' !== $source_language ) {
-		return new WP_Error( 'it_hair_unlinked_source_post', sprintf( 'WPML language details are missing for %s.', $source_slug ) );
+		return new WP_Error(
+			'it_hair_unlinked_source_post',
+			sprintf(
+				'WPML language details are missing for %s. The published post using this slug (ID %d) is registered as "%s"%s instead of English.',
+				$source_slug,
+				(int) $source_id,
+				$source_language ? $source_language : 'no language',
+				$trid ? '' : ' with no translation group'
+			)
+		);
 	}
 
 	$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, $target_language );
 	if ( ! $target_id ) {
-		$target_id = estecapelli_it_hair_raw_post_id( $translation['slug'] );
+		$target_id = estecapelli_it_hair_adoptable_post_id( $translation['slug'], $source_id, $target_language );
 	}
 
 	/*
