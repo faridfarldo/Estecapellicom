@@ -326,8 +326,14 @@ function estecapelli_indexed_route_contract() {
 		}
 	}
 
+	/*
+	 * mehmet-hanifi-kutlar sits under medical-director because that is the path
+	 * the live site indexed, not because of his title. Every other profile lives
+	 * under our-doctors.
+	 */
 	$doctor_parents = array(
-		'mehmet-hanifi-kutlar' => 'medical-director',
+		'mehmet-hanifi-kutlar'  => 'medical-director',
+		'prof-dr-binnur-ustun'  => 'our-doctors',
 		'op-dr-hasan-celik'     => 'our-doctors',
 		'op-dr-mehmet-palali'   => 'our-doctors',
 		'op-dr-necdet-derici'   => 'our-doctors',

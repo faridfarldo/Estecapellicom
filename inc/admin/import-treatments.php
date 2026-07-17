@@ -314,6 +314,16 @@ function estecapelli_import_doctor( array $data ) {
 
 	$existing = get_page_by_path( $data['slug'], OBJECT, 'doctor' );
 
+	/*
+	 * A corrected slug must rename the existing profile, not create a second one.
+	 * get_page_by_path() only ever looks for the current slug, so a seed whose
+	 * slug has been fixed would otherwise insert a duplicate and strand the
+	 * original record — along with its uploaded portrait and WPML links.
+	 */
+	if ( ! $existing && ! empty( $data['previous_slug'] ) ) {
+		$existing = get_page_by_path( $data['previous_slug'], OBJECT, 'doctor' );
+	}
+
 	$post_args = array(
 		'post_type'    => 'doctor',
 		'post_title'   => $data['name'],

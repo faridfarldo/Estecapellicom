@@ -36,10 +36,11 @@ function estecapelli_pt_pages_manifest() {
 	);
 }
 
-/** The five doctor profiles present in the indexed Portuguese contract. */
+/** The doctor profiles present in the indexed Portuguese contract. */
 function estecapelli_pt_doctors_manifest() {
 	return array(
-		'mehmet-hanifi-kutlar' => 'mehmet-hanifi-kutlar',
+		'mehmet-hanifi-kutlar'  => 'mehmet-hanifi-kutlar',
+		'prof-dr-binnur-ustun'  => 'prof-dr-binnur-ustun',
 		'op-dr-hasan-celik'     => 'op-dr-hasan-celik',
 		'op-dr-mehmet-palali'   => 'op-dr-mehmet-palali',
 		'op-dr-necdet-derici'   => 'op-dr-necdet-derici',
