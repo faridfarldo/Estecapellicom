@@ -1,0 +1,173 @@
+{
+  "source_slug": "breast-aesthetics-breast-surgery",
+  "slug": "estetica-mamaria-cirurgia-de-mama",
+  "title": "Estética mamária",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Cirurgia mamária",
+      "title": "Estética mamária",
+      "lead": "Obtenha um peito com volume, natural e em harmonia com o seu corpo. O nosso planeamento personalizado oferece resultados estéticos e equilibrados, adaptados à sua silhueta e aos seus objetivos.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Fale connosco no WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A intervenção",
+      "title": "O que é a estética mamária?",
+      "body": "<p>Estética mamária é o termo geral que engloba as intervenções de cirurgia estética realizadas para melhorar o tamanho, a forma e a posição dos seios em harmonia com as proporções corporais. Os procedimentos mais habituais são o aumento, a redução e a elevação mamária.</p><p>Na Estecapelli, a estética mamária não consiste simplesmente em aumentar ou reduzir o volume. O objetivo é criar uma silhueta natural e equilibrada que valorize todo o corpo. Cada plano de tratamento é cuidadosamente personalizado segundo a anatomia e os objetivos estéticos da paciente, para a ajudar a sentir-se melhor tanto física como emocionalmente e obter uma forma com a qual se sinta realmente segura e confortável.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "As opções",
+      "title": "Tipos de cirurgia mamária",
+      "lead": "O procedimento mais adequado depende da sua anatomia, dos seus objetivos e do aspeto que deseja obter. Conheça as principais opções.",
+      "items": [
+        {
+          "eyebrow": "Tipo",
+          "title": "Aumento mamário",
+          "body": "<p>O aumento mamário incrementa o volume e melhora a forma através de implantes de silicone ou, em pacientes adequadas, através de transferência de gordura. Está especialmente indicado para seios naturalmente pequenos ou quando existe perda de volume após a gravidez, a amamentação ou uma variação de peso.</p><ul><li>Confere volume e equilibra a silhueta</li><li>A forma e o tamanho do implante são escolhidos em conjunto com a paciente</li><li>Incisões discretas e resultado natural</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Redução mamária",
+          "body": "<p>A redução mamária remove o excesso de tecido glandular, gordura e pele para obter seios mais leves, firmes e proporcionados. Alivia também a tensão no pescoço, nas costas e nos ombros que um volume mamário excessivo costuma provocar.</p><ul><li>Reduz o desconforto físico e os problemas posturais</li><li>Remodela e eleva os seios na mesma intervenção</li><li>Oferece uma silhueta mais equilibrada e confortável</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Elevação mamária (mastopexia)",
+          "body": "<p>A elevação mamária levanta e remodela os seios descaídos através da remoção do excesso de pele e da reafirmação dos tecidos circundantes. Restaura uma posição mais alta e firme sem alterar necessariamente o tamanho e pode ser combinada com um implante para aumentar o volume.</p><ul><li>Corrige a flacidez após a gravidez, o envelhecimento ou a perda de peso</li><li>Reposiciona o mamilo para obter um aspeto natural</li><li>Pode ser combinada com um aumento de volume</li></ul>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Indicações",
+      "title": "Quando está indicado o aumento mamário?",
+      "body": "A cirurgia de aumento mamário pode ser uma solução ideal nos seguintes casos:",
+      "items": [
+        { "label": "Seios geneticamente pouco desenvolvidos" },
+        { "label": "Seios que parecem pequenos em relação às proporções gerais do corpo" },
+        { "label": "Perda de volume e forma devida ao envelhecimento, emagrecimento, gravidez ou amamentação" },
+        { "label": "Diferença visível de tamanho entre ambos os seios" },
+        { "label": "Assimetria ou irregularidade que afeta a confiança pessoal e o ajuste da roupa" },
+        { "label": "Restauração do volume após uma cirurgia oncológica ou uma reconstrução mamária" }
+      ],
+      "footer": "Na Estecapelli, o objetivo do aumento mamário não é apenas incrementar o volume, mas criar uma forma natural, adaptada às proporções corporais, à postura e às expectativas pessoais da paciente."
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Como funciona",
+      "title": "Como se realiza um aumento mamário?",
+      "body": "<p>A cirurgia de aumento mamário é realizada sob anestesia geral, num bloco operatório totalmente equipado, e costuma durar entre 1,5 e 2 horas. Durante o procedimento, os implantes são cuidadosamente colocados para obter o resultado mais natural e proporcionado possível. A paciente tem normalmente alta no dia seguinte, após um controlo pós-operatório de rotina.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Escolha dos implantes",
+      "title": "Implantes de silicone redondos ou anatómicos?",
+      "body": "<p>Os implantes mamários distinguem-se pela sua forma, volume, textura superficial e material de enchimento. Escolher o implante correto é um dos passos mais importantes para obter um resultado natural e proporcionado; a opção ideal varia entre pacientes consoante a estrutura corporal, o tecido mamário existente e os objetivos estéticos pessoais. Na Estecapelli, a escolha é feita em conjunto com a paciente através de uma consulta detalhada e de uma avaliação cuidadosa.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Detalhes cirúrgicos",
+      "title": "Localização da incisão e posição do implante",
+      "body": "<p>No aumento mamário, a incisão pode ser realizada através de um destes três acessos:</p><ul><li>Na axila</li><li>No sulco submamário</li><li>À volta da aréola</li></ul><p>A localização da incisão é definida em conjunto com a paciente durante a consulta, procurando reduzir ao mínimo as cicatrizes visíveis e preservar os canais galactóforos.</p><p>Os implantes podem ser colocados num destes dois planos anatómicos:</p><ul><li>Sobre o músculo e sob o tecido mamário</li><li>Debaixo do músculo</li></ul><p>A colocação submuscular costuma ser preferida porque tende a oferecer um aspeto mais natural, um melhor suporte dos tecidos ao longo do tempo e um menor risco de contratura capsular. A opção mais adequada é estabelecida após um exame detalhado e um planeamento personalizado.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Porquê a Turquia e a Estecapelli",
+      "title": "Estética mamária na Turquia: as vantagens da Estecapelli",
+      "body": "A Turquia é um dos destinos mais procurados do mundo para a cirurgia estética mamária. Entre os principais motivos encontram-se:",
+      "items": [
+        { "label": "Cirurgiões muito experientes, com um vasto historial de intervenções bem-sucedidas" },
+        { "label": "Infraestruturas clínicas conformes a padrões internacionais" },
+        { "label": "Cuidados de elevada qualidade a custos consideravelmente mais acessíveis do que na Europa e na América do Norte" }
+      ],
+      "footer": "Na Estecapelli, estas vantagens combinam-se com uma abordagem personalizada para que cada paciente receba o cuidado, a experiência e o resultado que merece."
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Antes da intervenção",
+      "title": "Aumento mamário: o processo pré-operatório",
+      "body": "<p>A parte mais importante do processo consiste em estabelecer uma compreensão clara e partilhada entre o cirurgião e a paciente. Isto inclui falar abertamente sobre as expectativas estéticas, a escolha dos implantes e o aspeto previsto após a intervenção. Na Estecapelli, cada paciente recebe uma consulta pré-operatória detalhada para chegar à operação plenamente informada, preparada e segura da sua decisão.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Depois da intervenção",
+      "title": "O processo de recuperação",
+      "body": "<p>Para obter um aspeto completamente assente, natural e próximo do resultado definitivo são habitualmente necessários entre 3 e 6 meses. A recuperação após um aumento mamário é gradual e a paciente é cuidadosamente acompanhada em cada etapa para garantir o seu conforto, a sua segurança e o melhor resultado possível.</p>",
+      "cta": { "label": "Reservar uma consulta gratuita" }
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reais",
+      "title": "Estética mamária: antes e depois",
+      "lead": "Descubra os resultados naturais e equilibrados das nossas pacientes: seios com maior volume, mais elevados ou mais proporcionados, sempre em harmonia com o corpo. Cada resultado é personalizado e as incisões são colocadas da forma mais discreta possível.",
+      "cta": { "label": "Ver toda a galeria" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informação útil",
+      "title": "Perguntas frequentes sobre estética mamária",
+      "items": [
+        {
+          "question": "Que intervenção é mais adequada para mim: aumento, redução ou elevação mamária?",
+          "answer": "<p>Depende da necessidade a corrigir. O aumento confere volume e plenitude através de um implante ou de transferência de gordura; a redução remove o excesso de tecido para aliviar o desconforto e melhorar as proporções; a elevação, ou mastopexia, levanta e remodela os seios descaídos sem alterar necessariamente o seu tamanho. Muitas pacientes combinam a elevação com um aumento. Após o exame e a conversa sobre os seus objetivos, o cirurgião recomendará o procedimento ou a combinação mais adequada à sua anatomia.</p>"
+        },
+        {
+          "question": "É melhor escolher implantes de silicone ou transferência de gordura?",
+          "answer": "<p>Os implantes de silicone são a opção mais habitual e oferecem um aumento previsível e duradouro do tamanho e da projeção. A transferência de gordura, que utiliza lipoaspiração para extrair gordura da própria paciente, está indicada para quem deseja uma melhoria moderada e muito natural e dispõe de tecido adiposo suficiente. Os implantes permitem uma maior alteração de volume; a gordura evita um corpo estranho, mas pode ser parcialmente reabsorvida. O cirurgião explicar-lhe-á a solução mais coerente com o seu corpo e as suas expectativas.</p>"
+        },
+        {
+          "question": "Implantes redondos ou anatómicos? Por cima ou por baixo do músculo?",
+          "answer": "<p>Os implantes redondos tendem a criar maior plenitude no polo superior, enquanto os anatómicos, em forma de lágrima, seguem um perfil mais suave e natural; ambos podem oferecer um excelente resultado na paciente adequada. A colocação por baixo do músculo costuma ser preferida pelo seu aspeto mais natural, um suporte mais duradouro dos tecidos e um menor risco de contratura capsular. A escolha final da forma, do tamanho, do perfil e do plano de colocação é feita em conjunto com a paciente segundo a sua constituição, o tecido existente e o resultado pretendido.</p>"
+        },
+        {
+          "question": "Que anestesia é utilizada, quanto tempo dura a intervenção e é dolorosa?",
+          "answer": "<p>A cirurgia mamária é realizada sob anestesia geral, pelo que não sentirá nada durante a operação, que dura normalmente entre uma e duas horas. Durante os primeiros dias pode sentir tensão e dor moderada, geralmente bem controladas com a medicação prescrita. Um sutiã cirúrgico de suporte e os movimentos suaves ajudam a melhorar o conforto durante a recuperação.</p>"
+        },
+        {
+          "question": "Quanto tempo duram a recuperação e a estadia na Turquia?",
+          "answer": "<p>A maioria das pacientes permanece na Turquia cerca de 5–7 dias, incluindo uma revisão antes do regresso. A recuperação inicial requer uma a duas semanas; depois muitas pacientes retomam um trabalho de escritório, embora continuem a usar um sutiã de suporte durante várias semanas. O aspeto quase definitivo e completamente assente desenvolve-se habitualmente em 3–6 meses, à medida que a inflamação desaparece e os seios suavizam e adotam a sua posição natural.</p>"
+        },
+        {
+          "question": "Onde ficarão as cicatrizes e continuarão visíveis?",
+          "answer": "<p>A incisão é colocada da forma mais discreta possível: no sulco sob o seio, à volta da aréola ou na axila para um aumento; nas reduções e elevações, as cicatrizes seguem os contornos naturais. No início são mais visíveis, mas com os cuidados adequados aplanam e clareiam consideravelmente com o passar dos meses. O cirurgião escolhe a abordagem que melhor limita as cicatrizes visíveis e, quando aplicável, protege os canais galactóforos.</p>"
+        },
+        {
+          "question": "Os implantes mamários são seguros e poderei continuar a amamentar?",
+          "answer": "<p>Os implantes modernos com marcação CE e aprovação da FDA apresentam um excelente perfil de segurança a longo prazo e são utilizados em todo o mundo. A maioria das mulheres pode continuar a amamentar após um aumento mamário, especialmente quando a incisão e a colocação são planeadas para proteger os canais galactóforos. Informe o cirurgião se para si é importante poder amamentar no futuro. Os implantes não requerem uma substituição automática numa data estabelecida, mas devem ser controlados ao longo do tempo conforme as indicações recebidas.</p>"
+        },
+        {
+          "question": "Os resultados são permanentes e naturais?",
+          "answer": "<p>Os resultados são duradouros e, com uma escolha correta do implante, do tamanho e da técnica, os seios apresentam um aspeto muito natural. Ao longo dos anos, o envelhecimento, a gravidez, a amamentação e as alterações de peso podem modificar a sua forma e, por vezes, pode optar-se por uma cirurgia de revisão. Manter um peso estável e utilizar um suporte adequado ajuda a conservar o resultado durante o máximo tempo possível.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Custos",
+      "title": "Preço da estética mamária",
+      "body": "<p>O preço da estética mamária, seja um aumento, uma redução ou uma elevação, varia consoante diversos fatores. Entre eles incluem-se o tipo de implante escolhido, a extensão da intervenção, os procedimentos adicionais como a elevação, a correção de assimetrias ou as cirurgias combinadas, bem como as necessidades individuais e a anatomia da paciente. Após uma consulta detalhada é fornecido um orçamento personalizado para garantir a máxima transparência antes de tomar qualquer decisão.</p>",
+      "cta": { "label": "Solicitar um orçamento personalizado" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Deseja uma silhueta naturalmente equilibrada?",
+      "lead": "Faculte-nos alguns dados e a nossa equipa responder-lhe-á com um plano personalizado de cirurgia mamária e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.",
+      "points": [
+        { "label": "Avaliação gratuita a partir das suas fotografias" },
+        { "label": "Orçamento com tudo incluído, transparente e sem compromisso" },
+        { "label": "Resposta rápida da nossa equipa de apoio ao paciente" },
+        { "label": "Assistência multilingue em todas as etapas" }
+      ],
+      "submit_label": "Solicitar uma consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra mais",
+      "title": "Tratamentos relacionados"
+    }
+  ]
+}

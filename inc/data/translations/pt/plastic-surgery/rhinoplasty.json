@@ -1,0 +1,163 @@
+{
+  "source_slug": "rhinoplasty",
+  "slug": "rinoplastia",
+  "title": "Rinoplastia",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Estética nasal",
+      "title": "Rinoplastia",
+      "lead": "Uma intervenção cirúrgica que remodela o nariz para melhorar a sua forma, tamanho e função. Pode ser realizada com fins estéticos ou para corrigir dificuldades respiratórias.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Fale connosco no WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A intervenção",
+      "title": "O que é a rinoplastia?",
+      "body": "<p>A rinoplastia é uma intervenção cirúrgica destinada a remodelar o nariz e a melhorar a sua forma, tamanho e função. Pode ser realizada com fins estéticos ou para corrigir problemas respiratórios. Como o nariz é o traço mais destacado do centro do rosto, mesmo pequenas alterações podem influenciar de forma significativa a harmonia facial e a confiança pessoal.</p><p>Na Estecapelli, cada rinoplastia é planeada de forma personalizada. Os nossos especialistas avaliam toda a estrutura facial e têm em conta as proporções e o equilíbrio do rosto para obter um resultado natural. Todas as intervenções são realizadas por especialistas em otorrinolaringologia e cirurgiões plásticos experientes, combinando a melhoria estética com a funcional.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Indicações",
+      "title": "Porque se realiza uma rinoplastia?",
+      "body": "As pessoas escolhem a rinoplastia por diferentes motivos, relacionados tanto com a estética como com a função do nariz. Entre os mais habituais encontram-se:",
+      "items": [
+        { "label": "Um nariz que parece demasiado grande ou demasiado pequeno em relação ao rosto" },
+        { "label": "Uma giba visível no dorso nasal" },
+        { "label": "Uma ponta nasal descaída, larga ou pouco definida" },
+        { "label": "Narinas assimétricas" },
+        { "label": "Deformidades causadas por uma lesão ou um traumatismo anterior" },
+        { "label": "Insatisfação com a forma natural ou herdada geneticamente do nariz" },
+        { "label": "Dificuldades respiratórias devidas a problemas estruturais, como um septo desviado ou uma curvatura interna do nariz" }
+      ],
+      "footer": "Na Estecapelli, o objetivo da rinoplastia é criar um nariz natural e harmonioso com o conjunto dos traços faciais, melhorando ao mesmo tempo a respiração sempre que necessário."
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Candidatos",
+      "title": "Quem pode submeter-se a uma rinoplastia?",
+      "body": "A rinoplastia pode estar indicada para quem deseja melhorar tanto o aspeto como a função do nariz. Os candidatos ideais incluem habitualmente:",
+      "items": [
+        { "label": "Adultos que concluíram o crescimento facial e o desenvolvimento físico" },
+        { "label": "Pessoas insatisfeitas com o aspeto ou a forma do seu nariz" },
+        { "label": "Pessoas com dificuldades respiratórias devidas a problemas estruturais do nariz" },
+        { "label": "Pessoas com deformidades nasais de origem genética ou causadas por lesões ou traumatismos anteriores" },
+        { "label": "Quem deseja um rosto mais equilibrado, natural e harmonioso" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Técnicas",
+      "title": "Tipos de rinoplastia",
+      "body": "<ul><li><strong>Rinoplastia aberta:</strong> a estrutura nasal fica completamente exposta através de uma pequena incisão sob as narinas. Esta técnica está especialmente indicada para alterações estruturais importantes, desvios acentuados e cirurgias de revisão.</li><li><strong>Rinoplastia fechada:</strong> todas as incisões são realizadas dentro do nariz, sem cicatrizes externas visíveis. Costuma permitir uma recuperação mais rápida e limita o traumatismo dos tecidos. No entanto, não é adequada para todas as anatomias; a indicação é confirmada durante a consulta médica.</li><li><strong>Cirurgia da ponta nasal:</strong> remodela apenas a ponta do nariz, sem alterar o dorso nem a estrutura óssea. A intervenção é mais breve e a recuperação costuma ser mais rápida.</li><li><strong>Cirurgia do desvio do septo nasal:</strong> corrige a curvatura da cartilagem e do osso situados na linha média do nariz. O seu principal objetivo é melhorar a respiração sem alterar o aspeto externo do nariz.</li></ul>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Antes da intervenção",
+      "title": "O processo pré-operatório",
+      "body": "A fase pré-operatória é fundamental para o sucesso da rinoplastia. Na Estecapelli, cada paciente é submetido a uma avaliação detalhada para garantir a segurança e resultados ideais. Antes da intervenção são realizados os seguintes passos:",
+      "items": [
+        { "label": "Avaliação dos antecedentes médicos e do estado de saúde atual do paciente" },
+        { "label": "Conversa sobre as expectativas estéticas e os resultados pretendidos" },
+        { "label": "Exame da estrutura nasal interna e externa" },
+        { "label": "Análises de sangue e avaliação anestésica" },
+        { "label": "Fotografias médicas para a análise e o planeamento cirúrgico" },
+        { "label": "Suspensão temporária dos medicamentos anticoagulantes conforme as indicações médicas" },
+        { "label": "Evitar o álcool e o tabaco antes da intervenção para favorecer uma correta cicatrização" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A operação",
+      "title": "Como se realiza a rinoplastia?",
+      "body": "<p>As principais fases da intervenção são:</p><ol><li>Administração da anestesia</li><li>Realização das incisões dentro ou fora do nariz</li><li>Remodelação da cartilagem e da estrutura óssea</li><li>Correção das vias respiratórias, se necessária</li><li>Definição estética da ponta nasal</li><li>Encerramento das incisões e colocação de uma tala</li></ol><p>A maioria dos pacientes tem alta no mesmo dia ou no dia seguinte à intervenção.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Depois da intervenção",
+      "title": "Recuperação após a rinoplastia",
+      "lead": "Uma visão geral das etapas de recuperação após uma rinoplastia.",
+      "items": [
+        { "time": "Primeiras 24 horas", "title": "Inflamação ligeira", "body": "Podem surgir desconforto ligeiro e inflamação." },
+        { "time": "Primeira semana", "title": "Os hematomas diminuem", "body": "A maioria dos hematomas começa a desaparecer gradualmente." },
+        { "time": "Dia 7", "title": "Remoção da tala", "body": "A tala é habitualmente removida." },
+        { "time": "1 mês", "title": "Cicatrização avançada", "body": "Observa-se um progresso significativo da cicatrização." },
+        { "time": "6–12 meses", "title": "Forma definitiva", "body": "A forma definitiva do nariz estabiliza gradualmente até completar a sua evolução." }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Informação útil",
+      "title": "Riscos da rinoplastia",
+      "body": "<p>Como qualquer intervenção cirúrgica, a rinoplastia acarreta alguns riscos potenciais, como inflamação, hemorragia temporária, infeção ou dificuldades de cicatrização. Estas complicações são pouco frequentes e podem ser consideravelmente reduzidas quando a operação é realizada por cirurgiões experientes com técnicas adequadas.</p>"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reais",
+      "title": "Rinoplastia: antes e depois",
+      "lead": "Descubra os resultados refinados e equilibrados dos nossos pacientes, sempre em harmonia com o restante rosto. Cada intervenção é planeada segundo as características individuais para oferecer um aspeto natural.",
+      "cta": { "label": "Ver toda a galeria" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informação útil",
+      "title": "Perguntas frequentes sobre rinoplastia",
+      "items": [
+        {
+          "question": "Sou um bom candidato à rinoplastia?",
+          "answer": "<p>Os candidatos ideais são adultos que concluíram o crescimento facial, geralmente a partir do final da adolescência, gozam de boa saúde e estão insatisfeitos com a forma, o tamanho ou as proporções do nariz, ou então apresentam dificuldades respiratórias. É importante ter expectativas realistas: o objetivo é conseguir um nariz adequado ao seu rosto, e não reproduzir o de outra pessoa. Durante a consulta, o cirurgião avalia a estrutura nasal, o tipo de pele e a respiração para confirmar a elegibilidade e planear o resultado em conjunto.</p>"
+        },
+        {
+          "question": "Qual é a diferença entre a rinoplastia aberta e a fechada?",
+          "answer": "<p>Na rinoplastia fechada todas as incisões são realizadas dentro das narinas, pelo que não ficam cicatrizes externas; esta abordagem é adequada a correções mais limitadas. A rinoplastia aberta inclui uma pequena incisão na columela, entre as narinas, e oferece ao cirurgião maior visibilidade em operações complexas ou de revisão. A cicatriz é discreta e costuma tornar-se quase impercetível após a cicatrização. O cirurgião recomendará a abordagem mais fiável para a sua anatomia.</p>"
+        },
+        {
+          "question": "Que anestesia é utilizada e quanto tempo dura a intervenção?",
+          "answer": "<p>A rinoplastia é realizada sob anestesia geral, pelo que não sentirá nada durante a operação. A intervenção costuma durar entre duas e três horas, consoante a técnica e a eventual correção funcional associada. Após os controlos de rotina, poderá normalmente regressar a sua casa ou ao hotel no mesmo dia ou após uma noite de internamento.</p>"
+        },
+        {
+          "question": "Quanto tempo duram a recuperação e a estadia na Turquia?",
+          "answer": "<p>A maioria dos pacientes permanece na Turquia cerca de sete dias, até que a tala seja removida e seja realizada a revisão antes do regresso. O gesso ou tala mantém-se durante a primeira semana, enquanto a inflamação e os hematomas à volta dos olhos diminuem em uma a duas semanas. Regra geral, é possível retomar o trabalho e uma rotina ligeira em 10–14 dias, embora o nariz continue a definir-se gradualmente.</p>"
+        },
+        {
+          "question": "Quando verei o resultado definitivo?",
+          "answer": "<p>Já notará uma diferença evidente ao remover a tala, mas o nariz continuará a assentar à medida que a inflamação profunda diminuir. Grande parte da nova forma será visível após alguns meses; o resultado definitivo, totalmente refinado sobretudo na ponta, desenvolve-se durante aproximadamente 6–12 meses. O cirurgião acompanhá-lo-á em cada etapa da recuperação.</p>"
+        },
+        {
+          "question": "A rinoplastia afetará a minha respiração?",
+          "answer": "<p>A rinoplastia não deverá piorar a respiração e, em muitos casos, pode melhorá-la. A correção funcional pode ser combinada com a cirurgia estética para tratar problemas como um septo desviado ou o estreitamento das vias respiratórias, abordando o aspeto e a respiração numa única operação. É importante informar o cirurgião de qualquer congestão nasal ou dificuldade respiratória para que possa avaliá-la e tratá-la.</p>"
+        },
+        {
+          "question": "Os resultados são permanentes e naturais?",
+          "answer": "<p>A rinoplastia oferece resultados permanentes e, quando realizada por mãos experientes, o nariz fica natural e equilibrado com o restante rosto, sem um aspeto artificial. Durante o primeiro ano podem continuar pequenas alterações enquanto a cicatrização se completa. Uma pequena percentagem de pacientes pode optar mais tarde por uma cirurgia de revisão menor, uma possibilidade que o cirurgião explicará com transparência se for pertinente.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Custos",
+      "title": "Preço da rinoplastia",
+      "body": "<p>O preço da rinoplastia varia consoante a técnica utilizada, a extensão da intervenção, as necessidades individuais e a anatomia do paciente. Após uma consulta detalhada é fornecido um orçamento personalizado, garantindo a máxima transparência antes de tomar qualquer decisão.</p>",
+      "cta": { "label": "Solicitar um orçamento personalizado" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Deseja um nariz mais harmonioso com o seu rosto?",
+      "lead": "Faculte-nos alguns dados e a nossa equipa responder-lhe-á com um plano de rinoplastia personalizado e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.",
+      "points": [
+        { "label": "Avaliação gratuita a partir das suas fotografias" },
+        { "label": "Orçamento com tudo incluído, transparente e sem compromisso" },
+        { "label": "Resposta rápida da nossa equipa de apoio ao paciente" },
+        { "label": "Assistência multilingue em todas as etapas" }
+      ],
+      "submit_label": "Solicitar uma consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra mais",
+      "title": "Tratamentos relacionados"
+    }
+  ]
+}

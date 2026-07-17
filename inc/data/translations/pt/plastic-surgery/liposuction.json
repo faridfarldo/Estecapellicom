@@ -1,0 +1,194 @@
+{
+  "source_slug": "liposuction",
+  "slug": "lipoaspiracao",
+  "title": "Lipoaspiração",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Remodelação corporal",
+      "title": "Lipoaspiração",
+      "lead": "Uma moderna intervenção de remodelação corporal que reduz os depósitos de gordura localizada e resistente para redefinir a silhueta de forma harmoniosa.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Fale connosco no WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A intervenção",
+      "title": "O que é a lipoaspiração?",
+      "body": "<p>A lipoaspiração é uma moderna intervenção de remodelação corporal concebida para reduzir os depósitos de gordura localizada e redefinir os contornos. Durante o procedimento, as células adiposas são removidas cirurgicamente, reduzindo de forma permanente o seu número na zona tratada. Por este motivo, a lipoaspiração representa uma solução eficaz e fiável, com resultados que podem durar muitos anos.</p><p>As técnicas utilizadas na Estecapelli vão além de simplesmente emagrecer o corpo e ajudam a obter um aspeto mais harmonioso e proporcionado.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Zonas tratáveis",
+      "title": "Que zonas podem ser remodeladas com lipoaspiração?",
+      "body": "A lipoaspiração pode ser realizada em diferentes zonas onde a gordura tende a acumular-se e resiste a outros métodos. As áreas tratadas com maior frequência incluem:",
+      "items": [
+        { "label": "Abdómen e barriga" },
+        { "label": "Cintura e flancos" },
+        { "label": "Ancas e culotes" },
+        { "label": "Face interna e externa das coxas" },
+        { "label": "Costas" },
+        { "label": "Braços e axilas" },
+        { "label": "Tórax, também para tratar a ginecomastia masculina" },
+        { "label": "Papada e zona submandibular" }
+      ],
+      "footer": "A lipoaspiração não é um método para emagrecer: elimina depósitos de gordura localizada que persistem apesar da perda geral de peso."
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Técnicas",
+      "title": "Tipos de lipoaspiração",
+      "lead": "Na Estecapelli utilizamos diferentes técnicas para alcançar os seus objetivos de remodelação corporal. O método é escolhido consoante a distribuição da gordura, a elasticidade da pele e o resultado pretendido. Conheça as principais opções.",
+      "items": [
+        {
+          "eyebrow": "Técnica",
+          "title": "Lipoaspiração VASER",
+          "body": "<p>A lipoaspiração VASER é uma técnica avançada que utiliza energia ultrassónica para emulsionar as células adiposas antes de as extrair, permitindo uma remodelação precisa e delicada.</p><p><strong>Vantagens:</strong></p><ul><li>Atua sobre a gordura com precisão</li><li>É minimamente invasiva e reduz o traumatismo dos tecidos</li><li>Oferece resultados uniformes e naturais</li><li>Permite uma recuperação mais rápida do que a lipoaspiração tradicional</li></ul>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "Lipoaspiração laser",
+          "body": "<p>A lipoaspiração laser utiliza energia laser para decompor as células adiposas e, ao mesmo tempo, favorece a retração da pele para obter contornos mais uniformes.</p><p><strong>Vantagens:</strong></p><ul><li>Dissolve a gordura com precisão</li><li>Favorece a retração cutânea</li><li>É pouco invasiva e permite uma recuperação rápida</li><li>Oferece resultados uniformes e naturais</li></ul>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "Lipoaspiração tumescente",
+          "body": "<p>A lipoaspiração tumescente consiste em infiltrar uma solução específica na zona a tratar antes de extrair a gordura para reduzir a hemorragia e os hematomas. Atualmente costuma ser combinada com outras técnicas para otimizar o resultado.</p>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "PAL, lipoaspiração assistida",
+          "body": "<p>A PAL, ou lipoaspiração assistida por potência, utiliza cânulas vibratórias que facilitam a decomposição e a extração da gordura, tornando o procedimento mais rápido e controlado.</p><p><strong>Vantagens:</strong></p><ul><li>Extração de gordura mais simples e rápida</li><li>Menor esforço para o cirurgião e maior precisão</li><li>Técnica minimamente invasiva com resultados mais uniformes</li><li>Possibilidade de a combinar com outras técnicas</li></ul>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "Lipoaspiração tradicional",
+          "body": "<p>A lipoaspiração tradicional é uma técnica convencional de extração de gordura realizada manualmente, sem dispositivos de energia. Continua a ser uma solução adequada em casos selecionados.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Candidatos",
+      "title": "Quem pode submeter-se a uma lipoaspiração?",
+      "body": "Pode ser um bom candidato à lipoaspiração quem cumpra um ou vários dos seguintes critérios:",
+      "items": [
+        { "label": "Adultos que concluíram o seu desenvolvimento" },
+        { "label": "Pessoas com zonas de gordura resistente que não melhoram com dieta e exercício" },
+        { "label": "Quem deseja definir melhor os contornos corporais" },
+        { "label": "Pessoas sem doenças incompatíveis com a intervenção" },
+        { "label": "Pessoas com boa elasticidade cutânea" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Importante",
+      "title": "Quando a lipoaspiração não é recomendada",
+      "body": "<ul><li>Durante a gravidez e a amamentação</li><li>Na presença de doenças crónicas graves</li><li>Em caso de distúrbios de coagulação</li><li>Na presença de obesidade grave</li></ul>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Antes da intervenção",
+      "title": "Preparação para a lipoaspiração",
+      "body": "<p>Na Estecapelli, o processo pré-operatório é gerido com grande atenção para garantir um planeamento cirúrgico seguro e personalizado.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A operação",
+      "title": "Como se realiza a lipoaspiração?",
+      "body": "<p>A lipoaspiração é realizada sob anestesia local ou geral. A escolha da técnica depende da quantidade e das características da gordura a extrair e da extensão da zona tratada.</p><p><strong>Fases gerais:</strong></p><ol><li>Realização de pequenas incisões</li><li>Decomposição da gordura com a tecnologia mais adequada, como VASER ou laser</li><li>Extração das células adiposas através de cânulas</li><li>Definição e modelação da zona</li><li>Encerramento das incisões deixando cicatrizes mínimas</li></ol><p>Duração: de 30 minutos a 3 horas, consoante a extensão da intervenção.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Depois da intervenção",
+      "title": "Recuperação após a lipoaspiração",
+      "lead": "Na Estecapelli damos prioridade ao seu conforto e acompanhamos cuidadosamente cada etapa da recuperação.",
+      "items": [
+        { "time": "Primeiros dias", "title": "Cinta de compressão", "body": "Podem surgir desconforto ligeiro, hematomas e inflamação. Começa a utilizar-se a cinta de compressão." },
+        { "time": "Primeira semana", "title": "Regresso à vida quotidiana", "body": "É possível retomar gradualmente as atividades diárias. Recomendam-se passeios e movimentos suaves." },
+        { "time": "2–3 semanas", "title": "A inflamação diminui", "body": "A inflamação reduz-se consideravelmente e é possível retomar gradualmente as atividades desportivas." },
+        { "time": "6 semanas–3 meses", "title": "Os contornos definem-se", "body": "Os novos contornos corporais começam a notar-se com maior clareza." },
+        { "time": "3–6 meses", "title": "Resultados definitivos", "body": "O resultado definitivo torna-se plenamente visível." }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Depois da intervenção",
+      "title": "Recomendações após a lipoaspiração",
+      "body": "Para favorecer a recuperação e proteger o resultado, tenha em conta estas indicações:",
+      "items": [
+        { "label": "Utilize regularmente a cinta de compressão recomendada" },
+        { "label": "Evite durante algum tempo as atividades desportivas intensas" },
+        { "label": "Evite os banhos quentes, a sauna e ambientes semelhantes" },
+        { "label": "Beba bastante água e mantenha uma alimentação equilibrada" }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reais",
+      "title": "Lipoaspiração: antes e depois",
+      "lead": "Descubra os contornos mais uniformes e definidos alcançados pelos nossos pacientes. Cada resultado é personalizado segundo o corpo de cada pessoa e a gordura é removida com precisão para obter uma forma natural e proporcionada.",
+      "cta": { "label": "Ver toda a galeria" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informação útil",
+      "title": "Perguntas frequentes sobre lipoaspiração",
+      "items": [
+        {
+          "question": "A lipoaspiração é um método para perder peso?",
+          "answer": "<p>Não: a lipoaspiração é uma intervenção de remodelação corporal, não um método para emagrecer. Elimina depósitos de gordura localizada resistentes à dieta e ao exercício para afinar a silhueta, mas a alteração na balança costuma ser limitada. Oferece os melhores resultados quando o peso é saudável e estável, e não constitui um tratamento para a obesidade.</p>"
+        },
+        {
+          "question": "Que técnica é mais adequada para mim: VASER, laser, PAL, tumescente ou tradicional?",
+          "answer": "<p>O método mais indicado depende da zona, da quantidade e da consistência da gordura e da elasticidade da pele. O VASER utiliza ultrassons para definir com precisão as zonas tratadas; o laser favorece também a retração cutânea; a PAL facilita a extração de maiores volumes; a técnica tumescente costuma ser combinada com as restantes para reduzir a hemorragia e os hematomas. Após a avaliação, o cirurgião recomendará a técnica ou combinação que possa oferecer o resultado mais uniforme e natural.</p>"
+        },
+        {
+          "question": "Que zonas do corpo podem ser tratadas?",
+          "answer": "<p>A lipoaspiração pode tratar a maioria das zonas onde se acumula gordura resistente: abdómen, cintura, flancos, ancas, coxas, joelhos, braços, costas, zona do soutien, queixo e pescoço. Muitas vezes é possível intervir em várias zonas durante a mesma sessão e combinar o procedimento com outras intervenções, como a abdominoplastia ou o BBL. Durante a consulta, o cirurgião confirmará que zonas podem ser tratadas em segurança.</p>"
+        },
+        {
+          "question": "Que anestesia é utilizada e o procedimento é doloroso?",
+          "answer": "<p>Consoante o número e o tamanho das zonas, a lipoaspiração é realizada sob anestesia local ou geral para o manter confortável durante todo o procedimento. A intervenção costuma durar entre cerca de 30 minutos e 3 horas. Durante os primeiros dias ou semanas pode haver desconforto, hematomas e inflamação, que são bem controlados com a medicação prescrita e a cinta de compressão.</p>"
+        },
+        {
+          "question": "Quanto tempo duram a recuperação e a estadia na Turquia?",
+          "answer": "<p>A maioria dos pacientes permanece na Turquia alguns dias, incluindo uma revisão antes do regresso. A recuperação inicial requer aproximadamente 1–2 semanas, após as quais muitos retomam um trabalho de escritório; a cinta de compressão é utilizada durante várias semanas para favorecer a cicatrização e uniformizar o contorno. O resultado define-se gradualmente à medida que a inflamação diminui e é habitualmente visível em 3–6 meses.</p>"
+        },
+        {
+          "question": "Os resultados são permanentes e naturais?",
+          "answer": "<p>As células adiposas removidas através de lipoaspiração não voltam a formar-se, pelo que as zonas tratadas permanecem mais estilizadas a longo prazo. No entanto, um aumento importante de peso no futuro pode aumentar as células restantes noutras zonas; manter um peso estável protege o resultado. Quando um cirurgião experiente utiliza a técnica adequada, o contorno fica uniforme, equilibrado e natural.</p>"
+        },
+        {
+          "question": "Quando poderei retomar o exercício?",
+          "answer": "<p>Recomenda-se caminhar devagar desde os primeiros dias para favorecer a circulação e a recuperação. As atividades ligeiras podem ser retomadas durante as duas primeiras semanas; o exercício intenso, o levantamento de pesos e os treinos de alto impacto devem aguardar cerca de 4–6 semanas, assim que o cirurgião confirmar uma cicatrização completa.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Custos",
+      "title": "Preço da lipoaspiração",
+      "body": "<p>O preço da lipoaspiração depende de vários fatores:</p><ul><li>Quantidade de gordura a extrair</li><li>Número de zonas a tratar</li><li>Técnica utilizada, como VASER, laser ou tradicional</li><li>Duração da intervenção</li><li>Necessidades e objetivos do paciente</li></ul><p>O orçamento mais preciso é definido após uma consulta online com os especialistas da Estecapelli.</p>",
+      "cta": { "label": "Solicitar um orçamento personalizado" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Deseja contornos mais definidos?",
+      "lead": "Faculte-nos alguns dados e a nossa equipa responder-lhe-á com um plano de lipoaspiração personalizado e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.",
+      "points": [
+        { "label": "Avaliação gratuita a partir das suas fotografias" },
+        { "label": "Orçamento com tudo incluído, transparente e sem compromisso" },
+        { "label": "Resposta rápida da nossa equipa de apoio ao paciente" },
+        { "label": "Assistência multilingue em todas as etapas" }
+      ],
+      "submit_label": "Solicitar uma consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra mais",
+      "title": "Tratamentos relacionados"
+    }
+  ]
+}
