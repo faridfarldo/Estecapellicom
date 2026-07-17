@@ -35,6 +35,7 @@ require get_template_directory() . '/inc/acf-field-groups.php';
 require get_template_directory() . '/inc/blog-seed.php';
 require get_template_directory() . '/inc/engine.php';
 require get_template_directory() . '/inc/acfml-layout-guard.php';
+require get_template_directory() . '/inc/wpml-native-editor.php';
 require get_template_directory() . '/inc/before-after.php';
 require get_template_directory() . '/inc/toc.php';
 require get_template_directory() . '/inc/redirects.php';
