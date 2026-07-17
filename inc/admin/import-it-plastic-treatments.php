@@ -117,11 +117,17 @@ function estecapelli_it_plastic_category() {
 }
 
 /**
- * Run the complete Italian Plastic Surgery import.
+ * Run the Italian Plastic Surgery import.
  *
+ * @param string $source_slug Import only this English source; empty imports all.
  * @return array<string,int>|WP_Error Source slug => Italian post ID.
  */
-function estecapelli_run_it_plastic_import() {
+function estecapelli_run_it_plastic_import( $source_slug = '' ) {
+	$source_slug = (string) $source_slug;
+	if ( '' !== $source_slug && ! isset( estecapelli_it_plastic_manifest()[ $source_slug ] ) ) {
+		return new WP_Error( 'it_plastic_invalid_source', sprintf( 'Unknown Italian Plastic Surgery source: %s.', $source_slug ) );
+	}
+
 	if ( ! function_exists( 'update_field' ) ) {
 		return new WP_Error( 'it_plastic_acf_missing', 'ACF is required for the Italian Plastic Surgery import.' );
 	}
@@ -145,6 +151,10 @@ function estecapelli_run_it_plastic_import() {
 
 	$imported = array();
 	foreach ( $translations as $translation ) {
+		if ( '' !== $source_slug && $source_slug !== $translation['source_slug'] ) {
+			continue;
+		}
+
 		$result = estecapelli_it_hair_import_one( $translation, $italian_term_id, 'estecapelli_it_plastic_source_seed' );
 		if ( is_wp_error( $result ) ) {
 			return new WP_Error( $result->get_error_code(), sprintf( '%s: %s', $translation['source_slug'], $result->get_error_message() ) );

@@ -559,6 +559,71 @@ function estecapelli_hijacked_treatment_sources() {
 	return $hijacked;
 }
 
+/**
+ * Report every post carrying a treatment slug that is shared across languages.
+ *
+ * bbl, tricholab and plastic-surgery-overview keep one slug in all seven
+ * languages, so their records cannot be told apart by slug and a wrong WPML
+ * language silently sends the public URL to another language's post. This lists
+ * the raw truth for those slugs so a mismatch is visible rather than inferred.
+ *
+ * @return array<string,array<string,mixed>> Shared slug => group and post rows.
+ */
+function estecapelli_shared_slug_treatment_report() {
+	global $wpdb;
+
+	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) && ! defined( 'WPML_VERSION' ) ) {
+		return array();
+	}
+
+	$element_type = apply_filters( 'wpml_element_type', 'treatment' );
+	$report       = array();
+
+	foreach ( estecapelli_indexed_treatment_slugs() as $source_slug => $by_language ) {
+		// Only slugs that are identical in every language are ambiguous.
+		if ( count( array_unique( $by_language ) ) > 1 ) {
+			continue;
+		}
+
+		$post_ids = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts}
+				 WHERE post_name = %s AND post_type = 'treatment' AND post_status <> 'trash'
+				 ORDER BY ID ASC",
+				$source_slug
+			)
+		);
+
+		$rows = array();
+		$trid = 0;
+		foreach ( array_map( 'intval', (array) $post_ids ) as $post_id ) {
+			$details = apply_filters(
+				'wpml_element_language_details',
+				null,
+				array(
+					'element_id'   => $post_id,
+					'element_type' => 'treatment',
+				)
+			);
+			$language = (string) estecapelli_it_hair_detail( $details, 'language_code' );
+			$trid     = $trid ?: (int) estecapelli_it_hair_detail( $details, 'trid' );
+
+			$rows[] = array(
+				'id'       => $post_id,
+				'language' => $language ? $language : '(none)',
+				'title'    => (string) get_post_field( 'post_title', $post_id ),
+			);
+		}
+
+		$report[ $source_slug ] = array(
+			'posts' => $rows,
+			'group' => $trid ? estecapelli_wpml_describe_group_raw( $trid, $element_type ) : '(no translation group)',
+		);
+	}
+
+	return $report;
+}
+
 function estecapelli_render_treatments_importer() {
 
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -666,6 +731,26 @@ function estecapelli_render_treatments_importer() {
 				$messages[] = array(
 					'type' => 'success',
 					'text' => sprintf( 'Imported or repaired Polish Plastic Surgery translation: %s.', esc_html( $source_slug ) ),
+				);
+			}
+		}
+
+		// Italian Plastic Surgery translations, one page per request.
+		$it_plastic_prefix = '__it_plastic_treatment__';
+		if ( 0 === strpos( $target, $it_plastic_prefix ) && function_exists( 'estecapelli_run_it_plastic_import' ) ) {
+			$source_slug = substr( $target, strlen( $it_plastic_prefix ) );
+			$result      = estecapelli_run_it_plastic_import( $source_slug );
+			if ( is_wp_error( $result ) ) {
+				update_option( 'estecapelli_it_plastic_import_error', $result->get_error_message(), false );
+				$messages[] = array(
+					'type' => 'error',
+					'text' => sprintf( 'Italian Plastic Surgery translations - %s', esc_html( $result->get_error_message() ) ),
+				);
+			} else {
+				delete_option( 'estecapelli_it_plastic_import_error' );
+				$messages[] = array(
+					'type' => 'success',
+					'text' => sprintf( 'Imported or repaired Italian Plastic Surgery translation: %s.', esc_html( $source_slug ) ),
 				);
 			}
 		}
@@ -837,6 +922,45 @@ function estecapelli_render_treatments_importer() {
 										<?php esc_html_e( 'Repair English source', 'estecapelli' ); ?>
 									</button>
 								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endif; ?>
+
+			<?php $shared_slug_report = estecapelli_shared_slug_treatment_report(); ?>
+			<?php if ( $shared_slug_report ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Treatments sharing one slug in every language', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'These slugs are identical in all languages, so their posts can only be told apart by their WPML language. Every language should appear exactly once, on its own post ID. A language that is missing here has no page, and two languages on one post ID means an import took another language\'s post over.', 'estecapelli' ); ?>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:22%;"><?php esc_html_e( 'Slug', 'estecapelli' ); ?></th>
+							<th style="width:44%;"><?php esc_html_e( 'Posts using it', 'estecapelli' ); ?></th>
+							<th style="width:34%;"><?php esc_html_e( 'WPML group', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( $shared_slug_report as $shared_slug => $shared_state ) : ?>
+							<tr>
+								<td><code><?php echo esc_html( $shared_slug ); ?></code></td>
+								<td>
+									<?php if ( ! $shared_state['posts'] ) : ?>
+										<span style="color:#888;"><?php esc_html_e( 'No post uses this slug', 'estecapelli' ); ?></span>
+									<?php else : ?>
+										<?php foreach ( $shared_state['posts'] as $shared_post ) : ?>
+											<div>
+												<code><?php echo esc_html( $shared_post['language'] ); ?></code>
+												— <?php esc_html_e( 'post', 'estecapelli' ); ?> <?php echo (int) $shared_post['id']; ?>
+												<a href="<?php echo esc_url( get_edit_post_link( $shared_post['id'] ) ); ?>"><?php echo esc_html( $shared_post['title'] ); ?></a>
+											</div>
+										<?php endforeach; ?>
+									<?php endif; ?>
+								</td>
+								<td><code style="font-size:11px;"><?php echo esc_html( $shared_state['group'] ); ?></code></td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -1161,6 +1285,56 @@ function estecapelli_render_treatments_importer() {
 								</td>
 								<td>
 									<button type="submit" name="estecapelli_action" value="<?php echo esc_attr( '__pl_hair_treatment__' . $source_slug ); ?>" class="button button-primary">
+										<?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?>
+									</button>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endif; ?>
+
+			<?php if ( function_exists( 'estecapelli_it_plastic_manifest' ) ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Italian Plastic Surgery translations', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'Imports one Italian treatment per request to stay within the server execution limit. Each action is idempotent and safe to run again.', 'estecapelli' ); ?>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:28%;"><?php esc_html_e( 'English source', 'estecapelli' ); ?></th>
+							<th style="width:32%;"><?php esc_html_e( 'Italian slug', 'estecapelli' ); ?></th>
+							<th style="width:24%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+							<th style="width:16%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( estecapelli_it_plastic_manifest() as $source_slug => $italian_slug ) :
+							$source_id    = estecapelli_source_post_id( $source_slug, 'treatment' );
+							$italian_id   = $source_id ? (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'it' ) : 0;
+							$needs_repair = $italian_id && (
+								get_post_meta( $italian_id, '_icl_lang_duplicate_of', true ) ||
+								get_post_field( 'post_title', $italian_id ) === get_post_field( 'post_title', $source_id )
+							);
+							?>
+							<tr>
+								<td><code><?php echo esc_html( $source_slug ); ?></code></td>
+								<td><code><?php echo esc_html( $italian_slug ); ?></code></td>
+								<td>
+									<?php if ( $needs_repair ) : ?>
+										<span style="color:#b26200;"><?php esc_html_e( 'Exists - needs repair', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $italian_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+									<?php elseif ( $italian_id && $italian_id !== $source_id ) : ?>
+										<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $italian_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+										| <a href="<?php echo esc_url( get_permalink( $italian_id ) ); ?>" target="_blank"><?php esc_html_e( 'view', 'estecapelli' ); ?></a>
+									<?php else : ?>
+										<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+									<?php endif; ?>
+								</td>
+								<td>
+									<button type="submit" name="estecapelli_action" value="<?php echo esc_attr( '__it_plastic_treatment__' . $source_slug ); ?>" class="button button-primary">
 										<?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?>
 									</button>
 								</td>
