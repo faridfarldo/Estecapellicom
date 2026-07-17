@@ -1,0 +1,116 @@
+{
+  "source_slug": "vita-treatment",
+  "slug": "tratamiento-vita",
+  "title": "Tratamiento VITA",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Método exclusivo de Estecapelli",
+      "title": "Tratamiento VITA",
+      "lead": "El protocolo exclusivo de Estecapelli revitaliza el cuero cabelludo, nutre los folículos y acelera la recuperación. Un sérum derivado de vitaminas protege la vitalidad de los injertos antes y durante el trasplante, maximizando su supervivencia y crecimiento.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Escríbanos por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "El método",
+      "title": "¿Qué es el protocolo VITA?",
+      "body": "<p>El protocolo VITA es un tratamiento avanzado en tres etapas, desarrollado en exclusiva por los especialistas médicos de Estecapelli para maximizar la supervivencia de los injertos y mejorar el éxito global del trasplante capilar. Es totalmente compatible con Sapphire FUE y DHI y combina una fórmula altamente concentrada de aminoácidos, vitaminas, factores de crecimiento y ATP para nutrir y proteger los folículos durante todo el procedimiento.</p><p>En la primera etapa se aplica al cuero cabelludo un sérum VITA rico en nutrientes a través de microcanales creados con un dermaroller. Así, los principios activos penetran profundamente y preparan la zona receptora para la implantación. En la segunda etapa, después de la extracción, los injertos se conservan en el sérum VITA y se tratan con vapor de aire frío y solución salina para mantenerlos hidratados, reducir el estrés celular y aumentar su supervivencia antes de la implantación.</p><p>Como etapa final, inmediatamente después del procedimiento se realiza una sesión de PRP, plasma rico en plaquetas. Los factores de crecimiento del propio paciente ayudan a acelerar la recuperación, mejorar la retención de los injertos y promover un crecimiento más fuerte y saludable.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La ciencia",
+      "title": "La técnica exclusiva de Estecapelli — El poder VITA derivado de vitaminas",
+      "body": "<p>El periodo durante el cual los folículos permanecen fuera del cuerpo es un factor crítico que influye directamente en el éxito de la intervención. Después de la extracción se interrumpe el suministro de sangre y nutrientes esenciales, por lo que los injertos comienzan a debilitarse progresivamente.</p><p>El protocolo VITA actúa precisamente durante estas etapas delicadas y proporciona a los injertos el apoyo que necesitan. Gracias a una solución vitamínica especialmente formulada y a la aplicación de vapor de aire frío, contribuye de forma significativa a conservar la vitalidad de los injertos tanto en FUE como en DHI.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Por qué es importante",
+      "title": "Ventajas del protocolo VITA",
+      "body": "Las vitaminas, minerales, factores de crecimiento y ATP presentes en el sérum VITA fortalecen los folículos y favorecen un desarrollo más vigoroso:",
+      "items": [
+        { "label": "Protege la vitalidad de los injertos fuera del cuerpo" },
+        { "label": "Aumenta la supervivencia y retención de los injertos" },
+        { "label": "Nutre los folículos con vitaminas, minerales y ATP" },
+        { "label": "Acelera el proceso de recuperación" },
+        { "label": "Se integra tanto con FUE como con DHI" },
+        { "label": "Ideal para folículos débiles, cabello fino o zonas donantes limitadas" }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "El procedimiento",
+      "title": "¿Cómo se aplica el protocolo VITA?",
+      "lead": "Un protocolo en tres etapas que se integra perfectamente en un trasplante Sapphire FUE o DHI. Consulte cada etapa a continuación.",
+      "items": [
+        {
+          "eyebrow": "Etapa 1",
+          "title": "Microneedling y sérum nutritivo",
+          "body": "<p>Se crean microcanales con un dermaroller y se aplica un sérum con una alta concentración de vitaminas, aminoácidos, factores de crecimiento y minerales para estimular la circulación sanguínea. La zona donante queda preparada de forma óptima para una extracción uniforme y bien nutrida, mientras que los microcanales permiten que la zona receptora absorba con mayor eficacia el complejo vitamínico concentrado.</p>"
+        },
+        {
+          "eyebrow": "Etapa 2",
+          "title": "Sérum de vapor frío sobre los injertos",
+          "body": "<p>El mismo sérum nutritivo se mezcla con solución salina en el recipiente de recogida y se aplica a los injertos mediante un sistema de vapor frío. El periodo en el que los folículos permanecen fuera del cuerpo es el momento más delicado: protegerlos durante esta fase evita su deterioro, maximiza su supervivencia y aumenta el potencial de crecimiento después de la implantación.</p>"
+        },
+        {
+          "eyebrow": "Etapa 3",
+          "title": "PRP después del procedimiento",
+          "body": "<p>El PRP, plasma rico en plaquetas, se aplica como etapa final inmediatamente después del trasplante para favorecer la recuperación y mejorar el resultado global. Se obtiene una pequeña muestra de sangre y se procesa en una centrífuga para separar el plasma con una alta concentración de factores de crecimiento naturales. A continuación, el PRP se inyecta con precisión en las zonas tratadas del cuero cabelludo, donde ayuda a acelerar la reparación de los tejidos, reducir la inflamación, mejorar la circulación y crear un entorno óptimo para los nuevos injertos. Al estimular la recuperación y nutrir los folículos, contribuye a una mayor retención de los injertos, una recuperación más rápida y un crecimiento más sano y denso.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Información útil",
+      "title": "Tratamiento VITA — Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿VITA es un tratamiento independiente?",
+          "answer": "<p>No. VITA es un protocolo que potencia el trasplante capilar, no un tratamiento independiente. Se aplica durante Sapphire FUE o DHI para nutrir el cuero cabelludo y proteger los injertos, ayudando a mejorar su supervivencia y el resultado global.</p>"
+        },
+        {
+          "question": "¿Por qué es tan importante la supervivencia de los injertos?",
+          "answer": "<p>El tiempo que los folículos pasan fuera del cuerpo es uno de los factores que más influyen en el éxito del trasplante. Una vez extraídos, los injertos dejan de recibir sangre y nutrientes y comienzan a debilitarse. Al nutrir y proteger en frío los folículos durante esta fase, VITA ayuda a que sobreviva y crezca un mayor número de injertos, favoreciendo un resultado más denso y completo.</p>"
+        },
+        {
+          "question": "¿Quién se beneficia más del protocolo VITA?",
+          "answer": "<p>El protocolo puede resultar útil en casi cualquier trasplante, pero ofrece una ventaja especial a los pacientes con folículos débiles, cabello fino o una zona donante limitada, donde cada injerto es valioso. Después de valorar la calidad del cabello, la densidad donante y el plan quirúrgico, el especialista le indicará si VITA aporta un beneficio concreto en su caso.</p>"
+        },
+        {
+          "question": "¿VITA es compatible tanto con FUE como con DHI?",
+          "answer": "<p>Sí. El protocolo VITA es totalmente compatible con Sapphire FUE y DHI y se integra sin modificar la técnica quirúrgica elegida. Su función es apoyar los folículos antes, durante e inmediatamente después de la implantación, independientemente del método utilizado.</p>"
+        },
+        {
+          "question": "¿VITA modifica la recuperación o causa efectos secundarios?",
+          "answer": "<p>Al nutrir el cuero cabelludo y los injertos, el protocolo favorece una recuperación más rápida y saludable. Utiliza vitaminas, minerales, aminoácidos y factores de crecimiento compatibles con el organismo, y no añade un tiempo de recuperación significativo ni efectos secundarios específicos aparte de los normalmente asociados al trasplante. Aun así, la idoneidad se confirma durante la evaluación médica.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reales",
+      "title": "Trasplantes con protocolo VITA — Antes y después",
+      "lead": "Vea la densidad y naturalidad conseguidas por nuestros pacientes cuando el protocolo VITA complementa un trasplante Sapphire FUE o DHI: una mayor supervivencia de los injertos se traduce en un cabello más denso y saludable.",
+      "cta": { "label": "Ver la galería completa" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "¿Desea añadir VITA a su trasplante?",
+      "lead": "Comparta algunos datos con nosotros y nuestro equipo le responderá con un plan personalizado, le explicará cómo el protocolo VITA puede mejorar la supervivencia de los injertos y le enviará un presupuesto integral sin compromiso, normalmente en pocas horas.",
+      "points": [
+        { "label": "Evaluación gratuita de injertos a partir de sus fotografías" },
+        { "label": "Máxima supervivencia de los injertos con el protocolo VITA" },
+        { "label": "Respuesta rápida de nuestro equipo especializado en atención al paciente" },
+        { "label": "Asistencia multilingüe en cada etapa" }
+      ],
+      "submit_label": "Solicitar una consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra más",
+      "title": "Tratamientos relacionados"
+    }
+  ]
+}

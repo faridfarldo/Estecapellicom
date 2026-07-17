@@ -1,0 +1,161 @@
+{
+  "source_slug": "female-hair-transplant",
+  "slug": "trasplante-capilar-femenino",
+  "title": "Trasplante capilar femenino",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Diseñado especialmente para mujeres",
+      "title": "Trasplante capilar femenino",
+      "lead": "Un tratamiento específico para mujeres, con resultados densos y naturales sin necesidad de rasurado. Cada injerto se coloca cuidadosamente para integrarse perfectamente con el cabello existente y conservar su estilo durante todo el proceso.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Escríbanos por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "El enfoque",
+      "title": "¿Qué es el trasplante capilar femenino?",
+      "body": "<p>El trasplante capilar femenino es un procedimiento especializado diseñado para corregir la caída y el debilitamiento del cabello en mujeres, con resultados permanentes y naturales. A diferencia del trasplante masculino, la técnica se adapta prestando especial atención a la estructura del cabello, los patrones de crecimiento y la estética de la línea frontal femenina.</p><p>En Estecapelli, cada plan de tratamiento se personaliza por completo para que el resultado se integre armoniosamente con su cabello natural. Nuestros especialistas le acompañan desde la primera consulta hasta los cuidados posoperatorios para garantizar una recuperación tranquila y un resultado acorde con sus expectativas.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Por qué ocurre",
+      "title": "Causas de la caída del cabello en mujeres",
+      "body": "Comprender la causa de la caída es el primer paso, y el más importante, para encontrar la solución adecuada. Entre las causas más frecuentes se encuentran:",
+      "items": [
+        { "label": "Cambios hormonales, embarazo, posparto y menopausia" },
+        { "label": "Predisposición genética y antecedentes familiares" },
+        { "label": "Estrés y factores emocionales" },
+        { "label": "Carencias nutricionales de hierro, biotina, zinc y vitaminas del grupo B" },
+        { "label": "Factores ambientales como contaminación, radiación UV y sustancias químicas" },
+        { "label": "Afecciones médicas como trastornos tiroideos, SOP y alopecia" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La técnica más adecuada",
+      "title": "Las mejores técnicas de trasplante capilar para mujeres",
+      "body": "<p>En Estecapelli, la técnica que recomendamos con mayor frecuencia a las mujeres es el trasplante DHI. Nuestras pacientes valoran especialmente DHI porque permite implantar los folículos directamente sin rasurar el cabello existente, por lo que resulta ideal para quienes desean conservar su aspecto durante todo el proceso.</p><p><strong>Ventajas de DHI:</strong> control preciso de la angulación y dirección, mayor densidad de implantación, ausencia de rasurado completo, cicatrices mínimas, recuperación más rápida y menor riesgo de dañar los folículos existentes.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "El proceso",
+      "title": "Etapas del trasplante capilar femenino",
+      "lead": "Desde la primera consulta hasta el crecimiento final, cada etapa se gestiona cuidadosamente y se adapta a la estructura del cabello y los objetivos estéticos de la paciente. Consulte cada etapa a continuación.",
+      "items": [
+        {
+          "eyebrow": "Etapa 1",
+          "title": "Consulta y planificación",
+          "body": "<p>Analizamos detalladamente la caída e identificamos su causa —hormonal, genética o nutricional— para que el plan aborde el problema real. Valoramos la fortaleza de la zona donante, escuchamos sus expectativas y definimos un proceso personalizado con una estimación realista de injertos y la técnica más adecuada para su cabello.</p>"
+        },
+        {
+          "eyebrow": "Etapa 2",
+          "title": "Diseño natural de la línea frontal",
+          "body": "<p>Diseñamos una línea frontal femenina y elegante que armoniza con las proporciones del rostro y la dirección natural del crecimiento. En las mujeres, el objetivo suele ser recuperar densidad y enmarcar el rostro más que reconstruir una línea retraída; por ello, el diseño protege el estilo existente y hace que el resultado sea imperceptible.</p>"
+        },
+        {
+          "eyebrow": "Etapa 3",
+          "title": "Extracción de los folículos",
+          "body": "<p>Los injertos sanos se extraen uno a uno de la zona donante segura situada en la parte posterior del cuero cabelludo mediante micromotores ultrafinos. Con DHI, el tratamiento puede realizarse sin rasurar el cabello existente, conservando su longitud; la zona donante cicatriza rápidamente y no queda una cicatriz lineal.</p>"
+        },
+        {
+          "eyebrow": "Etapa 4",
+          "title": "Implantación de los injertos",
+          "body": "<p>Mediante implanters DHI, los folículos se insertan directamente en las zonas debilitadas respetando la angulación, profundidad y dirección para crear una densidad uniforme y natural. La implantación directa ofrece un control preciso y permite trabajar entre el cabello existente sin dañarlo.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "La diferencia",
+      "title": "Ventajas del trasplante capilar femenino",
+      "body": "Gracias a un enfoque especializado para mujeres, el procedimiento ofrece numerosas ventajas concretas:",
+      "items": [
+        { "label": "Resultados naturales y permanentes" },
+        { "label": "Mayor densidad en las zonas debilitadas" },
+        { "label": "Cicatrices mínimas y máxima atención estética" },
+        { "label": "Recuperación rápida y regreso a la rutina en pocos días" },
+        { "label": "Posibilidad de evitar el rasurado mediante DHI" },
+        { "label": "Diseño personalizado de la línea frontal" },
+        { "label": "Efecto rejuvenecedor para un aspecto más fresco" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Después del procedimiento",
+      "title": "Recuperación después del procedimiento",
+      "body": "<p><strong>Primera semana:</strong> pueden aparecer una ligera hinchazón y pequeñas costras, que normalmente desaparecen pronto.</p><p><strong>Entre 1 y 2 meses:</strong> puede producirse una caída de choque, un fenómeno completamente normal y esperado.</p><p><strong>Entre 6 y 12 meses:</strong> el cabello nuevo crece progresivamente hasta alcanzar una densidad y un aspecto naturales.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Soluciones alternativas",
+      "title": "Tratamientos no quirúrgicos para la caída femenina",
+      "body": "<p>Para las mujeres que presentan caída del cabello pero no desean someterse a un procedimiento quirúrgico, también ofrecemos varias opciones:</p><ul><li><strong>PRP</strong> — tratamiento regenerativo natural que nutre y fortalece los folículos.</li><li><strong>Mesoterapia</strong> — microinyecciones de vitaminas y minerales directamente en el cuero cabelludo.</li><li><strong>Terapia con células madre</strong> — revitaliza los folículos inactivos mediante células regenerativas.</li><li><strong>Inyecciones de exosomas</strong> — tratamiento de nueva generación que estimula los procesos naturales de reparación del cuero cabelludo.</li></ul>",
+      "cta": { "label": "Hablar con un asesor" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Información útil",
+      "title": "Trasplante capilar femenino — Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Soy una buena candidata para un trasplante capilar?",
+          "answer": "<p>La mayoría de las mujeres con una caída estabilizada y una zona donante sana en la parte posterior del cuero cabelludo pueden ser candidatas. El tratamiento está especialmente indicado para el debilitamiento a lo largo de la raya, una línea frontal más amplia o unas sienes poco densas. Como la caída difusa es más frecuente en mujeres, identificar primero la causa es esencial; una consulta con fotografías claras permite a nuestro equipo confirmar su idoneidad y estimar los injertos necesarios.</p>"
+        },
+        {
+          "question": "¿Tendré que rasurarme la cabeza? ¿Puedo conservar el cabello largo?",
+          "answer": "<p>En la mayoría de los casos no es necesario un rasurado completo. Utilizamos principalmente DHI, que permite implantar directamente los folículos sin rasurar el cabello existente, conservando la longitud y el estilo. Es posible que solo se recorte una pequeña zona donante oculta, que queda cubierta por el cabello superior.</p>"
+        },
+        {
+          "question": "Mi caída podría ser hormonal: posparto, menopausia, SOP o tiroides. ¿Puedo someterme al trasplante?",
+          "answer": "<p>La caída hormonal o relacionada con una enfermedad suele tener que estabilizarse primero, ya que implantar entre cabellos que continúan cayéndose puede producir resultados insatisfactorios. Evaluamos la causa y podemos recomendar PRP, mesoterapia o tratamiento médico antes de la intervención o como alternativa. Cuando la caída se estabiliza, el trasplante puede convertirse en una solución fiable y permanente.</p>"
+        },
+        {
+          "question": "¿El trasplante puede dañar mi cabello existente?",
+          "answer": "<p>Con el método DHI, preciso y directo, los injertos se colocan cuidadosamente entre los folículos existentes para evitar dañarlos. Durante las primeras semanas puede producirse una caída de choque temporal del cabello circundante; es normal y el crecimiento se recupera. Elegir un equipo experimentado es el factor más importante para proteger el cabello natural.</p>"
+        },
+        {
+          "question": "¿Cuándo veré los resultados?",
+          "answer": "<p>El cabello trasplantado suele desprenderse durante las primeras semanas, un proceso completamente normal. El nuevo crecimiento comienza alrededor del tercer o cuarto mes, la densidad se hace visible entre los meses seis y nueve y el resultado final madura aproximadamente a los doce meses. Los tiempos pueden variar ligeramente según la respuesta individual y la calidad de los folículos.</p>"
+        },
+        {
+          "question": "¿Los resultados son permanentes y naturales?",
+          "answer": "<p>Sí. Los folículos se extraen de zonas genéticamente resistentes a la caída y, por tanto, continúan creciendo de forma permanente. El diseño femenino de la línea frontal y la implantación de los folículos individuales en su dirección natural hacen que el resultado sea armonioso e imperceptible; una vez recuperada, podrá cortar, teñir y peinar su cabello con normalidad.</p>"
+        },
+        {
+          "question": "¿La intervención es dolorosa y cuánto dura la recuperación?",
+          "answer": "<p>El procedimiento se realiza con anestesia local, por lo que permanecerá despierta pero cómoda y no sentirá dolor durante la sesión. Durante la primera semana son normales un ligero enrojecimiento y pequeñas costras, que desaparecen pronto. La mayoría de las pacientes retoma sus actividades cotidianas en pocos días, aunque debe evitar el ejercicio intenso, el sol y la natación durante las dos primeras semanas.</p>"
+        },
+        {
+          "question": "¿Puedo someterme al trasplante durante el embarazo o la lactancia?",
+          "answer": "<p>Como medida de precaución, no realizamos trasplantes durante el embarazo o la lactancia debido a la anestesia y los medicamentos utilizados. Además, la caída posparto suele ser temporal y puede resolverse por sí sola. Recomendamos esperar hasta que el equilibrio hormonal y el ciclo capilar se hayan estabilizado antes de valorar una intervención.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reales",
+      "title": "Trasplante capilar femenino — Antes y después",
+      "lead": "Vea la densidad recuperada y las líneas frontales naturales conseguidas por nuestras pacientes. Cada resultado se planifica según la estructura y el patrón de crecimiento individuales para integrarse perfectamente con el cabello existente.",
+      "cta": { "label": "Ver la galería completa" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "¿Está preparada para recuperar su cabello?",
+      "lead": "Comparta algunos datos con nosotros y nuestro equipo le responderá con un plan personalizado sin rasurado, una estimación de injertos y un presupuesto integral sin compromiso, normalmente en pocas horas.",
+      "points": [
+        { "label": "Evaluación gratuita de injertos a partir de sus fotografías" },
+        { "label": "DHI sin rasurado, planificado alrededor del cabello existente" },
+        { "label": "Respuesta rápida de nuestro equipo especializado en atención al paciente" },
+        { "label": "Asistencia multilingüe en cada etapa" }
+      ],
+      "submit_label": "Solicitar una consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra más",
+      "title": "Tratamientos relacionados"
+    }
+  ]
+}
