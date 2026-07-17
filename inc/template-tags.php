@@ -784,10 +784,14 @@ if ( ! function_exists( 'estecapelli_signature_split' ) ) {
 	 */
 	function estecapelli_signature_split() {
 		$defaults = estecapelli_signature_split_defaults();
-		if ( ! function_exists( 'get_field' ) ) {
-			return $defaults;
+		$payload  = $defaults;
+		if ( function_exists( 'get_field' ) ) {
+			$payload = estecapelli_acf_overlay( $defaults, get_field( 'signature_split', 'option' ) );
 		}
-		return estecapelli_acf_overlay( $defaults, get_field( 'signature_split', 'option' ) );
+
+		return function_exists( 'estecapelli_localize_home_hero_payload' )
+			? estecapelli_localize_home_hero_payload( $payload )
+			: $payload;
 	}
 }
 
@@ -844,10 +848,14 @@ if ( ! function_exists( 'estecapelli_hero_slides' ) ) {
 	 */
 	function estecapelli_hero_slides() {
 		$defaults = estecapelli_hero_slides_defaults();
-		if ( ! function_exists( 'get_field' ) ) {
-			return $defaults;
+		$payload  = $defaults;
+		if ( function_exists( 'get_field' ) ) {
+			$payload = estecapelli_acf_overlay( $defaults, get_field( 'hero_slides', 'option' ) );
 		}
-		return estecapelli_acf_overlay( $defaults, get_field( 'hero_slides', 'option' ) );
+
+		return function_exists( 'estecapelli_localize_home_hero_payload' )
+			? estecapelli_localize_home_hero_payload( $payload )
+			: $payload;
 	}
 }
 

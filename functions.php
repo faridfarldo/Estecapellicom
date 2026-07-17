@@ -49,6 +49,7 @@ require get_template_directory() . '/inc/it-string-fallbacks.php';
 require get_template_directory() . '/inc/pl-string-fallbacks.php';
 require get_template_directory() . '/inc/es-string-fallbacks.php';
 require get_template_directory() . '/inc/pt-string-fallbacks.php';
+require get_template_directory() . '/inc/home-hero-translations.php';
 require get_template_directory() . '/inc/nav-translations.php';
 require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
