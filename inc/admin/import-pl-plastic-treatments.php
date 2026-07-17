@@ -179,5 +179,14 @@ function estecapelli_run_pl_plastic_import( $source_slug ) {
 		$imported[ $translation['source_slug'] ] = $result;
 	}
 
+	// An empty result is not a success: reporting one would hide a manifest or
+	// overlay whose source slug never matched the requested import.
+	if ( ! $imported ) {
+		return new WP_Error(
+			'pl_plastic_nothing_imported',
+			sprintf( 'No Polish overlay was applied for %s.', $source_slug )
+		);
+	}
+
 	return $imported;
 }
