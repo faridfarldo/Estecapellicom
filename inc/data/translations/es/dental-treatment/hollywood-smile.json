@@ -1,0 +1,174 @@
+{
+    "source_slug": "hollywood-smile",
+    "slug": "sonrisa-hollywoodense",
+    "title": "Sonrisa Hollywood",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Diseño de sonrisa",
+            "title": "Sonrisa Hollywood",
+            "lead": "Una sonrisa más luminosa, simétrica y atractiva, diseñada para transformar no solo los dientes, sino también la armonía entre dientes, encías y labios.",
+            "cta_primary": {
+                "label": "Consulta gratuita"
+            },
+            "cta_secondary": {
+                "label": "Chatear por WhatsApp"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "El tratamiento",
+            "title": "¿Qué es una sonrisa Hollywood?",
+            "body": "<p>La sonrisa Hollywood es un tratamiento integral de diseño de sonrisa que armoniza la relación entre dientes, encías y labios para crear una sonrisa simétrica, natural y perfectamente adaptada al rostro. No se limita a cambiar la apariencia de los dientes, sino que adopta un enfoque global que considera conjuntamente la salud de las encías, la estructura facial y las proporciones estéticas.</p><p>En Estecapelli, cada sonrisa Hollywood se personaliza mediante tecnología de diseño digital y los principios de la odontología estética. El resultado es una sonrisa no solo bonita, sino también sana, equilibrada y diseñada para durar.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Candidatos",
+            "title": "¿Para quién está indicada la sonrisa Hollywood?",
+            "body": "La sonrisa Hollywood es una solución idónea para quienes presentan una o varias de las siguientes situaciones:",
+            "items": [
+                {
+                    "label": "Alteraciones del color y manchas dentales"
+                },
+                {
+                    "label": "Apiñamiento, espacios o alineación irregular"
+                },
+                {
+                    "label": "Dientes desgastados, astillados o demasiado cortos"
+                },
+                {
+                    "label": "Exposición excesiva de las encías (sonrisa gingival)"
+                },
+                {
+                    "label": "Dientes ausentes"
+                },
+                {
+                    "label": "Una sonrisa poco armoniosa con la estructura del rostro y los labios"
+                },
+                {
+                    "label": "Deseo de una sonrisa más blanca, simétrica y atractiva"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "El proceso",
+            "title": "¿Cómo se crea una sonrisa Hollywood?",
+            "lead": "La sonrisa Hollywood es un tratamiento altamente personalizado y cada procedimiento se adapta a las necesidades específicas del paciente. Aunque los detalles pueden variar, el proceso suele seguir estas etapas principales.",
+            "items": [
+                {
+                    "eyebrow": "Etapa 1",
+                    "title": "Análisis digital de la sonrisa",
+                    "body": "<p>Se analizan detalladamente la forma del rostro, la estructura de los labios, la línea de las encías y la forma de los dientes. A partir de estos datos se crea digitalmente un diseño totalmente personalizado, que permite tanto al especialista como al paciente visualizar el resultado previsto antes de comenzar el tratamiento.</p>"
+                },
+                {
+                    "eyebrow": "Etapa 2",
+                    "title": "Preparación de la salud bucodental",
+                    "body": "<p>Antes de cualquier intervención estética es necesario establecer una base bucodental sana. Según las necesidades del paciente, esta etapa puede incluir:</p><ul><li>Tratamiento de las caries existentes</li><li>Limpieza profesional del sarro</li><li>Tratamiento de las enfermedades de las encías</li><li>Endodoncia, si fuera necesaria</li></ul><p>Los procedimientos estéticos solo comienzan una vez confirmada una buena salud bucodental, para favorecer resultados estables y duraderos.</p>"
+                },
+                {
+                    "eyebrow": "Etapa 3",
+                    "title": "Sustitución de los dientes ausentes",
+                    "body": "<p>Cuando faltan uno o más dientes, el tratamiento con implantes se realiza antes del procedimiento estético. Una vez que el implante se ha integrado por completo con el hueso, se colocan coronas estéticas para completar el diseño de la sonrisa de manera armoniosa.</p>"
+                },
+                {
+                    "eyebrow": "Etapa 4",
+                    "title": "Estética gingival (tratamiento de la sonrisa gingival)",
+                    "body": "<p>Cuando el nivel de las encías es asimétrico o demasiado visible, se realiza un contorneado gingival con láser para conseguir una línea equilibrada y proporcionada. Esta etapa es esencial para la armonía general, ya que incluso el mejor trabajo dental puede parecer poco natural sin una estructura gingival bien definida y simétrica.</p>"
+                },
+                {
+                    "eyebrow": "Etapa 5",
+                    "title": "Renovación de los dientes",
+                    "body": "<p>Se eligen los materiales más adecuados para remodelar y transformar estéticamente los dientes. Las opciones más utilizadas en el tratamiento de sonrisa Hollywood son:</p><p><strong>Carillas de cerámica laminada</strong></p><ul><li>Aspecto muy similar al de los dientes naturales</li><li>Alta translucidez para un resultado realista</li><li>Requieren una reducción mínima del diente</li></ul><p><strong>Coronas de zirconio</strong></p><ul><li>Gran durabilidad gracias a su estructura resistente</li><li>Adecuadas también para dientes comprometidos</li><li>Ofrecen un resultado blanco y estéticamente armonioso</li></ul><p><strong>Bonding de composite</strong></p><ul><li>Ideal para corregir rápidamente pequeñas imperfecciones</li><li>Puede aplicarse conservando la estructura natural del diente</li></ul>"
+                },
+                {
+                    "eyebrow": "Etapa 6",
+                    "title": "Blanqueamiento y armonización del color",
+                    "body": "<p>En la etapa final, el tono de todos los dientes se armoniza cuidadosamente para crear un aspecto uniforme y equilibrado. De este modo, toda la sonrisa adquiere una apariencia natural, coherente y estéticamente cuidada.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Resultados reales",
+            "title": "Sonrisa Hollywood: antes y después",
+            "lead": "Transformaciones reales de diseño de sonrisa realizadas en nuestros pacientes. Cada resultado se adapta al rostro de la persona para lograr una sonrisa natural, equilibrada y llena de confianza.",
+            "cta": {
+                "label": "Ver toda la galería"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Información útil",
+            "title": "Preguntas frecuentes sobre la sonrisa Hollywood",
+            "items": [
+                {
+                    "question": "¿Cuál es la diferencia entre carillas, coronas y una sonrisa Hollywood?",
+                    "answer": "<p>La sonrisa Hollywood no es un único producto, sino un plan integral de diseño de sonrisa. Las carillas de cerámica son láminas finas que se adhieren a la superficie frontal de los dientes y requieren una preparación mínima; las coronas de zirconio cubren todo el diente y se utilizan cuando está muy desgastado, dañado o endodonciado. El dentista combina las soluciones más adecuadas para cada diente y añade, si es necesario, blanqueamiento o contorneado gingival para que el resultado final sea armonioso en toda la sonrisa.</p>"
+                },
+                {
+                    "question": "¿Cuánto diente natural se elimina y el tratamiento es reversible?",
+                    "answer": "<p>Depende del material elegido. Las carillas de cerámica requieren retirar una capa muy fina de esmalte, en ocasiones casi ninguna, mientras que las coronas necesitan una preparación mayor. Como parte del esmalte se modifica de forma permanente, el tratamiento suele considerarse irreversible; por eso el análisis digital y el plan definitivo se acuerdan cuidadosamente antes de comenzar.</p>"
+                },
+                {
+                    "question": "¿La sonrisa tendrá un aspecto natural o demasiado blanco y artificial?",
+                    "answer": "<p>Una sonrisa Hollywood bien diseñada debe verse natural en su rostro. El tono, la forma y las proporciones de los dientes se definen mediante diseño digital según los rasgos faciales, la edad y el tono de piel, con el objetivo de conseguir una sonrisa luminosa y uniforme sin el aspecto plano y excesivamente blanco de unos dientes artificiales. El tono se acuerda con usted de antemano.</p>"
+                },
+                {
+                    "question": "¿Cuánto dura el tratamiento y cuántos días debo permanecer en Turquía?",
+                    "answer": "<p>La mayoría de los tratamientos de sonrisa Hollywood se completan en unos cinco a siete días y requieren dos o tres citas: la primera para la preparación y los provisionales, y las siguientes para colocar y ajustar las restauraciones definitivas. Recomendamos planificar la estancia en consecuencia y reservar un último día para posibles pequeños ajustes.</p>"
+                },
+                {
+                    "question": "¿El procedimiento es doloroso?",
+                    "answer": "<p>El procedimiento se realiza bajo anestesia local, por lo que no debería sentir dolor durante el tratamiento. Algunos pacientes experimentan una ligera sensibilidad al frío o al calor durante unos días; es algo temporal que generalmente se controla con medidas sencillas y, si fuera necesario, analgésicos habituales.</p>"
+                },
+                {
+                    "question": "¿Cuánto duran los resultados?",
+                    "answer": "<p>Con una buena higiene bucodental y revisiones periódicas, las carillas de cerámica y las coronas de zirconio suelen durar entre diez y quince años, y a menudo incluso más. Su duración depende principalmente del cuidado diario, la salud de las encías y de evitar hábitos como morder objetos duros o rechinar los dientes.</p>"
+                },
+                {
+                    "question": "¿Cómo debo cuidarla y puede mancharse?",
+                    "answer": "<p>Los cuidados son los mismos que para los dientes naturales: cepillado dos veces al día, uso de hilo dental y revisiones periódicas. La cerámica y el zirconio de alta calidad resisten muy bien las manchas y no cambian de color como el esmalte natural; aun así, una buena higiene mantiene sanas las encías y los dientes vecinos y conserva la luminosidad de toda la sonrisa.</p>"
+                },
+                {
+                    "question": "¿La sonrisa Hollywood puede corregir dientes torcidos o separados sin ortodoncia?",
+                    "answer": "<p>En muchos casos de apiñamiento leve, espacios o dientes ligeramente rotados, las carillas y las coronas pueden crear un aspecto recto y uniforme sin ortodoncia. Cuando la desalineación es más importante, el dentista puede recomendar primero un tratamiento ortodóncico o un plan combinado para que el resultado sea a la vez estético y saludable.</p>"
+                },
+                {
+                    "question": "¿Qué ocurre si una carilla o una corona se astilla o se desprende?",
+                    "answer": "<p>Las carillas y coronas modernas son resistentes, pero en el poco frecuente caso de que una pieza se astille o se desprenda, normalmente puede repararse o sustituirse de forma individual sin rehacer toda la sonrisa. Evitar alimentos muy duros y utilizar una férula nocturna en caso de bruxismo reduce considerablemente este riesgo.</p>"
+                },
+                {
+                    "question": "¿Quién es un buen candidato para una sonrisa Hollywood?",
+                    "answer": "<p>Los candidatos ideales son adultos con encías sanas y suficiente estructura dental que desean corregir alteraciones del color, manchas, espacios, dientes desgastados o asimétricos. Cualquier problema activo, como caries o enfermedad periodontal, se trata previamente. Una breve evaluación, preferiblemente acompañada de fotografías o una videoconsulta, permite a nuestros dentistas confirmar la idoneidad y definir el plan más adecuado.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Consulta gratuita",
+            "title": "¿Preparado para su nueva sonrisa?",
+            "lead": "Envíenos algunos datos y nuestro equipo le responderá con un plan de sonrisa Hollywood personalizado y un presupuesto todo incluido, transparente y sin compromiso, normalmente en pocas horas.",
+            "points": [
+                {
+                    "label": "Evaluación digital gratuita de la sonrisa a partir de sus fotografías"
+                },
+                {
+                    "label": "Presupuesto todo incluido, transparente y sin compromiso"
+                },
+                {
+                    "label": "Respuesta rápida de nuestro equipo de atención al paciente"
+                },
+                {
+                    "label": "Asistencia multilingüe en cada etapa"
+                }
+            ],
+            "submit_label": "Solicitar una consulta gratuita"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Descubra también",
+            "title": "Tratamientos relacionados"
+        }
+    ]
+}

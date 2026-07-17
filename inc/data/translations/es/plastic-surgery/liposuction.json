@@ -1,0 +1,194 @@
+{
+  "source_slug": "liposuction",
+  "slug": "liposuccion",
+  "title": "Liposucción",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Remodelación corporal",
+      "title": "Liposucción",
+      "lead": "Una moderna intervención de remodelación corporal que reduce los depósitos de grasa localizada y resistente para redefinir la silueta de forma armoniosa.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Escríbanos por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La intervención",
+      "title": "¿Qué es la liposucción?",
+      "body": "<p>La liposucción es una moderna intervención de remodelación corporal diseñada para reducir los depósitos de grasa localizada y redefinir los contornos. Durante el procedimiento, las células adiposas se eliminan quirúrgicamente, reduciendo de forma permanente su número en la zona tratada. Por este motivo, la liposucción representa una solución eficaz y fiable, con resultados que pueden durar muchos años.</p><p>Las técnicas empleadas en Estecapelli van más allá de simplemente adelgazar el cuerpo y ayudan a conseguir un aspecto más armonioso y proporcionado.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Zonas tratables",
+      "title": "¿Qué zonas pueden remodelarse con liposucción?",
+      "body": "La liposucción puede realizarse en diferentes zonas donde la grasa tiende a acumularse y resiste a otros métodos. Las áreas tratadas con mayor frecuencia incluyen:",
+      "items": [
+        { "label": "Abdomen y vientre" },
+        { "label": "Cintura y flancos" },
+        { "label": "Caderas y cartucheras" },
+        { "label": "Cara interna y externa de los muslos" },
+        { "label": "Espalda" },
+        { "label": "Brazos y axilas" },
+        { "label": "Tórax, también para tratar la ginecomastia masculina" },
+        { "label": "Papada y zona submandibular" }
+      ],
+      "footer": "La liposucción no es un método para adelgazar: elimina depósitos de grasa localizada que persisten a pesar de la pérdida general de peso."
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Técnicas",
+      "title": "Tipos de liposucción",
+      "lead": "En Estecapelli utilizamos diferentes técnicas para alcanzar sus objetivos de remodelación corporal. El método se elige según la distribución de la grasa, la elasticidad de la piel y el resultado deseado. Conozca las principales opciones.",
+      "items": [
+        {
+          "eyebrow": "Técnica",
+          "title": "Liposucción VASER",
+          "body": "<p>La liposucción VASER es una técnica avanzada que utiliza energía ultrasónica para emulsionar las células adiposas antes de extraerlas, permitiendo una remodelación precisa y delicada.</p><p><strong>Ventajas:</strong></p><ul><li>Actúa sobre la grasa con precisión</li><li>Es mínimamente invasiva y reduce el traumatismo de los tejidos</li><li>Ofrece resultados uniformes y naturales</li><li>Permite una recuperación más rápida que la liposucción tradicional</li></ul>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "Liposucción láser",
+          "body": "<p>La liposucción láser utiliza energía láser para descomponer las células adiposas y, al mismo tiempo, favorece la retracción de la piel para conseguir contornos más uniformes.</p><p><strong>Ventajas:</strong></p><ul><li>Disuelve la grasa con precisión</li><li>Favorece la retracción cutánea</li><li>Es poco invasiva y permite una recuperación rápida</li><li>Ofrece resultados uniformes y naturales</li></ul>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "Liposucción tumescente",
+          "body": "<p>La liposucción tumescente consiste en infiltrar una solución específica en la zona que se va a tratar antes de extraer la grasa para reducir el sangrado y los hematomas. Actualmente suele combinarse con otras técnicas para optimizar el resultado.</p>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "PAL, liposucción asistida",
+          "body": "<p>La PAL, o liposucción asistida por potencia, utiliza cánulas vibratorias que facilitan la descomposición y extracción de la grasa, haciendo que el procedimiento sea más rápido y controlado.</p><p><strong>Ventajas:</strong></p><ul><li>Extracción de grasa más sencilla y rápida</li><li>Menor esfuerzo para el cirujano y mayor precisión</li><li>Técnica mínimamente invasiva con resultados más uniformes</li><li>Posibilidad de combinarla con otras técnicas</li></ul>"
+        },
+        {
+          "eyebrow": "Técnica",
+          "title": "Liposucción tradicional",
+          "body": "<p>La liposucción tradicional es una técnica convencional de extracción de grasa que se realiza manualmente, sin dispositivos de energía. Sigue siendo una solución adecuada en casos seleccionados.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Candidatos",
+      "title": "¿Quién puede someterse a una liposucción?",
+      "body": "Puede ser un buen candidato para la liposucción quien cumpla uno o varios de los siguientes criterios:",
+      "items": [
+        { "label": "Adultos que han completado su desarrollo" },
+        { "label": "Personas con zonas de grasa resistente que no mejoran con dieta y ejercicio" },
+        { "label": "Quienes desean definir mejor los contornos corporales" },
+        { "label": "Personas sin enfermedades incompatibles con la intervención" },
+        { "label": "Personas con buena elasticidad cutánea" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Importante",
+      "title": "Cuándo no se recomienda la liposucción",
+      "body": "<ul><li>Durante el embarazo y la lactancia</li><li>En presencia de enfermedades crónicas graves</li><li>En caso de trastornos de coagulación</li><li>En presencia de obesidad grave</li></ul>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Antes de la intervención",
+      "title": "Preparación para la liposucción",
+      "body": "<p>En Estecapelli, el proceso preoperatorio se gestiona con gran atención para garantizar una planificación quirúrgica segura y personalizada.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La operación",
+      "title": "¿Cómo se realiza la liposucción?",
+      "body": "<p>La liposucción se realiza bajo anestesia local o general. La elección de la técnica depende de la cantidad y las características de la grasa que se va a extraer y de la extensión de la zona tratada.</p><p><strong>Fases generales:</strong></p><ol><li>Realización de pequeñas incisiones</li><li>Descomposición de la grasa con la tecnología más adecuada, como VASER o láser</li><li>Extracción de las células adiposas mediante cánulas</li><li>Definición y modelado de la zona</li><li>Cierre de las incisiones dejando cicatrices mínimas</li></ol><p>Duración: de 30 minutos a 3 horas, según la extensión de la intervención.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Después de la intervención",
+      "title": "Recuperación después de la liposucción",
+      "lead": "En Estecapelli damos prioridad a su comodidad y realizamos un seguimiento cuidadoso de cada etapa de la recuperación.",
+      "items": [
+        { "time": "Primeros días", "title": "Prenda de compresión", "body": "Pueden aparecer molestias leves, hematomas e inflamación. Se comienza a utilizar la prenda de compresión." },
+        { "time": "Primera semana", "title": "Regreso a la vida cotidiana", "body": "Es posible retomar gradualmente las actividades diarias. Se recomiendan paseos y movimientos suaves." },
+        { "time": "2–3 semanas", "title": "Disminuye la inflamación", "body": "La inflamación se reduce considerablemente y es posible retomar gradualmente las actividades deportivas." },
+        { "time": "6 semanas–3 meses", "title": "Los contornos se definen", "body": "Los nuevos contornos corporales comienzan a apreciarse con mayor claridad." },
+        { "time": "3–6 meses", "title": "Resultados definitivos", "body": "El resultado definitivo se hace plenamente visible." }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Después de la intervención",
+      "title": "Recomendaciones después de la liposucción",
+      "body": "Para favorecer la recuperación y proteger el resultado, tenga en cuenta estas indicaciones:",
+      "items": [
+        { "label": "Utilice regularmente la prenda de compresión recomendada" },
+        { "label": "Evite durante un tiempo las actividades deportivas intensas" },
+        { "label": "Evite los baños calientes, la sauna y ambientes similares" },
+        { "label": "Beba abundante agua y mantenga una alimentación equilibrada" }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reales",
+      "title": "Liposucción: antes y después",
+      "lead": "Descubra los contornos más uniformes y definidos conseguidos por nuestros pacientes. Cada resultado se personaliza según el cuerpo de cada persona y la grasa se elimina con precisión para obtener una forma natural y proporcionada.",
+      "cta": { "label": "Ver toda la galería" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Información útil",
+      "title": "Preguntas frecuentes sobre liposucción",
+      "items": [
+        {
+          "question": "¿La liposucción es un método para perder peso?",
+          "answer": "<p>No: la liposucción es una intervención de remodelación corporal, no un método para adelgazar. Elimina depósitos de grasa localizada resistentes a la dieta y el ejercicio para afinar la silueta, pero el cambio en la báscula suele ser limitado. Ofrece los mejores resultados cuando el peso es saludable y estable, y no constituye un tratamiento para la obesidad.</p>"
+        },
+        {
+          "question": "¿Qué técnica es más adecuada para mí: VASER, láser, PAL, tumescente o tradicional?",
+          "answer": "<p>El método más indicado depende de la zona, la cantidad y consistencia de la grasa y la elasticidad de la piel. VASER utiliza ultrasonidos para definir con precisión las zonas tratadas; el láser también favorece la retracción cutánea; la PAL facilita la extracción de mayores volúmenes; la técnica tumescente suele combinarse con las demás para reducir el sangrado y los hematomas. Después de la evaluación, el cirujano recomendará la técnica o combinación que pueda ofrecer el resultado más uniforme y natural.</p>"
+        },
+        {
+          "question": "¿Qué zonas del cuerpo pueden tratarse?",
+          "answer": "<p>La liposucción puede tratar la mayoría de las zonas donde se acumula grasa resistente: abdomen, cintura, flancos, caderas, muslos, rodillas, brazos, espalda, zona del sujetador, mentón y cuello. A menudo es posible intervenir en varias zonas durante la misma sesión y combinar el procedimiento con otras intervenciones, como la abdominoplastia o el BBL. Durante la consulta, el cirujano confirmará qué zonas pueden tratarse de forma segura.</p>"
+        },
+        {
+          "question": "¿Qué anestesia se utiliza y el procedimiento es doloroso?",
+          "answer": "<p>Según el número y el tamaño de las zonas, la liposucción se realiza bajo anestesia local o general para mantenerle cómodo durante todo el procedimiento. La intervención suele durar entre unos 30 minutos y 3 horas. Durante los primeros días o semanas puede haber molestias, hematomas e inflamación, que se controlan bien con la medicación prescrita y la prenda de compresión.</p>"
+        },
+        {
+          "question": "¿Cuánto duran la recuperación y la estancia en Turquía?",
+          "answer": "<p>La mayoría de los pacientes permanece en Turquía unos días, incluida una revisión antes del regreso. La recuperación inicial requiere aproximadamente 1–2 semanas, tras las cuales muchos retoman un trabajo de oficina; la prenda de compresión se utiliza durante varias semanas para favorecer la cicatrización y uniformar el contorno. El resultado se define gradualmente a medida que disminuye la inflamación y suele ser visible en 3–6 meses.</p>"
+        },
+        {
+          "question": "¿Los resultados son permanentes y naturales?",
+          "answer": "<p>Las células adiposas eliminadas mediante liposucción no vuelven a formarse, por lo que las zonas tratadas permanecen más estilizadas a largo plazo. Sin embargo, un aumento importante de peso en el futuro puede agrandar las células restantes en otras zonas; mantener un peso estable protege el resultado. Cuando un cirujano experimentado utiliza la técnica adecuada, el contorno se ve uniforme, equilibrado y natural.</p>"
+        },
+        {
+          "question": "¿Cuándo podré retomar el ejercicio?",
+          "answer": "<p>Se recomienda caminar despacio desde los primeros días para favorecer la circulación y la recuperación. Las actividades ligeras pueden retomarse durante las dos primeras semanas; el ejercicio intenso, el levantamiento de pesas y los entrenamientos de alto impacto deben esperar unas 4–6 semanas, una vez que el cirujano confirme una cicatrización completa.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Costes",
+      "title": "Precio de la liposucción",
+      "body": "<p>El precio de la liposucción depende de varios factores:</p><ul><li>Cantidad de grasa que se va a extraer</li><li>Número de zonas que se van a tratar</li><li>Técnica utilizada, como VASER, láser o tradicional</li><li>Duración de la intervención</li><li>Necesidades y objetivos del paciente</li></ul><p>El presupuesto más preciso se define después de una consulta online con los especialistas de Estecapelli.</p>",
+      "cta": { "label": "Solicitar un presupuesto personalizado" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "¿Desea unos contornos más definidos?",
+      "lead": "Facilítenos algunos datos y nuestro equipo le responderá con un plan de liposucción personalizado y un presupuesto todo incluido, gratuito y sin compromiso, normalmente en pocas horas.",
+      "points": [
+        { "label": "Evaluación gratuita a partir de sus fotografías" },
+        { "label": "Presupuesto todo incluido, transparente y sin compromiso" },
+        { "label": "Respuesta rápida de nuestro equipo de atención al paciente" },
+        { "label": "Asistencia multilingüe en cada etapa" }
+      ],
+      "submit_label": "Solicitar una consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra más",
+      "title": "Tratamientos relacionados"
+    }
+  ]
+}

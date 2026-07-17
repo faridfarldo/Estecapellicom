@@ -1,0 +1,163 @@
+{
+  "source_slug": "abdominoplasty-tummy-tuck",
+  "slug": "abdominoplastia",
+  "title": "Abdominoplastia",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Remodelación corporal",
+      "title": "Abdominoplastia",
+      "lead": "Consiga un abdomen más plano y firme. Al corregir la flacidez cutánea, la laxitud y la separación muscular, ofrecemos resultados armoniosos y personalizados para su cuerpo y sus objetivos.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Escríbanos por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La intervención",
+      "title": "¿Qué es la abdominoplastia?",
+      "body": "<p>La abdominoplastia es una intervención de remodelación corporal que corrige la flacidez, la laxitud y las alteraciones de la zona abdominal para conseguir un aspecto más plano, firme y estéticamente armonioso. Realizada por el equipo experimentado de Estecapelli, es uno de los procedimientos más eficaces para remodelar el abdomen tanto en mujeres como en hombres.</p><p>Con el tiempo, la zona abdominal puede perder firmeza debido a cambios de peso, envejecimiento, embarazo, factores genéticos o una menor elasticidad cutánea. La abdominoplastia actúa directamente sobre estos aspectos y devuelve a la parte central del cuerpo un perfil más joven, firme y equilibrado.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Candidatos",
+      "title": "¿Para quién está indicada la abdominoplastia?",
+      "body": "Las mujeres y los hombres adultos insatisfechos con el aspecto de la zona abdominal que presentan una o varias de las siguientes situaciones pueden ser candidatos adecuados:",
+      "items": [
+        { "label": "Flacidez después de un aumento o una pérdida importante de peso" },
+        { "label": "Piel laxa o sobrante después del embarazo" },
+        { "label": "Separación de los músculos abdominales o diástasis de rectos" },
+        { "label": "Estructura abdominal genéticamente laxa o débil" },
+        { "label": "Exceso de piel restante después de una liposucción" },
+        { "label": "Alteraciones abdominales que no pueden corregirse únicamente con ejercicio físico" }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Las opciones",
+      "title": "Tipos de abdominoplastia",
+      "lead": "La técnica más adecuada depende de su anatomía, el grado de flacidez y sus objetivos. Conozca las principales opciones.",
+      "items": [
+        {
+          "eyebrow": "Tipo",
+          "title": "Abdominoplastia completa",
+          "body": "<p>La abdominoplastia completa está indicada para quienes presentan flacidez avanzada y separación muscular en toda la zona abdominal. La intervención trata el abdomen de forma integral mediante las siguientes etapas:</p><ul><li>Reafirmación de toda la zona abdominal</li><li>Reposicionamiento del ombligo para conseguir un aspecto natural</li><li>Eliminación del exceso de piel</li><li>Refuerzo y reparación de los músculos subyacentes</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Miniabdominoplastia",
+          "body": "<p>La miniabdominoplastia está indicada cuando existe una flacidez leve limitada a la zona situada debajo del ombligo. En comparación con la intervención completa, es una solución menos invasiva con varias ventajas:</p><ul><li>Incisión más corta</li><li>Recuperación más rápida</li><li>Sin reposicionamiento del ombligo</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Liposucción y abdominoplastia combinadas",
+          "body": "<p>Esta combinación es ideal cuando en la zona abdominal existen tanto grasa sobrante como flacidez cutánea. Primero, la liposucción elimina los depósitos de grasa no deseados; después se retira el exceso de piel para conseguir un perfil más uniforme y definido.</p>"
+        },
+        {
+          "eyebrow": "Tipo",
+          "title": "Mommy Makeover",
+          "body": "<p>El Mommy Makeover reúne varios procedimientos en una sola intervención para las mujeres que desean recuperar la forma corporal después del parto. Generalmente incluye abdominoplastia, elevación o aumento mamario y liposucción, permitiendo una transformación más completa con un único periodo de recuperación.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La operación",
+      "title": "¿Cómo se realiza la abdominoplastia?",
+      "body": "<p>La abdominoplastia se realiza bajo anestesia general, en un quirófano estéril, y suele durar entre 1,5 y 4 horas. Sus principales etapas son:</p><ol><li>Marcación de la laxitud cutánea y los tejidos</li><li>Refuerzo de los músculos abdominales</li><li>Eliminación del exceso de piel</li><li>Remodelación estética del ombligo</li><li>Cierre de las incisiones con suturas estéticas</li></ol><p>La cicatriz se sitúa cuidadosamente en una posición baja, a lo largo de la línea del bikini, y se atenúa gradualmente con el tiempo.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Después de la intervención",
+      "title": "Recuperación después de la abdominoplastia",
+      "lead": "Aunque la recuperación varía entre personas, el proceso general es el siguiente.",
+      "items": [
+        { "time": "Día 1", "title": "Sensación de tirantez", "body": "Es normal sentir tirantez en el abdomen. El paciente permanece una noche en el hospital." },
+        { "time": "Primera semana", "title": "Faja y actividades ligeras", "body": "Comienza el regreso gradual a las actividades cotidianas. La faja debe utilizarse regularmente según las indicaciones recibidas." },
+        { "time": "Semanas 2–6", "title": "Regreso a la rutina", "body": "La inflamación continúa disminuyendo y los paseos pueden prolongarse a medida que aumenta la comodidad. La actividad física se reintroduce gradualmente bajo la supervisión del cirujano y la mayoría de los pacientes retoma su rutina diaria normal durante este periodo." },
+        { "time": "3 meses", "title": "Asentamiento", "body": "La zona abdominal adquiere un aspecto más natural y estable, mientras las cicatrices continúan aplanándose y aclarándose." },
+        { "time": "6–12 meses", "title": "Resultado definitivo", "body": "El resultado de la intervención se hace plenamente visible y el perfil abdominal alcanza su aspecto más definido y natural." }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Ventajas",
+      "title": "Ventajas de la cirugía abdominal",
+      "body": "La abdominoplastia ofrece diversos beneficios estéticos y puede mejorar la confianza corporal:",
+      "items": [
+        { "label": "Un abdomen más plano y firme" },
+        { "label": "Eliminación de la mayoría de las estrías presentes en la zona tratada" },
+        { "label": "Una cintura más fina y definida" },
+        { "label": "Corrección de los cambios abdominales posteriores al embarazo" },
+        { "label": "Resultados duraderos y de aspecto natural" },
+        { "label": "Una mejora significativa de la confianza y la imagen corporal" }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reales",
+      "title": "Abdominoplastia: antes y después",
+      "lead": "Descubra el abdomen más plano, firme y definido conseguido por nuestros pacientes. Cada resultado se personaliza según el cuerpo de cada persona y la cicatriz se sitúa discretamente a lo largo de la línea del bikini.",
+      "cta": { "label": "Ver toda la galería" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Información útil",
+      "title": "Preguntas frecuentes sobre abdominoplastia",
+      "items": [
+        {
+          "question": "¿La abdominoplastia ayuda a perder peso?",
+          "answer": "<p>No exactamente: la abdominoplastia es una intervención de remodelación corporal, no un método para adelgazar. Elimina el exceso de piel flácida y refuerza los músculos abdominales, haciendo que el perfil se vea notablemente más plano y firme, pero el cambio real en la báscula suele ser limitado. Los mejores resultados se consiguen cuando el peso es saludable y estable.</p>"
+        },
+        {
+          "question": "¿Qué tipo de abdominoplastia es más adecuado para mí?",
+          "answer": "<p>Depende del grado de laxitud de la piel y los músculos. La miniabdominoplastia está indicada para una flacidez leve debajo del ombligo; la abdominoplastia completa trata todo el abdomen y permite reparar los músculos; la combinación con liposucción es ideal cuando también existe grasa sobrante; el Mommy Makeover reúne varios procedimientos después del parto. Tras la exploración, el cirujano le recomendará la solución más adecuada.</p>"
+        },
+        {
+          "question": "¿La intervención es dolorosa y qué anestesia se utiliza?",
+          "answer": "<p>La operación se realiza bajo anestesia general, por lo que no sentirá nada durante la intervención. Durante los primeros días puede experimentar tirantez y molestias moderadas, que suelen controlarse bien con la medicación prescrita. Una faja de compresión y los movimientos suaves ayudan a mejorar la comodidad durante la recuperación.</p>"
+        },
+        {
+          "question": "¿Cuánto duran la recuperación y la estancia en Turquía?",
+          "answer": "<p>La mayoría de los pacientes permanece en Turquía unos 5–7 días, incluida una revisión antes del regreso. La recuperación inicial suele requerir 2–3 semanas y la faja de compresión se utiliza durante varias semanas. La recuperación completa, incluido el regreso al ejercicio intenso, requiere aproximadamente 6–8 semanas.</p>"
+        },
+        {
+          "question": "¿Quedará una cicatriz visible?",
+          "answer": "<p>Sí, la abdominoplastia deja una cicatriz, pero se sitúa cuidadosamente en una posición baja, a lo largo de la línea del bikini, para que quede oculta bajo la ropa interior y el bañador. Con los cuidados adecuados, la cicatriz se aplana y aclara considerablemente con el paso de los meses.</p>"
+        },
+        {
+          "question": "¿Los resultados son permanentes?",
+          "answer": "<p>Los resultados son duraderos, especialmente la reparación muscular y la eliminación del exceso de piel. Mantener un peso estable ayuda a conservarlos: un aumento importante de peso o un futuro embarazo pueden volver a distender la zona. Por este motivo, lo ideal es planificar la intervención cuando no se prevean más embarazos.</p>"
+        },
+        {
+          "question": "¿Cuándo podré retomar el ejercicio?",
+          "answer": "<p>Se recomienda caminar despacio desde los primeros días para favorecer la circulación y la recuperación. Las actividades ligeras se retoman durante las primeras semanas, mientras que el ejercicio intenso, el entrenamiento abdominal y el levantamiento de peso deben esperar unas 6–8 semanas, después de que el cirujano confirme una cicatrización completa.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Costes",
+      "title": "Precio de la abdominoplastia en Turquía",
+      "body": "<p>Turquía es un destino reconocido internacionalmente para la abdominoplastia gracias a:</p><ul><li>Cirujanos muy experimentados con resultados documentados</li><li>Centros hospitalarios bien equipados</li><li>Estándares internacionales de calidad</li><li>Costes más accesibles que en Europa y Norteamérica</li><li>Servicios integrales de atención y asistencia al paciente</li></ul><p>El precio varía según la técnica utilizada, la experiencia del cirujano, los posibles procedimientos adicionales y la extensión total de la intervención.</p>",
+      "cta": { "label": "Solicitar un presupuesto personalizado" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "¿Desea un abdomen más plano y firme?",
+      "lead": "Facilítenos algunos datos y nuestro equipo le responderá con un plan de abdominoplastia personalizado y un presupuesto todo incluido, gratuito y sin compromiso, normalmente en pocas horas.",
+      "points": [
+        { "label": "Evaluación gratuita a partir de sus fotografías" },
+        { "label": "Presupuesto todo incluido, transparente y sin compromiso" },
+        { "label": "Respuesta rápida de nuestro equipo de atención al paciente" },
+        { "label": "Asistencia multilingüe en cada etapa" }
+      ],
+      "submit_label": "Solicitar una consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra más",
+      "title": "Tratamientos relacionados"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "source_slug": "gynecomastia",
+  "slug": "ginecomastia",
+  "title": "Ginecomastia",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Estética del tórax masculino",
+      "title": "Ginecomastia",
+      "lead": "Una solución quirúrgica para el aumento del tejido mamario masculino que restaura un tórax más plano, firme y masculino con resultados naturales.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Escríbanos por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "La afección",
+      "title": "¿Qué es la ginecomastia?",
+      "body": "<p>La ginecomastia es una afección caracterizada por el desarrollo excesivo del tejido mamario en el hombre, que da al tórax un aspecto más voluminoso. Los hombres también poseen de forma natural tejido y glándulas mamarias, que la testosterona suele mantener poco desarrollados. Un desequilibrio hormonal, el aumento de peso, determinados medicamentos o una enfermedad subyacente pueden alterar este equilibrio y favorecer la aparición de ginecomastia.</p><p>La afección no es solo estética: puede influir en el bienestar psicológico, la confianza personal y la vida social. En Estecapelli, la ginecomastia se evalúa tanto desde el punto de vista médico como estético para ofrecer a cada paciente una solución personalizada y duradera.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Causas",
+      "title": "¿Cuáles son las causas de la ginecomastia?",
+      "body": "La ginecomastia puede desarrollarse por diferentes mecanismos. Las causas más frecuentes incluyen:",
+      "items": [
+        { "label": "Desequilibrio entre estrógenos y testosterona" },
+        { "label": "Acumulación de grasa en la zona torácica debida a un aumento importante de peso" },
+        { "label": "Flacidez de los tejidos y la piel causada por aumentos y pérdidas de peso repetidos" },
+        { "label": "Efectos hormonales no deseados de determinados medicamentos" },
+        { "label": "Enfermedades del hígado, los riñones o el sistema endocrino" },
+        { "label": "Cambios hormonales relacionados con la edad" },
+        { "label": "Uso de esteroides anabolizantes para el culturismo" },
+        { "label": "Disminución significativa de los niveles de testosterona" }
+      ],
+      "footer": "En muchos casos interviene una combinación de factores; por ello, una evaluación médica detallada es esencial antes de definir el tratamiento más adecuado."
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Tratamiento",
+      "title": "Tratamiento de la ginecomastia: opciones no quirúrgicas y quirúrgicas",
+      "body": "<p>El tratamiento más adecuado se define según el tipo y el grado de aumento mamario y su causa subyacente. Una evaluación detallada permite ofrecer a cada paciente un enfoque personalizado, seguro y eficaz.</p><p><strong>En los casos leves</strong>, con una acumulación mínima de grasa y poca laxitud cutánea, la extracción de grasa mediante liposucción o una variante como VASER puede ser suficiente para conseguir el perfil deseado.</p><p><strong>En los casos avanzados</strong>, con un desarrollo importante del tejido glandular y flacidez cutánea, es necesario extirpar quirúrgicamente la glándula y, cuando está indicado, el exceso de piel para conseguir un tórax plano y natural.</p><p>En Estecapelli, cada paciente se evalúa individualmente. Un análisis preciso permite determinar si el exceso de volumen está formado por grasa, tejido glandular compacto o una combinación de ambos, y elegir así el plan de tratamiento más eficaz.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "La operación",
+      "title": "¿Cómo se realiza la cirugía de ginecomastia?",
+      "lead": "La intervención se realiza bajo anestesia general en un quirófano totalmente equipado. El procedimiento se personaliza según el estado del paciente y varía en función del tipo y el grado de ginecomastia.",
+      "items": [
+        {
+          "eyebrow": "Tipo de caso",
+          "title": "Casos con exceso exclusivo de tejido adiposo",
+          "body": "<ul><li>Se prefiere la liposucción tradicional o VASER</li><li>La grasa se extrae mediante cánulas introducidas a través de incisiones muy pequeñas en la zona torácica</li><li>Cuando la elasticidad cutánea es adecuada, es posible conseguir un tórax plano y natural sin incisiones adicionales en la piel</li></ul>"
+        },
+        {
+          "eyebrow": "Tipo de caso",
+          "title": "Casos con aumento del tejido glandular y laxitud cutánea",
+          "body": "<ul><li>El tejido glandular mamario se extirpa quirúrgicamente</li><li>Se elimina el exceso de piel y se remodela el tórax para conseguir un perfil más plano y firme</li><li>Cuando es necesario, se utilizan incisiones circulares o en T invertida</li></ul><p>La duración media de la intervención es de aproximadamente 1,5–2 horas.</p><p>Los procedimientos basados únicamente en liposucción dejan cicatrices mínimas. Cuando es necesario retirar tejido y piel, las incisiones se sitúan en las zonas más discretas posibles y, con los cuidados adecuados, se atenúan considerablemente con el tiempo.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Después de la intervención",
+      "title": "Recuperación después de la cirugía de ginecomastia",
+      "lead": "El periodo posoperatorio suele ser cómodo y bien tolerado. Es normal y esperable sentir molestias leves y tirantez durante el primer día.",
+      "items": [
+        { "time": "Primeras 24 horas", "title": "Estancia hospitalaria", "body": "El paciente suele permanecer una noche en el hospital y el dolor se controla eficazmente con la medicación prescrita." },
+        { "time": "Primera semana", "title": "Prenda de compresión", "body": "La inflamación, los hematomas y la sensibilidad en la zona torácica son normales. Utilizar la prenda de compresión es esencial para favorecer una correcta cicatrización y definición." },
+        { "time": "Semanas 2–3", "title": "Disminuye el edema", "body": "El edema desaparece en gran medida y los movimientos resultan más cómodos. Las actividades cotidianas ligeras pueden retomarse gradualmente." },
+        { "time": "A partir de 1 mes", "title": "Tórax más definido", "body": "El tórax comienza a adquirir un aspecto más natural y definido. Para retomar el deporte, el levantamiento de pesas y los ejercicios intensos de pecho se requiere la autorización del médico, garantizando una recuperación completa y segura." }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reales",
+      "title": "Ginecomastia: antes y después",
+      "lead": "Descubra el perfil más plano, firme y masculino conseguido por nuestros pacientes. Cada resultado se planifica individualmente para ofrecer un aspecto natural y cicatrices discretas.",
+      "cta": { "label": "Ver toda la galería" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Información útil",
+      "title": "Preguntas frecuentes sobre ginecomastia",
+      "items": [
+        {
+          "question": "¿Qué es la ginecomastia?",
+          "answer": "<p>La ginecomastia es el aumento del tejido mamario en el hombre, que da al tórax un aspecto más voluminoso. Puede deberse a un desequilibrio entre estrógenos y testosterona, aumento de peso, determinados medicamentos, esteroides anabolizantes o problemas de salud subyacentes. Es muy frecuente y a menudo no es peligrosa desde el punto de vista médico, pero puede afectar a la confianza personal; por eso muchos hombres deciden tratarla.</p>"
+        },
+        {
+          "question": "¿Cómo se trata la ginecomastia?",
+          "answer": "<p>El tratamiento depende de la naturaleza del exceso de volumen: tejido adiposo, glándula compacta o una combinación de ambos. Los casos más leves se corrigen mediante liposucción, a menudo VASER; cuando existe un componente glandular importante o piel flácida, es necesaria la extirpación quirúrgica de la glándula y, si está indicado, el tensado cutáneo. Tras la exploración, el cirujano confirmará el enfoque más adecuado.</p>"
+        },
+        {
+          "question": "¿La intervención es dolorosa y qué anestesia se utiliza?",
+          "answer": "<p>El procedimiento se realiza bajo anestesia general, por lo que no sentirá nada durante la operación. En los días posteriores, la mayoría de los pacientes describe molestias leves y tirantez más que un dolor importante; estos síntomas se controlan bien con la medicación prescrita y disminuyen en pocos días.</p>"
+        },
+        {
+          "question": "¿Cuánto duran la recuperación y la estancia en Turquía?",
+          "answer": "<p>La mayoría de los pacientes permanece en Turquía unos 3–5 días, incluida una revisión. Es posible retomar la vida cotidiana en 1–2 semanas, mientras se continúa utilizando la prenda de compresión durante varias semanas para favorecer la definición. El ejercicio intenso y los entrenamientos de pecho pueden retomarse después de aproximadamente un mes, con la autorización del cirujano.</p>"
+        },
+        {
+          "question": "¿Quedarán cicatrices visibles?",
+          "answer": "<p>Los procedimientos realizados únicamente con liposucción dejan marcas muy pequeñas y difíciles de apreciar. Cuando se extirpa la glándula o la piel, las incisiones se sitúan de la forma más discreta posible, a menudo a lo largo del borde de la areola, y con los cuidados adecuados se atenúan considerablemente con el tiempo.</p>"
+        },
+        {
+          "question": "¿Los resultados son permanentes? ¿Puede reaparecer la ginecomastia?",
+          "answer": "<p>El tejido glandular extirpado no vuelve a crecer, por lo que el resultado es duradero. La recurrencia es poco frecuente, pero un aumento importante de peso, el uso de esteroides o un nuevo desequilibrio hormonal pueden provocar cambios. Mantener un peso estable y un estilo de vida saludable ayuda a conservar el resultado.</p>"
+        },
+        {
+          "question": "¿El tórax tendrá un aspecto natural después de la intervención?",
+          "answer": "<p>Sí. Cuando se realiza con la técnica correcta, la intervención crea un perfil torácico plano, firme y naturalmente masculino. El objetivo siempre es conseguir un resultado armonioso con el cuerpo y sin aspecto artificial.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Costes",
+      "title": "Precio de la cirugía de ginecomastia",
+      "body": "<p>El precio de la intervención puede variar según diversos factores:</p><ul><li>Técnica utilizada, como liposucción aislada, extirpación quirúrgica de la glándula o enfoque combinado</li><li>Gravedad o grado de la ginecomastia</li><li>Necesidades individuales y posibles procedimientos adicionales</li><li>Plan quirúrgico general y estrategia terapéutica</li></ul><p>Por tanto, el presupuesto más preciso solo puede definirse después de una consulta presencial o una evaluación preliminar online con los especialistas de Estecapelli.</p>",
+      "cta": { "label": "Solicitar un presupuesto personalizado" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Recupere la confianza en sí mismo",
+      "lead": "Facilítenos algunos datos y nuestro equipo le responderá con un plan personalizado para la ginecomastia y un presupuesto todo incluido y sin compromiso, normalmente en pocas horas. Su solicitud se tratará con la máxima confidencialidad.",
+      "points": [
+        { "label": "Evaluación gratuita y confidencial a partir de sus fotografías" },
+        { "label": "Presupuesto todo incluido, transparente y sin compromiso" },
+        { "label": "Respuesta rápida de nuestro equipo de atención al paciente" },
+        { "label": "Asistencia multilingüe en cada etapa" }
+      ],
+      "submit_label": "Solicitar una consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra más",
+      "title": "Tratamientos relacionados"
+    }
+  ]
+}
