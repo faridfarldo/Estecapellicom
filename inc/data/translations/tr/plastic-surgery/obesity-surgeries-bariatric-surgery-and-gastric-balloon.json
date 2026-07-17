@@ -1,0 +1,208 @@
+{
+    "source_slug": "obesity-surgeries-bariatric-surgery-and-gastric-balloon",
+    "slug": "obezite-ameliyatlari-bariatrik-cerrahi-ve-mide-balonu",
+    "title": "Obezite Ameliyatları (Bariatrik Cerrahi ve Mide Balonu)",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Kilo Kaybı",
+            "title": "Obezite Ameliyatları (Bariatrik Cerrahi ve Mide Balonu)",
+            "lead": "Estecapelli ile kalıcı ve sağlıklı zayıflama. Sağlık profilinize ve hedeflerinize göre özelleştirilmiş cerrahi ve cerrahi olmayan seçenekler.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Genel Bakış",
+            "title": "Estecapelli ile Kalıcı ve Sağlıklı Kilo Verme",
+            "body": "<p>Obezite dünya çapında en hızlı büyüyen sağlık sorunlarından biri haline geldi. Vücut kitle indeksinin 30'un üzerinde olması olarak tanımlanan obezite, yalnızca fiziksel görünümü etkilemekle kalmıyor, aynı zamanda kalp-damar hastalıkları, diyabet, uyku apnesi, hipertansiyon ve eklem bozuklukları gibi ciddi rahatsızlıklara da yol açıyor.</p><p>Estecapelli, obeziteyle mücadelede uluslararası standartlarda bariatrik cerrahi yöntemleri ve endoskopik mide balonu tedavileri ile sürdürülebilir kilo kaybı ve daha sağlıklı bir yaşam için profesyonel çözümler sunuyor.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Prosedür",
+            "title": "Bariatrik Cerrahi Nedir?",
+            "body": "<p>Bariatrik cerrahi, kilo kaybını teşvik etmeyi ve obeziteye bağlı sağlık risklerini azaltmayı amaçlayan, şiddetli obeziteyi tedavi etmek için kullanılan cerrahi prosedürler için genel bir terimdir. Bu ameliyatlar sindirim sisteminin işleyişini değiştirerek çalışır:</p><ul><li>Daha az yiyecekle doymak</li><li>Besin emilimini azaltmak</li><li>Metabolizmayı değiştirmek</li></ul><p>Bariatrik cerrahi, uygun hastalarda kalıcı kilo kaybı sağlamak için en etkili yöntemlerden biridir.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Adaylar",
+            "title": "Kimler Obezite Cerrahisi Yaptırabilir?",
+            "body": "Aşağıdaki kriterlerden bir veya birkaçını karşılayan kişiler obezite cerrahisi için uygun aday olabilir:",
+            "items": [
+                {
+                    "label": "Vücut kitle indeksi (BMI) 40 veya daha yüksek"
+                },
+                {
+                    "label": "Diyabet, hipertansiyon veya uyku apnesi gibi durumlarla birlikte BMI 35-40 arasında"
+                },
+                {
+                    "label": "Kilo verme çabalarına rağmen sonuç alamayanlar"
+                },
+                {
+                    "label": "Obezite nedeniyle hareket kısıtlılığı yaşayan bireyler"
+                },
+                {
+                    "label": "Fazla kilo nedeniyle yaşam kalitesi düşen bireyler"
+                }
+            ],
+            "footer": "Estecapelli'de her hasta multidisipliner bir yaklaşımla değerlendirilerek dahiliye, endokrinoloji ve kardiyoloji konsültasyonu ile en uygun tedavi planı oluşturulmaktadır."
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Ameliyat Öncesi",
+            "title": "Obezite Cerrahisi İçin Ameliyat Öncesi Gereksinimler",
+            "body": "<p>Ameliyat öncesi süreç ameliyatın başarısı için çok önemlidir. Estecapelli'de ameliyat öncesi hazırlık şu adımları içerir:</p><ul><li>Ayrıntılı fizik muayene</li><li>Kan testleri, gerekirse EKG ve stres testi</li><li>Endoskopik değerlendirme</li><li>Tıbbi öykünün ve ilaç kullanımının gözden geçirilmesi</li><li>En az 6 ay alkol ve sigaradan uzak durulması</li><li>Beslenme ve psikolojik değerlendirmeler</li></ul><p>Tüm sonuçlar incelendikten sonra kişiye özel bir değerlendirme yapılır. Hastaya özel cerrahi plan geliştirilir.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Yöntemler",
+            "title": "Obezite Cerrahisi Yöntemleri",
+            "body": "En yaygın yöntemler şunları içerir:",
+            "items": [
+                {
+                    "label": "Tüp Mide (Tüp Mide Ameliyatı)"
+                },
+                {
+                    "label": "Mide Bypassı"
+                },
+                {
+                    "label": "Mide Balonu (Endoskopik İşlem – Ameliyatsız)"
+                },
+                {
+                    "label": "Mide Bandı"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Ameliyat Sonrası",
+            "title": "Obezite Cerrahisi Sonrası Bakım ve İyileşme Kılavuzları",
+            "body": "<p>Başarılı bir operasyonun ardından kalıcı kilo kaybı, tutarlı yaşam tarzı alışkanlıklarıyla mümkündür. Estecapelli'nin uzman ekibi hastalara ameliyat sonrası yolculukta ayrıntılı bir yol haritası sunuyor:</p><ul><li>Beslenme planını dikkatlice takip edin</li><li>İlk birkaç hafta sıvı tüketin</li><li>Yavaş yavaş proteinden zengin bir diyete geçin</li><li>Şekerli ve işlenmiş gıdalardan kaçının</li><li>Düzenli olarak vitamin ve mineral takviyesi alın</li><li>Hafif egzersizlerle başlayın ve yavaş yavaş tutarlı bir egzersiz rutini oluşturun</li><li>Bol su için</li><li>İlk aylarda alkol ve kafeinden uzak durun</li></ul><p>Bariatrik cerrahi sonrası süreç hem fiziksel hem de psikolojik destek gerektirir. Estecapelli, tüm hastalara ameliyat sonrası takip ve danışmanlık hizmeti sunuyor.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Ameliyatsız Seçenek",
+            "title": "Mide Balonu Nedir?",
+            "body": "<p>Mide balonu, endoskopi yoluyla mideye yerleştirilen, ameliyat ihtiyacını ortadan kaldıran şişirilebilir bir tıbbi cihazdır. Balon, mide kapasitesini azaltarak bireylerin daha az yiyecekle doymasına yardımcı olur ve kilo kaybını destekler.</p><ul><li>İşlem 20-30 dakika sürer</li><li>Aynı gün taburcu olmak mümkündür</li><li>6 veya 12 aylık balon seçenekleri mevcuttur</li></ul><p>Mide balonu, ameliyattan kaçınmayı tercih eden veya cerrahi işlemlere uygun aday olmayan hastalar için etkili bir kilo yönetimi yöntemidir.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Uygunluk",
+            "title": "Mide Balonu Kimlere Uygulanabilir?",
+            "body": "Aşağıdaki rahatsızlıklara sahip kişilere mide balonu önerilebilir:",
+            "items": [
+                {
+                    "label": "BMI'si 30-35 arasında olan ve ameliyattan kaçınmayı tercih eden kişiler"
+                },
+                {
+                    "label": "Kilo vermede destekleyici bir ilk adıma ihtiyaç duyanlar"
+                },
+                {
+                    "label": "Ameliyata uygunluğu engelleyen sağlık sorunları bulunan kişiler"
+                },
+                {
+                    "label": "Doğum sonrası kilo veremeyen ve orta düzeyde kilo fazlası olan kişiler"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Önemli",
+            "title": "Mide Balonu Ne Zaman Kullanılmamalıdır?",
+            "body": "<ul><li>Mide ülseri, gastrit ve mide fıtığı</li><li>Madde kullanımı</li><li>Ağır yeme bozuklukları</li><li>Hamilelik ve emzirme dönemi</li></ul>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Neden Türkiye",
+            "title": "Türkiye'de Obezite Cerrahisi",
+            "body": "<p>Türkiye, obezite cerrahisi konusunda dünya çapında en popüler ülkeler arasında yer alıyor. Bunun başlıca nedenleri şunlardır:</p><ul><li>Uluslararası deneyime sahip cerrahlar</li><li>Teknolojik açıdan gelişmiş hastaneler</li><li>Yüksek başarı oranları</li><li>Avrupa ve ABD ile karşılaştırıldığında daha uygun fiyatlar</li></ul><p>Estecapelli, hem Türkiye hem de yurt dışından gelen hastalara aşağıdaki hizmetleri sunmaktadır:</p><ul><li>Kişiye özel tedavi planları</li><li>Konforlu hastane ve otel seçenekleri</li><li>Ameliyat sonrası takip programları</li></ul>"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Kilo Kaybı - Öncesi ve Sonrası",
+            "lead": "Hastalarımızın obezite cerrahisi ve mide balonu tedavisiyle elde ettiği hayat değiştiren dönüşümleri görün. Her yolculuk başından sonuna kadar ekibimiz tarafından desteklenmektedir.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Obezite Cerrahisi — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "Bariatrik cerrahi kimler için uygundur?",
+                    "answer": "<p>Genellikle vücut kitle indeksi (BMI) 40 veya üzerinde olan veya tip 2 diyabet, hipertansiyon veya uyku apnesi gibi obezite ile ilişkili durumlar mevcut olduğunda BMI 35+ olan yetişkinler için uygundur. Yalnızca diyet ve egzersizle kilo verme mücadelesi veren adaylar, herhangi bir karar verilmeden önce multidisipliner ekibimiz tarafından bireysel olarak değerlendirilir.</p>"
+                },
+                {
+                    "question": "Hangi prosedürleri sunuyorsunuz?",
+                    "answer": "<p>Tüp mide, gastrik bypass ve mide bandı ameliyatlarının yanı sıra ameliyatsız endoskopik mide balonu seçeneklerini sunuyoruz. Doğru yöntem; kilonuza, sağlık profilinize ve hedeflerinize göre ayrıntılı değerlendirme sırasında belirlenir.</p>"
+                },
+                {
+                    "question": "Tüp mide, bypass ve balon arasındaki farklar nelerdir?",
+                    "answer": "<p>Mide tüpü midenin bir kısmını kalıcı olarak alır, böylece daha çabuk doyduğunuzu hissedersiniz. Gastrik bypass aynı zamanda bağırsağın bir kısmını kalori emilimini azaltmak için yeniden yönlendirir ve genellikle daha yüksek BMI'lar için daha iyi sonuçlar verir. Mide balonu, 6 ila 12 ay süreyle yerleştirilen geçici, cerrahi olmayan bir cihazdır. Başlangıç olarak veya ameliyattan kaçınmayı tercih edenler için idealdir.</p>"
+                },
+                {
+                    "question": "Ne kadar kilo vereceğim?",
+                    "answer": "<p>Ameliyatla hastalar genellikle ilk 12 ila 18 ay içinde fazla kilolarının yaklaşık yüzde 60 ila 80'ini kaybederler. Mide balonu sonuçları daha mütevazıdır. Her durumda uzun vadeli başarı, işlem sonrasında önerilen beslenme ve yaşam tarzı planına uyulmasına bağlıdır.</p>"
+                },
+                {
+                    "question": "Obezite cerrahisi güvenli midir ve büyük yara izleri olacak mı?",
+                    "answer": "<p>Tam donanımlı hastanelerde deneyimli cerrahlar tarafından laparoskopik (anahtar deliği) yöntemle uygulanan modern obezite cerrahisi hem güvenli hem de etkilidir. Yalnızca birkaç küçük kesi kullanıldığı için yara izi minimum düzeydedir ve iyileşme açık ameliyata göre daha hızlıdır.</p>"
+                },
+                {
+                    "question": "İyileşme ne kadar sürer ve Türkiye'de ne kadar kalmalıyım?",
+                    "answer": "<p>Hastaların çoğu, hastane yatışı ve eve dönüş öncesi kontrol dahil olmak üzere Türkiye'de yaklaşık beş ila yedi gün kalır. Günlük hayata dönüş genellikle bir ila iki hafta, tam iyileşme ise yaklaşık dört ila altı hafta sürer. Mide balonu uygulaması çok daha kısa konaklama gerektirir.</p>"
+                },
+                {
+                    "question": "Diğer sağlık koşullarını iyileştirir mi?",
+                    "answer": "<p>Evet. Belirgin kilo kaybı; tip 2 diyabet, yüksek tansiyon, uyku apnesi, eklem ağrısı ve yağlı karaciğer hastalığı gibi durumlarda önemli iyileşme sağlayabilir ve yaşam kalitesini artırabilir.</p>"
+                },
+                {
+                    "question": "Yaşam tarzımı kalıcı olarak değiştirmek zorunda kalacak mıyım?",
+                    "answer": "<p>Evet — kalıcı sonuçlar kalıcı alışkanlıklara bağlıdır. İşlemden sonra aşamalı bir beslenme planı izleyecek, önerilen vitaminleri alacak ve yavaş yavaş düzenli bir egzersiz rutini oluşturacaksınız. Ekibimiz, sonuçlarınızı ömür boyu korumanıza yardımcı olmak için ameliyat sonrası takip ve danışmanlık sağlar.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Fiyatlandırma",
+            "title": "Obezite Cerrahisi Fiyatları",
+            "body": "<p>Fiyatlar seçilen yöntem, hastanın sağlık durumu, tercih edilen balon tipi ve ameliyat tekniği gibi faktörlere göre değişiklik göstermektedir. En doğru fiyatlar Estecapelli uzmanlarıyla yapılan değerlendirme sonrasında belirleniyor.</p>",
+            "cta": {
+                "label": "Kişiselleştirilmiş Fiyat Teklifi İsteyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Kilo Verme Yolculuğunuza Başlayın",
+            "lead": "Birkaç ayrıntıyı paylaşın ve ekibimiz, genellikle birkaç saat içinde kişiselleştirilmiş bir kilo verme planı ve hiçbir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir.",
+            "points": [
+                {
+                    "label": "Sizin için doğru seçeneğin ücretsiz değerlendirmesi"
+                },
+                {
+                    "label": "Hiçbir yükümlülük içermeyen, şeffaf, her şey dahil fiyat teklifi"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili tedaviler"
+        }
+    ]
+}

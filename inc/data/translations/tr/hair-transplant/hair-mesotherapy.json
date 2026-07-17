@@ -1,0 +1,171 @@
+{
+    "source_slug": "hair-mesotherapy",
+    "slug": "sac-mezoterapisi",
+    "title": "Saç Mezoterapisi",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Ameliyatsız Saç Tedavisi",
+            "title": "Saç Mezoterapisi",
+            "lead": "Ağrısız mikro enjeksiyonlarla doğrudan saç derisine uygulanan özelleştirilmiş vitamin, mineral ve amino asit karışımıyla saç köklerinizi canlandırın.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Kısa Bilgiler",
+            "stats": [
+                {
+                    "value": "4–6",
+                    "label": "Seans Sayısı"
+                },
+                {
+                    "value": "4-6 hafta",
+                    "label": "Aralık"
+                },
+                {
+                    "value": "Ağrısız",
+                    "label": "Prosedür"
+                },
+                {
+                    "value": "Günlük Hayata Ara Yok",
+                    "label": "İyileşme"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Yaklaşım",
+            "title": "Saç Mezoterapisi: Estecapelli'nin Kişiye Özel Tedavi Yaklaşımı",
+            "body": "<p>Saç mezoterapisi saç dökülmesiyle mücadele etmenin ve saç sağlığını iyileştirmenin hızlı ve etkili bir yoludur. Tedavi, özel bir vitamin, mineral ve amino asit karışımını doğrudan saç köklerine ileterek en çok ihtiyaç duyulan noktalarda gerekli besinleri sağlar.</p><p>Estecapelli'de süreç dikkatle uyarlanır: kafa derisi ve foliküller analiz edilir, karışım bireysel ihtiyaçlara göre hazırlanır ve ağrısız mikroenjeksiyonlarla uygulanır. Seanslar kısa ve rahattır, günlük rutininize hemen dönebilirsiniz.</p>"
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Süreç",
+            "title": "Saç Mezoterapisi Nasıl Yapılır?",
+            "lead": "Estecapelli'nin saç derisi analizinden kişiye özel seans programına kadar adım adım başvuru süreci. Aşağıdaki adımları hızlıca kaydırın.",
+            "items": [
+                {
+                    "eyebrow": "1. Adım",
+                    "title": "Analiz",
+                    "body": "<p>Saç foliküllerinin yapısını, genel saç derisi durumunu ve saç dökülmesinin nedenini anlamak için saç ve saç derisi dikkatle değerlendirilir. Estecapelli'de bu, uzmanlarımızın folikül uzunluğunu, kalitesini ve yoğunluğunu incelemesine olanak tanıyan TrichoLab analizi kullanılarak yapılır; bu, herkese uyan tek bir kokteyl yerine kesin, kişiselleştirilmiş bir tedavi planının temelidir.</p>"
+                },
+                {
+                    "eyebrow": "2. Adım",
+                    "title": "Mezoterapi Karışımının Hazırlanması",
+                    "body": "<p>Sağlıklı saçlar için gerekli olan vitaminler, mineraller, amino asitler ve büyüme faktörlerinin özenle dengelenmiş kombinasyonunu içeren, her hastaya özel mezoterapi solüsyonu hazırlanır. Karışım, folikül gücünü desteklemek, büyümeyi teşvik etmek ve genel saç kalitesini artırmak için özel ihtiyaçlarınıza göre uyarlanmıştır.</p>"
+                },
+                {
+                    "eyebrow": "3. Adım",
+                    "title": "Uygulama",
+                    "body": "<p>Kişiye özel karışım, ince uçlu iğneler kullanılarak doğrudan saç derisine enjekte edilerek besinlerin doğrudan saç köklerine iletilmesi sağlanır. Saç derisi hassas olanlar için topikal anestezik krem ​​sürülebilir. İşlem hızlı, konforlu ve minimal invaziv olduğundan günlük aktivitelerinize hemen dönebilirsiniz.</p>"
+                },
+                {
+                    "eyebrow": "4. Adım",
+                    "title": "Tedavi Programı",
+                    "body": "<p>Genellikle 4-6 seanslık bir tedavi programı 4-6 hafta aralıklarla uygulanır. Kesin program, saç dökülmesi seviyenize ve saçınızın tepkisine göre ayarlanır ve sonuçların korunması için sonrasında periyodik bakım seansları önerilir.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Neden Tercih Edilmeli?",
+            "title": "Saç Mezoterapisinin Avantajları",
+            "body": "Günlük yaşamınıza uyan destekleyici, invazif olmayan bir tedavi:",
+            "items": [
+                {
+                    "label": "Saç köklerini güçlendirir ve yeni büyümeyi teşvik eder"
+                },
+                {
+                    "label": "Hiçbir kesinti olmadan saç dökülmesini azaltır"
+                },
+                {
+                    "label": "Kişiye özel vitamin ve mineral kokteyli"
+                },
+                {
+                    "label": "Ağrısız, konforlu seanslar"
+                },
+                {
+                    "label": "Saç ekimi sonrası bakıma uygundur"
+                },
+                {
+                    "label": "Birkaç seansta hızlı görünür sonuçlar"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Saç Mezoterapisi — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "Saç mezoterapisi için iyi bir aday mıyım?",
+                    "answer": "<p>Mezoterapi, androgenetik alopesi ve telogen effluvium da dahil olmak üzere saç dökülmesinin erken ve orta evrelerinde (saçların incelmesi, zayıflaması veya dökülmesi) erkek ve kadınlara uygundur. Saç ekimi sonrasında da güçlü bir destek tedavisidir. İlerlemiş kelliklerde ameliyatın yerini tutmaz, bu nedenle öncelikle bir uzman tarafından nedeninin detaylı olarak değerlendirilmesi gerekir.</p>"
+                },
+                {
+                    "question": "Kaç seansa ihtiyacım olacak ve sonuçları ne zaman göreceğim?",
+                    "answer": "<p>Tipik bir tedavi programı, dört ila altı haftalık aralıklarla uygulanan dört ila altı seanstan oluşur. Birçok hasta ilk iki veya üç seanstan sonra dökülmenin azaldığını, program ilerledikçe saç tellerinin güçlendiğini ve yeni büyümenin başladığını fark eder. Kesin seans sayısı, saç dökülmesinin düzeyine ve saçınızın tedaviye verdiği yanıta göre belirlenir.</p>"
+                },
+                {
+                    "question": "Saç mezoterapisi ağrılı mıdır ve herhangi bir kesinti olur mu?",
+                    "answer": "<p>Genellikle ağrısızdır; yalnızca hafif bir batma hissi hissedebilirsiniz ve hassas saç derileri için topikal uyuşturma kremi kullanılabilir. Kesinti söz konusu değildir: Seanslar kısadır ve sonrasında iş dahil günlük rutininize hemen dönebilirsiniz.</p>"
+                },
+                {
+                    "question": "Mezoterapi karışımının içinde aslında ne var?",
+                    "answer": "<p>Mezoterapi solüsyonu, saç köklerini doğrudan besleyen vitaminler, mineraller, amino asitler ve büyüme faktörlerinden oluşan özel bir karışımdır. Sabit bir formül kullanılmaz; içerik saç derisi analizine göre ayarlanarak saçınızdaki belirli eksiklikler ve zayıflıklar hedeflenir.</p>"
+                },
+                {
+                    "question": "Diğer tedavilerle birleştirilebilir mi?",
+                    "answer": "<p>Evet. PRP ve minoksidil gibi tıbbi tedavilerle birlikte uygulanabilir; DHI, FUE veya Safir FUE saç ekimi sonrasında sonuçları desteklemek ve güçlendirmek amacıyla da sıkça kullanılır. Uzmanlarımız hedeflerinize uygun kombinasyonu planlar.</p>"
+                },
+                {
+                    "question": "Herhangi bir yan etkisi var mı?",
+                    "answer": "<p>Güvenli ve minimal invazif bir işlemdir. Nadiren enjeksiyon yerlerinde geçici kızarıklık, hafif şişlik veya kaşıntı görülebilir ve kısa sürede kendiliğinden geçebilir.</p>"
+                },
+                {
+                    "question": "Sonuçlar ne kadar sürer?",
+                    "answer": "<p>Mezoterapinin sonuçları, özellikle sağlıklı bir yaşam tarzı ve doğru saç bakımı ile birleştirildiğinde uzun ömürlü olabilir. Ancak tedavi, saç dökülmesinin altında yatan nedenleri kalıcı olarak durdurmak yerine mevcut saç köklerini destekleyip uyardığından, bireysel durumunuza göre bakım seansları önerilebilir. Periyodik bakımlar saç yoğunluğunun korunmasına, saç derisi sağlığının korunmasına ve zamanla daha güçlü, daha sağlıklı saç büyümesinin desteklenmesine yardımcı olur.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Saç Mezoterapisi – Öncesi ve Sonrası",
+            "lead": "Hastalarımızın mezoterapi kürü sonrasında yoğunluk ve saç kalitesinde elde ettiği iyileşmeyi görün. Foliküller beslenip güçlendikçe sonuçlar seanslar boyunca kademeli olarak gelişir.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Saçlarınızı Güçlendirmeye Hazır mısınız?",
+            "lead": "Birkaç ayrıntıyı paylaşın; ekibimiz kişiselleştirilmiş bir mezoterapi planı, önerilen seans sayısı ve herhangi bir yükümlülük içermeyen bir fiyat teklifi ile genellikle birkaç saat içinde yanıt verecektir.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz saç derisi değerlendirmesi"
+                },
+                {
+                    "label": "Kişiye özel vitamin ve mineral kokteyli"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili tedaviler"
+        }
+    ]
+}

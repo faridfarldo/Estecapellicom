@@ -1,0 +1,237 @@
+{
+    "source_slug": "rhinoplasty",
+    "slug": "burun-estetigi",
+    "title": "Burun Estetiği",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Burun Estetiği",
+            "title": "Burun Estetiği",
+            "lead": "Burnu yeniden şekillendiren, şeklini, boyutunu ve işlevini iyileştiren cerrahi bir prosedür. Hem estetik incelik hem de nefes alma kaygısı nedeniyle yapılır.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Prosedür",
+            "title": "Rinoplasti Nedir?",
+            "body": "<p>Rinoplasti, burnun şeklini, boyutunu ve fonksiyonunu iyileştirerek yeniden şekillendirmek için tasarlanmış cerrahi bir işlemdir. Hem estetik amaçlı hem de nefes alma problemlerini düzeltmek amacıyla yapılabilir. Burun, yüzün ortasındaki en belirgin özellik olduğundan, en ufak değişiklikler bile yüz uyumu ve özgüven açısından gözle görülür bir fark yaratabilir.</p><p>Estecapelli'de her burun estetiği ameliyatı, kişiye özel olarak dikkatle planlanır. Uzmanlarımız genel yüz yapısını değerlendirir ve doğal görünümlü sonuçlar elde etmek için yüz oranlarını ve dengesini dikkate alır. Tüm ameliyatlar deneyimli kulak burun boğaz (KBB) uzmanları ve plastik cerrahlar tarafından gerçekleştirilerek hem estetik iyileştirme hem de fonksiyonel iyileşme sağlanmaktadır.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Neden Yapılır?",
+            "title": "Rinoplasti Neden Yapılır?",
+            "body": "İnsanlar hem estetik görünüm hem de fonksiyonel kaygılarla ilgili çeşitli nedenlerden dolayı burun estetiğini tercih etmektedir. En yaygın nedenlerden bazıları şunlardır:",
+            "items": [
+                {
+                    "label": "Yüze oranla çok büyük veya çok küçük görünen burun"
+                },
+                {
+                    "label": "Burun köprüsünde gözle görülür bir kamburluk"
+                },
+                {
+                    "label": "Sarkık, geniş veya belirginliği zayıf bir burun ucu"
+                },
+                {
+                    "label": "Asimetrik burun delikleri"
+                },
+                {
+                    "label": "Önceki yaralanma veya travmanın neden olduğu deformasyonlar"
+                },
+                {
+                    "label": "Burnun doğal, genetik olarak miras alınan şeklinden memnuniyetsizlik"
+                },
+                {
+                    "label": "Septum deviasyonu veya iç burun eğriliği gibi yapısal sorunlardan kaynaklanan nefes alma güçlükleri"
+                }
+            ],
+            "footer": "Estecapelli'de rinoplastinin amacı, genel yüz özelliklerini tamamlayan ve aynı zamanda gerektiğinde nefes alma fonksiyonunu da iyileştiren doğal görünümlü bir burun yaratmaktır."
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Adaylar",
+            "title": "Kimler Rinoplasti Yaptırabilir?",
+            "body": "Burun estetiği, burnunun hem görünüşünü hem de fonksiyonunu iyileştirmek isteyen kişiler için uygun bir seçenek olabilir. İdeal adaylar genellikle şunları içerir:",
+            "items": [
+                {
+                    "label": "Yüz büyümesi ve fiziksel gelişimi tamamlanmış yetişkinler"
+                },
+                {
+                    "label": "Burnunun görünümünden veya şeklinden memnun olmayan kişiler"
+                },
+                {
+                    "label": "Yapısal burun sorunları nedeniyle nefes alma güçlüğü yaşayan kişiler"
+                },
+                {
+                    "label": "Genetik, yaralanma ya da geçirilmiş travma nedeniyle burunda şekil bozukluğu olanlar"
+                },
+                {
+                    "label": "Daha dengeli, doğal ve uyumlu bir yüz görünümü arayan bireyler"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Teknikler",
+            "title": "Rinoplasti Çeşitleri",
+            "body": "<ul><li><strong>Açık Rinoplasti</strong> — burun deliklerinin altından yapılan küçük bir kesiyle burun yapısının tamamen görünür hale getirildiği cerrahi tekniktir. Büyük yapısal değişiklikler, belirgin eğrilikler ve revizyon ameliyatı gerektiren durumlarda tercih edilir.</li><li><strong>Kapalı Rinoplasti</strong> — tüm kesilerin burun içinden yapıldığı ve dışarıdan görünür iz bırakılmadığı cerrahi tekniktir. Daha hızlı iyileşme ve daha az doku travması sunabilir; ancak her burun için uygun olmayabilir. Uygunluk muayene ile belirlenir.</li><li><strong>Tipplasti (Burun Ucu Ameliyatı)</strong> — yalnızca burun ucuna uygulanan estetik işlemdir. Burun köprüsüne veya kemik yapısına müdahale edilmeden burun ucu yeniden şekillendirilir. İşlem süresi ve iyileşme dönemi genellikle daha kısadır.</li><li><strong>Septum Deviasyonu Cerrahisi</strong> — burnun orta hattındaki kıkırdak ve kemik eğriliğinin düzeltilmesidir. Temel amaç solunum problemlerini gidermektir. Burnun dış görünümü değiştirilmeden burun fonksiyonu iyileştirilir.</li></ul>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Ameliyat Öncesi",
+            "title": "Ameliyat Öncesi Süreç",
+            "body": "Başarılı bir burun estetiği için ameliyat öncesi aşama çok önemlidir. Estecapelli'de her hasta, hem güvenliği hem de mümkün olan en iyi sonuçları sağlamak için dikkatli bir değerlendirmeye tabi tutulur. Ameliyattan önce aşağıdaki adımlar gerçekleştirilir:",
+            "items": [
+                {
+                    "label": "Hastanın tıbbi geçmişinin ve mevcut sağlık durumunun gözden geçirilmesi"
+                },
+                {
+                    "label": "Estetik beklentilerin ve istenilen sonuçların tartışılması"
+                },
+                {
+                    "label": "Burun iç ve dış yapısının incelenmesi"
+                },
+                {
+                    "label": "Kan testleri ve anestezi değerlendirmesi"
+                },
+                {
+                    "label": "Analiz ve cerrahi planlama için tıbbi fotoğraflar"
+                },
+                {
+                    "label": "Kan sulandırıcı ilaçların geçici olarak kesilmesi"
+                },
+                {
+                    "label": "Uygun iyileşmeyi desteklemek için ameliyattan önce alkol ve sigaradan kaçınmak"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Operasyon",
+            "title": "Rinoplasti Nasıl Yapılır?",
+            "body": "<p>Ameliyat adımları:</p><ol><li>Anestezinin uygulanması</li><li>Burun içinden veya dışından kesi yapılması</li><li>Kıkırdak ve kemik yapısının yeniden şekillendirilmesi</li><li>Gerekirse hava yollarının açılması</li><li>Burun ucunun estetik olarak ayarlanması</li><li>Kesilerin kapatılması ve splint uygulanması</li></ol><p>Çoğu hasta ameliyattan sonra aynı gün veya ertesi gün taburcu edilir.</p>"
+        },
+        {
+            "acf_fc_layout": "steps",
+            "eyebrow": "Ameliyat Sonrası",
+            "title": "Burun Estetiği Sonrası İyileşme Süreci",
+            "lead": "Rinoplasti iyileşme zaman çizelgesine ilişkin genel bir rehber.",
+            "items": [
+                {
+                    "time": "İlk 24 Saat",
+                    "title": "Hafif Şişlik",
+                    "body": "Hafif ağrı ve şişlik oluşabilir."
+                },
+                {
+                    "time": "İlk Hafta",
+                    "title": "Morlukların Azalması",
+                    "body": "Çoğu morarma azalmaya başlar."
+                },
+                {
+                    "time": "7. Gün",
+                    "title": "Atelin Çıkarılması",
+                    "body": "Splint genellikle çıkarılır."
+                },
+                {
+                    "time": "1 Ay",
+                    "title": "Belirgin İyileşme",
+                    "body": "Önemli iyileşme gerçekleşir."
+                },
+                {
+                    "time": "6-12 Ay",
+                    "title": "Son Şekil",
+                    "body": "Burnun son şekli yavaş yavaş yerleşir ve tamamen olgunlaşır."
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Rinoplastinin Riskleri",
+            "body": "<p>Her cerrahi prosedürde olduğu gibi burun estetiği de hafif şişlik, geçici kanama, enfeksiyon veya iyileşmeyle ilgili sorunlar gibi bazı potansiyel riskler taşır. Ancak bu komplikasyonlar nadirdir ve işlemin deneyimli cerrahlar tarafından, uygun teknikler kullanılarak yapılması durumunda önemli ölçüde en aza indirilebilir.</p>"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Rinoplasti – Öncesi ve Sonrası",
+            "lead": "Hastalarımızın elde ettiği zarif, dengeli burunları görün; her zaman yüzün geri kalanıyla uyum içindedir. Her sonuç, doğal bir görünüm için bireysel özelliklerinize göre planlanır.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Rinoplasti — SSS",
+            "items": [
+                {
+                    "question": "Burun estetiği için iyi bir aday mıyım?",
+                    "answer": "<p>İyi adaylar, genel sağlık durumu iyi olan ve burnun şeklinden, boyutundan veya oranından ya da nefes alma zorluğundan rahatsız olan, yüz gelişimi tamamlanan (genellikle ergenlik çağının sonlarından itibaren) yetişkinlerdir. Gerçekçi beklentiler önemlidir: Amaç, başkasının burnunun kopyası değil, yüzünüze uygun bir burundur. Konsültasyon sırasında cerrahınız burun yapınızı, cilt tipinizi ve nefes alıp verişinizi değerlendirerek uygunluğu teyit eder ve sonucu sizinle birlikte planlar.</p>"
+                },
+                {
+                    "question": "Açık ve kapalı rinoplasti arasındaki fark nedir?",
+                    "answer": "<p>Kapalı rinoplastide tüm kesiler burun deliklerinin içinden yapıldığından dışta herhangi bir iz kalmaz; daha sınırlı yeniden şekillendirme gerektiren vakalara uygundur. Açık rinoplasti, kolumella (burun delikleri arasındaki deri şeridi) boyunca küçük bir kesi ekleyerek cerraha daha karmaşık veya revizyon çalışmaları için daha geniş bir görüş alanı sağlar. Küçük açık teknik yara izi iyi gizlenmiştir ve genellikle iyileştiğinde fark edilmez. Cerrahınız burnunuz için en güvenilir sonucu verecek yaklaşımı önerir.</p>"
+                },
+                {
+                    "question": "Hangi anestezi kullanılıyor ve ameliyat ne kadar sürüyor?",
+                    "answer": "<p>Burun estetiği genel anestezi altında yapıldığından ameliyat sırasında hiçbir şey hissetmezsiniz. Bu işlem genellikle tekniğe ve fonksiyonel düzeltmenin dahil olup olmadığına bağlı olarak yaklaşık iki ila üç saat sürer. Rutin kontrolün ardından normalde aynı gün veya bir gece sonra evinize veya otelinize dönebilirsiniz.</p>"
+                },
+                {
+                    "question": "İyileşme ve Türkiye'de kalma süresi ne kadardır?",
+                    "answer": "<p>Hastaların çoğu, atel çıkarılana ve eve uçmadan önce takip kontrolü yapılana kadar yaklaşık yedi gün boyunca Türkiye'de kalıyor. İlk hafta alçı veya atel takılır, göz çevresindeki şişlik ve morluklar ise 1-2 hafta içerisinde kaybolur. Çoğu kişi 10 ila 14 gün içinde işe döner ve hafif rutine dönerken burun da gelişmeye devam eder.</p>"
+                },
+                {
+                    "question": "Nihai sonucu ne zaman göreceğim?",
+                    "answer": "<p>Atel çıktıktan sonra net bir fark göreceksiniz, ancak derin şişlik çözüldükçe burun da yavaş yavaş yerine oturacaktır. Şeklin büyük bir kısmı birkaç ay içinde belirginleşirken, nihai, tamamen rafine edilmiş sonuç - özellikle uç kısımda - yaklaşık altı ila on iki ay içinde ortaya çıkar. Cerrahınız iyileşmenin her aşamasında size rehberlik eder.</p>"
+                },
+                {
+                    "question": "Burun estetiği nefes almamı etkiler mi?",
+                    "answer": "<p>Nefes almayı kötüleştirmemeli ve çoğu zaman iyileştirmektedir. Fonksiyonel rinoplasti, septum deviasyonu veya hava yollarının dar olması gibi sorunları düzeltmek için estetik prosedürle birleştirilebilir, böylece tek bir operasyonda görünüm ve nefes alma sorununu çözebilirsiniz. Değerlendirilmesi ve tedavi edilebilmesi için cerrahınıza herhangi bir burun tıkanıklığı veya nefes alma zorluğu hakkında bilgi verin.</p>"
+                },
+                {
+                    "question": "Sonuçlar kalıcı ve doğal görünümlü mü?",
+                    "answer": "<p>Rinoplasti kalıcı sonuçlar verir ve deneyimli ellerde burun, \"ameliyat edilmiş\" olmaktan ziyade, yüzünüzün geri kalanıyla doğal ve dengeli görünür. İyileşme tamamlandıktan sonra ilk yıl boyunca küçük değişiklikler devam edebilir. Hastaların küçük bir yüzdesi daha sonra küçük bir revizyon yapmayı tercih eder ve eğer konuyla alakalı olursa cerrahınız bunu dürüstçe tartışacaktır.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Fiyatlandırma",
+            "title": "Rinoplasti Fiyatları",
+            "body": "<p>Burun estetiği fiyatlandırması, kullanılan tekniğe, işlemin kapsamına, bireysel ihtiyaçlarınıza ve anatominize göre değişiklik gösterir. Herhangi bir karar alınmadan önce tam şeffaflığın sağlanması için ayrıntılı bir istişarenin ardından kişiselleştirilmiş bir fiyat teklifi sunulur.</p>",
+            "cta": {
+                "label": "Kişiselleştirilmiş Fiyat Teklifi İsteyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Yüzünüze Uygun Bir Buruna Hazır Mısınız?",
+            "lead": "Birkaç ayrıntı paylaşın ve ekibimiz kişiselleştirilmiş bir rinoplasti planıyla ve herhangi bir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir - genellikle birkaç saat içinde.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz değerlendirme"
+                },
+                {
+                    "label": "Hiçbir yükümlülük içermeyen, şeffaf, her şey dahil fiyat teklifi"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili tedaviler"
+        }
+    ]
+}

@@ -71,6 +71,8 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-it-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-es-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-pt-plastic-treatments.php';
+	// Loaded after the Italian Hair and Plastic import engines it shares.
+	require get_template_directory() . '/inc/admin/import-tr-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-es-dental-treatments.php';

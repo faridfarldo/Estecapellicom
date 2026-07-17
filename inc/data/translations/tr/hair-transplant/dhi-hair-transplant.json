@@ -1,0 +1,185 @@
+{
+    "source_slug": "dhi-hair-transplant",
+    "slug": "dhi-sac-ekimi",
+    "title": "DHI Saç Ekimi",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Doğrudan Saç Ekimi",
+            "title": "DHI Saç Ekimi",
+            "lead": "Foliküllerin özel bir Choi kalemi ile önceden açılmış kanallar olmadan doğrudan alıcı alana implante edildiği modern, son derece hassas bir teknik. Sonuç, daha yoğun yerleştirme, minimum travma ve doğru planla mevcut saçların tıraş edilmesine gerek kalmamasıdır.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Kısa Bilgiler",
+            "stats": [
+                {
+                    "value": "Yerel",
+                    "label": "Anestezi"
+                },
+                {
+                    "value": "Choi kalemi",
+                    "label": "İmplantasyon"
+                },
+                {
+                    "value": "Kanal Açma Yok",
+                    "label": "Teknik"
+                },
+                {
+                    "value": "Hızlı",
+                    "label": "İyileşme"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Yöntem",
+            "title": "DHI Saç Ekimi Nedir?",
+            "body": "<p>DHI — Doğrudan Saç Ekimi — modern, son derece etkili bir saç ekim tekniğidir. Toplanan kökler özel bir Choi implanter kalemine yüklenir ve önce ayrı kanallar açılmadan doğrudan alıcı bölgeye yerleştirilir. Bu, cerraha her greftin açısı, yönü ve derinliği üzerinde hassas kontrol sağlayarak minimum müdahaleyle yoğun yerleştirme ve hızlı iyileşme sağlar.</p>"
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Prosedür",
+            "title": "Estecapelli'de DHI Nasıl Uygulanır?",
+            "lead": "Tıbbi ekibimiz tarafından uçtan uca yönetilen hassas, dört aşamalı bir süreç. Aşağıdaki aşamaları kaydırarak inceleyin.",
+            "items": [
+                {
+                    "eyebrow": "Aşama 1",
+                    "title": "Konsültasyon ve Planlama",
+                    "body": "<p>Saç yapınız, donör alanınız ve hedefleriniz, tamamen kişiselleştirilmiş bir plan tasarlamak için yapay zeka destekli TrichoLab ile analiz edilir. Greft sayısı tahmin edilir ve doğal bir saç çizgisi belirlenir, böylece prosedür başlamadan önce her ayrıntı üzerinde anlaşmaya varılır.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 2",
+                    "title": "Lokal Anestezi",
+                    "body": "<p>Konforlu ve ağrısız bir deneyim için donör ve alıcı bölgelere lokal anestezi uygulanır. İşlem boyunca uyanık ancak rahat olursunuz; seans sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 3",
+                    "title": "Greftlerin Alınması",
+                    "body": "<p>Sağlıklı foliküller, ultra ince mikromotorlar kullanılarak güvenli donör alanından tek tek çıkarılır ve hemen Choi implanter kalemlerine yüklenir; böylece greftlerin, onları güçlü ve canlı tutmak için kafa derisinin dışında geçirdiği süre en aza indirilir.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 4",
+                    "title": "Choi Kalemi ile İmplantasyon",
+                    "body": "<p>Greftler doğrudan Choi kalemi ile kesin açı, derinlik ve yönde implante edilir; önce ayrı bir kanal açılmaz. Bu doğrudan yerleştirme, mevcut kıllar arasında çok yüksek bir yoğunluğa izin verir ve doğru planla, genellikle tıraş edilmeden, tamamen doğal bir sonuç elde edilmesini sağlar.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Neden Estecapelli",
+            "title": "DHI İçin Neden Estecapelli?",
+            "body": "Detaylı planlama ve Choi kaleminin hassasiyeti yoğun, doğal ve kalıcı sonuçlar sunar:",
+            "items": [
+                {
+                    "label": "Titiz planlamanın kalıcı ve güvenilir sonuçları"
+                },
+                {
+                    "label": "Yüksek hassasiyet — doğrudan implantasyon, önceden hazırlanmış kanallara gerek yoktur"
+                },
+                {
+                    "label": "Daha az travma ve daha hızlı iyileşme"
+                },
+                {
+                    "label": "Yüksek yoğunluk ve doğal görünüm"
+                },
+                {
+                    "label": "Hassas ciltler için uygundur"
+                },
+                {
+                    "label": "Açık kesi olmadığından enfeksiyon riski azalır"
+                },
+                {
+                    "label": "Bilimsel TrichoLab analiziyle kişiselleştirilmiş planlama"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Adaylar",
+            "title": "Kimler Saç Ekimi Yaptırabilir?",
+            "body": "<p><strong>Yaş.</strong> Saç ekimi için kesin bir yaş sınırı yoktur ancak saç dökülmesi paternlerinin daha öngörülebilir hale geldiği adaylar genellikle 25 yaşın üzerindedir. Bununla birlikte, saç dökülmesi 22-24 yaşlarında bile ilerleyebilir, bu nedenle ekim planlanırken hastanın saç dökülmesinin boyutu yaşı kadar önemlidir.</p><p><strong>Donör Alanı.</strong> Başarılı bir saç ekimi, güvenli bir şekilde alınabilecek sağlıklı saç köklerine ihtiyaç duyar. Birincil donör alanı genellikle saçın genetik olarak incelmeye dirençli olduğu kafa derisinin arka ve yan kısımlarıdır. Donör alanının kalitesi ve yoğunluğu kaç greftin nakledilebileceğini belirler.</p><p><strong>Saç Dökülmesi Türü.</strong> En iyi adaylar tipik olarak erkek veya kadın tipi kelliğe sahip olanlardır, çünkü bu tip genellikle kafa derisinin yalnızca belirli bölgelerini etkiler, dolayısıyla donör alanı muhtemelen etkilenmeden kalacaktır. Alopesi gibi diğer türler ise daha özel bir değerlendirme gerektirir.</p><p><strong>Sağlık.</strong> Etkili bir saç ekimi için kontrolsüz şeker hastalığı, ciddi kalp veya karaciğer sorunları, aktif kafa derisi enfeksiyonları veya otoimmün bozukluklar gibi işlemi veya iyileşmeyi etkileyebilecek herhangi bir tıbbi rahatsızlığınızın olmaması gerekir. İşlem öncesinde kapsamlı bir tıbbi değerlendirme, işlemin güvenli ve etkili olmasını sağlar.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Ameliyat Sonrası",
+            "title": "DHI İyileşme Süreci: Neler Beklenmeli?",
+            "body": "<p><strong>İlk günler ve haftalar:</strong> Hafif kızarıklık ve şişlik normaldir ve hızla düzelir.</p><p><strong>Kabuk dökülmesi:</strong> Küçük kabuklar iyileşmenin doğal bir parçası olarak dökülür.</p><p><strong>1-4. Aylar:</strong> Saç kökleri yeni büyüme döngüsüne girerken geçici şok dökülme görülebilir.</p><p><strong>3-12. Aylar:</strong> Yeni saçlar çıkmaya başlar ve yoğunluk giderek artar. Takip ekibimiz bu sürecin her aşamasında size destek olur.</p>",
+            "cta": {
+                "label": "Ücretsiz Konsültasyon Planlayın"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "DHI — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "DHI ve FUE arasındaki fark nedir?",
+                    "answer": "<p>Her ikisi de folikülleri aynı şekilde hasat eder; fark implantasyondur. FUE ile önce alıcı kanallar açılır ve daha sonra greftler yerleştirilir; DHI ise bölgeyi açmak ve folikülü tek bir doğrudan hareketle yerleştirmek için bir Choi implanter kalemi kullanır. Bu, cerraha açı, derinlik ve yoğunluk üzerinde hassas kontrol sağlar, çok yoğun yerleştirmeye olanak tanır ve doğru planla çoğu zaman mevcut saçınızı tıraş etmekten kaçınır.</p>"
+                },
+                {
+                    "question": "DHI gerçekten tıraş gerektirmez mi? Saçlarımı koruyabilir miyim?",
+                    "answer": "<p>DHI, tıraşsız ve hedefe yönelik işlemler için en uygun tekniklerden biridir. Daha küçük alanlarda ve yoğunluk çalışmalarında mevcut saçlar çoğu zaman tamamen korunabilir; daha geniş seanslarda ise kısmi veya gizli tıraş gerekebilir. Danışmanınız, fotoğraflarınızı inceleyerek sizin durumunuzda nelerin mümkün olduğunu netleştirecektir.</p>"
+                },
+                {
+                    "question": "DHI için iyi bir aday mıyım?",
+                    "answer": "<p>DHI; erken ila orta derecede saç dökülmesi, yaygın incelme, küçük veya hedeflenen alanlar ve saç çizgisi düzenlemesi için hassas, yoğun ve çoğu zaman tıraşsız ekim isteyen kişiler açısından güçlü bir seçenektir. En uygun adaylar genellikle 25 yaşın üzerinde, donör alanı sağlıklı ve saç dökülmesi stabil olan kişilerdir. Fotoğraflarla yapılan ücretsiz konsültasyon uygunluğunuzu netleştirir.</p>"
+                },
+                {
+                    "question": "DHI acı verir mi ve iyileşme nasıldır?",
+                    "answer": "<p>İşlem lokal anestezi altında yapıldığından tedavi sırasında herhangi bir ağrı hissedilmez. DHI minimal invazif olduğundan ve açık kanal olmadığından iyileşme hızlıdır; hafif kızarıklık ve küçük kabuklar birkaç gün içinde yerleşir ve çoğu hasta ilk birkaç hafta yorucu aktivitelerden, güneşten ve yüzmekten kaçınarak günlük hayata hızla döner.</p>"
+                },
+                {
+                    "question": "Sonuçları ne zaman göreceğim ve dökülme normal mi?",
+                    "answer": "<p>Ekilen saçlar genellikle ilk haftalarda dökülür; bu \"şok dökülme\" tamamen normaldir. Yeni büyüme üç ila dördüncü ay civarında başlar, altı ila dokuz ay arasında gözle görülür yoğunluk gelişir ve tamamen olgunlaşmış nihai sonuç yaklaşık on iki ayda ortaya çıkar.</p>"
+                },
+                {
+                    "question": "Sonuçlar kalıcı ve doğal görünümlü mü?",
+                    "answer": "<p>Evet. Foliküller genetik olarak saç dökülmesine dirençli bölgelerden alınır, böylece kalıcı olarak büyümeye devam ederler. Doğrudan, açı kontrollü ekim tamamen doğal bir saç çizgisi ve yoğunluk sağlar; saçınızı normal şekilde kesebilir, yıkayabilir ve şekillendirebilirsiniz. Ekilmemiş mevcut saçlar zamanla incelebilir, bu nedenle genel görünümün korunması için destekleyici bakım önerilebilir.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "DHI — Öncesi ve Sonrası",
+            "lead": "Hastalarımızın DHI ile elde ettiği yoğunluğu ve doğal saç çizgilerini görün. Her sonuç kendi büyüme şeklinize göre planlanır, böylece sonuç mevcut saçlarınızla kusursuz bir şekilde uyum sağlar ve tamamen doğal görünür.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "DHI ile Saçlarınızı Yenilemeye Hazır mısınız?",
+            "lead": "Birkaç ayrıntı paylaşın ve ekibimiz kişiselleştirilmiş bir DHI planı, bir yolsuzluk tahmini ve herhangi bir yükümlülük altına girmeyen, her şey dahil bir teklifle yanıt verecektir - genellikle birkaç saat içinde.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz greft değerlendirmesi"
+                },
+                {
+                    "label": "Hassas, çoğunlukla tıraş gerektirmeyen doğrudan implantasyon"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili tedaviler"
+        }
+    ]
+}

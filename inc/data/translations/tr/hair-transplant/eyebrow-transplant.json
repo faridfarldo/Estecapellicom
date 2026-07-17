@@ -1,0 +1,170 @@
+{
+    "source_slug": "eyebrow-transplant",
+    "slug": "kas-ekimi",
+    "title": "Kaş Ekimi",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Hassas Mikrocerrahi",
+            "title": "Kaş Ekimi",
+            "lead": "İncelen, dökülen veya şeklini kaybeden kaşları eski haline getiren hassas bir mikrocerrahi prosedürdür. Kalıcı, tamamen doğal bir kaş için her bir folikül doğru açı ve yönde yerleştirilir.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Prosedür",
+            "title": "Kaş Ekimi Nedir?",
+            "body": "<p>Kaş ekimi, yaşlanma, travma, tıbbi durumlar veya aşırı alım nedeniyle incelmiş, dökülmüş veya doğal şeklini kaybetmiş kaşları eski haline getirmek için tasarlanmış hassas bir mikrocerrahi prosedürdür. İşlem sırasında enseden (kafanın arkası) tek tek saç kökleri dikkatlice toplanarak kaş bölgesine nakledilir. Her bir folikül, doğal kaş büyümesini taklit edecek şekilde tam açı ve yönde yerleştirilir.</p><p>Asıl amaç, yüz özelliklerinizi tamamlayan dolgun, doğal görünümlü kaşlar oluşturmaktır. İyileştikten sonra ekilen saçlar kalıcı olarak büyür ve makyaj gerektirmeyen, az bakım gerektiren, estetik bir sonuç sağlar.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Neden Tercih Edilir?",
+            "title": "Kaş Ekimi Neden Tercih Edilir?",
+            "body": "Kaşlar yüz ifadesinin en belirleyici unsurlarından biridir. Kaş ekimi aşağıdaki durumlarda kalıcı ve etkili bir çözüm sağlar:",
+            "items": [
+                {
+                    "label": "Uzun süre hatalı kaş şekillendirme"
+                },
+                {
+                    "label": "Ani saç dökülmesi"
+                },
+                {
+                    "label": "Hormonal değişiklikler"
+                },
+                {
+                    "label": "Stres veya beslenme yetersizlikleri"
+                },
+                {
+                    "label": "Yaralanma, yanık veya travma nedeniyle oluşan boşluklar"
+                },
+                {
+                    "label": "Kalıcı makyaj veya microblading kaynaklı deformasyonlar"
+                },
+                {
+                    "label": "Genetik olarak seyrek kaşlar"
+                }
+            ],
+            "footer": "Tekniklerin ilerlemesiyle birlikte kaş ekimi, doğal ve estetik sonuçları nedeniyle son yıllarda en çok tercih edilen işlemlerden biri haline gelmiştir."
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Süreç",
+            "title": "Kaş Ekimi Nasıl Yapılır?",
+            "body": "<p>Kaş ekimi prosedürü, saç ekimine benzer prensipleri takip eder; ancak çok daha yüksek düzeyde estetik hassasiyet gerektirir.</p>"
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Adım Adım",
+            "title": "Kaş Ekimi Aşamaları",
+            "lead": "Doğal, kalıcı bir sonuç için yüz oranlarınıza göre tasarlanmıştır. Aşağıdaki aşamaları kaydırarak inceleyin.",
+            "items": [
+                {
+                    "eyebrow": "Aşama 1",
+                    "title": "Kaş Tasarımı",
+                    "body": "<p>Yüz oranlarınız, kas yapınız ve kişisel tercihleriniz dikkate alınarak doğal bir kaş şekli çizilir. Bu, işlemin en kritik kısmıdır; tasarım tüm sonucu belirler, dolayısıyla herhangi bir kök yerleştirilmeden önce sizinle ayrıntılı olarak mutabakata varılır.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 2",
+                    "title": "Greftlerin Alınması",
+                    "body": "<p>Saç kökleri, özel bir mikromotor kullanılarak kafa derisinin arka kısmındaki donör bölgeden dikkatlice çıkarılır. Donör alanı doğal olarak tek, çift ve çok saçlı foliküler ünitelerin bir karışımını içerdiğinden, çıkarılan greftler büyütme altında titizlikle ayrılır. Bu mikroskobik greft ayırma işlemi sırasında kaş ekimi için gereken yumuşak, narin ve doğal görünümlü görünümü sağladığı için tekli saç kökleri ayrılarak ekim için seçilir.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 3",
+                    "title": "DHI İmplantasyonu",
+                    "body": "<p>Kaşlar için DHI yöntemi tercih edilir: Özel Choi kalemleri kullanılarak tek hareketle kanal açılır ve kök ekimi yapılır. Bu, her kaş kılının düz durması ve doğal olarak büyümesi için ihtiyaç duyduğu çok sığ açı ve yön üzerinde hassas kontrol sağlar.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 4",
+                    "title": "Prosedür Süresi",
+                    "body": "<p>İşlem yaklaşık iki ila üç saat sürer ve lokal anestezi altında yapıldığından konforlu ve ağrısız bir işlemdir. Günübirlik bir işlem olarak gerçekleştirilir ve aynı gün otelinize veya evinize dönebilirsiniz.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "İşlem Sonrası",
+            "title": "Kaş Ekimi Sonrası Süreç Nasıldır?",
+            "body": "<p>İşlemden sonraki ilk gün hafif kızarıklık ve hassasiyet normaldir. İki hafta içerisinde bölgede hafif kabuklanma meydana gelir ve düşer. Aynı dönemde ekilen saçlar geçici olarak dökülebilir; bu sürece şok dökülme denir.</p><p>Üçüncü aydan itibaren yeni kaşlar çıkmaya başlar. Kaşların tam olarak yerleşmesi ve doğal görünüme kavuşması yaklaşık 9 ila 12 ay sürer. Kaş ekiminde saç ekimine göre daha az greft kullanıldığı için iyileşme süreci çok daha hızlı ve konforludur.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "En İyi Teknik",
+            "title": "Kaş Ekiminde Hangi Yöntem Kullanılmalıdır?",
+            "body": "<p>Kaş ekiminde; mevcut kaş yapısına, donör bölgenin özelliklerine ve hedeflenen estetik sonuca göre DHI (Doğrudan Saç Ekimi) veya Safir FUE tekniği kullanılabilir.</p><p>DHI yönteminde özel Choi implanter kalemleri kullanılır ve her greft doğrudan kaş bölgesine yerleştirilir. Bu yöntem açı, yön ve derinlik üzerinde yüksek kontrol sağlar; doğal kaş görünümü için gereken tek tek kök yerleşiminde önemli avantaj sunar.</p><p>Safir FUE tekniğinde ise greftler ekilmeden önce safir uçlarla alıcı kanallar oluşturulur. Böylece kaşın genel şekli, simetrisi ve yoğunluk dağılımı hassas biçimde planlanabilir.</p><p>Her iki teknik de etkilidir. DHI, kök yönünü mikro düzeyde kontrol etmek için; Safir FUE ise kaş çerçevesini ve yoğunluk dağılımını yapılandırmak için tercih edilebilir. Teknik seçimi her zaman kişinin anatomisine ve hedeflenen doğal sonuca göre yapılır.</p>",
+            "cta": {
+                "label": "Ücretsiz Konsültasyon Planlayın"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Kaş Ekimi — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "Sonuç doğal görünecek mi?",
+                    "answer": "<p>Evet. DHI yöntemiyle yalnızca tekli saç kökleri kullanılır ve her kök doğal kaş yönüne uygun, düşük açıyla yerleştirilir. Kaş şekli standart bir şablona göre değil, yüz hatlarınıza özel olarak tasarlanır.</p>"
+                },
+                {
+                    "question": "Kaşlarımı kesmem gerekecek mi? Saç derisi gibi uzuyorlar, değil mi?",
+                    "answer": "<p>Saç kökleri ense bölgesinden alındığı için kendi büyüme özelliklerini korur ve doğal kaş kıllarından daha uzun uzayabilir. Bu normaldir; birkaç haftada bir kısaltmanız yeterlidir. Düzenli ve basit bir bakım rutiniyle kaşların şeklini kolayca koruyabilirsiniz.</p>"
+                },
+                {
+                    "question": "İşlem ne kadar sürüyor ve acı verici mi?",
+                    "answer": "<p>İşlem yaklaşık iki ila üç saat sürer ve lokal anestezi altında yapılır; bu nedenle seans sırasında ağrı hissetmezsiniz. Günübirlik bir işlemdir ve saç ekimine kıyasla çok daha az greft gerektiği için iyileşme hızlıdır.</p>"
+                },
+                {
+                    "question": "Nihai sonucu ne zaman göreceğim?",
+                    "answer": "<p>Ekilen saçlar genellikle ilk haftalarda dökülür; bu şok dökülme normaldir. Yeni kaş kılları yaklaşık üçüncü aydan itibaren çıkmaya başlar ve kaşların nihai, doğal görünümüne tamamen yerleşmesi yaklaşık dokuz ila on iki ay sürer.</p>"
+                },
+                {
+                    "question": "İyi bir aday mıyım?",
+                    "answer": "<p>Kaşlarını aşırı almış; yaşlanma, hormonal değişiklik, yaralanma veya kalıcı makyaj nedeniyle kaşları seyrelmiş ya da şeklini kaybetmiş kişiler, ense bölgesinde sağlıklı donör kökleri bulunması halinde uygun aday olabilir. Net fotoğraflarla yapılan konsültasyon, uygunluğunuzu ve kaş tasarımını belirlememizi sağlar.</p>"
+                },
+                {
+                    "question": "Sonuçlar kalıcı mı?",
+                    "answer": "<p>Evet. Nakledilen kaş kökleri kalıcı bir donör alandan alınır, böylece ilk dökülme aşamasından sonra makyaj veya microblading gerektirmeyen, kalıcı, az bakım gerektiren bir sonuç için büyürler.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Kaş Ekimi — Öncesi ve Sonrası",
+            "lead": "Hastalarımızın elde ettiği doğal, dolgun kaşları görün. Her kaş, yüz oranlarınıza göre tasarlanır ve saç kıllarına implante edilir, böylece sonuç yüzünüzü çerçeveler ve tamamen doğal görünür.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Daha Dolgun, Doğal Kaşlara Hazır mısınız?",
+            "lead": "Birkaç ayrıntı paylaşın ve ekibimiz kişiselleştirilmiş bir kaş ekim planı, yüzünüze uygun bir kaş tasarımı ve hiçbir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir - genellikle birkaç saat içinde.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz kaş değerlendirmesi"
+                },
+                {
+                    "label": "Tamamen doğal bir görünüm için tek foliküllü DHI"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili tedaviler"
+        }
+    ]
+}

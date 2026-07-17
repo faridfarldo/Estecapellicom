@@ -1,0 +1,264 @@
+{
+    "source_slug": "liposuction",
+    "slug": "liposuction",
+    "title": "Liposuction",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Vücut Şekillendirme",
+            "title": "Liposuction",
+            "lead": "Lokalize, inatçı yağ birikintilerini azaltan ve estetik hatlarınızı yeniden şekillendiren modern bir vücut şekillendirme prosedürü.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Prosedür",
+            "title": "Liposuction Nedir?",
+            "body": "<p>Liposuction, bölgesel yağ birikimlerini azaltmak ve vücut hatlarını yeniden şekillendirmek için uygulanan modern bir vücut şekillendirme işlemidir. İşlem sırasında yağ hücreleri cerrahi olarak çıkarılır ve tedavi edilen bölgedeki sayıları kalıcı olarak azaltılır. Bu nedenle sonuçlar, sağlıklı yaşam alışkanlıkları korunduğunda uzun yıllar devam edebilir.</p><p>Estecapelli'de kullanılan liposuction teknikleri yalnızca bölgesel incelmenin ötesine geçerek daha dengeli ve estetik vücut hatları elde edilmesine yardımcı olur.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Tedavi Alanları",
+            "title": "Liposuction İle Hangi Bölgelere Şekil Verilebilir?",
+            "body": "Liposuction, vücudun yağların birikme eğiliminde olduğu ve diğer yöntemlere dirençli olduğu çeşitli bölgelerine yapılabilir. Tedavi edilen en yaygın alanlar şunlardır:",
+            "items": [
+                {
+                    "label": "Karın ve mide"
+                },
+                {
+                    "label": "Bel ve yanlar"
+                },
+                {
+                    "label": "Kalça ve basenler"
+                },
+                {
+                    "label": "İç ve dış uyluklar"
+                },
+                {
+                    "label": "Sırt"
+                },
+                {
+                    "label": "Kollar ve koltuk altları"
+                },
+                {
+                    "label": "Göğüs (erkeklerde jinekomastiyi tedavi etmek için)"
+                },
+                {
+                    "label": "Gıdı bölgesi"
+                }
+            ],
+            "footer": "Bu işlem kilo vermeye yönelik bir yöntem değildir. Bunun yerine, genel kilo kaybına rağmen kaybolmayan lokalize yağ birikintilerini etkili bir şekilde yok eder."
+        },
+        {
+            "acf_fc_layout": "steps",
+            "eyebrow": "Teknikler",
+            "title": "Liposuction Çeşitleri",
+            "lead": "Estecapelli'de vücut şekillendirme hedeflerinize ulaşmak için farklı liposuction teknikleri kullanılıyor. Yağ dağılımınıza, cilt elastikiyetinize ve istenilen sonuca göre doğru yöntem seçilir. Aşağıdaki ana seçeneklere göz atın.",
+            "items": [
+                {
+                    "eyebrow": "Teknik",
+                    "title": "Vaser Liposuction",
+                    "body": "<p>VASER Liposuction, yağ hücrelerini alınmadan önce parçalamak için ultrason enerjisinden yararlanan ve hassas vücut şekillendirmeye olanak tanıyan gelişmiş bir tekniktir.</p><p><strong>Avantajları:</strong></p><ul><li>Yağ dokusunu hassas biçimde hedefler</li><li>Daha az doku travmasıyla minimal invaziv uygulama</li><li>Pürüzsüz ve doğal görünümlü sonuçlar</li><li>Klasik liposuctiona kıyasla daha hızlı iyileşme</li></ul>"
+                },
+                {
+                    "eyebrow": "Teknik",
+                    "title": "Lazer Liposuction",
+                    "body": "<p>Lazer Liposuction, yağ hücrelerini parçalamak için yoğun lazer enerjisi kullanır ve aynı zamanda daha pürüzsüz hatlar için cildin sıkılaşmasını destekler.</p><p><strong>Avantajları:</strong></p><ul><li>Yağları hassas bir şekilde eritir</li><li>Cildin sıkılaşmasını destekler</li><li>Minimal invazif ve hızlı iyileşme</li><li>Pürüzsüz ve doğal görünümlü sonuçlar</li></ul>"
+                },
+                {
+                    "eyebrow": "Teknik",
+                    "title": "Tümesan Liposuction",
+                    "body": "<p>Tümesan Liposuction, kanamayı ve morluğu en aza indirmek için yağ alma işleminden önce hedeflenen bölgeye özel bir solüsyonun enjekte edilmesini içerir. Günümüzde daha iyi sonuçlar elde etmek için sıklıkla diğer liposuction teknikleriyle birleştirilmektedir.</p>"
+                },
+                {
+                    "eyebrow": "Teknik",
+                    "title": "PAL (Güç Destekli Liposuction)",
+                    "body": "<p>PAL (Güç Destekli Liposuction), yağ dokusunu daha verimli biçimde parçalamak için titreşimli kanüller kullanır ve işlemin daha kontrollü uygulanmasını sağlar.</p><p><strong>Avantajları:</strong></p><ul><li>Daha kolay ve hızlı yağ alma</li><li>Cerrah için daha kontrollü ve hassas uygulama</li><li>Minimal invaziv yaklaşım ve daha düzgün sonuçlar</li><li>Diğer tekniklerle birlikte uygulanabilme</li></ul>"
+                },
+                {
+                    "eyebrow": "Teknik",
+                    "title": "Klasik Liposuction",
+                    "body": "<p>Geleneksel Liposuction, cihaz olmadan manuel olarak yapılan geleneksel bir yağ aldırma tekniğidir. Bazı durumlarda tercih edilen bir seçenek olmaya devam ediyor.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Adaylar",
+            "title": "Kimler Liposuction Yaptırabilir?",
+            "body": "Bu kriterlerden herhangi birini karşılıyorsanız liposuction adayı olabilirsiniz:",
+            "items": [
+                {
+                    "label": "Büyüme aşamasını tamamlamış yetişkinler"
+                },
+                {
+                    "label": "Diyet ve egzersizle düzelmeyen inatçı yağ bölgeleri olan kişiler"
+                },
+                {
+                    "label": "Vücut hatlarını belirginleştirmek isteyenler"
+                },
+                {
+                    "label": "Ameliyata engel tıbbi durumu olmayan kişiler"
+                },
+                {
+                    "label": "Cilt elastikiyeti iyi olan kişiler"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Önemli",
+            "title": "Liposuction Önerilmediğinde",
+            "body": "<ul><li>Gebelik ve emzirme dönemi</li><li>Ciddi kronik hastalıklar</li><li>Kanama bozuklukları</li><li>Ağır obezite</li></ul>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Ameliyat Öncesi",
+            "title": "Liposuction Öncesi Hazırlık",
+            "body": "<p>Estecapelli'de ameliyat öncesi süreç, güvenli cerrahi planlamayı sağlamak için titizlikle yönetiliyor.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Operasyon",
+            "title": "Liposuction Ameliyatı Nasıl Yapılır?",
+            "body": "<p>Liposuction lokal veya genel anestezi altında yapılır. Kullanılacak teknik; alınacak yağın miktarına, yapısına ve tedavi alanının büyüklüğüne göre seçilir.</p><p><strong>Genel adımlar:</strong></p><ol><li>Küçük kesiler yapılır</li><li>Yağ dokusu uygun teknolojiyle (VASER, lazer vb.) parçalanır</li><li>Yağ hücreleri ince kanüllerle alınır</li><li>Tedavi bölgesi dengeli biçimde şekillendirilir</li><li>Kesiler, izi en aza indirecek şekilde kapatılır</li></ol><p>İşlem, uygulama kapsamına bağlı olarak yaklaşık 30 dakika ile 3 saat arasında sürer.</p>"
+        },
+        {
+            "acf_fc_layout": "steps",
+            "eyebrow": "Ameliyat Sonrası",
+            "title": "Liposuction Sonrası İyileşme Süreci",
+            "lead": "Estecapelli olarak liposuction sonrası iyileşme sürecini dikkatle takip ederek konforu ön planda tutuyoruz.",
+            "items": [
+                {
+                    "time": "İlk Günler",
+                    "title": "Kompresyon Giysisi",
+                    "body": "Hafif ağrı, morarma ve şişlik olabilir. Kompresyon giysisi kullanmaya başlayın."
+                },
+                {
+                    "time": "1. Hafta",
+                    "title": "Günlük Hayata Dönüş",
+                    "body": "Hasta günlük aktivitelerine devam edebilir. Yürüme ve hafif hareketler teşvik edilir."
+                },
+                {
+                    "time": "2–3 Hafta",
+                    "title": "Şişlik Azalır",
+                    "body": "Şişlik önemli ölçüde azalır. Yavaş yavaş spor faaliyetlerine dönüş mümkündür."
+                },
+                {
+                    "time": "6 Hafta – 3 Ay",
+                    "title": "Konturlar Şekilleniyor",
+                    "body": "Vücut hatları şekillenmeye başlar."
+                },
+                {
+                    "time": "3-6 Ay",
+                    "title": "Nihai Sonuçlar",
+                    "body": "Nihai sonuçlar açıklandı."
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "İyileşme Sonrası Bakım",
+            "title": "Liposuction Sonrası Dikkat Edilmesi Gerekenler",
+            "body": "İyileşmeyi desteklemek ve sonuçlarınızı korumak için aşağıdakileri aklınızda bulundurun:",
+            "items": [
+                {
+                    "label": "Önerilen kompresyon giysisini düzenli olarak giyin"
+                },
+                {
+                    "label": "Bir süre yoğun sporlardan kaçının"
+                },
+                {
+                    "label": "Sıcak banyo, sauna ve benzeri ortamlardan uzak durun"
+                },
+                {
+                    "label": "Bol su için ve dengeli beslenin"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Liposuction — Öncesi ve Sonrası",
+            "lead": "Hastalarımızın elde ettiği daha pürüzsüz, daha belirgin hatları görün. Her sonuç, doğal, orantılı bir şekil için yağların hassas bir şekilde uzaklaştırılmasıyla, her bir kişinin vücuduna göre uyarlanır.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Liposuction — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "Liposuction bir zayıflama yöntemi midir?",
+                    "answer": "<p>Hayır. Liposuction bir vücut şekillendirme işlemidir; kilo verme yöntemi değildir. Diyet ve egzersize dirençli bölgesel yağ birikimlerini azaltarak vücut hatlarını iyileştirir, ancak tartıdaki değişim genellikle sınırlıdır. En iyi sonuç, sabit ve sağlıklı kiloya yakın kişilerde elde edilir; obezite tedavisi olarak kullanılmaz.</p>"
+                },
+                {
+                    "question": "Hangi teknik benim için doğru: Vaser, lazer, PAL, tümesan veya klasik?",
+                    "answer": "<p>En uygun yöntem; tedavi bölgesine, yağın miktarına ve yapısına, ayrıca cilt elastikiyetine bağlıdır. VASER hassas şekillendirme için ultrason kullanır, lazer cilt sıkılaşmasını destekleyebilir, PAL daha büyük hacimlerin alınmasını kolaylaştırır, tümesan teknik ise kanama ve morarmayı azaltmak amacıyla diğer yöntemlerle birleştirilebilir. Cerrahınız muayene sonrasında en doğal sonucu sağlayacak tekniği veya kombinasyonu önerir.</p>"
+                },
+                {
+                    "question": "Vücudun hangi bölgeleri tedavi edilebilir?",
+                    "answer": "<p>Liposuction, inatçı yağların toplandığı çoğu bölgeyi (karın, bel, yanlar (aşk kolları), kalçalar, uyluklar, dizler, kollar, sırt, sutyen çizgisi ve çene veya boyun) tedavi edebilir. Çoğu zaman tek bir seansta birçok alana hitap edilebilmekte ve prosedür sıklıkla karın germe veya BBL gibi diğer operasyonlarla birleştirilmektedir. Cerrahınız konsültasyonunuz sırasında hangi alanların uygun olduğunu onaylayacaktır.</p>"
+                },
+                {
+                    "question": "Hangi anestezi kullanılıyor ve işlem ağrılı mı?",
+                    "answer": "<p>Liposuction, bölgelerin sayısına ve büyüklüğüne bağlı olarak lokal veya genel anestezi altında yapılır, böylece rahat edersiniz. Operasyon genellikle yaklaşık otuz dakikadan üç saate kadar sürer. Daha sonra ilk günlerden haftalara kadar ağrı, morarma ve şişlik bekleyebilirsiniz, bu durum reçeteli ilaçlar ve kompresyon giysisi ile iyi bir şekilde kontrol altına alınır.</p>"
+                },
+                {
+                    "question": "İyileşme ve Türkiye'de kalma süresi ne kadardır?",
+                    "answer": "<p>Hastaların çoğu, eve uçmadan önce kontrol de dahil olmak üzere birkaç gün Türkiye'de kalıyor. İlk iyileşme yaklaşık bir ila iki hafta sürer; çoğu kişi masa başında çalışmaya döner ve iyileşmeyi desteklemek ve konturu düzeltmek için birkaç hafta boyunca bir kompresyon giysisi giyilir. Nihai sonuçlar, şişlikler yatıştıkça yavaş yavaş ortaya çıkar ve genellikle üç ila altı ay içinde netleşir.</p>"
+                },
+                {
+                    "question": "Sonuçlar kalıcı ve doğal görünümlü mü?",
+                    "answer": "<p>Liposuction sırasında alınan yağ hücreleri kalıcı olarak yok olur, böylece tedavi edilen alanlar uzun vadede daha ince kalır. Gelecekteki önemli kilo alımı, başka yerlerde kalan yağ hücrelerinin büyümesine neden olabilir, bu nedenle sabit bir ağırlık, sonucunuzu en iyi şekilde korur. Deneyimli bir cerrah tarafından doğru teknikle uygulandığında kontur düzgün, dengeli ve doğal görünür.</p>"
+                },
+                {
+                    "question": "Tekrar ne zaman egzersiz yapabilirim?",
+                    "answer": "<p>Dolaşımı ve iyileşmeyi desteklemek için birkaç gün içinde hafif yürüyüşler teşvik edilir. Hafif aktiviteler ilk birkaç hafta içinde yeniden başlarken, yorucu egzersizler, ağır kaldırma ve yüksek etkili egzersizler, cerrahınız tamamen iyileştiğinizi onayladıktan sonra yaklaşık dört ila altı haftaya kadar beklemelidir.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Fiyatlandırma",
+            "title": "Liposuction Fiyatları",
+            "body": "<p>Liposuction fiyatlandırması birçok faktöre bağlıdır:</p><ul><li>Alınacak yağ miktarı</li><li>Uygulama yapılacak alan sayısı</li><li>Kullanılan teknik (Vaser, lazer, klasik vb.)</li><li>Ameliyatın süresi</li><li>Hastanın beklentileri</li></ul><p>En doğru fiyat Estecapelli uzmanlarıyla online görüşme sonrasında belirlenir.</p>",
+            "cta": {
+                "label": "Kişiselleştirilmiş Fiyat Teklifi İsteyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Vücut Hatlarınızı Belirginleştirmeye Hazır mısınız?",
+            "lead": "Birkaç ayrıntıyı paylaşın ve ekibimiz, genellikle birkaç saat içinde kişiselleştirilmiş bir liposuction planı ve hiçbir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz değerlendirme"
+                },
+                {
+                    "label": "Hiçbir yükümlülük içermeyen, şeffaf, her şey dahil fiyat teklifi"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili tedaviler"
+        }
+    ]
+}

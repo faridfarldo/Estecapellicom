@@ -1,0 +1,142 @@
+{
+    "source_slug": "vita-treatment",
+    "slug": "vita-tedavisi",
+    "title": "VITA Tedavisi",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Estecapelli'nin İmza Yöntemi",
+            "title": "VITA Tedavisi",
+            "lead": "Estecapelli'nin imza protokolü saç derisini canlandırır, saç köklerini besler ve iyileşmeyi hızlandırır. Vitamin türevi serum, saç ekimi öncesinde ve sırasında greftlerin canlılığını koruyarak sağkalım ve büyüme potansiyelini artırır.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Yöntem",
+            "title": "VITA Protokolü Nedir?",
+            "body": "<p>VITA Protokolü, greft sağkalımını en üst düzeye çıkarmak ve saç ekiminin genel başarısını artırmak amacıyla Estecapelli'nin tıbbi uzmanları tarafından geliştirilen üç aşamalı bir tedavidir. Safir FUE ve DHI teknikleriyle uyumludur; işlem boyunca saç köklerini beslemek ve korumak için amino asitler, vitaminler, büyüme faktörleri ve ATP içeren zengin bir formülden yararlanır.</p><p>İlk aşamada, dermaroller ile oluşturulan mikrokanallar aracılığıyla saç derisine besin açısından zengin VITA serumu uygulanır. Böylece aktif bileşenlerin derin dokulara ulaşması ve alıcı bölgenin ekime hazırlanması desteklenir. İkinci aşamada, alınan greftler VITA serumunda korunur; soğuk hava buharı ve salin solüsyonu ile nem dengesi desteklenir, hücresel stres azaltılır ve ekim öncesi greft sağkalımı artırılır.</p><p>Son aşamada, işlemden hemen sonra hastanın kendi büyüme faktörlerinden yararlanılan PRP (Trombositten Zengin Plazma) uygulanır. Bu uygulama iyileşmeyi hızlandırmayı, greft tutulumunu desteklemeyi ve daha güçlü, sağlıklı saç büyümesini teşvik etmeyi amaçlar.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Bilim",
+            "title": "Estecapelli'nin İmza Tekniği — Vitaminlerle Desteklenen VITA Gücü",
+            "body": "<p>Saç köklerinin vücut dışında kaldığı süre, işlemin başarısını doğrudan etkileyen kritik bir faktördür. Greftler alındıktan sonra kan dolaşımına ve hayati besinlere erişimleri kesintiye uğrar ve bu da kademeli olarak zayıflamaya neden olur.</p><p>VITA Protokolü, greftlere gerekli desteği sağlayarak operasyonun bu hassas aşamalarına müdahale eder. Özel formüle edilmiş vitamin serumu solüsyonu ve soğuk hava buharı uygulaması sayesinde hem FUE hem de DHI tekniklerinde greftin canlılığının korunmasına önemli katkı sağlar.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Neden Önemlidir?",
+            "title": "VITA Protokolünün Avantajları",
+            "body": "VITA serumundaki vitaminler, mineraller, büyüme faktörleri ve ATP, folikülleri güçlendirir ve daha güçlü gelişimi destekler:",
+            "items": [
+                {
+                    "label": "Greft canlılığını vücut dışında korur"
+                },
+                {
+                    "label": "Daha yüksek greft sağkalımı ve tutulması"
+                },
+                {
+                    "label": "Folikülleri vitaminler, mineraller ve ATP ile besler"
+                },
+                {
+                    "label": "İyileşme sürecini hızlandırır"
+                },
+                {
+                    "label": "Hem FUE hem de DHI ile uygulanabilir"
+                },
+                {
+                    "label": "Zayıf foliküller, ince saçlar veya sınırlı donör alanları için idealdir"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Prosedür",
+            "title": "VITA Protokolü Nasıl Uygulanır?",
+            "lead": "Sapphire FUE veya DHI naklinize sorunsuz bir şekilde entegre olan üç aşamalı bir protokol. Aşağıdaki aşamaları kaydırarak inceleyin.",
+            "items": [
+                {
+                    "eyebrow": "Aşama 1",
+                    "title": "Mikro İğneleme ve Besin Serumu",
+                    "body": "<p>Dermaroller masaj aletiyle mikrokanallar oluşturulur ve kan dolaşımını hızlandırmak için vitaminler, amino asitler, büyüme faktörleri ve minerallerden oluşan yüksek konsantrasyonlu bir serum uygulanır. Donör bölgesi sorunsuz, iyi beslenmiş bir hasat için ideal şekilde hazırlanırken, alıcı bölge mikro kanallar sayesinde saç derisinin çok daha etkili bir şekilde emdiği konsantre bir vitamin kompleksi ile beslenir.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 2",
+                    "title": "Greftlere Soğuk Buhar Serumu Uygulaması",
+                    "body": "<p>Aynı besleyici serum, greft toplama kabında salinle karıştırılır ve soğuk buhar yöntemiyle alınan greftlere uygulanır. Saç köklerinin vücut dışında kaldığı bu kritik sürede korunması, hücresel bozulmayı azaltır, greft sağkalımını artırır ve ekim sonrası büyüme potansiyelini destekler.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 3",
+                    "title": "İşlem Sonrası PRP",
+                    "body": "<p>PRP (Platelet Açısından Zengin Plazma) tedavinin son aşaması olarak uygulanır; iyileşmeyi desteklemek ve genel sonucu iyileştirmek için saç ekiminizden hemen sonra gerçekleştirilen yenileyici bir tedavidir. Kanınızın küçük bir örneği alınır ve yüksek konsantrasyonda doğal büyüme faktörleri içeren trombosit açısından zengin plazmayı ayırmak için bir santrifüjde işlenir. PRP daha sonra kafa derisinin tedavi edilen bölgelerine dikkatlice enjekte edilir; burada doku onarımını hızlandırmaya, iltihaplanmayı azaltmaya, kan dolaşımını iyileştirmeye ve yeni nakledilen greftler için en uygun ortamı yaratmaya yardımcı olur. PRP, iyileşme sürecini uyararak ve folikülleri besleyerek daha güçlü greft tutulmasına, daha hızlı iyileşmeye ve daha sağlıklı, daha kalın saç büyümesine katkıda bulunur.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "VITA Tedavisi — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "VITA bağımsız bir tedavi midir?",
+                    "answer": "<p>Hayır. VITA, tek başına bir tedaviden çok saç ekimini destekleyen bir protokoldür. Safir FUE veya DHI sırasında saç derisini beslemek, greftleri korumak, sağkalımı artırmak ve genel sonucu iyileştirmek amacıyla uygulanır.</p>"
+                },
+                {
+                    "question": "Greft sağkalımı neden bu kadar önemlidir?",
+                    "answer": "<p>Folliküllerin vücut dışında geçirdiği süre, naklin başarısındaki en büyük faktörlerden biridir. Greftler toplandıktan sonra kan desteğine ve besinlere erişimini kaybeder ve zayıflamaya başlar. VITA, bu pencere sırasında onları besleyerek ve soğuktan koruyarak daha fazla greft sağkalımına ve büyümesine yardımcı olur; bu da daha yoğun, daha dolgun sonuçlar anlamına gelir.</p>"
+                },
+                {
+                    "question": "VITA'dan en çok kim yararlanıyor?",
+                    "answer": "<p>Hemen hemen her nakil için değerlidir, ancak özellikle zayıf folikülleri, ince saçları olan veya her bir greftin sayılması gereken sınırlı donör alanı olan hastalar için değerlidir. Cerrahınız sizin özel durumunuz için VITA eklemenin faydalı olup olmadığı konusunda tavsiyede bulunacaktır.</p>"
+                },
+                {
+                    "question": "VITA hem FUE hem de DHI ile çalışır mı?",
+                    "answer": "<p>Evet. VITA Protokolü, hem Safir FUE hem de DHI teknikleriyle tamamen uyumludur ve nakilinizin gerçekleştirilme şeklini değiştirmeden her iki prosedüre de sorunsuz bir şekilde entegre olur.</p>"
+                },
+                {
+                    "question": "VITA iyileşme sürecini etkiler mi veya yan etkilere neden olur mu?",
+                    "answer": "<p>Protokol, saç derisini ve greftleri besleyerek daha hızlı ve sağlıklı bir iyileşme sürecini destekler. Vücuda doğal olarak uygun olan vitaminleri, mineralleri, amino asitleri ve büyüme faktörlerini kullandığından, naklin kendisinden kaynaklananların ötesinde anlamlı bir kesinti veya yan etki yaratmaz.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "VITA Destekli Saç Ekimleri — Öncesi ve Sonrası",
+            "lead": "VITA Protokolü Safir FUE veya DHI naklini desteklediğinde hastalarımızın elde ettiği yoğunluğu ve doğal sonuçları görün; daha güçlü greft sağkalımı, daha dolgun, daha sağlıklı bir saça dönüşür.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "VITA'nın Saç Ekiminize Eklenmesini İster misiniz?",
+            "lead": "Birkaç ayrıntı paylaşın; ekibimiz kişiselleştirilmiş saç ekimi planınızla birlikte VITA Protokolünün greft sağkalımını nasıl destekleyebileceğini açıklasın ve genellikle birkaç saat içinde yükümlülük içermeyen, her şey dahil fiyat teklifinizi iletsin.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz greft değerlendirmesi"
+                },
+                {
+                    "label": "VITA Protokolü ile maksimum greft sağkalımı"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili tedaviler"
+        }
+    ]
+}
