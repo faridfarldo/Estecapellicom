@@ -40,6 +40,28 @@ function estecapelli_en_request( $query_vars ) {
 		return array(); // bare /en/ — serve the front page.
 	}
 
+	// Preview links carry the post ID and a post-specific nonce. Resolve that ID
+	// before the public slug lookups below, which intentionally accept published
+	// content only. This keeps drafts private while allowing their real /en/ URL
+	// to render in WordPress Preview.
+	$preview_id = estecapelli_en_preview_post_id();
+	if ( $preview_id ) {
+		$preview_post = get_post( $preview_id );
+		if ( $preview_post && in_array( $preview_post->post_type, array( 'post', 'page', 'treatment', 'doctor' ), true ) ) {
+			unset( $query_vars['name'], $query_vars['pagename'], $query_vars['attachment'], $query_vars['attachment_id'] );
+			$query_vars['preview'] = 'true';
+			if ( 'page' === $preview_post->post_type ) {
+				unset( $query_vars['p'], $query_vars['post_type'] );
+				$query_vars['page_id'] = $preview_id;
+			} else {
+				unset( $query_vars['page_id'] );
+				$query_vars['p']         = $preview_id;
+				$query_vars['post_type'] = $preview_post->post_type;
+			}
+			return $query_vars;
+		}
+	}
+
 	// 1) A real page — covers top-level and nested pages (contact, about-us,
 	//    about-us/our-team, hair-transplant, hair-transplant/tricholab, …).
 	$page = get_page_by_path( $rest );
@@ -82,6 +104,44 @@ function estecapelli_en_request( $query_vars ) {
 }
 
 /**
+ * Return the post ID from a valid WordPress preview request.
+ *
+ * WordPress creates the nonce with the `post_preview_{ID}` action. Requiring the
+ * same nonce and edit capability prevents an /en/ preview URL from becoming a
+ * way to read drafts without permission.
+ *
+ * @return int Valid preview post ID, or 0.
+ */
+function estecapelli_en_preview_post_id() {
+	if ( empty( $_GET['preview'] ) || ! is_scalar( $_GET['preview'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return 0;
+	}
+
+	$preview = strtolower( sanitize_text_field( wp_unslash( $_GET['preview'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! in_array( $preview, array( '1', 'true' ), true ) ) {
+		return 0;
+	}
+
+	$preview_id = 0;
+	if ( isset( $_GET['preview_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$preview_id = absint( $_GET['preview_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	} elseif ( isset( $_GET['p'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$preview_id = absint( $_GET['p'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	if ( ! $preview_id || empty( $_GET['preview_nonce'] ) || ! is_scalar( $_GET['preview_nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return 0;
+	}
+
+	$nonce = sanitize_text_field( wp_unslash( $_GET['preview_nonce'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! wp_verify_nonce( $nonce, 'post_preview_' . $preview_id ) || ! current_user_can( 'edit_post', $preview_id ) ) {
+		return 0;
+	}
+
+	return $preview_id;
+}
+
+/**
  * Return the ID of a published post of this type with this slug, or 0.
  *
  * Queried straight against the database on purpose, then handed back to WP as an
@@ -110,4 +170,66 @@ function estecapelli_en_no_canonical( $redirect_url, $requested_url ) {
 		return false;
 	}
 	return $redirect_url;
+}
+
+/**
+ * Redirect bare English blog URLs to the indexed /en/ contract.
+ *
+ * Public URLs use a permanent redirect. A valid draft preview uses a temporary
+ * redirect so browsers and proxies never cache its nonce-bearing URL as a
+ * permanent public location.
+ */
+add_action( 'template_redirect', 'estecapelli_redirect_bare_english_blog', -10 );
+function estecapelli_redirect_bare_english_blog() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path    = untrailingslashit( (string) wp_parse_url( $request, PHP_URL_PATH ) );
+	if ( '/blog' !== $path && ! preg_match( '#^/blog/([^/]+)$#', $path, $match ) ) {
+		return;
+	}
+
+	$preview_id = estecapelli_en_preview_post_id();
+	if ( isset( $match[1] ) ) {
+		$slug    = sanitize_title( rawurldecode( $match[1] ) );
+		$post_id = estecapelli_post_id_by_slug( $slug, 'post' );
+		if ( ! $post_id && ! $preview_id ) {
+			return;
+		}
+		if ( $preview_id ) {
+			$preview_post = get_post( $preview_id );
+			if ( ! $preview_post || 'post' !== $preview_post->post_type || ( $preview_post->post_name && $slug !== $preview_post->post_name ) ) {
+				return;
+			}
+		}
+
+		// A bare URL must never steal a translated post from its own language.
+		$language = $post_id
+			? (string) apply_filters(
+				'wpml_element_language_code',
+				null,
+				array( 'element_id' => $post_id, 'element_type' => 'post_post' )
+			)
+			: '';
+		if ( $language && 'en' !== estecapelli_indexed_language_code( $language ) ) {
+			return;
+		}
+	} elseif ( $preview_id ) {
+		$preview_post = get_post( $preview_id );
+		if ( ! $preview_post || 'page' !== $preview_post->post_type || 'blog' !== $preview_post->post_name ) {
+			return;
+		}
+	}
+
+	$query  = (string) wp_parse_url( $request, PHP_URL_QUERY );
+	$target = estecapelli_unfiltered_home_url() . '/en' . $path;
+	if ( $query ) {
+		$target .= '?' . $query;
+	}
+
+	$is_preview_request = isset( $_GET['preview'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	wp_safe_redirect( $target, $is_preview_request ? 302 : 301 );
+	exit;
 }

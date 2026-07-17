@@ -745,7 +745,17 @@ add_filter( 'post_type_link', 'estecapelli_indexed_post_type_link', 999, 2 );
 function estecapelli_indexed_post_link( $url, $post ) {
 	$key = estecapelli_indexed_post_route_key( $post );
 	list( , $language ) = estecapelli_indexed_post_context( $post );
-	return $key && estecapelli_indexed_route_path( $key, $language ) ? estecapelli_indexed_url( $key, $language ) : estecapelli_localize_theme_url( $url );
+	if ( $key && estecapelli_indexed_route_path( $key, $language ) ) {
+		return estecapelli_indexed_url( $key, $language );
+	}
+
+	// New English articles may not yet exist in the historical live-URL
+	// contract. They still belong under /en/blog/, never at a bare /blog/ URL.
+	if ( 'en' === $language && $post instanceof WP_Post && 'post' === $post->post_type && $post->post_name ) {
+		return estecapelli_unfiltered_home_url() . '/en/blog/' . $post->post_name;
+	}
+
+	return estecapelli_localize_theme_url( $url );
 }
 add_filter( 'post_link', 'estecapelli_indexed_post_link', 999, 2 );
 
@@ -874,6 +884,13 @@ function estecapelli_indexed_request( $query_vars ) {
 
 	$path     = trim( (string) wp_parse_url( $request, PHP_URL_PATH ), '/' );
 	$language = estecapelli_indexed_language_code( (string) strtok( $path, '/' ) );
+
+	// The /en/ resolver has already validated the nonce and converted a preview
+	// URL to an explicit post ID. Do not replace that query with the public,
+	// published-only route below or WordPress will lose the draft revision.
+	if ( ! empty( $query_vars['preview'] ) && ( ! empty( $query_vars['p'] ) || ! empty( $query_vars['page_id'] ) ) ) {
+		return $query_vars;
+	}
 
 	/*
 	 * Language roots have no Page record or leaf slug. Without this explicit
