@@ -73,8 +73,10 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-fr-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-es-dental-treatments.php';
+	require get_template_directory() . '/inc/admin/import-pt-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-doctors.php';
 	require get_template_directory() . '/inc/admin/import-es-pages.php';
+	require get_template_directory() . '/inc/admin/import-pt-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-doctors.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-blog.php';

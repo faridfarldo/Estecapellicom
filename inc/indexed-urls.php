@@ -636,6 +636,42 @@ function estecapelli_redirect_legacy_language_home() {
 add_action( 'template_redirect', 'estecapelli_redirect_legacy_language_home', -2 );
 
 /**
+ * Keep legacy overview/comparison URLs in their requested language.
+ *
+ * These four indexed paths never had standalone source records. Their English
+ * counterparts already resolve to the owning landing/service page, so mirror
+ * that behaviour without allowing WPML to fall back to the English target.
+ */
+function estecapelli_redirect_legacy_service_aliases() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$key     = estecapelli_indexed_route_key( $request );
+	$aliases = array(
+		'/en/hair-transplant/hair-transplant-overview'              => '/en/hair-transplant',
+		'/en/plastic-surgery/plastic-surgery-overview'              => '/en/plastic-surgery',
+		'/en/dental-treatment/dental-treatment-overview'             => '/en/dental-treatment',
+		'/en/hair-transplant/hair-transplant-techniques-comparison2' => '/en/hair-transplant/dhi-hair-transplant',
+	);
+	if ( ! isset( $aliases[ $key ] ) ) {
+		return;
+	}
+
+	$language = estecapelli_indexed_language_code();
+	$query    = (string) wp_parse_url( $request, PHP_URL_QUERY );
+	$target   = estecapelli_indexed_url( $aliases[ $key ], $language );
+	if ( $query ) {
+		$target .= '?' . $query;
+	}
+
+	wp_safe_redirect( $target, 301 );
+	exit;
+}
+add_action( 'template_redirect', 'estecapelli_redirect_legacy_service_aliases', -3 );
+
+/**
  * English source ID and indexed language for a translated object.
  */
 function estecapelli_indexed_post_context( $post ) {

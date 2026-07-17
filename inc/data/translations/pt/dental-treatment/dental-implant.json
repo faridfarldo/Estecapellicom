@@ -1,0 +1,197 @@
+{
+  "source_slug": "dental-implant",
+  "slug": "implante-dentario",
+  "title": "Implante dentário",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Substituição dentária permanente",
+      "title": "implante dentário",
+      "lead": "Substitua os dentes em falta por uma solução permanente e de aspeto natural. As raízes de titânio biocompatíveis oferecem resultados sólidos, estéticos e duradouros.",
+      "cta_primary": {
+        "label": "Consulta gratuita"
+      },
+      "cta_secondary": {
+        "label": "Converse no WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "O tratamento",
+      "title": "O que é um implante dentário?",
+      "body": "<p>O implante dentário é um tratamento moderno que restaura a função natural e a estética do dente, colocando uma raiz de titânio biocompatível no osso da mandíbula, no lugar do dente perdido. O implante substitui a raiz perdida e, juntamente com a prótese colocada sobre ele, proporciona a solução que mais se assemelha a um dente natural, tanto em aparência como em funcionalidade.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Por que razão é importante",
+      "title": "Porquê escolher implantes dentários?",
+      "body": "A perda dentária não é apenas um problema estético. A má mastigação pode afetar a digestão, com o tempo pode ocorrer reabsorção do osso da mandíbula e os dentes vizinhos podem deslocar-se e deteriorar-se. Os implantes dentários são uma solução ideal pelos seguintes motivos:",
+      "items": [
+        {
+          "label": "Cubra permanentemente o espaço deixado pela falta de dentes"
+        },
+        {
+          "label": "Protegem o osso da mandíbula e ajudam a prevenir a sua reabsorção"
+        },
+        {
+          "label": "Preservam os dentes adjacentes saudáveis sem os danificar"
+        },
+        {
+          "label": "Restauram uma força de mastigação muito semelhante à dos dentes naturais"
+        },
+        {
+          "label": "Melhorar a estética facial e a aparência geral"
+        },
+        {
+          "label": "Oferecem uma solução duradoura, potencialmente para toda a vida"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "O processo",
+      "title": "Como é colocado um implante dentário?",
+      "lead": "O tratamento com implantes segue um processo estruturado, pensado para oferecer resultados seguros, duradouros e naturais. Estas são as suas principais etapas.",
+      "items": [
+        {
+          "eyebrow": "Estágio 1",
+          "title": "Avaliação clínica e diagnóstico por imagem",
+          "body": "<p>O osso maxilar é analisado detalhadamente através de radiografias panorâmicas e tomografia digital. A densidade óssea, o tamanho do implante e a área a tratar são cuidadosamente avaliados para criar um plano personalizado; a saúde oral geral e o historial médico do paciente também são revistos.</p>"
+        },
+        {
+          "eyebrow": "Estágio 2",
+          "title": "Planeamento de tratamento",
+          "body": "<p>O plano é definido de acordo com o número de dentes perdidos, a estrutura da mandíbula e o estado geral de saúde oral. Se forem necessários procedimentos prévios, como enxerto ósseo ou extração, estes serão incorporados no programa de tratamento.</p>"
+        },
+        {
+          "eyebrow": "Etapa 3",
+          "title": "Colocação de implante",
+          "body": "<p>Sob anestesia local, a raiz de titânio é colocada com precisão no osso maxilar; o procedimento dura geralmente entre 15 e 30 minutos por implante. Um ligeiro desconforto ou inchaço durante os dias seguintes faz parte do processo normal de cicatrização.</p>"
+        },
+        {
+          "eyebrow": "Estágio 4",
+          "title": "Osseointegração",
+          "body": "<p>Um período de cicatrização de aproximadamente dois a três meses permite que a raiz de titânio se integre totalmente no osso circundante, criando uma base sólida e estável para a prótese.</p>"
+        },
+        {
+          "eyebrow": "Estágio 5",
+          "title": "Colocação de prótese",
+          "body": "<p>Uma vez concluída a osteointegração, é colocada uma prótese feita à medida. Podem ser utilizadas soluções de porcelana, zircónia ou materiais híbridos, concebidas para harmonizar com a cor, forma e tamanho dos dentes naturais vizinhos.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Vantagens",
+      "title": "Vantagens dos implantes dentários",
+      "body": "Os implantes representam o tratamento de referência para substituir dentes em falta:",
+      "items": [
+        {
+          "label": "Oferecem uma aparência semelhante à de um dente natural"
+        },
+        {
+          "label": "Proporcionam máxima eficiência de mastigação"
+        },
+        {
+          "label": "Não requerem intervenção em dentes saudáveis adjacentes"
+        },
+        {
+          "label": "Proteja a saúde oral a longo prazo"
+        },
+        {
+          "label": "Promovem a estética facial e reduzem o risco de afundamento dos tecidos"
+        },
+        {
+          "label": "Podem durar a vida toda com o cuidado e a manutenção adequados"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Porquê a Turquia",
+      "title": "Porquê escolher implantes dentários na Turquia?",
+      "body": "<p>A Turquia tornou-se um dos destinos mais procurados do mundo para a implantologia graças às suas clínicas acreditadas de acordo com as normas internacionais, aos seus profissionais experientes e aos seus custos competitivos. A nossa clínica em Istambul oferece aos pacientes internacionais uma experiência completa de turismo de saúde, com transfers VIP, assistência no alojamento e um plano de tratamento personalizado.</p>",
+      "cta": {
+        "label": "Planeie a sua visita"
+      }
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reais",
+      "title": "Implantes dentários: antes e depois",
+      "lead": "Descubra como o tratamento com implantes pode restaurar um sorriso completo. Cada caso é planeado individualmente para obter um aspeto natural, uma mordida confortável e um resultado duradouro.",
+      "cta": {
+        "label": "Veja a galeria completa"
+      }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informações úteis",
+      "title": "Perguntas frequentes sobre implantes dentários",
+      "items": [
+        {
+          "question": "Quem é um bom candidato para um implante dentário?",
+          "answer": "<p>A maioria dos adultos com boa saúde geral, um ou mais dentes em falta e um volume suficiente de osso maxilar saudável são bons candidatos. Situações como diabetes não controlada, doença periodontal avançada ou perda óssea significativa não excluem necessariamente o tratamento, mas devem ser avaliadas e controladas previamente. Uma consulta com radiografias ou digitalização 3D permite aos nossos médicos dentistas confirmar a elegibilidade e definir o plano adequado.</p>"
+        },
+        {
+          "question": "Quanto tempo dura o tratamento completo?",
+          "answer": "<p>Do início ao fim, o tratamento com implantes dura geralmente entre dois e quatro meses. O implante é colocado num período relativamente curto, mas depois necessita de aproximadamente dois a três meses para se integrar no osso antes de o dente definitivo ser colocado. Em certos casos, quando a qualidade óssea é favorável, os implantes de carga imediata podem reduzir consideravelmente estes tempos.</p>"
+        },
+        {
+          "question": "O procedimento é doloroso?",
+          "answer": "<p>A colocação é realizada sob anestesia local, pelo que não há dor durante o procedimento. Nos dias seguintes é normal sentir um ligeiro inchaço ou sensibilidade, que é normalmente facilmente controlada com analgésicos regulares e os cuidados pós-operatórios indicados. Muitos pacientes comparam a recuperação à de uma extração dentária convencional.</p>"
+        },
+        {
+          "question": "O que acontece se não tiver osso maxilar suficiente?",
+          "answer": "<p>A falta de volume ósseo é comum quando já passou muito tempo desde a perda dentária e raramente constitui um obstáculo definitivo. Procedimentos como o enxerto ósseo ou a elevação do seio nasal podem reconstruir o volume necessário para suportar o implante em segurança. Se necessário, são planeados com antecedência e podem exigir um período de cicatrização adicional.</p>"
+        },
+        {
+          "question": "Os implantes podem substituir vários dentes ou uma arcada inteira?",
+          "answer": "<p>Sim. Um único implante pode substituir um dente, enquanto vários implantes podem suportar uma ponte quando faltam várias peças. Para uma arcada completa, tratamentos como All-on-4 ou All-on-6 utilizam quatro ou seis implantes para fixar uma prótese total, oferecendo uma alternativa estável e confortável às próteses removíveis.</p>"
+        },
+        {
+          "question": "Os implantes parecem naturais?",
+          "answer": "<p>Sim. A raiz de titânio está escondida no osso e a prótese feita à medida adapta-se à cor, forma e tamanho dos seus dentes naturais. Como o implante está firmemente ancorado, permite morder, mastigar e falar como um dente real, sem a movimentação das próteses removíveis.</p>"
+        },
+        {
+          "question": "Quanto tempo duram os implantes dentários?",
+          "answer": "<p>A raiz do implante foi concebida como uma solução a longo prazo e, com os devidos cuidados, pode permanecer estável durante décadas. A coroa visível pode apresentar desgaste ao fim de muitos anos e ser substituída sem troca do implante. Higiene diária, gengivas saudáveis e check-ups regulares são essenciais para o sucesso a longo prazo.</p>"
+        },
+        {
+          "question": "O tabaco ou a idade influenciam o tratamento com implantes?",
+          "answer": "<p>Não existe um limite máximo de idade estabelecido: o mais importante é a saúde dos ossos e das gengivas. O tabaco, por outro lado, atrasa a cicatrização e aumenta o risco de insucesso; reduzi-lo ou interrompê-lo durante o tratamento aumenta significativamente as probabilidades de obter um bom resultado. O médico dentista fornecerá instruções personalizadas durante a avaliação.</p>"
+        },
+        {
+          "question": "Como devo cuidar do meu implante?",
+          "answer": "<p>Os cuidados são semelhantes aos dos dentes naturais: escovar duas vezes por dia, limpar os espaços interdentais com fio dentário ou escovas interproximais e fazer check-ups periódicos. Uma boa higiene diária mantém a gengiva em redor do implante saudável e protege a sua estabilidade a longo prazo.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Receba o seu plano de tratamento com implantes",
+      "lead": "Partilhe algumas informações e a nossa equipa responderá com um plano de implante personalizado e um orçamento com tudo incluído, transparente e sem compromisso, geralmente dentro de algumas horas.",
+      "points": [
+        {
+          "label": "Avaliação gratuita a partir das suas fotografias ou radiografias"
+        },
+        {
+          "label": "Orçamento com tudo incluído, transparente e sem compromisso"
+        },
+        {
+          "label": "Resposta rápida da nossa equipa de apoio ao paciente"
+        },
+        {
+          "label": "Assistência multilingue em todas as etapas"
+        }
+      ],
+      "submit_label": "Solicitar uma consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Descubra também",
+      "title": "Tratamentos relacionados"
+    }
+  ]
+}

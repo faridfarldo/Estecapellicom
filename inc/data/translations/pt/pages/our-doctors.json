@@ -1,0 +1,47 @@
+{
+  "source_slug": "our-doctors",
+  "slug": "nossos-medicos",
+  "title": "Os nossos médicos",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Os nossos médicos",
+      "title": "Cirurgiões que cuidam pessoalmente de cada intervenção.",
+      "lead": "Conheça os cirurgiões qualificados que realizam as intervenções em Estecapelli, selecionados pessoalmente pela sua experiência, resultados e cuidados ao paciente.",
+      "cta_primary": {
+        "label": "Consulta gratuita"
+      },
+      "cta_secondary": {
+        "label": "Fale connosco no WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "doctors",
+      "eyebrow": "Cirurgiões qualificados",
+      "title": "Conheça os nossos cirurgiões",
+      "lead": "Cada intervenção é atendida pessoalmente por um dos nossos cirurgiões especialistas. Consulte o seu perfil para conhecer a sua formação, qualificações e áreas de atuação.",
+      "members": [
+        {
+          "name": "Dr. Mehmet Hanifi Kutlar",
+          "position": "Especialista em transplante capilar e cofundador"
+        },
+        {
+          "name": "Op. Dr. Hasan Çelik",
+          "position": "Cirurgião estético, plástico e reconstrutivo"
+        },
+        {
+          "name": "Op. Dr. Mehmet Palalı",
+          "position": "Especialista em otorrinolaringologia"
+        },
+        {
+          "name": "Op. Dr. Necdet Derici",
+          "position": "Especialista em cirurgia geral"
+        },
+        {
+          "name": "Op. Dr. Ali Durmuş",
+          "position": "Cirurgião plástico e reconstrutor"
+        }
+      ]
+    }
+  ]
+}

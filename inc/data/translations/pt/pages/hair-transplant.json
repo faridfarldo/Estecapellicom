@@ -1,0 +1,113 @@
+{
+  "source_slug": "hair-transplant",
+  "slug": "transplante-capilar",
+  "title": "Transplante capilar",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Transplante capilar",
+      "title": "Restauração capilar concebida para atingir a densidade natural.",
+      "lead": "Desde o FUE com lâminas de safira até aos nossos protocolos patenteados Exosome e VITA, cada plano Estecapelli é desenhado de acordo com as características do seu couro cabeludo, da sua área dadora e dos seus objetivos.",
+      "cta_primary": {
+        "label": "Consulta gratuita"
+      },
+      "cta_secondary": {
+        "label": "Fale connosco no WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Por onde começar",
+      "title": "Um transplante planeado totalmente para si",
+      "body": "<p>A queda de cabelo nunca é igual de pessoa para pessoa, pelo que a solução adequada deve ser também individual. Na Estecapelli, cada processo começa com uma avaliação completa do couro cabeludo, da área dadora, das características do cabelo e da densidade desejada, nunca com uma solução padronizada. A partir desta avaliação recomendamos a técnica, o número de enxertos e a abordagem que podem oferecer o resultado mais natural.</p><p>Os nossos cirurgiões trabalham exclusivamente em instalações de nível hospitalar e utilizam os métodos de referência FUE e DHI, melhorados com os protocolos Sapphire, Exosome e VITA desenvolvidos pela Estecapelli. Quer precise de reconstruir uma linha capilar recuada, aumentar a densidade ou definir as sobrancelhas e a barba, o objetivo é sempre o mesmo: um resultado que pareça ter sido sempre seu.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Porque é que os pacientes escolhem a Estecapelli",
+      "stats": [
+        {
+          "value": "6 técnicas",
+          "label": "FUE, DHI, Sapphire, Exosome, VITA e outras técnicas"
+        },
+        {
+          "value": "Local",
+          "label": "Anestesia: acordado e confortável"
+        },
+        {
+          "value": "Aprox. 3 dias",
+          "label": "Estadia habitual na Turquia"
+        },
+        {
+          "value": "Permanente",
+          "label": "Enxertos resistentes a quedas futuras"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Os nossos tratamentos",
+      "title": "Descubra os tratamentos de transplante capilar"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reais",
+      "title": "Transplante capilar – Antes e depois",
+      "lead": "Observe a densidade e as linhas frontais naturais alcançadas pelos nossos pacientes. Cada resultado é concebido de acordo com o padrão de crescimento individual para obter um aspeto completamente natural.",
+      "cta": {
+        "label": "Veja a galeria completa"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Descubra qual o transplante capilar mais adequado para si",
+      "lead": "Envie-nos algumas fotografias e a nossa equipa médica responderá com a técnica recomendada, uma estimativa do número de enxertos e um orçamento com tudo incluído e sem compromisso, geralmente no prazo de algumas horas.",
+      "points": [
+        {
+          "label": "Avaliação gratuita do enxerto a partir das suas fotografias"
+        },
+        {
+          "label": "Orçamento transparente, tudo incluído e sem compromisso"
+        },
+        {
+          "label": "Resposta rápida da nossa equipa especializada de apoio ao paciente"
+        },
+        {
+          "label": "Assistência multilingue em todas as etapas"
+        }
+      ],
+      "submit_label": "Solicitar uma consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informações úteis",
+      "title": "Transplante capilar – Perguntas frequentes",
+      "items": [
+        {
+          "question": "Qual a técnica de transplante capilar mais adequada para mim?",
+          "answer": "<p>Não existe uma técnica única que seja melhor para todos: a escolha depende do grau de perda, da qualidade e extensão da área dadora, da área que necessita de ser coberta e do seu estilo de vida. O FUE e o DHI são métodos de referência, enquanto os protocolos Sapphire, Exosome e VITA proporcionam vantagens específicas para a recuperação, densidade ou sobrevivência do enxerto. Depois de analisarem as suas fotografias, os nossos especialistas recomendarão o método mais adequado para obter um resultado natural e duradouro no seu caso.</p>"
+        },
+        {
+          "question": "Sou um bom candidato para um transplante capilar?",
+          "answer": "<p>A maioria dos adultos com queda de cabelo estabilizada e uma área dadora saudável na parte posterior e nos lados do couro cabeludo podem ser candidatos, incluindo homens com alopécia androgenética e muitas mulheres com enfraquecimento. A saúde geral é mais importante do que a idade. Uma consulta gratuita através de fotografias permite à nossa equipa confirmar a sua adequação e estimar o número de enxertos necessários.</p>"
+        },
+        {
+          "question": "A intervenção é dolorosa e qual a anestesia utilizada?",
+          "answer": "<p>O procedimento é realizado sob anestesia local, para que se mantenha acordado, mas não sinta dor durante a sessão. A maioria dos pacientes descreve apenas um ligeiro desconforto durante a aplicação inicial do anestésico. A intervenção costuma durar entre seis a oito horas dependendo da quantidade de enxertos, podendo regressar ao hotel no próprio dia.</p>"
+        },
+        {
+          "question": "Quanto tempo devo ficar em Turkiye?",
+          "answer": "<p>A maioria dos pacientes planeia uma estadia de cerca de três dias. Este período inclui a consulta e a intervenção, a primeira lavagem e instruções pós-operatórias personalizadas antes do regresso. A nossa equipa ajuda a coordenar o alojamento e os transfers de aeroporto para tornar a sua viagem simples e tranquila.</p>"
+        },
+        {
+          "question": "Quando verei os resultados e serão permanentes?",
+          "answer": "<p>O cabelo transplantado cai geralmente nas primeiras semanas, algo completamente normal. O novo crescimento inicia-se por volta do terceiro ou quarto mês, a densidade visível desenvolve-se entre o sexto e o nono mês e o resultado final amadurece aproximadamente aos doze meses. Como os enxertos provêm de áreas geneticamente resistentes à queda, continuam a crescer de forma permanente e podem ser cortados, lavados e penteados normalmente.</p>"
+        },
+        {
+          "question": "O resultado parecerá natural?",
+          "answer": "<p>Sim. Os fatores mais importantes são o desenho da linha frontal e o ângulo, direção e densidade de cada folículo implantado. Os nossos especialistas definem a linha consigo antes da intervenção e implantam os enxertos um a um seguindo o padrão natural de crescimento, para que o resultado se integre perfeitamente no seu cabelo existente.</p>"
+        }
+      ]
+    }
+  ]
+}

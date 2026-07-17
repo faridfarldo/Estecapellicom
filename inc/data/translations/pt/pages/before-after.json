@@ -1,0 +1,19 @@
+{
+  "source_slug": "before-after",
+  "slug": "antes-depois",
+  "title": "Antes e depois",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "antes e depois",
+      "title": "Resultados reais, pacientes reais.",
+      "lead": "Descubra os resultados antes e depois dos nossos tratamentos de transplante capilar, cirurgia plástica e medicina dentária. Cada imagem conta a história de um paciente que confiou em nós para a sua transformação.",
+      "cta_primary": {
+        "label": "Consulta gratuita"
+      },
+      "cta_secondary": {
+        "label": "Fale connosco no WhatsApp"
+      }
+    }
+  ]
+}

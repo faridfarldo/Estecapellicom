@@ -1,0 +1,103 @@
+{
+  "source_slug": "tricholab",
+  "slug": "tricholab",
+  "title": "TrichoLab",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Análise capilar com inteligência artificial",
+      "title": "TrichoLab",
+      "lead": "Um sistema avançado baseado em inteligência artificial que examina o cabelo e o couro cabeludo através de imagens tricoscópicas de alta resolução, convertendo cada detalhe em dados precisos para um plano de transplante totalmente personalizado.",
+      "cta_primary": {
+        "label": "Consulta gratuita"
+      },
+      "cta_secondary": {
+        "label": "Fale connosco no WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A tecnologia",
+      "title": "O que é o TrichoLab?",
+      "body": "<p>TrichoLab é um sistema avançado de análise capilar assistido por inteligência artificial que examina o cabelo e o couro cabeludo através de imagens tricoscópicas de alta resolução. Ao medir parâmetros essenciais com precisão milimétrica, fornece dados objetivos que orientam os nossos especialistas no planeamento do tratamento mais eficaz para cada paciente.</p><p>O sistema avalia inúmeros fatores, como a densidade folicular, o potencial de enxerto, a espessura do cabelo, a capacidade da área dadora, a distribuição da queda de cabelo e o grau de miniaturização. Este nível de detalhe permite à nossa equipa criar um plano personalizado com base em dados precisos e atualizados, e não em simples estimativas.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "O processo",
+      "title": "Análise TrichoLab em Estecapelli",
+      "lead": "Desde imagens de alta resolução a um plano preciso e personalizado. Percorra as etapas abaixo.",
+      "items": [
+        {
+          "eyebrow": "Passo 1",
+          "title": "Exame tricoscópico digital",
+          "body": "<p>O couro cabeludo é examinado através de microimagens de alta resolução que captam detalhes precisos dos folículos.</p>"
+        },
+        {
+          "eyebrow": "Etapa 2",
+          "title": "Análise de dados com inteligência artificial",
+          "body": "<p>Os algoritmos avançados transformam as imagens em valores numéricos precisos de densidade e distribuição folicular.</p>"
+        },
+        {
+          "eyebrow": "Etapa 3",
+          "title": "Plano de tratamento personalizado",
+          "body": "<p>Os dados tornam-se a base de um plano totalmente individual, incluindo uma estimativa exacta do número de enxertos necessários.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Por que razão é importante",
+      "title": "O papel do TrichoLab no planeamento de transplantes",
+      "body": "A análise científica protege a área dadora e promove resultados naturais e simétricos:",
+      "items": [
+        {
+          "label": "Avaliação científica da capacidade de doação, sem extração excessiva"
+        },
+        {
+          "label": "Cálculo preciso dos enxertos, evitando um planeamento insuficiente ou excessivo"
+        },
+        {
+          "label": "Design natural e simétrico baseado no cabelo existente"
+        },
+        {
+          "label": "Proteção a longo prazo da área dadora"
+        },
+        {
+          "label": "Tecnologia disponível apenas num número limitado de clínicas na Turquia"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Porquê Estecapelli?",
+      "title": "Porquê escolher o TrichoLab em Estecapelli?",
+      "body": "<p>O TrichoLab é um sistema avançado disponível apenas num número limitado de clínicas na Turquia. Na Estecapelli, representa o ponto de partida do nosso trabalho e oferece aos pacientes um nível de análise que poucas clínicas conseguem proporcionar.</p><p>Cada avaliação é objetiva, mensurável e transparente. Para cada paciente é desenvolvida uma estratégia verdadeiramente personalizada, baseada em dados precisos e não em suposições, com o objetivo de proteger a área dadora e maximizar os resultados a longo prazo.</p>",
+      "cta": {
+        "label": "Marque uma consulta gratuita"
+      }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informações úteis",
+      "title": "TrichoLab — Perguntas frequentes",
+      "items": [
+        {
+          "question": "A análise do TrichoLab é penosa?",
+          "answer": "<p>Não. É um exame não invasivo que capta imagens detalhadas do couro cabeludo sem agulhas, incisões ou desconforto. A verificação dura pouco tempo e, depois de concluída, pode regressar imediatamente às suas atividades habituais.</p>"
+        },
+        {
+          "question": "Porque é que o TrichoLab é importante para o meu transplante?",
+          "answer": "<p>O TrichoLab mede a densidade, a qualidade dos folículos e a capacidade da área dadora, o que ajuda a calcular os enxertos necessários sem enfraquecer a área de extração. Estes dados tornam o planeamento mais preciso, natural e sustentável a longo prazo. O cirurgião combina-os com a avaliação clínica e o design da linha da frente.</p>"
+        },
+        {
+          "question": "O que mede exatamente a análise do TrichoLab?",
+          "answer": "<p>O sistema examina o cabelo e o couro cabeludo através de imagens de alta resolução e software assistido por inteligência artificial. Mede a densidade, a espessura do cabelo, a distribuição folicular, a capacidade de doação, o padrão de queda de cabelo e a miniaturização. O resultado é um mapa objetivo utilizado para personalizar o tratamento.</p>"
+        },
+        {
+          "question": "O TrichoLab determina o número exato de enxertos?",
+          "answer": "<p>O TrichoLab fornece uma estimativa científica muito precisa da quantidade necessária e pode ser extraída com segurança. No entanto, a decisão final não depende de um único número: o especialista tem também em conta a qualidade do cabelo, os objetivos de densidade, a evolução futura da queda de cabelo e o desenho da linha frontal. Assim, o plano mantém-se realista e protege a área dadora.</p>"
+        }
+      ]
+    }
+  ]
+}

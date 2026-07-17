@@ -1,0 +1,113 @@
+{
+  "source_slug": "dental-treatment",
+  "slug": "tratamento-dentario",
+  "title": "Tratamento dentário",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Tratamento dentário",
+      "title": "Atendimento dentário com abordagem personalizada.",
+      "lead": "Desde um único implante dentário até uma transformação completa com o Hollywood Smile, cada plano é concebido em torno do sorriso que deseja e da funcionalidade de que necessita.",
+      "cta_primary": {
+        "label": "Consulta gratuita"
+      },
+      "cta_secondary": {
+        "label": "Fale connosco no WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A nossa abordagem",
+      "title": "Uma dentada saudável e um sorriso que adora",
+      "body": "<p>Um sorriso bonito não depende apenas da sua aparência: requer dentes e gengivas saudáveis e uma função mastigatória correta. Na Estecapelli, o tratamento começa com uma avaliação oral completa para planear conjuntamente a estética e a função, seja para substituir um dente em falta ou para redesenhar completamente o seu sorriso.</p><p>A nossa equipa dentária combina um planeamento digital moderno com materiais de alta qualidade para oferecer resultados naturais e duradouros. Desde um implante que restaura a força de um dente natural até um Hollywood Smile personalizado, cada plano é elaborado em torno do sorriso que deseja e da mordida de que necessita, com explicações claras antes de iniciar qualquer tratamento.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Porque é que os pacientes escolhem a Estecapelli",
+      "stats": [
+        {
+          "value": "Digital",
+          "label": "Design de sorriso planeado antes de começar"
+        },
+        {
+          "value": "Prémio",
+          "label": "Materiais de elevada qualidade e durabilidade"
+        },
+        {
+          "value": "Natural",
+          "label": "Resultados em harmonia com o rosto e a mordida"
+        },
+        {
+          "value": "Tudo incluído",
+          "label": "Orçamentos transparentes sem compromisso"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Os nossos tratamentos",
+      "title": "Descubra os tratamentos dentários"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reais",
+      "title": "Tratamentos dentários: antes e depois",
+      "lead": "Descubra os sorrisos com que os nossos pacientes regressam a casa. Cada resultado é concebido para parecer natural e harmonizar-se com o rosto, os lábios e a mordida de cada pessoa.",
+      "cta": {
+        "label": "Veja a galeria completa"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Desenhe o seu novo sorriso",
+      "lead": "Envie-nos uma fotografia do seu sorriso: a nossa equipa dentária responderá com um plano personalizado e um orçamento com tudo incluído e sem compromisso, normalmente dentro de algumas horas.",
+      "points": [
+        {
+          "label": "Avaliação gratuita do seu sorriso a partir das suas fotografias"
+        },
+        {
+          "label": "Orçamento transparente, tudo incluído e sem compromisso"
+        },
+        {
+          "label": "Resposta rápida da nossa equipa especializada de apoio ao paciente"
+        },
+        {
+          "label": "Assistência multilingue em todas as etapas"
+        }
+      ],
+      "submit_label": "Solicitar uma consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informações úteis",
+      "title": "Tratamentos dentários: dúvidas frequentes",
+      "items": [
+        {
+          "question": "Qual é a diferença entre implantes dentários e Hollywood Smile?",
+          "answer": "<p>Um implante dentário substitui um dente perdido desde a raiz e recupera toda a capacidade mastigatória através de um parafuso de titânio e de uma coroa. Hollywood Smile é uma transformação estética que redesenha a aparência dos dentes visíveis com facetas ou coroas para obter um sorriso mais brilhante e uniforme. Muitos pacientes combinam os dois tratamentos: implantes para substituir dentes em falta e facetas para aperfeiçoar o sorriso.</p>"
+        },
+        {
+          "question": "Quanto tempo demora o tratamento dentário e quantas deslocações são necessárias?",
+          "answer": "<p>Um Hollywood Smile com facetas ou coroas pode normalmente ser concluído numa única viagem de cinco a sete dias. Os implantes requerem um período de cicatrização após a colocação e geralmente envolvem duas visitas separadas por vários meses, ou uma fase de planeamento seguida de reabilitação definitiva. Antes de viajar definimos o seu calendário com precisão.</p>"
+        },
+        {
+          "question": "O tratamento dentário é doloroso?",
+          "answer": "<p>O tratamento é realizado sob anestesia local, pelo que não deverá sentir dor durante o procedimento. Uma ligeira sensibilidade ou desconforto moderado depois é normal e é facilmente controlada com analgésicos comuns. A nossa equipa cuida do seu conforto em todas as etapas e explica-lhe com antecedência o que pode esperar.</p>"
+        },
+        {
+          "question": "Os meus novos dentes parecerão naturais?",
+          "answer": "<p>Sim. Utilizamos o design digital do sorriso para planear o formato, o tamanho e a tonalidade dos dentes em proporção aos lábios, gengivas e rosto, para que o resultado seja adequado para si e não pareça artificial. Poderá visualizar e modificar o design antes de realizar qualquer trabalho final.</p>"
+        },
+        {
+          "question": "Quanto tempo duram os resultados?",
+          "answer": "<p>Os implantes dentários são concebidos para durar décadas, e muitas vezes a vida toda, com uma higiene oral adequada e check-ups regulares. As facetas e coroas de alta qualidade duram normalmente muitos anos antes de necessitarem de substituição. Cuidar dos dentes e das gengivas e fazer check-ups regulares é a melhor forma de proteger o resultado.</p>"
+        },
+        {
+          "question": "Sou um candidato adequado?",
+          "answer": "<p>A maioria das pessoas pode receber tratamento, mas a opção certa depende da saúde dos seus dentes e gengivas e da quantidade de osso disponível para implantes. Uma consulta com fotografias e, se necessário, uma radiografia realizada à chegada permite à nossa equipa confirmar o melhor plano e identificar eventuais problemas que necessitem de tratamento prévio.</p>"
+        }
+      ]
+    }
+  ]
+}

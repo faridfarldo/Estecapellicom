@@ -1,0 +1,113 @@
+{
+  "source_slug": "plastic-surgery",
+  "slug": "cirurgia-plastica",
+  "title": "Cirurgia plástica",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Cirurgia plástica",
+      "title": "Cirurgia estética planeada a pensar em si.",
+      "lead": "Rinoplastia, BBL, cirurgia mamária, lifting facial e pescoço e muito mais, realizados por cirurgiões qualificados em instalações de nível hospitalar.",
+      "cta_primary": {
+        "label": "Consulta gratuita"
+      },
+      "cta_secondary": {
+        "label": "Fale connosco no WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "A nossa abordagem",
+      "title": "Cirurgia estética realizada com segurança e naturalidade",
+      "body": "<p>A cirurgia plástica é uma decisão profundamente pessoal e o resultado adequado deve refletir quem é: equilibrado, natural e proporcional, nunca excessivo. Na Estecapelli, cada intervenção é realizada por cirurgiões plásticos qualificados em instalações acreditadas de nível hospitalar, com anestesia, monitorização e cuidados pós-operatórios consistentes com os padrões de uma clínica de excelência.</p><p>Da rinoplastia e rejuvenescimento facial ao contorno corporal, cirurgia mamária e cirurgia bariátrica, o seu processo começa com uma consulta transparente. Avaliamos o que é realmente possível, planeamos a intervenção de acordo com a sua anatomia e os seus objetivos e acompanhamos-lhe durante a recuperação com uma equipa especializada que fala a sua língua.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Porque é que os pacientes escolhem a Estecapelli",
+      "stats": [
+        {
+          "value": "Qualificado",
+          "label": "Cirurgiões plásticos experientes"
+        },
+        {
+          "value": "Nível hospitalar",
+          "label": "Instalações acreditadas e totalmente equipadas"
+        },
+        {
+          "value": "Cuidado integral",
+          "label": "Da primeira mensagem à recuperação"
+        },
+        {
+          "value": "Tudo incluído",
+          "label": "Orçamentos transparentes sem compromisso"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Os nossos tratamentos",
+      "title": "Conheça as intervenções de cirurgia plástica"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reais",
+      "title": "Cirurgia plástica: antes e depois",
+      "lead": "Descubra os resultados de antes e depois de pacientes reais. Cada transformação é planeada individualmente para alcançar um resultado natural e equilibrado.",
+      "cta": {
+        "label": "Veja a galeria completa"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Planeie a sua intervenção com os nossos cirurgiões",
+      "lead": "Diga-nos o que gostaria de alcançar: a nossa equipa médica responderá com um plano personalizado e um orçamento com tudo incluído e sem compromisso, geralmente em poucas horas.",
+      "points": [
+        {
+          "label": "Avaliação por cirurgiões qualificados"
+        },
+        {
+          "label": "Expectativas realistas e transparentes desde o início"
+        },
+        {
+          "label": "Resposta rápida da nossa equipa especializada de apoio ao paciente"
+        },
+        {
+          "label": "Assistência multilingue em todas as etapas"
+        }
+      ],
+      "submit_label": "Solicitar uma consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Informações úteis",
+      "title": "Cirurgia plástica: dúvidas frequentes",
+      "items": [
+        {
+          "question": "Como posso saber qual a intervenção mais indicada para mim?",
+          "answer": "<p>O processo inicia-se sempre com uma consulta. Ouvimos o que gostaria de melhorar, avaliamos a sua anatomia e explicamos qual a intervenção, ou combinação de intervenções, que pode oferecer um resultado natural e equilibrado. Também deixamos claro o que não é aconselhável, porque o plano certo deve ser seguro e realista para si, e não apenas atender a um pedido.</p>"
+        },
+        {
+          "question": "Os cirurgiões são qualificados e as instalações são seguras?",
+          "answer": "<p>Sim. Todos os procedimentos são realizados por cirurgiões plásticos qualificados em instalações acreditadas de nível hospitalar, com anestesia e monitorização completas. Antes da intervenção, a sua elegibilidade é verificada através dos exames necessários e da avaliação do seu historial médico; durante toda a estadia, será acompanhado por profissionais de saúde qualificados.</p>"
+        },
+        {
+          "question": "Que tipo de anestesia é utilizada?",
+          "answer": "<p>A maioria das intervenções de cirurgia plástica é realizada sob anestesia geral administrada por um anestesista especializado; alguns procedimentos menos invasivos podem ser realizados com sedação ou anestesia local. A opção mais adequada é confirmada durante a avaliação pré-operatória de acordo com a intervenção e o seu estado de saúde.</p>"
+        },
+        {
+          "question": "Quanto tempo demora a recuperação e quantos dias devo ficar na Turquia?",
+          "answer": "<p>A duração da recuperação depende da intervenção. Muitos pacientes ficam na Turquia durante cinco a dez dias para que possamos acompanhar a primeira fase de recuperação e remover quaisquer pontos ou drenos necessários antes da viagem. Receberá um programa de recuperação claro e por escrito, e a nossa equipa permanecerá disponível após o seu regresso.</p>"
+        },
+        {
+          "question": "Haverá cicatrizes visíveis?",
+          "answer": "<p>Algumas intervenções deixam cicatrizes, mas sempre que possível os nossos cirurgiões fazem as incisões em zonas discretas e naturalmente escondidas, utilizando técnicas de sutura cuidadas para as tornar o mais finas possível. As cicatrizes costumam clarear consideravelmente durante os meses seguintes e dar-lhe-emos instruções específicas para promover uma recuperação adequada.</p>"
+        },
+        {
+          "question": "Os resultados são permanentes?",
+          "answer": "<p>Muitos resultados, como os da rinoplastia ou da remodelação mamária e corporal, são duradouros. No entanto, o envelhecimento natural, as mudanças significativas no peso e no estilo de vida continuam a afetar o corpo ao longo do tempo. Manter um peso estável e hábitos saudáveis ajuda a manter o resultado durante o maior tempo possível.</p>"
+        }
+      ]
+    }
+  ]
+}
