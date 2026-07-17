@@ -52,6 +52,7 @@ require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/hair-analysis.php';
 if ( is_admin() ) {
+	require get_template_directory() . '/inc/admin/import-database-guard.php';
 	require get_template_directory() . '/inc/admin/import-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-hair-treatments.php';
