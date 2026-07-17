@@ -832,6 +832,26 @@ function estecapelli_indexed_request( $query_vars ) {
 
 	$path     = trim( (string) wp_parse_url( $request, PHP_URL_PATH ), '/' );
 	$language = estecapelli_indexed_language_code( (string) strtok( $path, '/' ) );
+
+	/*
+	 * Language roots have no Page record or leaf slug. Without this explicit
+	 * branch WordPress keeps the rewrite query for a page named "pt", decides
+	 * that /pt/ is missing and redirects it to the English root. Clear those
+	 * query vars and switch WPML to its real code (pt-pt on this installation)
+	 * so front-page.php renders directly at the indexed language root.
+	 */
+	if ( '/en' === $key ) {
+		$wpml_language = estecapelli_wpml_language_code( $language );
+		if ( $wpml_language !== $language ) {
+			do_action( 'wpml_switch_language', $wpml_language );
+		}
+		$resolved = array();
+		if ( isset( $query_vars['lang'] ) ) {
+			$resolved['lang'] = $wpml_language;
+		}
+		return $resolved;
+	}
+
 	$type           = 'page';
 	$slug           = basename( $key );
 	$route          = estecapelli_indexed_route_path( $key, $language );
