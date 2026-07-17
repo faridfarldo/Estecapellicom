@@ -76,6 +76,8 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-es-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-pt-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-doctors.php';
+	// Loaded after import-it-doctors.php, whose engine it shares.
+	require get_template_directory() . '/inc/admin/import-pl-doctors.php';
 	require get_template_directory() . '/inc/admin/import-es-pages.php';
 	require get_template_directory() . '/inc/admin/import-pt-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-doctors.php';
