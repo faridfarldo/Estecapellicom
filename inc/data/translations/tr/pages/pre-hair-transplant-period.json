@@ -1,0 +1,109 @@
+{
+    "source_slug": "pre-hair-transplant-period",
+    "slug": "sac-ekim-oncesi-donem",
+    "title": "Saç Ekimi Öncesi Dönem",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "İşleminizden Önce",
+            "title": "Saç Ekiminize Hazırlık",
+            "lead": "Başarılı bir saç ekiminin en büyük faktörlerinden biri doğru hazırlıktır. Kapsamlı bir tıbbi değerlendirmeden günlük küçük ayrıntılara kadar, Estecapelli'deki işleminizden önce yapmanız gereken her şeyi burada bulabilirsiniz.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Hazırlık Aşaması",
+            "title": "Ekim Öncesi Dönem Neden Önemlidir?",
+            "body": "<p>Saç ekimi öncesi dönem, işlem başlamadan önce atılması gereken tüm adımları kapsar. Kapsamlı bir tıbbi değerlendirme, saç derisi analizi ve size en uygun tekniğin belirlenmesini içerir.</p><p>Doğal görünümlü sonuçlar elde etmek için donör alanı değerlendirilir ve saç çizgisi tasarımı dikkatle planlanır. Bu dönemde doğru hazırlık, saç ekiminin genel başarısında önemli bir rol oynar.</p>"
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Operasyon Öncesi Kontrol Listeniz",
+            "title": "Saç Ekiminize Nasıl Hazırlanmalısınız?",
+            "lead": "İşleminizden önceki günlerde aşağıdaki hazırlık adımlarını izleyin.",
+            "items": [
+                {
+                    "eyebrow": "1. Adım",
+                    "title": "Sağlık Durumunuz ve İlaçlarınız",
+                    "body": "<p>Yüksek tansiyon, diyabet, kalp hastalığı, hormonal bozukluklar veya diğer kronik hastalıklar gibi mevcut rahatsızlıklarınızı paylaşın ve düzenli olarak kullandığınız ilaçları listeleyin. Aspirin gibi kan sulandırıcı ilaçlar dahil hiçbir ilacı doktorunuzun onayı olmadan asla bırakmayın.</p>"
+                },
+                {
+                    "eyebrow": "2. Adım",
+                    "title": "Alkol, Sigara ve Maddeler",
+                    "body": "<p>İşlemden en az 24 saat önce alkol almayı bırakın ve en az bir gün önce, ideal olarak işlemden sonra da bir hafta boyunca sigarayı bırakın. Sigara içmek kafa derisine giden kan akışını azaltır ve greftin hayatta kalmasını azaltır. Eğlence amaçlı tüm uyuşturuculardan kaçının.</p>"
+                },
+                {
+                    "eyebrow": "3. Adım",
+                    "title": "Testler ve Muayene",
+                    "body": "<p>Kan testleri enfeksiyon riskini, anemiyi, kan şekeri düzeylerini ve pıhtılaşma faktörlerini tarar. TrichoLab AI analizi saç yoğunluğunuzu ve donör alan kapasitenizi ölçer ve saç çizginiz yüz oranlarınıza uygun olarak tasarlanır.</p>"
+                },
+                {
+                    "eyebrow": "4. Adım",
+                    "title": "Beslenme ve Uyku",
+                    "body": "<p>Ameliyat günü hafif bir kahvaltı yapın, asla aç karnına gelmeyin ve ağır veya yağlı yiyeceklerden kaçının. Önceden iyi bir gece uykusu bağışıklık sisteminizi güçlendirir ve daha hızlı, daha sorunsuz iyileşmeyi destekler.</p>"
+                },
+                {
+                    "eyebrow": "5. Adım",
+                    "title": "Operasyon Günü Hazırlığı",
+                    "body": "<p>Kıyafet değiştirirken greftlere temas etmemek için düğmeli gömlek gibi rahat ve önü açık giysiler tercih edin. Tüm takı ve aksesuarları çıkarın; saç derinizde jel, vaks, sprey veya şampuan kalıntısı bulunmamasına dikkat edin ve kafein tüketimini sınırlayın.</p>"
+                },
+                {
+                    "eyebrow": "6. Adım",
+                    "title": "Önceden Kaçınılması Gerekenler",
+                    "body": "<p>Aspirin ve kan sulandırıcılardan (doktor onayı olmadan), enerji içeceklerinden ve yeşil çay, ginseng ve ginkgo gibi kan sulandırıcı bitki çaylarından kaçının. Bunlar işlem sırasında kanamayı artırabilir ve sonucu etkileyebilir.</p>"
+                },
+                {
+                    "eyebrow": "7. Adım",
+                    "title": "Estecapelli'nin Önerileri",
+                    "body": "<p>Vücudun sıvı dengesini ve greft sağkalımını desteklemek için yeterli su için. B6, B12, D vitamini veya çinko eksiklikleri için yalnızca önerilen takviyeleri kullanın ve stres seviyenizi mümkün olduğunca düşük tutmaya çalışın.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Saç Ekiminden Önce — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "İşlem öncesi düzenli kullandığım ilaçları bırakmalı mıyım?",
+                    "answer": "<p>Hiçbir ilacı asla kendi başınıza bırakmayın. Aldığınız her şeyi bize söyleyin, biz de size tavsiyede bulunalım. Aspirin gibi kan sulandırıcı ilaçlara ancak işlemden önce tıbbi gözetim altında ara verilir.</p>"
+                },
+                {
+                    "question": "Operasyon günü yemek yiyebilir miyim?",
+                    "answer": "<p>Evet — hafif bir kahvaltı yapın. Aç karnına gelmek kan basıncı dengenizi bozabilir ancak ağır veya yağlı yiyeceklerden kaçınılmalıdır.</p>"
+                },
+                {
+                    "question": "İşlemden ne kadar süre önce sigarayı bırakmalıyım?",
+                    "answer": "<p>Sigarayı en az bir gün önce bırakın ve ideal olarak sonrasında da bir hafta boyunca sigarayı bırakın. Sigara içmek kafa derisine giden kan akışını azaltır ve greftin hayatta kalmasını azaltabilir.</p>"
+                },
+                {
+                    "question": "O gün ne giymeliyim?",
+                    "answer": "<p>Düğmeli gömlek veya geniş yakalı üst gibi rahat, önü açık giysiler sayesinde yeni ekim yapılan bölgenin üzerinden hiçbir şey çekmenize gerek kalmaz.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "İşleminizden Önce Bir Sorunuz mu var?",
+            "lead": "Bize bilgilerinizi gönderin; tıbbi ekibimiz hazırlığınızın her adımında size rehberlik edecek ve gün öncesinden tüm sorularınızı yanıtlayacaktır.",
+            "points": [
+                {
+                    "label": "Tıbbi ekibimizden kişiselleştirilmiş ameliyat öncesi rehberlik"
+                },
+                {
+                    "label": "Özel hasta bakımı yetkilinizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        }
+    ]
+}

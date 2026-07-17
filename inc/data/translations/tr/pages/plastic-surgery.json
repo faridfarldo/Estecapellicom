@@ -1,0 +1,113 @@
+{
+    "source_slug": "plastic-surgery",
+    "slug": "estetik-cerrahi",
+    "title": "Estetik Cerrahi",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Estetik Cerrahi",
+            "title": "Estetik cerrahi ihtiyaçlarınıza göre planlanır.",
+            "lead": "Rinoplasti, BBL, meme estetiği, yüz ve boyun germe ve daha fazlası; uzman cerrahlar tarafından yüksek standartlı sağlık tesislerinde gerçekleştirilir.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Yaklaşımımız",
+            "title": "Estetik Ameliyatlar Güvenli ve Doğal Şekilde Yapılır",
+            "body": "<p>Estetik cerrahi son derece kişisel bir karardır. Doğru sonuç; yüzünüze veya vücudunuza uyum sağlayan, dengeli, doğal ve orantılı bir görünümdür. Estecapelli'de her işlem uzman plastik cerrahlar tarafından, yüksek standartlı sağlık tesislerinde; uygun anestezi, takip ve ameliyat sonrası bakım koşullarıyla gerçekleştirilir.</p><p>Burun estetiği ve yüz gençleştirmeden vücut şekillendirme, meme estetiği ve bariatrik cerrahiye kadar yolculuğunuz dürüst bir konsültasyonla başlar. Gerçekçi olarak nelerin mümkün olduğunu değerlendirir, işlemi anatominize ve hedeflerinize göre planlar ve çok dilli hasta bakım ekibimizle iyileşme sürecinde size destek oluruz.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Hastalar Neden Estecapelli'yi Seçiyor?",
+            "stats": [
+                {
+                    "value": "Alanında uzman",
+                    "label": "Deneyimli plastik cerrahlar"
+                },
+                {
+                    "value": "Hastane düzeyinde",
+                    "label": "Akredite, tam donanımlı tesisler"
+                },
+                {
+                    "value": "Uçtan uca",
+                    "label": "İlk mesajdan iyileşmeye kadar bakım"
+                },
+                {
+                    "value": "Her şey dahil",
+                    "label": "Şeffaf, yükümlülük içermeyen fiyat teklifleri"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Tedavilerimiz",
+            "title": "Estetik Cerrahi İşlemlerini Keşfedin"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Plastik Cerrahi — Öncesi ve Sonrası",
+            "lead": "Gerçek hastaların öncesi ve sonrası sonuçlarına göz atın. Her dönüşüm, doğal ve dengeli bir sonuç için bireyin etrafında planlanır.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Ameliyatınızı Cerrahlarımızla Planlayın",
+            "lead": "Bize neyi başarmak istediğinizi söyleyin; tıbbi ekibimiz kişiselleştirilmiş bir planla ve hiçbir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir - genellikle birkaç saat içinde.",
+            "points": [
+                {
+                    "label": "Uzman cerrahlar tarafından değerlendirme"
+                },
+                {
+                    "label": "Başlangıçtan itibaren gerçekçi, dürüst beklentiler"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Plastik Cerrahi — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "Hangi işlemin benim için uygun olduğunu nasıl öğrenebilirim?",
+                    "answer": "<p>Süreç bir konsültasyonla başlar. Sizi neyin rahatsız ettiğini ve neyi değiştirmek istediğinizi dinler, anatominizi değerlendirir ve hangi işlem ya da işlem kombinasyonunun doğal, dengeli bir sonuç sağlayabileceğini açıklarız. Önerilmeyen seçenekler konusunda da net davranırız; doğru planın güvenli, gerçekçi ve size uygun olması gerekir.</p>"
+                },
+                {
+                    "question": "Cerrahlar nitelikli ve tesisler güvenli mi?",
+                    "answer": "<p>Evet. Tüm işlemler uzman plastik cerrahlar tarafından, yüksek standartlı sağlık tesislerinde uygun anestezi ve takip koşullarıyla gerçekleştirilir. Ameliyat öncesinde gerekli testler yapılır, tıbbi geçmişiniz değerlendirilir ve konaklamanız boyunca nitelikli sağlık personeli tarafından takip edilirsiniz.</p>"
+                },
+                {
+                    "question": "Ne tür anestezi kullanılıyor?",
+                    "answer": "<p>Estetik cerrahi işlemlerinin çoğu, uzman bir anestezi hekimi tarafından uygulanan genel anestezi altında gerçekleştirilir. Daha küçük bazı uygulamalarda sedasyon veya lokal anestezi tercih edilebilir. Sağlık durumunuza ve planlanan işleme uygun seçenek, ameliyat öncesi değerlendirmede belirlenir.</p>"
+                },
+                {
+                    "question": "İyileşme ne kadar sürer ve Türkiye'de ne kadar kalmalıyım?",
+                    "answer": "<p>İyileşme süresi yapılan işleme göre değişir. Birçok hasta Türkiye'de yaklaşık beş ila on gün kalır; böylece erken iyileşme takip edilir ve seyahat öncesinde gerekiyorsa dikiş veya drenler çıkarılır. Size yazılı bir iyileşme takvimi sunar, eve döndükten sonra da takip sorularınız için destek vermeye devam ederiz.</p>"
+                },
+                {
+                    "question": "Görünür yara izleri olacak mı?",
+                    "answer": "<p>Bazı cerrahi işlemler iz bırakabilir. Cerrahlarımız kesileri mümkün olduğunca doğal kıvrımlara ve daha az görünür bölgelere yerleştirir, izleri ince tutmak için hassas kapatma teknikleri kullanır. İzler sonraki aylarda belirgin biçimde solar; sağlıklı iyileşmeyi desteklemek için işlem sonrası bakım konusunda ayrıntılı rehberlik sunarız.</p>"
+                },
+                {
+                    "question": "Sonuçlar kalıcı mı?",
+                    "answer": "<p>Burun estetiği veya göğüs ve vücut şekillendirme gibi birçok sonuç uzun ömürlüdür. Ancak doğal yaşlanma, önemli kilo değişiklikleri ve yaşam tarzı zamanla vücudunuzu etkilemeye devam eder. Sabit bir kiloyu ve sağlıklı bir rutini korumak, sonucunuzu mümkün olduğu kadar uzun süre korumanıza yardımcı olur ve görüşmeniz sırasında size bu konuda tavsiyelerde bulunuruz.</p>"
+                }
+            ]
+        }
+    ]
+}

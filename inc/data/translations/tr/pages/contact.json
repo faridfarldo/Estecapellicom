@@ -1,0 +1,19 @@
+{
+    "source_slug": "contact",
+    "slug": "iletisim",
+    "title": "İletişim",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "İletişime Geçin",
+            "title": "Sorularınızı cevaplamak için buradayız.",
+            "lead": "Ekibimize WhatsApp, telefon veya e-posta yoluyla ulaşın ya da tıbbi danışmanlarımızdan biriyle ücretsiz çevrim içi görüşme planlayın.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        }
+    ]
+}

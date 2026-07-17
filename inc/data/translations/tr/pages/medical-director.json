@@ -1,0 +1,19 @@
+{
+    "source_slug": "medical-director",
+    "slug": "tibbi-direktor",
+    "title": "Mesul Müdür",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Tıbbi Yönetim",
+            "title": "Mesul müdürümüzün liderliğinde.",
+            "lead": "Estecapelli'deki klinik süreçler mesul müdürümüzün gözetiminde yürütülür; saç restorasyonu, estetik cerrahi, diş tedavisi ve ameliyatsız uygulamalarda tutarlı standartlar sağlanır.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        }
+    ]
+}

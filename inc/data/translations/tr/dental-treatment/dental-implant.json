@@ -1,0 +1,197 @@
+{
+    "source_slug": "dental-implant",
+    "slug": "dis-implanti",
+    "title": "Diş İmplantı",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Kalıcı Diş Yenileme",
+            "title": "Diş İmplantı",
+            "lead": "Eksik dişleri kalıcı, doğal görünümlü çözümlerle onarın. Biyouyumlu titanyum kökleri güçlü, estetik ve uzun ömürlü sonuçlar sunar.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Tedavi",
+            "title": "Diş İmplantı Nedir?",
+            "body": "<p>Diş implantı, eksik dişlerin yerine biyouyumlu titanyum köklerinin çene kemiğine yerleştirilmesi yoluyla doğal diş fonksiyonunu ve estetik görünümünü geri kazandıran modern bir tedavi yöntemidir. İmplantlar, kaybedilen diş kökünün görevini üstlenir ve üzerine yerleştirilen protez dişle birlikte hem görünüm hem de fonksiyon açısından doğal dişe en yakın çözümü sunar.</p>"
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Neden Önemlidir?",
+            "title": "Neden Diş İmplantlarını Seçmelisiniz?",
+            "body": "Diş kaybı sadece estetik bir kaygının ötesinde bir durumdur. Çiğneme fonksiyonunun bozulması sindirim sistemini olumsuz etkileyebilir, zamanla çene kemiği erimesi gelişebilir ve komşu dişler yavaş yavaş kayarak bozulabilir. Diş implantları aşağıdaki nedenlerden dolayı en ideal tedavi çözümüdür:",
+            "items": [
+                {
+                    "label": "Eksik dişlerin bıraktığı boşluğu kalıcı olarak doldurur"
+                },
+                {
+                    "label": "Çene kemiğini korur ve kemik kaybını önler"
+                },
+                {
+                    "label": "Çevredeki sağlıklı dişleri zarar vermeden korur"
+                },
+                {
+                    "label": "Çiğneme gücünü doğal dişlere en yakın düzeye getirir"
+                },
+                {
+                    "label": "Yüz estetiğini ve genel görünümü iyileştirir"
+                },
+                {
+                    "label": "Ömür boyu kalıcı bir çözüm sunar"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Süreç",
+            "title": "Diş İmplantı Nasıl Uygulanır?",
+            "lead": "İmplant tedavisi, güvenli, uzun ömürlü ve doğal görünümlü sonuçlar sağlamak için tasarlanmış yapılandırılmış bir süreci takip eder. Tedavinin ana aşamaları aşağıdaki gibidir.",
+            "items": [
+                {
+                    "eyebrow": "1. Adım",
+                    "title": "Klinik Muayene ve Görüntüleme",
+                    "body": "<p>Çene kemiği, panoramik röntgen ve dijital tomografi kullanılarak kapsamlı bir şekilde analiz edilir. Kemik yoğunluğu, implant boyutu ve tedavi alanı dikkatle değerlendirilerek kişiye özel implant planı oluşturulur ve hastanın genel ağız sağlığı ve tıbbi geçmişi incelenir.</p>"
+                },
+                {
+                    "eyebrow": "2. Adım",
+                    "title": "Tedavi Planlaması",
+                    "body": "<p>Eksik diş sayısı, çene yapısı ve genel ağız sağlığı dikkate alınarak kişiye özel tedavi planı hazırlanır. Kemik grefti veya diş çekimi gibi ön işlemler gerekiyorsa bunlar plana dahil edilir.</p>"
+                },
+                {
+                    "eyebrow": "3. Adım",
+                    "title": "İmplant Yerleştirme",
+                    "body": "<p>Lokal anestezi altında, titanyum implant kökü dikkatlice çene kemiğine yerleştirilir ve genellikle implant başına 15 ila 30 dakika sürer. Sonraki günlerde hafif ağrı veya şişlik iyileşmenin normal bir parçasıdır.</p>"
+                },
+                {
+                    "eyebrow": "4. Adım",
+                    "title": "Osseointegrasyon",
+                    "body": "<p>Yaklaşık 2 ila 3 aylık bir iyileşme süresi, titanyum kökünün çevredeki kemikle tamamen entegre olmasını sağlayarak protez diş için güçlü ve stabil bir temel oluşturur.</p>"
+                },
+                {
+                    "eyebrow": "5. Adım",
+                    "title": "Protez Yapı",
+                    "body": "<p>Osseointegrasyon tamamlandıktan sonra kişiye özel protez diş takılır. Çevredeki doğal dişlerin rengine, şekline ve boyutuna uyacak şekilde tasarlanmış porselen, zirkonyum veya hibrit protezler kullanılabilir.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Faydaları",
+            "title": "Diş İmplantlarının Avantajları",
+            "body": "İmplantlar eksik dişlerin yerine konulmasında altın standarttır:",
+            "items": [
+                {
+                    "label": "Doğal diş görünümü ve hissi sağlar"
+                },
+                {
+                    "label": "Maksimum çiğneme performansı sağlar"
+                },
+                {
+                    "label": "Komşu sağlıklı dişlere herhangi bir işlem yapılmaz."
+                },
+                {
+                    "label": "Uzun vadede ağız sağlığını korur"
+                },
+                {
+                    "label": "Yüz estetiğini destekler ve yüzün çökme riskini önler"
+                },
+                {
+                    "label": "Doğru ağız bakımı ve düzenli kontrollerle uzun ömürlü kullanım sunar"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Neden Türkiye",
+            "title": "Türkiye'de Diş İmplantları Neden Tercih Ediliyor?",
+            "body": "<p>Uluslararası akredite klinikleri, deneyimli cerrahları ve uygun maliyetli tedavi seçenekleriyle Türkiye, implant tedavisi için dünya çapında en çok tercih edilen destinasyonlardan biri haline geldi. İstanbul kliniğimiz, implant tedavisi için seyahat eden hastalara VIP transferler, konaklama desteği ve kapsamlı kişiselleştirilmiş tedavi planı dahil olmak üzere eksiksiz bir sağlık turizmi deneyimi sunuyor.</p>",
+            "cta": {
+                "label": "Ziyaretinizi Planlayın"
+            }
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Diş İmplantları - Öncesi ve Sonrası",
+            "lead": "İmplant tedavisiyle tamamlanmış bir gülümsemenin nasıl geri kazanıldığını görün. Doğal bir görünüm, rahat bir kapanış ve kalıcı bir sonuç için her vaka ayrı ayrı planlanır.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Diş İmplantları — SSS",
+            "items": [
+                {
+                    "question": "Diş implantı için iyi bir aday kimdir?",
+                    "answer": "<p>Genel sağlık durumu iyi olan, bir veya daha fazla dişini kaybetmiş ve yeterli sağlıklı çene kemiğine sahip yetişkinlerin çoğu uygun adaylardır. Kontrolsüz diyabet, ilerlemiş diş eti hastalığı veya belirgin kemik kaybı gibi durumlar mutlaka tedaviyi dışlamaz, ancak öncelikle bunlar değerlendirilip tedavi edilir. Röntgen veya 3D taramayla yapılan kısa bir muayene, diş hekimlerimizin uygunluğunuzu onaylamasına ve doğru planı özetlemesine olanak tanır.</p>"
+                },
+                {
+                    "question": "Tedavinin tamamı ne kadar sürüyor?",
+                    "answer": "<p>İmplant tedavisi başlangıçtan bitişe kadar genellikle iki ila dört ay sürer. İmplantın kendisi kısa bir randevuyla yerleştirilir, ancak son diş takılmadan önce kemikle kaynaşması (osseointegrasyon) için yaklaşık iki ila üç ay gerekir. Kemik kalitesi iyi olan seçilmiş vakalarda, aynı gün veya anında yüklenen implantlar bu süreyi önemli ölçüde kısaltabilir.</p>"
+                },
+                {
+                    "question": "İşlem acı verici mi?",
+                    "answer": "<p>Yerleştirme lokal anestezi altında gerçekleştirilir, dolayısıyla işlem sırasında ağrı hissetmezsiniz. Daha sonra birkaç gün boyunca hafif şişlik veya ağrının olması normaldir ve bu durum basit ağrı kesiciler ve tedavi sonrası bakımla kolayca giderilebilir. Çoğu hasta iyileşmeyi rutin diş çekimine benzetir.</p>"
+                },
+                {
+                    "question": "Yeterli çene kemiğim yoksa ne olur?",
+                    "answer": "<p>Yetersiz kemik, uzun süreli diş kayıplarından sonra sık görülen bir durumdur ve nadiren bir engel oluşturur. Kemik grefti veya sinüs kaldırma gibi prosedürler, bir implantı güvenli bir şekilde desteklemek için gereken kemik hacmini yeniden oluşturabilir. Eğer gerekliyse önceden planlanır ve implant yerleştirilmeden önce iyileşme süresi biraz uzayabilir.</p>"
+                },
+                {
+                    "question": "İmplantlar dişlerimin birkaçının veya tamamının yerini alabilir mi?",
+                    "answer": "<p>Evet. Tek bir implant bir dişin yerini alabilirken, birkaç implant birden fazla eksik diş için bir köprüyü destekleyebilir. Tam bir diş arkı için All-on-4 veya All-on-6 gibi tedavilerde sabit diş setinin tamamını sabitlemek için yalnızca dört ila altı implant kullanılır; bu, çıkarılabilir protezlere stabil, konforlu bir alternatiftir.</p>"
+                },
+                {
+                    "question": "İmplantlar doğal görünüyor ve hissettiriyor mu?",
+                    "answer": "<p>Öyle yapıyorlar. Titanyum kökü kemiğin içinde gizli kalır ve üstteki özel protez diş, doğal dişlerinizin rengine, şekline ve boyutuna uyum sağlar. İmplant sıkı bir şekilde sabitlendiğinden, takma dişlerden kaynaklanan hareketler olmadan tıpkı gerçek bir diş gibi ısırmanıza, çiğnemenize ve konuşmanıza olanak tanır.</p>"
+                },
+                {
+                    "question": "Diş implantlarının ömrü ne kadardır?",
+                    "answer": "<p>İmplant kökü ömür boyu sürecek bir çözüm olacak şekilde tasarlanmıştır ve iyi bir bakımla onlarca yıl dayanabilir. Üstte görünen taç, uzun yıllar kullanımdan sonra zamanla aşınma gösterebilir ve implant değiştirilmeden yenilenebilir. Günlük hijyen, sağlıklı diş etleri ve düzenli kontroller uzun vadeli başarının anahtarıdır.</p>"
+                },
+                {
+                    "question": "Sigara kullanımı veya yaş implant tedavisini etkiler mi?",
+                    "answer": "<p>Üst yaş sınırı yoktur; önemli olan yaştan ziyade kemik ve diş eti sağlığıdır. Ancak sigara içmek iyileşmeyi yavaşlatır ve implant başarısızlığı riskini artırır; bu nedenle tedaviyi azaltmak veya tedaviyi bırakmak, sonucu önemli ölçüde iyileştirir. Değerlendirmeniz sırasında diş hekiminiz size özel tavsiyelerde bulunacaktır.</p>"
+                },
+                {
+                    "question": "İmplantımın bakımını nasıl yaparım?",
+                    "answer": "<p>İmplantın bakımı doğal dişlerin bakımı gibidir: günde iki kez fırçalayın, dişlerin aralarını diş ipi veya diş arası fırçasıyla temizleyin ve rutin diş kontrollerine katılın. İyi bir günlük hijyen çevredeki diş etinin sağlıklı kalmasını sağlar ve implantın uzun vadeli stabilitesini korur.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "İmplant Tedavi Planınızı Alın",
+            "lead": "Birkaç ayrıntı paylaşın ve ekibimiz, genellikle birkaç saat içinde kişiselleştirilmiş bir diş implantı planı ve hiçbir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan veya röntgeninizden ücretsiz tedavi değerlendirmesi"
+                },
+                {
+                    "label": "Hiçbir yükümlülük içermeyen, şeffaf, her şey dahil fiyat teklifi"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Daha Fazlasını Keşfedin",
+            "title": "İlgili Tedaviler"
+        }
+    ]
+}

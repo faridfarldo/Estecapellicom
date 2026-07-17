@@ -1,0 +1,113 @@
+{
+    "source_slug": "hair-transplant",
+    "slug": "sac-ekimi",
+    "title": "Saç Ekimi",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Saç Ekimi",
+            "title": "Doğal yoğunluk için tasarlanmış saç restorasyonu.",
+            "lead": "Safir bıçaklı FUE'den patentli eksozom ve VITA protokollerimize kadar her Estecapelli saç ekimi planı, benzersiz saç derinize, donör alanınıza ve hedeflerinize göre oluşturulur.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Nereden Başlamalı?",
+            "title": "Tamamen Size Özel Planlanan Saç Ekimi",
+            "body": "<p>Saç dökülmesi kişiden kişiye değişir; bu nedenle herkese uyan tek bir çözüm yoktur. Estecapelli'de her plan, saç derinizin, donör alanınızın, saç özelliklerinizin ve hedeflediğiniz yoğunluğun ayrıntılı biçimde değerlendirilmesiyle başlar. Bu değerlendirme sonucunda en doğal görünümü sağlayacak teknik, greft sayısı ve uygulama yaklaşımı belirlenir.</p><p>Cerrahlarımız, Sapphire, Exosome ve VITA protokollerimizle desteklenen FUE ve DHI yöntemlerini yüksek standartlı sağlık tesislerinde uygular. İster gerileyen saç çizginizi yeniden şekillendirmek, ister yoğunluğu artırmak, ister kaş veya sakal bölgesini düzenlemek isteyin; hedef her zaman size özgü ve doğal görünen bir sonuçtur.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Hastalar Neden Estecapelli'yi Seçiyor?",
+            "stats": [
+                {
+                    "value": "6 teknik",
+                    "label": "FUE, DHI, Safir, Exosome, VITA ve daha fazlası"
+                },
+                {
+                    "value": "Yerel",
+                    "label": "Anestezi – uyanık ve rahat"
+                },
+                {
+                    "value": "~3 gün",
+                    "label": "Türkiye'de tipik konaklama"
+                },
+                {
+                    "value": "Kalıcı",
+                    "label": "Gelecekteki saç dökülmesine karşı dirençli greftler"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Tedavilerimiz",
+            "title": "Saç Ekimi Tedavilerini Keşfedin"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Saç Ekimi – Öncesi ve Sonrası",
+            "lead": "Hastalarımızın elde ettiği doğal yoğunluğu ve saç çizgilerini görün. Her sonuç, tamamen doğal bir görünüm için bireysel büyüme modeli etrafında tasarlanmıştır.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Hangi Saç Ekiminin Size Uygun Olduğunu Öğrenin",
+            "lead": "Bize birkaç fotoğraf gönderin; tıbbi ekibimiz önerilen teknikle, bir greft tahminiyle ve hiçbir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir - genellikle birkaç saat içinde.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz greft değerlendirmesi"
+                },
+                {
+                    "label": "Hiçbir yükümlülük içermeyen, şeffaf, her şey dahil fiyat teklifi"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Saç Ekimi — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "Hangi saç ekim tekniği benim için en iyisidir?",
+                    "answer": "<p>Tek bir en iyi teknik yoktur; doğru seçim, saç kaybınızın derecesine, donör alanınızın kalitesine ve boyutuna, kaplanacak alana ve yaşam tarzınıza bağlıdır. FUE ve DHI altın standart yöntemlerdir; Sapphire, Exosome ve VITA protokollerimiz ise iyileşme, yoğunluk veya greftin hayatta kalması için belirli avantajlar sağlar. Fotoğraflarınızı inceledikten sonra cerrahlarımız size vakanız için en doğal, en kalıcı sonucu verecek yöntemi önerir.</p>"
+                },
+                {
+                    "question": "Saç ekimi için iyi bir aday mıyım?",
+                    "answer": "<p>Erkek tipi kelliği olan erkekler ve saçları seyrelmiş birçok kadın da dahil olmak üzere, saç dökülmesi stabil olan ve kafa derisinin arka ve yanlarında sağlıklı bir donör alanı bulunan yetişkinlerin çoğu uygundur. İyi bir genel sağlık, yaştan daha önemlidir. Fotoğraflarla yapılan ücretsiz danışmanlık, ekibimizin uygunluğunuzu onaylamasına ve ihtiyaç duyacağınız greft sayısını tahmin etmesine olanak tanır.</p>"
+                },
+                {
+                    "question": "İşlem ağrılı mı ve hangi anestezi kullanılıyor?",
+                    "answer": "<p>İşlem lokal anestezi altında gerçekleştirilir, böylece uyanık kalırsınız ancak seans sırasında herhangi bir ağrı hissetmezsiniz. Çoğu hasta, anestezi ilk uygulandığında sadece hafif bir rahatsızlıktan bahseder. Bir seans, greft sayısına bağlı olarak genellikle altı ila sekiz saat sürer ve aynı gün otelinize dönersiniz.</p>"
+                },
+                {
+                    "question": "Türkiye'de ne kadar kalmalıyım?",
+                    "answer": "<p>Hastaların çoğu Türkiye'de yaklaşık üç gün kalmayı planlıyor. Bu, konsültasyon ve prosedür gününü, ilk yıkamayı ve eve uçmadan önce ekibimizle yapacağınız kişisel bakım sonrası brifingi kapsar. Seyahatinizin mümkün olduğunca sorunsuz geçmesi için otel ve havaalanı transferlerinizi koordine etmenize yardımcı oluyoruz.</p>"
+                },
+                {
+                    "question": "Sonuçları ne zaman göreceğim ve kalıcı mı?",
+                    "answer": "<p>Ekilen saçlar genellikle ilk birkaç haftada dökülür ve bu tamamen normaldir. Yeni büyüme üç ila dört ay civarında başlar, altı ila dokuz ay arasında gözle görülür yoğunluk gelişir ve nihai sonuç yaklaşık on iki ayda olgunlaşır. Greftler genetik olarak saç dökülmesine dirençli bölgelerden alındığı için kalıcı olarak büyümeye devam ederler; saçlarınızı her zamanki gibi kesebilir, yıkayabilir ve şekillendirebilirsiniz.</p>"
+                },
+                {
+                    "question": "Sonuç doğal görünecek mi?",
+                    "answer": "<p>Evet. Doğal bir görünüm için en önemli faktörler saç çizgisi tasarımı ve implante edilen her bir folikülün açısı, yönü ve yoğunluğudur. Cerrahlarımız saç çizginizi sizinle önceden tasarlar ve doğal büyüme düzeninize uyacak şekilde greftleri tek tek yerleştirir. Böylece sonuç, mevcut saçlarınızla kusursuz bir şekilde uyum sağlar ve her zaman oradaymış gibi görünür.</p>"
+                }
+            ]
+        }
+    ]
+}

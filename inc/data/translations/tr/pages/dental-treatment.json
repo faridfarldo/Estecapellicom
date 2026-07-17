@@ -1,0 +1,113 @@
+{
+    "source_slug": "dental-treatment",
+    "slug": "dis-tedavisi",
+    "title": "Diş Tedavisi",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Diş Tedavisi",
+            "title": "Kişisel bir dokunuşla diş bakımı.",
+            "lead": "Tek diş implantından kapsamlı Hollywood Gülüşü uygulamalarına kadar her plan, istediğiniz görünüm ve ihtiyaç duyduğunuz sağlıklı kapanışa göre hazırlanır.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Yaklaşımımız",
+            "title": "Sağlıklı Bir Kapanış ve Sevdiğiniz Bir Gülüş",
+            "body": "<p>Güzel bir gülüş yalnızca görünümden ibaret değildir; sağlıklı dişlere, diş etlerine ve doğru kapanışa dayanır. Estecapelli'de tedavi kapsamlı bir ağız değerlendirmesiyle başlar. Eksik bir dişin tamamlanmasından gülüşün bütünüyle yeniden tasarlanmasına kadar estetik ve fonksiyon birlikte planlanır.</p><p>Diş hekimliği ekibimiz, doğal görünümlü ve dayanıklı sonuçlar için modern dijital planlamayı yüksek kaliteli malzemelerle birleştirir. Doğal diş fonksiyonunu geri kazandıran implantlardan kişiye özel Hollywood Gülüşü uygulamalarına kadar her plan, görünüm hedeflerinize ve sağlıklı kapanış ihtiyacınıza göre hazırlanır; tedavi başlamadan önce tüm aşamalar açıkça anlatılır.</p>"
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Hastalar Neden Estecapelli'yi Seçiyor?",
+            "stats": [
+                {
+                    "value": "Dijital",
+                    "label": "Gülüş tasarımı başlamadan önce planlanır"
+                },
+                {
+                    "value": "Premium",
+                    "label": "Yüksek kaliteli, uzun ömürlü malzemeler"
+                },
+                {
+                    "value": "Doğal",
+                    "label": "Yüzünüz ve doğal kapanışınızla uyumlu sonuçlar"
+                },
+                {
+                    "value": "Her şey dahil",
+                    "label": "Şeffaf, yükümlülük içermeyen fiyat teklifleri"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "related",
+            "eyebrow": "Tedavilerimiz",
+            "title": "Diş Tedavilerini Keşfedin"
+        },
+        {
+            "acf_fc_layout": "gallery",
+            "eyebrow": "Gerçek Sonuçlar",
+            "title": "Diş Tedavisi — Öncesi ve Sonrası",
+            "lead": "Hastalarımızın yüzündeki gülümsemeyi görün. Her sonuç doğal görünecek ve kişinin yüzüne, dudaklarına ve ısırığına uyacak şekilde tasarlanmıştır.",
+            "cta": {
+                "label": "Tüm Galeriyi Görüntüleyin"
+            }
+        },
+        {
+            "acf_fc_layout": "form",
+            "eyebrow": "Ücretsiz Konsültasyon",
+            "title": "Yeni Gülümsemenizi Tasarlayın",
+            "lead": "Bize gülümsemenizin bir fotoğrafını gönderin; diş ekibimiz kişiselleştirilmiş bir tedavi planı ve hiçbir yükümlülük altına girmeyen, her şey dahil bir fiyat teklifiyle yanıt verecektir - genellikle birkaç saat içinde.",
+            "points": [
+                {
+                    "label": "Fotoğraflarınızdan ücretsiz gülümseme değerlendirmesi"
+                },
+                {
+                    "label": "Hiçbir yükümlülük içermeyen, şeffaf, her şey dahil fiyat teklifi"
+                },
+                {
+                    "label": "Özel hasta bakım ekibimizden hızlı yanıt"
+                },
+                {
+                    "label": "Her adımda çok dilli destek"
+                }
+            ],
+            "submit_label": "Ücretsiz Konsültasyon Talep Edin"
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "Diş Tedavisi — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "Diş implantları ile Hollywood Gülüşü arasındaki fark nedir?",
+                    "answer": "<p>Diş implantı, eksik dişin kökünden itibaren yerini alır; titanyum implant ve üzerine yerleştirilen kuronla çiğneme fonksiyonunu geri kazandırır. Hollywood Gülüşü ise görünen dişlerin estetiğini veneer, kuron veya diğer uygulamalarla yeniden tasarlayan kapsamlı bir gülüş planıdır. Eksik dişlerin implantlarla tamamlandığı ve gülüş estetiğinin veneer ya da kuronlarla düzenlendiği kombine tedaviler de uygulanabilir.</p>"
+                },
+                {
+                    "question": "Diş tedavisi ne kadar sürer ve kaç ziyaret gerekir?",
+                    "answer": "<p>Veneer veya kuronlarla yapılan Hollywood Gülüşü çoğu zaman beş ila yedi günlük tek ziyarette tamamlanabilir. Diş implantlarında yerleştirme sonrası iyileşme dönemi gerektiğinden, genellikle birkaç ay arayla iki ziyaret planlanır. Seyahatinizden önce tedavi takviminizi ayrıntılı olarak netleştiririz.</p>"
+                },
+                {
+                    "question": "Diş tedavisi ağrılı mıdır?",
+                    "answer": "<p>Tedavi lokal anestezi altında yapıldığından işlem sırasında ağrı hissetmemeniz gerekir. Sonrasında hafif hassasiyet veya rahatsızlık normaldir ve genellikle basit ağrı kesicilerle kontrol altına alınabilir. Ekibimiz her aşamada rahat etmenizi sağlar ve sizi süreç hakkında ayrıntılı biçimde bilgilendirir.</p>"
+                },
+                {
+                    "question": "Yeni dişlerim doğal görünecek mi?",
+                    "answer": "<p>Evet. Dişlerinizin şeklini, boyutunu ve rengini dudaklarınız, diş etleriniz ve yüzünüzle orantılı olarak planlayarak dijital gülüş tasarımını kullanıyoruz, böylece sonuç yapay görünmek yerine size yakışıyor. Kalıcı bir çalışma yapılmadan önce planı inceleyip ayarlayabilirsiniz, böylece son görünümden memnun kaldığınızdan emin olabilirsiniz.</p>"
+                },
+                {
+                    "question": "Sonuçlar ne kadar sürer?",
+                    "answer": "<p>Diş implantları, iyi ağız hijyeni ve düzenli kontrollerle onlarca yıl, çoğu zaman ömür boyu kullanılabilir. Kaliteli veneer ve kuronlar da yenilenmeleri gerekmeden uzun yıllar dayanabilir. Dişleri ve diş etlerini doğru şekilde temizlemek ve rutin kontrollere katılmak, sonuçların ömrünü uzatmanın en etkili yoludur.</p>"
+                },
+                {
+                    "question": "Uygun bir aday mıyım?",
+                    "answer": "<p>Çoğu insan uygundur ancak doğru tedavi, dişlerinizin ve diş etlerinizin sağlığına ve implantlar için mevcut doğal kemik miktarına bağlıdır. Fotoğraflarla yapılan bir danışma ve gerektiğinde varışta çekilen bir röntgen, diş hekimliği ekibimizin sizin için en iyi planı onaylamasına ve ilk önce tedavi edilmesi gereken her şeyi işaretlemesine olanak tanır.</p>"
+                }
+            ]
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Turkish importer for Hair Transplant and Plastic Surgery treatments.
+ * Turkish importer for Hair Transplant, Plastic Surgery and Dental treatments.
  *
  * Each request imports or repairs one treatment so large ACF flexible-content
  * payloads stay below WPML/ACFML execution limits. English owns structure and
@@ -14,10 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_TR_TREATMENTS_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_TR_TREATMENTS_IMPORT_VERSION', '2026-07-17.1' );
+	define( 'ESTECAPELLI_TR_TREATMENTS_IMPORT_VERSION', '2026-07-17.2' );
 }
 
-/** Import configuration and exact indexed slugs for both Turkish groups. */
+/** Import configuration and exact indexed slugs for all Turkish groups. */
 function estecapelli_tr_treatment_groups() {
 	return array(
 		'hair-transplant' => array(
@@ -54,6 +54,18 @@ function estecapelli_tr_treatment_groups() {
 				'abdominoplasty-tummy-tuck'                               => 'karin-germe-ameliyati',
 				'gynecomastia'                                            => 'jinekomasti',
 				'obesity-surgeries-bariatric-surgery-and-gastric-balloon' => 'obezite-ameliyatlari-bariatrik-cerrahi-ve-mide-balonu',
+			),
+		),
+		'dental-treatment' => array(
+			'label'           => 'Dental Treatment',
+			'directory'       => 'dental-treatment',
+			'source_seed'     => 'estecapelli_it_dental_source_seed',
+			'source_category' => 'dental-treatment',
+			'target_category' => 'dis-tedavisi',
+			'target_name'     => 'Diş Tedavisi',
+			'manifest'        => array(
+				'dental-implant'  => 'dis-implanti',
+				'hollywood-smile' => 'hollywood-gulusu',
 			),
 		),
 	);
@@ -201,7 +213,7 @@ function estecapelli_handle_tr_treatment_import() {
 	exit;
 }
 
-/** Render one Hair Transplant or Plastic Surgery table. */
+/** Render one Turkish treatment-group table. */
 function estecapelli_render_tr_treatment_group( $group_key, array $group ) {
 	?>
 	<h2><?php echo esc_html( $group['label'] ); ?></h2>
@@ -256,7 +268,7 @@ function estecapelli_render_tr_treatment_importer() {
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Turkish Treatment Importer', 'estecapelli' ); ?></h1>
 		<p><?php esc_html_e( 'Imports one complete Turkish treatment per request. Structure and media come from English; every visitor-facing text field is translated.', 'estecapelli' ); ?></p>
-		<p class="description"><?php esc_html_e( 'Routes are validated against the indexed /tr/sac-ekimi/ and /tr/estetik-cerrahi/ URL contracts before every import.', 'estecapelli' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Routes are validated against the indexed Turkish Hair Transplant, Plastic Surgery and Dental Treatment URL contracts before every import.', 'estecapelli' ); ?></p>
 		<?php if ( $success ) : ?>
 			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( sprintf( 'Turkish treatment imported or repaired: %s.', $success ) ); ?></p></div>
 		<?php elseif ( $error ) : ?>

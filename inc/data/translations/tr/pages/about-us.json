@@ -1,0 +1,80 @@
+{
+    "source_slug": "about-us",
+    "slug": "hakkimizda",
+    "title": "Hakkımızda",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Estecapelli hakkında",
+            "title": "Tıbbi güvenceyle desteklenen estetik mükemmellik.",
+            "lead": "Estecapelli; saç ekimi, estetik cerrahi, diş tedavisi ve ameliyatsız estetik alanlarında hizmet veren İstanbul merkezli bir kliniktir. Hastalarımızın güven duyduğu sonuçları sunmak için alanında uzman hekimleri, yüksek standartlı sağlık tesislerini ve hasta odaklı yaklaşımı bir araya getiriyoruz.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "quick_stats",
+            "eyebrow": "Dünya Çapında Güvenilir",
+            "stats": [
+                {
+                    "value": "15+",
+                    "label": "Yılların Deneyimi"
+                },
+                {
+                    "value": "+50.000",
+                    "label": "Saç Ekimi"
+                },
+                {
+                    "value": "+40",
+                    "label": "Hizmet Verilen Ülkeler"
+                },
+                {
+                    "value": "7/24",
+                    "label": "Hasta Desteği"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Biz Kimiz",
+            "title": "Saç ekiminde güvenilir isim",
+            "body": "<p>Sağlık sektöründeki 15 yılı aşkın deneyimiyle Estecapelli, saç ekimi alanında uluslararası hastaların güvendiği bir markadır. Türkiye'de kurulan kliniğimiz, yüksek hasta memnuniyeti ve istikrarlı sonuçlarıyla dünya çapında tanınmış; bugün Türkiye ve Şili'deki merkezlerinde farklı ülkelerden hastalara hizmet verir hale gelmiştir.</p><p>Yalnızca Türkiye'de yılda 2.500'den fazla saç ekimi gerçekleştiren Estecapelli, gelişmiş teknolojileri ve kişiye özel tedavi planlarıyla doğal, estetik ve kalıcı sonuçlar hedefler. VITA ve Exosome yöntemlerimiz iyileşme sürecini ve greft sağkalımını destekleyerek saç ekimi sonuçlarını güçlendirir.</p><p>Kişiye uygun maksimum greft ve sabit fiyat yaklaşımımızla her hastaya ihtiyacına göre planlanan bir çözüm sunarız. Her işlem, deneyimli Türk sağlık ekibimiz tarafından titizlikle uygulanır.</p><p>Modern ve hijyenik klinik tesislerimiz, uluslararası standartlardaki hizmet yaklaşımımız ve binlerce başarılı işlemle kanıtlanan hasta memnuniyetimiz, Estecapelli'yi saç ekiminde öne çıkan isimlerden biri haline getirmiştir. Dünyanın neresinde olursanız olun, en iyi saç ekimi deneyimini sunmak için yanınızdayız.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Neden Türkiye",
+            "title": "Fahiş fiyatlar olmadan üst düzey sonuçlar",
+            "body": "<p>Estecapelli olarak tıbbi uzmanlığı, uluslararası standartlardaki teknikleri ve rekabetçi fiyatlandırmayı bir araya getirerek Birleşik Krallık, ABD ve Avrupa'ya kıyasla daha erişilebilir maliyetlerle üst düzey saç ekimi hizmeti sunuyoruz.</p><p>Türkiye'deki ileri teknolojiye sahip tesislerimiz; deneyimli cerrahlar, kişiselleştirilmiş tedavi planları ve kapsamlı işlem sonrası bakımla kalite standartlarından ödün vermeden güçlü bir fiyat-performans dengesi sağlar.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Teknolojimiz",
+            "title": "Exosome FUE'yi keşfedin",
+            "body": "<p>Exosome solüsyonu, annenin göbek kordonundan elde edilen mezenkimal kök hücreleri içeren kültür sıvılarından elde edilir. Bu olağanüstü kök hücreler olağanüstü yenileyici ve onarıcı özelliklere sahiptir. Exosome çözümü, çevredeki hücrelerle iletişim kurma ve onları gençleştirme konusundaki doğal yeteneklerini kullanarak gelişmiş doku onarımını destekler, daha sağlıklı hücresel işlevi destekler ve genel cilt canlılığını artırır. Exosome FUE tekniği patentli bir Estecapelli uygulamasıdır.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "İmza Yöntemimiz",
+            "title": "VITA Tedavisiyle Tanışın",
+            "body": "<p>Estecapelli tarafından geliştirilen VITA Tedavisi, geleneksel saç ekiminin ötesine geçerek saç köklerinin canlılığını artıran, iyileşmeyi hızlandıran ve doğal sonuçlar sunan devrim niteliğinde bir teknolojidir.</p><p>Tam altı yıl boyunca başarıyla uygulanan bu benzersiz yöntem, Estecapelli'nin imza tedavisi haline geldi. Bugüne kadar 10.000'den fazla hasta doğal, yoğun ve kalıcı saçlara kavuşmak için VITA Tedavisini tercih etti. Bu başarı, Estecapelli'nin uluslararası alanda tanınan başarı öyküsünün temelini oluşturuyor.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Bizi Harekete Geçiren Ne?",
+            "title": "Misyonumuz",
+            "body": "<p>Estecapelli olarak misyonumuz, en son tıbbi teknolojileri ve yenilikçi yöntemleri kullanarak hastalarımıza kalıcı, estetik sonuçlar sunmaktır. Sürekli iyileştirme ve yenilikçiliğe olan bağlılığımız, uluslararası işbirliklerimiz ve uzman ekibimizden güç alarak, dünya standartlarında hizmet sunmaya devam ederken sağlık sektöründe mükemmelliğin peşindeyiz.</p>"
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "İleriye Bakış",
+            "title": "Vizyonumuz",
+            "body": "<p>Vizyonumuz, saç ekimi ve medikal estetik alanında yenilikçi uygulamalarımız ve titiz, detay odaklı yaklaşımımızla sektöre öncülük eden, dünya çapında lider bir marka olmaktır. Türkiye ve Şili'nin Santiago kentindeki merkezlerimizle daha fazla hastaya ulaşmayı ve üstün kaliteli hizmetimizi daha geniş kitlelere ulaştırmayı hedefliyoruz.</p>",
+            "cta": {
+                "label": "Doktorlarımızla Tanışın"
+            }
+        }
+    ]
+}

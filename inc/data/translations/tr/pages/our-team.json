@@ -1,0 +1,145 @@
+{
+    "source_slug": "our-team",
+    "slug": "ekibimiz",
+    "title": "Ekibimiz",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Ekibimiz",
+            "title": "Her dönüşümün arkasındaki insanlar.",
+            "lead": "İlk mesajınızdan son takibe kadar, çok dilli tıbbi, danışmanlık ve hasta bakım ekibimiz yolculuğunuzun her adımında yanınızdadır.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "team",
+            "eyebrow": "İlk İrtibat Noktanız",
+            "title": "Tıbbi Danışmanlar",
+            "lead": "İlk sorudan nihai sonuca kadar yolculuğunuza kendi dilinizde rehberlik eden çok dilli danışmanlar.",
+            "members": [
+                {
+                    "name": "Marcus",
+                    "languages": [
+                        {
+                            "label": "İngilizce"
+                        }
+                    ]
+                },
+                {
+                    "name": "Matthew",
+                    "languages": [
+                        {
+                            "label": "İngilizce"
+                        }
+                    ]
+                },
+                {
+                    "name": "Rachel",
+                    "languages": [
+                        {
+                            "label": "İngilizce"
+                        }
+                    ]
+                },
+                {
+                    "name": "Roxane",
+                    "languages": [
+                        {
+                            "label": "Fransızca"
+                        }
+                    ]
+                },
+                {
+                    "name": "Sana",
+                    "languages": [
+                        {
+                            "label": "Fransızca"
+                        },
+                        {
+                            "label": "Arapça"
+                        },
+                        {
+                            "label": "İspanyolca"
+                        }
+                    ]
+                },
+                {
+                    "name": "Melissa",
+                    "languages": [
+                        {
+                            "label": "İtalyanca"
+                        }
+                    ]
+                },
+                {
+                    "name": "Gaia",
+                    "languages": [
+                        {
+                            "label": "İtalyanca"
+                        }
+                    ]
+                },
+                {
+                    "name": "Emilia",
+                    "languages": [
+                        {
+                            "label": "Fransızca"
+                        }
+                    ]
+                },
+                {
+                    "name": "Natalia",
+                    "languages": [
+                        {
+                            "label": "Lehçe"
+                        }
+                    ]
+                },
+                {
+                    "name": "Cynthia",
+                    "languages": [
+                        {
+                            "label": "Portekizce"
+                        }
+                    ]
+                },
+                {
+                    "name": "Damla",
+                    "languages": [
+                        {
+                            "label": "Türkçe"
+                        }
+                    ]
+                },
+                {
+                    "name": "Samet",
+                    "languages": [
+                        {
+                            "label": "Türkçe"
+                        }
+                    ]
+                },
+                {
+                    "name": "Hamza",
+                    "languages": [
+                        {
+                            "label": "Urduca"
+                        }
+                    ]
+                },
+                {
+                    "name": "Wali",
+                    "languages": [
+                        {
+                            "label": "Urduca"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

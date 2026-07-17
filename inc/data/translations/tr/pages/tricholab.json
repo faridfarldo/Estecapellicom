@@ -1,0 +1,103 @@
+{
+    "source_slug": "tricholab",
+    "slug": "tricholab",
+    "title": "TrichoLab",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Yapay Zekâ Destekli Saç Analizi",
+            "title": "TrichoLab",
+            "lead": "Yüksek çözünürlüklü trikoskopik görüntüleme yoluyla saçı ve saç derisini inceleyen, saç derinizi tamamen kişiselleştirilmiş bir ekim planını yönlendiren hassas verilere dönüştüren, yapay zeka destekli gelişmiş bir saç analiz sistemi.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Teknoloji",
+            "title": "TrichoLab nedir?",
+            "body": "<p>TrichoLab, saçı ve saç derisini yüksek çözünürlüklü trikoskopik görüntüleme yoluyla inceleyen, yapay zeka destekli gelişmiş bir saç analiz sistemidir. Kritik parametreleri milimetrik hassasiyetle ölçerek, uzmanlarımıza her birey için en etkili tedaviyi planlama konusunda rehberlik eden nesnel, veriye dayalı bilgiler sağlar.</p><p>Sistem, saç folikülü yoğunluğu, greft potansiyeli, saç gövdesi kalınlığı, donör alan kapasitesi, saç dökülmesi haritalaması ve minyatürleşme oranı gibi çok çeşitli faktörleri değerlendirir. Bu düzeyde ayrıntı, ekibimizin tahmin yerine doğru, gerçek zamanlı verilere dayalı kişiselleştirilmiş bir tedavi planı tasarlamasına olanak tanır.</p>"
+        },
+        {
+            "acf_fc_layout": "stepbook",
+            "eyebrow": "Süreç",
+            "title": "Estecapelli'de TrichoLab ile Saç Analizi",
+            "lead": "Yüksek çözünürlüklü görüntülemeden hassas ve kişiselleştirilmiş tedavi planına uzanan adımları inceleyin.",
+            "items": [
+                {
+                    "eyebrow": "1. Adım",
+                    "title": "Dijital Trikoskopik Tarama",
+                    "body": "<p>Saç köklerinin ayrıntılı görsellerinin yakalandığı yüksek çözünürlüklü mikro görüntüleme ile kafa derisi incelenir.</p>"
+                },
+                {
+                    "eyebrow": "2. Adım",
+                    "title": "Yapay Zekâ Destekli Veri Analizi",
+                    "body": "<p>Gelişmiş algoritmalar, görüntüleme verilerini yoğunluk ve foliküler dağılım için hassas sayısal değerlere dönüştürür.</p>"
+                },
+                {
+                    "eyebrow": "3. Adım",
+                    "title": "Kişiselleştirilmiş Tedavi Planı",
+                    "body": "<p>Veriler, gerekli greft sayısı da dahil olmak üzere tamamen kişiselleştirilmiş bir planın temelini oluşturur.</p>"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "candidate",
+            "eyebrow": "Neden Önemlidir?",
+            "title": "Saç Ekimi Planlamasında TrichoLab'ın Önemi",
+            "body": "Bilimsel analiz donör bölgenizi korur ve doğal, simetrik sonuçlar sağlar:",
+            "items": [
+                {
+                    "label": "Donör alanı kapasitesinin bilimsel değerlendirmesi — aşırı greft alımı yok"
+                },
+                {
+                    "label": "Yetersiz veya aşırı greft planlamasını önleyen doğru greft hesaplaması"
+                },
+                {
+                    "label": "Mevcut saçınıza göre doğal, simetrik tasarım"
+                },
+                {
+                    "label": "Donör bölgesinin uzun süreli korunması"
+                },
+                {
+                    "label": "Türkiye'de sadece sınırlı sayıda klinikte mevcuttur"
+                }
+            ]
+        },
+        {
+            "acf_fc_layout": "intro",
+            "eyebrow": "Neden Estecapelli",
+            "title": "Neden Estecapelli'de TrichoLab?",
+            "body": "<p>TrichoLab, Türkiye genelinde yalnızca sınırlı sayıda klinikte kullanılabilen gelişmiş bir analiz sistemidir ve Estecapelli'de yaptığımız her şeyin merkezinde yer alır ve hastalarımıza çok az kliniğin sunabileceği bir analiz düzeyine erişim olanağı sağlar.</p><p>Her değerlendirme objektif, ölçülebilir ve tamamen şeffaftır. Her hasta için tahmin yerine doğru verilere dayanan, donör alanını koruyan ve uzun vadeli sonuçları en üst düzeye çıkaran gerçek anlamda kişiselleştirilmiş bir nakil stratejisi geliştirilir.</p>",
+            "cta": {
+                "label": "Ücretsiz Konsültasyon Planlayın"
+            }
+        },
+        {
+            "acf_fc_layout": "faq",
+            "eyebrow": "Bilmeniz Gerekenler",
+            "title": "TrichoLab — Sıkça Sorulan Sorular",
+            "items": [
+                {
+                    "question": "TrichoLab analizi acı verici midir?",
+                    "answer": "<p>Hiç de değil. Bu, kafa derisini tarayan, invaziv olmayan bir görüntüleme işlemidir; iğne yok, rahatsızlık yok.</p>"
+                },
+                {
+                    "question": "TrichoLab saç ekimim için neden önemlidir?",
+                    "answer": "<p>İhtiyacınız olan tam greft sayısını hesaplar ve donör alanınızı korur, böylece plan doğru, doğal ve sürdürülebilir olur.</p>"
+                },
+                {
+                    "question": "TrichoLab analizi tam olarak nedir?",
+                    "answer": "<p>TrichoLab, saçı ve saç derisini yüksek çözünürlüklü görüntüleme ve yapay zeka destekli yazılımla inceleyen, saç yoğunluğunu, saç teli kalınlığını, donör alan kapasitesini ve dökülme şeklini ölçen gelişmiş bir saç analiz sistemidir.</p>"
+                },
+                {
+                    "question": "TrichoLab tam greft sayısını belirler mi?",
+                    "answer": "<p>TrichoLab, greft ihtiyacını bilimsel verilerle destekleyerek planlamayı güçlendiriyor. Nihai karar, uzman değerlendirmesi ve saç çizgisi tasarımı gibi klinik faktörlerle birlikte verilir.</p>"
+                }
+            ]
+        }
+    ]
+}

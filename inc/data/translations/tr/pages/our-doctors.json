@@ -1,0 +1,47 @@
+{
+    "source_slug": "our-doctors",
+    "slug": "doktorlarimiz",
+    "title": "Doktorlarımız",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Doktorlarımız",
+            "title": "Tedavilerinizi yöneten uzmanlarla tanışın.",
+            "lead": "Estecapelli'de ameliyatları gerçekleştiren uzman hekimlerle tanışın. Ekibimiz deneyim, başarılı sonuçlar ve hasta odaklı bakım anlayışı temelinde oluşturulmuştur.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        },
+        {
+            "acf_fc_layout": "doctors",
+            "eyebrow": "Alanında Uzman Hekimler",
+            "title": "Uzmanlarımızla Tanışın",
+            "lead": "Her operasyon uzman cerrahlarımızdan biri tarafından bizzat yönetilir. Eğitimlerini, kimlik bilgilerini ve uzmanlık alanlarını okumak için herhangi bir özgeçmişi açın.",
+            "members": [
+                {
+                    "name": "Dr. Mehmet Hanifi Kutlar",
+                    "position": "Saç Ekimi Uzmanı ve Kurucu Ortak"
+                },
+                {
+                    "name": "Op. Dr. Hasan Çelik",
+                    "position": "Kulak Burun Boğaz (KBB) Uzmanı"
+                },
+                {
+                    "name": "Op. Dr. Mehmet Palalı",
+                    "position": "Genel Cerrahi Uzmanı"
+                },
+                {
+                    "name": "Op. Dr. Necdet Derici",
+                    "position": "Plastik, Rekonstrüktif ve Estetik Cerrahi Uzmanı"
+                },
+                {
+                    "name": "Op. Dr. Ali Durmuş",
+                    "position": "Plastik, Rekonstrüktif ve Estetik Cerrahi Uzmanı"
+                }
+            ]
+        }
+    ]
+}

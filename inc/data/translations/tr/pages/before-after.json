@@ -1,0 +1,19 @@
+{
+    "source_slug": "before-after",
+    "slug": "oncesi-sonrasi",
+    "title": "Öncesi ve Sonrası",
+    "sections": [
+        {
+            "acf_fc_layout": "hero",
+            "eyebrow": "Öncesi ve Sonrası",
+            "title": "Gerçek hastalardan gerçek sonuçlar.",
+            "lead": "Saç ekimi, estetik cerrahi ve diş tedavilerimizin öncesi ve sonrası fotoğraflarına göz atın. Her görüntü, dönüşümü için bize güvenen gerçek bir hastaya aittir.",
+            "cta_primary": {
+                "label": "Ücretsiz Konsültasyon"
+            },
+            "cta_secondary": {
+                "label": "WhatsApp'tan Yazın"
+            }
+        }
+    ]
+}
