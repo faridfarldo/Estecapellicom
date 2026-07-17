@@ -634,6 +634,81 @@ function estecapelli_it_hair_category_unadjusted( array $settings = array() ) {
 }
 
 /**
+ * Give a translation the canonical slug WordPress suffixed away from it.
+ *
+ * WordPress keeps post_name unique per post_type, and WPML relaxes that only for
+ * posts it already knows are in different languages. A treatment that keeps one
+ * slug in every language (bbl, tricholab, plastic-surgery-overview) therefore
+ * depends entirely on WPML's wp_unique_post_slug filter accepting the duplicate.
+ * When it does not, the post is silently left as "bbl-2" and its indexed URL
+ * never resolves — the page appears missing even though the import succeeded.
+ *
+ * The slug is written directly only after confirming every other post holding it
+ * is in a different language, which is exactly the case WPML itself permits.
+ *
+ * @param int    $post_id         Translation post ID.
+ * @param string $slug            Canonical slug required by the URL contract.
+ * @param string $target_language Language the translation belongs to.
+ * @return true|WP_Error
+ */
+function estecapelli_it_hair_force_canonical_slug( $post_id, $slug, $target_language ) {
+	global $wpdb;
+
+	$post_id = (int) $post_id;
+	if ( $slug === get_post_field( 'post_name', $post_id ) ) {
+		return true;
+	}
+
+	$conflict_ids = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts}
+			 WHERE post_name = %s AND post_type = 'treatment' AND post_status <> 'trash' AND ID <> %d",
+			$slug,
+			$post_id
+		)
+	);
+
+	foreach ( array_map( 'intval', (array) $conflict_ids ) as $conflict_id ) {
+		$details  = apply_filters(
+			'wpml_element_language_details',
+			null,
+			array(
+				'element_id'   => $conflict_id,
+				'element_type' => 'treatment',
+			)
+		);
+		$language = (string) estecapelli_it_hair_detail( $details, 'language_code' );
+
+		// Only a different language may share the slug. An unregistered post is
+		// never assumed to be safe to displace.
+		if ( '' === $language || $target_language === $language ) {
+			return new WP_Error(
+				'it_hair_slug_conflict',
+				sprintf( 'The slug %1$s is already held by post %2$d in the same language.', $slug, $conflict_id )
+			);
+		}
+	}
+
+	$saved = $wpdb->update(
+		$wpdb->posts,
+		array( 'post_name' => $slug ),
+		array( 'ID' => $post_id ),
+		array( '%s' ),
+		array( '%d' )
+	);
+	if ( false === $saved ) {
+		return new WP_Error( 'it_hair_slug_not_saved', sprintf( 'The slug %1$s could not be written for post %2$d.', $slug, $post_id ) );
+	}
+	clean_post_cache( $post_id );
+
+	if ( $slug !== get_post_field( 'post_name', $post_id ) ) {
+		return new WP_Error( 'it_hair_slug_not_saved', sprintf( 'The slug %1$s did not persist for post %2$d.', $slug, $post_id ) );
+	}
+
+	return true;
+}
+
+/**
  * Create or update one localized treatment and its ACF translation.
  *
  * @param array<string,mixed> $translation     Translation overlay.
@@ -762,9 +837,16 @@ function estecapelli_it_hair_import_one( array $translation, $target_term_id, $s
 	if ( is_wp_error( $target_id ) ) {
 		return $target_id;
 	}
+	// WordPress may have suffixed the slug on insert, before WPML knew the post's
+	// language. Take the canonical slug back now that the language is recorded.
+	$slug_result = estecapelli_it_hair_force_canonical_slug( $target_id, $translation['slug'], $target_language );
+	if ( is_wp_error( $slug_result ) ) {
+		return $slug_result;
+	}
+
 	$target_post = get_post( $target_id );
-	if ( ! $target_post || $translation['slug'] !== $target_post->post_name ) {
-		return new WP_Error( 'it_hair_slug_conflict', sprintf( 'The required %s slug is already in use: %s.', $target_language_name, $translation['slug'] ) );
+	if ( ! $target_post ) {
+		return new WP_Error( 'it_hair_missing_target_post', sprintf( 'The %s translation could not be reloaded for %s.', $target_language_name, $source_slug ) );
 	}
 	if ( $translation['title'] !== $target_post->post_title ) {
 		return new WP_Error( 'it_hair_title_not_saved', sprintf( 'The %s title was not saved for %s.', $target_language_name, $source_slug ) );

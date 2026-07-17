@@ -585,12 +585,20 @@ function estecapelli_shared_slug_treatment_report() {
 			continue;
 		}
 
+		/*
+		 * Suffixed variants matter as much as the exact slug. WordPress renames a
+		 * colliding post to "bbl-2", and a shared slug is precisely what causes a
+		 * collision, so a page can exist, hold the right copy, and still never
+		 * answer its indexed URL. Reporting only the exact slug would hide it.
+		 */
 		$post_ids = $wpdb->get_col(
 			$wpdb->prepare(
 				"SELECT ID FROM {$wpdb->posts}
-				 WHERE post_name = %s AND post_type = 'treatment' AND post_status <> 'trash'
+				 WHERE ( post_name = %s OR post_name REGEXP %s )
+				 AND post_type = 'treatment' AND post_status <> 'trash'
 				 ORDER BY ID ASC",
-				$source_slug
+				$source_slug,
+				'^' . $source_slug . '-[0-9]+$'
 			)
 		);
 
@@ -611,6 +619,7 @@ function estecapelli_shared_slug_treatment_report() {
 			$rows[] = array(
 				'id'       => $post_id,
 				'language' => $language ? $language : '(none)',
+				'slug'     => (string) get_post_field( 'post_name', $post_id ),
 				'title'    => (string) get_post_field( 'post_title', $post_id ),
 			);
 		}
@@ -952,10 +961,15 @@ function estecapelli_render_treatments_importer() {
 										<span style="color:#888;"><?php esc_html_e( 'No post uses this slug', 'estecapelli' ); ?></span>
 									<?php else : ?>
 										<?php foreach ( $shared_state['posts'] as $shared_post ) : ?>
+											<?php $slug_is_wrong = ( $shared_post['slug'] !== $shared_slug ); ?>
 											<div>
 												<code><?php echo esc_html( $shared_post['language'] ); ?></code>
 												— <?php esc_html_e( 'post', 'estecapelli' ); ?> <?php echo (int) $shared_post['id']; ?>
+												<code style="<?php echo $slug_is_wrong ? 'background:#fcf0e4;color:#b26200;' : ''; ?>"><?php echo esc_html( $shared_post['slug'] ); ?></code>
 												<a href="<?php echo esc_url( get_edit_post_link( $shared_post['id'] ) ); ?>"><?php echo esc_html( $shared_post['title'] ); ?></a>
+												<?php if ( $slug_is_wrong ) : ?>
+													<strong style="color:#b26200;"><?php esc_html_e( '← wrong slug, this URL cannot resolve', 'estecapelli' ); ?></strong>
+												<?php endif; ?>
 											</div>
 										<?php endforeach; ?>
 									<?php endif; ?>
