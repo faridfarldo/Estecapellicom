@@ -1,0 +1,141 @@
+{
+  "source_slug": "gynecomastia",
+  "slug": "ginekomastia",
+  "title": "Ginekomastia",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Estetyka męskiej klatki piersiowej",
+      "title": "Ginekomastia",
+      "lead": "Chirurgiczne rozwiązanie problemu przerostu tkanki piersiowej u mężczyzn, które przywraca płaską, jędrną i męską klatkę piersiową z naturalnym efektem.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Schorzenie",
+      "title": "Czym jest ginekomastia?",
+      "body": "<p>Ginekomastia to stan charakteryzujący się nadmiernym rozwojem tkanki piersiowej u mężczyzn, który nadaje klatce piersiowej bardziej obfity wygląd. Mężczyźni również naturalnie posiadają tkankę i gruczoły piersiowe, które testosteron zazwyczaj utrzymuje w słabo rozwiniętym stanie. Zaburzenie równowagi hormonalnej, przyrost masy ciała, niektóre leki lub choroba podstawowa mogą zakłócić tę równowagę i sprzyjać pojawieniu się ginekomastii.</p><p>Stan ten nie dotyczy wyłącznie estetyki: może wpływać na dobrostan psychiczny, pewność siebie i życie towarzyskie. W Estecapelli ginekomastia oceniana jest zarówno pod kątem medycznym, jak i estetycznym, aby zaoferować każdemu pacjentowi spersonalizowane i trwałe rozwiązanie.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Przyczyny",
+      "title": "Jakie są przyczyny ginekomastii?",
+      "body": "Ginekomastia może rozwijać się na skutek różnych mechanizmów. Najczęstsze przyczyny obejmują:",
+      "items": [
+        { "label": "Zaburzenie równowagi między estrogenami a testosteronem" },
+        { "label": "Nagromadzenie tłuszczu w okolicy klatki piersiowej spowodowane znacznym przyrostem masy ciała" },
+        { "label": "Wiotkość tkanek i skóry wywołaną powtarzającymi się przyrostami i utratami wagi" },
+        { "label": "Niepożądane działanie hormonalne niektórych leków" },
+        { "label": "Choroby wątroby, nerek lub układu wewnątrzwydzielniczego" },
+        { "label": "Zmiany hormonalne związane z wiekiem" },
+        { "label": "Stosowanie sterydów anabolicznych w kulturystyce" },
+        { "label": "Znaczne obniżenie poziomu testosteronu" }
+      ],
+      "footer": "W wielu przypadkach współistnieje kombinacja czynników; dokładna ocena medyczna jest więc niezbędna przed ustaleniem najodpowiedniejszego leczenia."
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Leczenie",
+      "title": "Leczenie ginekomastii: metody nieoperacyjne i chirurgiczne",
+      "body": "<p>Najodpowiedniejsze leczenie ustala się na podstawie rodzaju i stopnia przerostu piersi oraz przyczyny podstawowej. Dokładna ocena pozwala zaproponować każdemu pacjentowi indywidualne, bezpieczne i skuteczne podejście.</p><p><strong>W przypadkach łagodnych</strong>, z minimalnym nagromadzeniem tłuszczu i niewielką wiotkością skóry, usunięcie tłuszczu metodą liposukcji lub jej odmiany, takiej jak VASER, może wystarczyć do uzyskania pożądanego profilu.</p><p><strong>W przypadkach zaawansowanych</strong>, ze znacznym rozwojem tkanki gruczołowej i wiotkością skóry, konieczne jest chirurgiczne usunięcie gruczołu oraz, gdy jest to wskazane, nadmiaru skóry, aby uzyskać płaską i naturalną klatkę piersiową.</p><p>W Estecapelli każdy pacjent oceniany jest indywidualnie. Dokładna analiza pozwala ustalić, czy nadmierna objętość składa się z tłuszczu, zbitej tkanki gruczołowej czy z ich kombinacji, i wybrać najskuteczniejszy plan leczenia.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Operacja",
+      "title": "Jak przebiega zabieg ginekomastii?",
+      "lead": "Zabieg wykonywany jest w znieczuleniu ogólnym, w w pełni wyposażonej sali operacyjnej. Procedura jest dostosowana do stanu pacjenta i różni się w zależności od rodzaju i stopnia ginekomastii.",
+      "items": [
+        {
+          "eyebrow": "Rodzaj przypadku",
+          "title": "Przypadki z samym nadmiarem tkanki tłuszczowej",
+          "body": "<ul><li>Preferuje się klasyczną liposukcję lub VASER</li><li>Tłuszcz usuwany jest za pomocą kaniul wprowadzanych przez bardzo małe nacięcia w okolicy klatki piersiowej</li><li>Gdy elastyczność skóry jest odpowiednia, można uzyskać płaską i naturalną klatkę piersiową bez dodatkowych nacięć na skórze</li></ul>"
+        },
+        {
+          "eyebrow": "Rodzaj przypadku",
+          "title": "Przypadki z przerostem tkanki gruczołowej i wiotkością skóry",
+          "body": "<ul><li>Tkanka gruczołowa piersi jest usuwana chirurgicznie</li><li>Nadmiar skóry jest wycinany, a klatka piersiowa modelowana w kierunku bardziej płaskiego i jędrnego profilu</li><li>W razie potrzeby stosuje się nacięcia okrężne lub w kształcie odwróconego T</li></ul><p>Średni czas trwania zabiegu wynosi około 1,5–2 godzin.</p><p>Zabiegi oparte wyłącznie na liposukcji pozostawiają minimalne blizny. Gdy konieczne jest usunięcie tkanki i skóry, nacięcia umieszcza się w możliwie najbardziej dyskretnych miejscach i przy odpowiedniej pielęgnacji z czasem wyraźnie się zacierają.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Po zabiegu",
+      "title": "Rekonwalescencja po zabiegu ginekomastii",
+      "lead": "Okres pooperacyjny jest zazwyczaj komfortowy i dobrze tolerowany. Niewielki ból i uczucie napięcia pierwszego dnia są normalne i oczekiwane.",
+      "items": [
+        { "time": "Pierwsze 24 godziny", "title": "Pobyt w szpitalu", "body": "Pacjent zazwyczaj pozostaje jedną noc w szpitalu, a ból jest skutecznie kontrolowany przepisanymi lekami." },
+        { "time": "Pierwszy tydzień", "title": "Odzież uciskowa", "body": "Obrzęk, zasinienia i tkliwość w okolicy klatki piersiowej są normalne. Noszenie odzieży uciskowej jest niezbędne, aby wspomóc prawidłowe gojenie i uzyskanie definicji." },
+        { "time": "Tygodnie 2–3", "title": "Obrzęk ustępuje", "body": "Obrzęk w dużej mierze zanika, a ruchy stają się bardziej komfortowe. Lekkie codzienne czynności można stopniowo wznawiać." },
+        { "time": "Od 1 miesiąca", "title": "Bardziej wyrzeźbiona klatka piersiowa", "body": "Klatka piersiowa zaczyna przyjmować bardziej naturalny i wyrzeźbiony wygląd. Powrót do sportu, podnoszenia ciężarów i intensywnych ćwiczeń klatki piersiowej wymaga zgody lekarza, aby zapewnić pełną i bezpieczną rekonwalescencję." }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Prawdziwe efekty",
+      "title": "Ginekomastia — przed i po",
+      "lead": "Zobacz bardziej płaski, jędrny i męski profil uzyskany przez naszych pacjentów. Każdy efekt planowany jest indywidualnie, aby zapewnić naturalny wygląd i dyskretne blizny.",
+      "cta": { "label": "Zobacz całą galerię" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Przydatne informacje",
+      "title": "Ginekomastia — najczęściej zadawane pytania",
+      "items": [
+        {
+          "question": "Czym jest ginekomastia?",
+          "answer": "<p>Ginekomastia to przerost tkanki piersiowej u mężczyzn, który nadaje klatce piersiowej bardziej obfity wygląd. Może być spowodowana zaburzeniem równowagi między estrogenami a testosteronem, przyrostem masy ciała, niektórymi lekami, sterydami anabolicznymi lub chorobami podstawowymi. Jest bardzo częsta i zwykle nie jest groźna z medycznego punktu widzenia, ale może wpływać na pewność siebie; dlatego wielu mężczyzn decyduje się na jej leczenie.</p>"
+        },
+        {
+          "question": "Jak leczy się ginekomastię?",
+          "answer": "<p>Leczenie zależy od charakteru nadmiernej objętości: tkanki tłuszczowej, zbitego gruczołu lub ich kombinacji. Łagodniejsze przypadki koryguje się liposukcją, często VASER; gdy występuje znaczny udział gruczołu lub wiotka skóra, konieczne jest chirurgiczne usunięcie gruczołu oraz, jeśli jest to wskazane, ujędrnienie skóry. Po konsultacji chirurg potwierdzi najodpowiedniejsze podejście.</p>"
+        },
+        {
+          "question": "Czy zabieg jest bolesny i jakie znieczulenie jest stosowane?",
+          "answer": "<p>Procedura wykonywana jest w znieczuleniu ogólnym, więc nic nie poczujesz podczas operacji. W kolejnych dniach większość pacjentów opisuje raczej łagodny ból i napięcie niż silny dyskomfort; objawy te dobrze kontroluje się przepisanymi lekami i ustępują one w ciągu kilku dni.</p>"
+        },
+        {
+          "question": "Jak długo trwają rekonwalescencja i pobyt w Turcji?",
+          "answer": "<p>Większość pacjentów pozostaje w Turcji przez około 3–5 dni, wliczając wizytę kontrolną. Do codziennego życia można wrócić w ciągu 1–2 tygodni, kontynuując noszenie odzieży uciskowej przez kilka tygodni, aby wspomóc uzyskanie definicji. Intensywne ćwiczenia i treningi klatki piersiowej można wznowić po około miesiącu, za zgodą chirurga.</p>"
+        },
+        {
+          "question": "Czy pozostaną widoczne blizny?",
+          "answer": "<p>Zabiegi oparte wyłącznie na liposukcji pozostawiają bardzo małe i trudne do zauważenia ślady. Gdy usuwa się gruczoł lub skórę, nacięcia umieszcza się możliwie najbardziej dyskretnie, często wzdłuż brzegu otoczki, i przy odpowiedniej pielęgnacji z czasem wyraźnie się zacierają.</p>"
+        },
+        {
+          "question": "Czy efekty są trwałe? Czy ginekomastia może powrócić?",
+          "answer": "<p>Usunięta tkanka gruczołowa nie odrasta, więc efekt jest trwały. Nawrót jest rzadki, ale znaczny przyrost masy ciała, stosowanie sterydów lub nowe zaburzenie hormonalne mogą spowodować zmiany. Utrzymanie stabilnej wagi i zdrowego stylu życia pomaga zachować efekt.</p>"
+        },
+        {
+          "question": "Czy klatka piersiowa będzie wyglądać naturalnie po zabiegu?",
+          "answer": "<p>Tak. Wykonany prawidłową techniką zabieg tworzy płaski, jędrny i naturalnie męski profil klatki piersiowej. Celem jest zawsze uzyskanie efektu harmonijnego z ciałem i pozbawionego sztucznego wyglądu.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Koszty",
+      "title": "Koszt zabiegu ginekomastii",
+      "body": "<p>Koszt zabiegu może się różnić w zależności od kilku czynników:</p><ul><li>Zastosowanej techniki, takiej jak sama liposukcja, chirurgiczne usunięcie gruczołu lub podejście łączone</li><li>Nasilenia lub stopnia ginekomastii</li><li>Indywidualnych potrzeb i konieczności ewentualnych dodatkowych procedur</li><li>Całościowego planu chirurgicznego i strategii leczenia</li></ul><p>Najdokładniejszą wycenę można więc ustalić dopiero po wizycie stacjonarnej lub wstępnej konsultacji online ze specjalistami Estecapelli.</p>",
+      "cta": { "label": "Poproś o spersonalizowaną wycenę" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Bezpłatna konsultacja",
+      "title": "Odzyskaj pewność siebie",
+      "lead": "Przekaż nam kilka informacji, a nasz zespół odpowie spersonalizowanym planem leczenia ginekomastii i wyceną all inclusive bez zobowiązań, zwykle w ciągu kilku godzin. Twoje zgłoszenie zostanie potraktowane z zachowaniem pełnej poufności.",
+      "points": [
+        { "label": "Bezpłatna i poufna ocena na podstawie Twoich zdjęć" },
+        { "label": "Przejrzysta wycena all inclusive, bez zobowiązań" },
+        { "label": "Szybka odpowiedź od naszego dedykowanego zespołu opieki nad pacjentem" },
+        { "label": "Wielojęzyczna obsługa na każdym etapie" }
+      ],
+      "submit_label": "Poproś o bezpłatną konsultację"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Dowiedz się więcej",
+      "title": "Powiązane zabiegi"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "source_slug": "rhinoplasty",
+  "slug": "rynoplastyka",
+  "title": "Rynoplastyka",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Estetyka nosa",
+      "title": "Rynoplastyka",
+      "lead": "Zabieg chirurgiczny, który modeluje nos, poprawiając jego kształt, rozmiar i funkcję. Może być wykonywany w celach estetycznych lub w celu korekty trudności w oddychaniu.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Zabieg",
+      "title": "Czym jest rynoplastyka?",
+      "body": "<p>Rynoplastyka to zabieg chirurgiczny mający na celu zmodelowanie nosa, poprawę jego kształtu, rozmiaru i funkcji. Może być wykonywana w celach estetycznych lub w celu korekty problemów z oddychaniem. Ponieważ nos jest najbardziej widocznym elementem w centralnej części twarzy, nawet niewielkie zmiany mogą znacząco wpłynąć na harmonię twarzy i pewność siebie.</p><p>W Estecapelli każda rynoplastyka jest planowana indywidualnie. Nasi specjaliści oceniają całą strukturę twarzy, uwzględniając jej proporcje i równowagę, aby uzyskać naturalny efekt. Wszystkie zabiegi wykonywane są przez specjalistów otorynolaryngologii i doświadczonych chirurgów plastycznych, co pozwala połączyć poprawę estetyczną z funkcjonalną.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Wskazania",
+      "title": "Dlaczego decydujemy się na rynoplastykę?",
+      "body": "Ludzie wybierają rynoplastykę z różnych powodów, związanych zarówno z wyglądem estetycznym, jak i z funkcją nosa. Do najczęstszych motywacji należą:",
+      "items": [
+        { "label": "Nos, który wydaje się zbyt duży lub zbyt mały w stosunku do twarzy" },
+        { "label": "Wyraźny garb na grzbiecie nosa" },
+        { "label": "Opadający, szeroki lub słabo zaznaczony czubek nosa" },
+        { "label": "Asymetryczne nozdrza" },
+        { "label": "Zniekształcenia spowodowane wcześniejszym urazem lub kontuzją" },
+        { "label": "Niezadowolenie z naturalnego lub uwarunkowanego genetycznie kształtu nosa" },
+        { "label": "Trudności w oddychaniu wynikające z problemów strukturalnych, takich jak skrzywienie przegrody czy wewnętrzna krzywizna nosa" }
+      ],
+      "footer": "W Estecapelli celem rynoplastyki jest stworzenie naturalnego nosa, harmonijnego z całością rysów twarzy, przy jednoczesnej poprawie oddychania, gdy jest to konieczne."
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Kandydaci",
+      "title": "Kto może poddać się rynoplastyce?",
+      "body": "Rynoplastyka może być wskazana dla osób, które chcą poprawić zarówno wygląd, jak i funkcję nosa. Idealni kandydaci to zazwyczaj:",
+      "items": [
+        { "label": "Dorośli, którzy zakończyli wzrost twarzy i rozwój fizyczny" },
+        { "label": "Osoby niezadowolone z wyglądu lub kształtu swojego nosa" },
+        { "label": "Osoby z trudnościami w oddychaniu wynikającymi z problemów strukturalnych nosa" },
+        { "label": "Osoby ze zniekształceniami nosa pochodzenia genetycznego lub spowodowanymi wcześniejszymi urazami" },
+        { "label": "Osoby, które pragną bardziej zrównoważonego, naturalnego i harmonijnego wyglądu twarzy" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Techniki",
+      "title": "Rodzaje rynoplastyki",
+      "body": "<ul><li><strong>Rynoplastyka otwarta:</strong> struktura nosa jest całkowicie odsłaniana przez niewielkie nacięcie wykonane pod nozdrzami. Technika ta jest szczególnie wskazana przy poważnych zmianach strukturalnych, wyraźnych skrzywieniach i zabiegach korekcyjnych.</li><li><strong>Rynoplastyka zamknięta:</strong> wszystkie nacięcia wykonywane są wewnątrz nosa, bez widocznych blizn zewnętrznych. Zwykle pozwala na szybszą rekonwalescencję i ogranicza uraz tkanek. Nie jest jednak odpowiednia dla każdej anatomii; wskazanie potwierdza się podczas wizyty lekarskiej.</li><li><strong>Plastyka czubka nosa:</strong> modeluje wyłącznie czubek nosa, bez zmiany grzbietu czy struktury kostnej. Zabieg jest krótszy, a rekonwalescencja zwykle szybsza.</li><li><strong>Operacja skrzywionej przegrody nosowej:</strong> koryguje skrzywienie chrząstki i kości położonych w linii środkowej nosa. Jej głównym celem jest poprawa oddychania bez zmiany zewnętrznego wyglądu nosa.</li></ul>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Przed zabiegiem",
+      "title": "Przygotowanie przedoperacyjne",
+      "body": "Etap przedoperacyjny ma kluczowe znaczenie dla powodzenia rynoplastyki. W Estecapelli każdy pacjent poddawany jest dokładnej ocenie, aby zapewnić bezpieczeństwo i optymalne efekty. Przed zabiegiem wykonuje się następujące czynności:",
+      "items": [
+        { "label": "Ocena wywiadu chorobowego i aktualnego stanu zdrowia pacjenta" },
+        { "label": "Omówienie oczekiwań estetycznych i pożądanych efektów" },
+        { "label": "Badanie wewnętrznej i zewnętrznej struktury nosa" },
+        { "label": "Badania krwi i ocena anestezjologiczna" },
+        { "label": "Zdjęcia medyczne do analizy i planowania zabiegu" },
+        { "label": "Czasowe odstawienie leków przeciwzakrzepowych zgodnie z zaleceniami lekarza" },
+        { "label": "Powstrzymanie się od alkoholu i palenia przed zabiegiem, aby wspomóc prawidłowe gojenie" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Operacja",
+      "title": "Jak przebiega rynoplastyka?",
+      "body": "<p>Główne etapy zabiegu to:</p><ol><li>Podanie znieczulenia</li><li>Wykonanie nacięć wewnątrz lub na zewnątrz nosa</li><li>Modelowanie chrząstki i struktury kostnej</li><li>Korekta dróg oddechowych, jeśli jest konieczna</li><li>Estetyczne wykończenie czubka nosa</li><li>Zamknięcie nacięć i założenie stabilizatora</li></ol><p>Większość pacjentów zostaje wypisana tego samego dnia lub następnego dnia po zabiegu.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Po zabiegu",
+      "title": "Rekonwalescencja po rynoplastyce",
+      "lead": "Ogólny przegląd etapów rekonwalescencji po rynoplastyce.",
+      "items": [
+        { "time": "Pierwsze 24 godziny", "title": "Niewielki obrzęk", "body": "Mogą pojawić się lekki ból i obrzęk." },
+        { "time": "Pierwszy tydzień", "title": "Zasinienia ustępują", "body": "Większość zasinień zaczyna stopniowo zanikać." },
+        { "time": "7. dzień", "title": "Zdjęcie stabilizatora", "body": "Stabilizator jest zazwyczaj usuwany." },
+        { "time": "1 miesiąc", "title": "Zaawansowane gojenie", "body": "Widoczny jest znaczny postęp gojenia." },
+        { "time": "6–12 miesięcy", "title": "Ostateczny kształt", "body": "Ostateczny kształt nosa stopniowo się stabilizuje aż do pełnego dojrzenia." }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Przydatne informacje",
+      "title": "Ryzyko związane z rynoplastyką",
+      "body": "<p>Jak każdy zabieg chirurgiczny, rynoplastyka wiąże się z pewnym potencjalnym ryzykiem, w tym z obrzękiem, przejściowym krwawieniem, infekcją lub trudnościami w gojeniu. Powikłania te są jednak rzadkie i można je znacząco ograniczyć, gdy zabieg wykonują doświadczeni chirurdzy z zastosowaniem odpowiednich technik.</p>"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Prawdziwe efekty",
+      "title": "Rynoplastyka — przed i po",
+      "lead": "Zobacz subtelne i zrównoważone efekty uzyskane przez naszych pacjentów, zawsze w harmonii z resztą twarzy. Każdy zabieg planowany jest według indywidualnych cech, aby zapewnić naturalny wygląd.",
+      "cta": { "label": "Zobacz całą galerię" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Przydatne informacje",
+      "title": "Rynoplastyka — najczęściej zadawane pytania",
+      "items": [
+        {
+          "question": "Czy jestem dobrym kandydatem do rynoplastyki?",
+          "answer": "<p>Idealnymi kandydatami są dorośli, którzy zakończyli wzrost twarzy, zwykle od późnego okresu dojrzewania, w dobrym stanie zdrowia i niezadowoleni z kształtu, rozmiaru lub proporcji nosa, albo z trudnościami w oddychaniu. Ważne jest posiadanie realistycznych oczekiwań: celem jest uzyskanie nosa pasującego do własnej twarzy, a nie odtworzenie nosa innej osoby. Podczas konsultacji chirurg ocenia strukturę nosa, rodzaj skóry i oddychanie, aby potwierdzić kwalifikację i wspólnie zaplanować efekt.</p>"
+        },
+        {
+          "question": "Jaka jest różnica między rynoplastyką otwartą a zamkniętą?",
+          "answer": "<p>W rynoplastyce zamkniętej wszystkie nacięcia wykonywane są wewnątrz nozdrzy, więc nie pozostają blizny zewnętrzne; podejście to jest wskazane przy bardziej ograniczonych korektach. Rynoplastyka otwarta obejmuje niewielkie nacięcie na kolumelli, między nozdrzami, i zapewnia chirurgowi lepszą widoczność podczas złożonych lub korekcyjnych zabiegów. Blizna jest dyskretna i zwykle staje się niemal niewidoczna po zagojeniu. Chirurg zaleci najpewniejsze podejście dla Twojej anatomii.</p>"
+        },
+        {
+          "question": "Jakie znieczulenie jest stosowane i jak długo trwa zabieg?",
+          "answer": "<p>Rynoplastyka wykonywana jest w znieczuleniu ogólnym, więc nic nie poczujesz podczas operacji. Zabieg trwa zwykle od dwóch do trzech godzin, w zależności od techniki i ewentualnej towarzyszącej korekty funkcjonalnej. Po rutynowych kontrolach zazwyczaj można wrócić do domu lub hotelu tego samego dnia albo po jednej nocy pobytu.</p>"
+        },
+        {
+          "question": "Jak długo trwają rekonwalescencja i pobyt w Turcji?",
+          "answer": "<p>Większość pacjentów pozostaje w Turcji przez około siedem dni, do zdjęcia stabilizatora i wizyty kontrolnej przed powrotem. Gips lub stabilizator utrzymywany jest przez pierwszy tydzień, a obrzęk i zasinienia wokół oczu ustępują w ciągu jednego–dwóch tygodni. Zwykle do pracy i lekkiej rutyny można wrócić w ciągu 10–14 dni, podczas gdy nos stopniowo nabiera ostatecznej definicji.</p>"
+        },
+        {
+          "question": "Kiedy zobaczę ostateczny efekt?",
+          "answer": "<p>Wyraźna różnica będzie widoczna już po zdjęciu stabilizatora, ale nos będzie się nadal układał w miarę zmniejszania się głębokiego obrzęku. Większość nowego kształtu jest dostrzegalna po kilku miesiącach; ostateczny efekt, w pełni dopracowany zwłaszcza na czubku, rozwija się w ciągu około 6–12 miesięcy. Chirurg będzie towarzyszył Ci na każdym etapie gojenia.</p>"
+        },
+        {
+          "question": "Czy rynoplastyka wpłynie na oddychanie?",
+          "answer": "<p>Rynoplastyka nie powinna pogorszyć oddychania, a w wielu przypadkach może je poprawić. Korekta funkcjonalna może być połączona z zabiegiem estetycznym, aby leczyć takie problemy jak skrzywienie przegrody czy zwężenie dróg oddechowych, obejmując wygląd i oddychanie w jednej operacji. Ważne jest, aby poinformować chirurga o każdym uczuciu zatkania nosa czy trudności w oddychaniu, aby mógł je ocenić i leczyć.</p>"
+        },
+        {
+          "question": "Czy efekty są trwałe i naturalne?",
+          "answer": "<p>Rynoplastyka daje trwałe efekty, a wykonana przez doświadczone ręce nos wygląda naturalnie i harmonijnie z resztą twarzy, bez sztucznego wyglądu. Niewielkie zmiany mogą trwać przez pierwszy rok, w miarę jak dopełnia się gojenie. Niewielki odsetek pacjentów może później zdecydować się na drobny zabieg korekcyjny — możliwość, którą chirurg przejrzyście omówi, jeśli okaże się to istotne.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Koszty",
+      "title": "Koszt rynoplastyki",
+      "body": "<p>Koszt rynoplastyki zależy od zastosowanej techniki, zakresu zabiegu, indywidualnych potrzeb oraz anatomii pacjenta. Po szczegółowej konsultacji przedstawiamy spersonalizowaną wycenę, aby zapewnić pełną przejrzystość przed podjęciem jakiejkolwiek decyzji.</p>",
+      "cta": { "label": "Poproś o spersonalizowaną wycenę" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Bezpłatna konsultacja",
+      "title": "Marzysz o nosie bardziej harmonijnym z Twoją twarzą?",
+      "lead": "Przekaż nam kilka informacji, a nasz zespół odpowie spersonalizowanym planem rynoplastyki i wyceną all inclusive, bezpłatnie i bez zobowiązań, zwykle w ciągu kilku godzin.",
+      "points": [
+        { "label": "Bezpłatna ocena na podstawie Twoich zdjęć" },
+        { "label": "Przejrzysta wycena all inclusive, bez zobowiązań" },
+        { "label": "Szybka odpowiedź od naszego dedykowanego zespołu opieki nad pacjentem" },
+        { "label": "Wielojęzyczna obsługa na każdym etapie" }
+      ],
+      "submit_label": "Poproś o bezpłatną konsultację"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Dowiedz się więcej",
+      "title": "Powiązane zabiegi"
+    }
+  ]
+}

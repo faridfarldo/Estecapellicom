@@ -439,6 +439,26 @@ function estecapelli_render_treatments_importer() {
 			}
 		}
 
+		// Polish Plastic Surgery translations also run one page per request.
+		$pl_plastic_prefix = '__pl_plastic_treatment__';
+		if ( 0 === strpos( $target, $pl_plastic_prefix ) && function_exists( 'estecapelli_run_pl_plastic_import' ) ) {
+			$source_slug = substr( $target, strlen( $pl_plastic_prefix ) );
+			$result      = estecapelli_run_pl_plastic_import( $source_slug );
+			if ( is_wp_error( $result ) ) {
+				update_option( 'estecapelli_pl_plastic_import_error', $result->get_error_message(), false );
+				$messages[] = array(
+					'type' => 'error',
+					'text' => sprintf( 'Polish Plastic Surgery translations - %s', esc_html( $result->get_error_message() ) ),
+				);
+			} else {
+				delete_option( 'estecapelli_pl_plastic_import_error' );
+				$messages[] = array(
+					'type' => 'success',
+					'text' => sprintf( 'Imported or repaired Polish Plastic Surgery translation: %s.', esc_html( $source_slug ) ),
+				);
+			}
+		}
+
 		// Treatments.
 		foreach ( $treatments as $t ) {
 			if ( '__all__' !== $target && '__all_treatments__' !== $target && $t['slug'] !== $target ) {
@@ -887,6 +907,56 @@ function estecapelli_render_treatments_importer() {
 								</td>
 								<td>
 									<button type="submit" name="estecapelli_action" value="<?php echo esc_attr( '__pl_hair_treatment__' . $source_slug ); ?>" class="button button-primary">
+										<?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?>
+									</button>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endif; ?>
+
+			<?php if ( function_exists( 'estecapelli_pl_plastic_manifest' ) ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Polish Plastic Surgery translations', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'Imports one Polish treatment per request to stay within the server execution limit. Each action is idempotent and safe to run again.', 'estecapelli' ); ?>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:28%;"><?php esc_html_e( 'English source', 'estecapelli' ); ?></th>
+							<th style="width:32%;"><?php esc_html_e( 'Polish slug', 'estecapelli' ); ?></th>
+							<th style="width:24%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+							<th style="width:16%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( estecapelli_pl_plastic_manifest() as $source_slug => $polish_slug ) :
+							$source_id    = estecapelli_source_post_id( $source_slug, 'treatment' );
+							$polish_id    = $source_id ? (int) apply_filters( 'wpml_object_id', $source_id, 'treatment', false, 'pl' ) : 0;
+							$needs_repair = $polish_id && (
+								get_post_meta( $polish_id, '_icl_lang_duplicate_of', true ) ||
+								get_post_field( 'post_title', $polish_id ) === get_post_field( 'post_title', $source_id )
+							);
+							?>
+							<tr>
+								<td><code><?php echo esc_html( $source_slug ); ?></code></td>
+								<td><code><?php echo esc_html( $polish_slug ); ?></code></td>
+								<td>
+									<?php if ( $needs_repair ) : ?>
+										<span style="color:#b26200;"><?php esc_html_e( 'Exists - needs repair', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $polish_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+									<?php elseif ( $polish_id && $polish_id !== $source_id ) : ?>
+										<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+										- <a href="<?php echo esc_url( get_edit_post_link( $polish_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+										| <a href="<?php echo esc_url( get_permalink( $polish_id ) ); ?>" target="_blank"><?php esc_html_e( 'view', 'estecapelli' ); ?></a>
+									<?php else : ?>
+										<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+									<?php endif; ?>
+								</td>
+								<td>
+									<button type="submit" name="estecapelli_action" value="<?php echo esc_attr( '__pl_plastic_treatment__' . $source_slug ); ?>" class="button button-primary">
 										<?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?>
 									</button>
 								</td>

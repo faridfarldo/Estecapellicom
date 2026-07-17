@@ -1,0 +1,194 @@
+{
+  "source_slug": "liposuction",
+  "slug": "liposukcja",
+  "title": "Liposukcja",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Modelowanie sylwetki",
+      "title": "Liposukcja",
+      "lead": "Nowoczesny zabieg modelowania sylwetki, który redukuje miejscowe i oporne nagromadzenia tłuszczu, aby harmonijnie zdefiniować kształt ciała.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Zabieg",
+      "title": "Czym jest liposukcja?",
+      "body": "<p>Liposukcja to nowoczesny zabieg modelowania sylwetki opracowany w celu redukcji miejscowych nagromadzeń tłuszczu i zdefiniowania konturów ciała. Podczas procedury komórki tłuszczowe są usuwane chirurgicznie, co trwale zmniejsza ich liczbę w leczonym obszarze. Dlatego liposukcja stanowi skuteczne i pewne rozwiązanie, którego efekty mogą utrzymywać się przez wiele lat.</p><p>Techniki stosowane w Estecapelli wykraczają poza zwykłe wyszczuplenie ciała i pomagają uzyskać bardziej harmonijny oraz proporcjonalny wygląd.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Obszary do modelowania",
+      "title": "Jakie okolice można wymodelować liposukcją?",
+      "body": "Liposukcję można wykonać w różnych okolicach, w których tłuszcz ma tendencję do gromadzenia się i jest oporny na inne metody. Do najczęściej leczonych stref należą:",
+      "items": [
+        { "label": "Brzuch i podbrzusze" },
+        { "label": "Talia i boki" },
+        { "label": "Biodra i tzw. bryczesy" },
+        { "label": "Wewnętrzna i zewnętrzna strona ud" },
+        { "label": "Plecy" },
+        { "label": "Ramiona i okolice pach" },
+        { "label": "Klatka piersiowa, także w leczeniu ginekomastii u mężczyzn" },
+        { "label": "Podwójny podbródek i okolica pod żuchwą" }
+      ],
+      "footer": "Liposukcja nie jest metodą odchudzania: usuwa miejscowe nagromadzenia tłuszczu, które utrzymują się mimo ogólnej utraty masy ciała."
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Techniki",
+      "title": "Rodzaje liposukcji",
+      "lead": "W Estecapelli stosujemy różne techniki, aby osiągnąć Twoje cele w zakresie modelowania sylwetki. Metodę dobiera się na podstawie rozmieszczenia tłuszczu, elastyczności skóry i pożądanego efektu. Zapoznaj się z głównymi opcjami.",
+      "items": [
+        {
+          "eyebrow": "Technika",
+          "title": "Liposukcja VASER",
+          "body": "<p>Liposukcja VASER to zaawansowana technika, która wykorzystuje energię ultradźwiękową do emulgowania komórek tłuszczowych przed ich usunięciem, umożliwiając precyzyjne i delikatne modelowanie.</p><p><strong>Zalety:</strong></p><ul><li>Działa na tłuszcz z precyzją</li><li>Jest małoinwazyjna i ogranicza uraz tkanek</li><li>Zapewnia równomierne i naturalne efekty</li><li>Umożliwia szybszą rekonwalescencję niż klasyczna liposukcja</li></ul>"
+        },
+        {
+          "eyebrow": "Technika",
+          "title": "Liposukcja laserowa",
+          "body": "<p>Liposukcja laserowa wykorzystuje energię lasera do rozbicia komórek tłuszczowych i jednocześnie sprzyja obkurczeniu skóry, dając bardziej równomierne kontury.</p><p><strong>Zalety:</strong></p><ul><li>Rozpuszcza tłuszcz z precyzją</li><li>Sprzyja obkurczeniu skóry</li><li>Jest mało inwazyjna i pozwala na szybką rekonwalescencję</li><li>Zapewnia równomierne i naturalne efekty</li></ul>"
+        },
+        {
+          "eyebrow": "Technika",
+          "title": "Liposukcja tumescencyjna",
+          "body": "<p>Liposukcja tumescencyjna polega na wstrzyknięciu specjalnego roztworu w leczony obszar przed usunięciem tłuszczu, aby ograniczyć krwawienie i zasinienia. Obecnie często łączy się ją z innymi technikami w celu optymalizacji efektu.</p>"
+        },
+        {
+          "eyebrow": "Technika",
+          "title": "PAL, liposukcja wspomagana",
+          "body": "<p>PAL, czyli Power-Assisted Liposuction, wykorzystuje wibrujące kaniule, które ułatwiają rozbijanie i usuwanie tłuszczu, czyniąc zabieg szybszym i bardziej kontrolowanym.</p><p><strong>Zalety:</strong></p><ul><li>Łatwiejsze i szybsze usuwanie tłuszczu</li><li>Mniejsze zmęczenie chirurga i większa precyzja</li><li>Technika małoinwazyjna o bardziej równomiernych efektach</li><li>Możliwość łączenia z innymi technikami</li></ul>"
+        },
+        {
+          "eyebrow": "Technika",
+          "title": "Liposukcja klasyczna",
+          "body": "<p>Liposukcja klasyczna to konwencjonalna technika usuwania tłuszczu wykonywana ręcznie, bez urządzeń energetycznych. Pozostaje rozwiązaniem wskazanym w wybranych przypadkach.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Kandydaci",
+      "title": "Kto może poddać się liposukcji?",
+      "body": "Dobrym kandydatem do liposukcji może być osoba, która spełnia jedno lub więcej z poniższych kryteriów:",
+      "items": [
+        { "label": "Dorośli, którzy zakończyli fazę wzrostu" },
+        { "label": "Osoby z obszarami opornego tłuszczu, które nie poprawiają się mimo diety i ćwiczeń" },
+        { "label": "Osoby pragnące mocniej zdefiniować kontury ciała" },
+        { "label": "Osoby bez chorób uniemożliwiających wykonanie zabiegu" },
+        { "label": "Osoby o dobrej elastyczności skóry" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Ważne",
+      "title": "Kiedy liposukcja nie jest zalecana",
+      "body": "<ul><li>W ciąży i podczas karmienia piersią</li><li>W przypadku ciężkich chorób przewlekłych</li><li>W przypadku zaburzeń krzepnięcia</li><li>W przypadku znacznej otyłości</li></ul>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Przed zabiegiem",
+      "title": "Przygotowanie do liposukcji",
+      "body": "<p>W Estecapelli etap przedoperacyjny prowadzony jest z dużą starannością, aby zapewnić bezpieczne i indywidualnie zaplanowane leczenie chirurgiczne.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Operacja",
+      "title": "Jak przebiega liposukcja?",
+      "body": "<p>Liposukcja wykonywana jest w znieczuleniu miejscowym lub ogólnym. Wybór techniki zależy od ilości i cech tłuszczu do usunięcia oraz od zakresu leczonego obszaru.</p><p><strong>Ogólne etapy:</strong></p><ol><li>Wykonanie małych nacięć</li><li>Rozbicie tłuszczu za pomocą najodpowiedniejszej technologii, takiej jak VASER czy laser</li><li>Usunięcie komórek tłuszczowych za pomocą kaniul</li><li>Zdefiniowanie i wymodelowanie obszaru</li><li>Zamknięcie nacięć z minimalnymi bliznami</li></ol><p>Czas trwania: od 30 minut do 3 godzin, w zależności od zakresu zabiegu.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Po zabiegu",
+      "title": "Rekonwalescencja po liposukcji",
+      "lead": "W Estecapelli priorytetem jest komfort, dlatego uważnie towarzyszymy każdemu etapowi rekonwalescencji.",
+      "items": [
+        { "time": "Pierwsze dni", "title": "Odzież uciskowa", "body": "Mogą pojawić się lekki ból, zasinienia i obrzęk. Rozpoczyna się noszenie odzieży uciskowej." },
+        { "time": "1. tydzień", "title": "Powrót do codziennego życia", "body": "Można stopniowo wznawiać codzienne czynności. Zalecane są spacery i lekki ruch." },
+        { "time": "2–3 tygodnie", "title": "Obrzęk się zmniejsza", "body": "Obrzęk wyraźnie ustępuje i możliwy jest stopniowy powrót do aktywności sportowej." },
+        { "time": "6 tygodni–3 miesiące", "title": "Kontury się definiują", "body": "Nowe kontury ciała zaczynają być coraz bardziej widoczne." },
+        { "time": "3–6 miesięcy", "title": "Ostateczne efekty", "body": "Ostateczny efekt staje się w pełni widoczny." }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Po zabiegu",
+      "title": "Zalecenia po liposukcji",
+      "body": "Aby wspomóc gojenie i chronić efekt, pamiętaj o tych zaleceniach:",
+      "items": [
+        { "label": "Regularnie noś zalecaną odzież uciskową" },
+        { "label": "Przez pewien czas unikaj intensywnej aktywności sportowej" },
+        { "label": "Unikaj gorących kąpieli, sauny i podobnych warunków" },
+        { "label": "Pij dużo wody i utrzymuj zbilansowaną dietę" }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Prawdziwe efekty",
+      "title": "Liposukcja — przed i po",
+      "lead": "Zobacz bardziej równomierne i zdefiniowane kontury uzyskane przez naszych pacjentów. Każdy efekt jest dostosowany do indywidualnej sylwetki, a tłuszcz usuwany jest precyzyjnie, aby uzyskać naturalny i proporcjonalny kształt.",
+      "cta": { "label": "Zobacz całą galerię" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Przydatne informacje",
+      "title": "Liposukcja — najczęściej zadawane pytania",
+      "items": [
+        {
+          "question": "Czy liposukcja jest metodą odchudzania?",
+          "answer": "<p>Nie: liposukcja to zabieg modelowania sylwetki, a nie metoda odchudzania. Usuwa miejscowe nagromadzenia tłuszczu oporne na dietę i ćwiczenia, aby wysmuklić sylwetkę, ale zmiana na wadze jest zazwyczaj niewielka. Daje najlepsze efekty, gdy waga jest zdrowa i stabilna, i nie jest metodą leczenia otyłości.</p>"
+        },
+        {
+          "question": "Która technika jest dla mnie najodpowiedniejsza: VASER, laser, PAL, tumescencyjna czy klasyczna?",
+          "answer": "<p>Najodpowiedniejsza metoda zależy od obszaru, ilości i konsystencji tłuszczu oraz elastyczności skóry. VASER wykorzystuje ultradźwięki do precyzyjnego zdefiniowania leczonych stref; laser sprzyja także obkurczeniu skóry; PAL ułatwia usunięcie większych objętości; technikę tumescencyjną często łączy się z pozostałymi, aby ograniczyć krwawienie i zasinienia. Po konsultacji chirurg zaleci technikę lub ich połączenie zapewniające najbardziej równomierny i naturalny efekt.</p>"
+        },
+        {
+          "question": "Jakie okolice ciała można leczyć?",
+          "answer": "<p>Liposukcją można leczyć większość okolic, w których gromadzi się oporny tłuszcz: brzuch, talię, boki, biodra, uda, kolana, ramiona, plecy, okolicę biustonosza, podbródek i szyję. Często można zająć się kilkoma okolicami podczas jednej sesji oraz połączyć zabieg z innymi operacjami, takimi jak abdominoplastyka czy BBL. Podczas konsultacji chirurg potwierdzi, które strefy można bezpiecznie leczyć.</p>"
+        },
+        {
+          "question": "Jakie znieczulenie jest stosowane i czy zabieg jest bolesny?",
+          "answer": "<p>W zależności od liczby i wielkości obszarów liposukcja wykonywana jest w znieczuleniu miejscowym lub ogólnym, aby zapewnić komfort przez cały czas trwania procedury. Zabieg trwa zwykle od około 30 minut do 3 godzin. W pierwszych dniach lub tygodniach możliwe są ból, zasinienia i obrzęk, dobrze kontrolowane przepisanymi lekami i odzieżą uciskową.</p>"
+        },
+        {
+          "question": "Jak długo trwają rekonwalescencja i pobyt w Turcji?",
+          "answer": "<p>Większość pacjentów pozostaje w Turcji przez kilka dni, wliczając wizytę kontrolną przed powrotem. Wstępna rekonwalescencja trwa około 1–2 tygodni, po których wielu pacjentów wraca do pracy biurowej; odzież uciskową nosi się przez kilka tygodni, aby wspomóc gojenie i wyrównać profil. Efekt definiuje się stopniowo wraz z ustępowaniem obrzęku i staje się zwykle widoczny w ciągu 3–6 miesięcy.</p>"
+        },
+        {
+          "question": "Czy efekty są trwałe i naturalne?",
+          "answer": "<p>Komórki tłuszczowe usunięte podczas liposukcji nie odtwarzają się, więc leczone okolice pozostają smuklejsze w dłuższej perspektywie. Znaczny przyszły przyrost masy ciała może jednak powiększyć pozostałe komórki w innych strefach; utrzymanie stabilnej wagi chroni więc efekt. Wykonany odpowiednią techniką przez doświadczonego chirurga profil wygląda równomiernie, zrównoważenie i naturalnie.</p>"
+        },
+        {
+          "question": "Kiedy będę mógł wznowić aktywność fizyczną?",
+          "answer": "<p>Powolne spacery zaleca się już po kilku dniach, aby wspomóc krążenie i gojenie. Lekką aktywność można wznowić w pierwszych dwóch tygodniach; intensywne ćwiczenia, podnoszenie ciężarów i treningi o dużym obciążeniu muszą poczekać około 4–6 tygodni, aż chirurg potwierdzi pełne wygojenie.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Koszty",
+      "title": "Koszt liposukcji",
+      "body": "<p>Koszt liposukcji zależy od kilku czynników:</p><ul><li>Ilości tłuszczu do usunięcia</li><li>Liczby leczonych okolic</li><li>Zastosowanej techniki, takiej jak VASER, laser czy klasyczna</li><li>Czasu trwania zabiegu</li><li>Potrzeb i celów pacjenta</li></ul><p>Najdokładniejszą wycenę ustala się po konsultacji online ze specjalistami Estecapelli.</p>",
+      "cta": { "label": "Poproś o spersonalizowaną wycenę" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Bezpłatna konsultacja",
+      "title": "Marzysz o bardziej zdefiniowanych konturach?",
+      "lead": "Przekaż nam kilka informacji, a nasz zespół odpowie spersonalizowanym planem liposukcji i wyceną all inclusive, bezpłatnie i bez zobowiązań, zwykle w ciągu kilku godzin.",
+      "points": [
+        { "label": "Bezpłatna ocena na podstawie Twoich zdjęć" },
+        { "label": "Przejrzysta wycena all inclusive, bez zobowiązań" },
+        { "label": "Szybka odpowiedź od naszego dedykowanego zespołu opieki nad pacjentem" },
+        { "label": "Wielojęzyczna obsługa na każdym etapie" }
+      ],
+      "submit_label": "Poproś o bezpłatną konsultację"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Dowiedz się więcej",
+      "title": "Powiązane zabiegi"
+    }
+  ]
+}

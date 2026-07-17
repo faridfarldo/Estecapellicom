@@ -1,0 +1,163 @@
+{
+  "source_slug": "abdominoplasty-tummy-tuck",
+  "slug": "plastyka-brzucha",
+  "title": "Plastyka brzucha",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Modelowanie sylwetki",
+      "title": "Plastyka brzucha",
+      "lead": "Uzyskaj płaski i jędrny brzuch. Korygując wiotkość skóry, zwiotczenie i rozejście mięśni, zapewniamy harmonijne efekty dopasowane do Twojego ciała i celów.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Zabieg",
+      "title": "Czym jest plastyka brzucha?",
+      "body": "<p>Plastyka brzucha to zabieg modelowania sylwetki, który koryguje wiotkość, zwiotczenie i zmiany w okolicy brzucha, zapewniając bardziej płaski, jędrny i estetycznie harmonijny wygląd. Wykonywana przez doświadczony zespół Estecapelli, jest jedną z najskuteczniejszych procedur modelowania brzucha u kobiet i mężczyzn.</p><p>Z czasem okolica brzucha może zwiotczeć wskutek zmian wagi, starzenia, ciąży, czynników genetycznych lub zmniejszonej elastyczności skóry. Plastyka brzucha oddziałuje bezpośrednio na te aspekty, przywracając centralnej części ciała młodszy, jędrniejszy i bardziej zrównoważony profil.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Kandydaci",
+      "title": "Dla kogo przeznaczona jest plastyka brzucha?",
+      "body": "Dorosłe kobiety i mężczyźni niezadowoleni z wyglądu okolicy brzucha, u których występuje jeden lub więcej z poniższych stanów, mogą być odpowiednimi kandydatami:",
+      "items": [
+        { "label": "Wiotkość po znacznym przyroście lub utracie masy ciała" },
+        { "label": "Wiotka lub nadmiarowa skóra po ciąży" },
+        { "label": "Rozejście mięśni brzucha, czyli diastaza mięśni prostych" },
+        { "label": "Genetycznie wiotka lub słaba struktura brzucha" },
+        { "label": "Nadmiar skóry pozostały po liposukcji" },
+        { "label": "Zmiany w obrębie brzucha, których nie da się skorygować samymi ćwiczeniami" }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Opcje",
+      "title": "Rodzaje plastyki brzucha",
+      "lead": "Najodpowiedniejsza technika zależy od Twojej anatomii, stopnia wiotkości i Twoich celów. Zapoznaj się z głównymi opcjami.",
+      "items": [
+        {
+          "eyebrow": "Rodzaj",
+          "title": "Pełna plastyka brzucha",
+          "body": "<p>Pełna plastyka brzucha jest wskazana dla osób z zaawansowaną wiotkością i rozejściem mięśni w całej okolicy brzucha. Zabieg kompleksowo obejmuje brzuch poprzez następujące etapy:</p><ul><li>Ujędrnienie całej okolicy brzucha</li><li>Przemieszczenie pępka dla naturalnego wyglądu</li><li>Usunięcie nadmiaru skóry</li><li>Wzmocnienie i naprawa mięśni pod spodem</li></ul>"
+        },
+        {
+          "eyebrow": "Rodzaj",
+          "title": "Mini-plastyka brzucha",
+          "body": "<p>Mini-plastyka brzucha jest wskazana przy łagodnej wiotkości ograniczonej do okolicy poniżej pępka. W porównaniu z pełnym zabiegiem jest rozwiązaniem mniej inwazyjnym o kilku zaletach:</p><ul><li>Krótsze nacięcie</li><li>Szybsza rekonwalescencja</li><li>Brak przemieszczania pępka</li></ul>"
+        },
+        {
+          "eyebrow": "Rodzaj",
+          "title": "Liposukcja i plastyka brzucha łączone",
+          "body": "<p>To połączenie jest idealne, gdy w okolicy brzucha występuje zarówno nadmiar tłuszczu, jak i wiotkość skóry. Liposukcja usuwa najpierw niepożądane nagromadzenia tłuszczu; następnie eliminowany jest nadmiar skóry, aby uzyskać bardziej równomierny i zdefiniowany profil.</p>"
+        },
+        {
+          "eyebrow": "Rodzaj",
+          "title": "Mommy Makeover",
+          "body": "<p>Mommy Makeover łączy kilka procedur w jednym zabiegu dla kobiet, które chcą odzyskać formę ciała po porodzie. Obejmuje zazwyczaj plastykę brzucha, podniesienie lub powiększanie piersi oraz liposukcję, umożliwiając pełniejszą przemianę przy jednym okresie rekonwalescencji.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Operacja",
+      "title": "Jak przebiega plastyka brzucha?",
+      "body": "<p>Plastyka brzucha wykonywana jest w znieczuleniu ogólnym, w sterylnej sali operacyjnej, i trwa zwykle od 1,5 do 4 godzin. Główne etapy to:</p><ol><li>Zaznaczenie wiotkości skóry i tkanek</li><li>Wzmocnienie mięśni brzucha</li><li>Usunięcie nadmiaru skóry</li><li>Estetyczne wymodelowanie pępka</li><li>Zamknięcie nacięć szwami estetycznymi</li></ol><p>Blizna umieszczana jest starannie nisko, wzdłuż linii bikini, i stopniowo zaciera się z czasem.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Po zabiegu",
+      "title": "Rekonwalescencja po plastyce brzucha",
+      "lead": "Choć rekonwalescencja różni się u poszczególnych osób, ogólny przebieg jest następujący.",
+      "items": [
+        { "time": "1. dzień", "title": "Uczucie napięcia", "body": "Uczucie napięcia w brzuchu jest normalne. Pacjent pozostaje jedną noc w szpitalu." },
+        { "time": "1. tydzień", "title": "Pas i lekkie czynności", "body": "Rozpoczyna się stopniowy powrót do codziennych czynności. Pas należy nosić regularnie, zgodnie z otrzymanymi zaleceniami." },
+        { "time": "Tygodnie 2–6", "title": "Powrót do rutyny", "body": "Obrzęk nadal się zmniejsza, a spacery można wydłużać w miarę wzrostu komfortu. Aktywność fizyczna jest wprowadzana stopniowo pod nadzorem chirurga i większość pacjentów wraca w tym okresie do zwykłej codziennej rutyny." },
+        { "time": "3 miesiące", "title": "Ustabilizowanie", "body": "Okolica brzucha przyjmuje bardziej naturalny i stabilny wygląd, a blizny nadal spłaszczają się i jaśnieją." },
+        { "time": "6–12 miesięcy", "title": "Ostateczny efekt", "body": "Efekt zabiegu staje się w pełni widoczny, a profil brzucha osiąga najbardziej zdefiniowany i naturalny wygląd." }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Zalety",
+      "title": "Zalety chirurgii brzucha",
+      "body": "Plastyka brzucha oferuje wiele korzyści estetycznych i może poprawić zaufanie do własnego ciała:",
+      "items": [
+        { "label": "Bardziej płaski i jędrny brzuch" },
+        { "label": "Usunięcie większości rozstępów obecnych w leczonym obszarze" },
+        { "label": "Smuklejsza i bardziej zdefiniowana talia" },
+        { "label": "Korekta zmian w obrębie brzucha po ciąży" },
+        { "label": "Trwałe efekty o naturalnym wyglądzie" },
+        { "label": "Znaczna poprawa pewności siebie i obrazu własnego ciała" }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Prawdziwe efekty",
+      "title": "Plastyka brzucha — przed i po",
+      "lead": "Zobacz bardziej płaski, jędrny i zdefiniowany brzuch uzyskany przez naszych pacjentów. Każdy efekt jest dostosowany do indywidualnej sylwetki, a blizna umieszczana dyskretnie wzdłuż linii bikini.",
+      "cta": { "label": "Zobacz całą galerię" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Przydatne informacje",
+      "title": "Plastyka brzucha — najczęściej zadawane pytania",
+      "items": [
+        {
+          "question": "Czy plastyka brzucha powoduje utratę wagi?",
+          "answer": "<p>Nie do końca: plastyka brzucha to zabieg modelowania sylwetki, a nie metoda odchudzania. Usuwa nadmiar wiotkiej skóry i wzmacnia mięśnie brzucha, dzięki czemu profil staje się wyraźnie bardziej płaski i jędrny, ale faktyczna zmiana na wadze jest zazwyczaj niewielka. Najlepsze efekty uzyskuje się, gdy waga jest zdrowa i stabilna.</p>"
+        },
+        {
+          "question": "Który rodzaj plastyki brzucha jest dla mnie najodpowiedniejszy?",
+          "answer": "<p>Zależy to od stopnia wiotkości skóry i mięśni. Mini-plastyka brzucha jest wskazana przy łagodnej wiotkości poniżej pępka; pełna obejmuje cały brzuch i umożliwia naprawę mięśni; połączenie z liposukcją jest idealne, gdy występuje także nadmiar tłuszczu; Mommy Makeover łączy kilka procedur po porodzie. Po wizycie chirurg zaleci Ci najodpowiedniejsze rozwiązanie.</p>"
+        },
+        {
+          "question": "Czy zabieg jest bolesny i jakie znieczulenie jest stosowane?",
+          "answer": "<p>Operacja wykonywana jest w znieczuleniu ogólnym, więc nic nie poczujesz podczas zabiegu. W pierwszych dniach możliwe są napięcie i umiarkowany dyskomfort, zwykle dobrze kontrolowane przepisanymi lekami. Pas podtrzymujący i delikatne ruchy pomagają poprawić komfort podczas gojenia.</p>"
+        },
+        {
+          "question": "Jak długo trwają rekonwalescencja i pobyt w Turcji?",
+          "answer": "<p>Większość pacjentów pozostaje w Turcji przez około 5–7 dni, wliczając wizytę kontrolną przed powrotem. Wstępna rekonwalescencja trwa zwykle 2–3 tygodnie, a pas uciskowy nosi się przez kilka tygodni. Pełna rekonwalescencja, wraz z powrotem do intensywnej aktywności fizycznej, wymaga około 6–8 tygodni.</p>"
+        },
+        {
+          "question": "Czy pozostanie widoczna blizna?",
+          "answer": "<p>Tak, plastyka brzucha pozostawia bliznę, ale umieszcza się ją starannie nisko, wzdłuż linii bikini, tak aby pozostała ukryta pod bielizną i strojem kąpielowym. Przy odpowiedniej pielęgnacji blizna spłaszcza się i wyraźnie jaśnieje w ciągu miesięcy.</p>"
+        },
+        {
+          "question": "Czy efekty są trwałe?",
+          "answer": "<p>Efekty są trwałe, w szczególności naprawa mięśni i usunięcie nadmiaru skóry. Utrzymanie stabilnej wagi pomaga je zachować: znaczny przyrost masy ciała lub przyszła ciąża mogą ponownie rozciągnąć tę okolicę. Dlatego zabieg planuje się najlepiej wtedy, gdy nie przewiduje się kolejnych ciąż.</p>"
+        },
+        {
+          "question": "Kiedy będę mógł wznowić aktywność fizyczną?",
+          "answer": "<p>Powolne spacery są zalecane już po kilku dniach, aby wspomóc krążenie i gojenie. Lekką aktywność wznawia się w pierwszych tygodniach, natomiast intensywne ćwiczenia, trening brzucha i podnoszenie ciężarów muszą poczekać około 6–8 tygodni, aż chirurg potwierdzi pełne wygojenie.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Koszty",
+      "title": "Koszt plastyki brzucha w Turcji",
+      "body": "<p>Turcja jest cenioną na całym świecie destynacją dla plastyki brzucha dzięki:</p><ul><li>Bardzo doświadczonym chirurgom z udokumentowanymi efektami</li><li>Dobrze wyposażonym placówkom szpitalnym</li><li>Międzynarodowym standardom jakości</li><li>Cenom przystępniejszym niż w Europie i Ameryce Północnej</li><li>Kompleksowym usługom opieki i wsparcia pacjenta</li></ul><p>Koszt zależy od zastosowanej techniki, doświadczenia chirurga, ewentualnych dodatkowych procedur oraz całościowego zakresu zabiegu.</p>",
+      "cta": { "label": "Poproś o spersonalizowaną wycenę" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Bezpłatna konsultacja",
+      "title": "Marzysz o bardziej płaskim i jędrnym brzuchu?",
+      "lead": "Przekaż nam kilka informacji, a nasz zespół odpowie spersonalizowanym planem plastyki brzucha i wyceną all inclusive, bezpłatnie i bez zobowiązań, zwykle w ciągu kilku godzin.",
+      "points": [
+        { "label": "Bezpłatna ocena na podstawie Twoich zdjęć" },
+        { "label": "Przejrzysta wycena all inclusive, bez zobowiązań" },
+        { "label": "Szybka odpowiedź od naszego dedykowanego zespołu opieki nad pacjentem" },
+        { "label": "Wielojęzyczna obsługa na każdym etapie" }
+      ],
+      "submit_label": "Poproś o bezpłatną konsultację"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Dowiedz się więcej",
+      "title": "Powiązane zabiegi"
+    }
+  ]
+}
