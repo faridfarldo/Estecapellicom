@@ -52,7 +52,7 @@ function estecapelli_it_doctor_route_key( $source_slug ) {
  * Doctor slugs intentionally stay identical across languages, so selecting the
  * first raw post with that slug could overwrite French or another language.
  */
-function estecapelli_it_doctor_raw_target_id( $slug, $source_id ) {
+function estecapelli_it_doctor_raw_target_id( $slug, $source_id, $language_code = 'it' ) {
 	global $wpdb;
 	$ids = $wpdb->get_col(
 		$wpdb->prepare(
@@ -73,7 +73,7 @@ function estecapelli_it_doctor_raw_target_id( $slug, $source_id ) {
 				'element_type' => 'doctor',
 			)
 		);
-		if ( 'it' === (string) estecapelli_it_hair_detail( $details, 'language_code' ) ) {
+		if ( $language_code === (string) estecapelli_it_hair_detail( $details, 'language_code' ) ) {
 			return (int) $id;
 		}
 	}
@@ -127,8 +127,8 @@ function estecapelli_it_doctors_load_translations() {
 	return $loaded;
 }
 
-/** Import or repair one Italian doctor profile. */
-function estecapelli_it_doctor_import_one( array $translation ) {
+/** Import or repair one doctor profile for a requested WPML language. */
+function estecapelli_it_doctor_import_one( array $translation, $language_code = 'it', $language_name = 'Italian' ) {
 	$source_slug = $translation['source_slug'];
 	$seed        = estecapelli_it_doctor_source_seed( $source_slug );
 	if ( is_wp_error( $seed ) ) {
@@ -159,14 +159,14 @@ function estecapelli_it_doctor_import_one( array $translation ) {
 		return new WP_Error( 'it_doctors_unlinked_source_post', sprintf( 'WPML language details are missing for %s.', $source_slug ) );
 	}
 
-	// Prefer the canonical Italian profile so a stale WPML slot occupant cannot
+	// Prefer the canonical target profile so a stale WPML slot occupant cannot
 	// be overwritten with this doctor's content.
-	$target_id = estecapelli_it_doctor_raw_target_id( $translation['slug'], $source_id );
+	$target_id = estecapelli_it_doctor_raw_target_id( $translation['slug'], $source_id, $language_code );
 	if ( ! $target_id ) {
-		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'it' );
+		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, $language_code );
 	}
 	if ( ! $target_id ) {
-		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'doctor', false, 'it' );
+		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'doctor', false, $language_code );
 	}
 	if ( $target_id === $source_id ) {
 		$target_id = 0;
@@ -174,7 +174,7 @@ function estecapelli_it_doctor_import_one( array $translation ) {
 	if ( $target_id ) {
 		$raw_target = get_post( $target_id );
 		if ( ! $raw_target || 'doctor' !== $raw_target->post_type || 'trash' === $raw_target->post_status || $target_id === $source_id ) {
-			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, 'it' );
+			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, $language_code );
 			$target_id = 0;
 		}
 	}
@@ -207,18 +207,18 @@ function estecapelli_it_doctor_import_one( array $translation ) {
 			'element_id'           => (int) $target_id,
 			'element_type'         => $element_type,
 			'trid'                 => $trid,
-			'language_code'        => 'it',
+			'language_code'        => $language_code,
 			'source_language_code' => $source_language,
 			'check_duplicates'     => false,
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
-	if ( ! estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, 'it', $source_language ) ) {
+	if ( ! estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, $language_code, $source_language ) ) {
 		$reason = estecapelli_wpml_last_slot_error();
 		return new WP_Error(
 			'it_doctors_force_link_failed',
-			sprintf( 'The Italian WPML relationship could not be rebuilt for %s%s', $source_slug, $reason ? ' — ' . $reason : '.' )
+			sprintf( 'The %s WPML relationship could not be rebuilt for %s%s', $language_name, $source_slug, $reason ? ' — ' . $reason : '.' )
 		);
 	}
 
@@ -233,9 +233,13 @@ function estecapelli_it_doctor_import_one( array $translation ) {
 	if ( is_wp_error( $target_id ) ) {
 		return $target_id;
 	}
+	$slug_result = estecapelli_force_multilingual_post_slug( $target_id, $translation['slug'], 'doctor', $language_code );
+	if ( is_wp_error( $slug_result ) ) {
+		return $slug_result;
+	}
 	$target_post = get_post( $target_id );
 	if ( ! $target_post || $translation['slug'] !== $target_post->post_name ) {
-		return new WP_Error( 'it_doctors_slug_conflict', sprintf( 'The required Italian doctor slug is already in use: %s.', $translation['slug'] ) );
+		return new WP_Error( 'it_doctors_slug_conflict', sprintf( 'The required %s doctor slug is already in use: %s.', $language_name, $translation['slug'] ) );
 	}
 
 	update_field( 'position', $translation['position'], $target_id );
@@ -277,7 +281,7 @@ function estecapelli_it_doctor_import_one( array $translation ) {
 		! is_array( $saved_credentials ) ||
 		count( $saved_credentials ) !== count( $translation['credentials'] )
 	) {
-		return new WP_Error( 'it_doctors_acf_not_saved', sprintf( 'The Italian doctor fields were not saved for %s.', $source_slug ) );
+		return new WP_Error( 'it_doctors_acf_not_saved', sprintf( 'The %s doctor fields were not saved for %s.', $language_name, $source_slug ) );
 	}
 
 	return (int) $target_id;

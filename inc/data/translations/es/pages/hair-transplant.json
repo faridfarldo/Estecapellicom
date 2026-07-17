@@ -1,0 +1,87 @@
+{
+  "source_slug": "hair-transplant",
+  "slug": "trasplante-capilar",
+  "title": "Trasplante capilar",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Trasplante capilar",
+      "title": "Restauración capilar diseñada para lograr una densidad natural.",
+      "lead": "Desde la FUE con cuchillas de zafiro hasta nuestros protocolos patentados Exosome y VITA, cada plan de Estecapelli se diseña según las características de tu cuero cabelludo, tu zona donante y tus objetivos.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Habla con nosotros por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Por dónde empezar",
+      "title": "Un trasplante planificado completamente para ti",
+      "body": "<p>La caída del cabello nunca es igual de una persona a otra, por lo que la solución adecuada también debe ser individual. En Estecapelli, cada proceso comienza con una evaluación completa del cuero cabelludo, la zona donante, las características del cabello y la densidad deseada, nunca con un paquete estándar. A partir de esa evaluación recomendamos la técnica, el número de injertos y el enfoque que pueden ofrecer el resultado más natural.</p><p>Nuestros cirujanos trabajan exclusivamente en instalaciones de nivel hospitalario y utilizan los métodos FUE y DHI de referencia, mejorados con los protocolos Sapphire, Exosome y VITA desarrollados por Estecapelli. Tanto si necesitas reconstruir una línea frontal retraída, aumentar la densidad o definir las cejas y la barba, el objetivo es siempre el mismo: un resultado que parezca haber sido siempre tuyo.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Por qué los pacientes eligen Estecapelli",
+      "stats": [
+        { "value": "6 técnicas", "label": "FUE, DHI, Sapphire, Exosome, VITA y más" },
+        { "value": "Local", "label": "Anestesia: despierto y cómodo" },
+        { "value": "Aprox. 3 días", "label": "Estancia habitual en Turquía" },
+        { "value": "Permanentes", "label": "Injertos resistentes a futuras caídas" }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Nuestros tratamientos",
+      "title": "Descubre los tratamientos de trasplante capilar"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reales",
+      "title": "Trasplante capilar — Antes y después",
+      "lead": "Observa la densidad y las líneas frontales naturales logradas por nuestros pacientes. Cada resultado se diseña según el patrón individual de crecimiento para conseguir un aspecto completamente natural.",
+      "cta": { "label": "Ver la galería completa" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Descubre qué trasplante capilar es el más adecuado para ti",
+      "lead": "Envíanos algunas fotografías y nuestro equipo médico te responderá con la técnica recomendada, una estimación de injertos y un presupuesto todo incluido y sin compromiso, normalmente en pocas horas.",
+      "points": [
+        { "label": "Evaluación gratuita de injertos a partir de tus fotografías" },
+        { "label": "Presupuesto transparente, todo incluido y sin compromiso" },
+        { "label": "Respuesta rápida de nuestro equipo especializado en atención al paciente" },
+        { "label": "Asistencia multilingüe en cada etapa" }
+      ],
+      "submit_label": "Solicitar una consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Información útil",
+      "title": "Trasplante capilar — Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Qué técnica de trasplante capilar es la más adecuada para mí?",
+          "answer": "<p>No existe una única técnica que sea la mejor para todos: la elección depende del grado de caída, la calidad y extensión de la zona donante, el área que debe cubrirse y tu estilo de vida. FUE y DHI son métodos de referencia, mientras que los protocolos Sapphire, Exosome y VITA aportan ventajas específicas para la recuperación, la densidad o la supervivencia de los injertos. Tras revisar tus fotografías, nuestros especialistas te recomendarán el método más adecuado para conseguir un resultado natural y duradero en tu caso.</p>"
+        },
+        {
+          "question": "¿Soy un buen candidato para un trasplante capilar?",
+          "answer": "<p>La mayoría de los adultos con una caída estabilizada y una zona donante sana en la parte posterior y los laterales del cuero cabelludo pueden ser candidatos, incluidos los hombres con alopecia androgenética y muchas mujeres con pérdida de densidad. El estado general de salud es más importante que la edad. Una consulta gratuita mediante fotografías permite a nuestro equipo confirmar tu idoneidad y estimar el número de injertos necesario.</p>"
+        },
+        {
+          "question": "¿La intervención es dolorosa y qué anestesia se utiliza?",
+          "answer": "<p>El procedimiento se realiza con anestesia local, por lo que permaneces despierto pero no sientes dolor durante la sesión. La mayoría de los pacientes solo describe una ligera molestia durante la aplicación inicial del anestésico. La intervención suele durar entre seis y ocho horas según el número de injertos, y puedes regresar al hotel el mismo día.</p>"
+        },
+        {
+          "question": "¿Cuánto tiempo debo permanecer en Turquía?",
+          "answer": "<p>La mayoría de los pacientes programa una estancia de unos tres días. Este periodo incluye la consulta y la intervención, el primer lavado y las instrucciones posoperatorias personalizadas antes del regreso. Nuestro equipo ayuda a coordinar el hotel y los traslados al aeropuerto para que el viaje resulte sencillo y tranquilo.</p>"
+        },
+        {
+          "question": "¿Cuándo veré los resultados y serán permanentes?",
+          "answer": "<p>El cabello trasplantado suele caerse durante las primeras semanas, algo completamente normal. El nuevo crecimiento comienza hacia el tercer o cuarto mes, la densidad visible se desarrolla entre el sexto y el noveno mes y el resultado final madura aproximadamente a los doce meses. Como los injertos proceden de zonas genéticamente resistentes a la caída, continúan creciendo de forma permanente y se pueden cortar, lavar y peinar con normalidad.</p>"
+        },
+        {
+          "question": "¿El resultado tendrá un aspecto natural?",
+          "answer": "<p>Sí. Los factores más importantes son el diseño de la línea frontal y el ángulo, la dirección y la densidad de cada folículo implantado. Nuestros especialistas definen la línea contigo antes de la intervención e implantan los injertos uno a uno siguiendo el patrón natural de crecimiento, para que el resultado se integre perfectamente con tu cabello existente.</p>"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "source_slug": "dental-treatment",
+  "slug": "tratamiento-dental",
+  "title": "Tratamiento dental",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Tratamiento dental",
+      "title": "Atención dental con un enfoque personal.",
+      "lead": "Desde un solo implante dental hasta una transformación completa con Hollywood Smile, cada plan se diseña en torno a la sonrisa que deseas y la funcionalidad que necesitas.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Habla con nosotros por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Nuestro enfoque",
+      "title": "Una mordida sana y una sonrisa que te encante",
+      "body": "<p>Una sonrisa bonita no depende solo de su aspecto: requiere dientes y encías sanos y una función masticatoria correcta. En Estecapelli, el tratamiento comienza con una evaluación bucodental completa para planificar conjuntamente la estética y la función, tanto si necesitas sustituir un diente perdido como si deseas rediseñar por completo tu sonrisa.</p><p>Nuestro equipo odontológico combina la planificación digital moderna con materiales de alta calidad para ofrecer resultados naturales y duraderos. Desde un implante que recupera la fuerza de un diente natural hasta una Hollywood Smile a medida, cada plan se diseña en torno a la sonrisa que deseas y la mordida que necesitas, con explicaciones claras antes de iniciar cualquier tratamiento.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Por qué los pacientes eligen Estecapelli",
+      "stats": [
+        { "value": "Digital", "label": "Diseño de sonrisa planificado antes de empezar" },
+        { "value": "Premium", "label": "Materiales de alta calidad y larga duración" },
+        { "value": "Natural", "label": "Resultados en armonía con el rostro y la mordida" },
+        { "value": "Todo incluido", "label": "Presupuestos transparentes y sin compromiso" }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Nuestros tratamientos",
+      "title": "Descubre los tratamientos dentales"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Resultados reales",
+      "title": "Tratamientos dentales: antes y después",
+      "lead": "Descubre las sonrisas con las que nuestros pacientes vuelven a casa. Cada resultado se diseña para tener un aspecto natural y armonizar con el rostro, los labios y la mordida de cada persona.",
+      "cta": { "label": "Ver la galería completa" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consulta gratuita",
+      "title": "Diseña tu nueva sonrisa",
+      "lead": "Envíanos una fotografía de tu sonrisa: nuestro equipo odontológico te responderá con un plan personalizado y un presupuesto todo incluido y sin compromiso, normalmente en pocas horas.",
+      "points": [
+        { "label": "Evaluación gratuita de tu sonrisa a partir de tus fotografías" },
+        { "label": "Presupuesto transparente, todo incluido y sin compromiso" },
+        { "label": "Respuesta rápida de nuestro equipo especializado en atención al paciente" },
+        { "label": "Asistencia multilingüe en cada etapa" }
+      ],
+      "submit_label": "Solicitar una consulta gratuita"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Información útil",
+      "title": "Tratamientos dentales: preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Cuál es la diferencia entre los implantes dentales y Hollywood Smile?",
+          "answer": "<p>Un implante dental sustituye un diente perdido desde la raíz y recupera toda la capacidad masticatoria mediante un tornillo de titanio y una corona. Hollywood Smile es una transformación estética que rediseña el aspecto de los dientes visibles con carillas o coronas para conseguir una sonrisa más luminosa y uniforme. Muchos pacientes combinan ambos tratamientos: implantes para sustituir dientes perdidos y carillas para perfeccionar la sonrisa.</p>"
+        },
+        {
+          "question": "¿Cuánto dura el tratamiento dental y cuántos viajes son necesarios?",
+          "answer": "<p>Una Hollywood Smile con carillas o coronas normalmente puede completarse en un solo viaje de entre cinco y siete días. Los implantes requieren un periodo de cicatrización después de su colocación y suelen implicar dos visitas separadas por varios meses, o una fase de planificación seguida de la rehabilitación definitiva. Antes de viajar definimos tu calendario con precisión.</p>"
+        },
+        {
+          "question": "¿El tratamiento dental es doloroso?",
+          "answer": "<p>El tratamiento se realiza con anestesia local, por lo que no deberías sentir dolor durante el procedimiento. Una ligera sensibilidad o una molestia moderada posterior son normales y se controlan fácilmente con analgésicos comunes. Nuestro equipo cuida tu comodidad en cada etapa y te explica de antemano qué puedes esperar.</p>"
+        },
+        {
+          "question": "¿Mis nuevos dientes tendrán un aspecto natural?",
+          "answer": "<p>Sí. Utilizamos el diseño digital de sonrisa para planificar la forma, el tamaño y el tono de los dientes en proporción con tus labios, encías y rostro, de modo que el resultado sea adecuado para ti y no parezca artificial. Podrás ver y modificar el diseño antes de realizar cualquier trabajo definitivo.</p>"
+        },
+        {
+          "question": "¿Cuánto duran los resultados?",
+          "answer": "<p>Los implantes dentales están diseñados para durar décadas, y a menudo toda la vida, con una higiene bucodental correcta y revisiones periódicas. Las carillas y coronas de alta calidad suelen durar muchos años antes de necesitar sustitución. Cuidar los dientes y las encías y acudir a revisiones periódicas es la mejor forma de proteger el resultado.</p>"
+        },
+        {
+          "question": "¿Soy un candidato adecuado?",
+          "answer": "<p>La mayoría de las personas puede recibir tratamiento, pero la opción correcta depende de la salud de los dientes y las encías y de la cantidad de hueso disponible para los implantes. Una consulta con fotografías y, si es necesario, una radiografía realizada a tu llegada permiten a nuestro equipo confirmar el mejor plan e identificar cualquier problema que deba tratarse previamente.</p>"
+        }
+      ]
+    }
+  ]
+}

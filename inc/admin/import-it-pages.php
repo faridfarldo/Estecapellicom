@@ -100,7 +100,7 @@ function estecapelli_it_pages_load_translations() {
 }
 
 /** Find an Italian page by a shared multilingual slug, excluding the source. */
-function estecapelli_it_template_page_raw_target_id( $slug, $source_id ) {
+function estecapelli_it_template_page_raw_target_id( $slug, $source_id, $language_code = 'it' ) {
 	global $wpdb;
 	$ids = $wpdb->get_col(
 		$wpdb->prepare(
@@ -121,7 +121,7 @@ function estecapelli_it_template_page_raw_target_id( $slug, $source_id ) {
 				'element_type' => 'page',
 			)
 		);
-		if ( 'it' === (string) estecapelli_it_hair_detail( $details, 'language_code' ) ) {
+		if ( $language_code === (string) estecapelli_it_hair_detail( $details, 'language_code' ) ) {
 			return (int) $id;
 		}
 	}
@@ -130,10 +130,10 @@ function estecapelli_it_template_page_raw_target_id( $slug, $source_id ) {
 }
 
 /** Import or repair a template-rendered Italian page without touching posts. */
-function estecapelli_it_template_page_import_one( $source_slug, array $translation ) {
-	$route = estecapelli_indexed_route_path( '/en/' . $source_slug, 'it' );
+function estecapelli_it_template_page_import_one( $source_slug, array $translation, $language_code = 'it', $language_name = 'Italian' ) {
+	$route = estecapelli_indexed_route_path( '/en/' . $source_slug, $language_code );
 	if ( ! $route || basename( $route ) !== $translation['slug'] ) {
-		return new WP_Error( 'it_template_pages_indexed_slug_mismatch', sprintf( 'The Italian template-page slug does not match the indexed URL contract: %s.', $source_slug ) );
+		return new WP_Error( 'it_template_pages_indexed_slug_mismatch', sprintf( 'The %s template-page slug does not match the indexed URL contract: %s.', $language_name, $source_slug ) );
 	}
 
 	$source_id = estecapelli_source_post_id( $source_slug, 'page' );
@@ -160,14 +160,14 @@ function estecapelli_it_template_page_import_one( $source_slug, array $translati
 		return new WP_Error( 'it_template_pages_unlinked_source_post', sprintf( 'WPML language details are missing for %s.', $source_slug ) );
 	}
 
-	// Prefer the canonical Italian slug so a stale WPML slot occupant cannot be
+	// Prefer the canonical target slug so a stale WPML slot occupant cannot be
 	// overwritten with this page's content.
-	$target_id = estecapelli_it_template_page_raw_target_id( $translation['slug'], $source_id );
+	$target_id = estecapelli_it_template_page_raw_target_id( $translation['slug'], $source_id, $language_code );
 	if ( ! $target_id ) {
-		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'it' );
+		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, $language_code );
 	}
 	if ( ! $target_id ) {
-		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, 'it' );
+		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, $language_code );
 	}
 	if ( $target_id === $source_id ) {
 		$target_id = 0;
@@ -175,7 +175,7 @@ function estecapelli_it_template_page_import_one( $source_slug, array $translati
 	if ( $target_id ) {
 		$raw_target = get_post( $target_id );
 		if ( ! $raw_target || 'page' !== $raw_target->post_type || 'trash' === $raw_target->post_status || $target_id === $source_id ) {
-			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, 'it' );
+			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, $language_code );
 			$target_id = 0;
 		}
 	}
@@ -208,18 +208,18 @@ function estecapelli_it_template_page_import_one( $source_slug, array $translati
 			'element_id'           => (int) $target_id,
 			'element_type'         => $element_type,
 			'trid'                 => $trid,
-			'language_code'        => 'it',
+			'language_code'        => $language_code,
 			'source_language_code' => $source_language,
 			'check_duplicates'     => false,
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
-	if ( ! estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, 'it', $source_language ) ) {
+	if ( ! estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, $language_code, $source_language ) ) {
 		$reason = estecapelli_wpml_last_slot_error();
 		return new WP_Error(
 			'it_template_pages_force_link_failed',
-			sprintf( 'The Italian WPML relationship could not be rebuilt for %s%s', $source_slug, $reason ? ' — ' . $reason : '.' )
+			sprintf( 'The %s WPML relationship could not be rebuilt for %s%s', $language_name, $source_slug, $reason ? ' — ' . $reason : '.' )
 		);
 	}
 
@@ -234,9 +234,13 @@ function estecapelli_it_template_page_import_one( $source_slug, array $translati
 	if ( is_wp_error( $target_id ) ) {
 		return $target_id;
 	}
+	$slug_result = estecapelli_force_multilingual_post_slug( $target_id, $translation['slug'], 'page', $language_code );
+	if ( is_wp_error( $slug_result ) ) {
+		return $slug_result;
+	}
 	$target_post = get_post( $target_id );
 	if ( ! $target_post || $translation['slug'] !== $target_post->post_name ) {
-		return new WP_Error( 'it_template_pages_slug_conflict', sprintf( 'The required Italian page slug is already in use: %s.', $translation['slug'] ) );
+		return new WP_Error( 'it_template_pages_slug_conflict', sprintf( 'The required %s page slug is already in use: %s.', $language_name, $translation['slug'] ) );
 	}
 
 	$thumbnail_id = get_post_thumbnail_id( $source_id );

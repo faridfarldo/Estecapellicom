@@ -1,0 +1,15 @@
+{
+  "source_slug": "contact",
+  "slug": "contacto",
+  "title": "Contacto",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Contáctanos",
+      "title": "Estamos aquí para responder a tus preguntas.",
+      "lead": "Ponte en contacto con nuestro equipo por WhatsApp, teléfono o correo electrónico, o reserva una consulta online gratuita con uno de nuestros asesores médicos.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Habla con nosotros por WhatsApp" }
+    }
+  ]
+}

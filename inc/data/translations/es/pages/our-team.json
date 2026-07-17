@@ -1,0 +1,37 @@
+{
+  "source_slug": "our-team",
+  "slug": "nuestro-equipo",
+  "title": "Nuestro equipo",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Nuestro equipo",
+      "title": "Las personas detrás de cada transformación.",
+      "lead": "Desde tu primer mensaje hasta el último control, nuestro equipo médico, de asesoramiento y de atención al paciente te acompaña en cada etapa del proceso y en tu propio idioma.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Habla con nosotros por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "team",
+      "eyebrow": "Tu primer punto de contacto",
+      "title": "Asesores médicos",
+      "lead": "Asesores multilingües que te acompañan en tu idioma, desde la primera pregunta hasta el resultado final.",
+      "members": [
+        { "name": "Marcus", "languages": [{ "label": "Inglés" }] },
+        { "name": "Matthew", "languages": [{ "label": "Inglés" }] },
+        { "name": "Rachel", "languages": [{ "label": "Inglés" }] },
+        { "name": "Roxane", "languages": [{ "label": "Francés" }] },
+        { "name": "Sana", "languages": [{ "label": "Francés" }, { "label": "Árabe" }, { "label": "Español" }] },
+        { "name": "Melissa", "languages": [{ "label": "Italiano" }] },
+        { "name": "Gaia", "languages": [{ "label": "Italiano" }] },
+        { "name": "Emilia", "languages": [{ "label": "Francés" }] },
+        { "name": "Natalia", "languages": [{ "label": "Polaco" }] },
+        { "name": "Cynthia", "languages": [{ "label": "Portugués" }] },
+        { "name": "Damla", "languages": [{ "label": "Turco" }] },
+        { "name": "Samet", "languages": [{ "label": "Turco" }] },
+        { "name": "Hamza", "languages": [{ "label": "Urdu" }] },
+        { "name": "Wali", "languages": [{ "label": "Urdu" }] }
+      ]
+    }
+  ]
+}

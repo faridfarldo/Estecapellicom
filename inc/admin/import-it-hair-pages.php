@@ -55,28 +55,89 @@ function estecapelli_it_hair_pages_route_key( $source_slug ) {
 		: '/en/hair-transplant/' . $source_slug;
 }
 
-/** Find a page ID by raw slug, bypassing WPML language filtering. */
-function estecapelli_it_hair_page_raw_post_id( $slug, $exclude_id = 0 ) {
+/** Find a page by raw slug and language, bypassing request-level filtering. */
+function estecapelli_it_hair_page_raw_post_id( $slug, $exclude_id = 0, $language_code = 'it' ) {
 	global $wpdb;
-	if ( $exclude_id ) {
-		return (int) $wpdb->get_var(
-			$wpdb->prepare(
-				"SELECT ID FROM {$wpdb->posts}
-				 WHERE post_name = %s AND post_type = 'page' AND post_status <> 'trash' AND ID <> %d
-				 ORDER BY ID ASC LIMIT 1",
-				$slug,
-				(int) $exclude_id
-			)
-		);
-	}
-	return (int) $wpdb->get_var(
+	$ids = $wpdb->get_col(
 		$wpdb->prepare(
 			"SELECT ID FROM {$wpdb->posts}
-			 WHERE post_name = %s AND post_type = 'page' AND post_status <> 'trash'
-			 ORDER BY ID ASC LIMIT 1",
-			$slug
+			 WHERE post_name = %s AND post_type = 'page' AND post_status <> 'trash' AND ID <> %d
+			 ORDER BY ID ASC",
+			$slug,
+			(int) $exclude_id
 		)
 	);
+
+	foreach ( $ids as $id ) {
+		$details = apply_filters(
+			'wpml_element_language_details',
+			null,
+			array(
+				'element_id'   => (int) $id,
+				'element_type' => 'page',
+			)
+		);
+		if ( $language_code === (string) estecapelli_it_hair_detail( $details, 'language_code' ) ) {
+			return (int) $id;
+		}
+	}
+
+	return 0;
+}
+
+/**
+ * Restore an indexed slug after WordPress suffixes a cross-language duplicate.
+ *
+ * The direct write is safe only when every other post with the slug belongs to
+ * a different WPML language. This is required for canonical shared slugs such
+ * as tricholab, blog and the doctor profile slugs.
+ */
+function estecapelli_force_multilingual_post_slug( $post_id, $slug, $post_type, $language_code ) {
+	global $wpdb;
+	$post_id = (int) $post_id;
+	if ( $slug === get_post_field( 'post_name', $post_id ) ) {
+		return true;
+	}
+
+	$conflicts = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts}
+			 WHERE post_name = %s AND post_type = %s AND post_status <> 'trash' AND ID <> %d",
+			$slug,
+			$post_type,
+			$post_id
+		)
+	);
+	foreach ( array_map( 'intval', (array) $conflicts ) as $conflict_id ) {
+		$details = apply_filters(
+			'wpml_element_language_details',
+			null,
+			array(
+				'element_id'   => $conflict_id,
+				'element_type' => $post_type,
+			)
+		);
+		$conflict_language = (string) estecapelli_it_hair_detail( $details, 'language_code' );
+		if ( ! $conflict_language || $language_code === $conflict_language ) {
+			return new WP_Error( 'multilingual_slug_conflict', sprintf( 'The slug %1$s is already used by %2$s #%3$d in the same language.', $slug, $post_type, $conflict_id ) );
+		}
+	}
+
+	$saved = $wpdb->update(
+		$wpdb->posts,
+		array( 'post_name' => $slug ),
+		array( 'ID' => $post_id ),
+		array( '%s' ),
+		array( '%d' )
+	);
+	if ( false === $saved ) {
+		return new WP_Error( 'multilingual_slug_not_saved', sprintf( 'The slug %1$s could not be written for %2$s #%3$d.', $slug, $post_type, $post_id ) );
+	}
+	clean_post_cache( $post_id );
+
+	return $slug === get_post_field( 'post_name', $post_id )
+		? true
+		: new WP_Error( 'multilingual_slug_not_saved', sprintf( 'The slug %1$s did not persist for %2$s #%3$d.', $slug, $post_type, $post_id ) );
 }
 
 /** Load and strictly validate all Italian Hair Transplant page overlays. */
@@ -129,8 +190,8 @@ function estecapelli_it_hair_pages_load_translations() {
 	return $loaded;
 }
 
-/** Force-import one validated Italian page overlay. */
-function estecapelli_it_hair_pages_import_one( array $translation ) {
+/** Force-import one validated page overlay for a requested WPML language. */
+function estecapelli_it_hair_pages_import_one( array $translation, $language_code = 'it', $language_name = 'Italian' ) {
 	$source_slug = $translation['source_slug'];
 	$seed        = estecapelli_it_hair_pages_source_seed( $source_slug );
 	if ( is_wp_error( $seed ) ) {
@@ -162,32 +223,32 @@ function estecapelli_it_hair_pages_import_one( array $translation ) {
 	}
 
 	// Prefer the record already owning the exact live slug.
-	$target_id = estecapelli_it_hair_page_raw_post_id( $translation['slug'], $source_id );
+	$target_id = estecapelli_it_hair_page_raw_post_id( $translation['slug'], $source_id, $language_code );
 	if ( ! $target_id ) {
-		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, 'it' );
+		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, $language_code );
 	}
 	if ( $target_id ) {
 		$raw_target = get_post( $target_id );
 		if ( ! $raw_target || 'page' !== $raw_target->post_type || 'trash' === $raw_target->post_status || $target_id === $source_id ) {
-			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, 'it' );
+			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, $language_code );
 			$target_id = 0;
 		}
 	}
 	if ( ! $target_id ) {
-		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, 'it' );
+		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, $language_code );
 	}
 	if ( $target_id === $source_id ) {
 		$target_id = 0;
 	}
 	if ( ! $target_id ) {
-		$target_id = estecapelli_it_hair_page_raw_post_id( $translation['slug'], $source_id );
+		$target_id = estecapelli_it_hair_page_raw_post_id( $translation['slug'], $source_id, $language_code );
 	}
 
-	$italian_parent = 0;
+	$target_parent = 0;
 	if ( (int) $source_post->post_parent ) {
-		$linked_parent = (int) apply_filters( 'wpml_object_id', (int) $source_post->post_parent, 'page', false, 'it' );
+		$linked_parent = (int) apply_filters( 'wpml_object_id', (int) $source_post->post_parent, 'page', false, $language_code );
 		if ( $linked_parent && $linked_parent !== (int) $source_post->post_parent ) {
-			$italian_parent = $linked_parent;
+			$target_parent = $linked_parent;
 		}
 	}
 
@@ -201,7 +262,7 @@ function estecapelli_it_hair_pages_import_one( array $translation ) {
 		'post_name'    => $translation['slug'],
 		'post_status'  => 'publish',
 		'post_content' => '',
-		'post_parent'  => $italian_parent,
+		'post_parent'  => $target_parent,
 		'menu_order'   => (int) $source_post->menu_order,
 	);
 	if ( $target_id ) {
@@ -220,20 +281,21 @@ function estecapelli_it_hair_pages_import_one( array $translation ) {
 			'element_id'           => (int) $target_id,
 			'element_type'         => $element_type,
 			'trid'                 => $trid,
-			'language_code'        => 'it',
+			'language_code'        => $language_code,
 			'source_language_code' => $source_language,
 			'check_duplicates'      => false,
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
-	$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, 'it', $source_language );
+	$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, $language_code, $source_language );
 	if ( ! $forced ) {
 		$reason = estecapelli_wpml_last_slot_error();
 		return new WP_Error(
 			'it_hair_pages_force_link_failed',
 			sprintf(
-				'The Italian WPML relationship could not be rebuilt for %s (English page #%d, Italian page #%d, trid %d)%s',
+				'The %s WPML relationship could not be rebuilt for %s (English page #%d, target page #%d, trid %d)%s',
+				$language_name,
 				$source_slug,
 				(int) $source_id,
 				(int) $target_id,
@@ -243,11 +305,11 @@ function estecapelli_it_hair_pages_import_one( array $translation ) {
 		);
 	}
 
-	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, 'it' );
-	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, 'it' ) ) {
-		$repaired = estecapelli_wpml_repair_relationship_raw( $target_id, $element_type, $trid, 'it', $source_language );
+	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, $language_code );
+	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, $language_code ) ) {
+		$repaired = estecapelli_wpml_repair_relationship_raw( $target_id, $element_type, $trid, $language_code, $source_language );
 		if ( ! $repaired ) {
-			return new WP_Error( 'it_hair_pages_link_failed', sprintf( 'WPML did not link the Italian page for %s.', $source_slug ) );
+			return new WP_Error( 'it_hair_pages_link_failed', sprintf( 'WPML did not link the %s page for %s.', $language_name, $source_slug ) );
 		}
 	}
 
@@ -256,16 +318,20 @@ function estecapelli_it_hair_pages_import_one( array $translation ) {
 			'ID'          => (int) $target_id,
 			'post_title'  => $translation['title'],
 			'post_name'   => $translation['slug'],
-			'post_parent' => $italian_parent,
+			'post_parent' => $target_parent,
 		),
 		true
 	);
 	if ( is_wp_error( $target_id ) ) {
 		return $target_id;
 	}
+	$slug_result = estecapelli_force_multilingual_post_slug( $target_id, $translation['slug'], 'page', $language_code );
+	if ( is_wp_error( $slug_result ) ) {
+		return $slug_result;
+	}
 	$target_post = get_post( $target_id );
 	if ( ! $target_post || $translation['slug'] !== $target_post->post_name ) {
-		return new WP_Error( 'it_hair_pages_slug_conflict', sprintf( 'The required Italian slug is already in use: %s.', $translation['slug'] ) );
+		return new WP_Error( 'it_hair_pages_slug_conflict', sprintf( 'The required %s slug is already in use: %s.', $language_name, $translation['slug'] ) );
 	}
 
 	$sections = estecapelli_merge_preserve_media( $seed['sections'], $source_id );
@@ -273,7 +339,7 @@ function estecapelli_it_hair_pages_import_one( array $translation ) {
 	if ( is_wp_error( $sections ) ) {
 		return $sections;
 	}
-	$sections = estecapelli_it_hair_localize_urls( $sections );
+	$sections = estecapelli_it_hair_localize_urls( $sections, $language_code );
 	$sections = estecapelli_it_hair_normalize_media( $sections );
 	update_field( 'page_sections', $sections, $target_id );
 
@@ -281,7 +347,7 @@ function estecapelli_it_hair_pages_import_one( array $translation ) {
 	$saved_title    = is_array( $saved_sections ) ? ( $saved_sections[0]['title'] ?? '' ) : '';
 	$expected_title = $translation['sections'][0]['title'] ?? '';
 	if ( ! is_array( $saved_sections ) || ! $expected_title || $expected_title !== $saved_title ) {
-		return new WP_Error( 'it_hair_pages_acf_not_saved', sprintf( 'The Italian ACF content was not saved for %s.', $source_slug ) );
+		return new WP_Error( 'it_hair_pages_acf_not_saved', sprintf( 'The %s ACF content was not saved for %s.', $language_name, $source_slug ) );
 	}
 	$media_saved = estecapelli_it_hair_validate_media( $sections, $saved_sections );
 	if ( is_wp_error( $media_saved ) ) {

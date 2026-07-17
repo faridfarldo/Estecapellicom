@@ -1,0 +1,62 @@
+{
+  "source_slug": "about-us",
+  "slug": "sobre-nosotros",
+  "title": "Sobre nosotros",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Quiénes somos",
+      "title": "Excelencia estética respaldada por la confianza médica.",
+      "lead": "Estecapelli es una clínica con sede en Estambul especializada en trasplante capilar, cirugía plástica, tratamientos dentales y medicina estética no quirúrgica. Reunimos médicos cualificados, instalaciones de nivel hospitalario y un enfoque centrado en el paciente para ofrecer resultados en los que puedes confiar.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Habla con nosotros por WhatsApp" }
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Elegidos en todo el mundo",
+      "stats": [
+        { "value": "15+", "label": "Años de experiencia" },
+        { "value": "50.000+", "label": "Trasplantes capilares" },
+        { "value": "40+", "label": "Países atendidos" },
+        { "value": "24/7", "label": "Atención al paciente" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Quiénes somos",
+      "title": "Un nombre de confianza en trasplante capilar",
+      "body": "<p>Con más de 15 años de experiencia en el sector sanitario, Estecapelli es una referencia internacional en trasplante capilar. Fundada en Turquía, nuestra clínica obtuvo rápidamente reconocimiento mundial gracias a la alta satisfacción de sus pacientes y a unos resultados siempre positivos. Hoy recibimos a pacientes de todo el mundo en nuestros centros de Turquía y Chile.</p><p>Con más de 2.500 trasplantes capilares realizados cada año solo en Turquía, Estecapelli ofrece resultados naturales, estéticos y permanentes mediante tecnologías innovadoras y planes de tratamiento personalizados. Nuestras técnicas patentadas VITA y Exosome favorecen una recuperación más rápida y aumentan la supervivencia de los injertos, marcando una verdadera diferencia en la restauración capilar.</p><p>Gracias a nuestro enfoque de precio fijo y al número máximo de injertos sin límites preestablecidos, ofrecemos a cada paciente la solución más adecuada. Cada procedimiento se realiza con el máximo cuidado por nuestro experimentado y cualificado equipo médico turco.</p><p>Nuestras modernas instalaciones clínicas, nuestros elevados estándares de higiene, un servicio conforme a estándares internacionales y la satisfacción demostrada de miles de pacientes hacen de Estecapelli un nombre destacado en el sector. Estés donde estés, Estecapelli está a tu lado para ofrecerte la mejor experiencia posible de trasplante capilar.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Por qué Turquía",
+      "title": "Resultados de nivel mundial, sin precios inflados",
+      "body": "<p>¿Por qué pagar más en el Reino Unido, Estados Unidos o Europa? Estecapelli combina excelencia médica, técnicas reconocidas internacionalmente y precios competitivos para ofrecer resultados de trasplante capilar de nivel mundial por una fracción del coste.</p><p>Nuestras instalaciones de última generación en Turquía ofrecen la misma calidad asistencial que las mejores clínicas internacionales, sin precios excesivos. Con cirujanos experimentados, planes personalizados y una atención integral, recibes un valor excepcional sin renunciar a la calidad.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Nuestra tecnología",
+      "title": "Descubre Exosome FUE",
+      "body": "<p>La solución Exosome se obtiene a partir de medios de cultivo que contienen células madre mesenquimales procedentes del cordón umbilical materno. Estas células poseen extraordinarias propiedades regenerativas y reparadoras. Al aprovechar su capacidad natural para comunicarse con las células circundantes y revitalizarlas, la solución Exosome favorece la reparación de los tejidos, una función celular más saludable y una mayor vitalidad general de la piel. La técnica Exosome FUE es una aplicación patentada de Estecapelli.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Nuestro método exclusivo",
+      "title": "Descubre el tratamiento VITA",
+      "body": "<p>Desarrollado por Estecapelli, el tratamiento VITA es una tecnología revolucionaria que va más allá del trasplante capilar convencional: estimula la vitalidad de los folículos, acelera la recuperación y favorece resultados naturales.</p><p>Aplicado con éxito durante más de seis años, este método exclusivo se ha convertido en el tratamiento distintivo de Estecapelli. Hasta la fecha, más de 10.000 pacientes han elegido VITA para conseguir un cabello natural, denso y permanente. Este éxito constituye la base del reconocimiento internacional de Estecapelli.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Lo que nos guía",
+      "title": "Nuestra misión",
+      "body": "<p>La misión de Estecapelli es ofrecer a sus pacientes resultados duraderos y estéticamente armoniosos mediante las tecnologías médicas más recientes y métodos innovadores. Gracias a nuestro compromiso con la mejora continua, nuestras colaboraciones internacionales y un equipo de expertos, perseguimos la excelencia en el sector sanitario mientras seguimos ofreciendo un servicio de nivel mundial.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Mirando al futuro",
+      "title": "Nuestra visión",
+      "body": "<p>Nuestra visión es convertirnos en una marca líder mundial en trasplante capilar y medicina estética, guiando el sector con prácticas innovadoras y un enfoque meticuloso y atento a cada detalle. Con nuestros centros en Turquía y Santiago de Chile, queremos llegar a más pacientes y hacer que nuestro servicio de alta calidad sea accesible para un público más amplio.</p>",
+      "cta": { "label": "Conoce a nuestros médicos" }
+    }
+  ]
+}

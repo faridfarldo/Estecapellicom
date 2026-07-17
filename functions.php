@@ -46,6 +46,7 @@ require get_template_directory() . '/inc/fr-string-fallbacks.php';
 require get_template_directory() . '/inc/it-navigation.php';
 require get_template_directory() . '/inc/it-string-fallbacks.php';
 require get_template_directory() . '/inc/pl-string-fallbacks.php';
+require get_template_directory() . '/inc/es-string-fallbacks.php';
 require get_template_directory() . '/inc/nav-translations.php';
 require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
@@ -72,6 +73,7 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-it-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-es-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-doctors.php';
+	require get_template_directory() . '/inc/admin/import-es-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-doctors.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-blog.php';

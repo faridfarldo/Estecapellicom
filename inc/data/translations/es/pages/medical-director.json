@@ -1,0 +1,15 @@
+{
+  "source_slug": "medical-director",
+  "slug": "director-medico",
+  "title": "Director médico",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Dirección médica",
+      "title": "Bajo la dirección de nuestro director médico.",
+      "lead": "Cada decisión clínica de Estecapelli está supervisada por nuestro director médico para garantizar unos estándares constantes en trasplante capilar, cirugía plástica, tratamientos dentales y procedimientos no quirúrgicos.",
+      "cta_primary": { "label": "Consulta gratuita" },
+      "cta_secondary": { "label": "Habla con nosotros por WhatsApp" }
+    }
+  ]
+}
