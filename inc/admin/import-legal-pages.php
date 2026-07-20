@@ -34,48 +34,6 @@ function estecapelli_legal_page_languages() {
 	return $languages;
 }
 
-/** English source slug => localized title and stable leaf slug. */
-function estecapelli_legal_pages_manifest() {
-	return array(
-		'tr' => array(
-			'privacy-policy'  => array( 'slug' => 'gizlilik-politikasi', 'title' => 'Gizlilik Politikası' ),
-			'terms'           => array( 'slug' => 'kullanim-kosullari', 'title' => 'Kullanım Koşulları' ),
-			'kvkk-disclosure' => array( 'slug' => 'kvkk-aydinlatma-metni', 'title' => 'KVKK Aydınlatma Metni' ),
-			'cookie-policy'   => array( 'slug' => 'cerez-politikasi', 'title' => 'Çerez Politikası' ),
-		),
-		'fr' => array(
-			'privacy-policy'  => array( 'slug' => 'politique-de-confidentialite', 'title' => 'Politique de confidentialité' ),
-			'terms'           => array( 'slug' => 'conditions-d-utilisation', 'title' => 'Conditions d’utilisation' ),
-			'kvkk-disclosure' => array( 'slug' => 'notice-de-traitement-des-donnees-kvkk', 'title' => 'Notice d’information KVKK sur le traitement des données' ),
-			'cookie-policy'   => array( 'slug' => 'politique-relative-aux-cookies', 'title' => 'Politique relative aux cookies' ),
-		),
-		'it' => array(
-			'privacy-policy'  => array( 'slug' => 'informativa-sulla-privacy', 'title' => 'Informativa sulla privacy' ),
-			'terms'           => array( 'slug' => 'termini-e-condizioni', 'title' => 'Termini e condizioni' ),
-			'kvkk-disclosure' => array( 'slug' => 'informativa-sul-trattamento-dei-dati-kvkk', 'title' => 'Informativa KVKK sul trattamento dei dati' ),
-			'cookie-policy'   => array( 'slug' => 'informativa-sui-cookie', 'title' => 'Informativa sui cookie' ),
-		),
-		'es' => array(
-			'privacy-policy'  => array( 'slug' => 'politica-de-privacidad', 'title' => 'Política de privacidad' ),
-			'terms'           => array( 'slug' => 'terminos-y-condiciones', 'title' => 'Términos y condiciones' ),
-			'kvkk-disclosure' => array( 'slug' => 'aviso-de-tratamiento-de-datos-kvkk', 'title' => 'Aviso KVKK sobre el tratamiento de datos' ),
-			'cookie-policy'   => array( 'slug' => 'politica-de-cookies', 'title' => 'Política de cookies' ),
-		),
-		'pl' => array(
-			'privacy-policy'  => array( 'slug' => 'polityka-prywatnosci', 'title' => 'Polityka prywatności' ),
-			'terms'           => array( 'slug' => 'regulamin', 'title' => 'Regulamin' ),
-			'kvkk-disclosure' => array( 'slug' => 'klauzula-informacyjna-kvkk', 'title' => 'Klauzula informacyjna KVKK dotycząca przetwarzania danych' ),
-			'cookie-policy'   => array( 'slug' => 'polityka-plikow-cookie', 'title' => 'Polityka plików cookie' ),
-		),
-		'pt' => array(
-			'privacy-policy'  => array( 'slug' => 'politica-de-privacidade', 'title' => 'Política de privacidade' ),
-			'terms'           => array( 'slug' => 'termos-e-condicoes', 'title' => 'Termos e condições' ),
-			'kvkk-disclosure' => array( 'slug' => 'aviso-de-tratamento-de-dados-kvkk', 'title' => 'Aviso KVKK sobre o tratamento de dados' ),
-			'cookie-policy'   => array( 'slug' => 'politica-de-cookies', 'title' => 'Política de cookies' ),
-		),
-	);
-}
-
 /** Return the source seed after removing its unfinished editorial placeholder. */
 function estecapelli_legal_page_source_seed( $source_slug ) {
 	if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
@@ -332,6 +290,9 @@ function estecapelli_import_legal_page( $public_language, $source_slug ) {
 	if ( $thumbnail_id && ! get_post_thumbnail_id( $target_id ) ) {
 		set_post_thumbnail( $target_id, $thumbnail_id );
 	}
+	// This install uses verbose page rewrite rules. Refresh them after a legal
+	// page is created or renamed so normal WPML routing also knows the new slug.
+	flush_rewrite_rules( false );
 
 	return (int) $target_id;
 }

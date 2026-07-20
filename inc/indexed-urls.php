@@ -576,25 +576,94 @@ function estecapelli_nav_url( $english_path ) {
 	return estecapelli_indexed_url( $english_path );
 }
 
+/** English legal source slug => localized title and stable leaf slug. */
+function estecapelli_legal_pages_manifest() {
+	return array(
+		'tr' => array(
+			'privacy-policy'  => array( 'slug' => 'gizlilik-politikasi', 'title' => 'Gizlilik Politikası' ),
+			'terms'           => array( 'slug' => 'kullanim-kosullari', 'title' => 'Kullanım Koşulları' ),
+			'kvkk-disclosure' => array( 'slug' => 'kvkk-aydinlatma-metni', 'title' => 'KVKK Aydınlatma Metni' ),
+			'cookie-policy'   => array( 'slug' => 'cerez-politikasi', 'title' => 'Çerez Politikası' ),
+		),
+		'fr' => array(
+			'privacy-policy'  => array( 'slug' => 'politique-de-confidentialite', 'title' => 'Politique de confidentialité' ),
+			'terms'           => array( 'slug' => 'conditions-d-utilisation', 'title' => 'Conditions d’utilisation' ),
+			'kvkk-disclosure' => array( 'slug' => 'notice-de-traitement-des-donnees-kvkk', 'title' => 'Notice d’information KVKK sur le traitement des données' ),
+			'cookie-policy'   => array( 'slug' => 'politique-relative-aux-cookies', 'title' => 'Politique relative aux cookies' ),
+		),
+		'it' => array(
+			'privacy-policy'  => array( 'slug' => 'informativa-sulla-privacy', 'title' => 'Informativa sulla privacy' ),
+			'terms'           => array( 'slug' => 'termini-e-condizioni', 'title' => 'Termini e condizioni' ),
+			'kvkk-disclosure' => array( 'slug' => 'informativa-sul-trattamento-dei-dati-kvkk', 'title' => 'Informativa KVKK sul trattamento dei dati' ),
+			'cookie-policy'   => array( 'slug' => 'informativa-sui-cookie', 'title' => 'Informativa sui cookie' ),
+		),
+		'es' => array(
+			'privacy-policy'  => array( 'slug' => 'politica-de-privacidad', 'title' => 'Política de privacidad' ),
+			'terms'           => array( 'slug' => 'terminos-y-condiciones', 'title' => 'Términos y condiciones' ),
+			'kvkk-disclosure' => array( 'slug' => 'aviso-de-tratamiento-de-datos-kvkk', 'title' => 'Aviso KVKK sobre el tratamiento de datos' ),
+			'cookie-policy'   => array( 'slug' => 'politica-de-cookies', 'title' => 'Política de cookies' ),
+		),
+		'pl' => array(
+			'privacy-policy'  => array( 'slug' => 'polityka-prywatnosci', 'title' => 'Polityka prywatności' ),
+			'terms'           => array( 'slug' => 'regulamin', 'title' => 'Regulamin' ),
+			'kvkk-disclosure' => array( 'slug' => 'klauzula-informacyjna-kvkk', 'title' => 'Klauzula informacyjna KVKK dotycząca przetwarzania danych' ),
+			'cookie-policy'   => array( 'slug' => 'polityka-plikow-cookie', 'title' => 'Polityka plików cookie' ),
+		),
+		'pt' => array(
+			'privacy-policy'  => array( 'slug' => 'politica-de-privacidade', 'title' => 'Política de privacidade' ),
+			'terms'           => array( 'slug' => 'termos-e-condicoes', 'title' => 'Termos e condições' ),
+			'kvkk-disclosure' => array( 'slug' => 'aviso-de-tratamento-de-dados-kvkk', 'title' => 'Aviso KVKK sobre o tratamento de dados' ),
+			'cookie-policy'   => array( 'slug' => 'politica-de-cookies', 'title' => 'Política de cookies' ),
+		),
+	);
+}
+
+/** Exact public route for one legal source slug and language. */
+function estecapelli_legal_page_route( $english_path, $language = '' ) {
+	$source_slug = trim( (string) $english_path, '/' );
+	$language    = estecapelli_indexed_language_code( $language );
+	$manifest    = estecapelli_legal_pages_manifest();
+	if ( ! isset( $manifest['tr'][ $source_slug ] ) ) {
+		return '';
+	}
+	if ( 'en' === $language ) {
+		return '/en/' . $source_slug;
+	}
+	return isset( $manifest[ $language ][ $source_slug ] )
+		? '/' . $language . '/' . $manifest[ $language ][ $source_slug ]['slug']
+		: '';
+}
+
 /**
  * Resolve a real translated page outside the legacy indexed set (legal pages).
  * It never guesses a translated slug; if no translation exists, English is the
  * safe published fallback.
  */
 function estecapelli_translated_page_url( $english_path, $language = '' ) {
-	$source = get_page_by_path( trim( (string) $english_path, '/' ), OBJECT, 'page' );
+	$source_slug = trim( (string) $english_path, '/' );
+	$source_id   = function_exists( 'estecapelli_source_post_id' )
+		? estecapelli_source_post_id( $source_slug, 'page' )
+		: 0;
+	$source      = $source_id ? get_post( $source_id ) : get_page_by_path( $source_slug, OBJECT, 'page' );
 	if ( ! $source ) {
-		return estecapelli_unfiltered_home_url() . '/en/' . trim( (string) $english_path, '/' );
+		return estecapelli_unfiltered_home_url() . '/en/' . $source_slug;
 	}
 	$source_id = (int) apply_filters( 'wpml_object_id', $source->ID, 'page', true, 'en' );
 	$source    = get_post( $source_id ?: $source->ID );
+	if ( ! $source ) {
+		return estecapelli_unfiltered_home_url() . '/en/' . $source_slug;
+	}
 
 	$language      = estecapelli_indexed_language_code( $language );
 	$wpml_language = estecapelli_wpml_language_code( $language );
-	$target        = 'en' === $language
-		? (int) $source->ID
-		: (int) apply_filters( 'wpml_object_id', $source->ID, 'page', false, $wpml_language );
-	return get_permalink( $target ?: $source->ID );
+	$route         = estecapelli_legal_page_route( $source_slug, $language );
+	if ( 'en' === $language ) {
+		return estecapelli_unfiltered_home_url() . $route;
+	}
+	$target = (int) apply_filters( 'wpml_object_id', $source->ID, 'page', false, $wpml_language );
+	return $target && $route
+		? estecapelli_unfiltered_home_url() . $route
+		: estecapelli_unfiltered_home_url() . estecapelli_legal_page_route( $source_slug, 'en' );
 }
 
 /**
@@ -763,7 +832,12 @@ add_filter( 'post_link', 'estecapelli_indexed_post_link', 999, 2 );
 function estecapelli_indexed_page_link( $url, $post_id ) {
 	$post = get_post( $post_id );
 	$key  = estecapelli_indexed_post_route_key( $post );
-	list( , $language ) = estecapelli_indexed_post_context( $post );
+	list( $source_id, $language ) = estecapelli_indexed_post_context( $post );
+	$source_slug = $source_id ? (string) get_post_field( 'post_name', $source_id ) : '';
+	$legal_route = estecapelli_legal_page_route( $source_slug, $language );
+	if ( $legal_route ) {
+		return estecapelli_unfiltered_home_url() . $legal_route;
+	}
 	return $key && estecapelli_indexed_route_path( $key, $language ) ? estecapelli_indexed_url( $key, $language ) : estecapelli_localize_theme_url( $url );
 }
 add_filter( 'page_link', 'estecapelli_indexed_page_link', 999, 2 );
@@ -984,6 +1058,103 @@ function estecapelli_indexed_request( $query_vars ) {
 	return $resolved;
 }
 add_filter( 'request', 'estecapelli_indexed_request', 30 );
+
+/**
+ * Exact source/language context for a legal-page request, or an empty array.
+ *
+ * Legal pages are newer than the historical indexed contract. They still need
+ * deterministic routing because this site's verbose page rewrite rules can be
+ * stale immediately after an importer creates or renames a translated page.
+ */
+function estecapelli_legal_request_context( $request = '' ) {
+	static $routes = null;
+	if ( null === $routes ) {
+		$routes = array();
+		foreach ( array_keys( estecapelli_legal_pages_manifest()['tr'] ) as $source_slug ) {
+			$routes[ estecapelli_legal_page_route( $source_slug, 'en' ) ] = array( $source_slug, 'en' );
+		}
+		foreach ( estecapelli_legal_pages_manifest() as $language => $pages ) {
+			foreach ( $pages as $source_slug => $translation ) {
+				$routes[ '/' . $language . '/' . $translation['slug'] ] = array( $source_slug, $language );
+			}
+		}
+	}
+
+	if ( '' === (string) $request ) {
+		$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	}
+	$path = '/' . trim( (string) wp_parse_url( $request, PHP_URL_PATH ), '/' );
+	$path = untrailingslashit( $path ) ?: '/';
+	return $routes[ $path ] ?? array();
+}
+
+/** Resolve a localized legal slug directly to its published WPML page. */
+function estecapelli_legal_page_request( $query_vars ) {
+	$context = estecapelli_legal_request_context();
+	if ( ! $context ) {
+		return $query_vars;
+	}
+
+	list( $source_slug, $public_language ) = $context;
+	$source_id = function_exists( 'estecapelli_source_post_id' )
+		? estecapelli_source_post_id( $source_slug, 'page' )
+		: 0;
+	if ( ! $source_id ) {
+		return $query_vars;
+	}
+
+	$wpml_language = estecapelli_wpml_language_code( $public_language );
+	$target_id     = 'en' === $public_language
+		? (int) $source_id
+		: (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, $wpml_language );
+
+	// WPML's object cache may still hold "missing" after an import. Confirm the
+	// exact target from the translation table before allowing a false 404.
+	if ( 'en' !== $public_language ) {
+		global $wpdb;
+		$element_type = apply_filters( 'wpml_element_type', 'page' );
+		$target_slug  = estecapelli_legal_pages_manifest()[ $public_language ][ $source_slug ]['slug'];
+		$raw_target   = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT target.element_id
+				 FROM {$wpdb->prefix}icl_translations target
+				 INNER JOIN {$wpdb->prefix}icl_translations source
+				 ON source.trid = target.trid AND source.element_type = target.element_type
+				 INNER JOIN {$wpdb->posts} post ON post.ID = target.element_id
+				 WHERE source.element_id = %d AND source.element_type = %s
+				 AND target.language_code = %s AND post.post_type = 'page'
+				 AND post.post_status = 'publish' AND post.post_name = %s
+				 ORDER BY target.translation_id ASC LIMIT 1",
+				(int) $source_id,
+				$element_type,
+				$wpml_language,
+				$target_slug
+			)
+		);
+		if ( $raw_target ) {
+			$target_id = $raw_target;
+		}
+	}
+	if ( ! $target_id ) {
+		return $query_vars;
+	}
+
+	if ( 'en' !== $public_language ) {
+		do_action( 'wpml_switch_language', $wpml_language );
+	}
+	$resolved = array( 'page_id' => (int) $target_id );
+	if ( 'en' !== $public_language || isset( $query_vars['lang'] ) ) {
+		$resolved['lang'] = $wpml_language;
+	}
+	return $resolved;
+}
+add_filter( 'request', 'estecapelli_legal_page_request', 40 );
+
+/** Keep WordPress on the exact legal route resolved above. */
+function estecapelli_preserve_legal_canonical( $redirect_url ) {
+	return estecapelli_legal_request_context() ? false : $redirect_url;
+}
+add_filter( 'redirect_canonical', 'estecapelli_preserve_legal_canonical', 1000 );
 
 /** Keep WordPress from canonicalizing an indexed route to a guessed route. */
 function estecapelli_preserve_indexed_canonical( $redirect_url, $requested_url ) {
