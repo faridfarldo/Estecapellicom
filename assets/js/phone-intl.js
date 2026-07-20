@@ -26,16 +26,19 @@
 	if (!inputs.length) return;
 
 	var UTILS_URL = 'https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js';
+	var config = window.EstecapelliPhone || {};
+	var i18n = config.i18n || {};
 
 	// Friendly messages keyed by intl-tel-input's getValidationError() codes.
 	var ERRORS = {
-		0: 'Please enter a valid phone number.',            // IS_POSSIBLE (shouldn't reach here)
-		1: 'Please select a valid country code.',           // INVALID_COUNTRY_CODE
-		2: 'This number is too short for the selected country.',
-		3: 'This number is too long for the selected country.',
-		4: 'Please enter the full phone number, including the area code.', // LOCAL_ONLY
-		default: 'Please enter a valid phone number for the selected country.'
+		0: i18n.invalid || 'Please enter a valid phone number.',            // IS_POSSIBLE (shouldn't reach here)
+		1: i18n.countryCode || 'Please select a valid country code.',        // INVALID_COUNTRY_CODE
+		2: i18n.tooShort || 'This number is too short for the selected country.',
+		3: i18n.tooLong || 'This number is too long for the selected country.',
+		4: i18n.areaCode || 'Please enter the full phone number, including the area code.', // LOCAL_ONLY
+		default: i18n.invalidCountry || 'Please enter a valid phone number for the selected country.'
 	};
+	var REQUIRED_ERROR = i18n.required || 'Please enter your phone number.';
 
 	// Resolve the visitor's country once, cached for the session.
 	function geoLookup(callback) {
@@ -115,7 +118,7 @@
 		function reflectValidity() {
 			var val = (input.value || '').trim();
 			if (!val) {
-				setError(input, ( touched && input.hasAttribute('required') ) ? 'Please enter your phone number.' : '');
+				setError(input, ( touched && input.hasAttribute('required') ) ? REQUIRED_ERROR : '');
 				return true; // empty handled at submit; not an "invalid number"
 			}
 			var valid = checkValidity();
@@ -161,7 +164,7 @@
 				if (input.hasAttribute('required')) {
 					e.preventDefault();
 					e.stopImmediatePropagation();
-					setError(input, 'Please enter your phone number.');
+					setError(input, REQUIRED_ERROR);
 					input.focus();
 				}
 				return;

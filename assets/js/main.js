@@ -1189,6 +1189,10 @@
 
 		function showError(msg) {
 			if (!feedback) return;
+			var serverErrors = window.EstecapelliLeadServerErrors || {};
+			if (msg && serverErrors[msg]) {
+				msg = serverErrors[msg];
+			}
 			feedback.textContent = msg || i18n.error || 'Something went wrong. Please try again or use WhatsApp.';
 			feedback.classList.add('is-error');
 			feedback.hidden = false;
@@ -1214,7 +1218,7 @@
 				.then(function (r) { return r.json().catch(function () { return { success: false }; }); })
 				.then(function (res) {
 					if (res && res.success) {
-						var msg = (res.data && res.data.message) ? res.data.message : (i18n.thanks || 'Thank you!');
+						var msg = i18n.thanks || ((res.data && res.data.message) ? res.data.message : 'Thank you!');
 						form.innerHTML = '<div class="lead-popup__success" role="status">' +
 							'<span class="lead-popup__success-mark" aria-hidden="true"></span>' +
 							'<strong></strong></div>';

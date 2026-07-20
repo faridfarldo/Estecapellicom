@@ -44,6 +44,7 @@ require get_template_directory() . '/inc/canonical.php';
 require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/wpml-fix.php';
 require get_template_directory() . '/inc/fr-string-fallbacks.php';
+require get_template_directory() . '/inc/tr-string-fallbacks.php';
 require get_template_directory() . '/inc/it-navigation.php';
 require get_template_directory() . '/inc/it-string-fallbacks.php';
 require get_template_directory() . '/inc/pl-string-fallbacks.php';
