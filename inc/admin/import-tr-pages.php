@@ -44,6 +44,7 @@ function estecapelli_tr_template_pages_manifest() {
 /** Doctor profiles that are present in the live Turkish URL inventory. */
 function estecapelli_tr_doctors_manifest() {
 	return array(
+		'prof-dr-binnur-ustun' => 'prof-dr-binnur-ustun',
 		'mehmet-hanifi-kutlar' => 'mehmet-hanifi-kutlar',
 		'op-dr-hasan-celik'    => 'op-dr-hasan-celik',
 		'op-dr-mehmet-palali'  => 'op-dr-mehmet-palali',
