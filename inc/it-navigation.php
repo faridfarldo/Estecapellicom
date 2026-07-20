@@ -103,7 +103,7 @@ function estecapelli_it_nav_source_title_routes() {
 		'About Estecapelli'                  => '/en/about-us',
 		'Our Doctors'                        => '/en/about-us/our-doctors',
 		'Our Team'                           => '/en/about-us/our-team',
-		'Medical Director'                   => '/en/about-us/medical-director',
+		'Chief Physician'                    => '/en/about-us/medical-director',
 		'Blog'                               => '/en/blog',
 		'Contact'                            => '/en/contact',
 		'Contact Us'                         => '/en/contact',

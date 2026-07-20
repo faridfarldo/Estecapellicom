@@ -685,10 +685,10 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 			),
 			array(
 				'slug'   => 'medical-director',
-				'title'  => 'Medical Director',
+				'title'  => 'Chief Physician',
 				'parent' => 'about-us',
 				'sections' => array(
-					$hero( __( 'Medical Direction', 'estecapelli' ), __( 'Led by our medical director.', 'estecapelli' ), __( 'Every clinical decision at Estecapelli is overseen by our medical director, ensuring consistent standards across hair restoration, plastic surgery, dental and non-surgical care.', 'estecapelli' ) ),
+					$hero( __( 'Clinical Leadership', 'estecapelli' ), __( 'Led by our chief physician.', 'estecapelli' ), __( 'Every clinical decision at Estecapelli is overseen by our chief physician, ensuring consistent standards across hair restoration, plastic surgery, dental and non-surgical care.', 'estecapelli' ) ),
 				),
 			),
 
