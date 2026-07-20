@@ -24,87 +24,127 @@
                 {
                     "name": "Marcus",
                     "languages": [
-                        { "label": "Angielski" }
+                        {
+                            "label": "Angielski"
+                        }
                     ]
                 },
                 {
                     "name": "Matthew",
                     "languages": [
-                        { "label": "Angielski" }
+                        {
+                            "label": "Angielski"
+                        }
                     ]
                 },
                 {
                     "name": "Rachel",
                     "languages": [
-                        { "label": "Angielski" }
+                        {
+                            "label": "Angielski"
+                        }
                     ]
                 },
                 {
                     "name": "Roxane",
                     "languages": [
-                        { "label": "Francuski" }
+                        {
+                            "label": "Francuski"
+                        }
                     ]
                 },
                 {
                     "name": "Sana",
                     "languages": [
-                        { "label": "Francuski" },
-                        { "label": "Arabski" },
-                        { "label": "Hiszpański" }
+                        {
+                            "label": "Francuski"
+                        },
+                        {
+                            "label": "Arabski"
+                        },
+                        {
+                            "label": "Hiszpański"
+                        }
                     ]
                 },
                 {
                     "name": "Melissa",
                     "languages": [
-                        { "label": "Włoski" }
+                        {
+                            "label": "Włoski"
+                        }
                     ]
                 },
                 {
                     "name": "Gaia",
                     "languages": [
-                        { "label": "Włoski" }
+                        {
+                            "label": "Włoski"
+                        }
                     ]
                 },
                 {
                     "name": "Emilia",
                     "languages": [
-                        { "label": "Francuski" }
+                        {
+                            "label": "Francuski"
+                        }
                     ]
                 },
                 {
                     "name": "Natalia",
                     "languages": [
-                        { "label": "Polski" }
+                        {
+                            "label": "Polski"
+                        }
                     ]
                 },
                 {
                     "name": "Cynthia",
                     "languages": [
-                        { "label": "Portugalski" }
+                        {
+                            "label": "Portugalski"
+                        }
                     ]
                 },
                 {
                     "name": "Damla",
                     "languages": [
-                        { "label": "Turecki" }
+                        {
+                            "label": "Turecki"
+                        }
                     ]
                 },
                 {
                     "name": "Samet",
                     "languages": [
-                        { "label": "Turecki" }
+                        {
+                            "label": "Turecki"
+                        }
                     ]
                 },
                 {
                     "name": "Hamza",
                     "languages": [
-                        { "label": "Urdu" }
+                        {
+                            "label": "Urdu"
+                        }
                     ]
                 },
                 {
                     "name": "Wali",
                     "languages": [
-                        { "label": "Urdu" }
+                        {
+                            "label": "Urdu"
+                        }
+                    ]
+                },
+                {
+                    "name": "Amanda",
+                    "languages": [
+                        {
+                            "label": "Hiszpański"
+                        }
                     ]
                 }
             ]

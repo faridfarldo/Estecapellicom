@@ -633,6 +633,9 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/wali.webp',    'name' => __( 'Wali', 'estecapelli' ),    'role' => '', 'languages' => array(
 								array( 'country' => 'pk', 'label' => __( 'Urdu', 'estecapelli' ) ),
 							) ),
+							array( 'photo' => '', 'photo_url' => 'https://estecapelli.com/wp-content/uploads/2026/07/amn.webp', 'name' => __( 'Amanda', 'estecapelli' ), 'role' => '', 'languages' => array(
+								array( 'country' => 'es', 'label' => __( 'Spanish', 'estecapelli' ) ),
+							) ),
 						),
 					),
 				),
