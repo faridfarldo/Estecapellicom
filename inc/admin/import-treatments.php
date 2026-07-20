@@ -1727,3 +1727,59 @@ function estecapelli_reseed_binnur_chief_physician() {
 
 	update_option( 'estecapelli_binnur_chief_reseed', 1 );
 }
+
+/**
+ * Run one language's full page + doctor sweep once per version, on admin_init.
+ *
+ * Brings the ES/PT/PL/TR importers to parity with the FR/IT auto-importers:
+ * bump the language's autorun version and the next few wp-admin loads re-import
+ * every page and doctor for that language from the corrected files — no clicking
+ * through the per-row table.
+ *
+ * Only ONE language sweep runs per request. A first load after deploy therefore
+ * cannot fire all four at once and blow the ACFML execution limit; the remaining
+ * languages settle on the next few admin page loads.
+ *
+ * @param string   $option_key Version option name for this language.
+ * @param string   $version    Target version constant value.
+ * @param callable $run_all    Imports the whole language; returns true|WP_Error.
+ */
+function estecapelli_autorun_language_import( $option_key, $version, callable $run_all ) {
+	if ( get_option( $option_key ) === $version ) {
+		return;
+	}
+	if ( ! current_user_can( 'manage_options' ) || ( function_exists( 'wp_doing_ajax' ) && wp_doing_ajax() ) ) {
+		return;
+	}
+	if ( ! empty( $GLOBALS['estecapelli_language_autorun_ran_this_request'] ) ) {
+		return; // one sweep per request — the rest settle on later loads.
+	}
+	$GLOBALS['estecapelli_language_autorun_ran_this_request'] = true;
+
+	$result = call_user_func( $run_all );
+	if ( is_wp_error( $result ) ) {
+		set_transient( $option_key . '_error', $result->get_error_message(), 10 * MINUTE_IN_SECONDS );
+		return;
+	}
+
+	update_option( $option_key, $version, false );
+	delete_transient( $option_key . '_error' );
+}
+
+add_action( 'admin_notices', 'estecapelli_language_autorun_notice' );
+/** Surface any language auto-import error so a stalled sweep is visible. */
+function estecapelli_language_autorun_notice() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	foreach ( array( 'es', 'pt', 'pl', 'tr' ) as $lang ) {
+		$error = get_transient( "estecapelli_{$lang}_autorun_version_error" );
+		if ( $error ) {
+			printf(
+				'<div class="notice notice-error"><p><strong>%s:</strong> %s</p></div>',
+				esc_html( sprintf( 'Estecapelli %s auto-import paused', strtoupper( $lang ) ) ),
+				esc_html( $error )
+			);
+		}
+	}
+}

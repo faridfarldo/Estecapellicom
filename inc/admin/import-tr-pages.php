@@ -366,3 +366,34 @@ function estecapelli_render_tr_pages_importer() {
 	</div>
 	<?php
 }
+
+/* ---- Auto-import: refresh all tr content once per version (no per-row clicking). ---- */
+if ( ! defined( 'ESTECAPELLI_TR_AUTORUN_VERSION' ) ) {
+	define( 'ESTECAPELLI_TR_AUTORUN_VERSION', '2026-07-20.1' );
+}
+add_action( 'admin_init', 'estecapelli_maybe_autorun_tr_content', 95 );
+function estecapelli_maybe_autorun_tr_content() {
+	if ( ! function_exists( 'estecapelli_autorun_language_import' ) ) {
+		return;
+	}
+	estecapelli_autorun_language_import(
+		'estecapelli_tr_autorun_version',
+		ESTECAPELLI_TR_AUTORUN_VERSION,
+		'estecapelli_run_all_tr_content'
+	);
+}
+function estecapelli_run_all_tr_content() {
+	foreach ( array_keys( estecapelli_tr_pages_manifest() ) as $slug ) {
+		$result = estecapelli_run_tr_content_import( 'page', $slug );
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+	}
+	foreach ( array_keys( estecapelli_tr_doctors_manifest() ) as $slug ) {
+		$result = estecapelli_run_tr_content_import( 'doctor', $slug );
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+	}
+	return true;
+}

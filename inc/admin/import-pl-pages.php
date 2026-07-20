@@ -451,3 +451,36 @@ function estecapelli_render_pl_content_importer() {
 	</div>
 	<?php
 }
+
+/* ---- Auto-import: refresh all Polish content once per version (no per-row clicking). ---- */
+if ( ! defined( 'ESTECAPELLI_PL_AUTORUN_VERSION' ) ) {
+	define( 'ESTECAPELLI_PL_AUTORUN_VERSION', '2026-07-20.1' );
+}
+add_action( 'admin_init', 'estecapelli_maybe_autorun_pl_content', 95 );
+function estecapelli_maybe_autorun_pl_content() {
+	if ( ! function_exists( 'estecapelli_autorun_language_import' ) ) {
+		return;
+	}
+	estecapelli_autorun_language_import(
+		'estecapelli_pl_autorun_version',
+		ESTECAPELLI_PL_AUTORUN_VERSION,
+		'estecapelli_run_all_pl_content'
+	);
+}
+function estecapelli_run_all_pl_content() {
+	foreach ( array_keys( estecapelli_pl_pages_manifest() ) as $slug ) {
+		$result = estecapelli_run_pl_page_import( $slug );
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+	}
+	if ( function_exists( 'estecapelli_pl_doctors_manifest' ) && function_exists( 'estecapelli_run_pl_doctors_import' ) ) {
+		foreach ( array_keys( estecapelli_pl_doctors_manifest() ) as $slug ) {
+			$result = estecapelli_run_pl_doctors_import( $slug );
+			if ( is_wp_error( $result ) ) {
+				return $result;
+			}
+		}
+	}
+	return true;
+}
