@@ -464,23 +464,25 @@ function estecapelli_maybe_autorun_pl_content() {
 	estecapelli_autorun_language_import(
 		'estecapelli_pl_autorun_version',
 		ESTECAPELLI_PL_AUTORUN_VERSION,
-		'estecapelli_run_all_pl_content'
+		'estecapelli_pl_autorun_items',
+		'estecapelli_pl_autorun_import_one'
 	);
 }
-function estecapelli_run_all_pl_content() {
+function estecapelli_pl_autorun_items() {
+	$items = array();
 	foreach ( array_keys( estecapelli_pl_pages_manifest() ) as $slug ) {
-		$result = estecapelli_run_pl_page_import( $slug );
-		if ( is_wp_error( $result ) ) {
-			return $result;
-		}
+		$items[] = array( 'kind' => 'page', 'slug' => $slug );
 	}
-	if ( function_exists( 'estecapelli_pl_doctors_manifest' ) && function_exists( 'estecapelli_run_pl_doctors_import' ) ) {
+	if ( function_exists( 'estecapelli_pl_doctors_manifest' ) ) {
 		foreach ( array_keys( estecapelli_pl_doctors_manifest() ) as $slug ) {
-			$result = estecapelli_run_pl_doctors_import( $slug );
-			if ( is_wp_error( $result ) ) {
-				return $result;
-			}
+			$items[] = array( 'kind' => 'doctor', 'slug' => $slug );
 		}
 	}
-	return true;
+	return $items;
+}
+function estecapelli_pl_autorun_import_one( $kind, $slug ) {
+	if ( 'doctor' === $kind && function_exists( 'estecapelli_run_pl_doctors_import' ) ) {
+		return estecapelli_run_pl_doctors_import( $slug );
+	}
+	return estecapelli_run_pl_page_import( $slug );
 }

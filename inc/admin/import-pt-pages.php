@@ -363,21 +363,17 @@ function estecapelli_maybe_autorun_pt_content() {
 	estecapelli_autorun_language_import(
 		'estecapelli_pt_autorun_version',
 		ESTECAPELLI_PT_AUTORUN_VERSION,
-		'estecapelli_run_all_pt_content'
+		'estecapelli_pt_autorun_items',
+		'estecapelli_run_pt_content_import'
 	);
 }
-function estecapelli_run_all_pt_content() {
+function estecapelli_pt_autorun_items() {
+	$items = array();
 	foreach ( array_keys( estecapelli_pt_pages_manifest() ) as $slug ) {
-		$result = estecapelli_run_pt_content_import( 'page', $slug );
-		if ( is_wp_error( $result ) ) {
-			return $result;
-		}
+		$items[] = array( 'kind' => 'page', 'slug' => $slug );
 	}
 	foreach ( array_keys( estecapelli_pt_doctors_manifest() ) as $slug ) {
-		$result = estecapelli_run_pt_content_import( 'doctor', $slug );
-		if ( is_wp_error( $result ) ) {
-			return $result;
-		}
+		$items[] = array( 'kind' => 'doctor', 'slug' => $slug );
 	}
-	return true;
+	return $items;
 }

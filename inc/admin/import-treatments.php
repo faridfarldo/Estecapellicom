@@ -1744,26 +1744,49 @@ function estecapelli_reseed_binnur_chief_physician() {
  * @param string   $version    Target version constant value.
  * @param callable $run_all    Imports the whole language; returns true|WP_Error.
  */
-function estecapelli_autorun_language_import( $option_key, $version, callable $run_all ) {
+function estecapelli_autorun_language_import( $option_key, $version, callable $items_provider, callable $import_one ) {
 	if ( get_option( $option_key ) === $version ) {
-		return;
+		return; // this language is fully imported for this version.
 	}
 	if ( ! current_user_can( 'manage_options' ) || ( function_exists( 'wp_doing_ajax' ) && wp_doing_ajax() ) ) {
 		return;
 	}
-	if ( ! empty( $GLOBALS['estecapelli_language_autorun_ran_this_request'] ) ) {
-		return; // one sweep per request — the rest settle on later loads.
-	}
-	$GLOBALS['estecapelli_language_autorun_ran_this_request'] = true;
-
-	$result = call_user_func( $run_all );
-	if ( is_wp_error( $result ) ) {
-		set_transient( $option_key . '_error', $result->get_error_message(), 10 * MINUTE_IN_SECONDS );
+	// Import at most ONE item per request, and only while the request is still
+	// light. A single item is fast; a whole-language sweep is not — it blew the
+	// 60s limit. Deferring when the request is already busy also keeps this off
+	// the heavy FR/IT sweep on the first load after a deploy.
+	$elapsed = isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ? ( microtime( true ) - (float) $_SERVER['REQUEST_TIME_FLOAT'] ) : 0;
+	if ( $elapsed > 8 || ! empty( $GLOBALS['estecapelli_language_autorun_ran_this_request'] ) ) {
 		return;
 	}
 
+	$progress_key = $option_key . '_progress';
+	$progress     = get_option( $progress_key );
+	if ( ! is_array( $progress ) || ( $progress['version'] ?? null ) !== $version ) {
+		$progress = array( 'version' => $version, 'done' => array() ); // fresh version.
+	}
+	$done = is_array( $progress['done'] ) ? $progress['done'] : array();
+
+	foreach ( call_user_func( $items_provider ) as $item ) {
+		$id = $item['kind'] . ':' . $item['slug'];
+		if ( in_array( $id, $done, true ) ) {
+			continue; // already imported on an earlier load.
+		}
+		$GLOBALS['estecapelli_language_autorun_ran_this_request'] = true;
+		$result = call_user_func( $import_one, $item['kind'], $item['slug'] );
+		if ( is_wp_error( $result ) ) {
+			set_transient( $option_key . '_error', $id . ' — ' . $result->get_error_message(), 10 * MINUTE_IN_SECONDS );
+			return;
+		}
+		$done[] = $id;
+		update_option( $progress_key, array( 'version' => $version, 'done' => $done ), false );
+		delete_transient( $option_key . '_error' );
+		return; // exactly one item this request — cannot exceed the time limit.
+	}
+
+	// Every item imported → mark the version complete and drop the progress row.
 	update_option( $option_key, $version, false );
-	delete_transient( $option_key . '_error' );
+	delete_option( $progress_key );
 }
 
 add_action( 'admin_notices', 'estecapelli_language_autorun_notice' );
