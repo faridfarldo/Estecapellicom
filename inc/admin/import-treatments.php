@@ -1616,3 +1616,54 @@ function estecapelli_render_treatments_importer() {
 	</div>
 	<?php
 }
+
+/**
+ * One-time correction for Prof. Dr. Binnur Üstün's profile.
+ *
+ * Her title/bio were hand-edited in the dashboard (Medical Director → Chief
+ * Physician), then an earlier destructive re-import reverted them to the seed.
+ * The importer is now non-destructive, so it will never overwrite the stale
+ * value on its own — this pushes the corrected seed onto her existing record
+ * exactly once, then latches an option so it never runs again. Leaves every
+ * other profile untouched.
+ */
+add_action( 'admin_init', 'estecapelli_reseed_binnur_chief_physician' );
+function estecapelli_reseed_binnur_chief_physician() {
+	if ( get_option( 'estecapelli_binnur_chief_reseed' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'update_field' ) || ! function_exists( 'estecapelli_doctors_seed' ) ) {
+		return; // ACF / seed not ready yet — retry on the next admin load.
+	}
+
+	$post = get_page_by_path( 'prof-dr-binnur-ustun', OBJECT, 'doctor' );
+	if ( ! $post ) {
+		return; // Not imported yet — retry on the next admin load.
+	}
+
+	$seed = null;
+	foreach ( estecapelli_doctors_seed() as $doctor ) {
+		if ( 'prof-dr-binnur-ustun' === ( $doctor['slug'] ?? '' ) ) {
+			$seed = $doctor;
+			break;
+		}
+	}
+	if ( ! $seed ) {
+		return;
+	}
+
+	update_field( 'position', $seed['position'] ?? '', $post->ID );
+	update_field( 'bio', $seed['bio'] ?? '', $post->ID );
+	update_field(
+		'credentials',
+		array_map(
+			static function ( $label ) {
+				return array( 'label' => $label );
+			},
+			$seed['credentials'] ?? array()
+		),
+		$post->ID
+	);
+
+	update_option( 'estecapelli_binnur_chief_reseed', 1 );
+}
