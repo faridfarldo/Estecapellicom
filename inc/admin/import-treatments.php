@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/treatments-seed.php';
 require_once get_template_directory() . '/inc/data/pages-seed.php';
 require_once get_template_directory() . '/inc/data/doctors-seed.php';
+require_once get_template_directory() . '/inc/admin/wpml-page-diagnostic.php';
 
 add_action( 'admin_menu', 'estecapelli_register_content_importer' );
 function estecapelli_register_content_importer() {
