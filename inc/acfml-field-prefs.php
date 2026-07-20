@@ -7,14 +7,14 @@
  * registration time; adding them later with acf/load_field is too late for the
  * local-field sync tool.
  *
- * The site uses the same section structure in every language:
+ * Every ACF value here is written per language by the version-controlled
+ * importers, so WPML/ACFML is told to leave all of them alone: each field is
+ * registered with preference 0 ("Don't translate"). That keeps translated pages
+ * as plain per-post meta the native editor can Save without WPML re-syncing them
+ * from the original (which used to revert imported translations on Save).
  *
- *   - Flexible Content, Repeater, Group and all non-text fields are copied.
- *   - Visitor-facing Text, Textarea and WYSIWYG values are translated.
- *   - Text fields which contain technical identifiers are explicitly copied.
- *
- * `wpml_cf_preferences` uses WPML's numeric values: 1 = Copy, 2 = Translate.
- * ACF safely ignores this extra field property when ACFML is not active.
+ * `wpml_cf_preferences` uses WPML's numeric values: 0 = Don't translate,
+ * 1 = Copy, 2 = Translate. ACF safely ignores this property when ACFML is off.
  *
  * @package Estecapelli
  */
@@ -87,30 +87,24 @@ function estecapelli_acfml_prepare_fields( $fields ) {
  * @return int 1 (Copy) or 2 (Translate).
  */
 function estecapelli_acfml_preference_for_field( $field ) {
-	$copy_text_fields = array(
-		'field_hero_image_url',
-		'field_hero_video_id',
-		'field_cand_image_url',
-		'field_gal_grafts',
-		'field_team_m_photo_url',
-		'field_team_m_name',
-		'field_team_lang_country',
-		'field_docs_m_name',
-		'field_rel_category',
-		'field_intro_image_url',
-		'field_intro_video_url',
-		'field_doctor_resume_photo_url',
-	);
-
-	$key = isset( $field['key'] ) ? (string) $field['key'] : '';
-	if ( in_array( $key, $copy_text_fields, true ) ) {
-		return 1;
-	}
-
-	$type = isset( $field['type'] ) ? (string) $field['type'] : '';
-	if ( in_array( $type, array( 'text', 'textarea', 'wysiwyg' ), true ) ) {
-		return 2;
-	}
-
-	return 1;
+	/*
+	 * 0 = "Don't translate": WPML/ACFML ignores the field completely.
+	 *
+	 * Every ACF value on this site — page sections, doctor and treatment fields —
+	 * is written per language by the version-controlled importers, and the
+	 * Flexible Content structure is forced from the source post at read time by
+	 * inc/acfml-layout-guard.php. WPML therefore has no useful job on these
+	 * fields. When it DID manage them (Copy for structure, Translate for text) it
+	 * re-synced each translation from the English original whenever the page was
+	 * saved in the editor, silently reverting the imported translation — so an
+	 * editor could never open a translated page, tweak a word or image and Save.
+	 *
+	 * Handing every field back to plain per-post meta makes a translated page
+	 * behave like a normal page: the importer fills it, and manual edits Save and
+	 * persist. The post-level translation relationship (URLs, language switcher)
+	 * is unaffected — that is governed by WPML's post translation, not by these
+	 * custom-field preferences.
+	 */
+	unset( $field );
+	return 0;
 }
