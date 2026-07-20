@@ -49,6 +49,7 @@ require get_template_directory() . '/inc/it-string-fallbacks.php';
 require get_template_directory() . '/inc/pl-string-fallbacks.php';
 require get_template_directory() . '/inc/es-string-fallbacks.php';
 require get_template_directory() . '/inc/pt-string-fallbacks.php';
+require get_template_directory() . '/inc/legal-string-fallbacks.php';
 require get_template_directory() . '/inc/home-hero-translations.php';
 require get_template_directory() . '/inc/nav-translations.php';
 require get_template_directory() . '/inc/wpml-slug-fix.php';
@@ -88,6 +89,8 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-fr-doctors.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-blog.php';
+	// Loaded last because it reuses the shared page and WPML repair helpers.
+	require get_template_directory() . '/inc/admin/import-legal-pages.php';
 }
 
 if ( ! function_exists( 'estecapelli_setup' ) ) {
