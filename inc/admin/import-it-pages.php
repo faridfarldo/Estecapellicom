@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_PAGES_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_PAGES_IMPORT_VERSION', '2026-07-16.3' );
+	define( 'ESTECAPELLI_IT_PAGES_IMPORT_VERSION', '2026-07-20.1' );
 }
 
 /** English page slug => exact indexed Italian leaf slug. */

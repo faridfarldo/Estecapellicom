@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_IT_DOCTORS_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_IT_DOCTORS_IMPORT_VERSION', '2026-07-17.1' );
+	define( 'ESTECAPELLI_IT_DOCTORS_IMPORT_VERSION', '2026-07-20.1' );
 }
 
 /** Indexed English doctor slug => exact indexed Italian slug. */
