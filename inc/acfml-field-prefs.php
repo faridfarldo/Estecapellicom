@@ -7,17 +7,14 @@
  * registration time; adding them later with acf/load_field is too late for the
  * local-field sync tool.
  *
- * Preferences by field role:
+ * The site uses the same section structure in every language:
  *
- *   - Images, media URLs, video IDs and the Flexible Content structure are
- *     COPIED (1) from the English source, so changing an image once in English
- *     updates every language.
- *   - Visitor-facing Text/Textarea/WYSIWYG copy is DON'T-TRANSLATE (0): plain
- *     independent per-post meta the importers fill and the native editor can
- *     Save, without WPML re-syncing it from English (which reverted imports).
+ *   - Flexible Content, Repeater, Group and all non-text fields are copied.
+ *   - Visitor-facing Text, Textarea and WYSIWYG values are translated.
+ *   - Text fields which contain technical identifiers are explicitly copied.
  *
- * `wpml_cf_preferences` uses WPML's numeric values: 0 = Don't translate,
- * 1 = Copy, 2 = Translate. We never use 2. ACF ignores this when ACFML is off.
+ * `wpml_cf_preferences` uses WPML's numeric values: 1 = Copy, 2 = Translate.
+ * ACF safely ignores this extra field property when ACFML is not active.
  *
  * @package Estecapelli
  */
@@ -90,21 +87,6 @@ function estecapelli_acfml_prepare_fields( $fields ) {
  * @return int 1 (Copy) or 2 (Translate).
  */
 function estecapelli_acfml_preference_for_field( $field ) {
-	/*
-	 * Preference by field role:
-	 *
-	 *   1 = Copy  — value propagates from the English (source) post to every
-	 *               language. Used for images, media URLs, video IDs, the
-	 *               Flexible Content structure and other language-neutral data,
-	 *               so changing an image once in English updates all languages.
-	 *   0 = Don't translate — plain, independent per-post meta. Used for the
-	 *               visitor-facing Text/Textarea/WYSIWYG copy so a translated
-	 *               page can be opened, edited and SAVED without WPML re-syncing
-	 *               it from English (which used to revert imported translations).
-	 *
-	 * We deliberately never use 2 (Translate): the importers own the translated
-	 * copy, and WPML-managed "Translate" fields are what reverted on save.
-	 */
 	$copy_text_fields = array(
 		'field_hero_image_url',
 		'field_hero_video_id',
@@ -122,13 +104,13 @@ function estecapelli_acfml_preference_for_field( $field ) {
 
 	$key = isset( $field['key'] ) ? (string) $field['key'] : '';
 	if ( in_array( $key, $copy_text_fields, true ) ) {
-		return 1; // structural/asset text — copy from English.
+		return 1;
 	}
 
 	$type = isset( $field['type'] ) ? (string) $field['type'] : '';
 	if ( in_array( $type, array( 'text', 'textarea', 'wysiwyg' ), true ) ) {
-		return 0; // visitor-facing copy — independent per language, editable + saveable.
+		return 2;
 	}
 
-	return 1; // images, files, galleries, structure — copy from English.
+	return 1;
 }
