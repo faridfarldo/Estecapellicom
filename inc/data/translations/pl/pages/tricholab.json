@@ -1,0 +1,87 @@
+{
+  "source_slug": "tricholab",
+  "slug": "tricholab",
+  "title": "TrichoLab",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Analiza włosów wspierana przez sztuczną inteligencję",
+      "title": "TrichoLab",
+      "lead": "Zaawansowany system oparty na sztucznej inteligencji, który bada włosy i skórę głowy za pomocą trichoskopowych obrazów o wysokiej rozdzielczości, przekształcając każdy szczegół w precyzyjne dane do w pełni indywidualnego planu przeszczepu.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsAppie" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Technologia",
+      "title": "Czym jest TrichoLab?",
+      "body": "<p>TrichoLab to zaawansowany system analizy włosów wspierany przez sztuczną inteligencję, który bada włosy i skórę głowy na podstawie trichoskopowych obrazów o wysokiej rozdzielczości. Mierząc najważniejsze parametry z milimetrową precyzją, dostarcza obiektywnych danych pomagających naszym specjalistom zaplanować najskuteczniejsze leczenie dla każdego pacjenta.</p><p>System ocenia liczne czynniki, w tym gęstość mieszków, potencjalną liczbę graftów, grubość włosów, możliwości obszaru dawczego, rozmieszczenie ubytków oraz stopień miniaturyzacji. Tak szczegółowe informacje pozwalają zespołowi stworzyć indywidualny plan oparty na dokładnych, aktualnych danych, a nie na szacunkach.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Proces",
+      "title": "Analiza TrichoLab w Estecapelli",
+      "lead": "Od obrazowania w wysokiej rozdzielczości do precyzyjnego, indywidualnego planu. Poznaj kolejne etapy poniżej.",
+      "items": [
+        {
+          "eyebrow": "Etap 1",
+          "title": "Cyfrowe badanie trichoskopowe",
+          "body": "<p>Skóra głowy jest badana za pomocą mikroobrazów o wysokiej rozdzielczości, które dokładnie pokazują szczegóły mieszków włosowych.</p>"
+        },
+        {
+          "eyebrow": "Etap 2",
+          "title": "Analiza danych przez sztuczną inteligencję",
+          "body": "<p>Zaawansowane algorytmy przekształcają obrazy w precyzyjne wartości liczbowe opisujące gęstość i rozmieszczenie mieszków.</p>"
+        },
+        {
+          "eyebrow": "Etap 3",
+          "title": "Indywidualny plan leczenia",
+          "body": "<p>Dane stają się podstawą całkowicie indywidualnego planu, obejmującego dokładne oszacowanie potrzebnej liczby graftów.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Dlaczego to ważne",
+      "title": "Rola TrichoLab w planowaniu przeszczepu",
+      "body": "Naukowa analiza chroni obszar dawczy i sprzyja naturalnym, symetrycznym rezultatom:",
+      "items": [
+        { "label": "Naukowa ocena możliwości obszaru dawczego bez nadmiernego pobierania graftów" },
+        { "label": "Precyzyjne obliczenie liczby graftów bez niedoszacowania lub przeszacowania planu" },
+        { "label": "Naturalny i symetryczny projekt oparty na istniejących włosach" },
+        { "label": "Długoterminowa ochrona obszaru dawczego" },
+        { "label": "Technologia dostępna tylko w ograniczonej liczbie klinik w Turcji" }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Dlaczego Estecapelli",
+      "title": "Dlaczego warto wybrać TrichoLab w Estecapelli?",
+      "body": "<p>TrichoLab to zaawansowany system dostępny jedynie w ograniczonej liczbie klinik w Turcji. W Estecapelli stanowi punkt wyjścia naszej pracy i zapewnia pacjentom poziom analizy, który oferuje niewiele placówek.</p><p>Każda ocena jest obiektywna, mierzalna i przejrzysta. Dla każdego pacjenta opracowujemy prawdziwie indywidualną strategię opartą na dokładnych danych, a nie przypuszczeniach, aby chronić obszar dawczy i maksymalizować długoterminowy rezultat.</p>",
+      "cta": { "label": "Umów bezpłatną konsultację" }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Przydatne informacje",
+      "title": "TrichoLab — najczęstsze pytania",
+      "items": [
+        {
+          "question": "Czy analiza TrichoLab jest bolesna?",
+          "answer": "<p>Nie. Jest to nieinwazyjne badanie, które rejestruje szczegółowe obrazy skóry głowy bez igieł, nacięć i dyskomfortu. Skanowanie trwa krótko, a po jego zakończeniu możesz od razu wrócić do zwykłych zajęć.</p>"
+        },
+        {
+          "question": "Dlaczego TrichoLab jest ważny przy moim przeszczepie?",
+          "answer": "<p>TrichoLab mierzy gęstość, jakość mieszków i możliwości obszaru dawczego, pomagając obliczyć potrzebną liczbę graftów bez osłabiania miejsca pobrania. Dane te sprawiają, że plan jest dokładniejszy, bardziej naturalny i bezpieczny w długiej perspektywie. Chirurg łączy je z oceną kliniczną oraz projektem linii włosów.</p>"
+        },
+        {
+          "question": "Co dokładnie mierzy analiza TrichoLab?",
+          "answer": "<p>System bada włosy i skórę głowy za pomocą obrazowania w wysokiej rozdzielczości oraz oprogramowania wspieranego przez sztuczną inteligencję. Mierzy gęstość, grubość włosów, rozmieszczenie mieszków, możliwości obszaru dawczego, schemat wypadania i miniaturyzację. Wynikiem jest obiektywna mapa wykorzystywana do indywidualnego dopasowania leczenia.</p>"
+        },
+        {
+          "question": "Czy TrichoLab określa dokładną liczbę graftów?",
+          "answer": "<p>TrichoLab dostarcza bardzo precyzyjnego, naukowego oszacowania potrzebnej liczby graftów i ilości, którą można bezpiecznie pobrać. Ostateczna decyzja nie opiera się jednak na jednej wartości. Specjalista uwzględnia również jakość włosów, oczekiwaną gęstość, dalszy przebieg wypadania i projekt linii włosów. Dzięki temu plan pozostaje realistyczny i chroni obszar dawczy.</p>"
+        }
+      ]
+    }
+  ]
+}

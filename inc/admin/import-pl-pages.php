@@ -16,11 +16,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** English page slug => exact live Polish leaf slug. */
 function estecapelli_pl_pages_manifest() {
 	return array(
-		'dental-treatment' => 'leczenie-stomatologiczne',
-		'about-us'         => 'o-nas',
-		'our-team'         => 'nasz-zespol',
-		'our-doctors'      => 'nasi-lekarze',
-		'contact'          => 'kontakt',
+		'hair-transplant'             => 'przeszczep-wlosow',
+		'tricholab'                   => 'tricholab',
+		'pre-hair-transplant-period'  => 'okres-przed-przeszczepem-wlosow',
+		'post-hair-transplant-period' => 'okres-po-przeszczepie-wlosow',
+		'plastic-surgery'             => 'chirurgia-plastyczna',
+		'dental-treatment'            => 'leczenie-stomatologiczne',
+		'about-us'                    => 'o-nas',
+		'our-team'                    => 'nasz-zespol',
+		'our-doctors'                 => 'nasi-lekarze',
+		'medical-director'            => 'dyrektor-medyczny',
+		'before-after'                => 'przed-po',
+		'contact'                     => 'kontakt',
 	);
 }
 
@@ -36,7 +43,10 @@ function estecapelli_pl_template_pages_manifest() {
 
 /** Return the canonical English route key for a regular page. */
 function estecapelli_pl_pages_route_key( $source_slug ) {
-	if ( in_array( $source_slug, array( 'our-team', 'our-doctors' ), true ) ) {
+	if ( in_array( $source_slug, array( 'tricholab', 'pre-hair-transplant-period', 'post-hair-transplant-period' ), true ) ) {
+		return '/en/hair-transplant/' . $source_slug;
+	}
+	if ( in_array( $source_slug, array( 'our-team', 'our-doctors', 'medical-director' ), true ) ) {
 		return '/en/about-us/' . $source_slug;
 	}
 

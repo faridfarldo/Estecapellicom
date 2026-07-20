@@ -1,0 +1,87 @@
+{
+  "source_slug": "plastic-surgery",
+  "slug": "chirurgia-plastyczna",
+  "title": "Chirurgia plastyczna",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Chirurgia plastyczna",
+      "title": "Chirurgia estetyczna dopasowana do Ciebie.",
+      "lead": "Rynoplastyka, BBL, chirurgia piersi, lifting twarzy i szyi oraz inne zabiegi wykonywane przez wykwalifikowanych chirurgów w placówkach o standardzie szpitalnym.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsAppie" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Nasze podejście",
+      "title": "Chirurgia estetyczna wykonywana bezpiecznie i z naturalnym efektem",
+      "body": "<p>Chirurgia plastyczna jest bardzo osobistą decyzją, a właściwy rezultat powinien odzwierciedlać Ciebie: być harmonijny, naturalny i proporcjonalny, nigdy przesadzony. W Estecapelli każdy zabieg wykonują wykwalifikowani chirurdzy plastyczni w akredytowanych placówkach o standardzie szpitalnym, z odpowiednim znieczuleniem, monitorowaniem i opieką pooperacyjną.</p><p>Od rynoplastyki i odmładzania twarzy po modelowanie sylwetki, chirurgię piersi oraz chirurgię bariatryczną — cały proces zaczyna się od szczerej konsultacji. Oceniamy realne możliwości, planujemy zabieg zgodnie z Twoją anatomią i celami oraz wspieramy Cię podczas rekonwalescencji poprzez wyspecjalizowany zespół mówiący w Twoim języku.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Dlaczego pacjenci wybierają Estecapelli",
+      "stats": [
+        { "value": "Wykwalifikowani", "label": "Doświadczeni chirurdzy plastyczni" },
+        { "value": "Standard szpitalny", "label": "Akredytowane, w pełni wyposażone placówki" },
+        { "value": "Kompleksowa opieka", "label": "Od pierwszej wiadomości po rekonwalescencję" },
+        { "value": "All inclusive", "label": "Przejrzyste i niezobowiązujące wyceny" }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Nasze zabiegi",
+      "title": "Poznaj zabiegi chirurgii plastycznej"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Prawdziwe rezultaty",
+      "title": "Chirurgia plastyczna — przed i po",
+      "lead": "Zobacz efekty przed i po u prawdziwych pacjentów. Każda przemiana jest planowana indywidualnie, aby zapewnić naturalny i harmonijny rezultat.",
+      "cta": { "label": "Zobacz pełną galerię" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Bezpłatna konsultacja",
+      "title": "Zaplanuj zabieg z naszymi chirurgami",
+      "lead": "Opowiedz nam, jaki efekt chcesz osiągnąć. Nasz zespół medyczny odpowie z indywidualnym planem oraz niezobowiązującą wyceną pakietu all inclusive — zazwyczaj w ciągu kilku godzin.",
+      "points": [
+        { "label": "Ocena przeprowadzona przez wykwalifikowanych chirurgów" },
+        { "label": "Realistyczne i jasno określone oczekiwania od samego początku" },
+        { "label": "Szybka odpowiedź naszego wyspecjalizowanego zespołu opieki nad pacjentem" },
+        { "label": "Wielojęzyczne wsparcie na każdym etapie" }
+      ],
+      "submit_label": "Poproś o bezpłatną konsultację"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Przydatne informacje",
+      "title": "Chirurgia plastyczna — najczęstsze pytania",
+      "items": [
+        {
+          "question": "Skąd mam wiedzieć, który zabieg będzie dla mnie najlepszy?",
+          "answer": "<p>Proces zawsze zaczyna się od konsultacji. Słuchamy, co chcesz zmienić, oceniamy Twoją anatomię i wyjaśniamy, który zabieg lub połączenie zabiegów może zapewnić naturalny, harmonijny efekt. Mówimy także otwarcie, czego nie zalecamy, ponieważ właściwy plan musi być dla Ciebie bezpieczny i realistyczny, a nie jedynie spełniać życzenie.</p>"
+        },
+        {
+          "question": "Czy chirurdzy mają odpowiednie kwalifikacje, a placówki są bezpieczne?",
+          "answer": "<p>Tak. Wszystkie zabiegi wykonują wykwalifikowani chirurdzy plastyczni w akredytowanych placówkach o standardzie szpitalnym, z pełnym znieczuleniem i monitorowaniem. Przed operacją niezbędne badania i analiza historii medycznej potwierdzają, że możesz bezpiecznie przejść zabieg, a przez cały pobyt opiekuje się Tobą wykwalifikowany personel medyczny.</p>"
+        },
+        {
+          "question": "Jakiego rodzaju znieczulenie jest stosowane?",
+          "answer": "<p>Większość operacji plastycznych wykonuje się w znieczuleniu ogólnym podawanym przez specjalistę anestezjologa. Niektóre mniej inwazyjne procedury można przeprowadzić w sedacji lub znieczuleniu miejscowym. Najwłaściwsza opcja jest potwierdzana podczas oceny przedoperacyjnej na podstawie rodzaju zabiegu i Twojego stanu zdrowia.</p>"
+        },
+        {
+          "question": "Jak długo trwa rekonwalescencja i ile dni muszę zostać w Turcji?",
+          "answer": "<p>Czas rekonwalescencji zależy od rodzaju zabiegu. Wielu pacjentów pozostaje w Turcji od pięciu do dziesięciu dni, abyśmy mogli monitorować początkowe gojenie i przed podróżą usunąć ewentualne szwy lub dreny. Otrzymasz jasny, pisemny harmonogram rekonwalescencji, a nasz zespół będzie dostępny także po Twoim powrocie.</p>"
+        },
+        {
+          "question": "Czy pozostaną widoczne blizny?",
+          "answer": "<p>Niektóre zabiegi pozostawiają blizny, ale gdy tylko jest to możliwe, nasi chirurdzy umieszczają cięcia w dyskretnych, naturalnie ukrytych miejscach i stosują precyzyjne techniki szycia, aby blizny były jak najcieńsze. Zwykle znacznie bledną w kolejnych miesiącach, a my przekazujemy szczegółowe zalecenia wspomagające prawidłowe gojenie.</p>"
+        },
+        {
+          "question": "Czy rezultaty są trwałe?",
+          "answer": "<p>Wiele rezultatów, na przykład po rynoplastyce oraz modelowaniu piersi i sylwetki, utrzymuje się długo. Naturalne starzenie, znaczne wahania masy ciała i styl życia nadal jednak wpływają na organizm z upływem czasu. Utrzymywanie stabilnej wagi i zdrowych nawyków pomaga zachować efekt możliwie najdłużej.</p>"
+        }
+      ]
+    }
+  ]
+}

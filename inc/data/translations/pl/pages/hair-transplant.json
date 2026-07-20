@@ -1,0 +1,87 @@
+{
+  "source_slug": "hair-transplant",
+  "slug": "przeszczep-wlosow",
+  "title": "Przeszczep włosów",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Przeszczep włosów",
+      "title": "Odbudowa włosów zaplanowana z myślą o naturalnej gęstości.",
+      "lead": "Od FUE z ostrzami szafirowymi po nasze opatentowane protokoły Exosome i VITA — każdy plan w Estecapelli powstaje na podstawie cech skóry głowy, obszaru dawczego i Twoich celów.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsAppie" }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Od czego zacząć",
+      "title": "Przeszczep zaplanowany w całości dla Ciebie",
+      "body": "<p>Utrata włosów u każdej osoby przebiega inaczej, dlatego właściwe rozwiązanie również powinno być indywidualne. W Estecapelli cały proces zaczyna się od szczegółowej oceny skóry głowy, obszaru dawczego, cech włosów i oczekiwanej gęstości — nigdy od standardowego pakietu. Na tej podstawie rekomendujemy technikę, liczbę graftów i podejście, które mogą zapewnić najbardziej naturalny rezultat.</p><p>Nasi chirurdzy pracują wyłącznie w placówkach o standardzie szpitalnym i stosują sprawdzone metody FUE oraz DHI, udoskonalone dzięki protokołom Sapphire, Exosome i VITA opracowanym przez Estecapelli. Niezależnie od tego, czy chcesz odtworzyć cofniętą linię włosów, zwiększyć gęstość, czy nadać kształt brwiom lub brodzie, cel pozostaje ten sam: efekt, który wygląda, jakby zawsze był częścią Ciebie.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Dlaczego pacjenci wybierają Estecapelli",
+      "stats": [
+        { "value": "6 technik", "label": "FUE, DHI, Sapphire, Exosome, VITA i inne" },
+        { "value": "Miejscowe", "label": "Znieczulenie: pozostajesz przytomny i czujesz się komfortowo" },
+        { "value": "Około 3 dni", "label": "Typowy pobyt w Turcji" },
+        { "value": "Trwałe", "label": "Grafty odporne na dalsze wypadanie włosów" }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Nasze zabiegi",
+      "title": "Poznaj zabiegi przeszczepu włosów"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Prawdziwe rezultaty",
+      "title": "Przeszczep włosów — przed i po",
+      "lead": "Zobacz gęstość i naturalne linie włosów uzyskane u naszych pacjentów. Każdy rezultat jest projektowany zgodnie z indywidualnym kierunkiem wzrostu włosów, aby wyglądał całkowicie naturalnie.",
+      "cta": { "label": "Zobacz pełną galerię" }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Bezpłatna konsultacja",
+      "title": "Dowiedz się, który przeszczep włosów będzie dla Ciebie najlepszy",
+      "lead": "Prześlij nam kilka zdjęć, a nasz zespół medyczny odpowie z rekomendowaną techniką, szacowaną liczbą graftów oraz niezobowiązującą wyceną pakietu all inclusive — zazwyczaj w ciągu kilku godzin.",
+      "points": [
+        { "label": "Bezpłatna ocena liczby graftów na podstawie zdjęć" },
+        { "label": "Przejrzysta, niezobowiązująca wycena all inclusive" },
+        { "label": "Szybka odpowiedź naszego wyspecjalizowanego zespołu opieki nad pacjentem" },
+        { "label": "Wielojęzyczne wsparcie na każdym etapie" }
+      ],
+      "submit_label": "Poproś o bezpłatną konsultację"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Przydatne informacje",
+      "title": "Przeszczep włosów — najczęstsze pytania",
+      "items": [
+        {
+          "question": "Która technika przeszczepu włosów będzie dla mnie najlepsza?",
+          "answer": "<p>Nie istnieje jedna technika najlepsza dla wszystkich. Wybór zależy od stopnia utraty włosów, jakości i wielkości obszaru dawczego, powierzchni wymagającej pokrycia oraz stylu życia. FUE i DHI to sprawdzone metody, natomiast protokoły Sapphire, Exosome i VITA oferują określone korzyści związane z gojeniem, gęstością lub przeżywalnością graftów. Po analizie zdjęć nasi specjaliści zalecą metodę, która w Twoim przypadku najlepiej pozwoli uzyskać naturalny i trwały rezultat.</p>"
+        },
+        {
+          "question": "Czy jestem dobrym kandydatem do przeszczepu włosów?",
+          "answer": "<p>Większość dorosłych osób z ustabilizowanym wypadaniem włosów i zdrowym obszarem dawczym z tyłu oraz po bokach głowy może kwalifikować się do zabiegu. Dotyczy to mężczyzn z łysieniem androgenowym i wielu kobiet z przerzedzeniem włosów. Ogólny stan zdrowia jest ważniejszy niż wiek. Bezpłatna konsultacja na podstawie zdjęć pozwoli naszemu zespołowi potwierdzić kwalifikację i oszacować potrzebną liczbę graftów.</p>"
+        },
+        {
+          "question": "Czy zabieg jest bolesny i jakie znieczulenie się stosuje?",
+          "answer": "<p>Zabieg wykonuje się w znieczuleniu miejscowym, dlatego pozostajesz przytomny, ale nie odczuwasz bólu podczas sesji. Większość pacjentów wspomina jedynie o niewielkim dyskomforcie przy początkowym podaniu środka znieczulającego. Procedura trwa zwykle od sześciu do ośmiu godzin, zależnie od liczby graftów, a tego samego dnia możesz wrócić do hotelu.</p>"
+        },
+        {
+          "question": "Jak długo muszę zostać w Turcji?",
+          "answer": "<p>Większość pacjentów planuje pobyt trwający około trzech dni. Obejmuje on konsultację i zabieg, pierwsze mycie oraz indywidualne zalecenia pooperacyjne przed powrotem. Nasz zespół pomaga w organizacji hotelu i transferów lotniskowych, aby podróż przebiegła sprawnie i bez stresu.</p>"
+        },
+        {
+          "question": "Kiedy zobaczę rezultaty i czy będą trwałe?",
+          "answer": "<p>Przeszczepione włosy zwykle wypadają w pierwszych tygodniach i jest to całkowicie normalne. Nowy wzrost rozpoczyna się około trzeciego lub czwartego miesiąca, widoczna gęstość rozwija się między szóstym a dziewiątym miesiącem, a ostateczny efekt dojrzewa po około dwunastu miesiącach. Ponieważ grafty pochodzą z obszarów genetycznie odpornych na wypadanie, rosną trwale i można je normalnie strzyc, myć oraz układać.</p>"
+        },
+        {
+          "question": "Czy rezultat będzie wyglądał naturalnie?",
+          "answer": "<p>Tak. Najważniejsze czynniki to projekt linii włosów oraz kąt, kierunek i gęstość każdego wszczepianego mieszka. Nasi specjaliści ustalają z Tobą linię włosów przed zabiegiem, a następnie umieszczają grafty pojedynczo, zgodnie z naturalnym kierunkiem wzrostu, dzięki czemu efekt harmonijnie łączy się z istniejącymi włosami.</p>"
+        }
+      ]
+    }
+  ]
+}

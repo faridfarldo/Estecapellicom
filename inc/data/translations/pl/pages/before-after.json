@@ -1,0 +1,15 @@
+{
+  "source_slug": "before-after",
+  "slug": "przed-po",
+  "title": "Przed i po",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Przed i po",
+      "title": "Prawdziwe rezultaty, prawdziwi pacjenci.",
+      "lead": "Zobacz efekty przed i po zabiegach przeszczepu włosów, chirurgii plastycznej i leczenia stomatologicznego. Każde zdjęcie przedstawia historię pacjenta, który powierzył nam swoją przemianę.",
+      "cta_primary": { "label": "Bezpłatna konsultacja" },
+      "cta_secondary": { "label": "Napisz do nas na WhatsAppie" }
+    }
+  ]
+}
