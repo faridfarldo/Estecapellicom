@@ -46,10 +46,10 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 				// Renaming rather than re-inserting keeps the existing record.
 				'previous_slug' => 'prof-dr-binnur-tuzun',
 				'name'          => 'Prof. Dr. Binnur Üstün',
-				'position'      => __( 'Medical Director & Dermatology Specialist', 'estecapelli' ),
-				'bio'           => __( 'Prof. Dr. Binnur Üstün is one of Turkey’s most respected dermatologists, with more than forty years of academic and clinical experience. She graduated from İstanbul University, Cerrahpaşa Faculty of Medicine in 1983 and qualified as a specialist in Dermatology and Venereology in 1989, becoming an Associate Professor of Dermatology in 1991 and a full Professor in 1995. Over her career she has held academic posts at Cerrahpaşa and at Trakya University Faculty of Medicine, directed the Experimental Animals Research Centre, contributed to numerous scientific studies and trained many physicians. Today, as Estecapelli’s Medical Director (Mesul Müdür), she leads the protection of our medical-quality standards, the management of patient-safety processes and the delivery of ethical healthcare — bringing her scientific approach and decades of experience to ensure care of the highest standard for our patients.', 'estecapelli' ),
+				'position'      => __( 'Chief Physician & Dermatology Specialist', 'estecapelli' ),
+				'bio'           => __( 'Prof. Dr. Binnur Üstün is one of Turkey’s most respected dermatologists, with more than forty years of academic and clinical experience. She graduated from İstanbul University, Cerrahpaşa Faculty of Medicine in 1983 and qualified as a specialist in Dermatology and Venereology in 1989, becoming an Associate Professor of Dermatology in 1991 and a full Professor in 1995. Over her career she has held academic posts at Cerrahpaşa and at Trakya University Faculty of Medicine, directed the Experimental Animals Research Centre, contributed to numerous scientific studies and trained many physicians. She brings her scientific approach and decades of experience to ensure care of the highest standard for our patients. Today she continues her work as Chief Physician at Estecapelli, safeguarding our medical-quality and patient-safety standards.', 'estecapelli' ),
 				'credentials'   => array(
-					__( 'Medical Director (Mesul Müdür) — Estecapelli', 'estecapelli' ),
+					__( 'Chief Physician — Estecapelli', 'estecapelli' ),
 					__( '40+ years of medical and academic experience', 'estecapelli' ),
 					__( 'Professor of Dermatology since 1995', 'estecapelli' ),
 					__( 'Medical degree — İstanbul University, Cerrahpaşa Faculty of Medicine (1983)', 'estecapelli' ),

@@ -345,15 +345,27 @@ function estecapelli_import_doctor( array $data ) {
 	}
 
 	if ( function_exists( 'update_field' ) ) {
-		update_field( 'position', $data['position'] ?? '', $post_id );
-		update_field( 'bio', $data['bio'] ?? '', $post_id );
-		$credentials = array_map(
-			static function ( $label ) {
-				return array( 'label' => $label );
-			},
-			$data['credentials'] ?? array()
-		);
-		update_field( 'credentials', $credentials, $post_id );
+		// Non-destructive: on an existing profile only fill a field the editor
+		// has left empty, so title/bio/credentials edited in the dashboard
+		// survive a re-import instead of reverting to the seed. A brand-new
+		// profile is still seeded in full. Mirrors the treatment importer.
+		$fresh = ! $existing;
+
+		if ( $fresh || '' === trim( (string) get_field( 'position', $post_id ) ) ) {
+			update_field( 'position', $data['position'] ?? '', $post_id );
+		}
+		if ( $fresh || '' === trim( (string) get_field( 'bio', $post_id ) ) ) {
+			update_field( 'bio', $data['bio'] ?? '', $post_id );
+		}
+		if ( $fresh || empty( get_field( 'credentials', $post_id ) ) ) {
+			$credentials = array_map(
+				static function ( $label ) {
+					return array( 'label' => $label );
+				},
+				$data['credentials'] ?? array()
+			);
+			update_field( 'credentials', $credentials, $post_id );
+		}
 		// Theme-bundled résumé photo URL (thumbnail is left untouched). Only the
 		// url fallback is seeded; an editor-uploaded résumé photo wins over it.
 		update_field( 'resume_photo_url', $data['resume_photo_url'] ?? '', $post_id );
