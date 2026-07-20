@@ -362,6 +362,53 @@ function estecapelli_it_hair_pages_import_one( array $translation, $language_cod
 	return (int) $target_id;
 }
 
+/**
+ * Force-import one Italian Hair Transplant page by its English source slug.
+ *
+ * Used by the individual Import / Repair buttons in the shared importer UI.
+ *
+ * @param string $source_slug English page slug.
+ * @return int|WP_Error
+ */
+function estecapelli_import_one_it_hair_page( $source_slug ) {
+	if ( ! isset( estecapelli_it_hair_pages_manifest()[ $source_slug ] ) ) {
+		return new WP_Error( 'it_hair_pages_unknown', 'Unknown Italian Hair Transplant page.' );
+	}
+
+	$translations = estecapelli_it_hair_pages_load_translations();
+	if ( is_wp_error( $translations ) ) {
+		return $translations;
+	}
+	if ( ! isset( $translations[ $source_slug ] ) ) {
+		return new WP_Error( 'it_hair_pages_translation_missing', 'The requested Italian page overlay was not found.' );
+	}
+
+	return estecapelli_it_hair_pages_import_one( $translations[ $source_slug ] );
+}
+
+add_action( 'admin_post_estecapelli_import_it_hair_page', 'estecapelli_handle_it_hair_page_manual_import' );
+/** Process an individual manual Italian Hair Transplant page import button. */
+function estecapelli_handle_it_hair_page_manual_import() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'You are not allowed to import pages.', 'estecapelli' ) );
+	}
+
+	$source_slug = isset( $_GET['source'] ) ? sanitize_title( wp_unslash( $_GET['source'] ) ) : '';
+	check_admin_referer( 'estecapelli_import_it_hair_page_' . $source_slug );
+	$result = estecapelli_import_one_it_hair_page( $source_slug );
+	if ( is_wp_error( $result ) ) {
+		update_option( 'estecapelli_it_hair_pages_import_error', $source_slug . ': ' . $result->get_error_message(), false );
+	} else {
+		delete_option( 'estecapelli_it_hair_pages_import_error' );
+		set_transient( 'estecapelli_it_hair_pages_import_success', 1, 5 * MINUTE_IN_SECONDS );
+	}
+
+	wp_safe_redirect(
+		add_query_arg( 'page', 'estecapelli-treatment-importer', admin_url( 'tools.php' ) )
+	);
+	exit;
+}
+
 /** Run the complete Italian Hair Transplant page import. */
 function estecapelli_run_it_hair_pages_import() {
 	if ( ! function_exists( 'update_field' ) ) {
@@ -427,7 +474,17 @@ function estecapelli_it_hair_pages_import_notice() {
 		delete_transient( 'estecapelli_it_hair_pages_import_success' );
 		printf(
 			'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
-			esc_html( sprintf( 'Italian Hair Transplant pages imported successfully: %d pages.', (int) $success_count ) )
+			esc_html(
+				sprintf(
+					_n(
+						'Italian Hair Transplant page imported successfully: %d page.',
+						'Italian Hair Transplant pages imported successfully: %d pages.',
+						(int) $success_count,
+						'estecapelli'
+					),
+					(int) $success_count
+				)
+			)
 		);
 		return;
 	}
