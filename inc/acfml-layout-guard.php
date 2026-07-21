@@ -241,3 +241,204 @@ function estecapelli_commit_translated_acf_save() {
 	clean_post_cache( (int) $snapshot['post_id'] );
 }
 add_action( 'shutdown', 'estecapelli_commit_translated_acf_save', PHP_INT_MAX );
+
+/**
+ * Read every raw ACF meta row belonging to one post.
+ *
+ * ACF stores a hidden reference (`_field_name` => `field_...`) beside each
+ * value. Those references let us distinguish ACF data from WordPress/plugin
+ * metadata without hard-coding every current and future page-builder field.
+ *
+ * @param int $post_id Post ID.
+ * @return array<int,array{meta_key:string,meta_value:string}>
+ */
+function estecapelli_raw_acf_meta_snapshot( $post_id ) {
+	global $wpdb;
+
+	$rows = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = %d ORDER BY meta_id ASC",
+			(int) $post_id
+		)
+	);
+	if ( ! $rows ) {
+		return array();
+	}
+
+	$acf_keys = array();
+	foreach ( $rows as $row ) {
+		$key = (string) $row->meta_key;
+		if ( '_' === substr( $key, 0, 1 ) && 0 === strpos( (string) $row->meta_value, 'field_' ) ) {
+			$acf_keys[ $key ]              = true;
+			$acf_keys[ substr( $key, 1 ) ] = true;
+		}
+	}
+
+	$snapshot = array();
+	foreach ( $rows as $row ) {
+		$key = (string) $row->meta_key;
+		if ( isset( $acf_keys[ $key ] ) ) {
+			$snapshot[] = array(
+				'meta_key'   => $key,
+				'meta_value' => (string) $row->meta_value,
+			);
+		}
+	}
+
+	return $snapshot;
+}
+
+/**
+ * Snapshot all translations before an English ACF edit can trigger WPML Copy.
+ *
+ * `pre_post_update` runs before `save_post` and before ACFML's propagation
+ * callbacks. This is intentionally limited to real editor submissions carrying
+ * ACF values and to the post types managed by the version-controlled importers.
+ *
+ * @param int   $post_id Post being updated.
+ * @param array $data    Sanitized post data (unused).
+ * @return void
+ */
+function estecapelli_snapshot_translations_before_source_acf_save( $post_id, $data ) {
+	unset( $data );
+
+	if ( ! empty( $GLOBALS['estecapelli_source_translation_snapshots'] ) ) {
+		return;
+	}
+	if ( empty( $_POST['acf'] ) || ! is_array( $_POST['acf'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return;
+	}
+	if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) {
+		return;
+	}
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	$post_type = get_post_type( $post_id );
+	if ( ! in_array( $post_type, array( 'page', 'treatment', 'doctor' ), true ) ) {
+		return;
+	}
+
+	$details = apply_filters(
+		'wpml_element_language_details',
+		null,
+		array(
+			'element_id'   => (int) $post_id,
+			'element_type' => $post_type,
+		)
+	);
+	$language = is_object( $details ) ? ( $details->language_code ?? '' ) : ( is_array( $details ) ? ( $details['language_code'] ?? '' ) : '' );
+	$trid     = is_object( $details ) ? ( $details->trid ?? 0 ) : ( is_array( $details ) ? ( $details['trid'] ?? 0 ) : 0 );
+	$default  = (string) apply_filters( 'wpml_default_language', null );
+	if ( ! $trid || ! $language || ! $default || $language !== $default ) {
+		return;
+	}
+
+	global $wpdb;
+	$element_type = (string) apply_filters( 'wpml_element_type', $post_type );
+	$table        = $wpdb->prefix . 'icl_translations';
+	$translation_ids = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT t.element_id
+			 FROM {$table} t
+			 INNER JOIN {$wpdb->posts} p ON p.ID = t.element_id
+			 WHERE t.trid = %d AND t.element_type = %s AND t.element_id <> %d
+			   AND p.post_type = %s AND p.post_status <> 'trash'
+			 ORDER BY t.translation_id ASC",
+			(int) $trid,
+			$element_type,
+			(int) $post_id,
+			$post_type
+		)
+	);
+
+	$snapshots = array();
+	foreach ( array_map( 'intval', (array) $translation_ids ) as $translation_id ) {
+		if ( $translation_id ) {
+			$snapshots[ $translation_id ] = estecapelli_raw_acf_meta_snapshot( $translation_id );
+		}
+	}
+	if ( $snapshots ) {
+		$GLOBALS['estecapelli_source_translation_snapshots'] = $snapshots;
+	}
+}
+add_action( 'pre_post_update', 'estecapelli_snapshot_translations_before_source_acf_save', 0, 2 );
+
+/**
+ * Replace one post's ACF rows with an exact pre-save snapshot.
+ *
+ * Direct postmeta writes are deliberate here: using update_field()/update_meta()
+ * would re-enter the same ACFML Copy hooks whose side effects are being undone.
+ * All unrelated post metadata remains untouched.
+ *
+ * @param int   $post_id  Translation post ID.
+ * @param array $snapshot Raw ACF meta rows.
+ * @return bool Whether the replacement completed.
+ */
+function estecapelli_restore_raw_acf_meta_snapshot( $post_id, array $snapshot ) {
+	global $wpdb;
+
+	$current = estecapelli_raw_acf_meta_snapshot( $post_id );
+	$keys    = array();
+	foreach ( array_merge( $current, $snapshot ) as $row ) {
+		if ( ! empty( $row['meta_key'] ) ) {
+			$keys[ (string) $row['meta_key'] ] = true;
+		}
+	}
+
+	$wpdb->query( 'START TRANSACTION' );
+	if ( $keys ) {
+		$meta_keys    = array_keys( $keys );
+		$placeholders = implode( ', ', array_fill( 0, count( $meta_keys ), '%s' ) );
+		$deleted      = $wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key IN ({$placeholders})",
+				array_merge( array( (int) $post_id ), $meta_keys )
+			)
+		);
+		if ( false === $deleted ) {
+			$wpdb->query( 'ROLLBACK' );
+			return false;
+		}
+	}
+
+	foreach ( array_chunk( $snapshot, 100 ) as $chunk ) {
+		$values = array();
+		$args   = array();
+		foreach ( $chunk as $row ) {
+			$values[] = '(%d, %s, %s)';
+			$args[]   = (int) $post_id;
+			$args[]   = (string) $row['meta_key'];
+			$args[]   = (string) $row['meta_value'];
+		}
+		$inserted = $wpdb->query(
+			$wpdb->prepare(
+				"INSERT INTO {$wpdb->postmeta} (post_id, meta_key, meta_value) VALUES " . implode( ', ', $values ),
+				$args
+			)
+		);
+		if ( false === $inserted ) {
+			$wpdb->query( 'ROLLBACK' );
+			return false;
+		}
+	}
+
+	$wpdb->query( 'COMMIT' );
+	clean_post_cache( (int) $post_id );
+	return true;
+}
+
+/** Restore translated ACF data after every English/WPML save callback. */
+function estecapelli_restore_translations_after_source_acf_save() {
+	$snapshots = $GLOBALS['estecapelli_source_translation_snapshots'] ?? null;
+	unset( $GLOBALS['estecapelli_source_translation_snapshots'] );
+	if ( ! is_array( $snapshots ) ) {
+		return;
+	}
+
+	foreach ( $snapshots as $translation_id => $snapshot ) {
+		estecapelli_restore_raw_acf_meta_snapshot( (int) $translation_id, (array) $snapshot );
+	}
+}
+add_action( 'shutdown', 'estecapelli_restore_translations_after_source_acf_save', PHP_INT_MAX );
