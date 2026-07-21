@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/blog-i18n-meta.php';
 
 if ( ! defined( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-21.1' );
+	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-21.2' );
 }
 
 /** Translated languages this importer handles (English is meta-only). */
@@ -257,21 +257,36 @@ function estecapelli_blog_i18n_import_one( $lang, $english_slug ) {
 		}
 	}
 
-	// Re-apply the canonical slug/title after WPML linking.
-	$target_id = wp_update_post(
+	// Re-apply the canonical title after WPML linking.
+	$updated = wp_update_post(
 		array(
 			'ID'         => (int) $target_id,
 			'post_title' => $target_title,
-			'post_name'  => $target_slug,
 		),
 		true
 	);
-	if ( is_wp_error( $target_id ) ) {
-		return $target_id;
+	if ( is_wp_error( $updated ) ) {
+		return $updated;
 	}
+
+	// Force the exact indexed slug directly. wp_update_post() runs post_name
+	// through sanitize_title(), which strips the leading dash a few indexed
+	// Spanish slugs legitimately carry (e.g. "-es-doloroso-el-trasplante-capilar"),
+	// so the stored slug would never match the frozen live-URL contract and the
+	// indexed router would 404 that path. Write it raw — but only after
+	// confirming no *other* post already owns that exact slug.
 	$target_post = get_post( $target_id );
-	if ( ! $target_post || $target_slug !== $target_post->post_name ) {
-		return new WP_Error( 'blog_i18n_slug_conflict', sprintf( 'The required %s slug is already in use: %s.', strtoupper( $lang ), $target_slug ) );
+	if ( ! $target_post ) {
+		return new WP_Error( 'blog_i18n_missing_target', sprintf( 'The imported %s post could not be reloaded for %s.', strtoupper( $lang ), $english_slug ) );
+	}
+	if ( $target_slug !== $target_post->post_name ) {
+		$conflict = estecapelli_blog_i18n_raw_post_id( $target_slug, (int) $target_id );
+		if ( $conflict ) {
+			return new WP_Error( 'blog_i18n_slug_conflict', sprintf( 'The required %s slug is already in use by another post: %s.', strtoupper( $lang ), $target_slug ) );
+		}
+		global $wpdb;
+		$wpdb->update( $wpdb->posts, array( 'post_name' => $target_slug ), array( 'ID' => (int) $target_id ) );
+		clean_post_cache( (int) $target_id );
 	}
 
 	// Mirror the English post's categories, mapped to their translated equivalents.
