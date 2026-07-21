@@ -1609,6 +1609,85 @@ function estecapelli_render_treatments_importer() {
 				</table>
 			<?php endif; ?>
 
+			<?php if ( function_exists( 'estecapelli_run_blog_i18n_import' ) ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Blog translations + SEO (all languages)', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'One import brings every translated blog article (French, Turkish, Italian, Spanish, Polish, Portuguese) into WordPress, links each to its English original, and writes the Rank Math meta description + focus keyword for every language, English included. Idempotent and safe to run again.', 'estecapelli' ); ?>
+				</p>
+
+				<?php
+				$blog_i18n_all_url = wp_nonce_url(
+					add_query_arg( array( 'action' => 'estecapelli_import_blog_i18n' ), admin_url( 'admin-post.php' ) ),
+					'estecapelli_import_blog_i18n'
+				);
+				?>
+				<p>
+					<a href="<?php echo esc_url( $blog_i18n_all_url ); ?>" class="button button-primary button-hero">
+						<?php esc_html_e( 'Import ALL blog translations + SEO', 'estecapelli' ); ?>
+					</a>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:8%;"><?php esc_html_e( 'Lang', 'estecapelli' ); ?></th>
+							<th style="width:30%;"><?php esc_html_e( 'English post', 'estecapelli' ); ?></th>
+							<th style="width:32%;"><?php esc_html_e( 'Translated slug', 'estecapelli' ); ?></th>
+							<th style="width:18%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+							<th style="width:12%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						foreach ( estecapelli_blog_i18n_languages() as $blog_lang ) :
+							foreach ( estecapelli_indexed_blog_slugs() as $blog_source_slug => $blog_langs ) :
+								if ( empty( $blog_langs[ $blog_lang ] ) ) {
+									continue;
+								}
+								$blog_target_slug = $blog_langs[ $blog_lang ];
+								$blog_source_id   = estecapelli_source_post_id( $blog_source_slug, 'post' );
+								$blog_linked_id   = $blog_source_id ? (int) apply_filters( 'wpml_object_id', $blog_source_id, 'post', false, $blog_lang ) : 0;
+								$blog_candidate   = estecapelli_blog_i18n_raw_post_id( $blog_target_slug, $blog_source_id );
+								$blog_exists      = ( $blog_linked_id && $blog_linked_id !== $blog_source_id );
+								$blog_view_id     = $blog_exists ? $blog_linked_id : $blog_candidate;
+								$blog_one_url     = wp_nonce_url(
+									add_query_arg(
+										array(
+											'action' => 'estecapelli_import_blog_i18n_one',
+											'lang'   => $blog_lang,
+											'source' => $blog_source_slug,
+										),
+										admin_url( 'admin-post.php' )
+									),
+									'estecapelli_import_blog_i18n_one_' . $blog_lang . '_' . $blog_source_slug
+								);
+								?>
+								<tr>
+									<td><code><?php echo esc_html( strtoupper( $blog_lang ) ); ?></code></td>
+									<td><code><?php echo esc_html( $blog_source_slug ); ?></code></td>
+									<td><code><?php echo esc_html( $blog_target_slug ); ?></code></td>
+									<td>
+										<?php if ( $blog_exists ) : ?>
+											<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+										<?php elseif ( $blog_candidate ) : ?>
+											<span style="color:#b26200;"><?php esc_html_e( 'Exists - link needs repair', 'estecapelli' ); ?></span>
+										<?php else : ?>
+											<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+										<?php endif; ?>
+										<?php if ( $blog_view_id ) : ?>
+											- <a href="<?php echo esc_url( get_edit_post_link( $blog_view_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+										<?php endif; ?>
+									</td>
+									<td>
+										<a href="<?php echo esc_url( $blog_one_url ); ?>" class="button"><?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?></a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endif; ?>
+
 			<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Pages', 'estecapelli' ); ?></h2>
 			<p class="description" style="max-width:740px;">
 				<?php esc_html_e( 'Each row is a regular WordPress page scaffolded with a basic Hero section. After importing, edit each page in the WordPress editor to build it out with the page-builder sections.', 'estecapelli' ); ?>

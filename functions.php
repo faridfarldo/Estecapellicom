@@ -25,6 +25,7 @@ if ( ! defined( 'ESTECAPELLI_COUNTRY_COUNT' ) ) {
 	define( 'ESTECAPELLI_COUNTRY_COUNT', '40' );
 }
 
+require get_template_directory() . '/inc/db-error-display.php';
 require get_template_directory() . '/inc/indexed-urls.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/svg-support.php';
@@ -90,6 +91,8 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-fr-doctors.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-blog.php';
+	// Unified blog translation + Rank Math SEO importer (all languages, one run).
+	require get_template_directory() . '/inc/admin/import-blog-translations.php';
 	// Loaded last because it reuses the shared page and WPML repair helpers.
 	require get_template_directory() . '/inc/admin/import-legal-pages.php';
 }
