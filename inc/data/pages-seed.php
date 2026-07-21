@@ -601,19 +601,19 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/roxane.webp',  'name' => __( 'Roxane', 'estecapelli' ),  'role' => '', 'languages' => array(
 								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
 							) ),
+							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/emilia.webp', 'name' => __( 'Emilia', 'estecapelli' ), 'role' => '', 'languages' => array(
+								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
+							) ),
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/sana.webp',    'name' => __( 'Sana', 'estecapelli' ),    'role' => '', 'languages' => array(
 								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
 								array( 'country' => 'sa', 'label' => __( 'Arabic', 'estecapelli' ) ),
 								array( 'country' => 'es', 'label' => __( 'Spanish', 'estecapelli' ) ),
 							) ),
+							array( 'photo' => '', 'photo_url' => 'https://estecapelli.com/wp-content/uploads/2026/07/amn.webp', 'name' => __( 'Amanda', 'estecapelli' ), 'role' => '', 'languages' => array(
+								array( 'country' => 'es', 'label' => __( 'Spanish', 'estecapelli' ) ),
+							) ),
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/melissa.webp', 'name' => __( 'Melissa', 'estecapelli' ), 'role' => '', 'languages' => array(
 								array( 'country' => 'it', 'label' => __( 'Italian', 'estecapelli' ) ),
-							) ),
-							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/gaia.webp', 'name' => __( 'Gaia', 'estecapelli' ), 'role' => '', 'languages' => array(
-								array( 'country' => 'it', 'label' => __( 'Italian', 'estecapelli' ) ),
-							) ),
-							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/emilia.webp', 'name' => __( 'Emilia', 'estecapelli' ), 'role' => '', 'languages' => array(
-								array( 'country' => 'fr', 'label' => __( 'French', 'estecapelli' ) ),
 							) ),
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/natalia.webp', 'name' => __( 'Natalia', 'estecapelli' ), 'role' => '', 'languages' => array(
 								array( 'country' => 'pl', 'label' => __( 'Polish', 'estecapelli' ) ),
@@ -632,9 +632,6 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 							) ),
 							array( 'photo' => '', 'photo_url' => get_template_directory_uri() . '/assets/images/team/wali.webp',    'name' => __( 'Wali', 'estecapelli' ),    'role' => '', 'languages' => array(
 								array( 'country' => 'pk', 'label' => __( 'Urdu', 'estecapelli' ) ),
-							) ),
-							array( 'photo' => '', 'photo_url' => 'https://estecapelli.com/wp-content/uploads/2026/07/amn.webp', 'name' => __( 'Amanda', 'estecapelli' ), 'role' => '', 'languages' => array(
-								array( 'country' => 'es', 'label' => __( 'Spanish', 'estecapelli' ) ),
 							) ),
 						),
 					),

@@ -414,6 +414,192 @@ function estecapelli_acf_field_is_shared_copy( $field_key ) {
 }
 
 /**
+ * Find raw-meta prefixes for a registered ACF repeater field.
+ *
+ * ACF stores a hidden reference beside the repeater count, for example
+ * `_page_sections_1_members` => `field_team_members`. The public part of that
+ * meta key is the prefix shared by every descendant row.
+ *
+ * @param array  $rows      Raw ACF meta snapshot.
+ * @param string $field_key Repeater field key.
+ * @return array<int,string>
+ */
+function estecapelli_acf_repeater_prefixes( array $rows, $field_key ) {
+	$prefixes = array();
+	foreach ( $rows as $row ) {
+		$meta_key   = isset( $row['meta_key'] ) ? (string) $row['meta_key'] : '';
+		$meta_value = isset( $row['meta_value'] ) ? (string) $row['meta_value'] : '';
+		if ( '_' === substr( $meta_key, 0, 1 ) && $field_key === $meta_value ) {
+			$prefixes[] = substr( $meta_key, 1 );
+		}
+	}
+	return array_values( array_unique( $prefixes ) );
+}
+
+/** Normalize one stable repeater-row identity value. */
+function estecapelli_acf_normalize_identity( $value ) {
+	$value = trim( wp_strip_all_tags( (string) $value ) );
+	return function_exists( 'mb_strtolower' ) ? mb_strtolower( $value, 'UTF-8' ) : strtolower( $value );
+}
+
+/**
+ * Split one raw repeater subtree into indexed rows and stable identities.
+ *
+ * @param array  $rows                Raw ACF meta snapshot.
+ * @param string $prefix              Public repeater meta prefix.
+ * @param array  $identity_field_keys Ordered identity field keys.
+ * @return array<int,array{index:int,rows:array,identities:array}>
+ */
+function estecapelli_acf_identity_repeater_rows( array $rows, $prefix, array $identity_field_keys ) {
+	$references = estecapelli_acf_meta_reference_map( $rows );
+	$pattern    = '/^' . preg_quote( $prefix, '/' ) . '_(\d+)_/';
+	$indexed    = array();
+
+	foreach ( $rows as $row ) {
+		$meta_key   = isset( $row['meta_key'] ) ? (string) $row['meta_key'] : '';
+		$public_key = '_' === substr( $meta_key, 0, 1 ) ? substr( $meta_key, 1 ) : $meta_key;
+		if ( ! preg_match( $pattern, $public_key, $matches ) ) {
+			continue;
+		}
+
+		$index = (int) $matches[1];
+		if ( ! isset( $indexed[ $index ] ) ) {
+			$indexed[ $index ] = array(
+				'index'      => $index,
+				'rows'       => array(),
+				'identities' => array(),
+			);
+		}
+		$indexed[ $index ]['rows'][] = $row;
+
+		if ( $meta_key === $public_key && isset( $references[ $public_key ] ) && in_array( $references[ $public_key ], $identity_field_keys, true ) ) {
+			$identity = estecapelli_acf_normalize_identity( $row['meta_value'] ?? '' );
+			if ( '' !== $identity ) {
+				$indexed[ $index ]['identities'][ $references[ $public_key ] ] = $identity;
+			}
+		}
+	}
+
+	ksort( $indexed, SORT_NUMERIC );
+	return array_values( $indexed );
+}
+
+/** Re-key one raw repeater row from its old index/prefix to a new position. */
+function estecapelli_acf_rekey_repeater_row( array $row, $old_prefix, $old_index, $new_prefix, $new_index ) {
+	$meta_key = isset( $row['meta_key'] ) ? (string) $row['meta_key'] : '';
+	$hidden   = '_' === substr( $meta_key, 0, 1 );
+	$public   = $hidden ? substr( $meta_key, 1 ) : $meta_key;
+	$old_root = $old_prefix . '_' . (int) $old_index . '_';
+	if ( 0 === strpos( $public, $old_root ) ) {
+		$public          = $new_prefix . '_' . (int) $new_index . '_' . substr( $public, strlen( $old_root ) );
+		$row['meta_key'] = ( $hidden ? '_' : '' ) . $public;
+	}
+	return $row;
+}
+
+/**
+ * Align one translated repeater with English by stable row identity.
+ *
+ * Deleted rows disappear, reordered rows follow English, and every translated
+ * child subtree moves with its real person instead of remaining at a numeric
+ * position. A brand-new source row is copied as an initial untranslated row.
+ *
+ * @param array  $translation        Translation's pre-save raw ACF rows.
+ * @param array  $source             English post's newly saved raw ACF rows.
+ * @param string $translation_prefix Translation repeater prefix.
+ * @param string $source_prefix      English repeater prefix.
+ * @param array  $identity_fields    Ordered stable identity field keys.
+ * @return array
+ */
+function estecapelli_align_identity_repeater( array $translation, array $source, $translation_prefix, $source_prefix, array $identity_fields ) {
+	$translation_rows = estecapelli_acf_identity_repeater_rows( $translation, $translation_prefix, $identity_fields );
+	$source_rows      = estecapelli_acf_identity_repeater_rows( $source, $source_prefix, $identity_fields );
+	$used             = array();
+	$rebuilt          = array();
+
+	foreach ( $source_rows as $new_index => $source_row ) {
+		$match_index = null;
+		foreach ( $identity_fields as $identity_field ) {
+			$source_identity = $source_row['identities'][ $identity_field ] ?? '';
+			if ( '' === $source_identity ) {
+				continue;
+			}
+			foreach ( $translation_rows as $candidate_index => $candidate ) {
+				if ( isset( $used[ $candidate_index ] ) ) {
+					continue;
+				}
+				if ( $source_identity === ( $candidate['identities'][ $identity_field ] ?? '' ) ) {
+					$match_index = $candidate_index;
+					break 2;
+				}
+			}
+		}
+
+		$base        = null !== $match_index ? $translation_rows[ $match_index ] : $source_row;
+		$base_prefix = null !== $match_index ? $translation_prefix : $source_prefix;
+		if ( null !== $match_index ) {
+			$used[ $match_index ] = true;
+		}
+		foreach ( $base['rows'] as $row ) {
+			$rebuilt[] = estecapelli_acf_rekey_repeater_row( $row, $base_prefix, $base['index'], $translation_prefix, $new_index );
+		}
+	}
+
+	$pattern       = '/^_?' . preg_quote( $translation_prefix, '/' ) . '_\d+_/';
+	$result        = array();
+	$count_updated = false;
+	foreach ( $translation as $row ) {
+		$meta_key = isset( $row['meta_key'] ) ? (string) $row['meta_key'] : '';
+		if ( preg_match( $pattern, $meta_key ) ) {
+			continue;
+		}
+		if ( $translation_prefix === $meta_key ) {
+			$row['meta_value'] = (string) count( $source_rows );
+			$count_updated     = true;
+		}
+		$result[] = $row;
+	}
+
+	if ( ! $count_updated ) {
+		$result[] = array(
+			'meta_key'   => $translation_prefix,
+			'meta_value' => (string) count( $source_rows ),
+		);
+	}
+	return array_merge( $result, $rebuilt );
+}
+
+/**
+ * Align repeaters whose translated child data must follow a stable entity.
+ *
+ * @param array $translation Translation's pre-save raw ACF rows.
+ * @param array $source      English post's newly saved raw ACF rows.
+ * @return array
+ */
+function estecapelli_align_identity_repeaters( array $translation, array $source ) {
+	$configurations = array(
+		'field_team_members' => array( 'field_team_m_photo_url', 'field_team_m_photo', 'field_team_m_name' ),
+		'field_team_m_langs' => array( 'field_team_lang_country' ),
+		'field_docs_members' => array( 'field_docs_m_photo', 'field_docs_m_name' ),
+	);
+
+	foreach ( $configurations as $repeater_field => $identity_fields ) {
+		$translation_prefixes = estecapelli_acf_repeater_prefixes( $translation, $repeater_field );
+		$source_prefixes      = estecapelli_acf_repeater_prefixes( $source, $repeater_field );
+		foreach ( $translation_prefixes as $position => $translation_prefix ) {
+			$source_prefix = in_array( $translation_prefix, $source_prefixes, true )
+				? $translation_prefix
+				: ( $source_prefixes[ $position ] ?? '' );
+			if ( '' !== $source_prefix ) {
+				$translation = estecapelli_align_identity_repeater( $translation, $source, $translation_prefix, $source_prefix, $identity_fields );
+			}
+		}
+	}
+
+	return $translation;
+}
+
+/**
  * Merge only shared Copy values from English into a translation snapshot.
  *
  * The translation owns every Translate and Copy Once value, including all
@@ -527,6 +713,7 @@ function estecapelli_restore_translations_after_source_acf_save() {
 
 	$source = estecapelli_raw_acf_meta_snapshot( (int) $state['source_id'] );
 	foreach ( $state['translations'] as $translation_id => $snapshot ) {
+		$snapshot = estecapelli_align_identity_repeaters( (array) $snapshot, $source );
 		$snapshot = estecapelli_merge_shared_acf_values( (array) $snapshot, $source );
 		estecapelli_restore_raw_acf_meta_snapshot( (int) $translation_id, $snapshot );
 	}

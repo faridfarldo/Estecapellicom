@@ -54,6 +54,14 @@
                     ]
                 },
                 {
+                    "name": "Emilia",
+                    "languages": [
+                        {
+                            "label": "Francês"
+                        }
+                    ]
+                },
+                {
                     "name": "Sana",
                     "languages": [
                         {
@@ -68,26 +76,18 @@
                     ]
                 },
                 {
+                    "name": "Amanda",
+                    "languages": [
+                        {
+                            "label": "Espanhol"
+                        }
+                    ]
+                },
+                {
                     "name": "Melissa",
                     "languages": [
                         {
                             "label": "italiano"
-                        }
-                    ]
-                },
-                {
-                    "name": "Gaia",
-                    "languages": [
-                        {
-                            "label": "italiano"
-                        }
-                    ]
-                },
-                {
-                    "name": "Emilia",
-                    "languages": [
-                        {
-                            "label": "Francês"
                         }
                     ]
                 },
@@ -136,14 +136,6 @@
                     "languages": [
                         {
                             "label": "urdu"
-                        }
-                    ]
-                },
-                {
-                    "name": "Amanda",
-                    "languages": [
-                        {
-                            "label": "Espanhol"
                         }
                     ]
                 }
