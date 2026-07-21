@@ -7,20 +7,33 @@
  * registration time; adding them later with acf/load_field is too late for the
  * local-field sync tool.
  *
- * The site uses the same section structure in every language:
+ * The site is translated with the native WordPress/ACF editor. Its ACFML
+ * preferences therefore separate shared assets from editable language content:
  *
- *   - Flexible Content, Repeater, Group and all non-text fields are copied.
+ *   - Flexible Content, Repeater and Group containers are copied once, so a
+ *     translation can be edited without its rows being restored from English.
  *   - Visitor-facing Text, Textarea and WYSIWYG values are translated.
- *   - Text fields which contain technical identifiers are explicitly copied.
+ *   - Media and technical identifiers stay copied from the source language.
  *
- * `wpml_cf_preferences` uses WPML's numeric values: 1 = Copy, 2 = Translate.
- * ACF safely ignores this extra field property when ACFML is not active.
+ * `wpml_cf_preferences` uses WPML's numeric values: 1 = Copy, 2 = Translate,
+ * 3 = Copy Once. ACF safely ignores this property when ACFML is not active.
  *
  * @package Estecapelli
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
+
+/*
+ * ACFML enables repeater/Flexible Content row synchronisation by default. That
+ * behaviour is useful when every language must have identical rows, but this
+ * site's importers intentionally write complete per-language page builders.
+ * Leaving sync enabled makes a later native-editor Save restore the old source
+ * rows over the freshly imported translation.
+ */
+if ( ! defined( 'ACFML_REPEATER_SYNC_DEFAULT' ) ) {
+	define( 'ACFML_REPEATER_SYNC_DEFAULT', false );
 }
 
 /**
@@ -30,6 +43,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array
  */
 function estecapelli_acfml_prepare_field_group( $group ) {
+	/* Expert mode respects the explicit per-field preferences below. */
+	if ( ! isset( $group['acfml_field_group_mode'] ) ) {
+		$group['acfml_field_group_mode'] = 'advanced';
+	}
+
 	if ( ! empty( $group['fields'] ) && is_array( $group['fields'] ) ) {
 		$group['fields'] = estecapelli_acfml_prepare_fields( $group['fields'] );
 	}
@@ -80,11 +98,12 @@ function estecapelli_acfml_prepare_fields( $fields ) {
  *
  * Text-like fields are translated by default, except for an explicit list of
  * structural values (asset URLs, video IDs, slugs, codes, names and counts).
- * Every other field type is copied so layout selectors, row counts, media IDs,
- * choices and relationships remain identical in every language.
+ * Container fields use Copy Once: the source structure seeds a new translation,
+ * then its imported rows remain independent. Other non-text values stay copied
+ * so media IDs, choices and relationships remain identical in every language.
  *
  * @param array $field ACF field definition.
- * @return int 1 (Copy) or 2 (Translate).
+ * @return int 1 (Copy), 2 (Translate) or 3 (Copy Once).
  */
 function estecapelli_acfml_preference_for_field( $field ) {
 	$copy_text_fields = array(
@@ -108,9 +127,33 @@ function estecapelli_acfml_preference_for_field( $field ) {
 	}
 
 	$type = isset( $field['type'] ) ? (string) $field['type'] : '';
+	if ( in_array( $type, array( 'flexible_content', 'repeater', 'group', 'clone', 'accordion', 'tab' ), true ) ) {
+		return 3;
+	}
+
 	if ( in_array( $type, array( 'text', 'textarea', 'wysiwyg' ), true ) ) {
 		return 2;
 	}
 
 	return 1;
 }
+
+/**
+ * Remove ACFML's old per-post repeater-sync choices once.
+ *
+ * The constant above changes the default for new posts. Existing posts can
+ * still have the former `true` value persisted in this ACFML option, so they
+ * need a one-time reset before the new default can take effect.
+ *
+ * @return void
+ */
+function estecapelli_acfml_disable_existing_repeater_sync() {
+	$migration = 'estecapelli_acfml_repeater_sync_disabled_v1';
+	if ( '1' === get_option( $migration, '' ) ) {
+		return;
+	}
+
+	delete_option( 'acfml_synchronise_repeater_fields' );
+	update_option( $migration, '1', false );
+}
+add_action( 'admin_init', 'estecapelli_acfml_disable_existing_repeater_sync', 0 );
