@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/blog-i18n-meta.php';
 
 if ( ! defined( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-21.3' );
+	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-21.4' );
 }
 
 /** Translated languages this importer handles (English is meta-only). */
@@ -322,6 +322,160 @@ function estecapelli_blog_i18n_import_one( $lang, $english_slug ) {
 	return (int) $target_id;
 }
 
+/** Find a published page id by raw slug, bypassing WPML language filtering. */
+function estecapelli_blog_i18n_raw_page_id( $slug, $exclude_id = 0 ) {
+	global $wpdb;
+	return (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts}
+			 WHERE post_name = %s AND post_type = 'page' AND post_status <> 'trash' AND ID <> %d
+			 ORDER BY ID ASC LIMIT 1",
+			$slug,
+			(int) $exclude_id
+		)
+	);
+}
+
+/**
+ * Ensure the blog landing page exists in one language and is WPML-linked.
+ *
+ * The blog landing is a section-less `page` at slug "blog" routed to
+ * page-blog.php. Without a translated copy at the same slug, /{lang}/blog 404s.
+ * The English original is the source of truth; only the WPML link + slug matter.
+ *
+ * @param string $lang Indexed language code (fr/tr/it/es/pl/pt).
+ * @return int|WP_Error Translated blog page ID.
+ */
+function estecapelli_blog_i18n_ensure_landing_page( $lang ) {
+	$wpml_lang    = estecapelli_wpml_language_code( $lang );
+	$target_slug  = 'blog';
+	$target_title = 'Blog';
+
+	$source_id = estecapelli_source_post_id( 'blog', 'page' );
+	if ( ! $source_id ) {
+		return new WP_Error( 'blog_i18n_missing_landing_source', 'Published English blog landing page not found.' );
+	}
+	$source_post = get_post( $source_id );
+	if ( ! $source_post ) {
+		return new WP_Error( 'blog_i18n_invalid_landing_source', 'English blog landing page could not be loaded.' );
+	}
+
+	$element_type   = apply_filters( 'wpml_element_type', 'page' );
+	$source_details = apply_filters(
+		'wpml_element_language_details',
+		null,
+		array(
+			'element_id'   => $source_id,
+			'element_type' => 'page',
+		)
+	);
+	$trid            = (int) estecapelli_blog_i18n_detail( $source_details, 'trid' );
+	$source_language = (string) estecapelli_blog_i18n_detail( $source_details, 'language_code' );
+	if ( ! $trid || 'en' !== $source_language ) {
+		return new WP_Error( 'blog_i18n_landing_unlinked', 'WPML language details are missing for the blog landing page.' );
+	}
+
+	// Resolve the existing translation by WPML relationship first — the "blog"
+	// slug is shared across languages, so a raw slug lookup could grab another
+	// language's landing page. Only fall back to a raw lookup last.
+	$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, $wpml_lang );
+	if ( ! $target_id ) {
+		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, $wpml_lang );
+	}
+	if ( $target_id === $source_id ) {
+		$target_id = 0;
+	}
+	if ( $target_id ) {
+		$raw_target = get_post( $target_id );
+		if ( ! $raw_target || 'page' !== $raw_target->post_type || 'trash' === $raw_target->post_status ) {
+			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, $wpml_lang );
+			$target_id = 0;
+		}
+	}
+
+	if ( $target_id ) {
+		delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
+	}
+
+	$post_args = array(
+		'post_type'    => 'page',
+		'post_title'   => $target_title,
+		'post_name'    => $target_slug,
+		'post_status'  => 'publish',
+		'post_content' => '',
+		'post_parent'  => 0,
+		'menu_order'   => (int) $source_post->menu_order,
+	);
+	if ( $target_id ) {
+		$post_args['ID'] = $target_id;
+		$target_id       = wp_update_post( $post_args, true );
+	} else {
+		$target_id = wp_insert_post( $post_args, true );
+	}
+	if ( is_wp_error( $target_id ) ) {
+		return $target_id;
+	}
+
+	// Mirror any assigned page template (page-blog.php also applies by slug).
+	$page_template = get_page_template_slug( $source_id );
+	if ( $page_template ) {
+		update_post_meta( (int) $target_id, '_wp_page_template', $page_template );
+	}
+
+	do_action(
+		'wpml_set_element_language_details',
+		array(
+			'element_id'           => (int) $target_id,
+			'element_type'         => $element_type,
+			'trid'                 => $trid,
+			'language_code'        => $wpml_lang,
+			'source_language_code' => $source_language,
+			'check_duplicates'     => false,
+		)
+	);
+	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
+
+	$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, $wpml_lang, $source_language );
+	if ( ! $forced ) {
+		$reason = estecapelli_wpml_last_slot_error();
+		return new WP_Error(
+			'blog_i18n_landing_force_link_failed',
+			sprintf( 'The %s WPML relationship could not be rebuilt for the blog landing page%s', strtoupper( $lang ), $reason ? ' — ' . $reason : '.' )
+		);
+	}
+
+	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, $wpml_lang );
+	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, $wpml_lang ) ) {
+		$repaired = estecapelli_wpml_repair_relationship_raw( $target_id, $element_type, $trid, $wpml_lang, $source_language );
+		if ( ! $repaired ) {
+			return new WP_Error( 'blog_i18n_landing_link_failed', sprintf( 'WPML did not link the %s blog landing page.', strtoupper( $lang ) ) );
+		}
+	}
+
+	// Re-apply the canonical slug/title; force it raw if WordPress deduped it
+	// (the "blog" slug is shared across every language).
+	wp_update_post(
+		array(
+			'ID'          => (int) $target_id,
+			'post_title'  => $target_title,
+			'post_name'   => $target_slug,
+			'post_parent' => 0,
+		),
+		true
+	);
+	$target_post = get_post( $target_id );
+	if ( ! $target_post ) {
+		return new WP_Error( 'blog_i18n_landing_missing', sprintf( 'The %s blog landing page could not be reloaded.', strtoupper( $lang ) ) );
+	}
+	if ( $target_slug !== $target_post->post_name ) {
+		global $wpdb;
+		$wpdb->update( $wpdb->posts, array( 'post_name' => $target_slug ), array( 'ID' => (int) $target_id ) );
+		clean_post_cache( (int) $target_id );
+	}
+
+	return (int) $target_id;
+}
+
 /**
  * Run the complete unified import: English SEO + every translated article.
  *
@@ -347,6 +501,17 @@ function estecapelli_run_blog_i18n_import() {
 		if ( ! isset( $active[ $lang ] ) && ! isset( $active[ $wpml_lang ] ) ) {
 			continue; // Skip languages that are not active in WPML yet.
 		}
+
+		// The blog landing page must exist in this language first so /{lang}/blog resolves.
+		$landing = estecapelli_blog_i18n_ensure_landing_page( $lang );
+		if ( is_wp_error( $landing ) ) {
+			return new WP_Error(
+				$landing->get_error_code(),
+				sprintf( '%s blog landing: %s', $lang, $landing->get_error_message() )
+			);
+		}
+		$imported[ $lang . '/__landing__' ] = $landing;
+
 		foreach ( estecapelli_indexed_blog_slugs() as $english_slug => $langs ) {
 			if ( empty( $langs[ $lang ] ) ) {
 				continue; // No indexed copy of this article in this language.
