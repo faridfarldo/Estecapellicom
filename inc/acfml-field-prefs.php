@@ -37,6 +37,28 @@ if ( ! defined( 'ACFML_REPEATER_SYNC_DEFAULT' ) ) {
 }
 
 /**
+ * Keep ACFML's per-post row-position synchronisation disabled.
+ *
+ * Copy fields still propagate normally. Only the dangerous operation that
+ * inserts, removes or shifts repeater/Flexible Content positions is blocked;
+ * those structural changes are applied deliberately through the importers.
+ * Returning an empty map also overrides a stale `true` choice already stored
+ * by ACFML for an existing post.
+ *
+ * @return array
+ */
+function estecapelli_acfml_disable_repeater_position_sync() {
+	return array();
+}
+add_filter( 'pre_option_acfml_synchronise_repeater_fields', 'estecapelli_acfml_disable_repeater_position_sync', PHP_INT_MAX );
+
+/** Prevent ACFML from persisting row-position sync as enabled again. */
+function estecapelli_acfml_reject_repeater_position_sync_update() {
+	return array();
+}
+add_filter( 'pre_update_option_acfml_synchronise_repeater_fields', 'estecapelli_acfml_reject_repeater_position_sync_update', PHP_INT_MAX );
+
+/**
  * Attach ACFML preferences to every field in a local field group.
  *
  * @param array $group ACF local field-group definition.

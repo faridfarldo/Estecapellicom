@@ -360,10 +360,98 @@ function estecapelli_snapshot_translations_before_source_acf_save( $post_id, $da
 		}
 	}
 	if ( $snapshots ) {
-		$GLOBALS['estecapelli_source_translation_snapshots'] = $snapshots;
+		$GLOBALS['estecapelli_source_translation_snapshots'] = array(
+			'source_id'    => (int) $post_id,
+			'translations' => $snapshots,
+		);
 	}
 }
 add_action( 'pre_post_update', 'estecapelli_snapshot_translations_before_source_acf_save', 0, 2 );
+
+/**
+ * Map raw ACF value meta keys to their registered field keys.
+ *
+ * @param array $rows Raw ACF meta snapshot.
+ * @return array<string,string> Public meta key => ACF field key.
+ */
+function estecapelli_acf_meta_reference_map( array $rows ) {
+	$references = array();
+	foreach ( $rows as $row ) {
+		$meta_key   = isset( $row['meta_key'] ) ? (string) $row['meta_key'] : '';
+		$field_key  = isset( $row['meta_value'] ) ? (string) $row['meta_value'] : '';
+		if ( '_' === substr( $meta_key, 0, 1 ) && 0 === strpos( $field_key, 'field_' ) ) {
+			$references[ substr( $meta_key, 1 ) ] = $field_key;
+		}
+	}
+	return $references;
+}
+
+/**
+ * Whether one registered ACF field is intentionally shared from English.
+ *
+ * @param string $field_key ACF field key.
+ * @return bool
+ */
+function estecapelli_acf_field_is_shared_copy( $field_key ) {
+	static $preferences = array();
+	$field_key = (string) $field_key;
+	if ( isset( $preferences[ $field_key ] ) ) {
+		return 1 === $preferences[ $field_key ];
+	}
+
+	$preference = 0;
+	$field      = function_exists( 'acf_get_field' ) ? acf_get_field( $field_key ) : null;
+	if ( is_array( $field ) ) {
+		if ( isset( $field['wpml_cf_preferences'] ) ) {
+			$preference = (int) $field['wpml_cf_preferences'];
+		} elseif ( function_exists( 'estecapelli_acfml_preference_for_field' ) ) {
+			$preference = (int) estecapelli_acfml_preference_for_field( $field );
+		}
+	}
+
+	$preferences[ $field_key ] = $preference;
+	return 1 === $preference;
+}
+
+/**
+ * Merge only shared Copy values from English into a translation snapshot.
+ *
+ * The translation owns every Translate and Copy Once value, including all
+ * repeater/Flexible Content row counts and order. A source value is accepted
+ * only when the same meta position already exists in the translation and its
+ * registered ACF field preference is Copy. New/reordered rows therefore wait
+ * for an explicit page re-import instead of corrupting translated row content.
+ *
+ * @param array $translation Translation's pre-save raw ACF rows.
+ * @param array $source      English post's newly saved raw ACF rows.
+ * @return array Selectively synchronized translation snapshot.
+ */
+function estecapelli_merge_shared_acf_values( array $translation, array $source ) {
+	$references    = estecapelli_acf_meta_reference_map( $translation );
+	$source_values = array();
+	foreach ( $source as $row ) {
+		$meta_key = isset( $row['meta_key'] ) ? (string) $row['meta_key'] : '';
+		if ( isset( $references[ $meta_key ] ) && estecapelli_acf_field_is_shared_copy( $references[ $meta_key ] ) ) {
+			$source_values[ $meta_key ][] = (string) $row['meta_value'];
+		}
+	}
+
+	$positions = array();
+	foreach ( $translation as $index => $row ) {
+		$meta_key = isset( $row['meta_key'] ) ? (string) $row['meta_key'] : '';
+		if ( ! isset( $source_values[ $meta_key ] ) || ! isset( $references[ $meta_key ] ) || ! estecapelli_acf_field_is_shared_copy( $references[ $meta_key ] ) ) {
+			continue;
+		}
+
+		$position = $positions[ $meta_key ] ?? 0;
+		if ( isset( $source_values[ $meta_key ][ $position ] ) ) {
+			$translation[ $index ]['meta_value'] = $source_values[ $meta_key ][ $position ];
+		}
+		$positions[ $meta_key ] = $position + 1;
+	}
+
+	return $translation;
+}
 
 /**
  * Replace one post's ACF rows with an exact pre-save snapshot.
@@ -431,14 +519,16 @@ function estecapelli_restore_raw_acf_meta_snapshot( $post_id, array $snapshot ) 
 
 /** Restore translated ACF data after every English/WPML save callback. */
 function estecapelli_restore_translations_after_source_acf_save() {
-	$snapshots = $GLOBALS['estecapelli_source_translation_snapshots'] ?? null;
+	$state = $GLOBALS['estecapelli_source_translation_snapshots'] ?? null;
 	unset( $GLOBALS['estecapelli_source_translation_snapshots'] );
-	if ( ! is_array( $snapshots ) ) {
+	if ( ! is_array( $state ) || empty( $state['source_id'] ) || empty( $state['translations'] ) || ! is_array( $state['translations'] ) ) {
 		return;
 	}
 
-	foreach ( $snapshots as $translation_id => $snapshot ) {
-		estecapelli_restore_raw_acf_meta_snapshot( (int) $translation_id, (array) $snapshot );
+	$source = estecapelli_raw_acf_meta_snapshot( (int) $state['source_id'] );
+	foreach ( $state['translations'] as $translation_id => $snapshot ) {
+		$snapshot = estecapelli_merge_shared_acf_values( (array) $snapshot, $source );
+		estecapelli_restore_raw_acf_meta_snapshot( (int) $translation_id, $snapshot );
 	}
 }
 add_action( 'shutdown', 'estecapelli_restore_translations_after_source_acf_save', PHP_INT_MAX );
