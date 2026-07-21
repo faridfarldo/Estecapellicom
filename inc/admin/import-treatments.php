@@ -1290,6 +1290,65 @@ function estecapelli_render_treatments_importer() {
 				</table>
 			<?php endif; ?>
 
+			<?php if ( function_exists( 'estecapelli_it_pages_manifest' ) ) : ?>
+				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Italian page translations', 'estecapelli' ); ?></h2>
+				<p class="description" style="max-width:740px;">
+					<?php esc_html_e( 'Imports the Italian landing, About, Our Team, Our Doctors, Medical Director, Before & After and Contact pages individually. Use Import / Repair to rebuild the selected page and its Italian WPML relationship.', 'estecapelli' ); ?>
+				</p>
+
+				<table class="widefat striped" style="max-width:980px; margin-top:1rem;">
+					<thead>
+						<tr>
+							<th style="width:28%;"><?php esc_html_e( 'English page', 'estecapelli' ); ?></th>
+							<th style="width:32%;"><?php esc_html_e( 'Italian slug', 'estecapelli' ); ?></th>
+							<th style="width:24%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+							<th style="width:16%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( estecapelli_it_pages_manifest() as $source_slug => $italian_slug ) :
+							$source_id    = estecapelli_source_post_id( $source_slug, 'page' );
+							$linked_id    = $source_id ? (int) apply_filters( 'wpml_object_id', $source_id, 'page', false, 'it' ) : 0;
+							$candidate_id = estecapelli_it_template_page_raw_target_id( $italian_slug, $source_id, 'it' );
+							$italian_id   = ( $linked_id && $linked_id !== $source_id ) ? $linked_id : $candidate_id;
+							$action_url   = wp_nonce_url(
+								add_query_arg(
+									array(
+										'action' => 'estecapelli_import_it_page',
+										'source' => $source_slug,
+									),
+									admin_url( 'admin-post.php' )
+								),
+								'estecapelli_import_it_page_' . $source_slug
+							);
+							?>
+							<tr>
+								<td><code><?php echo esc_html( $source_slug ); ?></code></td>
+								<td><code><?php echo esc_html( $italian_slug ); ?></code></td>
+								<td>
+									<?php if ( $linked_id && $linked_id !== $source_id ) : ?>
+										<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+									<?php elseif ( $candidate_id ) : ?>
+										<span style="color:#b26200;"><?php esc_html_e( 'Exists - link needs repair', 'estecapelli' ); ?></span>
+									<?php else : ?>
+										<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+									<?php endif; ?>
+									<?php if ( $italian_id ) : ?>
+										- <a href="<?php echo esc_url( get_edit_post_link( $italian_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+										| <a href="<?php echo esc_url( get_permalink( $italian_id ) ); ?>" target="_blank"><?php esc_html_e( 'view', 'estecapelli' ); ?></a>
+									<?php endif; ?>
+								</td>
+								<td>
+									<a href="<?php echo esc_url( $action_url ); ?>" class="button button-primary">
+										<?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?>
+									</a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endif; ?>
+
 			<?php if ( function_exists( 'estecapelli_it_hair_manifest' ) ) : ?>
 				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Italian Hair Transplant translations', 'estecapelli' ); ?></h2>
 				<p class="description" style="max-width:740px;">
