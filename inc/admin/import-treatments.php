@@ -1645,8 +1645,9 @@ function estecapelli_render_treatments_importer() {
 									continue;
 								}
 								$blog_target_slug = $blog_langs[ $blog_lang ];
+								$blog_wpml_lang   = estecapelli_wpml_language_code( $blog_lang );
 								$blog_source_id   = estecapelli_source_post_id( $blog_source_slug, 'post' );
-								$blog_linked_id   = $blog_source_id ? (int) apply_filters( 'wpml_object_id', $blog_source_id, 'post', false, $blog_lang ) : 0;
+								$blog_linked_id   = $blog_source_id ? (int) apply_filters( 'wpml_object_id', $blog_source_id, 'post', false, $blog_wpml_lang ) : 0;
 								$blog_candidate   = estecapelli_blog_i18n_raw_post_id( $blog_target_slug, $blog_source_id );
 								$blog_exists      = ( $blog_linked_id && $blog_linked_id !== $blog_source_id );
 								$blog_view_id     = $blog_exists ? $blog_linked_id : $blog_candidate;

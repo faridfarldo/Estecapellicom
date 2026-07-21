@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/blog-i18n-meta.php';
 
 if ( ! defined( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-21.2' );
+	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-21.3' );
 }
 
 /** Translated languages this importer handles (English is meta-only). */
@@ -145,6 +145,11 @@ function estecapelli_blog_i18n_import_one( $lang, $english_slug ) {
 	}
 	$target_title = (string) $entry['title'];
 
+	// Public/indexed code ($lang: pt) drives slugs, bodies and SEO; the WPML
+	// engine may store Portuguese under the built-in "pt-pt" code, so every
+	// relationship call must use the resolved WPML code instead.
+	$wpml_lang = estecapelli_wpml_language_code( $lang );
+
 	$body = estecapelli_blog_i18n_body( $lang, $english_slug );
 	if ( is_wp_error( $body ) ) {
 		return $body;
@@ -176,17 +181,17 @@ function estecapelli_blog_i18n_import_one( $lang, $english_slug ) {
 
 	$target_id = estecapelli_blog_i18n_raw_post_id( $target_slug, $source_id );
 	if ( ! $target_id ) {
-		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, $lang );
+		$target_id = estecapelli_wpml_group_element_id_raw( $trid, $element_type, $wpml_lang );
 	}
 	if ( $target_id ) {
 		$raw_target = get_post( $target_id );
 		if ( ! $raw_target || 'post' !== $raw_target->post_type || 'trash' === $raw_target->post_status || $target_id === $source_id ) {
-			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, $lang );
+			estecapelli_wpml_delete_relationship_raw( $target_id, $element_type, $trid, $wpml_lang );
 			$target_id = 0;
 		}
 	}
 	if ( ! $target_id ) {
-		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'post', false, $lang );
+		$target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'post', false, $wpml_lang );
 	}
 	if ( $target_id === $source_id ) {
 		$target_id = 0;
@@ -224,14 +229,14 @@ function estecapelli_blog_i18n_import_one( $lang, $english_slug ) {
 			'element_id'           => (int) $target_id,
 			'element_type'         => $element_type,
 			'trid'                 => $trid,
-			'language_code'        => $lang,
+			'language_code'        => $wpml_lang,
 			'source_language_code' => $source_language,
 			'check_duplicates'     => false,
 		)
 	);
 	delete_post_meta( $target_id, '_icl_lang_duplicate_of' );
 
-	$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, $lang, $source_language );
+	$forced = estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, $wpml_lang, $source_language );
 	if ( ! $forced ) {
 		$reason = estecapelli_wpml_last_slot_error();
 		return new WP_Error(
@@ -249,9 +254,9 @@ function estecapelli_blog_i18n_import_one( $lang, $english_slug ) {
 		);
 	}
 
-	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'post', false, $lang );
-	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, $lang ) ) {
-		$repaired = estecapelli_wpml_repair_relationship_raw( $target_id, $element_type, $trid, $lang, $source_language );
+	$linked_target_id = (int) apply_filters( 'wpml_object_id', $source_id, 'post', false, $wpml_lang );
+	if ( (int) $target_id !== $linked_target_id && ! estecapelli_wpml_element_matches_raw( $target_id, $element_type, $trid, $wpml_lang ) ) {
+		$repaired = estecapelli_wpml_repair_relationship_raw( $target_id, $element_type, $trid, $wpml_lang, $source_language );
 		if ( ! $repaired ) {
 			return new WP_Error( 'blog_i18n_link_failed', sprintf( 'WPML did not link the %s post for %s.', strtoupper( $lang ), $english_slug ) );
 		}
@@ -294,7 +299,7 @@ function estecapelli_blog_i18n_import_one( $lang, $english_slug ) {
 	if ( ! is_wp_error( $source_terms ) && $source_terms ) {
 		$mapped = array();
 		foreach ( $source_terms as $term_id ) {
-			$t = (int) apply_filters( 'wpml_object_id', (int) $term_id, 'category', false, $lang );
+			$t = (int) apply_filters( 'wpml_object_id', (int) $term_id, 'category', false, $wpml_lang );
 			if ( $t ) {
 				$mapped[] = $t;
 			}
@@ -336,7 +341,10 @@ function estecapelli_run_blog_i18n_import() {
 	$imported   = array();
 
 	foreach ( estecapelli_blog_i18n_languages() as $lang ) {
-		if ( ! isset( $active[ $lang ] ) ) {
+		// Portuguese may be active under the built-in "pt-pt" code, so test the
+		// resolved WPML code, not the public one.
+		$wpml_lang = estecapelli_wpml_language_code( $lang );
+		if ( ! isset( $active[ $lang ] ) && ! isset( $active[ $wpml_lang ] ) ) {
 			continue; // Skip languages that are not active in WPML yet.
 		}
 		foreach ( estecapelli_indexed_blog_slugs() as $english_slug => $langs ) {
