@@ -95,23 +95,33 @@ $gallery_url = estecapelli_indexed_url( '/en/before-after' );
 			<p class="home-ba__lead"><?php esc_html_e( 'Choose a hair-transplant technique to browse real patient results.', 'estecapelli' ); ?></p>
 		</header>
 
-		<div class="home-ba__tabs" role="tablist" aria-label="<?php esc_attr_e( 'Hair transplant techniques', 'estecapelli' ); ?>" data-services-tablist>
-			<?php foreach ( $techniques as $i => $tech ) :
-				$is_first = ( 0 === $i );
-				?>
-				<button
-					type="button"
-					id="home-ba-tab-<?php echo (int) $tech['id']; ?>"
-					class="home-ba__tab"
-					role="tab"
-					aria-selected="<?php echo $is_first ? 'true' : 'false'; ?>"
-					aria-controls="home-ba-panel-<?php echo (int) $tech['id']; ?>"
-					tabindex="<?php echo $is_first ? '0' : '-1'; ?>"
-					data-services-tab
-				>
-					<?php echo esc_html( $tech['title'] ); ?>
-				</button>
-			<?php endforeach; ?>
+		<div class="home-ba__tabsrow" data-tabscroll>
+			<button type="button" class="home-ba__tabnav home-ba__tabnav--prev" data-tabscroll-prev aria-label="<?php esc_attr_e( 'Scroll techniques left', 'estecapelli' ); ?>">
+				<?php estecapelli_icon( 'chevron-left', array( 'width' => 20, 'height' => 20 ) ); ?>
+			</button>
+
+			<div class="home-ba__tabs" role="tablist" aria-label="<?php esc_attr_e( 'Hair transplant techniques', 'estecapelli' ); ?>" data-services-tablist data-tabscroll-strip>
+				<?php foreach ( $techniques as $i => $tech ) :
+					$is_first = ( 0 === $i );
+					?>
+					<button
+						type="button"
+						id="home-ba-tab-<?php echo (int) $tech['id']; ?>"
+						class="home-ba__tab"
+						role="tab"
+						aria-selected="<?php echo $is_first ? 'true' : 'false'; ?>"
+						aria-controls="home-ba-panel-<?php echo (int) $tech['id']; ?>"
+						tabindex="<?php echo $is_first ? '0' : '-1'; ?>"
+						data-services-tab
+					>
+						<?php echo esc_html( $tech['title'] ); ?>
+					</button>
+				<?php endforeach; ?>
+			</div>
+
+			<button type="button" class="home-ba__tabnav home-ba__tabnav--next" data-tabscroll-next aria-label="<?php esc_attr_e( 'Scroll techniques right', 'estecapelli' ); ?>">
+				<?php estecapelli_icon( 'chevron-right', array( 'width' => 20, 'height' => 20 ) ); ?>
+			</button>
 		</div>
 
 		<?php foreach ( $techniques as $i => $tech ) :

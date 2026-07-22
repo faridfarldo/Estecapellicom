@@ -149,6 +149,74 @@
 		});
 	}
 
+	/*
+	 * Scrollable tab strips (e.g. homepage Before & After technique tabs).
+	 * The pill row scrolls horizontally; translated labels can overflow the
+	 * frame. This reveals prev/next edge arrows only when the strip actually
+	 * overflows, scrolls on click, disables an arrow at each end, and keeps the
+	 * active/focused tab in view — on mobile and desktop alike.
+	 */
+	function initTabScrollers() {
+		var rows = document.querySelectorAll('[data-tabscroll]');
+		if (!rows.length) return;
+
+		rows.forEach(function (row) {
+			var strip = row.querySelector('[data-tabscroll-strip]');
+			var prev  = row.querySelector('[data-tabscroll-prev]');
+			var next  = row.querySelector('[data-tabscroll-next]');
+			if (!strip) return;
+
+			function step() {
+				return Math.max(Math.round(strip.clientWidth * 0.7), 140);
+			}
+
+			function update() {
+				var max = strip.scrollWidth - strip.clientWidth - 2;
+				row.classList.toggle('is-overflowing', max > 2);
+				if (prev) prev.disabled = strip.scrollLeft <= 2;
+				if (next) next.disabled = strip.scrollLeft >= max;
+			}
+
+			function bringIntoView(tab) {
+				if (!tab) return;
+				var target = tab.offsetLeft - (strip.clientWidth - tab.offsetWidth) / 2;
+				strip.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+			}
+
+			if (prev) {
+				prev.addEventListener('click', function () {
+					strip.scrollBy({ left: -step(), behavior: 'smooth' });
+				});
+			}
+			if (next) {
+				next.addEventListener('click', function () {
+					strip.scrollBy({ left: step(), behavior: 'smooth' });
+				});
+			}
+
+			// Keep the tab the visitor lands on visible — covers clicks and the
+			// ArrowLeft/ArrowRight/Home/End keyboard nav (initServicesTabs focuses
+			// the new tab, which fires focusin).
+			strip.addEventListener('focusin', function (e) {
+				var tab = e.target.closest('[data-services-tab]');
+				if (tab) bringIntoView(tab);
+			});
+			strip.addEventListener('click', function (e) {
+				var tab = e.target.closest('[data-services-tab]');
+				if (tab) bringIntoView(tab);
+			});
+
+			strip.addEventListener('scroll', update, { passive: true });
+			window.addEventListener('resize', update);
+			// Web fonts can change label widths after first paint.
+			if (document.fonts && document.fonts.ready) {
+				document.fonts.ready.then(update).catch(function () {});
+			}
+			window.addEventListener('load', update);
+			update();
+		});
+	}
+
 	function initCategoryTabs() {
 		var roots = document.querySelectorAll('[data-cats]');
 		if (!roots.length) return;
@@ -1369,6 +1437,7 @@
 		initBAScroll();
 		initHairAnalysisLab();
 		initServicesTabs();
+		initTabScrollers();
 		initCategoryTabs();
 		initPatientStories();
 		initStoriesLightbox();

@@ -1786,19 +1786,56 @@
 	}
 
 	/* ---- Technique tabs ---- */
+	/* Row wrapper: holds the scrollable pill strip between two edge arrows.
+	   The arrows are hidden until initTabScrollers detects the strip overflows
+	   (long translated labels, e.g. French) — see assets/js/main.js. */
+	.home-ba__tabsrow {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		max-width: 100%;
+		margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+	}
 	.home-ba__tabs {
 		display: flex;
 		flex-wrap: nowrap;
 		gap: 0.5rem;
-		/* Single row: centred when it fits, horizontally scrollable when not. */
+		/* Single row: centred when it fits, horizontally scrollable when not.
+		   min-width:0 lets it shrink so the arrows always fit beside it. */
 		width: fit-content;
+		min-width: 0;
 		max-width: 100%;
-		margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+		margin: 0;
 		overflow-x: auto;
 		scrollbar-width: none;
+		scroll-behavior: smooth;
 		padding-bottom: 2px;
 	}
 	.home-ba__tabs::-webkit-scrollbar { display: none; }
+	/* Edge scroll arrows — revealed by initTabScrollers only when overflowing. */
+	.home-ba__tabnav {
+		flex: 0 0 auto;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		color: var(--color-brand-800);
+		background: white;
+		border: 1px solid var(--color-brand-200);
+		border-radius: 9999px;
+		box-shadow: 0 4px 14px oklch(20% 0.05 260 / 0.10);
+		cursor: pointer;
+		transition: color 0.2s, background 0.2s, border-color 0.2s, opacity 0.2s;
+	}
+	.home-ba__tabsrow.is-overflowing .home-ba__tabnav { display: inline-flex; }
+	.home-ba__tabnav:hover { color: var(--color-brand-950); border-color: var(--color-brand-400); background: var(--color-brand-50); }
+	.home-ba__tabnav:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+	@media (max-width: 520px) {
+		.home-ba__tabnav { width: 2.15rem; height: 2.15rem; }
+	}
 	.home-ba__tab {
 		flex: 0 0 auto;
 		white-space: nowrap;
