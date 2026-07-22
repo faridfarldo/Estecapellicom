@@ -78,8 +78,10 @@ $thumb = function ( $id ) {
 						<div class="stories__hero-pre">
 							<span class="stories__hero-quote" aria-hidden="true">&ldquo;</span>
 							<p class="stories__hero-pretitle">
-								<span class="stories__hero-grafts"><?php echo esc_html( $story['grafts'] ); ?>&nbsp;<?php esc_html_e( 'grafts', 'estecapelli' ); ?></span>
-								<span class="stories__hero-divider" aria-hidden="true">·</span>
+								<?php if ( ! empty( $story['grafts'] ) ) : ?>
+									<span class="stories__hero-grafts"><?php echo esc_html( $story['grafts'] ); ?>&nbsp;<?php esc_html_e( 'grafts', 'estecapelli' ); ?></span>
+									<span class="stories__hero-divider" aria-hidden="true">·</span>
+								<?php endif; ?>
 								<span class="stories__hero-tech"><?php echo esc_html( $story['technique'] ); ?></span>
 							</p>
 						</div>
@@ -124,10 +126,12 @@ $thumb = function ( $id ) {
 							<p class="stories__hero-text"><?php echo esc_html( $story['body'] ); ?></p>
 
 							<ul class="stories__hero-pills" aria-label="<?php esc_attr_e( 'Procedure details', 'estecapelli' ); ?>">
+								<?php if ( ! empty( $story['grafts'] ) ) : ?>
 								<li class="stories__hero-pill stories__hero-pill--grafts">
 									<span class="stories__hero-pill-value"><?php echo esc_html( $story['grafts'] ); ?></span>
 									<span class="stories__hero-pill-label"><?php esc_html_e( 'Grafts', 'estecapelli' ); ?></span>
 								</li>
+								<?php endif; ?>
 								<li class="stories__hero-pill stories__hero-pill--tech">
 									<span class="stories__hero-pill-value"><?php echo esc_html( $story['technique'] ); ?></span>
 									<span class="stories__hero-pill-label"><?php esc_html_e( 'Technique', 'estecapelli' ); ?></span>
@@ -183,12 +187,16 @@ $thumb = function ( $id ) {
 									<span class="stories__poster-name"><?php echo esc_html( $story['name'] ); ?></span>
 									<span class="stories__poster-meta">
 										<?php
-										printf(
-											/* translators: 1: graft count, 2: technique. */
-											esc_html__( '%1$s grafts · %2$s', 'estecapelli' ),
-											esc_html( $story['grafts'] ),
-											esc_html( $story['technique'] )
-										);
+										if ( ! empty( $story['grafts'] ) ) {
+											printf(
+												/* translators: 1: graft count, 2: technique. */
+												esc_html__( '%1$s grafts · %2$s', 'estecapelli' ),
+												esc_html( $story['grafts'] ),
+												esc_html( $story['technique'] )
+											);
+										} else {
+											echo esc_html( $story['technique'] );
+										}
 										?>
 									</span>
 								</span>
