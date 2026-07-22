@@ -71,6 +71,11 @@ function estecapelli_register_treatment_cpt() {
 			// page — no thin single-result pages on the front end.
 			'public'              => false,
 			'show_ui'             => true,
+			// Hidden from the admin sidebar: the before/after content is authored
+			// through each treatment's "gallery" section, so this empty CPT was
+			// only cluttering the menu. The post type stays fully registered so the
+			// treatment-page carousel, its ACF group and the WPML fix keep working.
+			'show_in_menu'        => false,
 			'show_in_rest'        => true,
 			'menu_icon'           => 'dashicons-images-alt2',
 			'menu_position'       => 21,
