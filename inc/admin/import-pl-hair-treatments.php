@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION', '2026-07-16.3' );
+	define( 'ESTECAPELLI_PL_HAIR_IMPORT_VERSION', '2026-07-22.1' );
 }
 
 /**
@@ -163,4 +163,44 @@ function estecapelli_run_pl_hair_import( $source_slug ) {
 	}
 
 	return $imported;
+}
+
+/**
+ * Refresh the four Polish treatments touched by the July copy revision.
+ *
+ * The shared autorun imports one treatment per wp-admin request, avoiding the
+ * ACFML timeout that occurs when several flexible-content pages are saved at
+ * once. The version option makes the sweep safe and idempotent after deploy.
+ */
+add_action( 'admin_init', 'estecapelli_maybe_import_pl_hair_revisions', 94 );
+function estecapelli_maybe_import_pl_hair_revisions() {
+	if ( ! function_exists( 'estecapelli_autorun_language_import' ) ) {
+		return;
+	}
+
+	estecapelli_autorun_language_import(
+		'estecapelli_pl_hair_import_version',
+		ESTECAPELLI_PL_HAIR_IMPORT_VERSION,
+		'estecapelli_pl_hair_revision_items',
+		'estecapelli_pl_hair_revision_import_one'
+	);
+}
+
+/** Return only the treatment pages changed by this revision. */
+function estecapelli_pl_hair_revision_items() {
+	return array(
+		array( 'kind' => 'treatment', 'slug' => 'sapphire-fue-hair-transplant' ),
+		array( 'kind' => 'treatment', 'slug' => 'dhi-hair-transplant' ),
+		array( 'kind' => 'treatment', 'slug' => 'vita-treatment' ),
+		array( 'kind' => 'treatment', 'slug' => 'eyebrow-transplant' ),
+	);
+}
+
+/** Import one revised Polish Hair Transplant treatment. */
+function estecapelli_pl_hair_revision_import_one( $kind, $source_slug ) {
+	if ( 'treatment' !== $kind ) {
+		return new WP_Error( 'pl_hair_invalid_revision_kind', 'Invalid Polish Hair Transplant revision type.' );
+	}
+
+	return estecapelli_run_pl_hair_import( $source_slug );
 }
