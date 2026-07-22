@@ -1426,6 +1426,22 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 	 * empty field or image keeps the built-in value, matched by patient Key.
 	 */
 	function estecapelli_patient_stories() {
+		$lang = estecapelli_stories_current_lang();
+
+		// Turkish: patient testimonials must not be published for legal reasons.
+		// Empty stories makes the whole section render nothing — the template
+		// (template-parts/patient-stories.php) returns early when 'stories' is empty.
+		if ( 'tr' === $lang ) {
+			return array( 'eyebrow' => '', 'headline' => '', 'lead' => '', 'stories' => array() );
+		}
+
+		// A language with its own authored patient set takes over completely for
+		// that language (its own patients, country, flag, grafts, video, story).
+		$localized = estecapelli_patient_stories_localized();
+		if ( isset( $localized[ $lang ] ) ) {
+			return $localized[ $lang ];
+		}
+
 		$defaults = estecapelli_patient_stories_defaults();
 		if ( ! function_exists( 'get_field' ) ) {
 			return $defaults;
@@ -1619,6 +1635,108 @@ if ( ! function_exists( 'estecapelli_patient_stories_defaults' ) ) {
 					'photo'       => get_template_directory_uri() . '/assets/images/stories/sam-c-after.jpg',
 					'pre_title'   => __( 'Full-coverage restoration in a single session.', 'estecapelli' ),
 					'body'        => __( 'Sam came to our clinic from Ireland to improve his hairline and increase overall density across the frontal area, mid-scalp and crown. Based on his consultation plan and his wish for full coverage in a single session, we planned maximum graft extraction and focused on building good density in the frontal hairline first, then distributed the remaining grafts through the mid-scalp and crown for balanced coverage. The procedure was performed with the FUE Vita technique in a single session, transplanting 6,200 grafts in total. Grafts were extracted homogeneously from the donor area with good quality, then implanted with attention to natural direction, density balance and overall coverage. The operation progressed normally, with PRP support at the end.', 'estecapelli' ),
+				),
+			),
+		);
+	}
+}
+
+if ( ! function_exists( 'estecapelli_stories_current_lang' ) ) {
+	/**
+	 * Current display language for the Patient Stories section, normalised to the
+	 * public indexed code (en/es/it/fr/pl/pt/tr). WPML may store Portuguese as
+	 * "pt-pt"; everything else already matches the indexed code.
+	 */
+	function estecapelli_stories_current_lang() {
+		$lang = apply_filters( 'wpml_current_language', null );
+		if ( ! $lang && defined( 'ICL_LANGUAGE_CODE' ) ) {
+			$lang = ICL_LANGUAGE_CODE;
+		}
+		$lang = is_string( $lang ) ? strtolower( $lang ) : '';
+		if ( 'pt-pt' === $lang ) {
+			$lang = 'pt';
+		}
+		return $lang;
+	}
+}
+
+if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
+	/**
+	 * Per-language authored Patient Stories.
+	 *
+	 * Each language listed here fully replaces the English default set with its
+	 * own real patients — same structure/fields as English (name, country, flag,
+	 * grafts, technique, video, caption, story), only the patient and their
+	 * country change. Video is always the YouTube (Shorts) id. Languages NOT
+	 * listed keep the English defaults; Turkish is handled separately (hidden).
+	 *
+	 * Images live in /assets/images/stories/{lang}/. Patients without a usable
+	 * photo use a still frame pulled from their own testimonial video.
+	 *
+	 * @return array<string,array<string,mixed>>
+	 */
+	function estecapelli_patient_stories_localized() {
+		$img = function ( $file ) {
+			return get_template_directory_uri() . '/assets/images/stories/' . $file;
+		};
+
+		return array(
+			'es' => array(
+				'eyebrow'  => 'Historias reales',
+				'headline' => 'Sus resultados hablan más alto que cualquier anuncio.',
+				'lead'     => 'Escucha, en sus propias palabras, cómo pacientes de todo el mundo describen su experiencia con Estecapelli, desde la primera consulta hasta el resultado a largo plazo.',
+				'stories'  => array(
+					array(
+						'key'         => 'jose-luis-p',
+						'name'        => 'José Luis P.',
+						'country'     => 'España',
+						'country_iso' => 'ES',
+						'flag'        => '🇪🇸',
+						'grafts'      => '4,700',
+						'technique'   => 'FUE Vita',
+						'rating'      => 5,
+						'video_id'    => 'ootaBdwLjvc',
+						'poster'      => $img( 'es/jose-luis-p.jpg' ),
+						'poster_pos'  => 'center 32%',
+						'photo'       => $img( 'es/jose-luis-p.jpg' ),
+						'photo_pos'   => 'center 32%',
+						'pre_title'   => 'Línea frontal densa y cobertura hasta la zona media.',
+						'body'        => 'José Luis llegó desde España a Estecapelli para realizarse un trasplante capilar con la técnica FUE Vita. Tras una evaluación detallada de la zona donante y de las áreas afectadas por la pérdida de cabello, se diseñó un plan de tratamiento personalizado dividido en dos sesiones. Durante la primera intervención se planificó extraer el mayor número de injertos posible de forma segura. La implantación comenzó en la zona frontal y continuó hacia la parte media del cuero cabelludo, con el objetivo de cubrir la mayor superficie posible y mejorar la densidad de manera equilibrada. Se recomendó una segunda sesión para completar las áreas restantes y conseguir una cobertura más uniforme. Después del procedimiento, José Luis recibió todas las indicaciones postoperatorias necesarias y comenzó su recuperación bajo el seguimiento del equipo médico de Estecapelli.',
+					),
+					array(
+						'key'         => 'silvio-r',
+						'name'        => 'Silvio R.',
+						'country'     => 'Venezuela',
+						'country_iso' => 'VE',
+						'flag'        => '🇻🇪',
+						'grafts'      => '5,600',
+						'technique'   => 'FUE Vita',
+						'rating'      => 5,
+						'video_id'    => 'Uq84U2zkbr8',
+						'poster'      => $img( 'es/silvio-r.jpg' ),
+						'poster_pos'  => 'center 28%',
+						'photo'       => $img( 'es/silvio-r.jpg' ),
+						'photo_pos'   => 'center 28%',
+						'pre_title'   => 'Trasplante capilar y de barba con densidad frontal alta.',
+						'body'        => 'Silvio Rafael llegó desde Venezuela a Estecapelli para someterse a un trasplante capilar y de barba con la técnica FUE Vita. Tras una evaluación detallada de la zona donante y de las áreas que requerían mayor cobertura, se diseñó un plan de tratamiento personalizado según sus necesidades. Durante el procedimiento se planificó extraer el máximo número de injertos posible de forma segura. La prioridad se centró en la zona frontal del cuero cabelludo, donde se realizó una implantación de alta densidad para mejorar la línea capilar y conseguir una apariencia más definida y natural. Además, también se planificó aumentar la densidad de la barba y de las cejas, distribuyendo los injertos de acuerdo con la cantidad disponible y manteniendo un resultado armónico con los rasgos faciales del paciente. Después del procedimiento, Silvio Rafael recibió todas las indicaciones postoperatorias necesarias y comenzó su recuperación bajo el seguimiento del equipo médico de Estecapelli.',
+					),
+					array(
+						'key'         => 'tony-a',
+						'name'        => 'Tony A.',
+						'country'     => 'Estados Unidos',
+						'country_iso' => 'US',
+						'flag'        => '🇺🇸',
+						'grafts'      => '5,800',
+						'technique'   => 'FUE Vita',
+						'rating'      => 5,
+						'video_id'    => 'SAkP6s_XX7k',
+						'poster'      => $img( 'es/tony-a.jpg' ),
+						'poster_pos'  => 'center 30%',
+						'photo'       => $img( 'es/tony-a.jpg' ),
+						'photo_pos'   => 'center 30%',
+						'pre_title'   => 'Cobertura completa en una sola sesión.',
+						'body'        => 'Tony llegó desde Estados Unidos a Estecapelli para someterse a un trasplante capilar con la técnica FUE Vita. Tras una evaluación detallada de la zona donante y de las áreas afectadas por la pérdida de cabello, se diseñó un plan de tratamiento personalizado según sus preferencias. Durante el procedimiento, la zona frontal recibió la mayor prioridad, con una implantación de alta densidad para mejorar la línea capilar y crear una apariencia más definida y natural. En la zona media, los injertos se distribuyeron con una densidad moderada, mientras que en la coronilla se realizó una cobertura más ligera. Aunque el equipo médico recomendó completar el tratamiento en dos sesiones, Tony prefirió tratar todas las zonas en una sola intervención. Después del procedimiento, recibió todas las indicaciones postoperatorias necesarias y comenzó su recuperación bajo el seguimiento del equipo médico de Estecapelli.',
+					),
 				),
 			),
 		);
