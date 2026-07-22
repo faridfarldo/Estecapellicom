@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/blog-i18n-meta.php';
 
 if ( ! defined( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-21.4' );
+	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-22.1' );
 }
 
 /** Translated languages this importer handles (English is meta-only). */

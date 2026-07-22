@@ -39,6 +39,50 @@ function estecapelli_dedupe_tricholab() {
 	}
 }
 
+/**
+ * Renamed blog slugs (copy-paste bug inherited from the old live site).
+ *
+ * Three translated posts carried a slug copied from another language:
+ *   - ES "diabetic"         was published at the Italian slug
+ *     (/es/blog/i-pazienti-diabetici-...-trapianto-di-capelli)
+ *   - IT "unshaven"         was published at the French slug
+ *     (/it/blog/greffe-de-cheveux-sans-rasage)
+ *   - PL "HIV+ in Turkey"   was published at the Spanish slug
+ *     (/pl/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia)
+ * Each now has its correct localized slug (see estecapelli_indexed_blog_slugs),
+ * so 301 the old language-scoped URLs to the new ones.
+ *
+ * The match is on the EXACT language-prefixed path because those same slugs are
+ * still the live URLs in their real languages — /it/blog/i-pazienti-... (Italian),
+ * /fr/blog/greffe-de-cheveux-sans-rasage (French) and
+ * /es/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia (Spanish)
+ * must never be redirected.
+ * Runs at priority 0 (before redirect_canonical) and is NOT gated on is_404 so it
+ * fires no matter how WPML resolves the stale slug.
+ */
+add_action( 'template_redirect', 'estecapelli_redirect_renamed_blog_slugs', 0 );
+function estecapelli_redirect_renamed_blog_slugs() {
+	if ( is_admin() ) {
+		return;
+	}
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	if ( ! $request ) {
+		return;
+	}
+	$path = trim( (string) strtok( $request, '?' ), '/' );
+
+	$moved = array(
+		'es/blog/i-pazienti-diabetici-possono-sottoporsi-a-un-trapianto-di-capelli' => '/es/blog/los-pacientes-diabeticos-pueden-someterse-a-un-trasplante-capilar/',
+		'it/blog/greffe-de-cheveux-sans-rasage'                                     => '/it/blog/trapianto-di-capelli-senza-rasatura/',
+		'pl/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia'        => '/pl/blog/przeszczep-wlosow-u-pacjentow-hiv-pozytywnych-w-turcji/',
+	);
+
+	if ( isset( $moved[ $path ] ) ) {
+		wp_safe_redirect( home_url( $moved[ $path ] ), 301 );
+		exit;
+	}
+}
+
 add_action( 'template_redirect', 'estecapelli_handle_legacy_redirects', 1 );
 function estecapelli_handle_legacy_redirects() {
 
