@@ -626,9 +626,9 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'quick_stats',
 						'eyebrow'       => __( 'Quick Facts', 'estecapelli' ),
 						'stats'         => array(
-							array( 'icon' => 'shield-check', 'value' => 'Local',       'label' => __( 'Anaesthesia', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'value' => 'Painless',    'label' => __( 'Anaesthesia', 'estecapelli' ) ),
 							array( 'icon' => 'check-circle', 'value' => 'Choi pen',    'label' => __( 'Implantation', 'estecapelli' ) ),
-							array( 'icon' => 'sparkles',     'value' => 'No channels', 'label' => __( 'Technique', 'estecapelli' ) ),
+							array( 'icon' => 'sparkles',     'value' => 'No Shave',    'label' => '' ),
 							array( 'icon' => 'calendar',     'value' => 'Fast',        'label' => __( 'Recovery', 'estecapelli' ) ),
 						),
 					),
@@ -651,7 +651,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'lead'          => __( 'A precise, four-stage process managed end to end by our medical team. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
 							array( 'icon' => 'clipboard',    'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'Your hair structure, donor area and goals are analysed with AI-supported TrichoLab to design a fully personalised plan. The number of grafts is estimated and a natural hairline mapped out, so every detail is agreed before the procedure begins.', 'estecapelli' ) . '</p>' ),
-							array( 'icon' => 'shield-check', 'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Local Anaesthesia', 'estecapelli' ),       'body' => '<p>' . esc_html__( 'Local anaesthesia is applied to the donor and recipient areas for a comfortable, pain-free procedure. You stay awake but relaxed throughout, and can listen to music or watch something during the session.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'shield-check', 'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Painless Anaesthesia', 'estecapelli' ),    'body' => '<p>' . esc_html__( 'Painless anaesthesia is applied to the donor and recipient areas for a comfortable, pain-free procedure. You stay awake but relaxed throughout, and can listen to music or watch something during the session.', 'estecapelli' ) . '</p>' ),
 							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Collection', 'estecapelli' ),         'body' => '<p>' . esc_html__( 'Healthy follicles are individually extracted from the safe donor area using ultra-fine micromotors and immediately loaded into the Choi implanter pens, minimising the time grafts spend outside the scalp to keep them strong and viable.', 'estecapelli' ) . '</p>' ),
 							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Implantation with Choi Pen', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Grafts are implanted directly with the Choi pen at the precise angle, depth and direction — no separate channels are opened first. This direct placement allows very high density between existing hairs and, with the right plan, often without shaving, for a completely natural result.', 'estecapelli' ) . '</p>' ),
 						),

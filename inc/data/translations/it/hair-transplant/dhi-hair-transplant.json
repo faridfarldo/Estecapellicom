@@ -15,9 +15,9 @@
       "acf_fc_layout": "quick_stats",
       "eyebrow": "Informazioni chiave",
       "stats": [
-        { "value": "Locale", "label": "Anestesia" },
+        { "value": "Indolore", "label": "Anestesia" },
         { "value": "Penna Choi", "label": "Impianto" },
-        { "value": "Senza canali", "label": "Tecnica" },
+        { "value": "Senza rasatura", "label": "" },
         { "value": "Rapido", "label": "Recupero" }
       ]
     },
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "Fase 2",
-          "title": "Anestesia locale",
-          "body": "<p>L'anestesia locale viene applicata alle aree donatrice e ricevente per un intervento confortevole e indolore. Rimane sveglio ma rilassato per tutta la durata e può ascoltare musica o guardare qualcosa durante la seduta.</p>"
+          "title": "Anestesia indolore",
+          "body": "<p>L'anestesia indolore viene applicata alle aree donatrice e ricevente per garantire un intervento confortevole. Rimane sveglio ma rilassato per tutta la durata e può ascoltare musica o guardare qualcosa durante la seduta.</p>"
         },
         {
           "eyebrow": "Fase 3",

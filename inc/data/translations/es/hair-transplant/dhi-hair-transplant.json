@@ -15,9 +15,9 @@
       "acf_fc_layout": "quick_stats",
       "eyebrow": "Información clave",
       "stats": [
-        { "value": "Local", "label": "Anestesia" },
+        { "value": "Sin dolor", "label": "Anestesia" },
         { "value": "Implanter Choi", "label": "Implantación" },
-        { "value": "Sin canales previos", "label": "Técnica" },
+        { "value": "Sin rapado", "label": "" },
         { "value": "Rápida", "label": "Recuperación" }
       ]
     },
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "Etapa 2",
-          "title": "Anestesia local",
-          "body": "<p>Aplicamos anestesia local en las zonas donante y receptora para que el procedimiento sea cómodo y no cause dolor. Permanecerá despierto pero relajado durante toda la intervención y podrá escuchar música o ver algún contenido durante la sesión.</p>"
+          "title": "Anestesia sin dolor",
+          "body": "<p>Aplicamos anestesia sin dolor en las zonas donante y receptora para que el procedimiento sea cómodo. Permanecerá despierto pero relajado durante toda la intervención y podrá escuchar música o ver algún contenido durante la sesión.</p>"
         },
         {
           "eyebrow": "Etapa 3",

@@ -20,7 +20,7 @@
       "eyebrow": "Najważniejsze informacje",
       "stats": [
         {
-          "value": "Miejscowe",
+          "value": "Bezbolesne",
           "label": "Znieczulenie"
         },
         {
@@ -28,8 +28,8 @@
           "label": "Implantacja"
         },
         {
-          "value": "Brak kanałów",
-          "label": "Technika"
+          "value": "Bez golenia",
+          "label": ""
         },
         {
           "value": "Krótka",
@@ -56,8 +56,8 @@
         },
         {
           "eyebrow": "Etap 2",
-          "title": "Znieczulenie miejscowe",
-          "body": "<p>W obszarze dawczym i biorczym stosujemy znieczulenie miejscowe, dzięki czemu zabieg przebiega komfortowo i bez bólu. Przez całą sesję pozostajesz przytomny i zrelaksowany; możesz słuchać muzyki lub oglądać film.</p>"
+          "title": "Bezbolesne znieczulenie",
+          "body": "<p>W obszarze dawczym i biorczym stosujemy bezbolesne znieczulenie, dzięki czemu zabieg przebiega komfortowo. Przez całą sesję pozostajesz przytomny i zrelaksowany; możesz słuchać muzyki lub oglądać film.</p>"
         },
         {
           "eyebrow": "Etap 3",

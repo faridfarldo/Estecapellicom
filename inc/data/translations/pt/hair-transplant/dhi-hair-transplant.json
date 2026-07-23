@@ -15,9 +15,9 @@
       "acf_fc_layout": "quick_stats",
       "eyebrow": "Informação essencial",
       "stats": [
-        { "value": "Local", "label": "Anestesia" },
+        { "value": "Indolor", "label": "Anestesia" },
         { "value": "Implantador Choi", "label": "Implantação" },
-        { "value": "Sem canais prévios", "label": "Técnica" },
+        { "value": "Sem rapar", "label": "" },
         { "value": "Rápida", "label": "Recuperação" }
       ]
     },
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "Etapa 2",
-          "title": "Anestesia local",
-          "body": "<p>Aplicamos anestesia local nas zonas dadora e recetora para que o procedimento seja confortável e não cause dor. Permanecerá acordado mas relaxado durante toda a intervenção e poderá ouvir música ou ver algum conteúdo durante a sessão.</p>"
+          "title": "Anestesia indolor",
+          "body": "<p>Aplicamos anestesia indolor nas zonas dadora e recetora para que o procedimento seja confortável. Permanecerá acordado mas relaxado durante toda a intervenção e poderá ouvir música ou ver algum conteúdo durante a sessão.</p>"
         },
         {
           "eyebrow": "Etapa 3",

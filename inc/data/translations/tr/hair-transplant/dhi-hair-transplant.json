@@ -20,7 +20,7 @@
             "eyebrow": "Kısa Bilgiler",
             "stats": [
                 {
-                    "value": "Yerel",
+                    "value": "Ağrısız",
                     "label": "Anestezi"
                 },
                 {
@@ -28,8 +28,8 @@
                     "label": "İmplantasyon"
                 },
                 {
-                    "value": "Kanal Açma Yok",
-                    "label": "Teknik"
+                    "value": "Tıraşsız",
+                    "label": ""
                 },
                 {
                     "value": "Hızlı",
@@ -56,8 +56,8 @@
                 },
                 {
                     "eyebrow": "Aşama 2",
-                    "title": "Lokal Anestezi",
-                    "body": "<p>Konforlu ve ağrısız bir deneyim için donör ve alıcı bölgelere lokal anestezi uygulanır. İşlem boyunca uyanık ancak rahat olursunuz; seans sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>"
+                    "title": "Ağrısız Anestezi",
+                    "body": "<p>Konforlu bir deneyim için donör ve alıcı bölgelere ağrısız anestezi uygulanır. İşlem boyunca uyanık ancak rahat olursunuz; seans sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>"
                 },
                 {
                     "eyebrow": "Aşama 3",

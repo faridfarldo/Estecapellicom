@@ -15,9 +15,9 @@
       "acf_fc_layout": "quick_stats",
       "eyebrow": "Informations clés",
       "stats": [
-        { "value": "Locale", "label": "Anesthésie" },
+        { "value": "Sans douleur", "label": "Anesthésie" },
         { "value": "Stylo Choi", "label": "Implantation" },
-        { "value": "Sans canaux", "label": "Technique" },
+        { "value": "Sans rasage", "label": "" },
         { "value": "Rapide", "label": "Récupération" }
       ]
     },
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "Étape 2",
-          "title": "Anesthésie locale",
-          "body": "<p>Une anesthésie locale est appliquée aux zones donneuse et receveuse pour assurer une intervention confortable et indolore. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant la séance.</p>"
+          "title": "Anesthésie sans douleur",
+          "body": "<p>Une anesthésie sans douleur est appliquée aux zones donneuse et receveuse pour assurer une intervention confortable. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant la séance.</p>"
         },
         {
           "eyebrow": "Étape 3",

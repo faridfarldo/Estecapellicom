@@ -315,6 +315,197 @@ function estecapelli_safe_content_patches() {
 				),
 			),
 		),
+		'dhi-facts-anaesthesia-20260723-v1' => array(
+			'title'       => 'DHI — Quick Facts and painless anaesthesia',
+			'description' => 'Revise two Quick Facts and Stage 2 of The Procedure on the DHI page in all seven languages.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'dhi-hair-transplant',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'en' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Local', 'after' => 'Painless' ),
+							'label' => array( 'before' => 'Anaesthesia', 'after' => 'Anaesthesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => 'No channels', 'after' => 'No Shave' ),
+							'label' => array( 'before' => 'Technique', 'after' => '' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Local Anaesthesia', 'after' => 'Painless Anaesthesia' ),
+							'body'  => array(
+								'before' => '<p>Local anaesthesia is applied to the donor and recipient areas for a comfortable, pain-free procedure. You stay awake but relaxed throughout, and can listen to music or watch something during the session.</p>',
+								'after'  => '<p>Painless anaesthesia is applied to the donor and recipient areas for a comfortable, pain-free procedure. You stay awake but relaxed throughout, and can listen to music or watch something during the session.</p>',
+							),
+						),
+					),
+				),
+				'fr' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Locale', 'after' => 'Sans douleur' ),
+							'label' => array( 'before' => 'Anesthésie', 'after' => 'Anesthésie' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => 'Sans canaux', 'after' => 'Sans rasage' ),
+							'label' => array( 'before' => 'Technique', 'after' => '' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anesthésie locale', 'after' => 'Anesthésie sans douleur' ),
+							'body'  => array(
+								'before' => '<p>Une anesthésie locale est appliquée aux zones donneuse et receveuse pour assurer une intervention confortable et indolore. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant la séance.</p>',
+								'after'  => '<p>Une anesthésie sans douleur est appliquée aux zones donneuse et receveuse pour assurer une intervention confortable. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant la séance.</p>',
+							),
+						),
+					),
+				),
+				'it' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Locale', 'after' => 'Indolore' ),
+							'label' => array( 'before' => 'Anestesia', 'after' => 'Anestesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => 'Senza canali', 'after' => 'Senza rasatura' ),
+							'label' => array( 'before' => 'Tecnica', 'after' => '' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anestesia locale', 'after' => 'Anestesia indolore' ),
+							'body'  => array(
+								'before' => "<p>L'anestesia locale viene applicata alle aree donatrice e ricevente per un intervento confortevole e indolore. Rimane sveglio ma rilassato per tutta la durata e può ascoltare musica o guardare qualcosa durante la seduta.</p>",
+								'after'  => "<p>L'anestesia indolore viene applicata alle aree donatrice e ricevente per garantire un intervento confortevole. Rimane sveglio ma rilassato per tutta la durata e può ascoltare musica o guardare qualcosa durante la seduta.</p>",
+							),
+						),
+					),
+				),
+				'es' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Local', 'after' => 'Sin dolor' ),
+							'label' => array( 'before' => 'Anestesia', 'after' => 'Anestesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => 'Sin canales previos', 'after' => 'Sin rapado' ),
+							'label' => array( 'before' => 'Técnica', 'after' => '' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anestesia local', 'after' => 'Anestesia sin dolor' ),
+							'body'  => array(
+								'before' => '<p>Aplicamos anestesia local en las zonas donante y receptora para que el procedimiento sea cómodo y no cause dolor. Permanecerá despierto pero relajado durante toda la intervención y podrá escuchar música o ver algún contenido durante la sesión.</p>',
+								'after'  => '<p>Aplicamos anestesia sin dolor en las zonas donante y receptora para que el procedimiento sea cómodo. Permanecerá despierto pero relajado durante toda la intervención y podrá escuchar música o ver algún contenido durante la sesión.</p>',
+							),
+						),
+					),
+				),
+				'pl' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Miejscowe', 'after' => 'Bezbolesne' ),
+							'label' => array( 'before' => 'Znieczulenie', 'after' => 'Znieczulenie' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => 'Brak kanałów', 'after' => 'Bez golenia' ),
+							'label' => array( 'before' => 'Technika', 'after' => '' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Znieczulenie miejscowe', 'after' => 'Bezbolesne znieczulenie' ),
+							'body'  => array(
+								'before' => '<p>W obszarze dawczym i biorczym stosujemy znieczulenie miejscowe, dzięki czemu zabieg przebiega komfortowo i bez bólu. Przez całą sesję pozostajesz przytomny i zrelaksowany; możesz słuchać muzyki lub oglądać film.</p>',
+								'after'  => '<p>W obszarze dawczym i biorczym stosujemy bezbolesne znieczulenie, dzięki czemu zabieg przebiega komfortowo. Przez całą sesję pozostajesz przytomny i zrelaksowany; możesz słuchać muzyki lub oglądać film.</p>',
+							),
+						),
+					),
+				),
+				'pt' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Local', 'after' => 'Indolor' ),
+							'label' => array( 'before' => 'Anestesia', 'after' => 'Anestesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => 'Sem canais prévios', 'after' => 'Sem rapar' ),
+							'label' => array( 'before' => 'Técnica', 'after' => '' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anestesia local', 'after' => 'Anestesia indolor' ),
+							'body'  => array(
+								'before' => '<p>Aplicamos anestesia local nas zonas dadora e recetora para que o procedimento seja confortável e não cause dor. Permanecerá acordado mas relaxado durante toda a intervenção e poderá ouvir música ou ver algum conteúdo durante a sessão.</p>',
+								'after'  => '<p>Aplicamos anestesia indolor nas zonas dadora e recetora para que o procedimento seja confortável. Permanecerá acordado mas relaxado durante toda a intervenção e poderá ouvir música ou ver algum conteúdo durante a sessão.</p>',
+							),
+						),
+					),
+				),
+				'tr' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Yerel', 'after' => 'Ağrısız' ),
+							'label' => array( 'before' => 'Anestezi', 'after' => 'Anestezi' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => 'Kanal Açma Yok', 'after' => 'Tıraşsız' ),
+							'label' => array( 'before' => 'Teknik', 'after' => '' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Lokal Anestezi', 'after' => 'Ağrısız Anestezi' ),
+							'body'  => array(
+								'before' => '<p>Konforlu ve ağrısız bir deneyim için donör ve alıcı bölgelere lokal anestezi uygulanır. İşlem boyunca uyanık ancak rahat olursunuz; seans sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>',
+								'after'  => '<p>Konforlu bir deneyim için donör ve alıcı bölgelere ağrısız anestezi uygulanır. İşlem boyunca uyanık ancak rahat olursunuz; seans sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>',
+							),
+						),
+					),
+				),
+			),
+		),
 	);
 }
 
