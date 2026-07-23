@@ -13,7 +13,7 @@
  * @param {string} args.method          preferred contact channel (whatsapp|call|email)
  * @returns {Promise<object>}
  */
-import { CONFIG, freshNonce } from './config.js?v=3';
+import { CONFIG, freshNonce } from './config.js?v=4';
 
 export async function submitLead({ photos, analysis, contact, method }) {
   // Front-end-only mode: pretend the lead was sent (no backend yet).

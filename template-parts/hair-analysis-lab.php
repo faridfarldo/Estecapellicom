@@ -148,12 +148,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// configured, fall back to the front-end-only placeholder (mock) mode.
 	$hw_base = get_template_directory_uri() . '/assets/hair-widget/';
 	$hw_live = defined( 'ESTECAPELLI_ANTHROPIC_KEY' ) && ESTECAPELLI_ANTHROPIC_KEY;
+	$hw_language = (string) apply_filters( 'wpml_current_language', null );
+	if ( function_exists( 'estecapelli_indexed_language_code' ) ) {
+		$hw_language = estecapelli_indexed_language_code( $hw_language );
+	}
+	if ( ! in_array( $hw_language, array( 'en', 'fr', 'it', 'es', 'pl', 'pt', 'tr' ), true ) ) {
+		$hw_language = function_exists( 'determine_locale' ) ? strtolower( substr( (string) determine_locale(), 0, 2 ) ) : 'en';
+	}
+	if ( ! in_array( $hw_language, array( 'en', 'fr', 'it', 'es', 'pl', 'pt', 'tr' ), true ) ) {
+		$hw_language = 'en';
+	}
 	// Cache-bust the module loader so each deploy reaches browsers (the widget's
 	// own sub-imports are pinned with ?v=N — bump that when changing widget JS).
 	$hw_ver  = estecapelli_asset_ver( '/assets/hair-widget/js/widget.js' );
 	?>
 	<script type="module">
 		window.HAIR_WIDGET_CFG = {
+			locale: <?php echo wp_json_encode( $hw_language ); ?>,
 			imageBase: '<?php echo esc_url( $hw_base . 'image/' ); ?>',
 			analyzeUrl: '<?php echo esc_url_raw( rest_url( 'estecapelli/v1/analyze' ) ); ?>',
 			submitUrl: '<?php echo esc_url_raw( rest_url( 'estecapelli/v1/hair-lead' ) ); ?>',

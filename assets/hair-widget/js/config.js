@@ -6,8 +6,12 @@
  * flag. While `mock` is true the widget runs fully on the front end with a
  * placeholder analysis and a no-op submit — wire the real endpoints later.
  */
+import { getHairWidgetCopy, normalizeLocale } from './i18n.js?v=4';
+
 const OV = (typeof window !== 'undefined' && window.HAIR_WIDGET_CFG) || {};
 const IMG = OV.imageBase || 'image/';
+const LOCALE = normalizeLocale(OV.locale);
+const COPY = getHairWidgetCopy(LOCALE);
 
 export const CONFIG = {
   // Endpoints (used only when mock === false).
@@ -24,6 +28,11 @@ export const CONFIG = {
 
   // Front-end-only mode: placeholder analysis, no network calls.
   mock: OV.mock !== undefined ? OV.mock : false,
+
+  // Client-side copy follows the active WPML language because it bypasses
+  // PHP gettext entirely.
+  locale: LOCALE,
+  copy: COPY,
 
   // Image compression before upload.
   image: {
@@ -56,32 +65,32 @@ export const CONFIG = {
   steps: [
     {
       id: 'front',
-      title: 'Front of head',
-      hint: 'Look straight at the camera and fit your face inside the oval.',
+      title: COPY.steps[0].title,
+      hint: COPY.steps[0].hint,
       pose: 'front',
       auto: true,
       guide: IMG + 'Front.webp',
     },
     {
       id: 'side',
-      title: 'Side profile',
-      hint: 'Turn your head to the side, matching the example, then tap capture.',
+      title: COPY.steps[1].title,
+      hint: COPY.steps[1].hint,
       pose: 'side',
       auto: false,
       guide: IMG + 'SIde.webp',
     },
     {
       id: 'top',
-      title: 'Top (crown)',
-      hint: 'Tilt your head down so the camera sees the top of your scalp.',
+      title: COPY.steps[2].title,
+      hint: COPY.steps[2].hint,
       pose: 'top',
       auto: false,
       guide: IMG + 'Top.webp',
     },
     {
       id: 'donor',
-      title: 'Back (donor area)',
-      hint: 'Show the back of your head, matching the example, then tap capture.',
+      title: COPY.steps[3].title,
+      hint: COPY.steps[3].hint,
       pose: 'donor',
       auto: false,
       guide: IMG + 'Back.webp',

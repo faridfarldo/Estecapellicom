@@ -7,13 +7,14 @@
 // NOTE: the ?v=N query on these relative imports cache-busts the whole module
 // graph. Bump N (here AND in analyze.js / submit.js / camera.js / face-detect.js)
 // whenever you change any widget JS, so browsers never run a stale mix.
-import { CONFIG } from './config.js?v=3';
-import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=3';
-import { startFaceGate } from './face-detect.js?v=3';
-import { analyzePhotos } from './analyze.js?v=3';
-import { submitLead } from './submit.js?v=3';
+import { CONFIG } from './config.js?v=4';
+import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=4';
+import { startFaceGate } from './face-detect.js?v=4';
+import { analyzePhotos } from './analyze.js?v=4';
+import { submitLead } from './submit.js?v=4';
 
 const STEPS = CONFIG.steps;
+const C = CONFIG.copy;
 
 export class HairAnalysisWidget {
   constructor(root) {
@@ -107,7 +108,7 @@ export class HairAnalysisWidget {
 
     this.gate = startFaceGate(video, {
       onUpdate: ({ ok, reasons, holdProgress }) => {
-        if (hintEl) hintEl.textContent = ok ? 'Hold still…' : reasons[0] || '';
+        if (hintEl) hintEl.textContent = ok ? C.holdStill : reasons[0] || '';
         this.root.querySelector('.hw-stage')?.classList.toggle('is-aligned', ok);
         if (ring) ring.style.setProperty('--p', String(holdProgress));
       },
@@ -116,7 +117,7 @@ export class HairAnalysisWidget {
         // MediaPipe failed to load → fall back to manual capture for this step.
         const btn = this.root.querySelector('.hw-shutter');
         if (btn) btn.hidden = false;
-        if (hintEl) hintEl.textContent = 'Tap to capture when you’re ready.';
+        if (hintEl) hintEl.textContent = C.tapReady;
       },
     });
   }
@@ -131,7 +132,7 @@ export class HairAnalysisWidget {
       const { blob, url } = await captureFromVideo(video, { mirror: this.mirror });
       this.setPhoto(this.step.id, blob, url);
     } catch {
-      this.error = 'Could not capture the photo. Please try again.';
+      this.error = C.captureError;
     }
     this.captureState = 'preview';
     stopStream(this.stream);
@@ -147,7 +148,7 @@ export class HairAnalysisWidget {
       this.captureState = 'preview';
       this.render();
     } catch {
-      this.error = 'That image could not be read. Please try another.';
+      this.error = C.imageReadError;
       this.render();
     }
   }
@@ -184,9 +185,9 @@ export class HairAnalysisWidget {
     const consent = form.consent.checked;
 
     // Validate WITHOUT re-rendering, so the visitor doesn't lose what they typed.
-    if (!this.method) return this.showError('Please choose how we should send your result.');
-    if (!name || !phone || !email) return this.showError('Please enter your name, phone and email.');
-    if (!consent) return this.showError('Please accept the consent to continue.');
+    if (!this.method) return this.showError(C.chooseMethodError);
+    if (!name || !phone || !email) return this.showError(C.contactFieldsError);
+    if (!consent) return this.showError(C.consentError);
 
     this.contact = { name, phone, email, consent };
     this.enterCaptureStep(0);
@@ -209,7 +210,7 @@ export class HairAnalysisWidget {
   }
 
   methodLabel() {
-    return { whatsapp: 'WhatsApp', call: 'a direct call', email: 'email' }[this.method] || '';
+    return { whatsapp: C.methodWhatsapp, call: C.methodCall, email: C.methodEmail }[this.method] || '';
   }
 
   // --- analysis + submission ----------------------------------------------
@@ -260,8 +261,8 @@ export class HairAnalysisWidget {
     if (!step?.guide) return '';
     return `
       <figure class="hw-guide">
-        <img src="${esc(step.guide)}" alt="${esc(step.title)} example pose" />
-        <figcaption>Match this</figcaption>
+        <img src="${esc(step.guide)}" alt="${esc(format(C.examplePose, { title: step.title }))}" />
+        <figcaption>${esc(C.matchThis)}</figcaption>
       </figure>`;
   }
 
@@ -276,35 +277,35 @@ export class HairAnalysisWidget {
 
   view_intro() {
     const methods = [
-      { id: 'whatsapp', label: 'WhatsApp' },
-      { id: 'call', label: 'Direct call' },
-      { id: 'email', label: 'Email' },
+      { id: 'whatsapp', label: C.whatsapp },
+      { id: 'call', label: C.directCall },
+      { id: 'email', label: C.email },
     ];
     return `
       <div class="hw-card hw-intro">
-        <span class="hw-eyebrow">Estecapelli AI</span>
-        <h2 class="hw-title hw-title--sm">Your analysis has two stages</h2>
+        <span class="hw-eyebrow">${esc(C.introEyebrow)}</span>
+        <h2 class="hw-title hw-title--sm">${esc(C.introTitle)}</h2>
 
         <ol class="hw-stages">
           <li class="hw-stage-item">
             <span class="hw-stage-num">1</span>
             <div class="hw-stage-text">
-              <strong>Instant AI pre-check — right here</strong>
-              <p>Our AI reviews your photos and gives a first, surface-level estimate in seconds.</p>
+              <strong>${esc(C.stageOneTitle)}</strong>
+              <p>${esc(C.stageOneBody)}</p>
             </div>
           </li>
           <li class="hw-stage-item">
             <span class="hw-stage-num">2</span>
             <div class="hw-stage-text">
-              <strong>Specialist review — our lab &amp; doctors</strong>
-              <p>Our medical team completes the estimate, corrects any error and prepares your personalised plan.</p>
+              <strong>${esc(C.stageTwoTitle)}</strong>
+              <p>${esc(C.stageTwoBody)}</p>
             </div>
           </li>
         </ol>
 
         <div class="hw-method">
-          <span class="hw-method-label">How should we send you the result?</span>
-          <div class="hw-method-options" role="radiogroup" aria-label="Preferred contact method">
+          <span class="hw-method-label">${esc(C.methodQuestion)}</span>
+          <div class="hw-method-options" role="radiogroup" aria-label="${esc(C.preferredContact)}">
             ${methods
               .map(
                 (m) => `
@@ -323,26 +324,25 @@ export class HairAnalysisWidget {
 
             <form class="hw-form hw-intro-form" novalidate>
               <label class="hw-field">
-                <span>Full name</span>
+                <span>${esc(C.fullName)}</span>
                 <input name="name" type="text" autocomplete="name" required />
               </label>
               <label class="hw-field">
-                <span>Phone / WhatsApp</span>
+                <span>${esc(C.phoneWhatsapp)}</span>
                 <input name="phone" class="js-intl-phone" type="tel" autocomplete="tel" inputmode="tel" required />
               </label>
               <label class="hw-field">
-                <span>Email</span>
+                <span>${esc(C.email)}</span>
                 <input name="email" type="email" autocomplete="email" inputmode="email" required />
               </label>
               <label class="hw-consent">
                 <input name="consent" type="checkbox" required />
-                <span>I agree Estecapelli may process my photos and contact details for this
-                  assessment (KVKK / GDPR).</span>
+                <span>${esc(C.consent)}</span>
               </label>
-              <button class="hw-btn hw-btn--accent" type="submit">Submit my contacts &amp; start AI analysis</button>
+              <button class="hw-btn hw-btn--accent" type="submit">${esc(C.submitIntro)}</button>
             </form>
 
-            <p class="hw-fineprint">Next, you'll take four quick photos. They are used only for this assessment.</p>
+            <p class="hw-fineprint">${esc(C.introFineprint)}</p>
           </div>
         </div>
       </div>`;
@@ -356,22 +356,22 @@ export class HairAnalysisWidget {
     if (this.captureState === 'preview') {
       body = `
         <div class="hw-preview">
-          <img class="hw-preview-img" src="${this.photos[step.id]?.url ?? ''}" alt="Captured ${esc(step.title)}" />
+          <img class="hw-preview-img" src="${this.photos[step.id]?.url ?? ''}" alt="${esc(format(C.capturedPhoto, { title: step.title }))}" />
           ${this.guideInset(step)}
         </div>
         <div class="hw-actions">
-          <button class="hw-btn hw-btn--ghost" data-action="retake">Retake</button>
+          <button class="hw-btn hw-btn--ghost" data-action="retake">${esc(C.retake)}</button>
           <button class="hw-btn hw-btn--accent" data-action="confirm">
-            ${this.stepIndex < STEPS.length - 1 ? 'Looks good →' : 'Analyze my photos'}
+            ${esc(this.stepIndex < STEPS.length - 1 ? C.looksGood : C.analyzePhotos)}
           </button>
         </div>`;
     } else if (this.captureState === 'denied') {
       body = `
         <div class="hw-denied">
-          ${step.guide ? `<img class="hw-guide-static" src="${esc(step.guide)}" alt="${esc(step.title)} example pose" />` : ''}
-          <p>We couldn’t access your camera. Match the example above and upload a photo instead.</p>
+          ${step.guide ? `<img class="hw-guide-static" src="${esc(step.guide)}" alt="${esc(format(C.examplePose, { title: step.title }))}" />` : ''}
+          <p>${esc(C.cameraDenied)}</p>
           <label class="hw-btn hw-btn--accent">
-            Choose photo
+            ${esc(C.choosePhoto)}
             <input class="hw-file" type="file" accept="image/*" capture="${step.pose === 'donor' ? 'environment' : 'user'}" hidden />
           </label>
         </div>`;
@@ -393,9 +393,9 @@ export class HairAnalysisWidget {
           <p class="hw-live-hint">${esc(step.hint)}</p>
         </div>
         <div class="hw-actions">
-          <button class="hw-shutter" data-action="shutter" ${step.auto ? 'hidden' : ''} aria-label="Capture"></button>
+          <button class="hw-shutter" data-action="shutter" ${step.auto ? 'hidden' : ''} aria-label="${esc(C.capture)}"></button>
           <label class="hw-btn hw-btn--ghost hw-btn--sm">
-            Upload instead
+            ${esc(C.uploadInstead)}
             <input class="hw-file" type="file" accept="image/*" capture="${step.pose === 'donor' ? 'environment' : 'user'}" hidden />
           </label>
         </div>`;
@@ -404,7 +404,7 @@ export class HairAnalysisWidget {
     return `
       <div class="hw-card hw-capture">
         <header class="hw-head">
-          <span class="hw-step-no">Step ${stepNo} of ${STEPS.length}</span>
+          <span class="hw-step-no">${esc(format(C.stepProgress, { current: stepNo, total: STEPS.length }))}</span>
           <h2 class="hw-title hw-title--sm">${esc(step.title)}</h2>
           ${this.progressDots()}
         </header>
@@ -417,24 +417,23 @@ export class HairAnalysisWidget {
     return `
       <div class="hw-card hw-analyzing">
         <div class="hw-spinner" aria-hidden="true"></div>
-        <h2 class="hw-title hw-title--sm">Analyzing your photos…</h2>
-        <p class="hw-lead">Our model is reviewing your hairline and donor area. This takes a few seconds.</p>
+        <h2 class="hw-title hw-title--sm">${esc(C.analyzingTitle)}</h2>
+        <p class="hw-lead">${esc(C.analyzingBody)}</p>
       </div>`;
   }
 
   view_result() {
     const a = this.analysis;
     const via = this.methodLabel();
-    const viaSuffix = via ? ` via ${esc(via)}` : '';
+    const methodSuffix = via ? format(C.methodSuffix, { method: via }) : '';
 
     // The AI estimate couldn't be produced, but the photos + contact were sent.
     if (!a) {
       return `
         <div class="hw-card hw-result hw-result--plain">
           <div class="hw-check" aria-hidden="true">✓</div>
-          <h2 class="hw-title hw-title--sm">Your photos have reached us</h2>
-          <p class="hw-lead">We couldn't generate the instant estimate this time, but your photos
-            and details reached our team. Our specialists will review them and contact you${viaSuffix}.</p>
+          <h2 class="hw-title hw-title--sm">${esc(C.photosReachedTitle)}</h2>
+          <p class="hw-lead">${esc(format(C.analysisFailed, { methodSuffix }))}</p>
         </div>`;
     }
 
@@ -442,15 +441,15 @@ export class HairAnalysisWidget {
     if (a.status === 'no_hair_detected') {
       return `
         <div class="hw-card hw-result">
-          <span class="hw-eyebrow hw-eyebrow--warn">Couldn't read your photos</span>
-          <h2 class="hw-title hw-title--sm">We didn't detect your hair clearly</h2>
+          <span class="hw-eyebrow hw-eyebrow--warn">${esc(C.unreadableEyebrow)}</span>
+          <h2 class="hw-title hw-title--sm">${esc(C.unreadableTitle)}</h2>
           <p class="hw-lead">${
             a.summary
               ? esc(a.summary)
-              : "The photos didn't clearly show your hair and scalp. Please retake them in good light, filling the frame with your head."
+              : esc(C.unreadableFallback)
           }</p>
-          <button class="hw-btn hw-btn--accent" data-action="retake-all">Retake my photos</button>
-          <p class="hw-disclaimer">Your details were still sent to our team — they'll also reach out${viaSuffix}.</p>
+          <button class="hw-btn hw-btn--accent" data-action="retake-all">${esc(C.retakePhotos)}</button>
+          <p class="hw-disclaimer">${esc(format(C.detailsSent, { methodSuffix }))}</p>
         </div>`;
     }
 
@@ -458,25 +457,25 @@ export class HairAnalysisWidget {
     const noTransplant = a.transplant_recommended === false;
     return `
       <div class="hw-card hw-result">
-        <span class="hw-eyebrow">Preliminary AI estimate</span>
+        <span class="hw-eyebrow">${esc(C.preliminaryEstimate)}</span>
         <div class="hw-result-headline">
           <div class="hw-stat">
-            <span class="hw-stat-label">Hairline stage</span>
+            <span class="hw-stat-label">${esc(C.hairlineStage)}</span>
             <span class="hw-stat-value">Norwood ${esc(a.norwood_stage)}</span>
           </div>
           ${
             noTransplant
               ? ''
               : `<div class="hw-stat">
-            <span class="hw-stat-label">Estimated grafts</span>
+            <span class="hw-stat-label">${esc(C.estimatedGrafts)}</span>
             <span class="hw-stat-value">~${num(a.graft_range?.min)}–${num(a.graft_range?.max)}</span>
           </div>`
           }
         </div>
         ${a.summary ? `<p class="hw-lead">${esc(a.summary)}</p>` : ''}
-        <p class="hw-cta-text">A more precise analysis will be sent to you by our specialists${viaSuffix}.</p>
-        <p class="hw-disclaimer">This is an automatic, surface-level estimate and is
-          <strong>not a medical diagnosis</strong>.</p>
+        <p class="hw-cta-text">${esc(format(C.preciseAnalysis, { methodSuffix }))}</p>
+        <p class="hw-disclaimer">${esc(C.disclaimerStart)}
+          <strong>${esc(C.disclaimerStrong)}</strong>.</p>
       </div>`;
   }
 
@@ -571,6 +570,12 @@ function esc(s) {
   })[c]);
 }
 
+function format(template, values = {}) {
+  return String(template ?? '').replace(/\{([a-zA-Z0-9_]+)\}/g, (match, key) =>
+    Object.prototype.hasOwnProperty.call(values, key) ? String(values[key]) : match
+  );
+}
+
 function num(n) {
-  return typeof n === 'number' ? n.toLocaleString('en-US') : '—';
+  return typeof n === 'number' ? n.toLocaleString(CONFIG.locale) : '—';
 }

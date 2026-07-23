@@ -11,7 +11,7 @@
  * Side and donor steps don't use this — Face Mesh doesn't track profile/back
  * views, so those are manual captures.
  */
-import { CONFIG } from './config.js?v=3';
+import { CONFIG } from './config.js?v=4';
 
 const RAD2DEG = 180 / Math.PI;
 
@@ -81,30 +81,30 @@ function evaluate(result) {
   const reasons = [];
 
   if (!result.faceLandmarks?.length) {
-    return { ok: false, reasons: ['No face detected'] };
+    return { ok: false, reasons: [CONFIG.copy.face.noFace] };
   }
 
   const landmarks = result.faceLandmarks[0];
   const box = boundingBox(landmarks);
 
-  if (box.minY < 0.02) reasons.push('Move back — forehead is cut off');
+  if (box.minY < 0.02) reasons.push(CONFIG.copy.face.foreheadCut);
 
   const faceFrac = box.maxY - box.minY;
-  if (faceFrac < cfg.minFaceFrac) reasons.push('Move closer');
-  else if (faceFrac > cfg.maxFaceFrac) reasons.push('Move back a little');
+  if (faceFrac < cfg.minFaceFrac) reasons.push(CONFIG.copy.face.moveCloser);
+  else if (faceFrac > cfg.maxFaceFrac) reasons.push(CONFIG.copy.face.moveBack);
 
   const cx = (box.minX + box.maxX) / 2;
   const cy = (box.minY + box.maxY) / 2;
   if (Math.abs(cx - 0.5) > cfg.centerTolFrac || Math.abs(cy - 0.5) > cfg.centerTolFrac) {
-    reasons.push('Center your face in the oval');
+    reasons.push(CONFIG.copy.face.centerFace);
   }
 
   const matrix = result.facialTransformationMatrixes?.[0]?.data;
   if (matrix) {
     const { yaw, pitch, roll } = eulerFromMatrix(matrix);
-    if (Math.abs(yaw) > cfg.maxYawDeg) reasons.push('Face the camera straight on');
-    else if (Math.abs(pitch) > cfg.maxPitchDeg) reasons.push("Don't tilt up or down");
-    else if (Math.abs(roll) > cfg.maxRollDeg) reasons.push('Keep your head level');
+    if (Math.abs(yaw) > cfg.maxYawDeg) reasons.push(CONFIG.copy.face.faceStraight);
+    else if (Math.abs(pitch) > cfg.maxPitchDeg) reasons.push(CONFIG.copy.face.noTilt);
+    else if (Math.abs(roll) > cfg.maxRollDeg) reasons.push(CONFIG.copy.face.headLevel);
   }
 
   return { ok: reasons.length === 0, reasons };

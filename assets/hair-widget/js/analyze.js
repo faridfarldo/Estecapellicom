@@ -10,7 +10,7 @@
  * @param {Record<string, Blob>} photos  keyed by step id (front/left/right/donor)
  * @returns {Promise<object>} analysis result
  */
-import { CONFIG, freshNonce } from './config.js?v=3';
+import { CONFIG, freshNonce } from './config.js?v=4';
 
 export async function analyzePhotos(photos) {
   // Front-end-only mode: return a placeholder estimate, no network call.
@@ -21,8 +21,7 @@ export async function analyzePhotos(photos) {
       norwood_stage: 3,
       transplant_recommended: true,
       graft_range: { min: 2000, max: 2800 },
-      summary:
-        'Preliminary placeholder estimate. Connect the AI backend to generate a real analysis from these photos.',
+      summary: CONFIG.copy.mockSummary,
     };
   }
 
@@ -31,7 +30,7 @@ export async function analyzePhotos(photos) {
   );
   // Fresh, uncached nonce — the baked-in page nonce may be stale behind a cache.
   const nonce = await freshNonce();
-  const payload = { photos: Object.fromEntries(entries), nonce };
+  const payload = { photos: Object.fromEntries(entries), nonce, locale: CONFIG.locale };
 
   const res = await fetch(CONFIG.analyzeUrl, {
     method: 'POST',

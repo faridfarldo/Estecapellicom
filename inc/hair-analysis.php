@@ -4,7 +4,7 @@
  *
  * Two REST routes power the homepage Hair-Analysis Lab photo widget:
  *
- *   POST /wp-json/estecapelli/v1/analyze    {photos:{front,side,top,donor: base64 JPEG}, nonce}
+ *   POST /wp-json/estecapelli/v1/analyze    {photos:{front,side,top,donor: base64 JPEG}, nonce, locale}
  *        → calls Claude Opus 4.8 vision and returns a PRELIMINARY estimate:
  *          { ok:true, analysis:{ norwood_stage, graft_range:{min,max}, summary } }
  *
@@ -106,6 +106,18 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 		return new WP_REST_Response( array( 'ok' => false, 'error' => 'no_photos' ), 400 );
 	}
 
+	$locale = isset( $body['locale'] ) ? sanitize_key( (string) $body['locale'] ) : 'en';
+	$summary_languages = array(
+		'en' => 'English',
+		'fr' => 'French',
+		'it' => 'Italian',
+		'es' => 'Spanish',
+		'pl' => 'Polish',
+		'pt' => 'European Portuguese',
+		'tr' => 'Turkish',
+	);
+	$summary_language = isset( $summary_languages[ $locale ] ) ? $summary_languages[ $locale ] : $summary_languages['en'];
+
 	// Build the multimodal user content: each photo as a base64 image block,
 	// then the instruction. Labels help Claude reason about each angle.
 	$labels  = array(
@@ -145,7 +157,7 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 			"- norwood_stage: approximate Norwood-Hamilton stage, integer 1-7.\n" .
 			"- transplant_recommended: false when hair loss is minimal (around Norwood 1-2) and a transplant is NOT needed yet; true otherwise.\n" .
 			"- graft_range: a BROAD, indicative FUE graft range {min,max} (realistic, usually 1000-5000; keep it wide, not a falsely exact number). If transplant_recommended is false, set both min and max to 0.\n" .
-			"- summary: AT MOST TWO short sentences, plain and friendly. Cover only: whether the donor area looks good or limited, what their Norwood stage means in everyday words, and roughly why that many grafts. If transplant_recommended is false, say their hair loss is minimal and a transplant isn't needed at this stage. If status is \"no_hair_detected\", say you couldn't clearly see their hair and ask for clearer, well-lit photos. Do NOT write a long paragraph, and do NOT mention consultations, bookings or next steps — keep it short.\n\n" .
+			"- summary: AT MOST TWO short sentences, plain and friendly, written in {$summary_language}. Cover only: whether the donor area looks good or limited, what their Norwood stage means in everyday words, and roughly why that many grafts. If transplant_recommended is false, say their hair loss is minimal and a transplant isn't needed at this stage. If status is \"no_hair_detected\", say you couldn't clearly see their hair and ask for clearer, well-lit photos. Do NOT write a long paragraph, and do NOT mention consultations, bookings or next steps — keep it short. Keep every JSON key in English.\n\n" .
 			"Respond with ONLY a raw JSON object — no markdown, no code fences, no words before or after — with exactly these keys: status (\"ok\" or \"no_hair_detected\"), norwood_stage (integer 1-7), transplant_recommended (true/false), graft_range (object with integer \"min\" and \"max\"), summary (string).",
 	);
 
