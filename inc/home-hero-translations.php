@@ -16,6 +16,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Return the active public language code used by the indexed URL contract. */
 function estecapelli_home_hero_language() {
+	// The public URL is authoritative. Indexed treatment requests can be
+	// resolved before WPML has fully switched its global current-language
+	// value, which otherwise makes localized service videos fall back to EN.
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path    = trim( (string) wp_parse_url( $request, PHP_URL_PATH ), '/' );
+	$prefix  = strtolower( (string) strtok( $path, '/' ) );
+	$prefix  = 'pt-pt' === $prefix ? 'pt' : $prefix;
+	if ( in_array( $prefix, array( 'en', 'tr', 'fr', 'it', 'es', 'pl', 'pt' ), true ) ) {
+		return $prefix;
+	}
+
 	$language = (string) apply_filters( 'wpml_current_language', null );
 	if ( function_exists( 'estecapelli_indexed_language_code' ) ) {
 		$language = estecapelli_indexed_language_code( $language );
