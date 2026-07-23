@@ -302,90 +302,214 @@ function estecapelli_import_treatment( array $data ) {
 }
 
 /**
- * Repair the three English Sapphire hero strings previously translated while
- * the English seed was evaluated in a French wp-admin request.
+ * Extract the source-controlled Hero rows that may have been contaminated.
  *
- * This deliberately updates individual ACF post-meta values. Re-importing the
- * treatment would replace every flexible-content row and could discard newer
- * editorial copy that exists only in WordPress.
- *
- * @return int|WP_Error Number of repaired values, or an actionable error.
+ * @return array<int,array<string,mixed>>
  */
-function estecapelli_repair_english_sapphire_hero_copy() {
-	$source_id = function_exists( 'estecapelli_source_post_id' )
-		? (int) estecapelli_source_post_id( 'sapphire-fue-hair-transplant', 'treatment' )
-		: 0;
-
-	if ( ! $source_id ) {
-		return new WP_Error( 'sapphire_hero_missing_source', 'Published English Sapphire FUE treatment not found.' );
-	}
-
-	if ( defined( 'ICL_SITEPRESS_VERSION' ) || defined( 'WPML_VERSION' ) ) {
-		$details  = apply_filters(
-			'wpml_element_language_details',
-			null,
-			array(
-				'element_id'   => $source_id,
-				'element_type' => 'treatment',
-			)
-		);
-		$language = is_object( $details ) ? (string) ( $details->language_code ?? '' ) : (string) ( $details['language_code'] ?? '' );
-		if ( 'en' !== $language ) {
-			return new WP_Error(
-				'sapphire_hero_wrong_language',
-				sprintf( 'Refusing to repair post %d because WPML identifies it as "%s", not English.', $source_id, $language ?: 'unknown' )
-			);
-		}
-	}
-
-	$layouts = get_post_meta( $source_id, 'page_sections', true );
-	if ( ! is_array( $layouts ) ) {
-		return new WP_Error( 'sapphire_hero_missing_sections', sprintf( 'Post %d has no readable page_sections layout index.', $source_id ) );
-	}
-
-	$hero_index = array_search( 'hero', $layouts, true );
-	if ( false === $hero_index ) {
-		return new WP_Error( 'sapphire_hero_missing_layout', sprintf( 'Post %d has no hero row to repair.', $source_id ) );
-	}
-
-	$prefix = 'page_sections_' . (int) $hero_index . '_';
-	$fields = array(
-		$prefix . 'title'                       => array(
-			'expected'     => 'Sapphire FUE Hair Transplant',
-			'contaminated' => array( 'Greffe de cheveux FUE Saphir', 'Greffe de cheveux Sapphire FUE' ),
-		),
-		$prefix . 'cta_primary_label'           => array(
-			'expected'     => 'Free Consultation',
-			'contaminated' => array( 'Consultation gratuite' ),
-		),
-		$prefix . 'cta_secondary_label'         => array(
-			'expected'     => 'Chat on WhatsApp',
-			'contaminated' => array( 'Discuter sur WhatsApp' ),
-		),
+function estecapelli_english_seeded_hero_targets() {
+	$targets = array();
+	$groups  = array(
+		'treatment' => estecapelli_treatments_seed(),
+		'page'      => estecapelli_pages_seed(),
 	);
 
-	$current = array();
-	foreach ( $fields as $meta_key => $rule ) {
-		$current[ $meta_key ] = (string) get_post_meta( $source_id, $meta_key, true );
-		if (
-			$current[ $meta_key ] !== $rule['expected'] &&
-			! in_array( $current[ $meta_key ], $rule['contaminated'], true )
-		) {
-			return new WP_Error(
-				'sapphire_hero_unexpected_value',
-				sprintf( 'Refusing to overwrite unexpected editorial value in %s on post %d.', $meta_key, $source_id )
+	foreach ( $groups as $post_type => $items ) {
+		foreach ( $items as $item ) {
+			if ( empty( $item['slug'] ) || empty( $item['sections'] ) || ! is_array( $item['sections'] ) ) {
+				continue;
+			}
+
+			foreach ( $item['sections'] as $section ) {
+				if ( 'hero' !== ( $section['acf_fc_layout'] ?? '' ) ) {
+					continue;
+				}
+				$targets[] = array(
+					'post_type' => $post_type,
+					'slug'      => $item['slug'],
+					'category'  => $item['category'] ?? '',
+					'hero'      => $section,
+				);
+				break;
+			}
+		}
+	}
+
+	return $targets;
+}
+
+/**
+ * Load the French Hero overlay for a seeded target when one exists.
+ *
+ * It supplies an additional known-contamination value alongside the runtime
+ * gettext dictionary. No translated value is ever written by this repair.
+ *
+ * @param array<string,mixed> $target Seeded target descriptor.
+ * @return array<string,mixed>
+ */
+function estecapelli_french_hero_overlay_for_target( $target ) {
+	if ( 'page' === $target['post_type'] ) {
+		$folder = 'pages';
+	} else {
+		$folders = array(
+			'Hair Transplant' => 'hair-transplant',
+			'Plastic Surgery' => 'plastic-surgery',
+			'Dental Treatment' => 'dental-treatment',
+		);
+		$folder = $folders[ $target['category'] ] ?? '';
+	}
+
+	if ( ! $folder ) {
+		return array();
+	}
+
+	$file = get_template_directory() . '/inc/data/translations/fr/' . $folder . '/' . $target['slug'] . '.json';
+	if ( ! is_readable( $file ) ) {
+		return array();
+	}
+
+	$data = json_decode( (string) file_get_contents( $file ), true );
+	if ( ! is_array( $data ) || empty( $data['sections'] ) || ! is_array( $data['sections'] ) ) {
+		return array();
+	}
+
+	foreach ( $data['sections'] as $section ) {
+		if ( 'hero' === ( $section['acf_fc_layout'] ?? '' ) ) {
+			return $section;
+		}
+	}
+
+	return array();
+}
+
+/**
+ * Read one nested Hero value using the same path in seed and French overlay.
+ *
+ * @param array<string,mixed> $hero Hero row.
+ * @param string              $path Dot-separated field path.
+ * @return string
+ */
+function estecapelli_hero_value_at_path( $hero, $path ) {
+	$value = $hero;
+	foreach ( explode( '.', $path ) as $key ) {
+		if ( ! is_array( $value ) || ! array_key_exists( $key, $value ) ) {
+			return '';
+		}
+		$value = $value[ $key ];
+	}
+
+	return is_scalar( $value ) ? (string) $value : '';
+}
+
+/**
+ * Repair French-contaminated Hero copy across every seeded English page.
+ *
+ * Only individual values that exactly equal a known French translation are
+ * replaced. English editorial values that differ from the seed are preserved,
+ * and no flexible-content row or media value is rewritten.
+ *
+ * @return array<string,mixed>|WP_Error Repair report, or a verification error.
+ */
+function estecapelli_repair_english_seeded_hero_copy() {
+	$fr_strings = estecapelli_nav_translations()['fr'] ?? array();
+	$field_map  = array(
+		'eyebrow'                    => 'eyebrow',
+		'title'                      => 'title',
+		'lead'                       => 'lead',
+		'cta_primary.label'          => 'cta_primary_label',
+		'cta_secondary.label'        => 'cta_secondary_label',
+	);
+	$report     = array(
+		'targets'        => 0,
+		'changed_posts'  => 0,
+		'changed_values' => 0,
+		'skipped_values' => 0,
+		'errors'         => array(),
+	);
+	$changes    = array();
+
+	foreach ( estecapelli_english_seeded_hero_targets() as $target ) {
+		$report['targets']++;
+		$source_id = function_exists( 'estecapelli_source_post_id' )
+			? (int) estecapelli_source_post_id( $target['slug'], $target['post_type'] )
+			: 0;
+		if ( ! $source_id ) {
+			$report['errors'][] = sprintf( '%s/%s: published English source not found.', $target['post_type'], $target['slug'] );
+			continue;
+		}
+
+		if ( defined( 'ICL_SITEPRESS_VERSION' ) || defined( 'WPML_VERSION' ) ) {
+			$details  = apply_filters(
+				'wpml_element_language_details',
+				null,
+				array(
+					'element_id'   => $source_id,
+					'element_type' => $target['post_type'],
+				)
+			);
+			$language = is_object( $details ) ? (string) ( $details->language_code ?? '' ) : (string) ( $details['language_code'] ?? '' );
+			if ( 'en' !== $language ) {
+				$report['errors'][] = sprintf( '%s/%s: post %d is "%s", not English.', $target['post_type'], $target['slug'], $source_id, $language ?: 'unknown' );
+				continue;
+			}
+		}
+
+		$layouts = get_post_meta( $source_id, 'page_sections', true );
+		if ( ! is_array( $layouts ) ) {
+			$report['errors'][] = sprintf( '%s/%s: no readable page_sections layout index.', $target['post_type'], $target['slug'] );
+			continue;
+		}
+		$hero_index = array_search( 'hero', $layouts, true );
+		if ( false === $hero_index ) {
+			$report['errors'][] = sprintf( '%s/%s: no Hero row found.', $target['post_type'], $target['slug'] );
+			continue;
+		}
+
+		$french_hero = estecapelli_french_hero_overlay_for_target( $target );
+		$prefix      = 'page_sections_' . (int) $hero_index . '_';
+		foreach ( $field_map as $path => $meta_suffix ) {
+			$expected = estecapelli_hero_value_at_path( $target['hero'], $path );
+			if ( '' === $expected ) {
+				continue;
+			}
+
+			$meta_key = $prefix . $meta_suffix;
+			$current  = (string) get_post_meta( $source_id, $meta_key, true );
+			if ( $current === $expected ) {
+				continue;
+			}
+
+			$contaminated = array();
+			if ( isset( $fr_strings[ $expected ] ) ) {
+				$contaminated[] = (string) $fr_strings[ $expected ];
+			}
+			$overlay_value = estecapelli_hero_value_at_path( $french_hero, $path );
+			if ( '' !== $overlay_value ) {
+				$contaminated[] = $overlay_value;
+			}
+			$contaminated = array_values( array_unique( array_filter( $contaminated, 'strlen' ) ) );
+
+			if ( ! in_array( $current, $contaminated, true ) ) {
+				$report['skipped_values']++;
+				continue;
+			}
+
+			$changes[] = array(
+				'post_id'  => $source_id,
+				'post_type' => $target['post_type'],
+				'slug'     => $target['slug'],
+				'meta_key' => $meta_key,
+				'before'   => $current,
+				'after'    => $expected,
 			);
 		}
 	}
 
-	$backup_key = 'estecapelli_sapphire_hero_copy_backup_20260723';
-	if ( false === get_option( $backup_key, false ) ) {
+	$backup_key = 'estecapelli_english_hero_copy_backup_20260723_v2';
+	if ( $changes && false === get_option( $backup_key, false ) ) {
 		add_option(
 			$backup_key,
 			array(
-				'post_id'    => $source_id,
-				'hero_index' => (int) $hero_index,
-				'values'     => $current,
+				'changes'    => $changes,
 				'created_at' => current_time( 'mysql', true ),
 			),
 			'',
@@ -393,72 +517,82 @@ function estecapelli_repair_english_sapphire_hero_copy() {
 		);
 	}
 
-	$changed = 0;
-	foreach ( $fields as $meta_key => $rule ) {
-		if ( $current[ $meta_key ] === $rule['expected'] ) {
-			continue;
+	$changed_posts = array();
+	foreach ( $changes as $change ) {
+		update_post_meta( $change['post_id'], $change['meta_key'], $change['after'] );
+		if ( $change['after'] !== (string) get_post_meta( $change['post_id'], $change['meta_key'], true ) ) {
+			return new WP_Error(
+				'english_hero_verification_failed',
+				sprintf( 'Repair verification failed for %s on post %d.', $change['meta_key'], $change['post_id'] )
+			);
 		}
-		update_post_meta( $source_id, $meta_key, $rule['expected'] );
-		$changed++;
+		$changed_posts[ $change['post_id'] ] = true;
+		$report['changed_values']++;
 	}
-	if ( $changed ) {
-		clean_post_cache( $source_id );
+	foreach ( array_keys( $changed_posts ) as $post_id ) {
+		clean_post_cache( $post_id );
 	}
+	$report['changed_posts'] = count( $changed_posts );
 
-	foreach ( $fields as $meta_key => $rule ) {
-		if ( $rule['expected'] !== (string) get_post_meta( $source_id, $meta_key, true ) ) {
-			return new WP_Error( 'sapphire_hero_verification_failed', sprintf( 'Repair verification failed for %s on post %d.', $meta_key, $source_id ) );
-		}
-	}
-
-	return $changed;
+	return $report;
 }
 
-/** Run the surgical repair once after deployment, retrying only after errors. */
-add_action( 'admin_init', 'estecapelli_maybe_repair_english_sapphire_hero_copy', 75 );
-function estecapelli_maybe_repair_english_sapphire_hero_copy() {
-	$version = '2026-07-23.1';
+/** Run the site-wide surgical repair once after deployment. */
+add_action( 'admin_init', 'estecapelli_maybe_repair_english_seeded_hero_copy', 75 );
+function estecapelli_maybe_repair_english_seeded_hero_copy() {
+	$version = '2026-07-23.2';
 	if (
-		$version === get_option( 'estecapelli_sapphire_hero_copy_repair_version' ) ||
+		$version === get_option( 'estecapelli_english_hero_copy_repair_version' ) ||
 		! current_user_can( 'manage_options' ) ||
 		( function_exists( 'wp_doing_ajax' ) && wp_doing_ajax() )
 	) {
 		return;
 	}
 
-	$result = estecapelli_repair_english_sapphire_hero_copy();
+	$result = estecapelli_repair_english_seeded_hero_copy();
 	if ( is_wp_error( $result ) ) {
-		update_option( 'estecapelli_sapphire_hero_copy_repair_error', $result->get_error_message(), false );
+		update_option( 'estecapelli_english_hero_copy_repair_error', $result->get_error_message(), false );
+		return;
+	}
+	if ( ! empty( $result['errors'] ) ) {
+		update_option( 'estecapelli_english_hero_copy_repair_error', implode( ' ', $result['errors'] ), false );
 		return;
 	}
 
-	update_option( 'estecapelli_sapphire_hero_copy_repair_version', $version, false );
-	delete_option( 'estecapelli_sapphire_hero_copy_repair_error' );
-	set_transient( 'estecapelli_sapphire_hero_copy_repair_success', (int) $result, 5 * MINUTE_IN_SECONDS );
+	update_option( 'estecapelli_english_hero_copy_repair_version', $version, false );
+	delete_option( 'estecapelli_english_hero_copy_repair_error' );
+	set_transient( 'estecapelli_english_hero_copy_repair_success', $result, 5 * MINUTE_IN_SECONDS );
 }
 
 /** Report the one-time repair outcome to an administrator. */
-add_action( 'admin_notices', 'estecapelli_sapphire_hero_copy_repair_notice' );
-function estecapelli_sapphire_hero_copy_repair_notice() {
+add_action( 'admin_notices', 'estecapelli_english_hero_copy_repair_notice' );
+function estecapelli_english_hero_copy_repair_notice() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 
-	$changed = get_transient( 'estecapelli_sapphire_hero_copy_repair_success' );
-	if ( false !== $changed ) {
-		delete_transient( 'estecapelli_sapphire_hero_copy_repair_success' );
+	$result = get_transient( 'estecapelli_english_hero_copy_repair_success' );
+	if ( is_array( $result ) ) {
+		delete_transient( 'estecapelli_english_hero_copy_repair_success' );
 		printf(
 			'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
-			esc_html( sprintf( 'English Sapphire FUE hero repair completed; %d contaminated values corrected.', (int) $changed ) )
+			esc_html(
+				sprintf(
+					'English Hero repair completed across the site: %d contaminated values corrected on %d posts; %d editorial values preserved.',
+					(int) $result['changed_values'],
+					(int) $result['changed_posts'],
+					(int) $result['skipped_values']
+				)
+			)
 		);
 		return;
 	}
 
-	$error = get_option( 'estecapelli_sapphire_hero_copy_repair_error' );
+	$error = get_option( 'estecapelli_english_hero_copy_repair_error' );
 	if ( $error ) {
 		printf(
 			'<div class="notice notice-error"><p><strong>%s</strong> %s</p></div>',
-			esc_html__( 'English Sapphire FUE hero repair failed.', 'estecapelli' ),
+			esc_html__( 'Site-wide English Hero repair failed.', 'estecapelli' ),
 			esc_html( $error )
 		);
 	}
