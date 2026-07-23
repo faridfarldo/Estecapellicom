@@ -29,6 +29,41 @@ function estecapelli_home_hero_language() {
 }
 
 /**
+ * Canonical VITA Protocol YouTube IDs for every public language.
+ *
+ * @return array<string,string>
+ */
+function estecapelli_vita_video_ids() {
+	return array(
+		'en' => '8C9DLaNJynU',
+		'fr' => 'E3B38CyzC-M',
+		'it' => 'UI-imkHOPpM',
+		'es' => 'cVMVZMykGcM',
+		'pl' => 'EsMsyrD-0y4',
+		'pt' => 'wpbVhfLPTvk',
+		'tr' => 'hLuXikySN34',
+	);
+}
+
+/** Return the VITA video ID for the active public language. */
+function estecapelli_vita_video_id( $language = '' ) {
+	$language = $language ? estecapelli_indexed_language_code( $language ) : estecapelli_home_hero_language();
+	$videos   = estecapelli_vita_video_ids();
+
+	return $videos[ $language ] ?? $videos['en'];
+}
+
+/** Localize a known VITA video while leaving unrelated videos untouched. */
+function estecapelli_localize_vita_video_id( $video ) {
+	$current = function_exists( 'estecapelli_youtube_id' ) ? estecapelli_youtube_id( $video ) : (string) $video;
+	if ( ! in_array( $current, estecapelli_vita_video_ids(), true ) ) {
+		return $current;
+	}
+
+	return estecapelli_vita_video_id();
+}
+
+/**
  * Hero strings missing from the broader French, Polish and Turkish fallbacks.
  * Italian, Spanish and Portuguese already own complete hero dictionaries.
  *

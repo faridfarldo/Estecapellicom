@@ -788,6 +788,11 @@ if ( ! function_exists( 'estecapelli_signature_split' ) ) {
 		if ( function_exists( 'get_field' ) ) {
 			$payload = estecapelli_acf_overlay( $defaults, get_field( 'signature_split', 'option' ) );
 		}
+		// The option is shared by WPML, so force the VITA panel to the video for
+		// the active language after the ACF overlay has supplied its values.
+		if ( function_exists( 'estecapelli_vita_video_id' ) && isset( $payload['panels']['vita'] ) ) {
+			$payload['panels']['vita']['video'] = estecapelli_vita_video_id();
+		}
 
 		return function_exists( 'estecapelli_localize_home_hero_payload' )
 			? estecapelli_localize_home_hero_payload( $payload )

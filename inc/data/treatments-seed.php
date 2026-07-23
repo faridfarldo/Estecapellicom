@@ -775,6 +775,8 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'body'          => '<p>' . esc_html__( 'The VITA Protocol is an advanced three-phase treatment developed exclusively by Estecapelli’s medical experts to maximise graft survival and enhance the overall success of your hair transplant. It is fully compatible with both Sapphire FUE and DHI techniques and combines a highly enriched formula of amino acids, vitamins, growth factors and ATP to nourish and protect the hair follicles throughout the procedure.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'In the first phase, a nutrient-rich VITA serum is applied to the scalp through microscopic channels created with a dermaroller, allowing the active ingredients to penetrate deeply and prepare the recipient area for implantation. In the second phase, once the grafts are harvested, they are preserved in the VITA serum while cold-air vapour therapy combined with a saline solution is applied to keep them hydrated, minimise cellular stress and increase their survival rate before implantation.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'As the final step, one session of PRP (Platelet-Rich Plasma) treatment is performed immediately after the procedure, using the patient’s own growth factors to accelerate healing, support graft retention and promote stronger, healthier hair growth.', 'estecapelli' ) . '</p>',
+						'media_type'    => 'video',
+						'video_url'     => 'https://youtube.com/shorts/8C9DLaNJynU',
 						'image'         => '',
 						'image_position' => 'right',
 						'cta'           => array( 'label' => '', 'url' => '' ),

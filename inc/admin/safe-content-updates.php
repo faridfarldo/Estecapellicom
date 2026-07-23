@@ -132,6 +132,29 @@ function estecapelli_safe_patch_vita_localized_science_image_operation( $image_p
 	);
 }
 
+/** Update the first VITA intro from the shared English video to one locale. */
+function estecapelli_safe_patch_vita_localized_video_operation( $video_url ) {
+	$english_video = array(
+		'8C9DLaNJynU',
+		'https://youtube.com/shorts/8C9DLaNJynU',
+		'https://www.youtube.com/shorts/8C9DLaNJynU',
+		'https://youtube.com/shorts/8C9DLaNJynU?feature=share',
+		'https://www.youtube.com/shorts/8C9DLaNJynU?feature=share',
+		'https://youtu.be/8C9DLaNJynU',
+	);
+
+	return array(
+		array(
+			'target'       => 'layout_fields',
+			'layout'       => 'intro',
+			'layout_index' => 1,
+			'fields'       => array(
+				'video_url' => array( 'before' => $english_video, 'after' => $video_url ),
+			),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
@@ -840,6 +863,21 @@ function estecapelli_safe_content_patches() {
 				'pl' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-pl.webp' ),
 				'pt' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-pt.webp' ),
 				'tr' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-tr.webp' ),
+			),
+		),
+		'vita-localized-videos-20260723-v1' => array(
+			'title'       => 'VITA Treatment — Localized videos',
+			'description' => 'Replace the shared English VITA Protocol video in the first intro with the matching FR, IT, ES, PL, PT or TR version. The homepage is localized at render time because its ACF option is shared.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'vita-treatment',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'fr' => estecapelli_safe_patch_vita_localized_video_operation( 'https://youtube.com/shorts/E3B38CyzC-M' ),
+				'it' => estecapelli_safe_patch_vita_localized_video_operation( 'https://youtube.com/shorts/UI-imkHOPpM' ),
+				'es' => estecapelli_safe_patch_vita_localized_video_operation( 'https://youtube.com/shorts/cVMVZMykGcM' ),
+				'pl' => estecapelli_safe_patch_vita_localized_video_operation( 'https://youtube.com/shorts/EsMsyrD-0y4' ),
+				'pt' => estecapelli_safe_patch_vita_localized_video_operation( 'https://youtube.com/shorts/wpbVhfLPTvk' ),
+				'tr' => estecapelli_safe_patch_vita_localized_video_operation( 'https://youtube.com/shorts/hLuXikySN34' ),
 			),
 		),
 	);

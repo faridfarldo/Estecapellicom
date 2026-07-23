@@ -139,7 +139,6 @@ function estecapelli_acfml_preference_for_field( $field ) {
 		'field_docs_m_name',
 		'field_rel_category',
 		'field_intro_image_url',
-		'field_intro_video_url',
 		'field_doctor_resume_photo_url',
 	);
 

@@ -22,6 +22,9 @@ $position = $section['image_position'] ?? 'right';
 $cta      = $section['cta']            ?? array();
 $mtype    = ! empty( $section['media_type'] ) ? $section['media_type'] : 'image';
 $video_id = ! empty( $section['video_url'] ) ? estecapelli_youtube_id( $section['video_url'] ) : '';
+if ( $video_id && function_exists( 'estecapelli_localize_vita_video_id' ) ) {
+	$video_id = estecapelli_localize_vita_video_id( $video_id );
+}
 $slides   = ( 'slider' === $mtype && ! empty( $section['slider_images'] ) && is_array( $section['slider_images'] ) ) ? $section['slider_images'] : array();
 $localized_image_url = $section['localized_image_url'] ?? '';
 // A localized graphic contains translated text and must override the shared
