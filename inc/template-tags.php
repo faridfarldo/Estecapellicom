@@ -1688,7 +1688,7 @@ if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
 			return get_template_directory_uri() . '/assets/images/stories/' . $file;
 		};
 
-		return array(
+		$localized = array(
 			'es' => array(
 				'eyebrow'  => 'Historias reales',
 				'headline' => 'Sus resultados hablan más alto que cualquier anuncio.',
@@ -1762,10 +1762,10 @@ if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
 						'technique'   => 'FUE',
 						'rating'      => 5,
 						'video_id'    => '6b8UhFaPxug',
-						'poster'      => $img( 'it/federico-p.jpg' ),
-						'poster_pos'  => 'center 30%',
-						'photo'       => $img( 'it/federico-p.jpg' ),
-						'photo_pos'   => 'center 30%',
+						'poster'      => 'https://i.ytimg.com/vi/6b8UhFaPxug/sd3.jpg',
+						'poster_pos'  => 'center center',
+						'photo'       => 'https://i.ytimg.com/vi/6b8UhFaPxug/sd3.jpg',
+						'photo_pos'   => 'center center',
 						'pre_title'   => "Densità frontale e copertura uniforme verso la parte superiore.",
 						'body'        => "Federico è arrivato dall'Italia presso Estecapelli per sottoporsi a un trapianto di capelli con la tecnica FUE. Dopo una valutazione dettagliata dell'area donatrice e delle zone interessate dal diradamento, è stato definito un piano di trattamento personalizzato in base alle sue esigenze e alla disponibilità degli innesti. L'intervento è stato pianificato utilizzando il massimo numero di innesti prelevabili in sicurezza. Nella zona frontale è stata prevista una maggiore densità per ottenere un'attaccatura più definita e naturale, mentre nella parte superiore del cuoio capelluto gli innesti sono stati distribuiti in modo più leggero e uniforme per migliorare la copertura complessiva. Al termine della procedura, Federico ha ricevuto tutte le indicazioni necessarie per il periodo post-operatorio e ha iniziato il suo percorso di recupero sotto il controllo del team medico di Estecapelli.",
 					),
@@ -1781,8 +1781,10 @@ if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
 						'video_id'    => 'tudQiFcGxIE',
 						'poster'      => $img( 'it/francesco-d.jpg' ),
 						'poster_pos'  => 'center 30%',
+						'poster_transform' => 'translateX(7%) scale(1.16)',
 						'photo'       => $img( 'it/francesco-d.jpg' ),
 						'photo_pos'   => 'center 30%',
+						'photo_transform' => 'translateX(7%) scale(1.16)',
 						'pre_title'   => "Trapianto in un'unica sessione, rispettando l'attaccatura naturale.",
 						'body'        => "Francesco è arrivato dall'Italia presso Estecapelli per sottoporsi a un trapianto di capelli con la tecnica DHI Vita. Dopo un'attenta valutazione dell'area donatrice e delle zone interessate dal diradamento, è stato sviluppato un piano di trattamento personalizzato in base alle sue esigenze. Durante l'intervento è stato prelevato il massimo numero di innesti disponibile in condizioni di sicurezza. Su richiesta del paziente, il trattamento è stato pianificato e completato in un'unica sessione, distribuendo i follicoli dalla zona frontale verso la parte superiore del cuoio capelluto. Non è stata creata una nuova attaccatura: il trapianto è stato eseguito rispettando la linea naturale già esistente di Francesco. Al termine dell'intervento, Francesco ha ricevuto tutte le indicazioni necessarie per il periodo post-operatorio e ha iniziato il suo percorso di recupero con il supporto del team medico di Estecapelli.",
 					),
@@ -1941,8 +1943,10 @@ if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
 						'video_id'    => 'U9m7TjjGT3s',
 						'poster'      => $img( 'fr/dorian-g.jpg' ),
 						'poster_pos'  => 'center 25%',
+						'poster_transform' => 'translateY(-7%) scale(1.15)',
 						'photo'       => $img( 'fr/dorian-g.jpg' ),
 						'photo_pos'   => 'center 25%',
+						'photo_transform' => 'translateY(-7%) scale(1.15)',
 						'pre_title'   => "Densité frontale et couverture homogène jusqu'à la couronne.",
 						'body'        => "Dorian est venu de France chez Estecapelli pour réaliser une greffe de cheveux avec la technique Vita. Après une évaluation détaillée de la zone donneuse et des différentes zones touchées par la perte de cheveux, un plan de traitement personnalisé a été établi selon ses besoins. Au cours de l'intervention, le nombre maximal de greffons pouvant être prélevés en toute sécurité a été extrait. Une implantation plus dense a été réalisée dans la zone frontale afin d'améliorer la définition de la ligne capillaire et d'obtenir une meilleure densité. Les greffons restants ont été répartis de manière homogène sur la partie supérieure du cuir chevelu et au niveau de la couronne, afin d'assurer une couverture équilibrée et naturelle. Après l'intervention, Dorian a reçu toutes les consignes postopératoires nécessaires et a commencé sa récupération avec le suivi de l'équipe médicale d'Estecapelli.",
 					),
@@ -2050,8 +2054,10 @@ if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
 						'video_id'    => 'mKvNkmI-nG8',
 						'poster'      => $img( 'pl/damian-m.jpg' ),
 						'poster_pos'  => 'center 28%',
+						'poster_transform' => 'translateY(-7%) scale(1.15)',
 						'photo'       => $img( 'pl/damian-m.jpg' ),
 						'photo_pos'   => 'center 28%',
+						'photo_transform' => 'translateY(-7%) scale(1.15)',
 						'pre_title'   => 'Naturalny kierunek i równomierne rozmieszczenie graftów.',
 						'body'        => 'Damian przyjechał z Polski do kliniki Estecapelli, aby poddać się przeszczepowi włosów metodą FUE Vita. Po dokładnej ocenie obszaru dawczego oraz stopnia utraty włosów opracowano indywidualny plan zabiegu dostosowany do jego potrzeb. Procedurę rozpoczęto od precyzyjnego przygotowania kanałów w obszarze biorczym, aby zapewnić naturalny kierunek oraz odpowiednie rozmieszczenie nowych włosów. Następnie z obszaru dawczego pobrano zaplanowaną liczbę graftów, dostosowaną do jakości włosów i zakresu obszaru wymagającego uzupełnienia. Po zakończeniu zabiegu Damian otrzymał szczegółowe zalecenia pooperacyjne i rozpoczął proces rekonwalescencji pod opieką zespołu medycznego Estecapelli.',
 					),
@@ -2193,8 +2199,10 @@ if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
 						'video_id'    => '-bFjkGvMGLU',
 						'poster'      => $img( 'pt/jhonne-q.jpg' ),
 						'poster_pos'  => 'center 40%',
+						'poster_transform' => 'scale(0.84)',
 						'photo'       => $img( 'pt/jhonne-q.jpg' ),
 						'photo_pos'   => 'center 40%',
+						'photo_transform' => 'scale(0.84)',
 						'pre_title'   => 'Linha capilar definida e cobertura harmoniosa até à coroa.',
 						'body'        => 'Jhonne veio de Inglaterra até à Estecapelli para realizar o seu transplante capilar com a técnica FUE Vita. Após uma avaliação detalhada da área doadora e das diferentes zonas afetadas pela queda de cabelo, foi elaborado um plano de tratamento personalizado. Durante o procedimento, foi planeada a extração do número máximo de enxertos possível em segurança. A implantação começou na região frontal, com maior densidade, para melhorar a definição da linha capilar e proporcionar um enquadramento mais natural do rosto. De acordo com o número de enxertos disponíveis, os folículos restantes foram distribuídos pela parte superior do couro cabeludo e pela zona da coroa, com o objetivo de alcançar uma cobertura equilibrada e harmoniosa. Após o procedimento, Jhonne recebeu todas as orientações pós-operatórias necessárias e iniciou a sua recuperação com o acompanhamento da equipa médica da Estecapelli.',
 					),
@@ -2244,14 +2252,39 @@ if ( ! function_exists( 'estecapelli_patient_stories_localized' ) ) {
 						'video_id'    => '92edrqyOG68',
 						'poster'      => $img( 'pt/antonio-m.jpg' ),
 						'poster_pos'  => 'center 30%',
+						'poster_transform' => 'translateY(-7%) scale(1.15)',
 						'photo'       => $img( 'pt/antonio-m.jpg' ),
 						'photo_pos'   => 'center 30%',
+						'photo_transform' => 'translateY(-7%) scale(1.15)',
 						'pre_title'   => 'Zona frontal e central densas, em duas sessões.',
 						'body'        => 'António veio de Portugal até à Estecapelli para realizar o seu transplante capilar com a técnica FUE Vita. Após uma avaliação detalhada da área doadora e das zonas com maior rarefação, foi definido um plano de tratamento personalizado, organizado em duas sessões. Durante o procedimento, foi planeada a extração do número máximo de enxertos possível em segurança. A prioridade foi dada à zona frontal e à parte central do couro cabeludo, onde os folículos foram implantados com maior densidade para melhorar a cobertura e proporcionar um resultado natural e harmonioso. Com a segunda sessão, o objetivo é completar o tratamento e reforçar ainda mais a densidade global. Após o procedimento, António recebeu todas as orientações necessárias para o período pós-operatório e iniciou a sua recuperação com o acompanhamento da equipa médica da Estecapelli.',
 					),
 				),
 			),
 		);
+
+		// Videos reported as broken must be removed from both the stage and the
+		// playlist. Keep the exclusions next to the authored sets so they cannot
+		// be reintroduced by an unrelated ACF/shared-option update.
+		$excluded_story_keys = array(
+			'es' => array( 'tony-a' ),
+			'fr' => array( 'alain-c' ),
+			'it' => array( 'luigi-r' ),
+			'pl' => array( 'artur-c', 'kamil-b' ),
+		);
+
+		foreach ( $excluded_story_keys as $language => $keys ) {
+			$localized[ $language ]['stories'] = array_values(
+				array_filter(
+					$localized[ $language ]['stories'],
+					function ( $story ) use ( $keys ) {
+						return ! in_array( $story['key'], $keys, true );
+					}
+				)
+			);
+		}
+
+		return $localized;
 	}
 }
 

@@ -32,6 +32,23 @@ $thumb = function ( $id ) {
 	}
 	return 'https://img.youtube.com/vi/' . rawurlencode( $id ) . '/hqdefault.jpg';
 };
+
+/**
+ * Build the per-story crop style. Some authored story images are already
+ * square, so object-position alone cannot move or zoom the subject.
+ */
+$image_style = function ( $story, $position_key, $transform_key ) {
+	$style = array();
+
+	if ( ! empty( $story[ $position_key ] ) ) {
+		$style[] = 'object-position:' . $story[ $position_key ];
+	}
+	if ( ! empty( $story[ $transform_key ] ) ) {
+		$style[] = 'transform:' . $story[ $transform_key ];
+	}
+
+	return implode( ';', $style );
+};
 ?>
 
 <section class="stories" aria-labelledby="stories-title">
@@ -68,6 +85,7 @@ $thumb = function ( $id ) {
 					// Big stage poster = the YouTube video's own thumbnail.
 					$thumbnail = ! empty( $story['poster'] ) ? $story['poster'] : $thumb( $story['video_id'] );
 					$initial   = mb_substr( $story['name'], 0, 1 );
+					$poster_style = $image_style( $story, 'poster_pos', 'poster_transform' );
 					?>
 					<article
 						class="stories__hero"
@@ -96,7 +114,7 @@ $thumb = function ( $id ) {
 						>
 							<?php if ( $thumbnail ) : ?>
 								<img class="stories__hero-thumb" src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async"
-									<?php if ( ! empty( $story['poster_pos'] ) ) : ?>style="object-position: <?php echo esc_attr( $story['poster_pos'] ); ?>"<?php endif; ?>
+									<?php if ( $poster_style ) : ?>style="<?php echo esc_attr( $poster_style ); ?>"<?php endif; ?>
 									<?php if ( ! empty( $story['video_id'] ) ) : ?>onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/<?php echo esc_js( $story['video_id'] ); ?>/hqdefault.jpg';"<?php endif; ?> />
 							<?php else : ?>
 								<span class="stories__hero-placeholder" aria-hidden="true">
@@ -165,6 +183,7 @@ $thumb = function ( $id ) {
 						// Side playlist thumbnail = the patient's own after-photo.
 						$thumbnail = ! empty( $story['photo'] ) ? $story['photo'] : $thumb( $story['video_id'] );
 						$initial   = mb_substr( $story['name'], 0, 1 );
+						$photo_style = $image_style( $story, 'photo_pos', 'photo_transform' );
 						?>
 						<li class="stories__wall-item">
 							<button
@@ -177,7 +196,7 @@ $thumb = function ( $id ) {
 							>
 								<span class="stories__poster-thumb<?php echo $thumbnail ? '' : ' stories__poster-thumb--placeholder'; ?>"<?php if ( $thumbnail ) : ?> style="--poster-bg:url('<?php echo esc_url( $thumbnail ); ?>')"<?php endif; ?>>
 									<?php if ( $thumbnail ) : ?>
-										<img src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async"<?php if ( ! empty( $story['photo_pos'] ) ) : ?> style="object-position: <?php echo esc_attr( $story['photo_pos'] ); ?>"<?php endif; ?> />
+										<img src="<?php echo esc_url( $thumbnail ); ?>" alt="" loading="lazy" decoding="async"<?php if ( $photo_style ) : ?> style="<?php echo esc_attr( $photo_style ); ?>"<?php endif; ?> />
 									<?php else : ?>
 										<span class="stories__poster-initial" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
 									<?php endif; ?>
