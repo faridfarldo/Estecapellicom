@@ -101,7 +101,7 @@ $uid   = 'book-' . sanitize_title( $title ) . '-' . wp_rand( 100, 999 );
 							<?php if ( $vid ) : ?>
 								<figure class="t-book__page-media t-book__page-media--video">
 									<iframe
-										src="https://www.youtube-nocookie.com/embed/<?php echo esc_attr( $vid ); ?>?rel=0&modestbranding=1&playsinline=1&controls=0&cc_load_policy=0&iv_load_policy=3&showinfo=0&fs=0&disablekb=1"
+										src="https://www.youtube-nocookie.com/embed/<?php echo esc_attr( $vid ); ?>?rel=0&playsinline=1&controls=0&cc_lang_pref=en&iv_load_policy=3&fs=0&disablekb=1"
 										title="<?php echo esc_attr( $stitle ); ?>"
 										loading="lazy" frameborder="0"
 										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

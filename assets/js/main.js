@@ -426,12 +426,13 @@
 					if (holder.querySelector('iframe')) return; // already playing
 					var id = holder.getAttribute('data-video-id');
 					if (!id) return;
-					// Played from a click (a user gesture), so autoplay WITH sound is
-					// allowed. controls=0 strips the progress/time bar and the title;
-					// cc_load_policy=0 keeps captions off — leaving just the centre
-					// play/pause overlay (click the video to toggle).
-					var src = 'https://www.youtube.com/embed/' + encodeURIComponent(id) +
-						'?autoplay=1&rel=0&modestbranding=1&playsinline=1&controls=0&cc_load_policy=0&iv_load_policy=3&showinfo=0&fs=0&disablekb=1';
+					// Played from a click (a user gesture), so autoplay with sound is
+					// allowed. Privacy-enhanced mode avoids carrying a signed-in
+					// viewer's caption preference into the embed. YouTube documents that
+					// cc_lang_pref without cc_load_policy leaves captions off by default.
+					// YouTube may still show its required title/channel overlay.
+					var src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+						'?autoplay=1&rel=0&playsinline=1&controls=0&cc_lang_pref=en&iv_load_policy=3&fs=0&disablekb=1';
 					holder.innerHTML = '<iframe src="' + src + '" title="" ' +
 						'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
 				} else {
@@ -796,12 +797,12 @@
 		function open(videoId, title) {
 			if (!videoId) return;
 			lastFocused = document.activeElement;
-			// controls=0 strips YouTube's chrome (volume, CC, settings…); the video
-			// plays on open and a click toggles play/pause — nothing else.
+			// Keep captions off by default and use privacy-enhanced embeds. YouTube
+			// may still show its required title/channel overlay around playback.
 			frame.innerHTML =
-				'<iframe class="stories__lightbox-iframe" src="https://www.youtube.com/embed/' +
+				'<iframe class="stories__lightbox-iframe" src="https://www.youtube-nocookie.com/embed/' +
 				encodeURIComponent(videoId) +
-				'?autoplay=1&rel=0&modestbranding=1&controls=0&fs=0&disablekb=1&iv_load_policy=3&cc_load_policy=0&playsinline=1" title="' +
+				'?autoplay=1&rel=0&controls=0&fs=0&disablekb=1&iv_load_policy=3&cc_lang_pref=en&playsinline=1" title="' +
 				(title || 'Patient story') +
 				'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 			if (titleEl) titleEl.textContent = title || '';
