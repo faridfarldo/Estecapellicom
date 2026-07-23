@@ -57,22 +57,28 @@
             "acf_fc_layout": "stepbook",
             "eyebrow": "Prosedür",
             "title": "VITA Protokolü Nasıl Uygulanır?",
-            "lead": "Sapphire FUE veya DHI naklinize sorunsuz bir şekilde entegre olan üç aşamalı bir protokol. Aşağıdaki aşamaları kaydırarak inceleyin.",
+            "lead": "Sapphire FUE veya DHI naklinize sorunsuz bir şekilde entegre olan dört aşamalı bir protokol. Aşağıdaki aşamaları kaydırarak inceleyin.",
             "items": [
                 {
                     "eyebrow": "Aşama 1",
+                    "title": "FUE ve DHI Arasında Seçim",
+                    "body": "<p>Hem Sapphire FUE hem de DHI, VITA Tedavi Protokolü ile kolayca birleştirilebilir. Saç yapınıza, donör alanınıza ve hedeflerinize göre bu iki yöntem arasında seçim yapabilir; sağlık ekibimizin yönlendirmesiyle size en uygun yaklaşımı belirleyebilirsiniz.</p>"
+                },
+                {
+                    "eyebrow": "Aşama 2",
                     "title": "Mikro İğneleme ve Besin Serumu",
                     "body": "<p>Dermaroller masaj aletiyle mikrokanallar oluşturulur ve kan dolaşımını hızlandırmak için vitaminler, amino asitler, büyüme faktörleri ve minerallerden oluşan yüksek konsantrasyonlu bir serum uygulanır. Donör bölgesi sorunsuz, iyi beslenmiş bir hasat için ideal şekilde hazırlanırken, alıcı bölge mikro kanallar sayesinde saç derisinin çok daha etkili bir şekilde emdiği konsantre bir vitamin kompleksi ile beslenir.</p>"
                 },
                 {
-                    "eyebrow": "Aşama 2",
+                    "eyebrow": "Aşama 3",
                     "title": "Greftlere Soğuk Buhar Serumu Uygulaması",
                     "body": "<p>Aynı besleyici serum, greft toplama kabında salinle karıştırılır ve soğuk buhar yöntemiyle alınan greftlere uygulanır. Saç köklerinin vücut dışında kaldığı bu kritik sürede korunması, hücresel bozulmayı azaltır, greft sağkalımını artırır ve ekim sonrası büyüme potansiyelini destekler.</p>"
                 },
                 {
-                    "eyebrow": "Aşama 3",
+                    "eyebrow": "Aşama 4",
                     "title": "İşlem Sonrası PRP",
-                    "body": "<p>PRP (Platelet Açısından Zengin Plazma) tedavinin son aşaması olarak uygulanır; iyileşmeyi desteklemek ve genel sonucu iyileştirmek için saç ekiminizden hemen sonra gerçekleştirilen yenileyici bir tedavidir. Kanınızın küçük bir örneği alınır ve yüksek konsantrasyonda doğal büyüme faktörleri içeren trombosit açısından zengin plazmayı ayırmak için bir santrifüjde işlenir. PRP daha sonra kafa derisinin tedavi edilen bölgelerine dikkatlice enjekte edilir; burada doku onarımını hızlandırmaya, iltihaplanmayı azaltmaya, kan dolaşımını iyileştirmeye ve yeni nakledilen greftler için en uygun ortamı yaratmaya yardımcı olur. PRP, iyileşme sürecini uyararak ve folikülleri besleyerek daha güçlü greft tutulmasına, daha hızlı iyileşmeye ve daha sağlıklı, daha kalın saç büyümesine katkıda bulunur.</p>"
+                    "body": "<p>PRP (Platelet Açısından Zengin Plazma) tedavinin son aşaması olarak uygulanır; iyileşmeyi desteklemek ve genel sonucu iyileştirmek için saç ekiminizden hemen sonra gerçekleştirilen yenileyici bir tedavidir. Kanınızın küçük bir örneği alınır ve yüksek konsantrasyonda doğal büyüme faktörleri içeren trombosit açısından zengin plazmayı ayırmak için bir santrifüjde işlenir. PRP daha sonra kafa derisinin tedavi edilen bölgelerine dikkatlice enjekte edilir; burada doku onarımını hızlandırmaya, iltihaplanmayı azaltmaya, kan dolaşımını iyileştirmeye ve yeni nakledilen greftler için en uygun ortamı yaratmaya yardımcı olur. PRP, iyileşme sürecini uyararak ve folikülleri besleyerek daha güçlü greft tutulmasına, daha hızlı iyileşmeye ve daha sağlıklı, daha kalın saç büyümesine katkıda bulunur.</p>",
+                    "image_url": "https://estecapelli.com/wp-content/uploads/2026/06/prp.webp"
                 }
             ]
         },

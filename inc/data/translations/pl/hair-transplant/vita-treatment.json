@@ -57,22 +57,28 @@
       "acf_fc_layout": "stepbook",
       "eyebrow": "Zabieg",
       "title": "Jak stosuje się protokół VITA?",
-      "lead": "Trzyetapowy protokół, który płynnie integruje się z przeszczepem Sapphire FUE lub DHI. Zapoznaj się z kolejnymi etapami poniżej.",
+      "lead": "Czteroetapowy protokół, który płynnie integruje się z przeszczepem Sapphire FUE lub DHI. Zapoznaj się z kolejnymi etapami poniżej.",
       "items": [
         {
           "eyebrow": "Etap 1",
+          "title": "Wybór między FUE a DHI",
+          "body": "<p>Zarówno Sapphire FUE, jak i DHI można łatwo połączyć z protokołem leczenia VITA. Możesz wybrać jedną z tych metod zależnie od struktury włosów, obszaru dawczego i swoich celów, korzystając ze wskazówek naszego zespołu medycznego przy wyborze najlepszego rozwiązania.</p>"
+        },
+        {
+          "eyebrow": "Etap 2",
           "title": "Mikronakłuwanie i aplikacja serum odżywczego",
           "body": "<p>Za pomocą dermarollera tworzy się mikrokanały, a następnie nakłada silnie skoncentrowane serum z witaminami, aminokwasami, czynnikami wzrostu i minerałami, aby pobudzić krążenie krwi. Obszar dawczy zostaje przygotowany do sprawnego pobrania graftów, a obszar biorczy otrzymuje skoncentrowany kompleks witamin, którego wchłanianie ułatwiają mikrokanały.</p>"
         },
         {
-          "eyebrow": "Etap 2",
+          "eyebrow": "Etap 3",
           "title": "Serum i zimna para dla graftów",
           "body": "<p>To samo odżywcze serum łączy się z solą fizjologiczną w pojemniku do przechowywania graftów, które następnie poddaje się działaniu zimnej pary. Jest to kluczowy etap, ponieważ mieszki znajdują się poza organizmem. Ochrona w tym czasie pomaga zachować ich kondycję, zwiększa przeżywalność i wspiera potencjał wzrostu po przeszczepie.</p>"
         },
         {
-          "eyebrow": "Etap 3",
+          "eyebrow": "Etap 4",
           "title": "PRP po zabiegu",
-          "body": "<p>PRP (osocze bogatopłytkowe) stosuje się jako ostatni etap zabiegu. Ta terapia regeneracyjna, wykonywana bezpośrednio po przeszczepie włosów, wspiera gojenie i ogólny efekt. Niewielką próbkę krwi przetwarza się w wirówce, aby oddzielić osocze bogate w płytki krwi i naturalne czynniki wzrostu. Następnie PRP ostrożnie wstrzykuje się w leczone obszary skóry głowy, gdzie wspomaga naprawę tkanek, ogranicza stan zapalny, poprawia krążenie i tworzy korzystne środowisko dla nowo przeszczepionych graftów. Wspierając gojenie i odżywiając mieszki, PRP pomaga graftom lepiej się przyjąć oraz sprzyja szybszej regeneracji i zdrowszemu wzrostowi włosów.</p>"
+          "body": "<p>PRP (osocze bogatopłytkowe) stosuje się jako ostatni etap zabiegu. Ta terapia regeneracyjna, wykonywana bezpośrednio po przeszczepie włosów, wspiera gojenie i ogólny efekt. Niewielką próbkę krwi przetwarza się w wirówce, aby oddzielić osocze bogate w płytki krwi i naturalne czynniki wzrostu. Następnie PRP ostrożnie wstrzykuje się w leczone obszary skóry głowy, gdzie wspomaga naprawę tkanek, ogranicza stan zapalny, poprawia krążenie i tworzy korzystne środowisko dla nowo przeszczepionych graftów. Wspierając gojenie i odżywiając mieszki, PRP pomaga graftom lepiej się przyjąć oraz sprzyja szybszej regeneracji i zdrowszemu wzrostowi włosów.</p>",
+          "image_url": "https://estecapelli.com/wp-content/uploads/2026/06/prp.webp"
         }
       ]
     },

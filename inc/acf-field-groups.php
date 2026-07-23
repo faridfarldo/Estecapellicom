@@ -287,6 +287,7 @@ function estecapelli_register_acf_field_groups() {
 										array( 'key' => 'field_book_item_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
 										array( 'key' => 'field_book_item_body',    'label' => __( 'Body (HTML allowed)', 'estecapelli' ), 'name' => 'body', 'type' => 'wysiwyg', 'tabs' => 'all', 'media_upload' => 0 ),
 										array( 'key' => 'field_book_item_image',   'label' => __( 'Step image (optional)', 'estecapelli' ), 'name' => 'image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => __( 'Shown under the step text. Recommended ratio 16:10.', 'estecapelli' ) ),
+										array( 'key' => 'field_book_item_image_url', 'label' => __( 'Step image URL (optional)', 'estecapelli' ), 'name' => 'image_url', 'type' => 'url', 'instructions' => __( 'Fallback image URL when no Media Library image is selected.', 'estecapelli' ) ),
 										array( 'key' => 'field_book_item_video',   'label' => __( 'Step video URL (optional)', 'estecapelli' ), 'name' => 'video_url', 'type' => 'url', 'instructions' => __( 'YouTube URL. Takes priority over the image when both are set.', 'estecapelli' ) ),
 									),
 								),

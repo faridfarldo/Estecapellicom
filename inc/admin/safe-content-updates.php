@@ -38,6 +38,59 @@ function estecapelli_safe_patch_vita_empty_step_operations() {
 	);
 }
 
+/** Build the exact, language-specific VITA three-to-four-step migration. */
+function estecapelli_safe_patch_vita_four_step_operations( $copy ) {
+	$old_items = array_values( $copy['old_items'] );
+	$image_url = 'https://estecapelli.com/wp-content/uploads/2026/06/prp.webp';
+
+	return array(
+		array(
+			'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 0,
+			'fields' => array(
+				'eyebrow' => array( 'before' => $old_items[0]['eyebrow'], 'after' => $old_items[0]['eyebrow'] ),
+				'title'   => array( 'before' => $old_items[0]['title'], 'after' => $copy['new_first']['title'] ),
+				'body'    => array( 'before' => $old_items[0]['body'], 'after' => $copy['new_first']['body'] ),
+			),
+		),
+		array(
+			'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+			'fields' => array(
+				'eyebrow' => array( 'before' => $old_items[1]['eyebrow'], 'after' => $old_items[1]['eyebrow'] ),
+				'title'   => array( 'before' => $old_items[1]['title'], 'after' => $old_items[0]['title'] ),
+				'body'    => array( 'before' => $old_items[1]['body'], 'after' => $old_items[0]['body'] ),
+			),
+		),
+		array(
+			'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 2,
+			'fields' => array(
+				'eyebrow' => array( 'before' => $old_items[2]['eyebrow'], 'after' => $old_items[2]['eyebrow'] ),
+				'title'   => array( 'before' => $old_items[2]['title'], 'after' => $old_items[1]['title'] ),
+				'body'    => array( 'before' => $old_items[2]['body'], 'after' => $old_items[1]['body'] ),
+			),
+		),
+		array(
+			'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 3,
+			'fields' => array(
+				'eyebrow'   => array( 'before' => '', 'after' => $copy['stage_4'] ),
+				'title'     => array( 'before' => '', 'after' => $old_items[2]['title'] ),
+				'body'      => array( 'before' => '', 'after' => $old_items[2]['body'] ),
+				'icon_file' => array( 'before' => array( '', '0' ), 'after' => '' ),
+				'image'     => array( 'before' => array( '', '0' ), 'after' => '' ),
+				'image_url' => array( 'before' => '', 'after' => $image_url ),
+				'video_url' => array( 'before' => '', 'after' => '' ),
+			),
+		),
+		array(
+			'target' => 'layout_fields',
+			'layout' => 'stepbook',
+			'fields' => array(
+				'lead'  => array( 'before' => $copy['lead_before'], 'after' => $copy['lead_after'] ),
+				'items' => array( 'before' => array( '3', 3, '4', 4 ), 'after' => '4' ),
+			),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
@@ -536,11 +589,133 @@ function estecapelli_safe_content_patches() {
 			'post_type'   => 'treatment',
 			'source_slug' => 'vita-treatment',
 			'schema'      => 'field_groups_v2',
+			'superseded_by' => 'vita-four-step-procedure-20260723-v1',
 			'languages'   => array(
 				'fr' => estecapelli_safe_patch_vita_empty_step_operations(),
 				'it' => estecapelli_safe_patch_vita_empty_step_operations(),
 				'es' => estecapelli_safe_patch_vita_empty_step_operations(),
 				'pt' => estecapelli_safe_patch_vita_empty_step_operations(),
+			),
+		),
+		'vita-four-step-procedure-20260723-v1' => array(
+			'title'       => 'VITA — Four-step procedure with FUE/DHI choice',
+			'description' => 'Add the FUE/DHI choice as Step 1, move the three existing texts forward without touching their current images, and add the supplied PRP image to Step 4 in all seven languages.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'vita-treatment',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'en' => estecapelli_safe_patch_vita_four_step_operations(
+					array(
+						'lead_before' => 'A three-stage protocol that integrates seamlessly into your Sapphire FUE or DHI transplant. Swipe through the stages below.',
+						'lead_after'  => 'A four-stage protocol that integrates seamlessly into your Sapphire FUE or DHI transplant. Swipe through the stages below.',
+						'new_first'   => array(
+							'title' => 'Choose Between FUE and DHI',
+							'body'  => '<p>Both Sapphire FUE and DHI can be seamlessly combined with the VITA Treatment Protocol. You can choose between these two methods based on your hair structure, donor area and goals, with our medical team helping you select the most suitable approach.</p>',
+						),
+						'stage_4'     => 'Stage 4',
+						'old_items'   => array(
+							array( 'eyebrow' => 'Stage 1', 'title' => 'Microneedling & Nutrient Serum', 'body' => '<p>Microchannels are created with a dermaroller massage tool, and a highly concentrated serum of vitamins, amino acids, growth factors and minerals is applied to boost blood circulation. The donor area is ideally prepared for smooth, well-fed harvesting, while the recipient area is nourished with a concentrated vitamin complex that the scalp absorbs far more effectively thanks to the micro-channels.</p>' ),
+							array( 'eyebrow' => 'Stage 2', 'title' => 'Cold-Vapour Serum on Grafts', 'body' => '<p>The same nourishing serum is mixed with saline in the graft-harvesting tray and applied to the harvested grafts using a cold-vapour method. This is the most critical window — while follicles are outside the body — so protecting them here prevents deterioration, maximises survival and increases their post-transplantation regrowth potential.</p>' ),
+							array( 'eyebrow' => 'Stage 3', 'title' => 'PRP After the Procedure', 'body' => '<p>PRP (Platelet-Rich Plasma) is applied as the final stage of the treatment — a regenerative therapy performed immediately after your hair transplant to support healing and improve the overall result. A small sample of your blood is collected and processed in a centrifuge to separate the platelet-rich plasma, which contains a high concentration of natural growth factors. The PRP is then carefully injected into the treated areas of the scalp, where it helps accelerate tissue repair, reduce inflammation, improve blood circulation and create an optimal environment for the newly transplanted grafts. By stimulating the healing process and nourishing the follicles, PRP contributes to stronger graft retention, faster recovery and healthier, thicker hair growth.</p>' ),
+						),
+					)
+				),
+				'fr' => estecapelli_safe_patch_vita_four_step_operations(
+					array(
+						'lead_before' => 'Un protocole en trois étapes qui s’intègre parfaitement à votre greffe Sapphire FUE ou DHI. Parcourez-les ci-dessous.',
+						'lead_after'  => 'Un protocole en quatre étapes qui s’intègre parfaitement à votre greffe Sapphire FUE ou DHI. Parcourez-les ci-dessous.',
+						'new_first'   => array(
+							'title' => 'Choisir entre la FUE et la DHI',
+							'body'  => '<p>La Sapphire FUE comme la DHI peuvent être facilement associées au protocole de traitement VITA. Vous pouvez choisir entre ces deux méthodes selon la structure de vos cheveux, votre zone donneuse et vos objectifs, avec l’accompagnement de notre équipe médicale pour sélectionner l’approche la plus adaptée.</p>',
+						),
+						'stage_4'     => 'Étape 4',
+						'old_items'   => array(
+							array( 'eyebrow' => 'Étape 1', 'title' => 'Microneedling et sérum nutritif', 'body' => '<p>Des microcanaux sont créés à l’aide d’un dermaroller, puis un sérum hautement concentré en vitamines, acides aminés, facteurs de croissance et minéraux est appliqué afin de stimuler la circulation sanguine. La zone donneuse est préparée pour un prélèvement fluide et bien nourri, tandis que la zone receveuse bénéficie d’un complexe vitaminé concentré, beaucoup mieux absorbé par le cuir chevelu grâce aux microcanaux.</p>' ),
+							array( 'eyebrow' => 'Étape 2', 'title' => 'Sérum en vapeur froide sur les greffons', 'body' => '<p>Le même sérum nutritif est mélangé à une solution saline dans le plateau de prélèvement, puis appliqué sur les greffons à l’aide d’une méthode par vapeur froide. La période passée hors du corps est la plus critique pour les follicules : les protéger à ce moment-là prévient leur détérioration, maximise leur survie et augmente leur potentiel de repousse après la transplantation.</p>' ),
+							array( 'eyebrow' => 'Étape 3', 'title' => 'PRP après l’intervention', 'body' => '<p>Le PRP, ou plasma riche en plaquettes, constitue la dernière étape du traitement. Cette thérapie régénérative est réalisée immédiatement après votre greffe afin de soutenir la cicatrisation et d’améliorer le résultat global. Une petite quantité de votre sang est prélevée, puis traitée dans une centrifugeuse pour isoler le plasma riche en plaquettes, qui contient une forte concentration de facteurs de croissance naturels. Le PRP est ensuite injecté avec précision dans les zones traitées du cuir chevelu. Il contribue à accélérer la réparation des tissus, à réduire l’inflammation, à améliorer la circulation sanguine et à créer un environnement favorable aux nouveaux greffons. En stimulant la cicatrisation et en nourrissant les follicules, il favorise leur fixation, une récupération plus rapide et la pousse de cheveux plus sains et plus épais.</p>' ),
+						),
+					)
+				),
+				'it' => estecapelli_safe_patch_vita_four_step_operations(
+					array(
+						'lead_before' => 'Un protocollo in tre fasi che si integra perfettamente nel trapianto Sapphire FUE o DHI. Scorra le fasi qui sotto.',
+						'lead_after'  => 'Un protocollo in quattro fasi che si integra perfettamente nel trapianto Sapphire FUE o DHI. Scorra le fasi qui sotto.',
+						'new_first'   => array(
+							'title' => 'Scegliere tra FUE e DHI',
+							'body'  => '<p>Sia la Sapphire FUE sia la DHI possono essere integrate facilmente con il protocollo di trattamento VITA. Può scegliere tra i due metodi in base alla struttura dei capelli, all’area donatrice e agli obiettivi, con il supporto del nostro team medico nella scelta dell’approccio più adatto.</p>',
+						),
+						'stage_4'     => 'Fase 4',
+						'old_items'   => array(
+							array( 'eyebrow' => 'Fase 1', 'title' => 'Microneedling e siero nutriente', 'body' => "<p>Con un dermaroller vengono creati microcanali e viene applicato un siero ad alta concentrazione di vitamine, aminoacidi, fattori di crescita e minerali per stimolare la circolazione sanguigna. L'area donatrice viene preparata in modo ottimale per un prelievo uniforme e ben nutrito, mentre l'area ricevente assorbe il complesso vitaminico concentrato con maggiore efficacia grazie ai microcanali.</p>" ),
+							array( 'eyebrow' => 'Fase 2', 'title' => 'Siero a vapore freddo sugli innesti', 'body' => "<p>Lo stesso siero nutriente viene miscelato con soluzione salina nel contenitore di raccolta e applicato agli innesti mediante un sistema a vapore freddo. Il periodo in cui i follicoli si trovano fuori dal corpo è il momento più delicato: proteggerli in questa fase ne previene il deterioramento, massimizza la sopravvivenza e aumenta il potenziale di ricrescita dopo l'impianto.</p>" ),
+							array( 'eyebrow' => 'Fase 3', 'title' => "PRP dopo l'intervento", 'body' => "<p>Il PRP, plasma ricco di piastrine, viene applicato come fase finale del trattamento, subito dopo il trapianto, per favorire la guarigione e migliorare il risultato complessivo. Un piccolo campione di sangue viene prelevato e lavorato in centrifuga per separare il plasma ad alta concentrazione di fattori di crescita naturali. Il PRP viene quindi iniettato con precisione nelle aree trattate del cuoio capelluto, dove aiuta ad accelerare la riparazione dei tessuti, ridurre l'infiammazione, migliorare la circolazione e creare un ambiente ottimale per i nuovi innesti. Stimolando la guarigione e nutrendo i follicoli, contribuisce a una maggiore ritenzione degli innesti, a un recupero più rapido e a una crescita più sana e folta.</p>" ),
+						),
+					)
+				),
+				'es' => estecapelli_safe_patch_vita_four_step_operations(
+					array(
+						'lead_before' => 'Un protocolo en tres etapas que se integra perfectamente en un trasplante Sapphire FUE o DHI. Consulte cada etapa a continuación.',
+						'lead_after'  => 'Un protocolo en cuatro etapas que se integra perfectamente en un trasplante Sapphire FUE o DHI. Consulte cada etapa a continuación.',
+						'new_first'   => array(
+							'title' => 'Elegir entre FUE y DHI',
+							'body'  => '<p>Tanto Sapphire FUE como DHI pueden combinarse fácilmente con el protocolo de tratamiento VITA. Puede elegir entre ambos métodos según la estructura de su cabello, la zona donante y sus objetivos, con la orientación de nuestro equipo médico para seleccionar el enfoque más adecuado.</p>',
+						),
+						'stage_4'     => 'Etapa 4',
+						'old_items'   => array(
+							array( 'eyebrow' => 'Etapa 1', 'title' => 'Microneedling y sérum nutritivo', 'body' => '<p>Se crean microcanales con un dermaroller y se aplica un sérum con una alta concentración de vitaminas, aminoácidos, factores de crecimiento y minerales para estimular la circulación sanguínea. La zona donante queda preparada de forma óptima para una extracción uniforme y bien nutrida, mientras que los microcanales permiten que la zona receptora absorba con mayor eficacia el complejo vitamínico concentrado.</p>' ),
+							array( 'eyebrow' => 'Etapa 2', 'title' => 'Sérum de vapor frío sobre los injertos', 'body' => '<p>El mismo sérum nutritivo se mezcla con solución salina en el recipiente de recogida y se aplica a los injertos mediante un sistema de vapor frío. El periodo en el que los folículos permanecen fuera del cuerpo es el momento más delicado: protegerlos durante esta fase evita su deterioro, maximiza su supervivencia y aumenta el potencial de crecimiento después de la implantación.</p>' ),
+							array( 'eyebrow' => 'Etapa 3', 'title' => 'PRP después del procedimiento', 'body' => '<p>El PRP, plasma rico en plaquetas, se aplica como etapa final inmediatamente después del trasplante para favorecer la recuperación y mejorar el resultado global. Se obtiene una pequeña muestra de sangre y se procesa en una centrífuga para separar el plasma con una alta concentración de factores de crecimiento naturales. A continuación, el PRP se inyecta con precisión en las zonas tratadas del cuero cabelludo, donde ayuda a acelerar la reparación de los tejidos, reducir la inflamación, mejorar la circulación y crear un entorno óptimo para los nuevos injertos. Al estimular la recuperación y nutrir los folículos, contribuye a una mayor retención de los injertos, una recuperación más rápida y un crecimiento más sano y denso.</p>' ),
+						),
+					)
+				),
+				'pl' => estecapelli_safe_patch_vita_four_step_operations(
+					array(
+						'lead_before' => 'Trzyetapowy protokół, który płynnie integruje się z przeszczepem Sapphire FUE lub DHI. Zapoznaj się z kolejnymi etapami poniżej.',
+						'lead_after'  => 'Czteroetapowy protokół, który płynnie integruje się z przeszczepem Sapphire FUE lub DHI. Zapoznaj się z kolejnymi etapami poniżej.',
+						'new_first'   => array(
+							'title' => 'Wybór między FUE a DHI',
+							'body'  => '<p>Zarówno Sapphire FUE, jak i DHI można łatwo połączyć z protokołem leczenia VITA. Możesz wybrać jedną z tych metod zależnie od struktury włosów, obszaru dawczego i swoich celów, korzystając ze wskazówek naszego zespołu medycznego przy wyborze najlepszego rozwiązania.</p>',
+						),
+						'stage_4'     => 'Etap 4',
+						'old_items'   => array(
+							array( 'eyebrow' => 'Etap 1', 'title' => 'Mikronakłuwanie i aplikacja serum odżywczego', 'body' => '<p>Za pomocą dermarollera tworzy się mikrokanały, a następnie nakłada silnie skoncentrowane serum z witaminami, aminokwasami, czynnikami wzrostu i minerałami, aby pobudzić krążenie krwi. Obszar dawczy zostaje przygotowany do sprawnego pobrania graftów, a obszar biorczy otrzymuje skoncentrowany kompleks witamin, którego wchłanianie ułatwiają mikrokanały.</p>' ),
+							array( 'eyebrow' => 'Etap 2', 'title' => 'Serum i zimna para dla graftów', 'body' => '<p>To samo odżywcze serum łączy się z solą fizjologiczną w pojemniku do przechowywania graftów, które następnie poddaje się działaniu zimnej pary. Jest to kluczowy etap, ponieważ mieszki znajdują się poza organizmem. Ochrona w tym czasie pomaga zachować ich kondycję, zwiększa przeżywalność i wspiera potencjał wzrostu po przeszczepie.</p>' ),
+							array( 'eyebrow' => 'Etap 3', 'title' => 'PRP po zabiegu', 'body' => '<p>PRP (osocze bogatopłytkowe) stosuje się jako ostatni etap zabiegu. Ta terapia regeneracyjna, wykonywana bezpośrednio po przeszczepie włosów, wspiera gojenie i ogólny efekt. Niewielką próbkę krwi przetwarza się w wirówce, aby oddzielić osocze bogate w płytki krwi i naturalne czynniki wzrostu. Następnie PRP ostrożnie wstrzykuje się w leczone obszary skóry głowy, gdzie wspomaga naprawę tkanek, ogranicza stan zapalny, poprawia krążenie i tworzy korzystne środowisko dla nowo przeszczepionych graftów. Wspierając gojenie i odżywiając mieszki, PRP pomaga graftom lepiej się przyjąć oraz sprzyja szybszej regeneracji i zdrowszemu wzrostowi włosów.</p>' ),
+						),
+					)
+				),
+				'pt' => estecapelli_safe_patch_vita_four_step_operations(
+					array(
+						'lead_before' => 'Um protocolo em três etapas que se integra perfeitamente num transplante Sapphire FUE ou DHI. Consulte cada etapa em seguida.',
+						'lead_after'  => 'Um protocolo em quatro etapas que se integra perfeitamente num transplante Sapphire FUE ou DHI. Consulte cada etapa em seguida.',
+						'new_first'   => array(
+							'title' => 'Escolher entre FUE e DHI',
+							'body'  => '<p>Tanto a Sapphire FUE como a DHI podem ser facilmente combinadas com o protocolo de tratamento VITA. Pode escolher entre os dois métodos de acordo com a estrutura do cabelo, a zona dadora e os seus objetivos, com a orientação da nossa equipa médica para selecionar a abordagem mais adequada.</p>',
+						),
+						'stage_4'     => 'Etapa 4',
+						'old_items'   => array(
+							array( 'eyebrow' => 'Etapa 1', 'title' => 'Microneedling e sérum nutritivo', 'body' => '<p>São criados microcanais com um dermaroller e é aplicado um sérum com uma elevada concentração de vitaminas, aminoácidos, fatores de crescimento e minerais para estimular a circulação sanguínea. A zona dadora fica preparada de forma ideal para uma extração uniforme e bem nutrida, enquanto os microcanais permitem que a zona recetora absorva com maior eficácia o complexo vitamínico concentrado.</p>' ),
+							array( 'eyebrow' => 'Etapa 2', 'title' => 'Sérum de vapor frio sobre os enxertos', 'body' => '<p>O mesmo sérum nutritivo é misturado com solução salina no recipiente de recolha e aplicado aos enxertos através de um sistema de vapor frio. O período em que os folículos permanecem fora do corpo é o momento mais delicado: protegê-los durante esta fase evita a sua deterioração, maximiza a sua sobrevivência e aumenta o potencial de crescimento após a implantação.</p>' ),
+							array( 'eyebrow' => 'Etapa 3', 'title' => 'PRP depois do procedimento', 'body' => '<p>O PRP, plasma rico em plaquetas, é aplicado como etapa final imediatamente após o transplante para favorecer a recuperação e melhorar o resultado global. É recolhida uma pequena amostra de sangue e processada numa centrifugadora para separar o plasma com uma elevada concentração de fatores de crescimento naturais. Em seguida, o PRP é injetado com precisão nas zonas tratadas do couro cabeludo, onde ajuda a acelerar a reparação dos tecidos, a reduzir a inflamação, a melhorar a circulação e a criar um ambiente ideal para os novos enxertos. Ao estimular a recuperação e nutrir os folículos, contribui para uma maior retenção dos enxertos, uma recuperação mais rápida e um crescimento mais saudável e denso.</p>' ),
+						),
+					)
+				),
+				'tr' => estecapelli_safe_patch_vita_four_step_operations(
+					array(
+						'lead_before' => 'Sapphire FUE veya DHI naklinize sorunsuz bir şekilde entegre olan üç aşamalı bir protokol. Aşağıdaki aşamaları kaydırarak inceleyin.',
+						'lead_after'  => 'Sapphire FUE veya DHI naklinize sorunsuz bir şekilde entegre olan dört aşamalı bir protokol. Aşağıdaki aşamaları kaydırarak inceleyin.',
+						'new_first'   => array(
+							'title' => 'FUE ve DHI Arasında Seçim',
+							'body'  => '<p>Hem Sapphire FUE hem de DHI, VITA Tedavi Protokolü ile kolayca birleştirilebilir. Saç yapınıza, donör alanınıza ve hedeflerinize göre bu iki yöntem arasında seçim yapabilir; sağlık ekibimizin yönlendirmesiyle size en uygun yaklaşımı belirleyebilirsiniz.</p>',
+						),
+						'stage_4'     => 'Aşama 4',
+						'old_items'   => array(
+							array( 'eyebrow' => 'Aşama 1', 'title' => 'Mikro İğneleme ve Besin Serumu', 'body' => '<p>Dermaroller masaj aletiyle mikrokanallar oluşturulur ve kan dolaşımını hızlandırmak için vitaminler, amino asitler, büyüme faktörleri ve minerallerden oluşan yüksek konsantrasyonlu bir serum uygulanır. Donör bölgesi sorunsuz, iyi beslenmiş bir hasat için ideal şekilde hazırlanırken, alıcı bölge mikro kanallar sayesinde saç derisinin çok daha etkili bir şekilde emdiği konsantre bir vitamin kompleksi ile beslenir.</p>' ),
+							array( 'eyebrow' => 'Aşama 2', 'title' => 'Greftlere Soğuk Buhar Serumu Uygulaması', 'body' => '<p>Aynı besleyici serum, greft toplama kabında salinle karıştırılır ve soğuk buhar yöntemiyle alınan greftlere uygulanır. Saç köklerinin vücut dışında kaldığı bu kritik sürede korunması, hücresel bozulmayı azaltır, greft sağkalımını artırır ve ekim sonrası büyüme potansiyelini destekler.</p>' ),
+							array( 'eyebrow' => 'Aşama 3', 'title' => 'İşlem Sonrası PRP', 'body' => '<p>PRP (Platelet Açısından Zengin Plazma) tedavinin son aşaması olarak uygulanır; iyileşmeyi desteklemek ve genel sonucu iyileştirmek için saç ekiminizden hemen sonra gerçekleştirilen yenileyici bir tedavidir. Kanınızın küçük bir örneği alınır ve yüksek konsantrasyonda doğal büyüme faktörleri içeren trombosit açısından zengin plazmayı ayırmak için bir santrifüjde işlenir. PRP daha sonra kafa derisinin tedavi edilen bölgelerine dikkatlice enjekte edilir; burada doku onarımını hızlandırmaya, iltihaplanmayı azaltmaya, kan dolaşımını iyileştirmeye ve yeni nakledilen greftler için en uygun ortamı yaratmaya yardımcı olur. PRP, iyileşme sürecini uyararak ve folikülleri besleyerek daha güçlü greft tutulmasına, daha hızlı iyileşmeye ve daha sağlıklı, daha kalın saç büyümesine katkıda bulunur.</p>' ),
+						),
+					)
+				),
 			),
 		),
 	);
@@ -766,6 +941,9 @@ function estecapelli_safe_patch_apply( $patch_id ) {
 	if ( $preview['applied'] ) {
 		return new WP_Error( 'safe_patch_already_applied', 'This patch is already applied.' );
 	}
+	if ( ! empty( $preview['patch']['superseded_by'] ) ) {
+		return new WP_Error( 'safe_patch_superseded', sprintf( 'This patch is superseded by %s and can no longer be applied.', $preview['patch']['superseded_by'] ) );
+	}
 	if ( $preview['conflicts'] ) {
 		return new WP_Error( 'safe_patch_conflict', sprintf( 'Patch blocked: %d rows differ from both the expected old and new copy.', $preview['conflicts'] ) );
 	}
@@ -960,6 +1138,7 @@ function estecapelli_render_safe_content_updates() {
 
 		<?php foreach ( $patches as $patch_id => $patch ) : ?>
 			<?php $preview = estecapelli_safe_patch_preview( $patch_id ); ?>
+			<?php $superseded_by = (string) ( $patch['superseded_by'] ?? '' ); ?>
 			<div class="card" style="max-width:none;margin-top:20px;">
 				<h2><?php echo esc_html( $patch['title'] ); ?></h2>
 				<p><code><?php echo esc_html( $patch_id ); ?></code> — <?php echo esc_html( $patch['description'] ); ?></p>
@@ -970,7 +1149,15 @@ function estecapelli_render_safe_content_updates() {
 
 				<p>
 					<strong><?php esc_html_e( 'Status:', 'estecapelli' ); ?></strong>
-					<?php echo $preview['applied'] ? esc_html__( 'Applied — rollback available', 'estecapelli' ) : esc_html__( 'Not applied', 'estecapelli' ); ?>
+					<?php
+					if ( $preview['applied'] ) {
+						esc_html_e( 'Applied — rollback available', 'estecapelli' );
+					} elseif ( $superseded_by ) {
+						echo esc_html( sprintf( 'Superseded by %s — cannot be applied', $superseded_by ) );
+					} else {
+						esc_html_e( 'Not applied', 'estecapelli' );
+					}
+					?>
 					· <?php echo esc_html( sprintf( '%d pending, %d conflicts', (int) $preview['pending'], (int) $preview['conflicts'] ) ); ?>
 				</p>
 				<table class="widefat striped">
@@ -994,7 +1181,7 @@ function estecapelli_render_safe_content_updates() {
 						<input type="hidden" name="patch_id" value="<?php echo esc_attr( $patch_id ); ?>">
 						<button class="button" type="submit" name="estecapelli_safe_patch_action" value="rollback"><?php esc_html_e( 'Rollback this patch', 'estecapelli' ); ?></button>
 					</form>
-				<?php else : ?>
+				<?php elseif ( ! $superseded_by ) : ?>
 					<form method="post" style="display:inline;">
 						<?php wp_nonce_field( 'estecapelli_safe_patch_apply_' . $patch_id ); ?>
 						<input type="hidden" name="patch_id" value="<?php echo esc_attr( $patch_id ); ?>">

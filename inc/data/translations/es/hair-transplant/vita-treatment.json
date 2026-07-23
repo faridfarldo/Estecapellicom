@@ -41,22 +41,28 @@
       "acf_fc_layout": "stepbook",
       "eyebrow": "El procedimiento",
       "title": "¿Cómo se aplica el protocolo VITA?",
-      "lead": "Un protocolo en tres etapas que se integra perfectamente en un trasplante Sapphire FUE o DHI. Consulte cada etapa a continuación.",
+      "lead": "Un protocolo en cuatro etapas que se integra perfectamente en un trasplante Sapphire FUE o DHI. Consulte cada etapa a continuación.",
       "items": [
         {
           "eyebrow": "Etapa 1",
+          "title": "Elegir entre FUE y DHI",
+          "body": "<p>Tanto Sapphire FUE como DHI pueden combinarse fácilmente con el protocolo de tratamiento VITA. Puede elegir entre ambos métodos según la estructura de su cabello, la zona donante y sus objetivos, con la orientación de nuestro equipo médico para seleccionar el enfoque más adecuado.</p>"
+        },
+        {
+          "eyebrow": "Etapa 2",
           "title": "Microneedling y sérum nutritivo",
           "body": "<p>Se crean microcanales con un dermaroller y se aplica un sérum con una alta concentración de vitaminas, aminoácidos, factores de crecimiento y minerales para estimular la circulación sanguínea. La zona donante queda preparada de forma óptima para una extracción uniforme y bien nutrida, mientras que los microcanales permiten que la zona receptora absorba con mayor eficacia el complejo vitamínico concentrado.</p>"
         },
         {
-          "eyebrow": "Etapa 2",
+          "eyebrow": "Etapa 3",
           "title": "Sérum de vapor frío sobre los injertos",
           "body": "<p>El mismo sérum nutritivo se mezcla con solución salina en el recipiente de recogida y se aplica a los injertos mediante un sistema de vapor frío. El periodo en el que los folículos permanecen fuera del cuerpo es el momento más delicado: protegerlos durante esta fase evita su deterioro, maximiza su supervivencia y aumenta el potencial de crecimiento después de la implantación.</p>"
         },
         {
-          "eyebrow": "Etapa 3",
+          "eyebrow": "Etapa 4",
           "title": "PRP después del procedimiento",
-          "body": "<p>El PRP, plasma rico en plaquetas, se aplica como etapa final inmediatamente después del trasplante para favorecer la recuperación y mejorar el resultado global. Se obtiene una pequeña muestra de sangre y se procesa en una centrífuga para separar el plasma con una alta concentración de factores de crecimiento naturales. A continuación, el PRP se inyecta con precisión en las zonas tratadas del cuero cabelludo, donde ayuda a acelerar la reparación de los tejidos, reducir la inflamación, mejorar la circulación y crear un entorno óptimo para los nuevos injertos. Al estimular la recuperación y nutrir los folículos, contribuye a una mayor retención de los injertos, una recuperación más rápida y un crecimiento más sano y denso.</p>"
+          "body": "<p>El PRP, plasma rico en plaquetas, se aplica como etapa final inmediatamente después del trasplante para favorecer la recuperación y mejorar el resultado global. Se obtiene una pequeña muestra de sangre y se procesa en una centrífuga para separar el plasma con una alta concentración de factores de crecimiento naturales. A continuación, el PRP se inyecta con precisión en las zonas tratadas del cuero cabelludo, donde ayuda a acelerar la reparación de los tejidos, reducir la inflamación, mejorar la circulación y crear un entorno óptimo para los nuevos injertos. Al estimular la recuperación y nutrir los folículos, contribuye a una mayor retención de los injertos, una recuperación más rápida y un crecimiento más sano y denso.</p>",
+          "image_url": "https://estecapelli.com/wp-content/uploads/2026/06/prp.webp"
         }
       ]
     },

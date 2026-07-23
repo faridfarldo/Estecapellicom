@@ -41,22 +41,28 @@
       "acf_fc_layout": "stepbook",
       "eyebrow": "L'intervento",
       "title": "Come viene applicato il protocollo VITA?",
-      "lead": "Un protocollo in tre fasi che si integra perfettamente nel trapianto Sapphire FUE o DHI. Scorra le fasi qui sotto.",
+      "lead": "Un protocollo in quattro fasi che si integra perfettamente nel trapianto Sapphire FUE o DHI. Scorra le fasi qui sotto.",
       "items": [
         {
           "eyebrow": "Fase 1",
+          "title": "Scegliere tra FUE e DHI",
+          "body": "<p>Sia la Sapphire FUE sia la DHI possono essere integrate facilmente con il protocollo di trattamento VITA. Può scegliere tra i due metodi in base alla struttura dei capelli, all’area donatrice e agli obiettivi, con il supporto del nostro team medico nella scelta dell’approccio più adatto.</p>"
+        },
+        {
+          "eyebrow": "Fase 2",
           "title": "Microneedling e siero nutriente",
           "body": "<p>Con un dermaroller vengono creati microcanali e viene applicato un siero ad alta concentrazione di vitamine, aminoacidi, fattori di crescita e minerali per stimolare la circolazione sanguigna. L'area donatrice viene preparata in modo ottimale per un prelievo uniforme e ben nutrito, mentre l'area ricevente assorbe il complesso vitaminico concentrato con maggiore efficacia grazie ai microcanali.</p>"
         },
         {
-          "eyebrow": "Fase 2",
+          "eyebrow": "Fase 3",
           "title": "Siero a vapore freddo sugli innesti",
           "body": "<p>Lo stesso siero nutriente viene miscelato con soluzione salina nel contenitore di raccolta e applicato agli innesti mediante un sistema a vapore freddo. Il periodo in cui i follicoli si trovano fuori dal corpo è il momento più delicato: proteggerli in questa fase ne previene il deterioramento, massimizza la sopravvivenza e aumenta il potenziale di ricrescita dopo l'impianto.</p>"
         },
         {
-          "eyebrow": "Fase 3",
+          "eyebrow": "Fase 4",
           "title": "PRP dopo l'intervento",
-          "body": "<p>Il PRP, plasma ricco di piastrine, viene applicato come fase finale del trattamento, subito dopo il trapianto, per favorire la guarigione e migliorare il risultato complessivo. Un piccolo campione di sangue viene prelevato e lavorato in centrifuga per separare il plasma ad alta concentrazione di fattori di crescita naturali. Il PRP viene quindi iniettato con precisione nelle aree trattate del cuoio capelluto, dove aiuta ad accelerare la riparazione dei tessuti, ridurre l'infiammazione, migliorare la circolazione e creare un ambiente ottimale per i nuovi innesti. Stimolando la guarigione e nutrendo i follicoli, contribuisce a una maggiore ritenzione degli innesti, a un recupero più rapido e a una crescita più sana e folta.</p>"
+          "body": "<p>Il PRP, plasma ricco di piastrine, viene applicato come fase finale del trattamento, subito dopo il trapianto, per favorire la guarigione e migliorare il risultato complessivo. Un piccolo campione di sangue viene prelevato e lavorato in centrifuga per separare il plasma ad alta concentrazione di fattori di crescita naturali. Il PRP viene quindi iniettato con precisione nelle aree trattate del cuoio capelluto, dove aiuta ad accelerare la riparazione dei tessuti, ridurre l'infiammazione, migliorare la circolazione e creare un ambiente ottimale per i nuovi innesti. Stimolando la guarigione e nutrendo i follicoli, contribuisce a una maggiore ritenzione degli innesti, a un recupero più rapido e a una crescita più sana e folta.</p>",
+          "image_url": "https://estecapelli.com/wp-content/uploads/2026/06/prp.webp"
         }
       ]
     },

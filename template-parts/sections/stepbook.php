@@ -79,6 +79,7 @@ $uid   = 'book-' . sanitize_title( $title ) . '-' . wp_rand( 100, 999 );
 						$stitle = $step['title']   ?? '';
 						$body   = $step['body']    ?? '';
 						$image  = $step['image']   ?? array();
+						$image_url = $step['image_url'] ?? '';
 						$vid    = ! empty( $step['video_url'] ) ? estecapelli_youtube_id( $step['video_url'] ) : '';
 						?>
 						<li class="t-book__page<?php echo 0 === $i ? ' is-active' : ''; ?>" aria-roledescription="<?php esc_attr_e( 'step', 'estecapelli' ); ?>">
@@ -107,7 +108,7 @@ $uid   = 'book-' . sanitize_title( $title ) . '-' . wp_rand( 100, 999 );
 										allowfullscreen
 									></iframe>
 								</figure>
-							<?php elseif ( ! empty( $image['url'] ) ) : ?>
+							<?php elseif ( ! empty( $image['url'] ) || $image_url ) : ?>
 								<figure class="t-book__page-media">
 									<?php
 									$img_id = $image['ID'] ?? $image['id'] ?? 0;
@@ -119,7 +120,7 @@ $uid   = 'book-' . sanitize_title( $title ) . '-' . wp_rand( 100, 999 );
 											false,
 											array( 'class' => 't-book__page-img', 'alt' => $image['alt'] ?? $stitle, 'loading' => 'lazy', 'decoding' => 'async' )
 										);
-									} else {
+									} elseif ( ! empty( $image['url'] ) ) {
 										?>
 										<img
 											class="t-book__page-img"
@@ -127,6 +128,15 @@ $uid   = 'book-' . sanitize_title( $title ) . '-' . wp_rand( 100, 999 );
 											alt="<?php echo esc_attr( $image['alt'] ?? $stitle ); ?>"
 											width="<?php echo (int) ( $image['width']  ?? 1200 ); ?>"
 											height="<?php echo (int) ( $image['height'] ?? 750 ); ?>"
+											loading="lazy" decoding="async"
+										/>
+										<?php
+									} else {
+										?>
+										<img
+											class="t-book__page-img"
+											src="<?php echo esc_url( $image_url ); ?>"
+											alt="<?php echo esc_attr( $stitle ); ?>"
 											loading="lazy" decoding="async"
 										/>
 										<?php

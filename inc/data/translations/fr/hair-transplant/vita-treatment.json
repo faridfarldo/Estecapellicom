@@ -41,22 +41,28 @@
       "acf_fc_layout": "stepbook",
       "eyebrow": "L’intervention",
       "title": "Comment le protocole VITA est-il appliqué ?",
-      "lead": "Un protocole en trois étapes qui s’intègre parfaitement à votre greffe Sapphire FUE ou DHI. Parcourez-les ci-dessous.",
+      "lead": "Un protocole en quatre étapes qui s’intègre parfaitement à votre greffe Sapphire FUE ou DHI. Parcourez-les ci-dessous.",
       "items": [
         {
           "eyebrow": "Étape 1",
+          "title": "Choisir entre la FUE et la DHI",
+          "body": "<p>La Sapphire FUE comme la DHI peuvent être facilement associées au protocole de traitement VITA. Vous pouvez choisir entre ces deux méthodes selon la structure de vos cheveux, votre zone donneuse et vos objectifs, avec l’accompagnement de notre équipe médicale pour sélectionner l’approche la plus adaptée.</p>"
+        },
+        {
+          "eyebrow": "Étape 2",
           "title": "Microneedling et sérum nutritif",
           "body": "<p>Des microcanaux sont créés à l’aide d’un dermaroller, puis un sérum hautement concentré en vitamines, acides aminés, facteurs de croissance et minéraux est appliqué afin de stimuler la circulation sanguine. La zone donneuse est préparée pour un prélèvement fluide et bien nourri, tandis que la zone receveuse bénéficie d’un complexe vitaminé concentré, beaucoup mieux absorbé par le cuir chevelu grâce aux microcanaux.</p>"
         },
         {
-          "eyebrow": "Étape 2",
+          "eyebrow": "Étape 3",
           "title": "Sérum en vapeur froide sur les greffons",
           "body": "<p>Le même sérum nutritif est mélangé à une solution saline dans le plateau de prélèvement, puis appliqué sur les greffons à l’aide d’une méthode par vapeur froide. La période passée hors du corps est la plus critique pour les follicules : les protéger à ce moment-là prévient leur détérioration, maximise leur survie et augmente leur potentiel de repousse après la transplantation.</p>"
         },
         {
-          "eyebrow": "Étape 3",
+          "eyebrow": "Étape 4",
           "title": "PRP après l’intervention",
-          "body": "<p>Le PRP, ou plasma riche en plaquettes, constitue la dernière étape du traitement. Cette thérapie régénérative est réalisée immédiatement après votre greffe afin de soutenir la cicatrisation et d’améliorer le résultat global. Une petite quantité de votre sang est prélevée, puis traitée dans une centrifugeuse pour isoler le plasma riche en plaquettes, qui contient une forte concentration de facteurs de croissance naturels. Le PRP est ensuite injecté avec précision dans les zones traitées du cuir chevelu. Il contribue à accélérer la réparation des tissus, à réduire l’inflammation, à améliorer la circulation sanguine et à créer un environnement favorable aux nouveaux greffons. En stimulant la cicatrisation et en nourrissant les follicules, il favorise leur fixation, une récupération plus rapide et la pousse de cheveux plus sains et plus épais.</p>"
+          "body": "<p>Le PRP, ou plasma riche en plaquettes, constitue la dernière étape du traitement. Cette thérapie régénérative est réalisée immédiatement après votre greffe afin de soutenir la cicatrisation et d’améliorer le résultat global. Une petite quantité de votre sang est prélevée, puis traitée dans une centrifugeuse pour isoler le plasma riche en plaquettes, qui contient une forte concentration de facteurs de croissance naturels. Le PRP est ensuite injecté avec précision dans les zones traitées du cuir chevelu. Il contribue à accélérer la réparation des tissus, à réduire l’inflammation, à améliorer la circulation sanguine et à créer un environnement favorable aux nouveaux greffons. En stimulant la cicatrisation et en nourrissant les follicules, il favorise leur fixation, une récupération plus rapide et la pousse de cheveux plus sains et plus épais.</p>",
+          "image_url": "https://estecapelli.com/wp-content/uploads/2026/06/prp.webp"
         }
       ]
     },
