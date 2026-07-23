@@ -464,9 +464,9 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'acf_fc_layout' => 'quick_stats',
 						'eyebrow'       => __( 'Quick Facts', 'estecapelli' ),
 						'stats'         => array(
-							array( 'icon' => 'shield-check', 'value' => 'Local',     'label' => __( 'Anaesthesia', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'value' => 'Painless',  'label' => __( 'Anaesthesia', 'estecapelli' ) ),
 							array( 'icon' => 'calendar',     'value' => '6–8 hrs',   'label' => __( 'Procedure Time', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'value' => '1 session', 'label' => __( 'Sessions', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'value' => 'Sapphire Blade', 'label' => __( 'Channel Opening', 'estecapelli' ) ),
 							array( 'icon' => 'sparkles',     'value' => 'Minimal',   'label' => __( 'Scarring', 'estecapelli' ) ),
 						),
 					),
@@ -488,7 +488,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'lead'          => __( 'Every procedure is built on careful planning and precise execution at each stage. Swipe through the stages below.', 'estecapelli' ),
 						'items'         => array(
 							array( 'icon' => 'clipboard',    'eyebrow' => __( 'Stage 1', 'estecapelli' ), 'title' => __( 'Consultation & Planning', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'A comprehensive consultation and TrichoLab scalp analysis create the most accurate treatment plan based on your unique hair structure and goals. Your donor area is assessed, the number of grafts estimated and a natural hairline designed before anything else begins.', 'estecapelli' ) . '</p>' ),
-							array( 'icon' => 'shield-check', 'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Local Anaesthesia', 'estecapelli' ),       'body' => '<p>' . esc_html__( 'Local anaesthesia is applied to the donor and recipient areas so the entire session is comfortable and pain-free. You stay awake but relaxed throughout, and can listen to music or watch something during the procedure.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'shield-check', 'eyebrow' => __( 'Stage 2', 'estecapelli' ), 'title' => __( 'Painless Anaesthesia', 'estecapelli' ),    'body' => '<p>' . esc_html__( 'Painless anaesthesia is applied to the donor and recipient areas so the entire session is comfortable and pain-free. You stay awake but relaxed throughout, and can listen to music or watch something during the procedure.', 'estecapelli' ) . '</p>' ),
 							array( 'icon' => 'target',       'eyebrow' => __( 'Stage 3', 'estecapelli' ), 'title' => __( 'Graft Collection', 'estecapelli' ),         'body' => '<p>' . esc_html__( 'Healthy follicles are harvested one by one from the safe donor area at the back and sides of the scalp using ultra-fine micromotors. Each graft is carefully sorted and preserved to keep it strong and viable until it is implanted.', 'estecapelli' ) . '</p>' ),
 							array( 'icon' => 'sparkles',     'eyebrow' => __( 'Stage 4', 'estecapelli' ), 'title' => __( 'Sapphire Channel Opening', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'Channels are created with sapphire-tipped blades — the most decisive stage for natural density, angle and direction. The smoother, sharper sapphire edge makes finer incisions, so grafts sit closer together with less tissue trauma and faster healing.', 'estecapelli' ) . '</p>' ),
 							array( 'icon' => 'check-circle', 'eyebrow' => __( 'Stage 5', 'estecapelli' ), 'title' => __( 'Follicle Implantation', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'The harvested follicles are implanted one by one into the pre-opened channels at the correct depth, angle and direction. This precise placement is what delivers a full, completely natural-looking result that grows in seamlessly with your own hair.', 'estecapelli' ) . '</p>' ),

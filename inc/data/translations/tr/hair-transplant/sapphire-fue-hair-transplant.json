@@ -20,7 +20,7 @@
             "eyebrow": "Kısa Bilgiler",
             "stats": [
                 {
-                    "value": "Yerel",
+                    "value": "Ağrısız",
                     "label": "Anestezi"
                 },
                 {
@@ -28,8 +28,8 @@
                     "label": "İşlem Süresi"
                 },
                 {
-                    "value": "1 seans",
-                    "label": "Seans Sayısı"
+                    "value": "Safir Bıçak",
+                    "label": "Kanal Açma"
                 },
                 {
                     "value": "Minimal",
@@ -56,8 +56,8 @@
                 },
                 {
                     "eyebrow": "Aşama 2",
-                    "title": "Lokal Anestezi",
-                    "body": "<p>Donör ve alıcı bölgelere lokal anestezi uygulanarak tüm seansın konforlu ve ağrısız geçmesi sağlanır. İşlem boyunca uyanık ama rahat kalırsınız ve işlem sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>"
+                    "title": "Ağrısız Anestezi",
+                    "body": "<p>Donör ve alıcı bölgelere ağrısız anestezi uygulanarak tüm seansın konforlu geçmesi sağlanır. İşlem boyunca uyanık ama rahat kalırsınız ve işlem sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>"
                 },
                 {
                     "eyebrow": "Aşama 3",

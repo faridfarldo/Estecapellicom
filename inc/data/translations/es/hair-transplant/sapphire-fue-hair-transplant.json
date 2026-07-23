@@ -15,9 +15,9 @@
       "acf_fc_layout": "quick_stats",
       "eyebrow": "Información clave",
       "stats": [
-        { "value": "Local", "label": "Anestesia" },
+        { "value": "Sin dolor", "label": "Anestesia" },
         { "value": "6–8 horas", "label": "Duración del procedimiento" },
-        { "value": "1 sesión", "label": "Sesiones" },
+        { "value": "Hoja de zafiro", "label": "Apertura de canales" },
         { "value": "Mínimas", "label": "Cicatrices" }
       ]
     },
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "Etapa 2",
-          "title": "Anestesia local",
-          "body": "<p>Aplicamos anestesia local en las zonas donante y receptora para que toda la sesión sea cómoda y no cause dolor. Permanecerá despierto pero relajado durante el procedimiento y podrá escuchar música o ver algún contenido.</p>"
+          "title": "Anestesia sin dolor",
+          "body": "<p>Aplicamos anestesia sin dolor en las zonas donante y receptora para que toda la sesión sea cómoda. Permanecerá despierto pero relajado durante el procedimiento y podrá escuchar música o ver algún contenido.</p>"
         },
         {
           "eyebrow": "Etapa 3",

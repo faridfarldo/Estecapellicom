@@ -15,9 +15,9 @@
       "acf_fc_layout": "quick_stats",
       "eyebrow": "Informations clés",
       "stats": [
-        { "value": "Locale", "label": "Anesthésie" },
+        { "value": "Sans douleur", "label": "Anesthésie" },
         { "value": "6–8 h", "label": "Durée de l’intervention" },
-        { "value": "1 séance", "label": "Séances" },
+        { "value": "Lame en saphir", "label": "Ouverture des canaux" },
         { "value": "Minimes", "label": "Cicatrices" }
       ]
     },
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "Étape 2",
-          "title": "Anesthésie locale",
-          "body": "<p>Une anesthésie locale est appliquée aux zones donneuse et receveuse afin que toute la séance soit confortable et indolore. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant l’intervention.</p>"
+          "title": "Anesthésie sans douleur",
+          "body": "<p>Une anesthésie sans douleur est appliquée aux zones donneuse et receveuse afin que toute la séance se déroule confortablement. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant l’intervention.</p>"
         },
         {
           "eyebrow": "Étape 3",

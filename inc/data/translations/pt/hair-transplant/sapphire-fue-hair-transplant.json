@@ -15,9 +15,9 @@
       "acf_fc_layout": "quick_stats",
       "eyebrow": "Informação essencial",
       "stats": [
-        { "value": "Local", "label": "Anestesia" },
+        { "value": "Indolor", "label": "Anestesia" },
         { "value": "6–8 horas", "label": "Duração do procedimento" },
-        { "value": "1 sessão", "label": "Sessões" },
+        { "value": "Lâmina de safira", "label": "Abertura dos canais" },
         { "value": "Mínimas", "label": "Cicatrizes" }
       ]
     },
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "Etapa 2",
-          "title": "Anestesia local",
-          "body": "<p>Aplicamos anestesia local nas zonas dadora e recetora para que toda a sessão seja confortável e não cause dor. Permanecerá acordado mas relaxado durante o procedimento e poderá ouvir música ou ver algum conteúdo.</p>"
+          "title": "Anestesia indolor",
+          "body": "<p>Aplicamos anestesia indolor nas zonas dadora e recetora para que toda a sessão seja confortável. Permanecerá acordado mas relaxado durante o procedimento e poderá ouvir música ou ver algum conteúdo.</p>"
         },
         {
           "eyebrow": "Etapa 3",

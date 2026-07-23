@@ -20,7 +20,7 @@
       "eyebrow": "Najważniejsze informacje",
       "stats": [
         {
-          "value": "Miejscowe",
+          "value": "Bezbolesne",
           "label": "Znieczulenie"
         },
         {
@@ -28,8 +28,8 @@
           "label": "Czas zabiegu"
         },
         {
-          "value": "1 sesja",
-          "label": "Liczba sesji"
+          "value": "Ostrze szafirowe",
+          "label": "Otwieranie kanałów"
         },
         {
           "value": "Minimalne",
@@ -56,8 +56,8 @@
         },
         {
           "eyebrow": "Etap 2",
-          "title": "Znieczulenie miejscowe",
-          "body": "<p>W obszarze dawczym i biorczym stosuje się znieczulenie miejscowe, dzięki czemu cała sesja jest komfortowa i bezbolesna. Pozostajesz przytomny i zrelaksowany przez cały czas i możesz słuchać muzyki lub oglądać film podczas zabiegu.</p>"
+          "title": "Bezbolesne znieczulenie",
+          "body": "<p>W obszarze dawczym i biorczym stosuje się bezbolesne znieczulenie, dzięki czemu cała sesja przebiega komfortowo. Pozostajesz przytomny i zrelaksowany przez cały czas i możesz słuchać muzyki lub oglądać film podczas zabiegu.</p>"
         },
         {
           "eyebrow": "Etap 3",

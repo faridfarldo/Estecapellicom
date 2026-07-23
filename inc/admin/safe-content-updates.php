@@ -124,6 +124,197 @@ function estecapelli_safe_content_patches() {
 				),
 			),
 		),
+		'sapphire-facts-anaesthesia-20260723-v1' => array(
+			'title'       => 'Sapphire FUE — Quick Facts and painless anaesthesia',
+			'description' => 'Revise two Quick Facts and Stage 2 of The Procedure on the Sapphire FUE page in all seven languages.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'sapphire-fue-hair-transplant',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'en' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Local', 'after' => 'Painless' ),
+							'label' => array( 'before' => 'Anaesthesia', 'after' => 'Anaesthesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => '1 session', 'after' => 'Sapphire Blade' ),
+							'label' => array( 'before' => 'Sessions', 'after' => 'Channel Opening' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Local Anaesthesia', 'after' => 'Painless Anaesthesia' ),
+							'body'  => array(
+								'before' => '<p>Local anaesthesia is applied to the donor and recipient areas so the entire session is comfortable and pain-free. You stay awake but relaxed throughout, and can listen to music or watch something during the procedure.</p>',
+								'after'  => '<p>Painless anaesthesia is applied to the donor and recipient areas so the entire session is comfortable and pain-free. You stay awake but relaxed throughout, and can listen to music or watch something during the procedure.</p>',
+							),
+						),
+					),
+				),
+				'fr' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Locale', 'after' => 'Sans douleur' ),
+							'label' => array( 'before' => 'Anesthésie', 'after' => 'Anesthésie' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => '1 séance', 'after' => 'Lame en saphir' ),
+							'label' => array( 'before' => 'Séances', 'after' => 'Ouverture des canaux' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anesthésie locale', 'after' => 'Anesthésie sans douleur' ),
+							'body'  => array(
+								'before' => '<p>Une anesthésie locale est appliquée aux zones donneuse et receveuse afin que toute la séance soit confortable et indolore. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant l’intervention.</p>',
+								'after'  => '<p>Une anesthésie sans douleur est appliquée aux zones donneuse et receveuse afin que toute la séance se déroule confortablement. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant l’intervention.</p>',
+							),
+						),
+					),
+				),
+				'it' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Locale', 'after' => 'Indolore' ),
+							'label' => array( 'before' => 'Anestesia', 'after' => 'Anestesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => '1 seduta', 'after' => 'Lama in zaffiro' ),
+							'label' => array( 'before' => 'Sedute', 'after' => 'Apertura dei canali' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anestesia locale', 'after' => 'Anestesia indolore' ),
+							'body'  => array(
+								'before' => "<p>L'anestesia locale viene applicata alle aree donatrice e ricevente affinché l'intera seduta sia confortevole e indolore. Rimane sveglio ma rilassato per tutta la durata e può ascoltare musica o guardare qualcosa durante l'intervento.</p>",
+								'after'  => "<p>L'anestesia indolore viene applicata alle aree donatrice e ricevente per garantire il massimo comfort durante l'intera seduta. Rimane sveglio ma rilassato per tutta la durata e può ascoltare musica o guardare qualcosa durante l'intervento.</p>",
+							),
+						),
+					),
+				),
+				'es' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Local', 'after' => 'Sin dolor' ),
+							'label' => array( 'before' => 'Anestesia', 'after' => 'Anestesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => '1 sesión', 'after' => 'Hoja de zafiro' ),
+							'label' => array( 'before' => 'Sesiones', 'after' => 'Apertura de canales' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anestesia local', 'after' => 'Anestesia sin dolor' ),
+							'body'  => array(
+								'before' => '<p>Aplicamos anestesia local en las zonas donante y receptora para que toda la sesión sea cómoda y no cause dolor. Permanecerá despierto pero relajado durante el procedimiento y podrá escuchar música o ver algún contenido.</p>',
+								'after'  => '<p>Aplicamos anestesia sin dolor en las zonas donante y receptora para que toda la sesión sea cómoda. Permanecerá despierto pero relajado durante el procedimiento y podrá escuchar música o ver algún contenido.</p>',
+							),
+						),
+					),
+				),
+				'pl' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Miejscowe', 'after' => 'Bezbolesne' ),
+							'label' => array( 'before' => 'Znieczulenie', 'after' => 'Znieczulenie' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => '1 sesja', 'after' => 'Ostrze szafirowe' ),
+							'label' => array( 'before' => 'Liczba sesji', 'after' => 'Otwieranie kanałów' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Znieczulenie miejscowe', 'after' => 'Bezbolesne znieczulenie' ),
+							'body'  => array(
+								'before' => '<p>W obszarze dawczym i biorczym stosuje się znieczulenie miejscowe, dzięki czemu cała sesja jest komfortowa i bezbolesna. Pozostajesz przytomny i zrelaksowany przez cały czas i możesz słuchać muzyki lub oglądać film podczas zabiegu.</p>',
+								'after'  => '<p>W obszarze dawczym i biorczym stosuje się bezbolesne znieczulenie, dzięki czemu cała sesja przebiega komfortowo. Pozostajesz przytomny i zrelaksowany przez cały czas i możesz słuchać muzyki lub oglądać film podczas zabiegu.</p>',
+							),
+						),
+					),
+				),
+				'pt' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Local', 'after' => 'Indolor' ),
+							'label' => array( 'before' => 'Anestesia', 'after' => 'Anestesia' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => '1 sessão', 'after' => 'Lâmina de safira' ),
+							'label' => array( 'before' => 'Sessões', 'after' => 'Abertura dos canais' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Anestesia local', 'after' => 'Anestesia indolor' ),
+							'body'  => array(
+								'before' => '<p>Aplicamos anestesia local nas zonas dadora e recetora para que toda a sessão seja confortável e não cause dor. Permanecerá acordado mas relaxado durante o procedimento e poderá ouvir música ou ver algum conteúdo.</p>',
+								'after'  => '<p>Aplicamos anestesia indolor nas zonas dadora e recetora para que toda a sessão seja confortável. Permanecerá acordado mas relaxado durante o procedimento e poderá ouvir música ou ver algum conteúdo.</p>',
+							),
+						),
+					),
+				),
+				'tr' => array(
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 0,
+						'fields' => array(
+							'value' => array( 'before' => 'Yerel', 'after' => 'Ağrısız' ),
+							'label' => array( 'before' => 'Anestezi', 'after' => 'Anestezi' ),
+						),
+					),
+					array(
+						'layout' => 'quick_stats', 'repeater' => 'stats', 'row_index' => 2,
+						'fields' => array(
+							'value' => array( 'before' => '1 seans', 'after' => 'Safir Bıçak' ),
+							'label' => array( 'before' => 'Seans Sayısı', 'after' => 'Kanal Açma' ),
+						),
+					),
+					array(
+						'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+						'fields' => array(
+							'title' => array( 'before' => 'Lokal Anestezi', 'after' => 'Ağrısız Anestezi' ),
+							'body'  => array(
+								'before' => '<p>Donör ve alıcı bölgelere lokal anestezi uygulanarak tüm seansın konforlu ve ağrısız geçmesi sağlanır. İşlem boyunca uyanık ama rahat kalırsınız ve işlem sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>',
+								'after'  => '<p>Donör ve alıcı bölgelere ağrısız anestezi uygulanarak tüm seansın konforlu geçmesi sağlanır. İşlem boyunca uyanık ama rahat kalırsınız ve işlem sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>',
+							),
+						),
+					),
+				),
+			),
+		),
 	);
 }
 
@@ -136,6 +327,36 @@ function estecapelli_safe_patch_option_key( $kind, $patch_id ) {
 function estecapelli_safe_patch_matches( $current, $allowed ) {
 	$allowed = is_array( $allowed ) ? $allowed : array( $allowed );
 	return in_array( (string) $current, array_map( 'strval', $allowed ), true );
+}
+
+/**
+ * Normalise the original quick-stat schema and the general field-group schema.
+ *
+ * @return array<int,array<string,mixed>>
+ */
+function estecapelli_safe_patch_operations( $patch, $language ) {
+	$language_changes = $patch['languages'][ $language ] ?? array();
+	if ( 'field_groups_v2' === ( $patch['schema'] ?? '' ) ) {
+		return is_array( $language_changes ) ? array_values( $language_changes ) : array();
+	}
+
+	$operations = array();
+	foreach ( $language_changes as $row_index => $change ) {
+		$fields = array();
+		foreach ( array( 'value', 'label' ) as $field_name ) {
+			$fields[ $field_name ] = array(
+				'before' => $change['before'][ $field_name ],
+				'after'  => $change['after'][ $field_name ],
+			);
+		}
+		$operations[] = array(
+			'layout'    => $patch['layout'],
+			'repeater'  => 'stats',
+			'row_index' => (int) $row_index,
+			'fields'    => $fields,
+		);
+	}
+	return $operations;
 }
 
 /** Resolve and validate one WPML language target. */
@@ -201,7 +422,8 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 	$rows      = array();
 	$conflicts = 0;
 	$pending   = 0;
-	foreach ( $patch['languages'] as $language => $changes ) {
+	$seen_keys = array();
+	foreach ( array_keys( $patch['languages'] ) as $language ) {
 		$target_id = estecapelli_safe_patch_target_post_id( $source_id, $patch['post_type'], $language );
 		if ( is_wp_error( $target_id ) ) {
 			return $target_id;
@@ -211,22 +433,51 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 		if ( ! is_array( $layouts ) ) {
 			return new WP_Error( 'safe_patch_layout_index_missing', sprintf( '%s post %d has no readable page_sections index.', $language, $target_id ) );
 		}
-		$indices = array_keys( $layouts, $patch['layout'], true );
-		if ( 1 !== count( $indices ) ) {
-			return new WP_Error( 'safe_patch_layout_ambiguous', sprintf( '%s post %d has %d matching %s layouts; expected exactly one.', $language, $target_id, count( $indices ), $patch['layout'] ) );
+		$operations = estecapelli_safe_patch_operations( $patch, $language );
+		if ( ! $operations ) {
+			return new WP_Error( 'safe_patch_operations_missing', sprintf( 'No field operations are registered for language %s.', $language ) );
 		}
-		$layout_index = (int) reset( $indices );
+		foreach ( $operations as $operation ) {
+			$layout    = (string) ( $operation['layout'] ?? '' );
+			$repeater  = (string) ( $operation['repeater'] ?? '' );
+			$row_index = isset( $operation['row_index'] ) ? (int) $operation['row_index'] : -1;
+			$fields    = $operation['fields'] ?? array();
+			if ( ! preg_match( '/^[a-z0-9_]+$/', $layout ) || ! preg_match( '/^[a-z0-9_]+$/', $repeater ) || $row_index < 0 || ! is_array( $fields ) || ! $fields ) {
+				return new WP_Error( 'safe_patch_operation_invalid', sprintf( 'Invalid field operation registered for language %s.', $language ) );
+			}
 
-		foreach ( $changes as $row_index => $change ) {
-			$prefix        = 'page_sections_' . $layout_index . '_stats_' . (int) $row_index . '_';
-			$value_key     = $prefix . 'value';
-			$label_key     = $prefix . 'label';
-			$current_value = (string) get_post_meta( $target_id, $value_key, true );
-			$current_label = (string) get_post_meta( $target_id, $label_key, true );
-			$value_ok      = $current_value === (string) $change['after']['value'] || estecapelli_safe_patch_matches( $current_value, $change['before']['value'] );
-			$label_ok      = $current_label === (string) $change['after']['label'] || estecapelli_safe_patch_matches( $current_label, $change['before']['label'] );
-			$already       = $current_value === (string) $change['after']['value'] && $current_label === (string) $change['after']['label'];
-			$status        = $already ? 'already' : ( $value_ok && $label_ok ? 'pending' : 'conflict' );
+			$indices = array_keys( $layouts, $layout, true );
+			if ( 1 !== count( $indices ) ) {
+				return new WP_Error( 'safe_patch_layout_ambiguous', sprintf( '%s post %d has %d matching %s layouts; expected exactly one.', $language, $target_id, count( $indices ), $layout ) );
+			}
+			$layout_index = (int) reset( $indices );
+			$prefix       = 'page_sections_' . $layout_index . '_' . $repeater . '_' . $row_index . '_';
+			$row_fields   = array();
+			$all_after    = true;
+			$all_valid    = true;
+			foreach ( $fields as $field_name => $change ) {
+				if ( ! preg_match( '/^[a-z0-9_]+$/', $field_name ) || ! is_array( $change ) || ! array_key_exists( 'before', $change ) || ! array_key_exists( 'after', $change ) ) {
+					return new WP_Error( 'safe_patch_field_invalid', sprintf( 'Invalid %s field operation registered for language %s.', $field_name, $language ) );
+				}
+				$meta_key = $prefix . $field_name;
+				$seen_key = $target_id . ':' . $meta_key;
+				if ( isset( $seen_keys[ $seen_key ] ) ) {
+					return new WP_Error( 'safe_patch_duplicate_field', sprintf( 'Duplicate patch target: %s on post %d.', $meta_key, $target_id ) );
+				}
+				$seen_keys[ $seen_key ] = true;
+				$current                = (string) get_post_meta( $target_id, $meta_key, true );
+				$after                  = (string) $change['after'];
+				$is_after               = $current === $after;
+				$is_valid               = $is_after || estecapelli_safe_patch_matches( $current, $change['before'] );
+				$all_after              = $all_after && $is_after;
+				$all_valid              = $all_valid && $is_valid;
+				$row_fields[ $field_name ] = array(
+					'meta_key' => $meta_key,
+					'current'  => $current,
+					'after'    => $after,
+				);
+			}
+			$status = $all_after ? 'already' : ( $all_valid ? 'pending' : 'conflict' );
 
 			if ( 'pending' === $status ) {
 				$pending++;
@@ -235,16 +486,11 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 			}
 
 			$rows[] = array(
-				'language'      => $language,
-				'post_id'       => $target_id,
-				'row_index'     => (int) $row_index,
-				'value_key'     => $value_key,
-				'label_key'     => $label_key,
-				'current_value' => $current_value,
-				'current_label' => $current_label,
-				'after_value'   => (string) $change['after']['value'],
-				'after_label'   => (string) $change['after']['label'],
-				'status'        => $status,
+				'language'  => $language,
+				'post_id'   => $target_id,
+				'location'  => sprintf( '%s / %s row %d', $layout, $repeater, $row_index + 1 ),
+				'fields'    => $row_fields,
+				'status'    => $status,
 			);
 		}
 	}
@@ -296,10 +542,10 @@ function estecapelli_safe_patch_apply( $patch_id ) {
 		if ( 'pending' !== $row['status'] ) {
 			continue;
 		}
-		foreach ( array( 'value', 'label' ) as $part ) {
-			$key    = $row[ $part . '_key' ];
-			$before = $row[ 'current_' . $part ];
-			$after  = $row[ 'after_' . $part ];
+		foreach ( $row['fields'] as $field ) {
+			$key    = $field['meta_key'];
+			$before = $field['current'];
+			$after  = $field['after'];
 			if ( $before === $after ) {
 				continue;
 			}
@@ -383,8 +629,9 @@ function estecapelli_safe_patch_rollback( $patch_id ) {
 	}
 	$allowed_items = array();
 	foreach ( $preview['rows'] as $row ) {
-		$allowed_items[ $row['post_id'] . ':' . $row['value_key'] ] = $row['after_value'];
-		$allowed_items[ $row['post_id'] . ':' . $row['label_key'] ] = $row['after_label'];
+		foreach ( $row['fields'] as $field ) {
+			$allowed_items[ $row['post_id'] . ':' . $field['meta_key'] ] = $field['after'];
+		}
 	}
 	foreach ( $backup['items'] as $item ) {
 		$item_key = ( $item['post_id'] ?? '' ) . ':' . ( $item['meta_key'] ?? '' );
@@ -428,6 +675,16 @@ function estecapelli_register_safe_content_updates() {
 		'estecapelli-safe-content-updates',
 		'estecapelli_render_safe_content_updates'
 	);
+}
+
+/** Human-readable summary of an exact field group for the admin preview. */
+function estecapelli_safe_patch_field_summary( $fields, $value_key ) {
+	$parts = array();
+	foreach ( $fields as $field_name => $field ) {
+		$value   = wp_strip_all_tags( (string) ( $field[ $value_key ] ?? '' ) );
+		$parts[] = $field_name . ': ' . $value;
+	}
+	return implode( ' | ', $parts );
 }
 
 /** Render previews and process explicit nonce-protected Apply/Rollback actions. */
@@ -485,9 +742,9 @@ function estecapelli_render_safe_content_updates() {
 					<tbody>
 					<?php foreach ( $preview['rows'] as $row ) : ?>
 						<tr>
-							<td><strong><?php echo esc_html( strtoupper( $row['language'] ) ); ?></strong> · <?php echo esc_html( sprintf( 'row %d', $row['row_index'] + 1 ) ); ?></td>
-							<td><?php echo esc_html( $row['current_value'] . ' — ' . $row['current_label'] ); ?></td>
-							<td><?php echo esc_html( $row['after_value'] . ' — ' . $row['after_label'] ); ?></td>
+							<td><strong><?php echo esc_html( strtoupper( $row['language'] ) ); ?></strong> · <?php echo esc_html( $row['location'] ); ?></td>
+							<td style="max-width:520px;overflow-wrap:anywhere;"><?php echo esc_html( estecapelli_safe_patch_field_summary( $row['fields'], 'current' ) ); ?></td>
+							<td style="max-width:520px;overflow-wrap:anywhere;"><?php echo esc_html( estecapelli_safe_patch_field_summary( $row['fields'], 'after' ) ); ?></td>
 							<td><code><?php echo esc_html( $row['status'] ); ?></code></td>
 						</tr>
 					<?php endforeach; ?>
