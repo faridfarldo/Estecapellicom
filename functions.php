@@ -25,6 +25,23 @@ if ( ! defined( 'ESTECAPELLI_COUNTRY_COUNT' ) ) {
 	define( 'ESTECAPELLI_COUNTRY_COUNT', '40' );
 }
 
+/**
+ * Production content safety lock.
+ *
+ * WordPress is the authoritative content store. Legacy seed/import utilities
+ * must not register menus, admin-post handlers or automatic migrations unless
+ * an operator deliberately opts in before the theme loads (for example in a
+ * staging-only wp-config.php). The production-safe default is locked.
+ */
+if ( ! defined( 'ESTECAPELLI_ENABLE_CONTENT_MUTATIONS' ) ) {
+	define( 'ESTECAPELLI_ENABLE_CONTENT_MUTATIONS', false );
+}
+
+/** Whether legacy importers and one-time content writers may run. */
+function estecapelli_content_mutations_enabled() {
+	return true === ESTECAPELLI_ENABLE_CONTENT_MUTATIONS;
+}
+
 require get_template_directory() . '/inc/db-error-display.php';
 require get_template_directory() . '/inc/indexed-urls.php';
 require get_template_directory() . '/inc/template-tags.php';
@@ -58,7 +75,7 @@ require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/hair-analysis.php';
-if ( is_admin() ) {
+if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-database-guard.php';
 	require get_template_directory() . '/inc/admin/import-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-hair-treatments.php';

@@ -178,4 +178,6 @@ function estecapelli_acfml_disable_existing_repeater_sync() {
 	delete_option( 'acfml_synchronise_repeater_fields' );
 	update_option( $migration, '1', false );
 }
-add_action( 'admin_init', 'estecapelli_acfml_disable_existing_repeater_sync', 0 );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_acfml_disable_existing_repeater_sync', 0 );
+}

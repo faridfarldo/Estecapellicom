@@ -23,7 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'admin_init', 'estecapelli_tricholab_mirror_content' );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_tricholab_mirror_content' );
+}
 function estecapelli_tricholab_mirror_content() {
 	if ( get_option( 'estecapelli_tricholab_mirror_v1' ) ) {
 		return;

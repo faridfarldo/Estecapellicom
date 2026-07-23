@@ -164,7 +164,9 @@ function estecapelli_wpml_migrate_existing_content_to_native_editor() {
 
 	update_option( 'estecapelli_wpml_native_editor_migration', '1', false );
 }
-add_action( 'admin_init', 'estecapelli_wpml_migrate_existing_content_to_native_editor', 1 );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_wpml_migrate_existing_content_to_native_editor', 1 );
+}
 
 /**
  * WPML admin pages that create or open Translation Editor jobs.

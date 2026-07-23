@@ -46,7 +46,9 @@ if ( ! function_exists( 'estecapelli_blog_seed_articles' ) ) {
  *
  * Runs once per flag. WordPress's own canonical redirect sends the old URLs on.
  */
-add_action( 'admin_init', 'estecapelli_ensure_blog_permalink_base', 5 );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_ensure_blog_permalink_base', 5 );
+}
 function estecapelli_ensure_blog_permalink_base() {
 	if ( get_option( 'estecapelli_blog_permalink_base_v3' ) ) {
 		return;
@@ -62,7 +64,9 @@ function estecapelli_ensure_blog_permalink_base() {
 	update_option( 'estecapelli_blog_permalink_base_v3', 1 );
 }
 
-add_action( 'admin_init', 'estecapelli_seed_blog_posts' );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_seed_blog_posts' );
+}
 function estecapelli_seed_blog_posts() {
 	if ( get_option( 'estecapelli_blog_seeded' ) ) {
 		return;

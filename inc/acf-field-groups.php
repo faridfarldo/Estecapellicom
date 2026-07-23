@@ -1104,7 +1104,9 @@ function estecapelli_register_acf_field_groups() {
  * images are left empty and fall back to the theme files by Key, so nothing is
  * re-uploaded. Runs once, never overwrites anything already entered.
  */
-add_action( 'admin_init', 'estecapelli_seed_home_patient_stories' );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_seed_home_patient_stories' );
+}
 function estecapelli_seed_home_patient_stories() {
 	if ( ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) ) {
 		return;

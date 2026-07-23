@@ -19,7 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'admin_init', 'estecapelli_wpml_assign_cpt_language', 20 );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_wpml_assign_cpt_language', 20 );
+}
 function estecapelli_wpml_assign_cpt_language() {
 
 	// Only relevant with WPML active.

@@ -91,7 +91,9 @@ function estecapelli_slug_map_posts() {
  * Light sweep on admin load. Corrects any mapped translation whose slug is
  * wrong, then settles until new translation work invalidates it.
  */
-add_action( 'admin_init', 'estecapelli_wpml_slug_sweep' );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'admin_init', 'estecapelli_wpml_slug_sweep' );
+}
 function estecapelli_wpml_slug_sweep() {
 	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) ) {
 		return; // WPML not active.
@@ -116,11 +118,13 @@ function estecapelli_wpml_slug_sweep() {
  * Wake the sweep whenever a treatment or its category is saved — this is how a
  * freshly-created WPML translation gets its slug corrected on the next load.
  */
-add_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
-add_action( 'save_post_page', 'estecapelli_slug_fix_wake' );
-add_action( 'save_post_post', 'estecapelli_slug_fix_wake' );
-add_action( 'created_treatment_category', 'estecapelli_slug_fix_wake' );
-add_action( 'edited_treatment_category', 'estecapelli_slug_fix_wake' );
+if ( estecapelli_content_mutations_enabled() ) {
+	add_action( 'save_post_treatment', 'estecapelli_slug_fix_wake' );
+	add_action( 'save_post_page', 'estecapelli_slug_fix_wake' );
+	add_action( 'save_post_post', 'estecapelli_slug_fix_wake' );
+	add_action( 'created_treatment_category', 'estecapelli_slug_fix_wake' );
+	add_action( 'edited_treatment_category', 'estecapelli_slug_fix_wake' );
+}
 function estecapelli_slug_fix_wake() {
 	delete_option( 'estecapelli_slug_fix_settled' );
 }
