@@ -5394,7 +5394,11 @@
 		margin: 0; padding: 0.5rem 0;
 		list-style: none;
 		animation: facilities-marquee 30s linear infinite;
+		/* Start only after every hotel image has decoded. Animating an undecoded
+		   filtered image can leave a black compositor tile until hover repaints it. */
+		animation-play-state: paused;
 	}
+	.facilities__marquee[data-ready="true"] .facilities__logos { animation-play-state: running; }
 	.facilities__marquee:hover .facilities__logos { animation-play-state: paused; }
 	@keyframes facilities-marquee {
 		from { transform: translateX(0); }
@@ -5409,10 +5413,10 @@
 		width: 104px; height: 62px; object-fit: cover;
 		border-radius: 10px;
 		border: 1px solid oklch(100% 0 0 / 0.08);
-		opacity: 0.72; filter: grayscale(0.35);
-		transition: opacity 0.25s, filter 0.25s, transform 0.25s;
+		opacity: 0.86;
+		transition: opacity 0.25s, transform 0.25s;
 	}
-	.facilities__logo:hover .facilities__logo-photo { opacity: 1; filter: grayscale(0); transform: translateY(-2px); }
+	.facilities__logo:hover .facilities__logo-photo { opacity: 1; transform: translateY(-2px); }
 	.facilities__logo-name {
 		display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
 		font-size: 0.95rem; font-weight: 700; letter-spacing: 0.01em; white-space: nowrap;

@@ -889,6 +889,41 @@
 		});
 	}
 
+	/**
+	 * Keep the hotel strip still until its eager images are fully decoded.
+	 * Chromium can otherwise composite individual WebP frames as black while
+	 * the parent is moving, then repaint them only when hover pauses the strip.
+	 */
+	function initFacilitiesMarquee() {
+		var marquees = document.querySelectorAll('[data-facilities-marquee]');
+		if (!marquees.length) return;
+
+		marquees.forEach(function (marquee) {
+			var images = Array.prototype.slice.call(marquee.querySelectorAll('.facilities__logo-photo'));
+			if (!images.length) {
+				marquee.setAttribute('data-ready', 'true');
+				return;
+			}
+
+			var decoded = images.map(function (img) {
+				if (typeof img.decode === 'function') {
+					return img.decode().catch(function () {});
+				}
+				if (img.complete) return Promise.resolve();
+				return new Promise(function (resolve) {
+					img.addEventListener('load', resolve, { once: true });
+					img.addEventListener('error', resolve, { once: true });
+				});
+			});
+
+			Promise.all(decoded).then(function () {
+				requestAnimationFrame(function () {
+					marquee.setAttribute('data-ready', 'true');
+				});
+			});
+		});
+	}
+
 	function initImageLightbox() {
 		var lightbox = document.querySelector('[data-img-lightbox]');
 		if (!lightbox) return;
@@ -1442,6 +1477,7 @@
 		initCategoryTabs();
 		initPatientStories();
 		initStoriesLightbox();
+		initFacilitiesMarquee();
 		initFacilitiesLightbox();
 		initImageLightbox();
 		initCarousels();

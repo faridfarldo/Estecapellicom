@@ -91,13 +91,13 @@ $partners = $data['partners'] ?? array();
 				<span class="facilities__partners-title"><?php echo esc_html( $partners['title'] ); ?></span>
 			<?php endif; ?>
 
-			<div class="facilities__marquee">
+			<div class="facilities__marquee" data-facilities-marquee>
 				<ul class="facilities__logos">
 					<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
 						<?php foreach ( $partners['logos'] as $logo ) : ?>
 							<li class="facilities__logo" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
 								<?php if ( ! empty( $logo['image'] ) ) : ?>
-									<img class="facilities__logo-photo" src="<?php echo esc_url( $logo['image'] ); ?>" alt="<?php echo esc_attr( $logo['label'] ?? '' ); ?>" loading="eager" decoding="async" />
+									<img class="facilities__logo-photo" src="<?php echo esc_url( $logo['image'] ); ?>" alt="<?php echo esc_attr( $logo['label'] ?? '' ); ?>" loading="eager" decoding="sync" />
 								<?php endif; ?>
 								<span class="facilities__logo-name">
 									<?php echo esc_html( $logo['label'] ?? '' ); ?>
