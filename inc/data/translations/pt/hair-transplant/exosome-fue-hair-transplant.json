@@ -65,7 +65,8 @@
       "eyebrow": "Porque é importante",
       "title": "Principais vantagens do Exosome FUE",
       "body": "<p>O Exosome FUE representa o futuro da restauração capilar: a precisão do FUE combina-se com uma terapia de exossomas de última geração. A técnica pode elevar a sobrevivência folicular até 98 % durante 72 horas, acelerar a recuperação, favorecer um crescimento mais forte e oferecer resultados naturais e duradouros.</p>",
-      "image_url": "assets/images/treatments/exosome-vs-pt.webp"
+      "image_url": "assets/images/treatments/exosome-vs-pt.webp",
+      "localized_image_url": "assets/images/treatments/exosome-vs-pt.webp"
     },
     {
       "acf_fc_layout": "intro",

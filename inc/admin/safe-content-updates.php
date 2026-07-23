@@ -104,6 +104,20 @@ function estecapelli_safe_patch_female_painless_operation( $before_title, $befor
 	);
 }
 
+/** Target the Exosome comparison intro without touching its shared ACF image. */
+function estecapelli_safe_patch_exosome_localized_image_operation( $image_path ) {
+	return array(
+		array(
+			'target'       => 'layout_fields',
+			'layout'       => 'intro',
+			'layout_index' => 4,
+			'fields'       => array(
+				'localized_image_url' => array( 'before' => '', 'after' => $image_path ),
+			),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
@@ -782,6 +796,22 @@ function estecapelli_safe_content_patches() {
 				),
 			),
 		),
+		'exosome-localized-infographic-20260723-v1' => array(
+			'title'       => 'Exosome FUE — Localized comparison infographic',
+			'description' => 'Give the Exosome-versus-Traditional-FUE comparison its matching EN, FR, IT, ES, PL, PT or TR graphic. The localized override leaves uploaded images on every other section untouched.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'exosome-fue-hair-transplant',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'en' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-en.webp' ),
+				'fr' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-fr.webp' ),
+				'it' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-it.webp' ),
+				'es' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-es.webp' ),
+				'pl' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-pl.webp' ),
+				'pt' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-pt.webp' ),
+				'tr' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-tr.webp' ),
+			),
+		),
 	);
 }
 
@@ -915,11 +945,18 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 				return new WP_Error( 'safe_patch_operation_invalid', sprintf( 'Invalid field operation registered for language %s.', $language ) );
 			}
 
-			$indices = array_keys( $layouts, $layout, true );
-			if ( 1 !== count( $indices ) ) {
-				return new WP_Error( 'safe_patch_layout_ambiguous', sprintf( '%s post %d has %d matching %s layouts; expected exactly one.', $language, $target_id, count( $indices ), $layout ) );
+			if ( array_key_exists( 'layout_index', $operation ) ) {
+				$layout_index = (int) $operation['layout_index'];
+				if ( $layout_index < 0 || ( $layouts[ $layout_index ] ?? '' ) !== $layout ) {
+					return new WP_Error( 'safe_patch_layout_index_mismatch', sprintf( '%s post %d does not have %s at registered layout index %d.', $language, $target_id, $layout, $layout_index ) );
+				}
+			} else {
+				$indices = array_keys( $layouts, $layout, true );
+				if ( 1 !== count( $indices ) ) {
+					return new WP_Error( 'safe_patch_layout_ambiguous', sprintf( '%s post %d has %d matching %s layouts; expected exactly one.', $language, $target_id, count( $indices ), $layout ) );
+				}
+				$layout_index = (int) reset( $indices );
 			}
-			$layout_index = (int) reset( $indices );
 			if ( 'layout_fields' === $target ) {
 				$prefix   = 'page_sections_' . $layout_index . '_';
 				$location = $layout . ' fields';

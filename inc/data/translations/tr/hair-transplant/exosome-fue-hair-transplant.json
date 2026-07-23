@@ -81,7 +81,8 @@
             "eyebrow": "Neden Önemlidir?",
             "title": "Exosome FUE'nin En Önemli Avantajları",
             "body": "<p>Exosome FUE, FUE tekniğinin hassasiyetini ileri eksozom tedavisiyle birleştirir. Bu yaklaşım, greft sağkalımını 72 saat içinde %98'e kadar destekleyerek iyileşmeyi hızlandırmayı, daha güçlü büyümeyi teşvik etmeyi ve doğal, kalıcı sonuçlar sunmayı amaçlar.</p>",
-            "image_url": "assets/images/treatments/exosome-vs-tr.webp"
+            "image_url": "assets/images/treatments/exosome-vs-tr.webp",
+            "localized_image_url": "assets/images/treatments/exosome-vs-tr.webp"
         },
         {
             "acf_fc_layout": "intro",

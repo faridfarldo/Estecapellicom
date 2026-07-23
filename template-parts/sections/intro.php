@@ -23,8 +23,11 @@ $cta      = $section['cta']            ?? array();
 $mtype    = ! empty( $section['media_type'] ) ? $section['media_type'] : 'image';
 $video_id = ! empty( $section['video_url'] ) ? estecapelli_youtube_id( $section['video_url'] ) : '';
 $slides   = ( 'slider' === $mtype && ! empty( $section['slider_images'] ) && is_array( $section['slider_images'] ) ) ? $section['slider_images'] : array();
-// Uploaded ACF image wins; otherwise fall back to a plain URL (theme-bundled).
-$image_src = ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' );
+$localized_image_url = $section['localized_image_url'] ?? '';
+// A localized graphic contains translated text and must override the shared
+// uploaded image. All other sections retain the normal uploaded-image priority.
+$image_src = $localized_image_url ?: ( ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' ) );
+$image_alt = $localized_image_url ? $title : ( $image['alt'] ?? $title );
 // A theme-relative fallback path (e.g. "assets/images/…") is resolved against the
 // theme URI so per-language JSON overlays need not hardcode the domain or folder.
 if ( $image_src && ! preg_match( '#^(https?:)?//#', $image_src ) && '/' !== $image_src[0] ) {
@@ -121,7 +124,7 @@ if ( ! $title && ! $body ) {
 				<img
 					class="t-intro__img"
 					src="<?php echo esc_url( $image_src ); ?>"
-					alt="<?php echo esc_attr( $image['alt'] ?? $title ); ?>"
+					alt="<?php echo esc_attr( $image_alt ); ?>"
 					width="<?php echo (int) ( $image['width']  ?? 1200 ); ?>"
 					height="<?php echo (int) ( $image['height'] ?? 800  ); ?>"
 					loading="lazy"

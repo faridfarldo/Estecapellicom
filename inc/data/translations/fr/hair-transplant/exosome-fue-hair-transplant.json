@@ -65,7 +65,8 @@
       "eyebrow": "Pourquoi cette méthode est importante",
       "title": "Les principaux avantages de l’Exosome FUE",
       "body": "<p>L’Exosome FUE représente l’avenir de la restauration capillaire : la précision de la FUE associée à une thérapie avancée par exosomes. Cette technique peut favoriser un taux de survie folliculaire allant jusqu’à 98 % sur 72 heures, accélérer la cicatrisation, soutenir une repousse plus forte et offrir des résultats naturels et durables.</p>",
-      "image_url": "assets/images/treatments/exosome-vs-fr.webp"
+      "image_url": "assets/images/treatments/exosome-vs-fr.webp",
+      "localized_image_url": "assets/images/treatments/exosome-vs-fr.webp"
     },
     {
       "acf_fc_layout": "intro",

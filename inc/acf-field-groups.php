@@ -597,6 +597,14 @@ function estecapelli_register_acf_field_groups() {
 									'instructions' => __( 'Used only when no image is uploaded above.', 'estecapelli' ),
 								),
 								array(
+									'key'                 => 'field_intro_localized_image_url',
+									'label'               => __( 'Localized image URL (optional override)', 'estecapelli' ),
+									'name'                => 'localized_image_url',
+									'type'                => 'text',
+									'instructions'        => __( 'Language-specific image with embedded translated text. Overrides the uploaded image for this translation.', 'estecapelli' ),
+									'wpml_cf_preferences' => 2,
+								),
+								array(
 									'key'               => 'field_intro_video_url',
 									'label'             => __( 'YouTube video link', 'estecapelli' ),
 									'name'              => 'video_url',

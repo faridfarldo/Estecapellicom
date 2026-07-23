@@ -81,7 +81,8 @@
       "eyebrow": "Dlaczego to ważne",
       "title": "Najważniejsze zalety Exosome FUE",
       "body": "<p>Exosome FUE to przyszłość odbudowy włosów — precyzja FUE łączy się z najnowocześniejszą terapią egzosomami. Technika ta zwiększa przeżywalność mieszków włosowych aż do 98% w ciągu 72 godzin, przyspieszając gojenie, wspierając silniejszy wzrost i zapewniając naturalnie trwałe rezultaty.</p>",
-      "image_url": "assets/images/treatments/exosome-vs-pl.webp"
+      "image_url": "assets/images/treatments/exosome-vs-pl.webp",
+      "localized_image_url": "assets/images/treatments/exosome-vs-pl.webp"
     },
     {
       "acf_fc_layout": "intro",
