@@ -302,6 +302,169 @@ function estecapelli_import_treatment( array $data ) {
 }
 
 /**
+ * Repair the three English Sapphire hero strings previously translated while
+ * the English seed was evaluated in a French wp-admin request.
+ *
+ * This deliberately updates individual ACF post-meta values. Re-importing the
+ * treatment would replace every flexible-content row and could discard newer
+ * editorial copy that exists only in WordPress.
+ *
+ * @return int|WP_Error Number of repaired values, or an actionable error.
+ */
+function estecapelli_repair_english_sapphire_hero_copy() {
+	$source_id = function_exists( 'estecapelli_source_post_id' )
+		? (int) estecapelli_source_post_id( 'sapphire-fue-hair-transplant', 'treatment' )
+		: 0;
+
+	if ( ! $source_id ) {
+		return new WP_Error( 'sapphire_hero_missing_source', 'Published English Sapphire FUE treatment not found.' );
+	}
+
+	if ( defined( 'ICL_SITEPRESS_VERSION' ) || defined( 'WPML_VERSION' ) ) {
+		$details  = apply_filters(
+			'wpml_element_language_details',
+			null,
+			array(
+				'element_id'   => $source_id,
+				'element_type' => 'treatment',
+			)
+		);
+		$language = is_object( $details ) ? (string) ( $details->language_code ?? '' ) : (string) ( $details['language_code'] ?? '' );
+		if ( 'en' !== $language ) {
+			return new WP_Error(
+				'sapphire_hero_wrong_language',
+				sprintf( 'Refusing to repair post %d because WPML identifies it as "%s", not English.', $source_id, $language ?: 'unknown' )
+			);
+		}
+	}
+
+	$layouts = get_post_meta( $source_id, 'page_sections', true );
+	if ( ! is_array( $layouts ) ) {
+		return new WP_Error( 'sapphire_hero_missing_sections', sprintf( 'Post %d has no readable page_sections layout index.', $source_id ) );
+	}
+
+	$hero_index = array_search( 'hero', $layouts, true );
+	if ( false === $hero_index ) {
+		return new WP_Error( 'sapphire_hero_missing_layout', sprintf( 'Post %d has no hero row to repair.', $source_id ) );
+	}
+
+	$prefix = 'page_sections_' . (int) $hero_index . '_';
+	$fields = array(
+		$prefix . 'title'                       => array(
+			'expected'     => 'Sapphire FUE Hair Transplant',
+			'contaminated' => array( 'Greffe de cheveux FUE Saphir', 'Greffe de cheveux Sapphire FUE' ),
+		),
+		$prefix . 'cta_primary_label'           => array(
+			'expected'     => 'Free Consultation',
+			'contaminated' => array( 'Consultation gratuite' ),
+		),
+		$prefix . 'cta_secondary_label'         => array(
+			'expected'     => 'Chat on WhatsApp',
+			'contaminated' => array( 'Discuter sur WhatsApp' ),
+		),
+	);
+
+	$current = array();
+	foreach ( $fields as $meta_key => $rule ) {
+		$current[ $meta_key ] = (string) get_post_meta( $source_id, $meta_key, true );
+		if (
+			$current[ $meta_key ] !== $rule['expected'] &&
+			! in_array( $current[ $meta_key ], $rule['contaminated'], true )
+		) {
+			return new WP_Error(
+				'sapphire_hero_unexpected_value',
+				sprintf( 'Refusing to overwrite unexpected editorial value in %s on post %d.', $meta_key, $source_id )
+			);
+		}
+	}
+
+	$backup_key = 'estecapelli_sapphire_hero_copy_backup_20260723';
+	if ( false === get_option( $backup_key, false ) ) {
+		add_option(
+			$backup_key,
+			array(
+				'post_id'    => $source_id,
+				'hero_index' => (int) $hero_index,
+				'values'     => $current,
+				'created_at' => current_time( 'mysql', true ),
+			),
+			'',
+			false
+		);
+	}
+
+	$changed = 0;
+	foreach ( $fields as $meta_key => $rule ) {
+		if ( $current[ $meta_key ] === $rule['expected'] ) {
+			continue;
+		}
+		update_post_meta( $source_id, $meta_key, $rule['expected'] );
+		$changed++;
+	}
+	if ( $changed ) {
+		clean_post_cache( $source_id );
+	}
+
+	foreach ( $fields as $meta_key => $rule ) {
+		if ( $rule['expected'] !== (string) get_post_meta( $source_id, $meta_key, true ) ) {
+			return new WP_Error( 'sapphire_hero_verification_failed', sprintf( 'Repair verification failed for %s on post %d.', $meta_key, $source_id ) );
+		}
+	}
+
+	return $changed;
+}
+
+/** Run the surgical repair once after deployment, retrying only after errors. */
+add_action( 'admin_init', 'estecapelli_maybe_repair_english_sapphire_hero_copy', 75 );
+function estecapelli_maybe_repair_english_sapphire_hero_copy() {
+	$version = '2026-07-23.1';
+	if (
+		$version === get_option( 'estecapelli_sapphire_hero_copy_repair_version' ) ||
+		! current_user_can( 'manage_options' ) ||
+		( function_exists( 'wp_doing_ajax' ) && wp_doing_ajax() )
+	) {
+		return;
+	}
+
+	$result = estecapelli_repair_english_sapphire_hero_copy();
+	if ( is_wp_error( $result ) ) {
+		update_option( 'estecapelli_sapphire_hero_copy_repair_error', $result->get_error_message(), false );
+		return;
+	}
+
+	update_option( 'estecapelli_sapphire_hero_copy_repair_version', $version, false );
+	delete_option( 'estecapelli_sapphire_hero_copy_repair_error' );
+	set_transient( 'estecapelli_sapphire_hero_copy_repair_success', (int) $result, 5 * MINUTE_IN_SECONDS );
+}
+
+/** Report the one-time repair outcome to an administrator. */
+add_action( 'admin_notices', 'estecapelli_sapphire_hero_copy_repair_notice' );
+function estecapelli_sapphire_hero_copy_repair_notice() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$changed = get_transient( 'estecapelli_sapphire_hero_copy_repair_success' );
+	if ( false !== $changed ) {
+		delete_transient( 'estecapelli_sapphire_hero_copy_repair_success' );
+		printf(
+			'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
+			esc_html( sprintf( 'English Sapphire FUE hero repair completed; %d contaminated values corrected.', (int) $changed ) )
+		);
+		return;
+	}
+
+	$error = get_option( 'estecapelli_sapphire_hero_copy_repair_error' );
+	if ( $error ) {
+		printf(
+			'<div class="notice notice-error"><p><strong>%s</strong> %s</p></div>',
+			esc_html__( 'English Sapphire FUE hero repair failed.', 'estecapelli' ),
+			esc_html( $error )
+		);
+	}
+}
+
+/**
  * Find or create a doctor by slug; return its ID. Writes the Doctor Profile
  * ACF fields and trashes the legacy nested page it replaces (trashing frees the
  * slug, so the doctor CPT can own the same URL). The photo field is left

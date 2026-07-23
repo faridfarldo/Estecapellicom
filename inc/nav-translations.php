@@ -29,6 +29,33 @@ function estecapelli_nav_current_lang() {
 }
 
 /**
+ * Whether visitor-facing gettext fallbacks may translate this request.
+ *
+ * The dictionary is for visitor-facing output only. Applying it while an
+ * importer builds the English PHP seed can turn just the matching seed values
+ * (for example a hero title and CTA labels) into the current admin language
+ * before they are written to ACF.
+ *
+ * Front-end AJAX remains public output, while normal wp-admin, cron and WP-CLI
+ * requests must leave source strings untouched.
+ *
+ * @return bool
+ */
+function estecapelli_is_public_translation_request() {
+	if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		return false;
+	}
+	if ( function_exists( 'wp_doing_cron' ) && wp_doing_cron() ) {
+		return false;
+	}
+	if ( is_admin() && ( ! function_exists( 'wp_doing_ajax' ) || ! wp_doing_ajax() ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
  * English navigation route => canonical English label.
  *
  * Used to derive per-language menu labels and to resolve legacy menu items by
@@ -522,7 +549,7 @@ add_filter( 'gettext', 'estecapelli_nav_gettext_fallback', 30, 3 );
  * @return string
  */
 function estecapelli_nav_gettext_fallback( $translation, $text, $domain ) {
-	if ( 'estecapelli' !== $domain || $translation !== $text ) {
+	if ( ! estecapelli_is_public_translation_request() || 'estecapelli' !== $domain || $translation !== $text ) {
 		return $translation;
 	}
 	$all  = estecapelli_nav_translations();
@@ -531,6 +558,27 @@ function estecapelli_nav_gettext_fallback( $translation, $text, $domain ) {
 		return $translation;
 	}
 	return $all[ $lang ][ $text ] ?? $translation;
+}
+
+add_filter( 'gettext', 'estecapelli_preserve_source_gettext_outside_public_requests', PHP_INT_MAX, 3 );
+/**
+ * Keep the theme's PHP seed strings in their authored English form.
+ *
+ * Several visitor-facing locale fallbacks run before this filter. Resetting the
+ * theme domain to its source text outside public rendering prevents any of them
+ * from contaminating an importer executed in a translated admin language.
+ *
+ * @param string $translation Current translated value.
+ * @param string $text        English source value.
+ * @param string $domain      Text domain.
+ * @return string
+ */
+function estecapelli_preserve_source_gettext_outside_public_requests( $translation, $text, $domain ) {
+	if ( 'estecapelli' === $domain && ! estecapelli_is_public_translation_request() ) {
+		return $text;
+	}
+
+	return $translation;
 }
 
 add_filter( 'nav_menu_item_title', 'estecapelli_nav_menu_title', 100, 4 );
