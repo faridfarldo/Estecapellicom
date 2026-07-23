@@ -16,9 +16,9 @@
       "eyebrow": "Información clave",
       "stats": [
         { "value": "98 %", "label": "Supervivencia folicular" },
-        { "value": "Local", "label": "Anestesia" },
-        { "value": "6–8 horas", "label": "Duración del procedimiento" },
-        { "value": "7–10 días", "label": "Tiempo de recuperación" }
+        { "value": "Sin dolor", "label": "Anestesia" },
+        { "value": "Injertos viables", "label": "Hasta 72 horas" },
+        { "value": "1 %", "label": "Pérdida de injertos (reducida del 15–20 %)" }
       ]
     },
     {

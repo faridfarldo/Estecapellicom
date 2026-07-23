@@ -50,9 +50,9 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'eyebrow'       => __( 'Quick Facts', 'estecapelli' ),
 						'stats'         => array(
 							array( 'icon' => 'sparkles',     'value' => '98%',         'label' => __( 'Follicle Survival', 'estecapelli' ) ),
-							array( 'icon' => 'shield-check', 'value' => 'Local',       'label' => __( 'Anaesthesia', 'estecapelli' ) ),
-							array( 'icon' => 'calendar',     'value' => '6–8 hrs',     'label' => __( 'Procedure Time', 'estecapelli' ) ),
-							array( 'icon' => 'check-circle', 'value' => __( '7–10 days', 'estecapelli' ), 'label' => __( 'Recovery Time', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'value' => 'Painless',                 'label' => __( 'Anaesthesia', 'estecapelli' ) ),
+							array( 'icon' => 'calendar',     'value' => 'Grafts Can Remain Viable', 'label' => __( 'For 72 Hours', 'estecapelli' ) ),
+							array( 'icon' => 'check-circle', 'value' => '1%',                       'label' => __( 'Graft Loss (Decreased from 15–20%)', 'estecapelli' ) ),
 						),
 					),
 

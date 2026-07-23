@@ -24,16 +24,16 @@
           "label": "Przeżywalność graftów"
         },
         {
-          "value": "Miejscowe",
+          "value": "Bezbolesne",
           "label": "Znieczulenie"
         },
         {
-          "value": "6–8 godz.",
-          "label": "Czas zabiegu"
+          "value": "Żywotne grafty",
+          "label": "Do 72 godzin"
         },
         {
-          "value": "7–10 dni",
-          "label": "Rekonwalescencja"
+          "value": "1%",
+          "label": "Utrata graftów (spadek z 15–20%)"
         }
       ]
     },

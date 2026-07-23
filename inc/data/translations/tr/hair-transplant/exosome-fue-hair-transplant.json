@@ -24,16 +24,16 @@
                     "label": "Greft Sağkalımı"
                 },
                 {
-                    "value": "Yerel",
+                    "value": "Ağrısız",
                     "label": "Anestezi"
                 },
                 {
-                    "value": "6–8 saat",
-                    "label": "İşlem Süresi"
+                    "value": "Greftler Canlı Kalır",
+                    "label": "72 Saate Kadar"
                 },
                 {
-                    "value": "7-10 gün",
-                    "label": "İyileşme Süresi"
+                    "value": "%1",
+                    "label": "Greft Kaybı (%15–20’den Düştü)"
                 }
             ]
         },

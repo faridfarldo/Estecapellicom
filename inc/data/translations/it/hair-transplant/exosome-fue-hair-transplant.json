@@ -16,9 +16,9 @@
       "eyebrow": "Informazioni chiave",
       "stats": [
         { "value": "98%", "label": "Sopravvivenza follicolare" },
-        { "value": "Locale", "label": "Anestesia" },
-        { "value": "6–8 ore", "label": "Durata dell'intervento" },
-        { "value": "7–10 giorni", "label": "Tempo di recupero" }
+        { "value": "Indolore", "label": "Anestesia" },
+        { "value": "Innesti vitali", "label": "Fino a 72 ore" },
+        { "value": "1%", "label": "Perdita degli innesti (dal 15–20%)" }
       ]
     },
     {

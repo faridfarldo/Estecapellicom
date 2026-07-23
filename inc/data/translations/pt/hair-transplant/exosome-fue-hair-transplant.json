@@ -16,9 +16,9 @@
       "eyebrow": "Informação essencial",
       "stats": [
         { "value": "98 %", "label": "Sobrevivência folicular" },
-        { "value": "Local", "label": "Anestesia" },
-        { "value": "6–8 horas", "label": "Duração do procedimento" },
-        { "value": "7–10 dias", "label": "Tempo de recuperação" }
+        { "value": "Indolor", "label": "Anestesia" },
+        { "value": "Enxertos viáveis", "label": "Até 72 horas" },
+        { "value": "1 %", "label": "Perda de enxertos (reduzida de 15–20 %)" }
       ]
     },
     {

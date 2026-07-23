@@ -16,9 +16,9 @@
       "eyebrow": "Informations clés",
       "stats": [
         { "value": "98 %", "label": "Survie des follicules" },
-        { "value": "Locale", "label": "Anesthésie" },
-        { "value": "6–8 h", "label": "Durée de l’intervention" },
-        { "value": "7–10 jours", "label": "Temps de récupération" }
+        { "value": "Sans douleur", "label": "Anesthésie" },
+        { "value": "Greffons viables", "label": "Jusqu’à 72 heures" },
+        { "value": "1 %", "label": "Perte de greffons (contre 15–20 %)" }
       ]
     },
     {
