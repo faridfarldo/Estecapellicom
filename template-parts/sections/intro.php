@@ -25,6 +25,9 @@ $video_id = ! empty( $section['video_url'] ) ? estecapelli_youtube_id( $section[
 if ( $video_id && function_exists( 'estecapelli_localize_vita_video_id' ) ) {
 	$video_id = estecapelli_localize_vita_video_id( $video_id );
 }
+if ( $video_id && function_exists( 'estecapelli_localize_exosome_video_id' ) ) {
+	$video_id = estecapelli_localize_exosome_video_id( $video_id );
+}
 $slides   = ( 'slider' === $mtype && ! empty( $section['slider_images'] ) && is_array( $section['slider_images'] ) ) ? $section['slider_images'] : array();
 $localized_image_url = $section['localized_image_url'] ?? '';
 // A localized graphic contains translated text and must override the shared

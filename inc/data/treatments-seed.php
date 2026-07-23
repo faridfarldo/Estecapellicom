@@ -64,6 +64,8 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 							. '<p>' . esc_html__( 'Our Exosome FUE solution contains millions of exosome cells that help hair follicles maintain their vitality both during the pre-transplantation period and while adapting to their new locations. By minimising external factors that could compromise graft quality, this technology significantly increases the success rate of hair transplantation.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'Exosomes are natural vesicles that enhance intercellular communication, accelerate the healing process and regulate cellular functions. Approved by TÜBİTAK (The Scientific and Technological Research Council of Turkey), this method not only reduces hair loss but also strengthens the growth of transplanted follicles. Thanks to the anti-inflammatory properties of exosomes, redness and scalp sensitivity resolve more quickly, while increased cell renewal and improved blood circulation optimise follicle nourishment.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'This advanced therapy not only accelerates short-term healing but also ensures long-term, natural and lasting results, making it a state-of-the-art solution in hair restoration.', 'estecapelli' ) . '</p>',
+						'media_type'    => 'video',
+						'video_url'     => 'https://www.youtube.com/watch?v=6_OK4rQ9cxE',
 						'image'         => '',
 						'image_position' => 'right',
 						'cta'           => array( 'label' => '', 'url' => '' ),

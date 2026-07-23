@@ -155,6 +155,29 @@ function estecapelli_safe_patch_vita_localized_video_operation( $video_url ) {
 	);
 }
 
+/** Update the first Exosome intro from the shared English video to one locale. */
+function estecapelli_safe_patch_exosome_localized_video_operation( $video_url ) {
+	$english_video = array(
+		'6_OK4rQ9cxE',
+		'https://www.youtube.com/watch?v=6_OK4rQ9cxE',
+		'https://youtube.com/watch?v=6_OK4rQ9cxE',
+		'https://www.youtube.com/shorts/6_OK4rQ9cxE',
+		'https://youtube.com/shorts/6_OK4rQ9cxE',
+		'https://youtu.be/6_OK4rQ9cxE',
+	);
+
+	return array(
+		array(
+			'target'       => 'layout_fields',
+			'layout'       => 'intro',
+			'layout_index' => 2,
+			'fields'       => array(
+				'video_url' => array( 'before' => $english_video, 'after' => $video_url ),
+			),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
@@ -880,6 +903,21 @@ function estecapelli_safe_content_patches() {
 				'tr' => estecapelli_safe_patch_vita_localized_video_operation( 'https://youtube.com/shorts/hLuXikySN34' ),
 			),
 		),
+		'exosome-localized-videos-20260723-v1' => array(
+			'title'       => 'Exosome FUE — Localized videos',
+			'description' => 'Replace the shared English Exosome video in the method intro with the matching FR, IT, ES, PL, PT or TR version. The homepage is localized at render time because its ACF option is shared.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'exosome-fue-hair-transplant',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'fr' => estecapelli_safe_patch_exosome_localized_video_operation( 'https://youtu.be/Yf1z9k5ApaI' ),
+				'it' => estecapelli_safe_patch_exosome_localized_video_operation( 'https://youtu.be/hR3kr7L5oNY' ),
+				'es' => estecapelli_safe_patch_exosome_localized_video_operation( 'https://youtu.be/JG9a8r66u3o' ),
+				'pl' => estecapelli_safe_patch_exosome_localized_video_operation( 'https://youtu.be/IQz4wBaI8Jw' ),
+				'pt' => estecapelli_safe_patch_exosome_localized_video_operation( 'https://youtu.be/IiQSAcwO5Ww' ),
+				'tr' => estecapelli_safe_patch_exosome_localized_video_operation( 'https://youtu.be/rkDuNzptnL8' ),
+			),
+		),
 	);
 }
 
@@ -891,7 +929,26 @@ function estecapelli_safe_patch_option_key( $kind, $patch_id ) {
 /** Compare a current value with one or more allowed pre-patch values. */
 function estecapelli_safe_patch_matches( $current, $allowed ) {
 	$allowed = is_array( $allowed ) ? $allowed : array( $allowed );
-	return in_array( (string) $current, array_map( 'strval', $allowed ), true );
+	$allowed = array_map( 'strval', $allowed );
+	if ( in_array( (string) $current, $allowed, true ) ) {
+		return true;
+	}
+
+	// YouTube stores the same video in several equivalent URL forms. Treat a
+	// watch, Shorts, youtu.be or bare-ID value as equal when its video ID is the
+	// same, while preserving strict comparison for every non-video field.
+	if ( function_exists( 'estecapelli_youtube_id' ) ) {
+		$current_id = estecapelli_youtube_id( $current );
+		if ( $current_id ) {
+			foreach ( $allowed as $candidate ) {
+				if ( $current_id === estecapelli_youtube_id( $candidate ) ) {
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 /**

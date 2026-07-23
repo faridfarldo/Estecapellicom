@@ -64,6 +64,41 @@ function estecapelli_localize_vita_video_id( $video ) {
 }
 
 /**
+ * Canonical Exosome Protocol YouTube IDs for every public language.
+ *
+ * @return array<string,string>
+ */
+function estecapelli_exosome_video_ids() {
+	return array(
+		'en' => '6_OK4rQ9cxE',
+		'fr' => 'Yf1z9k5ApaI',
+		'it' => 'hR3kr7L5oNY',
+		'es' => 'JG9a8r66u3o',
+		'pl' => 'IQz4wBaI8Jw',
+		'pt' => 'IiQSAcwO5Ww',
+		'tr' => 'rkDuNzptnL8',
+	);
+}
+
+/** Return the Exosome video ID for the active public language. */
+function estecapelli_exosome_video_id( $language = '' ) {
+	$language = $language ? estecapelli_indexed_language_code( $language ) : estecapelli_home_hero_language();
+	$videos   = estecapelli_exosome_video_ids();
+
+	return $videos[ $language ] ?? $videos['en'];
+}
+
+/** Localize a known Exosome video while leaving unrelated videos untouched. */
+function estecapelli_localize_exosome_video_id( $video ) {
+	$current = function_exists( 'estecapelli_youtube_id' ) ? estecapelli_youtube_id( $video ) : (string) $video;
+	if ( ! in_array( $current, estecapelli_exosome_video_ids(), true ) ) {
+		return $current;
+	}
+
+	return estecapelli_exosome_video_id();
+}
+
+/**
  * Hero strings missing from the broader French, Polish and Turkish fallbacks.
  * Italian, Spanish and Portuguese already own complete hero dictionaries.
  *
