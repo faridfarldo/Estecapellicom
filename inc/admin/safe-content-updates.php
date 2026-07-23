@@ -91,6 +91,19 @@ function estecapelli_safe_patch_vita_four_step_operations( $copy ) {
 	);
 }
 
+/** Build the exact Step 2 copy replacement for the female transplant page. */
+function estecapelli_safe_patch_female_painless_operation( $before_title, $before_body, $after_title, $after_body ) {
+	return array(
+		array(
+			'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 1,
+			'fields' => array(
+				'title' => array( 'before' => $before_title, 'after' => $after_title ),
+				'body'  => array( 'before' => $before_body, 'after' => $after_body ),
+			),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
@@ -715,6 +728,57 @@ function estecapelli_safe_content_patches() {
 							array( 'eyebrow' => 'Aşama 3', 'title' => 'İşlem Sonrası PRP', 'body' => '<p>PRP (Platelet Açısından Zengin Plazma) tedavinin son aşaması olarak uygulanır; iyileşmeyi desteklemek ve genel sonucu iyileştirmek için saç ekiminizden hemen sonra gerçekleştirilen yenileyici bir tedavidir. Kanınızın küçük bir örneği alınır ve yüksek konsantrasyonda doğal büyüme faktörleri içeren trombosit açısından zengin plazmayı ayırmak için bir santrifüjde işlenir. PRP daha sonra kafa derisinin tedavi edilen bölgelerine dikkatlice enjekte edilir; burada doku onarımını hızlandırmaya, iltihaplanmayı azaltmaya, kan dolaşımını iyileştirmeye ve yeni nakledilen greftler için en uygun ortamı yaratmaya yardımcı olur. PRP, iyileşme sürecini uyararak ve folikülleri besleyerek daha güçlü greft tutulmasına, daha hızlı iyileşmeye ve daha sağlıklı, daha kalın saç büyümesine katkıda bulunur.</p>' ),
 						),
 					)
+				),
+			),
+		),
+		'female-painless-anaesthesia-20260723-v1' => array(
+			'title'       => 'Female Hair Transplant — Painless Anaesthesia Step 2',
+			'description' => 'Replace the complete Step 2 title and body with painless-anaesthesia copy in all seven languages, without changing the step image or structure.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'female-hair-transplant',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'en' => estecapelli_safe_patch_female_painless_operation(
+					'Natural Hairline Design',
+					'<p>An aesthetic, feminine hairline is drawn in harmony with your facial proportions and natural growth direction. For women the goal is usually to restore density and frame the face rather than rebuild a receded line, so the design protects your existing style and keeps the result completely undetectable.</p>',
+					'Painless Anaesthesia',
+					'<p>Painless anaesthesia is applied to the donor and recipient areas for a comfortable, pain-free procedure. You stay awake but relaxed throughout, and can listen to music or watch something during the session.</p>'
+				),
+				'fr' => estecapelli_safe_patch_female_painless_operation(
+					'Conception d’une ligne frontale naturelle',
+					'<p>Une ligne frontale féminine et esthétique est dessinée en harmonie avec les proportions de votre visage et le sens naturel de la pousse. Chez la femme, l’objectif consiste généralement à restaurer la densité et à encadrer le visage plutôt qu’à reconstruire une ligne reculée. Le dessin préserve ainsi votre style et rend le résultat imperceptible.</p>',
+					'Anesthésie sans douleur',
+					'<p>Une anesthésie sans douleur est appliquée aux zones donneuse et receveuse pour assurer une intervention confortable. Vous restez éveillé, mais détendu, et pouvez écouter de la musique ou regarder un programme pendant la séance.</p>'
+				),
+				'it' => estecapelli_safe_patch_female_painless_operation(
+					'Disegno naturale della linea frontale',
+					"<p>Viene disegnata una linea frontale femminile ed elegante, in armonia con le proporzioni del viso e con la direzione naturale della crescita. Nelle donne l'obiettivo è spesso ripristinare densità e incorniciare il volto, più che ricostruire una linea arretrata: il disegno protegge quindi lo stile esistente e rende il risultato impercettibile.</p>",
+					'Anestesia indolore',
+					"<p>L'anestesia indolore viene applicata alle aree donatrice e ricevente per garantire un intervento confortevole. Rimane sveglio ma rilassato per tutta la durata e può ascoltare musica o guardare qualcosa durante la seduta.</p>"
+				),
+				'es' => estecapelli_safe_patch_female_painless_operation(
+					'Diseño natural de la línea frontal',
+					'<p>Diseñamos una línea frontal femenina y elegante que armoniza con las proporciones del rostro y la dirección natural del crecimiento. En las mujeres, el objetivo suele ser recuperar densidad y enmarcar el rostro más que reconstruir una línea retraída; por ello, el diseño protege el estilo existente y hace que el resultado sea imperceptible.</p>',
+					'Anestesia sin dolor',
+					'<p>Aplicamos anestesia sin dolor en las zonas donante y receptora para que el procedimiento sea cómodo. Permanecerá despierto pero relajado durante toda la intervención y podrá escuchar música o ver algún contenido durante la sesión.</p>'
+				),
+				'pl' => estecapelli_safe_patch_female_painless_operation(
+					'Naturalny projekt linii włosów',
+					'<p>Estetyczna, kobieca linia włosów jest narysowana w harmonii z proporcjami twarzy i naturalnym kierunkiem wzrostu. W przypadku kobiet celem jest zwykle przywrócenie gęstości i oprawienie twarzy, a nie odbudowa cofniętej linii, dzięki czemu projekt chroni istniejący styl i sprawia, że wynik jest całkowicie naturalny.</p>',
+					'Bezbolesne znieczulenie',
+					'<p>W obszarze dawczym i biorczym stosujemy bezbolesne znieczulenie, dzięki czemu zabieg przebiega komfortowo. Przez całą sesję pozostajesz przytomny i zrelaksowany; możesz słuchać muzyki lub oglądać film.</p>'
+				),
+				'pt' => estecapelli_safe_patch_female_painless_operation(
+					'Desenho natural da linha frontal',
+					'<p>Desenhamos uma linha frontal feminina e elegante que harmoniza com as proporções do rosto e com a direção natural do crescimento. Nas mulheres, o objetivo costuma ser recuperar densidade e emoldurar o rosto mais do que reconstruir uma linha recuada; por isso, o desenho protege o estilo existente e torna o resultado impercetível.</p>',
+					'Anestesia indolor',
+					'<p>Aplicamos anestesia indolor nas zonas dadora e recetora para que o procedimento seja confortável. Permanecerá acordado mas relaxado durante toda a intervenção e poderá ouvir música ou ver algum conteúdo durante a sessão.</p>'
+				),
+				'tr' => estecapelli_safe_patch_female_painless_operation(
+					'Doğal Saç Çizgisi Tasarımı',
+					'<p>Yüz oranlarınız ve doğal büyüme yönünüzle uyumlu, estetik, feminen bir saç çizgisi çizilir. Kadınlar için amaç, genellikle geri çekilmiş bir çizgiyi yeniden oluşturmak yerine yoğunluğu geri kazandırmak ve yüzü çerçevelemektir, böylece tasarım mevcut tarzınızı korur ve sonucu tamamen farkedilemez tutar.</p>',
+					'Ağrısız Anestezi',
+					'<p>Konforlu bir deneyim için donör ve alıcı bölgelere ağrısız anestezi uygulanır. İşlem boyunca uyanık ancak rahat olursunuz; seans sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>'
 				),
 			),
 		),
