@@ -22,23 +22,23 @@
             "body": "<p>TrichoLab, saçı ve saç derisini yüksek çözünürlüklü trikoskopik görüntüleme yoluyla inceleyen, yapay zeka destekli gelişmiş bir saç analiz sistemidir. Kritik parametreleri milimetrik hassasiyetle ölçerek, uzmanlarımıza her birey için en etkili tedaviyi planlama konusunda rehberlik eden nesnel, veriye dayalı bilgiler sağlar.</p><p>Sistem, saç folikülü yoğunluğu, greft potansiyeli, saç gövdesi kalınlığı, donör alan kapasitesi, saç dökülmesi haritalaması ve minyatürleşme oranı gibi çok çeşitli faktörleri değerlendirir. Bu düzeyde ayrıntı, ekibimizin tahmin yerine doğru, gerçek zamanlı verilere dayalı kişiselleştirilmiş bir tedavi planı tasarlamasına olanak tanır.</p>"
         },
         {
-            "acf_fc_layout": "stepbook",
+            "acf_fc_layout": "steps",
             "eyebrow": "Süreç",
             "title": "Estecapelli'de TrichoLab ile Saç Analizi",
             "lead": "Yüksek çözünürlüklü görüntülemeden hassas ve kişiselleştirilmiş tedavi planına uzanan adımları inceleyin.",
             "items": [
                 {
-                    "eyebrow": "1. Adım",
+                    "time": "1. Adım",
                     "title": "Dijital Trikoskopik Tarama",
                     "body": "<p>Saç köklerinin ayrıntılı görsellerinin yakalandığı yüksek çözünürlüklü mikro görüntüleme ile kafa derisi incelenir.</p>"
                 },
                 {
-                    "eyebrow": "2. Adım",
+                    "time": "2. Adım",
                     "title": "Yapay Zekâ Destekli Veri Analizi",
                     "body": "<p>Gelişmiş algoritmalar, görüntüleme verilerini yoğunluk ve foliküler dağılım için hassas sayısal değerlere dönüştürür.</p>"
                 },
                 {
-                    "eyebrow": "3. Adım",
+                    "time": "3. Adım",
                     "title": "Kişiselleştirilmiş Tedavi Planı",
                     "body": "<p>Veriler, gerekli greft sayısı da dahil olmak üzere tamamen kişiselleştirilmiş bir planın temelini oluşturur.</p>"
                 }

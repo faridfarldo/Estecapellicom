@@ -13,6 +13,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
+	/**
+	 * Keep legacy TrichoLab translations visually aligned with the English page.
+	 *
+	 * Some translated records still store the process as the old "stepbook"
+	 * layout. The English page uses the compact three-card steps timeline. This
+	 * render-only compatibility layer preserves all translated copy and all
+	 * three steps while avoiding a destructive database rewrite.
+	 *
+	 * @param array $section ACF flexible-content row.
+	 * @param int   $post_id Current post ID.
+	 * @return array
+	 */
+	function estecapelli_prepare_page_section_for_render( array $section, $post_id ) {
+		$is_tricholab = 'tricholab' === get_post_field( 'post_name', $post_id );
+		$is_stepbook  = 'stepbook' === ( $section['acf_fc_layout'] ?? '' );
+
+		if ( ! $is_tricholab || ! $is_stepbook ) {
+			return $section;
+		}
+
+		$section['acf_fc_layout'] = 'steps';
+
+		if ( ! empty( $section['items'] ) && is_array( $section['items'] ) ) {
+			foreach ( $section['items'] as &$item ) {
+				if ( empty( $item['time'] ) && ! empty( $item['eyebrow'] ) ) {
+					$item['time'] = $item['eyebrow'];
+				}
+			}
+			unset( $item );
+		}
+
+		return $section;
+	}
+}
+
 if ( ! function_exists( 'estecapelli_render_page_sections' ) ) {
 	function estecapelli_render_page_sections( $post_id = null ) {
 
@@ -28,6 +64,7 @@ if ( ! function_exists( 'estecapelli_render_page_sections' ) ) {
 		}
 
 		foreach ( $sections as $section ) {
+			$section = estecapelli_prepare_page_section_for_render( $section, $post_id );
 			$layout = $section['acf_fc_layout'] ?? '';
 			if ( ! $layout ) {
 				continue;

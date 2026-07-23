@@ -18,23 +18,23 @@
       "body": "<p>TrichoLab è un sistema avanzato di analisi capillare supportato dall'intelligenza artificiale che esamina capelli e cuoio capelluto mediante immagini tricoscopiche ad alta risoluzione. Misurando con precisione millimetrica parametri fondamentali, fornisce dati oggettivi che guidano i nostri specialisti nella pianificazione del trattamento più efficace per ogni paziente.</p><p>Il sistema valuta numerosi fattori, tra cui densità follicolare, potenziale degli innesti, spessore del fusto, capacità dell'area donatrice, distribuzione della caduta e tasso di miniaturizzazione. Questo livello di dettaglio consente al nostro team di creare un piano personalizzato basato su dati precisi e aggiornati, non su semplici stime.</p>"
     },
     {
-      "acf_fc_layout": "stepbook",
+      "acf_fc_layout": "steps",
       "eyebrow": "Il percorso",
       "title": "L'analisi TrichoLab presso Estecapelli",
       "lead": "Dalle immagini ad alta risoluzione a un piano preciso e personalizzato. Scorra le fasi qui sotto.",
       "items": [
         {
-          "eyebrow": "Fase 1",
+          "time": "Fase 1",
           "title": "Scansione tricoscopica digitale",
           "body": "<p>Il cuoio capelluto viene esaminato con microimmagini ad alta risoluzione che acquisiscono dettagli accurati dei follicoli.</p>"
         },
         {
-          "eyebrow": "Fase 2",
+          "time": "Fase 2",
           "title": "Analisi dei dati con intelligenza artificiale",
           "body": "<p>Algoritmi avanzati trasformano le immagini in valori numerici precisi relativi alla densità e alla distribuzione follicolare.</p>"
         },
         {
-          "eyebrow": "Fase 3",
+          "time": "Fase 3",
           "title": "Piano di trattamento personalizzato",
           "body": "<p>I dati diventano la base di un piano completamente individuale, compresa la stima esatta del numero di innesti richiesto.</p>"
         }

@@ -22,23 +22,23 @@
             "body": "<p>TrichoLab est un système avancé d’analyse capillaire assisté par IA qui examine les cheveux et le cuir chevelu grâce à une imagerie trichoscopique haute résolution. En mesurant des paramètres essentiels avec une précision millimétrique, il fournit des données objectives qui guident nos spécialistes dans la planification du traitement le plus efficace pour chaque personne.</p><p>Le système évalue un large éventail de facteurs : densité des follicules pileux, potentiel de greffons, épaisseur de la tige capillaire, capacité de la zone donneuse, cartographie de la perte de cheveux et taux de miniaturisation. Ce niveau de détail permet à notre équipe de concevoir un plan de traitement personnalisé fondé sur des données précises et en temps réel plutôt que sur une estimation.</p>"
         },
         {
-            "acf_fc_layout": "stepbook",
+            "acf_fc_layout": "steps",
             "eyebrow": "Le déroulement",
             "title": "L’analyse capillaire avec TrichoLab chez Estecapelli",
             "lead": "De l’imagerie haute résolution à un plan précis et personnalisé. Faites défiler les étapes ci-dessous.",
             "items": [
                 {
-                    "eyebrow": "Étape 1",
+                    "time": "Étape 1",
                     "title": "Scan trichoscopique numérique",
                     "body": "<p>Le cuir chevelu est examiné par micro-imagerie haute résolution, capturant des visuels détaillés des follicules pileux.</p>"
                 },
                 {
-                    "eyebrow": "Étape 2",
+                    "time": "Étape 2",
                     "title": "Analyse des données par IA",
                     "body": "<p>Des algorithmes avancés transforment les données d’imagerie en valeurs numériques précises de densité et de répartition folliculaire.</p>"
                 },
                 {
-                    "eyebrow": "Étape 3",
+                    "time": "Étape 3",
                     "title": "Plan de traitement personnalisé",
                     "body": "<p>Les données servent de base à un plan entièrement personnalisé, incluant le nombre exact de greffons nécessaires.</p>"
                 }

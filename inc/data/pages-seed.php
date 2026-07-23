@@ -272,14 +272,14 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 					),
 
 					array(
-						'acf_fc_layout' => 'stepbook',
+						'acf_fc_layout' => 'steps',
 						'eyebrow'       => __( 'The Process', 'estecapelli' ),
 						'title'         => __( 'Hair Analysis with TrichoLab at Estecapelli', 'estecapelli' ),
 						'lead'          => __( 'From high-resolution imaging to a precise, personalised plan. Swipe through the steps below.', 'estecapelli' ),
 						'items'         => array(
-							array( 'icon' => 'target',    'eyebrow' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Digital Trichoscopic Scanning', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'The scalp is examined with high-resolution micro-imaging, capturing detailed visuals of the hair follicles.', 'estecapelli' ) . '</p>' ),
-							array( 'icon' => 'atom',      'eyebrow' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'AI-Powered Data Analysis', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'Advanced algorithms turn the imaging data into precise numerical values for density and follicular distribution.', 'estecapelli' ) . '</p>' ),
-							array( 'icon' => 'clipboard', 'eyebrow' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Personalised Treatment Plan', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'The data forms the basis of a fully personalised plan, including the exact number of grafts required.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'target',    'time' => __( 'Step 1', 'estecapelli' ), 'title' => __( 'Digital Trichoscopic Scanning', 'estecapelli' ), 'body' => '<p>' . esc_html__( 'The scalp is examined with high-resolution micro-imaging, capturing detailed visuals of the hair follicles.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'atom',      'time' => __( 'Step 2', 'estecapelli' ), 'title' => __( 'AI-Powered Data Analysis', 'estecapelli' ),     'body' => '<p>' . esc_html__( 'Advanced algorithms turn the imaging data into precise numerical values for density and follicular distribution.', 'estecapelli' ) . '</p>' ),
+							array( 'icon' => 'clipboard', 'time' => __( 'Step 3', 'estecapelli' ), 'title' => __( 'Personalised Treatment Plan', 'estecapelli' ),   'body' => '<p>' . esc_html__( 'The data forms the basis of a fully personalised plan, including the exact number of grafts required.', 'estecapelli' ) . '</p>' ),
 						),
 					),
 

@@ -18,23 +18,23 @@
       "body": "<p>TrichoLab to zaawansowany system analizy włosów wspierany przez sztuczną inteligencję, który bada włosy i skórę głowy na podstawie trichoskopowych obrazów o wysokiej rozdzielczości. Mierząc najważniejsze parametry z milimetrową precyzją, dostarcza obiektywnych danych pomagających naszym specjalistom zaplanować najskuteczniejsze leczenie dla każdego pacjenta.</p><p>System ocenia liczne czynniki, w tym gęstość mieszków, potencjalną liczbę graftów, grubość włosów, możliwości obszaru dawczego, rozmieszczenie ubytków oraz stopień miniaturyzacji. Tak szczegółowe informacje pozwalają zespołowi stworzyć indywidualny plan oparty na dokładnych, aktualnych danych, a nie na szacunkach.</p>"
     },
     {
-      "acf_fc_layout": "stepbook",
+      "acf_fc_layout": "steps",
       "eyebrow": "Proces",
       "title": "Analiza TrichoLab w Estecapelli",
       "lead": "Od obrazowania w wysokiej rozdzielczości do precyzyjnego, indywidualnego planu. Poznaj kolejne etapy poniżej.",
       "items": [
         {
-          "eyebrow": "Etap 1",
+          "time": "Etap 1",
           "title": "Cyfrowe badanie trichoskopowe",
           "body": "<p>Skóra głowy jest badana za pomocą mikroobrazów o wysokiej rozdzielczości, które dokładnie pokazują szczegóły mieszków włosowych.</p>"
         },
         {
-          "eyebrow": "Etap 2",
+          "time": "Etap 2",
           "title": "Analiza danych przez sztuczną inteligencję",
           "body": "<p>Zaawansowane algorytmy przekształcają obrazy w precyzyjne wartości liczbowe opisujące gęstość i rozmieszczenie mieszków.</p>"
         },
         {
-          "eyebrow": "Etap 3",
+          "time": "Etap 3",
           "title": "Indywidualny plan leczenia",
           "body": "<p>Dane stają się podstawą całkowicie indywidualnego planu, obejmującego dokładne oszacowanie potrzebnej liczby graftów.</p>"
         }
