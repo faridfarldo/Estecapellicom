@@ -89,6 +89,7 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'The Most Important Advantages of Exosome FUE', 'estecapelli' ),
 						'body'          => '<p>' . esc_html__( "Exosome FUE is the future of hair restoration — the precision of FUE meets cutting-edge exosome therapy. The technique boosts follicle survival to up to 98% over 72 hours, accelerating healing, supporting stronger growth, and delivering naturally lasting results.", 'estecapelli' ) . '</p>',
 						'image'         => '',
+						'image_url'     => 'assets/images/treatments/exosome-vs-en.webp',
 						'image_position' => 'left',
 						'cta'           => array( 'label' => '', 'url' => '' ),
 					),

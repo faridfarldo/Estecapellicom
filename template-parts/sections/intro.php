@@ -25,6 +25,11 @@ $video_id = ! empty( $section['video_url'] ) ? estecapelli_youtube_id( $section[
 $slides   = ( 'slider' === $mtype && ! empty( $section['slider_images'] ) && is_array( $section['slider_images'] ) ) ? $section['slider_images'] : array();
 // Uploaded ACF image wins; otherwise fall back to a plain URL (theme-bundled).
 $image_src = ! empty( $image['url'] ) ? $image['url'] : ( $section['image_url'] ?? '' );
+// A theme-relative fallback path (e.g. "assets/images/…") is resolved against the
+// theme URI so per-language JSON overlays need not hardcode the domain or folder.
+if ( $image_src && ! preg_match( '#^(https?:)?//#', $image_src ) && '/' !== $image_src[0] ) {
+	$image_src = trailingslashit( get_template_directory_uri() ) . ltrim( $image_src, '/' );
+}
 
 if ( ! $title && ! $body ) {
 	return;
