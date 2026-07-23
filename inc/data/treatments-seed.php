@@ -786,8 +786,10 @@ if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 						'title'         => __( 'Estecapelli’s Signature Technique — VITA Power Derived from Vitamins', 'estecapelli' ),
 						'body'          => '<p>' . esc_html__( 'The period during which hair follicles remain outside the body is a critical factor that directly affects the procedure’s success. Once grafts are extracted, their access to blood circulation and vital nutrients is interrupted, leading to gradual weakening.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'The VITA Protocol intervenes at these sensitive stages of the operation by providing essential support to the grafts. Thanks to a specially formulated vitamin serum solution and cold air vapour application, it significantly contributes to preserving graft viability in both FUE and DHI techniques.', 'estecapelli' ) . '</p>',
-						'image'         => '',
-						'image_position' => 'left',
+						'image'               => '',
+						'image_url'           => 'assets/images/treatments/vita-science-en.webp',
+						'localized_image_url' => 'assets/images/treatments/vita-science-en.webp',
+						'image_position'      => 'left',
 						'cta'           => array( 'label' => '', 'url' => '' ),
 					),
 

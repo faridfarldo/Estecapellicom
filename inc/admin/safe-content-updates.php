@@ -118,6 +118,20 @@ function estecapelli_safe_patch_exosome_localized_image_operation( $image_path )
 	);
 }
 
+/** Target the VITA science intro without touching its shared ACF image. */
+function estecapelli_safe_patch_vita_localized_science_image_operation( $image_path ) {
+	return array(
+		array(
+			'target'       => 'layout_fields',
+			'layout'       => 'intro',
+			'layout_index' => 2,
+			'fields'       => array(
+				'localized_image_url' => array( 'before' => '', 'after' => $image_path ),
+			),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
@@ -810,6 +824,22 @@ function estecapelli_safe_content_patches() {
 				'pl' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-pl.webp' ),
 				'pt' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-pt.webp' ),
 				'tr' => estecapelli_safe_patch_exosome_localized_image_operation( 'assets/images/treatments/exosome-vs-tr.webp' ),
+			),
+		),
+		'vita-localized-science-infographic-20260723-v1' => array(
+			'title'       => 'VITA Treatment — Localized science infographic',
+			'description' => 'Give the VITA science section its matching EN, FR, IT, ES, PL, PT or TR graphic. The localized override leaves uploaded images on every other section untouched.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'vita-treatment',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'en' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-en.webp' ),
+				'fr' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-fr.webp' ),
+				'it' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-it.webp' ),
+				'es' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-es.webp' ),
+				'pl' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-pl.webp' ),
+				'pt' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-pt.webp' ),
+				'tr' => estecapelli_safe_patch_vita_localized_science_image_operation( 'assets/images/treatments/vita-science-tr.webp' ),
 			),
 		),
 	);
