@@ -14,6 +14,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/** Exact operations shared by the affected translated VITA pages. */
+function estecapelli_safe_patch_vita_empty_step_operations() {
+	return array(
+		array(
+			'target' => 'layout_fields',
+			'layout' => 'stepbook',
+			'fields' => array(
+				'items' => array( 'before' => array( '4', 4 ), 'after' => '3' ),
+			),
+		),
+		array(
+			'layout' => 'stepbook', 'repeater' => 'items', 'row_index' => 3,
+			'fields' => array(
+				'eyebrow'   => array( 'before' => '', 'after' => '' ),
+				'title'     => array( 'before' => '', 'after' => '' ),
+				'body'      => array( 'before' => '', 'after' => '' ),
+				'icon_file' => array( 'before' => array( '', '0' ), 'after' => '' ),
+				'image'     => array( 'before' => array( '', '0' ), 'after' => '' ),
+				'video_url' => array( 'before' => '', 'after' => '' ),
+			),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
@@ -506,6 +530,19 @@ function estecapelli_safe_content_patches() {
 				),
 			),
 		),
+		'vita-remove-empty-translated-step-20260723-v1' => array(
+			'title'       => 'VITA — Remove empty Step 4 from translations',
+			'description' => 'Reduce the affected translated VITA Step Books from four rows to three, only after verifying that the fourth row has no text or media. English and translations already showing three steps are intentionally excluded.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'vita-treatment',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'fr' => estecapelli_safe_patch_vita_empty_step_operations(),
+				'it' => estecapelli_safe_patch_vita_empty_step_operations(),
+				'es' => estecapelli_safe_patch_vita_empty_step_operations(),
+				'pt' => estecapelli_safe_patch_vita_empty_step_operations(),
+			),
+		),
 	);
 }
 
@@ -629,11 +666,13 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 			return new WP_Error( 'safe_patch_operations_missing', sprintf( 'No field operations are registered for language %s.', $language ) );
 		}
 		foreach ( $operations as $operation ) {
+			$target    = (string) ( $operation['target'] ?? 'row_fields' );
 			$layout    = (string) ( $operation['layout'] ?? '' );
 			$repeater  = (string) ( $operation['repeater'] ?? '' );
 			$row_index = isset( $operation['row_index'] ) ? (int) $operation['row_index'] : -1;
 			$fields    = $operation['fields'] ?? array();
-			if ( ! preg_match( '/^[a-z0-9_]+$/', $layout ) || ! preg_match( '/^[a-z0-9_]+$/', $repeater ) || $row_index < 0 || ! is_array( $fields ) || ! $fields ) {
+			$row_target_valid = 'row_fields' === $target && preg_match( '/^[a-z0-9_]+$/', $repeater ) && $row_index >= 0;
+			if ( ! preg_match( '/^[a-z0-9_]+$/', $layout ) || ( 'layout_fields' !== $target && ! $row_target_valid ) || ! is_array( $fields ) || ! $fields ) {
 				return new WP_Error( 'safe_patch_operation_invalid', sprintf( 'Invalid field operation registered for language %s.', $language ) );
 			}
 
@@ -642,7 +681,13 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 				return new WP_Error( 'safe_patch_layout_ambiguous', sprintf( '%s post %d has %d matching %s layouts; expected exactly one.', $language, $target_id, count( $indices ), $layout ) );
 			}
 			$layout_index = (int) reset( $indices );
-			$prefix       = 'page_sections_' . $layout_index . '_' . $repeater . '_' . $row_index . '_';
+			if ( 'layout_fields' === $target ) {
+				$prefix   = 'page_sections_' . $layout_index . '_';
+				$location = $layout . ' fields';
+			} else {
+				$prefix   = 'page_sections_' . $layout_index . '_' . $repeater . '_' . $row_index . '_';
+				$location = sprintf( '%s / %s row %d', $layout, $repeater, $row_index + 1 );
+			}
 			$row_fields   = array();
 			$all_after    = true;
 			$all_valid    = true;
@@ -679,7 +724,7 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 			$rows[] = array(
 				'language'  => $language,
 				'post_id'   => $target_id,
-				'location'  => sprintf( '%s / %s row %d', $layout, $repeater, $row_index + 1 ),
+				'location'  => $location,
 				'fields'    => $row_fields,
 				'status'    => $status,
 			);
