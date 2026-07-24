@@ -678,6 +678,23 @@ function estecapelli_safe_patch_pt_review_definition( $source_slug, $post_type, 
 /** Operations for the French copy revision (Google Doc "Sapphire FUE yanlış"). */
 function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
 	switch ( $source_slug ) {
+		case 'about-us':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 3,
+					'fields' => array(
+						'title' => array(
+							'before' => "Des résultats de classe mondiale, sans le prix gonflé",
+							'after'  => "Des résultats de classe mondiale, au juste prix",
+						),
+						'body' => array(
+							'before' => "<p>Pourquoi payer plus au Royaume-Uni, aux États-Unis ou en Europe ? Chez Estecapelli, nous associons excellence médicale, techniques accréditées à l’international et tarifs compétitifs pour offrir des résultats de greffe de cheveux de classe mondiale à une fraction du coût.</p><p>Nos installations à la pointe de la technologie en Turquie offrent la même qualité de soins que celle des meilleures cliniques du monde — sans les prix gonflés. Avec des chirurgiens expérimentés, des plans de traitement personnalisés et un suivi complet, vous bénéficiez d’une valeur exceptionnelle qui ne fait jamais de compromis sur la qualité.</p>",
+							'after'  => "<p>Pourquoi payer plus cher au Royaume-Uni, aux États-Unis ou en Europe ? Chez Estecapelli, nous associons l’excellence médicale, des techniques accréditées à l’international et des tarifs compétitifs pour offrir des résultats de greffe de cheveux de classe mondiale à une fraction des coûts habituels.</p><p>Nos installations à la pointe de la technologie en Turquie offrent la même qualité de soins que celle des meilleures cliniques du monde sans les tarifs prohibitifs. Avec des chirurgiens expérimentés, des plans de traitement personnalisés et un suivi complet, vous bénéficiez d’une valeur exceptionnelle qui ne fait jamais de compromis sur la qualité.</p>",
+						),
+					),
+				),
+			);
+
 		case 'rhinoplasty':
 			return array(
 				array(
@@ -970,6 +987,318 @@ function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
 				),
 			);
 
+		case 'breast-aesthetics-breast-surgery':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'hero', 'layout_index' => 0,
+					'fields' => array(
+						'title' => array(
+							'before' => "Esthétique mammaire",
+							'after'  => "Chirurgie esthétique mammaire",
+						),
+						'lead' => array(
+							'before' => "Obtenez des seins en harmonie avec votre corps, pleins et d’apparence naturelle. Notre planification personnalisée garantit des résultats esthétiques et équilibrés adaptés à votre silhouette et à vos objectifs uniques.",
+							'after'  => "Obtenez une poitrine en harmonie avec votre corps, pleine et d’apparence naturelle. Notre planification personnalisée garantit des résultats esthétiques et équilibrés adaptés à votre silhouette et à vos objectifs uniques.",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 1,
+					'fields' => array(
+						'title' => array(
+							'before' => "Qu’est-ce que l’esthétique mammaire (chirurgie mammaire) ?",
+							'after'  => "Qu’est-ce que la chirurgie esthétique mammaire ?",
+						),
+						'body' => array(
+							'before' => "<p>L'esthétique des seins est le terme général désignant les interventions chirurgicales esthétiques réalisées pour améliorer la taille, la forme et la position des seins en harmonie avec les proportions du visage et du corps. Les procédures les plus couramment pratiquées comprennent l'augmentation mammaire, la réduction mammaire et la chirurgie de lifting des seins.</p><p>Chez Estecapelli, l'esthétique mammaire ne se limite pas à l'augmentation ou à la réduction des seins. Il s’agit de créer une silhouette équilibrée et naturelle qui complète l’ensemble du corps. Chaque plan de traitement est soigneusement personnalisé en fonction de l’anatomie et des objectifs esthétiques uniques de chaque patient. Notre objectif ultime est d'aider les patients à se sentir mieux physiquement et émotionnellement, en obtenant une forme corporelle dans laquelle ils se sentent vraiment en confiance et à l'aise.</p>",
+							'after'  => "<p>L'esthétique mammaire regroupe les interventions chirurgicales conçues pour sublimer le volume, la courbe et la position de la poitrine, afin de créer une harmonie parfaite avec la morphologie globale. Les procédures de référence incluent l'augmentation, la réduction et le lifting mammaire.</p><p>Chez Estecapelli, notre philosophie dépasse la simple modification de volume. Nous recherchons avant tout l'équilibre et le naturel pour sculpter une silhouette cohérente qui valorise votre corps. Parce que chaque anatomie est singulière, chaque protocole est dessiné sur mesure selon vos aspirations. Notre vocation ultime est de vous accompagner vers un épanouissement à la fois physique et personnel, en vous offrant un résultat qui restaure pleinement votre confort et votre confiance en vous.</p>",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'candidate', 'layout_index' => 3,
+					'fields' => array( 'title' => array(
+						'before' => "Quand une augmentation mammaire est-elle pratiquée ?",
+						'after'  => "Dans quels cas envisager une augmentation mammaire ?",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'candidate', 'layout_index' => 7,
+					'fields' => array(
+						'title' => array(
+							'before' => "Esthétique mammaire en Turquie et avantages d'Estecapelli",
+							'after'  => "Pourquoi choisir la Turquie et Estecapelli pour votre chirurgie esthétique mammaire ?",
+						),
+						'body' => array(
+							'before' => "La Turquie est l’une des destinations les plus prisées au monde pour l’esthétique mammaire. Les principales raisons incluent :",
+							'after'  => "Aujourd'hui positionnée comme l'un des leaders mondiaux de la chirurgie plastique, la Turquie attire chaque année des milliers de patients pour ses traitements mammaires. Faire confiance à Estecapelli, c'est bénéficier de plusieurs atouts majeurs\u{00A0}:",
+						),
+						'footer' => array(
+							'before' => "Chez Estecapelli, ces avantages sont combinés à une approche personnalisée, garantissant que chaque patient reçoive l'attention, l'expertise et les résultats qu'il mérite.",
+							'after'  => "La clé de voûte de toute intervention réussie repose sur une compréhension mutuelle et parfaite entre le chirurgien et son patient. Choix des implants, projection du rendu esthétique, étapes post-opératoires\u{00A0}: chaque aspect est abordé en toute transparence. Chez Estecapelli, nous accordons une importance primordiale à la consultation préopératoire. Ce moment d'échange privilégié est conçu pour répondre à toutes vos questions, afin que vous abordiez votre intervention avec une clarté totale, une sérénité absolue et une parfaite confiance.",
+						),
+					),
+				),
+				array(
+					'layout' => 'candidate', 'layout_index' => 7, 'repeater' => 'items', 'row_index' => 0,
+					'fields' => array( 'label' => array(
+						'before' => "Chirurgiens hautement expérimentés avec un solide historique de cas réussis",
+						'after'  => "Chirurgiens de renom bénéficiant d'une solide expérience clinique et d'un historique remarquable de procédures couronnées de succès.",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'gallery', 'layout_index' => 10,
+					'fields' => array(
+						'title' => array(
+							'before' => "Esthétique mammaire – Avant et après",
+							'after'  => "Chirurgie esthétique mammaire – Avant & Après",
+						),
+						'lead' => array(
+							'before' => "Découvrez les résultats naturels et équilibrés obtenus par nos patients – plus complets, plus liftés ou plus proportionnés, toujours en harmonie avec le corps. Chaque résultat est personnalisé, avec des incisions placées le plus discrètement possible.",
+							'after'  => "Découvrez les transformations harmonieuses et naturelles de nos patientes. Qu'il s'agisse d'une poitrine plus galbée, regalbée par un lifting ou idéalement proportionnée, chaque projet est pensé sur mesure pour sublimer la silhouette. Nous accordons un soin extrême au détail, avec des incisions positionnées de la façon la plus discrète et invisible possible.",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 11,
+					'fields' => array( 'title' => array(
+						'before' => "Esthétique mammaire – Questions fréquentes",
+						'after'  => "Chirurgie esthétique mammaire – FAQ",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 12,
+					'fields' => array(
+						'title' => array(
+							'before' => "Prix de l’esthétique mammaire",
+							'after'  => "Tarifs de la chirurgie mammaire",
+						),
+						'body' => array(
+							'before' => "<p>Les tarifs d'esthétique mammaire, qu'il s'agisse d'une augmentation, d'une réduction ou d'un lifting, varient en fonction de plusieurs facteurs. Ceux-ci incluent le type d’implant sélectionné, l’étendue de la procédure, les éventuels traitements supplémentaires tels qu’un lifting, une correction d’asymétrie ou des chirurgies combinées, ainsi que les besoins individuels et l’anatomie du patient. Un devis personnalisé est fourni suite à une consultation détaillée, garantissant une totale transparence avant toute prise de décision.</p>",
+							'after'  => "<p>Le coût d'une chirurgie esthétique de la poitrine, qu'il s'agisse d'une augmentation, d'une réduction ou d'un lifting, dépend de plusieurs critères précis. Le type et la marque d'implants sélectionnés, la complexité de l'intervention, l'association de différents gestes chirurgicaux (comme la correction d'une asymétrie ou un lifting combiné) ainsi que votre anatomie unique influencent le plan de traitement.</p><p>Nous privilégions une transparence totale\u{00A0}: un devis personnalisé et détaillé vous sera remis à l'issue de votre consultation préopératoire, vous permettant de prendre votre décision en toute sérénité.</p>",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'form', 'layout_index' => 13,
+					'fields' => array(
+						'title' => array(
+							'before' => "Prêt pour une silhouette naturellement équilibrée ?",
+							'after'  => "Prête à révéler une silhouette naturellement équilibrée ?",
+						),
+						'lead' => array(
+							'before' => "Partagez quelques détails et notre équipe vous répondra avec un plan de chirurgie mammaire personnalisé et un devis tout compris sans engagement, généralement dans quelques heures.",
+							'after'  => "Partagez simplement quelques détails sur votre projet et notre équipe médicale concevra pour vous un protocole de chirurgie mammaire personnalisé. Vous recevrez une proposition de traitement sur mesure ainsi qu'un devis tout compris et sans engagement, généralement sous quelques heures.",
+						),
+					),
+				),
+			);
+
+		case 'face-and-neck-lift-surgery':
+			return array(
+				array(
+					'layout' => 'steps', 'layout_index' => 7, 'repeater' => 'items', 'row_index' => 1,
+					'fields' => array( 'body' => array(
+						'before' => "L’enflure diminue considérablement et le retour aux activités quotidiennes est possible.",
+						'after'  => "Le gonflement diminue considérablement et le retour aux activités quotidiennes est possible.",
+					) ),
+				),
+				array(
+					'layout' => 'steps', 'layout_index' => 7, 'repeater' => 'items', 'row_index' => 2,
+					'fields' => array( 'body' => array(
+						'before' => "L’enflure et les ecchymoses continuent de s’estomper et la plupart des activités normales peuvent reprendre.",
+						'after'  => "Le gonflement et les ecchymoses continuent de s’estomper et la plupart des activités normales peuvent reprendre.",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 10,
+					'fields' => array( 'title' => array(
+						'before' => "Lifting du visage et du cou — Foire aux questions",
+						'after'  => "Lifting du visage et du cou — FAQ",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'form', 'layout_index' => 12,
+					'fields' => array(
+						'title' => array(
+							'before' => "Prêt à rafraîchir votre apparence ?",
+							'after'  => "Prêt(e) à retrouver la fraîcheur de vos traits ?",
+						),
+						'lead' => array(
+							'before' => "Partagez quelques détails et notre équipe vous répondra avec un plan personnalisé de lifting du visage et du cou et un devis tout compris sans engagement, généralement dans quelques heures.",
+							'after'  => "Partagez votre projet esthétique avec nous en quelques instants. Notre équipe médicale concevra votre protocole personnalisé de lifting du visage et du cou, et vous transmettra un devis tout compris et sans engagement, généralement sous quelques heures.",
+						),
+					),
+				),
+			);
+
+		case 'before-after':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'hero', 'layout_index' => 0,
+					'fields' => array( 'lead' => array(
+						'before' => "Parcourez les montages avant-après de nos traitements de greffe capillaire, de chirurgie plastique et dentaires. Chaque image représente un patient qui nous a confié sa transformation.",
+						'after'  => "Parcourez les photos avant-après de nos traitements exclusifs. De la restauration capillaire à la chirurgie plastique, en passant par l'esthétique dentaire, chaque galerie illustre le savoir-faire de nos chirurgiens et la métamorphose unique des patients qui ont choisi de nous confier leur projet de vie.",
+					) ),
+				),
+			);
+
+		case 'sapphire-fue-hair-transplant':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'hero', 'layout_index' => 0,
+					'fields' => array(
+						'title' => array(
+							'before' => "Greffe de cheveux Sapphire FUE",
+							'after'  => "Greffe de cheveux FUE Saphir",
+						),
+						'lead' => array(
+							'before' => "L’une des méthodes de restauration capillaire les plus choisies aujourd’hui. La Sapphire FUE remplace les lames traditionnelles en acier par des instruments à pointe de saphir, qui créent des canaux extrêmement précis pour un résultat plus dense et naturel, ainsi qu’une cicatrisation plus rapide.",
+							'after'  => "L’une des méthodes de restauration capillaire les plus choisies aujourd’hui. La FUE Saphir remplace les lames traditionnelles en acier par des instruments à pointe de saphir, qui créent des canaux extrêmement précis pour un résultat plus dense et naturel, ainsi qu’une cicatrisation plus rapide.",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 2,
+					'fields' => array(
+						'title' => array(
+							'before' => "Qu’est-ce que la greffe capillaire Sapphire FUE ?",
+							'after'  => "Qu’est-ce que la greffe capillaire FUE Saphir ?",
+						),
+						'body' => array(
+							'before' => "<p>Les techniques de greffe capillaire évoluent au rythme des progrès technologiques. La Sapphire FUE est une version moderne et perfectionnée de la FUE classique : les canaux destinés à recevoir les greffons sont ouverts à l’aide de lames à pointe de saphir plutôt qu’en acier. Plus lisse et plus tranchant, le bord en saphir permet de réaliser des incisions plus fines et de rapprocher les greffons en respectant l’angle et l’orientation appropriés, pour un résultat plus dense et parfaitement naturel.</p>",
+							'after'  => "<p>Les techniques de greffe capillaire évoluent au rythme des progrès technologiques. La FUE Saphir est une version moderne et perfectionnée de la FUE classique : les canaux destinés à recevoir les greffons sont ouverts à l’aide de lames à pointe de saphir plutôt qu’en acier. Plus lisse et plus tranchant, le bord en saphir permet de réaliser des incisions plus fines et de rapprocher les greffons en respectant l’angle et l’orientation appropriés, pour un résultat plus dense et parfaitement naturel.</p>",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'stepbook', 'layout_index' => 3,
+					'fields' => array(
+						'title' => array(
+							'before' => "Comment la Sapphire FUE est-elle réalisée chez Estecapelli ?",
+							'after'  => "Comment la FUE Saphir est-elle réalisée chez Estecapelli ?",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'candidate', 'layout_index' => 4,
+					'fields' => array(
+						'title' => array(
+							'before' => "Pourquoi choisir Estecapelli et la Turquie pour une Sapphire FUE ?",
+							'after'  => "Pourquoi choisir Estecapelli et la Turquie pour une FUE Saphir ?",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 5,
+					'fields' => array(
+						'title' => array(
+							'before' => "Quelles sont les différences entre la Sapphire FUE et la FUE ?",
+							'after'  => "Quelles sont les différences entre la FUE Saphir et la FUE ?",
+						),
+						'body' => array(
+							'before' => "<p><strong>Des canaux fins et réguliers.</strong> Alors que la FUE traditionnelle utilise des lames en acier, la Sapphire FUE crée des canaux très précis avec des lames à pointe de saphir qui restent tranchantes plus longtemps. Les incisions sont ainsi plus petites et plus nettes, ce qui limite le traumatisme tissulaire et les saignements. Le placement précis des greffons favorise une pousse et une densité naturelles, ainsi qu’une récupération plus rapide et plus confortable.</p><p><strong>Une ligne frontale naturelle.</strong> La technique Sapphire FUE permet d’obtenir un aspect naturel avec une précision supérieure aux méthodes traditionnelles. Les lames en saphir créent des canaux qui respectent le sens de pousse des follicules, donnant au patient une ligne frontale plus naturelle. Elles permettent aussi d’atteindre une densité élevée pour un résultat plus fourni.</p><p><strong>Moins de cicatrices.</strong> La Sapphire FUE laisse moins de marques que les techniques traditionnelles. Comme les lames en saphir conservent leur tranchant, les incisions sont plus petites et les cicatrices après la guérison sont minimes. Ces marques s’estompent rapidement.</p>",
+							'after'  => "<p><strong>Des canaux fins et réguliers.</strong> Alors que la FUE traditionnelle utilise des lames en acier, la FUE Saphir crée des canaux très précis avec des lames à pointe de saphir qui restent tranchantes plus longtemps. Les incisions sont ainsi plus petites et plus nettes, ce qui limite le traumatisme tissulaire et les saignements. Le placement précis des greffons favorise une pousse et une densité naturelles, ainsi qu’une récupération plus rapide et plus confortable.</p><p><strong>Une ligne frontale naturelle.</strong> La technique FUE Saphir permet d’obtenir un aspect naturel avec une précision supérieure aux méthodes traditionnelles. Les lames en saphir créent des canaux qui respectent le sens de pousse des follicules, donnant au patient une ligne frontale plus naturelle. Elles permettent aussi d’atteindre une densité élevée pour un résultat plus fourni.</p><p><strong>Moins de cicatrices.</strong> La FUE Saphir laisse moins de marques que les techniques traditionnelles. Comme les lames en saphir conservent leur tranchant, les incisions sont plus petites et les cicatrices après la guérison sont minimes. Ces marques s’estompent rapidement.</p>",
+						),
+						'eyebrow' => array(
+							'before' => "Sapphire FUE ou FUE",
+							'after'  => "FUE Saphir ou FUE",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 7,
+					'fields' => array(
+						'title' => array(
+							'before' => "Récupération après une Sapphire FUE : à quoi s’attendre",
+							'after'  => "Récupération après une FUE Saphir : à quoi s’attendre",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 8,
+					'fields' => array(
+						'title' => array(
+							'before' => "Sapphire FUE — Questions fréquentes",
+							'after'  => "FUE Saphir — FAQ",
+						),
+					),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 0,
+					'fields' => array(
+						'question' => array(
+							'before' => "Quelle est la différence entre la Sapphire FUE et la FUE standard ?",
+							'after'  => "Quelle est la différence entre la FUE Saphir et la FUE standard ?",
+						),
+						'answer' => array(
+							'before' => "<p>Les deux méthodes prélèvent les follicules un par un selon la technique FUE ; la différence réside dans la lame. La FUE standard ouvre les canaux receveurs avec des lames en acier, tandis que la Sapphire FUE utilise des lames à pointe de saphir, qui restent plus tranchantes et créent des incisions plus petites et plus régulières. Les greffons peuvent ainsi être rapprochés pour obtenir davantage de densité, avec moins de traumatisme tissulaire, une ligne frontale plus naturelle, des cicatrices minimes et une cicatrisation plus rapide.</p>",
+							'after'  => "<p>Les deux méthodes prélèvent les follicules un par un selon la technique FUE ; la différence réside dans la lame. La FUE standard ouvre les canaux receveurs avec des lames en acier, tandis que la FUE Saphir utilise des lames à pointe de saphir, qui restent plus tranchantes et créent des incisions plus petites et plus régulières. Les greffons peuvent ainsi être rapprochés pour obtenir davantage de densité, avec moins de traumatisme tissulaire, une ligne frontale plus naturelle, des cicatrices minimes et une cicatrisation plus rapide.</p>",
+						),
+					),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 1,
+					'fields' => array(
+						'question' => array(
+							'before' => "Suis-je un bon candidat à la Sapphire FUE ?",
+							'after'  => "Suis-je un bon candidat à la FUE Saphir ?",
+						),
+					),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 2,
+					'fields' => array(
+						'answer' => array(
+							'before' => "<p>La Sapphire FUE nécessite généralement de raser les zones donneuse et receveuse afin d’offrir au chirurgien une précision maximale, mais des options de rasage partiel peuvent être étudiées lors de la consultation. La plupart des patients restent environ trois jours en Turquie, ce qui comprend le premier lavage et les instructions de soins avant le retour.</p>",
+							'after'  => "<p>La FUE Saphir nécessite généralement de raser les zones donneuse et receveuse afin d’offrir au chirurgien une précision maximale, mais des options de rasage partiel peuvent être étudiées lors de la consultation. La plupart des patients restent environ trois jours en Turquie, ce qui comprend le premier lavage et les instructions de soins avant le retour.</p>",
+						),
+					),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 3,
+					'fields' => array(
+						'question' => array(
+							'before' => "La Sapphire FUE est-elle douloureuse et comment se passe la récupération ?",
+							'after'  => "La FUE Saphir est-elle douloureuse et comment se passe la récupération ?",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'gallery', 'layout_index' => 9,
+					'fields' => array(
+						'title' => array(
+							'before' => "Sapphire FUE — Avant et après",
+							'after'  => "FUE Saphir — Avant et après",
+						),
+						'lead' => array(
+							'before' => "Découvrez la densité et les lignes frontales naturelles obtenues par nos patients grâce à la Sapphire FUE. Chaque intervention est planifiée selon votre propre schéma de pousse, afin que le résultat se fonde harmonieusement dans vos cheveux existants et paraisse parfaitement naturel.",
+							'after'  => "Découvrez la densité et les lignes frontales naturelles obtenues par nos patients grâce à la FUE Saphir. Chaque intervention est planifiée selon votre propre schéma de pousse, afin que le résultat se fonde harmonieusement dans vos cheveux existants et paraisse parfaitement naturel.",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'form', 'layout_index' => 10,
+					'fields' => array(
+						'title' => array(
+							'before' => "Prêt à retrouver vos cheveux grâce à la Sapphire FUE ?",
+							'after'  => "Prêt à retrouver vos cheveux grâce à la FUE Saphir ?",
+						),
+						'lead' => array(
+							'before' => "Partagez quelques informations avec nous. Notre équipe vous répondra avec un protocole Sapphire FUE personnalisé, une estimation du nombre de greffons et un devis tout compris sans engagement, généralement en quelques heures.",
+							'after'  => "Partagez quelques informations avec nous. Notre équipe vous répondra avec un protocole FUE Saphir personnalisé, une estimation du nombre de greffons et un devis tout compris sans engagement, généralement en quelques heures.",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 6,
+					'fields' => array( 'body' => array(
+						'before' => "<p><strong>Âge.</strong> Il n’existe pas de limite d’âge stricte pour une greffe capillaire, mais les candidats ont généralement plus de 25 ans, lorsque le schéma de la chute devient plus prévisible. Une perte importante peut toutefois être présente dès 22 à 24 ans ; son étendue compte donc autant que l’âge lors de la planification.</p><p><strong>Zone donneuse.</strong> Une greffe réussie nécessite des follicules sains pouvant être prélevés en toute sécurité. La zone donneuse principale se situe généralement à l’arrière et sur les côtés du cuir chevelu, où les cheveux sont génétiquement résistants à l’affinement. Lorsque des greffons supplémentaires sont nécessaires, les poils de la barbe ou du torse peuvent parfois être utilisés. La qualité et la densité de la zone donneuse déterminent le nombre de greffons disponibles.</p><p><strong>Type de chute.</strong> La cause de la chute est un facteur important pour déterminer votre éligibilité. Les meilleurs candidats présentent généralement une alopécie androgénétique masculine ou féminine, car elle touche habituellement certaines zones du cuir chevelu sans affecter la zone donneuse. D’autres formes d’alopécie nécessitent une évaluation plus spécialisée.</p><p><strong>État de santé.</strong> Pour que l’intervention et la cicatrisation se déroulent dans de bonnes conditions, vous ne devez pas présenter de problème médical susceptible de les perturber, par exemple :</p><ul><li>un diabète non contrôlé, qui peut ralentir la cicatrisation ;</li><li>de graves troubles cardiaques ou hépatiques, susceptibles de compliquer l’anesthésie ;</li><li>une infection active ou une maladie cutanée dans les zones donneuse ou receveuse ;</li><li>une maladie auto-immune pouvant perturber la pousse des cheveux.</li></ul>",
+						'after'  => "<p><strong>Âge\u{00A0}:</strong> Il n’existe pas de limite d’âge stricte pour une greffe capillaire, mais les candidats ont généralement plus de 25 ans, lorsque le schéma de la chute devient plus prévisible. Une perte importante peut toutefois être présente dès 22 à 24 ans ; son étendue compte donc autant que l’âge lors de la planification.</p><p><strong>Zone donneuse\u{00A0}:</strong> Une greffe réussie nécessite des follicules sains pouvant être prélevés en toute sécurité. La zone donneuse principale se situe généralement à l’arrière et sur les côtés du cuir chevelu, où les cheveux sont génétiquement résistants à l’affinement. Lorsque des greffons supplémentaires sont nécessaires, les poils de la barbe ou du torse peuvent parfois être utilisés. La qualité et la densité de la zone donneuse déterminent le nombre de greffons disponibles.</p><p><strong>Type de chute\u{00A0}:</strong> La cause de la chute est un facteur important pour déterminer votre éligibilité. Les meilleurs candidats présentent généralement une alopécie androgénétique masculine ou féminine, car elle touche habituellement certaines zones du cuir chevelu sans affecter la zone donneuse. D’autres formes d’alopécie nécessitent une évaluation plus spécialisée.</p><p><strong>État de santé\u{00A0}:</strong> Pour que l’intervention et la cicatrisation se déroulent dans de bonnes conditions, vous ne devez pas présenter de problème médical susceptible de les perturber, par exemple :</p><ul><li>un diabète non contrôlé, qui peut ralentir la cicatrisation ;</li><li>de graves troubles cardiaques ou hépatiques, susceptibles de compliquer l’anesthésie ;</li><li>une infection active ou une maladie cutanée dans les zones donneuse ou receveuse ;</li><li>une maladie auto-immune pouvant perturber la pousse des cheveux.</li></ul>",
+					) ),
+				),
+			);
+
 		default:
 			return array();
 	}
@@ -999,6 +1328,11 @@ function estecapelli_safe_content_patches() {
 		'fr-revision-bariatric-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'obesity-surgeries-bariatric-surgery-and-gastric-balloon', 'treatment', 'French revision — Chirurgie bariatrique' ),
 		'fr-revision-dental-implant-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'dental-implant', 'treatment', 'French revision — Implants dentaires' ),
 		'fr-revision-hollywood-smile-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'hollywood-smile', 'treatment', 'French revision — Hollywood Smile' ),
+		'fr-revision-breast-surgery-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'breast-aesthetics-breast-surgery', 'treatment', 'French revision — Chirurgie mammaire' ),
+		'fr-revision-face-lift-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'face-and-neck-lift-surgery', 'treatment', 'French revision — Lifting visage/cou' ),
+		'fr-revision-before-after-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'before-after', 'page', 'French revision — Avant & Après' ),
+		'fr-revision-sapphire-fue-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'sapphire-fue-hair-transplant', 'treatment', 'French revision — FUE Saphir' ),
+		'fr-revision-about-us-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'about-us', 'page', 'French revision — À propos (tarifs)' ),
 		'pt-review-exosome-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'exosome-fue-hair-transplant', 'treatment', 'Portuguese review — Exosome FUE' ),
 		'pt-review-vita-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'vita-treatment', 'treatment', 'Portuguese review — VITA Treatment' ),
 		'pt-review-sapphire-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'sapphire-fue-hair-transplant', 'treatment', 'Portuguese review — Sapphire FUE' ),
