@@ -1318,9 +1318,44 @@ function estecapelli_safe_patch_fr_revision_definition( $source_slug, $post_type
 	);
 }
 
+/**
+ * Repair the stale flexible-content layout map on translated Gynecomastia pages.
+ *
+ * The translated row fields already contain the localized gallery, FAQ, price,
+ * form and related-treatment copy. Five older imports retained the pre-gallery
+ * ten-row layout map, so those localized values are rendered through the wrong
+ * templates. Updating this single root meta value exposes the existing copy
+ * without rewriting any section field or uploaded media.
+ */
+function estecapelli_safe_patch_gynecomastia_layout_operation() {
+	$legacy = array( 'hero', 'intro', 'candidate', 'intro', 'stepbook', 'steps', 'faq', 'intro', 'form', 'related' );
+	$fixed  = array( 'hero', 'intro', 'candidate', 'intro', 'stepbook', 'steps', 'gallery', 'faq', 'intro', 'form', 'related' );
+
+	return array(
+		'target'        => 'root_meta',
+		'meta_key'      => 'page_sections',
+		'before_values' => array( $legacy, $fixed ),
+		'after_value'   => $fixed,
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
+		'gynecomastia-localized-faq-layout-20260724-v1' => array(
+			'title'       => 'Gynecomastia — restore localized FAQ layouts',
+			'description' => 'Restore the Gallery + FAQ layout map for the five affected Gynecomastia translations. Their localized FAQ copy is already stored in its own ACF rows; this exposes it through the correct template without changing any section text or media. Turkish is already rendering its localized FAQ correctly and is intentionally left untouched.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'gynecomastia',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'fr' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
+				'it' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
+				'es' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
+				'pl' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
+				'pt' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
+			),
+		),
 		'fr-revision-rhinoplasty-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'rhinoplasty', 'treatment', 'French revision — Rhinoplastie' ),
 		'fr-revision-liposuction-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'liposuction', 'treatment', 'French revision — Liposuccion' ),
 		'fr-revision-gynecomastia-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'gynecomastia', 'treatment', 'French revision — Gynécomastie' ),
@@ -2173,6 +2208,15 @@ function estecapelli_safe_patch_normalize_html( $value, $force_html = false ) {
 	return $structure . "\0" . $text;
 }
 
+/** Compare scalar meta as stored strings and structured meta by exact shape. */
+function estecapelli_safe_patch_values_equal( $left, $right ) {
+	if ( is_array( $left ) || is_array( $right ) || is_object( $left ) || is_object( $right ) ) {
+		return $left === $right;
+	}
+
+	return (string) $left === (string) $right;
+}
+
 /** Compare a current value with one or more allowed pre-patch values. */
 function estecapelli_safe_patch_matches( $current, $allowed ) {
 	$allowed = is_array( $allowed ) ? $allowed : array( $allowed );
@@ -2321,6 +2365,50 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 		}
 		foreach ( $operations as $operation ) {
 			$target    = (string) ( $operation['target'] ?? 'row_fields' );
+			if ( 'root_meta' === $target ) {
+				$meta_key = (string) ( $operation['meta_key'] ?? '' );
+				$allowed  = $operation['before_values'] ?? array();
+				$after    = $operation['after_value'] ?? null;
+				if ( ! preg_match( '/^[a-z0-9_]+$/', $meta_key ) || ! is_array( $allowed ) || ! $allowed || ! is_array( $after ) ) {
+					return new WP_Error( 'safe_patch_root_meta_invalid', sprintf( 'Invalid root-meta operation registered for language %s.', $language ) );
+				}
+
+				$seen_key = $target_id . ':' . $meta_key;
+				if ( isset( $seen_keys[ $seen_key ] ) ) {
+					return new WP_Error( 'safe_patch_duplicate_field', sprintf( 'Duplicate patch target: %s on post %d.', $meta_key, $target_id ) );
+				}
+				$seen_keys[ $seen_key ] = true;
+				$current                = get_post_meta( $target_id, $meta_key, true );
+				$is_after               = estecapelli_safe_patch_values_equal( $current, $after );
+				$is_valid               = $is_after;
+				foreach ( $allowed as $candidate ) {
+					if ( estecapelli_safe_patch_values_equal( $current, $candidate ) ) {
+						$is_valid = true;
+						break;
+					}
+				}
+				$status = $is_after ? 'already' : ( $is_valid ? 'pending' : 'conflict' );
+				if ( 'pending' === $status ) {
+					$pending++;
+				} elseif ( 'conflict' === $status ) {
+					$conflicts++;
+				}
+				$rows[] = array(
+					'language' => $language,
+					'post_id'  => $target_id,
+					'location' => 'flexible-content layout map',
+					'fields'   => array(
+						$meta_key => array(
+							'meta_key' => $meta_key,
+							'current'  => $current,
+							'after'    => $after,
+						),
+					),
+					'status'   => $status,
+				);
+				continue;
+			}
+
 			$layout    = (string) ( $operation['layout'] ?? '' );
 			$repeater  = (string) ( $operation['repeater'] ?? '' );
 			$row_index = isset( $operation['row_index'] ) ? (int) $operation['row_index'] : -1;
@@ -2479,14 +2567,14 @@ function estecapelli_safe_patch_apply( $patch_id ) {
 	$written  = array();
 	$post_ids = array();
 	foreach ( $backup as $item ) {
-		$current = (string) get_post_meta( $item['post_id'], $item['meta_key'], true );
-		if ( $current !== (string) $item['before'] ) {
+		$current = get_post_meta( $item['post_id'], $item['meta_key'], true );
+		if ( ! estecapelli_safe_patch_values_equal( $current, $item['before'] ) ) {
 			estecapelli_safe_patch_restore_meta( $written );
 			return new WP_Error( 'safe_patch_concurrent_edit', sprintf( 'Patch blocked: %s on post %d changed after preview; completed writes were rolled back.', $item['meta_key'], $item['post_id'] ) );
 		}
 		update_post_meta( $item['post_id'], $item['meta_key'], $item['after'] );
 		$written[] = $item;
-		if ( (string) get_post_meta( $item['post_id'], $item['meta_key'], true ) !== (string) $item['after'] ) {
+		if ( ! estecapelli_safe_patch_values_equal( get_post_meta( $item['post_id'], $item['meta_key'], true ), $item['after'] ) ) {
 			estecapelli_safe_patch_restore_meta( $written );
 			return new WP_Error( 'safe_patch_write_failed', sprintf( 'Verification failed for %s on post %d; completed writes were rolled back.', $item['meta_key'], $item['post_id'] ) );
 		}
@@ -2535,11 +2623,11 @@ function estecapelli_safe_patch_rollback( $patch_id ) {
 	}
 	foreach ( $backup['items'] as $item ) {
 		$item_key = ( $item['post_id'] ?? '' ) . ':' . ( $item['meta_key'] ?? '' );
-		if ( ! array_key_exists( $item_key, $allowed_items ) || (string) ( $item['after'] ?? '' ) !== (string) $allowed_items[ $item_key ] ) {
+		if ( ! array_key_exists( $item_key, $allowed_items ) || ! estecapelli_safe_patch_values_equal( $item['after'] ?? '', $allowed_items[ $item_key ] ) ) {
 			return new WP_Error( 'safe_patch_invalid_backup', 'Rollback blocked because its stored backup does not match this immutable patch.' );
 		}
-		$current = (string) get_post_meta( $item['post_id'], $item['meta_key'], true );
-		if ( $current !== (string) $item['after'] ) {
+		$current = get_post_meta( $item['post_id'], $item['meta_key'], true );
+		if ( ! estecapelli_safe_patch_values_equal( $current, $item['after'] ) ) {
 			return new WP_Error( 'safe_patch_rollback_conflict', sprintf( 'Rollback blocked: %s on post %d was edited after the patch.', $item['meta_key'], $item['post_id'] ) );
 		}
 	}
@@ -2581,7 +2669,12 @@ function estecapelli_register_safe_content_updates() {
 function estecapelli_safe_patch_field_summary( $fields, $value_key ) {
 	$parts = array();
 	foreach ( $fields as $field_name => $field ) {
-		$value   = wp_strip_all_tags( (string) ( $field[ $value_key ] ?? '' ) );
+		$value = $field[ $value_key ] ?? '';
+		if ( is_array( $value ) ) {
+			$value = implode( ' → ', array_map( 'strval', $value ) );
+		} else {
+			$value = wp_strip_all_tags( (string) $value );
+		}
 		$parts[] = $field_name . ': ' . $value;
 	}
 	return implode( ' | ', $parts );
