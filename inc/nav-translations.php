@@ -186,7 +186,7 @@ function estecapelli_nav_translations() {
 			'Bariatric surgery and gastric balloon for sustainable weight loss.' => 'Chirurgie bariatrique et ballon gastrique pour une perte de poids durable.',
 			'Dental Implant'                        => 'Implant dentaire',
 			'Permanent replacement for missing teeth with titanium roots.' => 'Remplacement permanent des dents manquantes par des racines en titane.',
-			'Hollywood Smile'                       => 'Sourire hollywoodien',
+			'Hollywood Smile'                       => 'Hollywood Smile',
 			'A bespoke makeover that reshapes your smile aesthetic.' => 'Une transformation sur mesure qui redessine l’esthétique de votre sourire.',
 			'About Estecapelli'                     => 'À propos d’Estecapelli',
 			'Who we are and what drives our clinic forward.' => 'Qui nous sommes et ce qui fait avancer notre clinique.',
