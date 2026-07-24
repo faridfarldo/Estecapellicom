@@ -104,6 +104,46 @@ function estecapelli_safe_patch_female_painless_operation( $before_title, $befor
 	);
 }
 
+/** Expand the five Turkish Exosome FUE Step Book descriptions in place. */
+function estecapelli_safe_patch_exosome_rich_tr_step_operations() {
+	$pairs = array(
+		array(
+			'before' => '<p>Sağlıklı greftler, ultra ince mikromotorlar kullanılarak güvenli donör alanından tek tek çıkarılır.</p>',
+			'after'  => '<p>Sağlıklı greftler, saçların genetik olarak dökülmeye dirençli olduğu ense ve başın yan kısımlarındaki güvenli donör bölgeden tek tek alınır. Cerrahlarımız her foliküler üniteyi kesi veya dikiş olmadan çıkarmak için ultra ince mikromotor uçları kullanır; böylece donör bölge hızla iyileşir ve çizgisel bir iz kalmaz.</p>',
+		),
+		array(
+			'before' => '<p>Hasatlanan greftler, onları besleyen ve ekime hazırlayan özel formüle edilmiş bir eksozom solüsyonuna yerleştirilir.</p>',
+			'after'  => '<p>Greftler alındıktan hemen sonra sıradan bir bekletme sıvısı yerine özel olarak formüle edilmiş eksozom solüsyonunda muhafaza edilir. Bu rejeneratif sinyal parçacıkları vücut dışındaki folikülleri besler ve korur, bekleme süresinin yarattığı stresi azaltır ve nakledildikten sonra yaşamlarını sürdürüp sağlıklı biçimde gelişmeleri için hazırlar.</p>',
+		),
+		array(
+			'before' => '<p>Alıcı alanı, en doğal açı ve yön için safir uçlu aletler kullanılarak hassas kanallarla hazırlanır.</p>',
+			'after'  => '<p>Alıcı bölge, doğal saç çizginiz ve yüz oranlarınız dikkate alınarak planlanır, ardından safir uçlu aletlerle mikrokanallar açılır. Bu pürüzsüz ve hassas mikrokanallar her folikülün derinliğini, açısını ve yönünü tam olarak kontrol eder; nihai sonucun doğal yoğunlukta ve fark edilemeyecek kadar doğal görünmesini sağlayan da budur.</p>',
+		),
+		array(
+			'before' => '<p>Eksozomla güçlendirilmiş foliküller, doğal yoğunluk ve yön için tek tek implante edilir.</p>',
+			'after'  => '<p>Eksozomla güçlendirilmiş foliküller, çevredeki saçların doğal büyüme düzenine uyularak hazırlanan kanallara tek tek yerleştirilir. Açıya, yöne ve aralığa gösterilen özen, dengeli bir kapatıcılık ile uzadıkça kendi saçınız gibi görünen ve davranan bir sonuç sağlar.</p>',
+		),
+		array(
+			'before' => '<p>Hastalar aynı gün evlerine dönebilir; ekibimiz iyileşme sürecinin her aşamasında kendilerine rehberlik eder.</p>',
+			'after'  => '<p>Çoğu hasta ayrıntılı bakım talimatları ve kişisel iyileşme planıyla aynı gün evine döner. Hafif kızarıklık ve kabuklanma ilk hafta içinde azalır; ekilen saçlar yeniden uzamadan önce dökülür. Ekibimiz süreç boyunca sizinle iletişimde kalır; ilk yıkamadan yaklaşık üçüncü ayda görülen yeni çıkışlara ve on ikinci ayda tamamlanan sonuca kadar size rehberlik eder.</p>',
+		),
+	);
+
+	$operations = array();
+	foreach ( $pairs as $row_index => $pair ) {
+		$operations[] = array(
+			'layout'    => 'stepbook',
+			'repeater'  => 'items',
+			'row_index' => $row_index,
+			'fields'    => array(
+				'body' => $pair,
+			),
+		);
+	}
+
+	return $operations;
+}
+
 /** Target the Exosome comparison intro without touching its shared ACF image. */
 function estecapelli_safe_patch_exosome_localized_image_operation( $image_path ) {
 	return array(
@@ -181,6 +221,16 @@ function estecapelli_safe_patch_exosome_localized_video_operation( $video_url ) 
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
+		'exosome-stepbook-rich-tr-20260724-v1' => array(
+			'title'       => 'Exosome FUE — Rich Turkish Step Book copy',
+			'description' => 'Expand all five Turkish procedure-stage descriptions to match the fuller two-to-three-sentence copy already used in the other six languages.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'exosome-fue-hair-transplant',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'tr' => estecapelli_safe_patch_exosome_rich_tr_step_operations(),
+			),
+		),
 		'exosome-quick-facts-20260723-v1' => array(
 			'title'       => 'Exosome FUE — Quick Facts revision',
 			'description' => 'Replace anaesthesia, procedure-time and recovery facts on the Exosome FUE page in all seven languages.',
