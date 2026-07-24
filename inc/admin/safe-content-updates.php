@@ -1339,21 +1339,167 @@ function estecapelli_safe_patch_gynecomastia_layout_operation() {
 	);
 }
 
+/** Build one exact root-meta operation, including optional copy-from-meta. */
+function estecapelli_safe_patch_root_meta_operation( $meta_key, $before_values, $after_value, $location = '' ) {
+	$operation = array(
+		'target'        => 'root_meta',
+		'meta_key'      => $meta_key,
+		'before_values' => $before_values,
+		'location'      => $location ? $location : $meta_key,
+	);
+	if ( is_array( $after_value ) && isset( $after_value['from_meta'] ) ) {
+		$operation['after_from_meta'] = (string) $after_value['from_meta'];
+	} else {
+		$operation['after_value'] = $after_value;
+	}
+
+	return $operation;
+}
+
+/** English FAQ copy accepted as the exact stale source on translated rows. */
+function estecapelli_safe_patch_gynecomastia_english_faq() {
+	return array(
+		array(
+			'question' => 'What is gynecomastia?',
+			'answer'   => '<p>Gynecomastia is the enlargement of breast tissue in men, giving the chest a fuller, more feminine appearance. It can be caused by a hormonal imbalance between estrogen and testosterone, weight gain, certain medications, anabolic steroid use or underlying health conditions. It is very common and, while harmless medically, can affect confidence — which is why many men choose treatment.</p>',
+		),
+		array(
+			'question' => 'How is gynecomastia treated?',
+			'answer'   => '<p>Treatment depends on whether the excess is fatty tissue, firm glandular tissue or a combination. Milder cases are corrected with liposuction (often Vaser), while cases with significant glandular tissue or loose skin require surgical removal of the gland and, where needed, skin tightening. Your surgeon confirms the right approach after examining you.</p>',
+		),
+		array(
+			'question' => 'Is the surgery painful, and what anaesthesia is used?',
+			'answer'   => '<p>The procedure is performed under general anaesthesia, so you feel nothing during surgery. Afterwards most patients describe mild soreness and tightness rather than significant pain, which is well controlled with prescribed medication and eases within a few days.</p>',
+		),
+		array(
+			'question' => 'How long is the recovery and stay in Turkey?',
+			'answer'   => '<p>Most patients stay in Turkey for around three to five days, including a follow-up check. You can return to daily life within one to two weeks, while a compression garment is worn for several weeks to support shaping. Strenuous exercise and chest workouts are resumed after about a month, with your surgeon’s approval.</p>',
+		),
+		array(
+			'question' => 'Will there be visible scars?',
+			'answer'   => '<p>Liposuction-only procedures leave tiny, barely noticeable marks. When glandular tissue or skin is removed, incisions are placed as discreetly as possible — often around the edge of the areola — and fade significantly over time with proper care.</p>',
+		),
+		array(
+			'question' => 'Are the results permanent, and can it come back?',
+			'answer'   => '<p>The removed glandular tissue does not grow back, so results are long-lasting. Recurrence is uncommon, but significant weight gain, steroid use or a new hormonal imbalance can cause changes — maintaining a stable weight and healthy lifestyle keeps your results looking their best.</p>',
+		),
+		array(
+			'question' => 'Does the chest look natural afterwards?',
+			'answer'   => '<p>Yes. Performed with the right technique, gynecomastia surgery creates a flat, firm and naturally masculine chest contour. The aim is always a result that looks like it was never operated on, in harmony with your body.</p>',
+		),
+	);
+}
+
+/**
+ * Restore one localized FAQ plus the final image moved into the gallery row.
+ *
+ * The content files are hash-pinned so this immutable patch cannot silently
+ * change if a translation JSON is edited in the future.
+ */
+function estecapelli_safe_patch_gynecomastia_faq_gallery_operations( $language ) {
+	static $cache = array();
+	if ( isset( $cache[ $language ] ) ) {
+		return $cache[ $language ];
+	}
+
+	$hashes = array(
+		'fr' => '5c3b36a41ad3a8a8c152f2159c3651f3e883737bcf2f785661ff4cbc8345f461',
+		'it' => '65fcad12f844dadfd2ded1ca7b0d74657bd59820cf8c694a4e4f0efeb9788c58',
+		'es' => '0f5adcadb7740071b4cdd91bcc406ffec6d9a3eb9392b6f872255ee5a77d0cad',
+		'pl' => '6ea91461678452554573a4186768974cadf40450ee6385fadc46273923696932',
+		'pt' => '32709375a9dbe390f0994f16db4cdc510202eee1f38ca55d3d41d2b9f78f0be8',
+	);
+	$file = get_template_directory() . '/inc/data/translations/' . $language . '/plastic-surgery/gynecomastia.json';
+	$raw  = is_readable( $file ) ? (string) file_get_contents( $file ) : '';
+	$hash = hash( 'sha256', str_replace( array( "\r\n", "\r" ), "\n", $raw ) );
+	if ( ! isset( $hashes[ $language ] ) || ! $raw || $hashes[ $language ] !== $hash ) {
+		return array( array( 'target' => 'configuration_error', 'message' => sprintf( 'The pinned %s Gynecomastia translation source is missing or changed.', strtoupper( $language ) ) ) );
+	}
+
+	$data = json_decode( $raw, true );
+	$faq  = null;
+	foreach ( (array) ( $data['sections'] ?? array() ) as $section ) {
+		if ( 'faq' === ( $section['acf_fc_layout'] ?? '' ) ) {
+			$faq = $section;
+			break;
+		}
+	}
+	if ( ! is_array( $faq ) || 7 !== count( $faq['items'] ?? array() ) ) {
+		return array( array( 'target' => 'configuration_error', 'message' => sprintf( 'The pinned %s Gynecomastia FAQ is invalid.', strtoupper( $language ) ) ) );
+	}
+
+	$operations   = array( estecapelli_safe_patch_gynecomastia_layout_operation() );
+	$operations[] = estecapelli_safe_patch_root_meta_operation( 'page_sections_6_items', array( '', '0', '1' ), '1', 'gallery item count' );
+	$operations[] = estecapelli_safe_patch_root_meta_operation( '_page_sections_6_items', array( '', 'field_gal_items' ), 'field_gal_items', 'gallery field reference' );
+	$operations[] = estecapelli_safe_patch_root_meta_operation( 'page_sections_6_items_0_image', array( '', '0' ), array( 'from_meta' => 'page_sections_7_image' ), 'gallery image' );
+	$operations[] = estecapelli_safe_patch_root_meta_operation( '_page_sections_6_items_0_image', array( '', 'field_gal_image' ), 'field_gal_image', 'gallery image field reference' );
+	$operations[] = estecapelli_safe_patch_root_meta_operation( 'page_sections_7_items', array( '', '0', '7' ), '7', 'FAQ item count' );
+	$operations[] = estecapelli_safe_patch_root_meta_operation( '_page_sections_7_items', array( '', 'field_faq_items' ), 'field_faq_items', 'FAQ field reference' );
+
+	$english = estecapelli_safe_patch_gynecomastia_english_faq();
+	foreach ( $faq['items'] as $index => $item ) {
+		$question_key = 'page_sections_7_items_' . $index . '_question';
+		$answer_key   = 'page_sections_7_items_' . $index . '_answer';
+		$operations[] = estecapelli_safe_patch_root_meta_operation(
+			$question_key,
+			array( '', $english[ $index ]['question'], $item['question'] ),
+			$item['question'],
+			'FAQ row ' . ( $index + 1 ) . ' question'
+		);
+		$operations[] = estecapelli_safe_patch_root_meta_operation(
+			'_' . $question_key,
+			array( '', 'field_faq_q' ),
+			'field_faq_q',
+			'FAQ row ' . ( $index + 1 ) . ' question reference'
+		);
+		$operations[] = estecapelli_safe_patch_root_meta_operation(
+			$answer_key,
+			array( '', $english[ $index ]['answer'], $item['answer'] ),
+			$item['answer'],
+			'FAQ row ' . ( $index + 1 ) . ' answer'
+		);
+		$operations[] = estecapelli_safe_patch_root_meta_operation(
+			'_' . $answer_key,
+			array( '', 'field_faq_a' ),
+			'field_faq_a',
+			'FAQ row ' . ( $index + 1 ) . ' answer reference'
+		);
+	}
+
+	$cache[ $language ] = $operations;
+	return $cache[ $language ];
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
 		'gynecomastia-localized-faq-layout-20260724-v1' => array(
-			'title'       => 'Gynecomastia — restore localized FAQ layouts',
-			'description' => 'Restore the Gallery + FAQ layout map for the five affected Gynecomastia translations. Their localized FAQ copy is already stored in its own ACF rows; this exposes it through the correct template without changing any section text or media. Turkish is already rendering its localized FAQ correctly and is intentionally left untouched.',
-			'post_type'   => 'treatment',
-			'source_slug' => 'gynecomastia',
-			'schema'      => 'field_groups_v2',
-			'languages'   => array(
+			'title'         => 'Gynecomastia — restore localized FAQ layouts',
+			'description'   => 'Restore the Gallery + FAQ layout map for the five affected Gynecomastia translations. Their localized FAQ copy is already stored in its own ACF rows; this exposes it through the correct template without changing any section text or media. Turkish is already rendering its localized FAQ correctly and is intentionally left untouched.',
+			'post_type'     => 'treatment',
+			'source_slug'   => 'gynecomastia',
+			'schema'        => 'field_groups_v2',
+			'superseded_by' => 'gynecomastia-localized-faq-and-gallery-20260724-v2',
+			'languages'     => array(
 				'fr' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
 				'it' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
 				'es' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
 				'pl' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
 				'pt' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
+			),
+		),
+		'gynecomastia-localized-faq-and-gallery-20260724-v2' => array(
+			'title'       => 'Gynecomastia — restore localized FAQ + final image',
+			'description' => 'Write the seven pinned localized FAQ rows for French, Italian, Spanish, Polish and Portuguese, restore the previous final image inside the gallery, and correct the flexible-content layout map. Every existing meta value is verified and fully rollback-safe. Turkish already renders its localized FAQ correctly.',
+			'post_type'   => 'treatment',
+			'source_slug' => 'gynecomastia',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'fr' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'fr' ),
+				'it' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'it' ),
+				'es' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'es' ),
+				'pl' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'pl' ),
+				'pt' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'pt' ),
 			),
 		),
 		'fr-revision-rhinoplasty-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'rhinoplasty', 'treatment', 'French revision — Rhinoplastie' ),
@@ -2365,12 +2511,25 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 		}
 		foreach ( $operations as $operation ) {
 			$target    = (string) ( $operation['target'] ?? 'row_fields' );
+			if ( 'configuration_error' === $target ) {
+				return new WP_Error( 'safe_patch_configuration_error', (string) ( $operation['message'] ?? 'Invalid patch configuration.' ) );
+			}
 			if ( 'root_meta' === $target ) {
-				$meta_key = (string) ( $operation['meta_key'] ?? '' );
-				$allowed  = $operation['before_values'] ?? array();
-				$after    = $operation['after_value'] ?? null;
-				if ( ! preg_match( '/^[a-z0-9_]+$/', $meta_key ) || ! is_array( $allowed ) || ! $allowed || ! is_array( $after ) ) {
+				$meta_key       = (string) ( $operation['meta_key'] ?? '' );
+				$allowed        = $operation['before_values'] ?? array();
+				$after_from_key = (string) ( $operation['after_from_meta'] ?? '' );
+				$has_after      = array_key_exists( 'after_value', $operation ) || '' !== $after_from_key;
+				if ( ! preg_match( '/^[a-z0-9_]+$/', $meta_key ) || ! is_array( $allowed ) || ! $allowed || ! $has_after ) {
 					return new WP_Error( 'safe_patch_root_meta_invalid', sprintf( 'Invalid root-meta operation registered for language %s.', $language ) );
+				}
+				if ( $after_from_key && ! preg_match( '/^[a-z0-9_]+$/', $after_from_key ) ) {
+					return new WP_Error( 'safe_patch_root_meta_source_invalid', sprintf( 'Invalid root-meta source registered for language %s.', $language ) );
+				}
+				$after = $after_from_key
+					? get_post_meta( $target_id, $after_from_key, true )
+					: $operation['after_value'];
+				if ( $after_from_key && ( '' === $after || '0' === (string) $after ) ) {
+					return new WP_Error( 'safe_patch_root_meta_source_empty', sprintf( '%s post %d has no source value in %s.', $language, $target_id, $after_from_key ) );
 				}
 
 				$seen_key = $target_id . ':' . $meta_key;
@@ -2396,7 +2555,7 @@ function estecapelli_safe_patch_preview( $patch_id ) {
 				$rows[] = array(
 					'language' => $language,
 					'post_id'  => $target_id,
-					'location' => 'flexible-content layout map',
+					'location' => (string) ( $operation['location'] ?? 'root meta' ),
 					'fields'   => array(
 						$meta_key => array(
 							'meta_key' => $meta_key,
