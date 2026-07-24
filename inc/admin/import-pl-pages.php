@@ -454,7 +454,7 @@ function estecapelli_render_pl_content_importer() {
 
 /* ---- Auto-import: refresh all Polish content once per version (no per-row clicking). ---- */
 if ( ! defined( 'ESTECAPELLI_PL_AUTORUN_VERSION' ) ) {
-	define( 'ESTECAPELLI_PL_AUTORUN_VERSION', '2026-07-20.1' );
+	define( 'ESTECAPELLI_PL_AUTORUN_VERSION', '2026-07-24.1' );
 }
 add_action( 'admin_init', 'estecapelli_maybe_autorun_pl_content', 95 );
 function estecapelli_maybe_autorun_pl_content() {

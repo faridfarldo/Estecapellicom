@@ -353,7 +353,7 @@ function estecapelli_render_pt_pages_importer() {
 
 /* ---- Auto-import: refresh all pt content once per version (no per-row clicking). ---- */
 if ( ! defined( 'ESTECAPELLI_PT_AUTORUN_VERSION' ) ) {
-	define( 'ESTECAPELLI_PT_AUTORUN_VERSION', '2026-07-20.1' );
+	define( 'ESTECAPELLI_PT_AUTORUN_VERSION', '2026-07-24.1' );
 }
 add_action( 'admin_init', 'estecapelli_maybe_autorun_pt_content', 95 );
 function estecapelli_maybe_autorun_pt_content() {

@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ESTECAPELLI_FR_PAGES_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_FR_PAGES_IMPORT_VERSION', '2026-07-20.2' );
+	define( 'ESTECAPELLI_FR_PAGES_IMPORT_VERSION', '2026-07-24.1' );
 }
 
 /**

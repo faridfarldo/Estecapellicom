@@ -23,6 +23,30 @@ function estecapelli_is_portuguese_request() {
 	return in_array( strtolower( str_replace( '_', '-', $language ) ), array( 'pt', 'pt-pt' ), true );
 }
 
+add_filter( 'gettext', 'estecapelli_pt_gettext_authoritative', 999, 3 );
+/**
+ * Force the reviewed Portuguese for theme strings that WPML String Translation
+ * holds a stale, auto-translated value for. Runs after WPML (unlike the fallback
+ * below) so the homepage always shows the approved copy. Keep this list short
+ * and homepage-scoped — every entry here permanently overrides WPML for that
+ * string in Portuguese.
+ */
+function estecapelli_pt_gettext_authoritative( $translation, $text, $domain ) {
+	if ( 'estecapelli' !== $domain || ! estecapelli_is_portuguese_request() ) {
+		return $translation;
+	}
+
+	static $overrides = null;
+	if ( null === $overrides ) {
+		$overrides = array(
+			'I know my hair-loss area' => 'Conheço a minha área de perda capilar',
+			'We trained our AI on the results of more than 15,000 patients. Learning from their success stories, it analyses your condition and guides you to the treatment that fits you best.' => 'Treinamos nossa Inteligência Artificial com os resultados de mais de 15.000 pacientes. Com base na análise de milhares de casos de sucesso, ela avalia o seu perfil capilar e indica o tratamento mais adequado para alcançar os melhores resultados.',
+		);
+	}
+
+	return array_key_exists( $text, $overrides ) ? $overrides[ $text ] : $translation;
+}
+
 add_filter( 'gettext', 'estecapelli_pt_gettext_fallback', 25, 3 );
 /** Supply Portuguese only when no earlier translation provider changed text. */
 function estecapelli_pt_gettext_fallback( $translation, $text, $domain ) {

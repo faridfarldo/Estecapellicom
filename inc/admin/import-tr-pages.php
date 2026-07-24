@@ -369,7 +369,7 @@ function estecapelli_render_tr_pages_importer() {
 
 /* ---- Auto-import: refresh all tr content once per version (no per-row clicking). ---- */
 if ( ! defined( 'ESTECAPELLI_TR_AUTORUN_VERSION' ) ) {
-	define( 'ESTECAPELLI_TR_AUTORUN_VERSION', '2026-07-20.1' );
+	define( 'ESTECAPELLI_TR_AUTORUN_VERSION', '2026-07-24.1' );
 }
 add_action( 'admin_init', 'estecapelli_maybe_autorun_tr_content', 95 );
 function estecapelli_maybe_autorun_tr_content() {
