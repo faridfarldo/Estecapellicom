@@ -851,6 +851,125 @@ function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
 				),
 			);
 
+		case 'hollywood-smile':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'hero', 'layout_index' => 0,
+					'fields' => array( 'title' => array(
+						'before' => "Sourire hollywoodien",
+						'after'  => "Hollywood Smile",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 1,
+					'fields' => array(
+						'title' => array(
+							'before' => "Qu’est-ce qu’un sourire hollywoodien ?",
+							'after'  => "Qu’est-ce qu’un Hollywood Smile ?",
+						),
+						'body' => array(
+							'before' => "<p>Le sourire hollywoodien est un traitement complet de design du sourire qui harmonise la relation entre les dents, les gencives et les lèvres afin de créer un sourire symétrique, naturel et parfaitement adapté au visage de chacun. Plutôt que de simplement modifier l’apparence des dents, il adopte une approche globale, prenant en compte la santé des gencives, la structure du visage et les proportions esthétiques dans leur ensemble.</p><p>Chez Estecapelli, chaque sourire hollywoodien est personnalisé grâce aux technologies de conception numérique et aux principes de la dentisterie esthétique. Le résultat est un sourire non seulement visuellement remarquable, mais aussi sain, équilibré et conçu pour durer.</p>",
+							'after'  => "<p>Le sourire « Hollywoodien » est un traitement complet de design du sourire qui harmonise la relation entre les dents, les gencives et les lèvres afin de créer un sourire symétrique, naturel et parfaitement adapté au visage de chacun. Plutôt que de simplement modifier l’apparence des dents, il adopte une approche globale, prenant en compte la santé des gencives, la structure du visage et les proportions esthétiques dans leur ensemble.</p><p>Chez Estecapelli, chaque sourire « Hollywoodien » est personnalisé grâce aux technologies de conception numérique et aux principes de la dentisterie esthétique. Le résultat est un sourire non seulement visuellement remarquable, mais aussi sain, équilibré et conçu pour durer.</p>",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'candidate', 'layout_index' => 2,
+					'fields' => array(
+						'title' => array(
+							'before' => "À qui s’adresse le sourire hollywoodien ?",
+							'after'  => "À qui s’adresse le Hollywood Smile ?",
+						),
+						'body' => array(
+							'before' => "Le sourire hollywoodien est une solution idéale pour les personnes concernées par l’un des points suivants :",
+							'after'  => "Le sourire « Hollywoodien » est une solution idéale pour les personnes concernées par l’un des points suivants :",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'stepbook', 'layout_index' => 3,
+					'fields' => array(
+						'title' => array(
+							'before' => "Comment réalise-t-on un sourire hollywoodien ?",
+							'after'  => "Comment réalise-t-on un Hollywood Smile ?",
+						),
+						'lead' => array(
+							'before' => "Le sourire hollywoodien est un traitement hautement personnalisé, et la procédure est adaptée aux besoins uniques de chaque patient. Bien que les étapes précises puissent varier, le processus suit généralement ces grandes étapes.",
+							'after'  => "Le sourire « Hollywoodien » est un traitement hautement personnalisé, et la procédure est adaptée aux besoins uniques de chaque patient. Bien que les étapes précises puissent varier, le processus suit généralement ces grandes étapes.",
+						),
+					),
+				),
+				array(
+					'layout' => 'stepbook', 'layout_index' => 3, 'repeater' => 'items', 'row_index' => 4,
+					'fields' => array( 'body' => array(
+						'before' => "<p>Les matériaux les plus adaptés sont appliqués pour remodeler et transformer les dents sur le plan esthétique. Les options les plus couramment utilisées dans le traitement du sourire hollywoodien sont :</p><p><strong>Facette en céramique (laminée)</strong></p><ul><li>Aspect esthétique le plus proche des dents naturelles</li><li>Grande translucidité à la lumière pour un rendu réaliste</li><li>Nécessite une réduction minimale de la dent</li></ul><p><strong>Couronnes en zircone</strong></p><ul><li>Durables grâce à leur structure très résistante</li><li>Adaptées en cas de dents manquantes</li><li>Offrent un résultat blanc et esthétique</li></ul><p><strong>Collage composite</strong></p><ul><li>Idéal pour corriger rapidement de petites imperfections</li><li>Peut être appliqué sans endommager la structure naturelle de la dent</li></ul>",
+						'after'  => "<p>Les matériaux les plus adaptés sont appliqués pour remodeler et transformer les dents sur le plan esthétique. Les options les plus couramment utilisées dans le traitement du sourire « Hollywoodien » sont :</p><p><strong>Facette en céramique (laminée)</strong></p><ul><li>Aspect esthétique le plus proche des dents naturelles</li><li>Grande translucidité à la lumière pour un rendu réaliste</li><li>Nécessite une réduction minimale de la dent</li></ul><p><strong>Couronnes en zircone</strong></p><ul><li>Durables grâce à leur structure très résistante</li><li>Adaptées en cas de dents manquantes</li><li>Offrent un résultat blanc et esthétique</li></ul><p><strong>Collage composite</strong></p><ul><li>Idéal pour corriger rapidement de petites imperfections</li><li>Peut être appliqué sans endommager la structure naturelle de la dent</li></ul>",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'gallery', 'layout_index' => 4,
+					'fields' => array( 'title' => array(
+						'before' => "Sourire hollywoodien — Avant et après",
+						'after'  => "Hollywood Smile — Avant et après",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 5,
+					'fields' => array( 'title' => array(
+						'before' => "Sourire hollywoodien — Foire aux questions",
+						'after'  => "Hollywood Smile — FAQ",
+					) ),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 5, 'repeater' => 'items', 'row_index' => 0,
+					'fields' => array(
+						'question' => array(
+							'before' => "Quelle est la différence entre facettes, couronnes et sourire hollywoodien ?",
+							'after'  => "Quelle est la différence entre facettes, couronnes et sourire « Hollywoodien » ?",
+						),
+						'answer' => array(
+							'before' => "<p>Un sourire hollywoodien n’est pas un produit unique mais un plan complet de design du sourire. Les facettes en céramique laminée sont des coques ultra-fines collées sur la face avant des dents et ne nécessitent qu’un remodelage minimal ; les couronnes en zircone recouvrent toute la dent et sont utilisées lorsqu’une dent est très usée, cassée ou dévitalisée. Votre dentiste combine les options qui conviennent à chaque dent — avec un blanchiment ou un remodelage gingival si nécessaire — afin que le résultat final paraisse équilibré sur l’ensemble du sourire.</p>",
+							'after'  => "<p>Un sourire « Hollywoodien » n’est pas un produit unique mais un plan complet de design du sourire. Les facettes en céramique laminée sont des coques ultra-fines collées sur la face avant des dents et ne nécessitent qu’un remodelage minimal ; les couronnes en zircone recouvrent toute la dent et sont utilisées lorsqu’une dent est très usée, cassée ou dévitalisée. Votre dentiste combine les options qui conviennent à chaque dent — avec un blanchiment ou un remodelage gingival si nécessaire — afin que le résultat final paraisse équilibré sur l’ensemble du sourire.</p>",
+						),
+					),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 5, 'repeater' => 'items', 'row_index' => 2,
+					'fields' => array( 'answer' => array(
+						'before' => "<p>Un sourire hollywoodien bien conçu doit paraître naturel pour votre visage. La teinte, la forme des dents et les proportions sont choisies à partir d’un design numérique du sourire basé sur vos traits, votre âge et votre carnation — vous obtenez ainsi un sourire lumineux et régulier sans l’aspect plat et trop blanc d’un « bloc de dents ». La teinte est convenue avec vous au préalable.</p>",
+						'after'  => "<p>Un sourire « Hollywoodien » bien conçu doit paraître naturel pour votre visage. La teinte, la forme des dents et les proportions sont choisies à partir d’un design numérique du sourire basé sur vos traits, votre âge et votre carnation — vous obtenez ainsi un sourire lumineux et régulier sans l’aspect plat et trop blanc d’un « bloc de dents ». La teinte est convenue avec vous au préalable.</p>",
+					) ),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 5, 'repeater' => 'items', 'row_index' => 3,
+					'fields' => array( 'answer' => array(
+						'before' => "<p>La plupart des traitements de sourire hollywoodien sont réalisés en cinq à sept jours environ, en deux à trois rendez-vous — le premier pour la préparation et les provisoires, les suivants pour la pose et les ajustements des restaurations définitives. Nous vous recommandons de planifier votre séjour en conséquence et de garder une journée à la fin pour d’éventuels petits ajustements.</p>",
+						'after'  => "<p>La plupart des traitements de sourire « Hollywoodien » sont réalisés en cinq à sept jours environ, en deux à trois rendez-vous — le premier pour la préparation et les provisoires, les suivants pour la pose et les ajustements des restaurations définitives. Nous vous recommandons de planifier votre séjour en conséquence et de garder une journée à la fin pour d’éventuels petits ajustements.</p>",
+					) ),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 5, 'repeater' => 'items', 'row_index' => 7,
+					'fields' => array( 'question' => array(
+						'before' => "Un sourire hollywoodien peut-il corriger des dents de travers ou espacées sans appareil ?",
+						'after'  => "Un sourire « Hollywoodien » peut-il corriger des dents de travers ou espacées sans appareil ?",
+					) ),
+				),
+				array(
+					'layout' => 'faq', 'layout_index' => 5, 'repeater' => 'items', 'row_index' => 9,
+					'fields' => array( 'question' => array(
+						'before' => "Qui est un bon candidat pour un sourire hollywoodien ?",
+						'after'  => "Qui est un bon candidat pour un sourire « Hollywoodien » ?",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'form', 'layout_index' => 6,
+					'fields' => array( 'lead' => array(
+						'before' => "Envoyez-nous quelques détails et notre équipe vous répondra avec un plan de sourire hollywoodien personnalisé et un devis tout compris et sans engagement, généralement en quelques heures.",
+						'after'  => "Envoyez-nous quelques détails et notre équipe vous répondra avec un plan de sourire « Hollywoodien » personnalisé et un devis tout compris et sans engagement, généralement en quelques heures.",
+					) ),
+				),
+			);
+
 		default:
 			return array();
 	}
@@ -879,6 +998,7 @@ function estecapelli_safe_content_patches() {
 		'fr-revision-abdominoplasty-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'abdominoplasty-tummy-tuck', 'treatment', 'French revision — Abdominoplastie' ),
 		'fr-revision-bariatric-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'obesity-surgeries-bariatric-surgery-and-gastric-balloon', 'treatment', 'French revision — Chirurgie bariatrique' ),
 		'fr-revision-dental-implant-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'dental-implant', 'treatment', 'French revision — Implants dentaires' ),
+		'fr-revision-hollywood-smile-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'hollywood-smile', 'treatment', 'French revision — Hollywood Smile' ),
 		'pt-review-exosome-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'exosome-fue-hair-transplant', 'treatment', 'Portuguese review — Exosome FUE' ),
 		'pt-review-vita-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'vita-treatment', 'treatment', 'Portuguese review — VITA Treatment' ),
 		'pt-review-sapphire-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'sapphire-fue-hair-transplant', 'treatment', 'Portuguese review — Sapphire FUE' ),
