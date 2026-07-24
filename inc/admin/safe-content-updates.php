@@ -714,10 +714,16 @@ function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
 				),
 				array(
 					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 7,
-					'fields' => array( 'title' => array(
-						'before' => "Comment se déroule la chirurgie de liposuccion ?",
-						'after'  => "Comment se déroule l’intervention ?",
-					) ),
+					'fields' => array(
+						'title' => array(
+							'before' => "Comment se déroule la chirurgie de liposuccion ?",
+							'after'  => "Comment se déroule l’intervention ?",
+						),
+						'body' => array(
+							'before' => "<p>La liposuccion est réalisée sous anesthésie locale ou générale. La technique choisie dépend de la quantité et des caractéristiques de la graisse à éliminer, ainsi que de la taille de la zone traitée.</p><p><strong>Étapes générales\u{00A0}:</strong></p><ol><li>Faire de petites incisions</li><li>Décomposer la graisse à l'aide de la technologie appropriée (Vaser, laser, etc.)</li><li>Enlever les cellules graisseuses avec des canules</li><li>Contourner et façonner la zone</li><li>Fermer les incisions avec un minimum cicatrisation</li></ol><p>Durée\u{00A0}: 30 minutes à 3 heures, selon l'ampleur de l'intervention.</p>",
+							'after'  => "<p>La liposuccion est réalisée sous anesthésie locale ou générale. La technique choisie dépend de la quantité et des caractéristiques de la graisse à éliminer, ainsi que de la taille de la zone traitée.</p><p><strong>Étapes\u{00A0}:</strong></p><ol><li>Réalisation de micro-incisions stratégiques.</li><li>Ciblage et émulsion de la graisse\u{00A0}: Grâce à des technologies de pointe (Vaser Lipo, Laser), la graisse est liquéfiée en douceur, préservant ainsi les tissus environnants (vaisseaux et nerfs).</li><li>Aspiration douce des cellules graisseuses\u{00A0}: À l'aide de micro-canules de haute précision, les excès de graisse ciblés sont retirés de manière homogène et définitive.</li><li>Sculpture et harmonisation de la silhouette\u{00A0}: Le chirurgien redessine les contours du corps avec un sens du détail artistique pour un résultat naturel et sur mesure.</li><li>Sutures de précision\u{00A0}: Les micro-incisions sont refermées avec des points d'une extrême finesse, assurant une cicatrisation optimale, rapide et esthétique.</li></ol><p>La durée de l'intervention varie de 30 minutes à 3 heures, selon l'ampleur du remodelage et le nombre de zones à traiter.</p>",
+						),
+					),
 				),
 				array(
 					'layout' => 'steps', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 2,
@@ -761,6 +767,35 @@ function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
 				),
 			);
 
+		case 'gynecomastia':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 1,
+					'fields' => array( 'body' => array(
+						'before' => "<p>La gynécomastie est une affection caractérisée par un développement excessif du tissu mammaire chez l’homme, donnant à la poitrine un aspect plus volumineux. Les hommes possèdent naturellement du tissu et des glandes mammaires, que la testostérone maintient généralement peu développés. Un déséquilibre hormonal, une prise de poids, certains médicaments ou un problème de santé sous-jacent peuvent perturber cet équilibre et favoriser l’apparition d’une gynécomastie.</p><p>Cette affection dépasse la seule dimension esthétique : elle peut affecter le bien-être psychologique, la confiance en soi et la vie sociale. Chez Estecapelli, la gynécomastie est prise en charge sous ses aspects médicaux et esthétiques afin de proposer à chaque patient une solution personnalisée et durable.</p>",
+						'after'  => "<p>La gynécomastie désigne l’augmentation du volume de la poitrine chez l’homme, liée à un développement anormal de la glande mammaire. Ce phénomène s’explique généralement par un déséquilibre entre les hormones masculines et féminines (testostérone et œstrogènes), mais peut aussi être accentué par une prise de poids ou certains facteurs de santé.</p><p>Souvent source de complexes ou de gêne au quotidien, cette affection mérite une prise en charge experte et bienveillante. Pour les équipes d’Estecapelli, restaurer l’harmonie de votre torse est une priorité. Nous concevons un plan de traitement personnalisé afin de vous aider à retrouver une silhouette athlétique dans laquelle vous vous sentirez pleinement à l’aise.</p>",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 7,
+					'fields' => array( 'title' => array(
+						'before' => "Gynécomastie – Foire aux questions",
+						'after'  => "Gynécomastie – FAQ",
+					) ),
+				),
+			);
+
+		case 'abdominoplasty-tummy-tuck':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 8,
+					'fields' => array( 'title' => array(
+						'before' => "Abdominoplastie – Foire aux questions",
+						'after'  => "Abdominoplastie – FAQ",
+					) ),
+				),
+			);
+
 		default:
 			return array();
 	}
@@ -785,6 +820,8 @@ function estecapelli_safe_content_patches() {
 	return array(
 		'fr-revision-rhinoplasty-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'rhinoplasty', 'treatment', 'French revision — Rhinoplastie' ),
 		'fr-revision-liposuction-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'liposuction', 'treatment', 'French revision — Liposuccion' ),
+		'fr-revision-gynecomastia-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'gynecomastia', 'treatment', 'French revision — Gynécomastie' ),
+		'fr-revision-abdominoplasty-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'abdominoplasty-tummy-tuck', 'treatment', 'French revision — Abdominoplastie' ),
 		'pt-review-exosome-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'exosome-fue-hair-transplant', 'treatment', 'Portuguese review — Exosome FUE' ),
 		'pt-review-vita-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'vita-treatment', 'treatment', 'Portuguese review — VITA Treatment' ),
 		'pt-review-sapphire-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'sapphire-fue-hair-transplant', 'treatment', 'Portuguese review — Sapphire FUE' ),
