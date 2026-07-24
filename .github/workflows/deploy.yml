@@ -47,12 +47,37 @@ jobs:
             response_file=$(mktemp)
 
             local http_code
+            local curl_status
+            set +e
             http_code=$(curl --silent --show-error \
               --max-time 120 \
               --output "$response_file" \
               --write-out "%{http_code}" \
               -H "$auth_header" \
               "https://${CPANEL_HOST}/execute/${endpoint}?repository_root=${encoded_path}")
+            curl_status=$?
+            set -e
+
+            # Some account-specific cPanel hostnames use a service certificate
+            # that GitHub's runner cannot validate (curl 60). The public domain
+            # endpoint has a valid certificate but cPanel rejects this account's
+            # API token there with HTTP 403, so retry only this certificate error
+            # against the original HTTPS endpoint with verification disabled.
+            if [ "$curl_status" -eq 60 ]; then
+              echo "::warning::cPanel service certificate could not be validated; retrying the account-specific HTTPS endpoint"
+              http_code=$(curl --silent --show-error --insecure \
+                --max-time 120 \
+                --output "$response_file" \
+                --write-out "%{http_code}" \
+                -H "$auth_header" \
+                "https://${CPANEL_HOST}/execute/${endpoint}?repository_root=${encoded_path}")
+              curl_status=$?
+            fi
+
+            if [ "$curl_status" -ne 0 ]; then
+              echo "::error::${label} curl failed with exit code ${curl_status}"
+              return 1
+            fi
 
             echo "::group::${label} (HTTP $http_code)"
             cat "$response_file"
