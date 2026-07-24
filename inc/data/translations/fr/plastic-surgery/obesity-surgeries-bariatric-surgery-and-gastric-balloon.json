@@ -112,7 +112,7 @@
                      {
                          "acf_fc_layout":  "intro",
                          "eyebrow":  "Important",
-                         "title":  "Quand un ballon gastrique ne doit pas être utilisé",
+                         "title":  "Quelles sont les contre-indications au ballon gastrique ?",
                          "body":  "\u003cul\u003e\u003cli\u003eUlcère gastrique, gastrite et hernie hiatale\u003c/li\u003e\u003cli\u003eAbus de substances\u003c/li\u003e\u003cli\u003eTroubles alimentaires graves\u003c/li\u003e\u003cli\u003ePériode de grossesse et d\u0027allaitement\u003c/li\u003e\u003c/ul\u003e"
                      },
                      {
@@ -133,7 +133,7 @@
                      {
                          "acf_fc_layout":  "faq",
                          "eyebrow":  "Bon à savoir",
-                         "title":  "Chirurgie bariatrique — Foire aux questions",
+                         "title":  "Chirurgie bariatrique — FAQ",
                          "items":  [
                                        {
                                            "question":  "À qui s’adresse la chirurgie bariatrique ?",

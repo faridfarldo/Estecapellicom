@@ -783,6 +783,13 @@ function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
 						'after'  => "Gynécomastie – FAQ",
 					) ),
 				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 8,
+					'fields' => array( 'title' => array(
+						'before' => "Prix de la chirurgie de la gynécomastie",
+						'after'  => "Tarif de la chirurgie de la gynécomastie",
+					) ),
+				),
 			);
 
 		case 'abdominoplasty-tummy-tuck':
@@ -792,6 +799,54 @@ function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
 					'fields' => array( 'title' => array(
 						'before' => "Abdominoplastie – Foire aux questions",
 						'after'  => "Abdominoplastie – FAQ",
+					) ),
+				),
+			);
+
+		case 'obesity-surgeries-bariatric-surgery-and-gastric-balloon':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 9,
+					'fields' => array(
+						'title' => array(
+							'before' => "Quand un ballon gastrique ne doit pas être utilisé",
+							'after'  => "Quelles sont les contre-indications au ballon gastrique ?",
+						),
+						'body' => array(
+							'before' => "<ul><li>Ulcère gastrique, gastrite et hernie hiatale</li><li>Abus de substances</li><li>Troubles alimentaires graves</li><li>Période de grossesse et d'allaitement</li></ul>",
+							'after'  => "<ul><li><strong>Antécédents chirurgicaux\u{00A0}:</strong> Avoir déjà subi une chirurgie de l'estomac ou de l'œsophage (comme une Sleeve ou un Bypass).</li><li><strong>Affections digestives actives\u{00A0}:</strong> Présence d'un ulcère à l'estomac, d'une gastrite sévère ou d'une hernie hiatale importante.</li><li><strong>Grossesse\u{00A0}:</strong> L'intervention est contre-indiquée chez les femmes enceintes ou allaitantes.</li><li><strong>Troubles du comportement alimentaire\u{00A0}:</strong> Les profils souffrant d'hyperphagie ou de boulimie non stabilisée.</li></ul>",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 12,
+					'fields' => array( 'title' => array(
+						'before' => "Chirurgie bariatrique — Foire aux questions",
+						'after'  => "Chirurgie bariatrique — FAQ",
+					) ),
+				),
+			);
+
+		case 'dental-implant':
+			return array(
+				array(
+					'layout' => 'faq', 'layout_index' => 7, 'repeater' => 'items', 'row_index' => 0,
+					'fields' => array(
+						'question' => array(
+							'before' => "Qui est un bon candidat pour un implant dentaire ?",
+							'after'  => "Êtes-vous un bon candidat pour les implants dentaires ?",
+						),
+						'answer' => array(
+							'before' => "<p>La plupart des adultes en bonne santé générale ayant perdu une ou plusieurs dents et disposant d’un os de mâchoire sain en quantité suffisante sont de bons candidats. Des affections comme un diabète non contrôlé, une maladie des gencives avancée ou une perte osseuse importante n’excluent pas nécessairement le traitement, mais elles sont d’abord évaluées et prises en charge. Un court examen avec radiographies ou scanner 3D permet à nos dentistes de confirmer votre éligibilité et de définir le bon plan.</p>",
+							'after'  => "<p>En règle générale, cette intervention s’adresse à tous les adultes en bonne santé qui souhaitent remplacer une ou plusieurs dents manquantes, sous réserve de disposer d’un volume osseux suffisant au niveau de la mâchoire.</p><p>Certaines situations comme un diabète non stabilisé, une affection des gencives (parodontite) ou une perte osseuse importante ne constituent pas des barrières définitives. Elles nécessitent simplement une prise en charge préalable par nos spécialistes. Lors de votre première évaluation, un examen approfondi accompagné de radiographies ou d’un scanner 3D permettra à nos chirurgiens-dentistes de confirmer votre éligibilité et de concevoir votre plan de traitement sur mesure.</p>",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 7,
+					'fields' => array( 'title' => array(
+						'before' => "Implants dentaires — Foire aux questions",
+						'after'  => "Implants dentaires — FAQ",
 					) ),
 				),
 			);
@@ -822,6 +877,8 @@ function estecapelli_safe_content_patches() {
 		'fr-revision-liposuction-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'liposuction', 'treatment', 'French revision — Liposuccion' ),
 		'fr-revision-gynecomastia-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'gynecomastia', 'treatment', 'French revision — Gynécomastie' ),
 		'fr-revision-abdominoplasty-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'abdominoplasty-tummy-tuck', 'treatment', 'French revision — Abdominoplastie' ),
+		'fr-revision-bariatric-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'obesity-surgeries-bariatric-surgery-and-gastric-balloon', 'treatment', 'French revision — Chirurgie bariatrique' ),
+		'fr-revision-dental-implant-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'dental-implant', 'treatment', 'French revision — Implants dentaires' ),
 		'pt-review-exosome-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'exosome-fue-hair-transplant', 'treatment', 'Portuguese review — Exosome FUE' ),
 		'pt-review-vita-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'vita-treatment', 'treatment', 'Portuguese review — VITA Treatment' ),
 		'pt-review-sapphire-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'sapphire-fue-hair-transplant', 'treatment', 'Portuguese review — Sapphire FUE' ),
