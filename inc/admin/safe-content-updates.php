@@ -2119,6 +2119,26 @@ function estecapelli_safe_patch_option_key( $kind, $patch_id ) {
 	return 'estecapelli_safe_patch_' . $kind . '_' . substr( hash( 'sha256', $patch_id ), 0, 20 );
 }
 
+/** Canonicalise serialization-only differences in an HTML field. */
+function estecapelli_safe_patch_normalize_html( $value ) {
+	$value = (string) $value;
+	if ( false === strpos( $value, '<' ) ) {
+		return null;
+	}
+
+	// TinyMCE/WordPress may store the same visible punctuation as a literal
+	// UTF-8 character or an HTML entity. French rich text also commonly carries
+	// U+00A0/U+202F before punctuation while the JSON seed uses a normal space.
+	// Decode those equivalent serializations, but retain all tags and text.
+	$value = str_replace( array( "\r\n", "\r" ), "\n", $value );
+	$value = html_entity_decode( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	$value = str_replace( array( "\xC2\xA0", "\xE2\x80\xAF" ), ' ', $value );
+
+	// ACF's WYSIWYG formatter may add line breaks between block tags. Whitespace
+	// inside text nodes is deliberately untouched so real copy edits conflict.
+	return trim( preg_replace( '/>\s+</u', '><', $value ) );
+}
+
 /** Compare a current value with one or more allowed pre-patch values. */
 function estecapelli_safe_patch_matches( $current, $allowed ) {
 	$allowed = is_array( $allowed ) ? $allowed : array( $allowed );
@@ -2127,23 +2147,12 @@ function estecapelli_safe_patch_matches( $current, $allowed ) {
 		return true;
 	}
 
-	// Rich-text (wysiwyg) fields are stored on the site with wpautop-style
-	// whitespace between block tags — e.g. "</p>\n<p>" or a trailing newline —
-	// that the seed strings do not contain. When a value carries HTML tags,
-	// compare again with the whitespace between tags collapsed and the ends
-	// trimmed, so a patch is not blocked by formatting-only differences. Plain
-	// text keeps strict matching (returns null and is skipped).
-	$normalize = static function ( $value ) {
-		$value = (string) $value;
-		if ( false === strpos( $value, '<' ) ) {
-			return null;
-		}
-		return trim( preg_replace( '/>\s+</', '><', $value ) );
-	};
-	$current_norm = $normalize( $current );
+	// Only HTML values receive serialization normalization. Plain text retains
+	// the exact-match behavior above, including its original whitespace.
+	$current_norm = estecapelli_safe_patch_normalize_html( $current );
 	if ( null !== $current_norm ) {
 		foreach ( $allowed as $candidate ) {
-			$candidate_norm = $normalize( $candidate );
+			$candidate_norm = estecapelli_safe_patch_normalize_html( $candidate );
 			if ( null !== $candidate_norm && $current_norm === $candidate_norm ) {
 				return true;
 			}
