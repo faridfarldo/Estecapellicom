@@ -90,7 +90,7 @@
                      {
                          "acf_fc_layout":  "candidate",
                          "eyebrow":  "Candidats",
-                         "title":  "Qui peut subir une liposuccion ?",
+                         "title":  "Qui est le bon candidat pour une liposuccion ?",
                          "body":  "Si vous répondez à l’un de ces critères, vous pourriez être candidat à une liposuccion :",
                          "items":  [
                                        {
@@ -113,19 +113,19 @@
                      {
                          "acf_fc_layout":  "intro",
                          "eyebrow":  "Important",
-                         "title":  "Quand la liposuccion n’est pas recommandée",
+                         "title":  "Dans quels cas la liposuccion est-elle déconseillée ?",
                          "body":  "\u003cul\u003e\u003cli\u003ePériode de grossesse et d\u0027allaitement\u003c/li\u003e\u003cli\u003eMaladies chroniques graves\u003c/li\u003e\u003cli\u003eTroubles de la coagulation\u003c/li\u003e\u003cli\u003eObésité sévère\u003c/li\u003e\u003c/ul\u003e"
                      },
                      {
                          "acf_fc_layout":  "intro",
                          "eyebrow":  "Avant l’intervention",
                          "title":  "Préparation avant la liposuccion",
-                         "body":  "\u003cp\u003eLe processus préopératoire à Estecapelli est méticuleusement géré pour garantir une planification chirurgicale sûre.\u003c/p\u003e"
+                         "body":  "\u003cp\u003eLe processus préopératoire chez Estecapelli est méticuleusement géré pour garantir une planification chirurgicale sûre.\u003c/p\u003e"
                      },
                      {
                          "acf_fc_layout":  "intro",
                          "eyebrow":  "L’opération",
-                         "title":  "Comment se déroule la chirurgie de liposuccion ?",
+                         "title":  "Comment se déroule l’intervention ?",
                          "body":  "\u003cp\u003eLa liposuccion est réalisée sous anesthésie locale ou générale. La technique choisie dépend de la quantité et des caractéristiques de la graisse à éliminer, ainsi que de la taille de la zone traitée.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eÉtapes générales :\u003c/strong\u003e\u003c/p\u003e\u003col\u003e\u003cli\u003eFaire de petites incisions\u003c/li\u003e\u003cli\u003eDécomposer la graisse à l\u0027aide de la technologie appropriée (Vaser, laser, etc.)\u003c/li\u003e\u003cli\u003eEnlever les cellules graisseuses avec des canules\u003c/li\u003e\u003cli\u003eContourner et façonner la zone\u003c/li\u003e\u003cli\u003eFermer les incisions avec un minimum cicatrisation\u003c/li\u003e\u003c/ol\u003e\u003cp\u003eDurée : 30 minutes à 3 heures, selon l\u0027ampleur de l\u0027intervention.\u003c/p\u003e"
                      },
                      {
@@ -146,18 +146,18 @@
                                        },
                                        {
                                            "time":  "2 à 3 semaines",
-                                           "title":  "L’enflure diminue",
+                                           "title":  "Le gonflement diminue",
                                            "body":  "Le gonflement diminue considérablement. Un retour progressif aux activités sportives est possible."
                                        },
                                        {
                                            "time":  "6 semaines – 3 mois",
-                                           "title":  "Les contours prennent forme",
-                                           "body":  "Les contours du corps commencent à prendre forme."
+                                           "title":  "Redéfinition de la silhouette",
+                                           "body":  "Les courbes se dessinent progressivement et les contours du corps se stabilisent pour révéler le résultat final."
                                        },
                                        {
                                            "time":  "3 à 6 mois",
-                                           "title":  "Résultats finaux",
-                                           "body":  "Les résultats finaux sont révélés."
+                                           "title":  "Stabilisation et résultats finaux",
+                                           "body":  "Les nouveaux contours du corps se stabilisent pour laisser place au résultat esthétique final, harmonieux et naturel."
                                        }
                                    ]
                      },
@@ -193,7 +193,7 @@
                      {
                          "acf_fc_layout":  "faq",
                          "eyebrow":  "Bon à savoir",
-                         "title":  "Liposuccion – Foire aux questions",
+                         "title":  "Liposuccion – FAQ",
                          "items":  [
                                        {
                                            "question":  "La liposuccion est-elle une méthode de perte de poids ?",

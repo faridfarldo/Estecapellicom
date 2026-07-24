@@ -675,9 +675,116 @@ function estecapelli_safe_patch_pt_review_definition( $source_slug, $post_type, 
 	);
 }
 
+/** Operations for the French copy revision (Google Doc "Sapphire FUE yanlış"). */
+function estecapelli_safe_patch_fr_revision_operations( $source_slug ) {
+	switch ( $source_slug ) {
+		case 'rhinoplasty':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'hero', 'layout_index' => 0,
+					'fields' => array( 'lead' => array(
+						'before' => "Une intervention chirurgicale qui remodèle le nez en améliorant sa forme, sa taille et sa fonction. Elle peut être réalisée à des fins esthétiques comme pour corriger des problèmes respiratoires.",
+						'after'  => "Une intervention chirurgicale qui remodèle le nez en améliorant sa forme, sa taille et sa fonction. Elle peut être réalisée dans un but esthétique tout comme pour corriger des problèmes respiratoires.",
+					) ),
+				),
+			);
+
+		case 'liposuction':
+			return array(
+				array(
+					'target' => 'layout_fields', 'layout' => 'candidate', 'layout_index' => 4,
+					'fields' => array( 'title' => array(
+						'before' => "Qui peut subir une liposuccion ?",
+						'after'  => "Qui est le bon candidat pour une liposuccion ?",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 5,
+					'fields' => array( 'title' => array(
+						'before' => "Quand la liposuccion n’est pas recommandée",
+						'after'  => "Dans quels cas la liposuccion est-elle déconseillée ?",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 6,
+					'fields' => array( 'body' => array(
+						'before' => "<p>Le processus préopératoire à Estecapelli est méticuleusement géré pour garantir une planification chirurgicale sûre.</p>",
+						'after'  => "<p>Le processus préopératoire chez Estecapelli est méticuleusement géré pour garantir une planification chirurgicale sûre.</p>",
+					) ),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'intro', 'layout_index' => 7,
+					'fields' => array( 'title' => array(
+						'before' => "Comment se déroule la chirurgie de liposuccion ?",
+						'after'  => "Comment se déroule l’intervention ?",
+					) ),
+				),
+				array(
+					'layout' => 'steps', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 2,
+					'fields' => array( 'title' => array(
+						'before' => "L’enflure diminue",
+						'after'  => "Le gonflement diminue",
+					) ),
+				),
+				array(
+					'layout' => 'steps', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 3,
+					'fields' => array(
+						'title' => array(
+							'before' => "Les contours prennent forme",
+							'after'  => "Redéfinition de la silhouette",
+						),
+						'body' => array(
+							'before' => "Les contours du corps commencent à prendre forme.",
+							'after'  => "Les courbes se dessinent progressivement et les contours du corps se stabilisent pour révéler le résultat final.",
+						),
+					),
+				),
+				array(
+					'layout' => 'steps', 'layout_index' => 8, 'repeater' => 'items', 'row_index' => 4,
+					'fields' => array(
+						'title' => array(
+							'before' => "Résultats finaux",
+							'after'  => "Stabilisation et résultats finaux",
+						),
+						'body' => array(
+							'before' => "Les résultats finaux sont révélés.",
+							'after'  => "Les nouveaux contours du corps se stabilisent pour laisser place au résultat esthétique final, harmonieux et naturel.",
+						),
+					),
+				),
+				array(
+					'target' => 'layout_fields', 'layout' => 'faq', 'layout_index' => 11,
+					'fields' => array( 'title' => array(
+						'before' => "Liposuccion – Foire aux questions",
+						'after'  => "Liposuccion – FAQ",
+					) ),
+				),
+			);
+
+		default:
+			return array();
+	}
+}
+
+/** Assemble one page-scoped French revision patch. */
+function estecapelli_safe_patch_fr_revision_definition( $source_slug, $post_type, $title ) {
+	return array(
+		'title'       => $title,
+		'description' => 'Apply the reviewed French copy from the language revision. Every existing value is verified before writing and an exact rollback backup is kept.',
+		'post_type'   => $post_type,
+		'source_slug' => $source_slug,
+		'schema'      => 'field_groups_v2',
+		'languages'   => array(
+			'fr' => estecapelli_safe_patch_fr_revision_operations( $source_slug ),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
+		'fr-revision-rhinoplasty-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'rhinoplasty', 'treatment', 'French revision — Rhinoplastie' ),
+		'fr-revision-liposuction-20260724-v1' => estecapelli_safe_patch_fr_revision_definition( 'liposuction', 'treatment', 'French revision — Liposuccion' ),
 		'pt-review-exosome-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'exosome-fue-hair-transplant', 'treatment', 'Portuguese review — Exosome FUE' ),
 		'pt-review-vita-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'vita-treatment', 'treatment', 'Portuguese review — VITA Treatment' ),
 		'pt-review-sapphire-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'sapphire-fue-hair-transplant', 'treatment', 'Portuguese review — Sapphire FUE' ),
