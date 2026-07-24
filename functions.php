@@ -273,15 +273,25 @@ function estecapelli_enqueue_assets() {
 		true
 	);
 
-	// Lead popup: AJAX endpoint + nonce, and the contact-page paths whose links
-	// should open the popup instead of navigating. See assets/js/main.js.
+	// Lead popup: AJAX endpoint + nonce, and every localized contact-page path
+	// whose CTA buttons should open the popup instead of navigating. Keep the
+	// unprefixed legacy route as a fallback for older links and cached markup.
+	$lead_contact_paths = array( '/contact' );
+	foreach ( estecapelli_indexed_languages() as $language ) {
+		$contact_path = estecapelli_indexed_route_path( '/en/contact', $language );
+		if ( $contact_path ) {
+			$lead_contact_paths[] = untrailingslashit( $contact_path );
+		}
+	}
+	$lead_contact_paths = array_values( array_unique( $lead_contact_paths ) );
+
 	wp_localize_script(
 		'estecapelli-main',
 		'EstecapelliLead',
 		array(
 			'ajax'         => admin_url( 'admin-ajax.php' ),
 			'nonce'        => wp_create_nonce( 'estecapelli_lead_ajax' ),
-			'contactPaths' => array( '/en/contact', '/contact' ),
+			'contactPaths' => $lead_contact_paths,
 			'i18n'         => array(
 				'sending' => __( 'Sending…', 'estecapelli' ),
 				'thanks'  => __( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ),
