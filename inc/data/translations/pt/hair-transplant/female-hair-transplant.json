@@ -35,7 +35,7 @@
       "acf_fc_layout": "intro",
       "eyebrow": "A técnica mais adequada",
       "title": "As melhores técnicas de transplante capilar para mulheres",
-      "body": "<p>Na Estecapelli, a técnica que recomendamos com maior frequência às mulheres é o transplante DHI. As nossas pacientes valorizam especialmente o DHI porque permite implantar os folículos diretamente sem rapar o cabelo existente, sendo por isso ideal para quem deseja conservar o seu aspeto durante todo o processo.</p><p><strong>Vantagens do DHI:</strong> controlo preciso da angulação e da direção, maior densidade de implantação, ausência de corte total do cabelo, cicatrizes mínimas, recuperação mais rápida e menor risco de danificar os folículos existentes.</p>"
+      "body": "<p>Na Estecapelli, a técnica que recomendamos com maior frequência às mulheres é o transplante DHI. As nossas pacientes valorizam especialmente o DHI porque permite implantar os folículos diretamente sem raspar o cabelo existente, sendo por isso ideal para quem deseja conservar o seu aspecto durante todo o processo.</p><p><strong>Vantagens do DHI:</strong> controle preciso da angulação e da direção, maior densidade de implantação, ausência de corte total do cabelo, cicatrizes mínimas, recuperação mais rápida e menor risco de danificar os folículos existentes.</p>"
     },
     {
       "acf_fc_layout": "stepbook",
@@ -90,7 +90,7 @@
       "acf_fc_layout": "intro",
       "eyebrow": "Soluções alternativas",
       "title": "Tratamentos não cirúrgicos para a queda feminina",
-      "body": "<p>Para as mulheres que apresentam queda de cabelo mas não desejam submeter-se a um procedimento cirúrgico, oferecemos também várias opções:</p><ul><li><strong>PRP</strong> — tratamento regenerativo natural que nutre e fortalece os folículos.</li><li><strong>Mesoterapia</strong> — microinjeções de vitaminas e minerais diretamente no couro cabeludo.</li><li><strong>Terapia com células estaminais</strong> — revitaliza os folículos inativos através de células regenerativas.</li><li><strong>Injeções de exossomas</strong> — tratamento de nova geração que estimula os processos naturais de reparação do couro cabeludo.</li></ul>",
+      "body": "<p>Para as mulheres que apresentam queda de cabelo mas não desejam submeter-se a um procedimento cirúrgico, oferecemos também várias opções:</p><ul><li><strong>PRP</strong> — tratamento regenerativo natural que nutre e fortalece os folículos.</li><li><strong>Mesoterapia</strong> — microinjeções de vitaminas e minerais diretamente no couro cabeludo.</li><li><strong>Terapia com células estaminais</strong> — revitaliza os folículos inativos através de células regenerativas.</li><li><strong>Injeções de Exossomos</strong> — tratamento de nova geração que estimula os processos naturais de reparação do couro cabeludo.</li></ul>",
       "cta": { "label": "Falar com um consultor" }
     },
     {
@@ -100,7 +100,7 @@
       "items": [
         {
           "question": "Sou uma boa candidata a um transplante capilar?",
-          "answer": "<p>A maioria das mulheres com uma queda estabilizada e uma zona dadora saudável na parte posterior do couro cabeludo pode ser candidata. O tratamento está especialmente indicado para o enfraquecimento ao longo do risco, uma linha frontal mais larga ou têmporas pouco densas. Como a queda difusa é mais frequente nas mulheres, identificar primeiro a causa é essencial; uma consulta com fotografias nítidas permite à nossa equipa confirmar a sua elegibilidade e estimar os enxertos necessários.</p>"
+          "answer": "<p>A maioria das mulheres com uma queda estabilizada e uma zona dadora saudável na parte posterior do couro cabeludo pode ser candidata. O tratamento está especialmente indicado para o enfraquecimento ao longo do fio, uma linha frontal mais ampla ou têmporas pouco densas. Como a queda difusa é mais frequente nas mulheres, identificar primeiro a causa é essencial; uma consulta com fotografias nítidas permite à nossa equipa confirmar a sua elegibilidade e estimar os enxertos necessários.</p>"
         },
         {
           "question": "Terei de rapar a cabeça? Posso manter o cabelo comprido?",
@@ -143,7 +143,7 @@
       "acf_fc_layout": "form",
       "eyebrow": "Consulta gratuita",
       "title": "Está preparada para recuperar o seu cabelo?",
-      "lead": "Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano personalizado sem rapar o cabelo, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.",
+      "lead": "Partilhe conosco alguns dados e a nossa equipa responderá com um plano personalizado sem rapar o cabelo, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.",
       "points": [
         { "label": "Avaliação gratuita de enxertos a partir das suas fotografias" },
         { "label": "DHI sem rapar, planeado em torno do cabelo existente" },

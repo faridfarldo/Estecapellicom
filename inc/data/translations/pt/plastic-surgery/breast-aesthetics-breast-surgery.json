@@ -7,7 +7,7 @@
       "acf_fc_layout": "hero",
       "eyebrow": "Cirurgia mamária",
       "title": "Estética mamária",
-      "lead": "Obtenha um peito com volume, natural e em harmonia com o seu corpo. O nosso planeamento personalizado oferece resultados estéticos e equilibrados, adaptados à sua silhueta e aos seus objetivos.",
+      "lead": "Obtenha um seio com volume, natural e em harmonia com o seu corpo. O nosso planeamento personalizado oferece resultados estéticos e equilibrados, adaptados à sua silhueta e aos seus objetivos.",
       "cta_primary": { "label": "Consulta gratuita" },
       "cta_secondary": { "label": "Fale connosco no WhatsApp" }
     },
@@ -59,7 +59,7 @@
       "acf_fc_layout": "intro",
       "eyebrow": "Como funciona",
       "title": "Como se realiza um aumento mamário?",
-      "body": "<p>A cirurgia de aumento mamário é realizada sob anestesia geral, num bloco operatório totalmente equipado, e costuma durar entre 1,5 e 2 horas. Durante o procedimento, os implantes são cuidadosamente colocados para obter o resultado mais natural e proporcionado possível. A paciente tem normalmente alta no dia seguinte, após um controlo pós-operatório de rotina.</p>"
+      "body": "<p>A cirurgia de aumento mamário é realizada sob anestesia geral, num bloco operatório totalmente equipado, e costuma durar entre 1,5 e 2 horas. Durante o procedimento, os implantes são cuidadosamente colocados para obter o resultado mais natural e proporcionado possível. A paciente tem normalmente alta no dia seguinte, após um controle pós-operatório de rotina.</p>"
     },
     {
       "acf_fc_layout": "intro",
@@ -119,8 +119,8 @@
           "answer": "<p>Os implantes de silicone são a opção mais habitual e oferecem um aumento previsível e duradouro do tamanho e da projeção. A transferência de gordura, que utiliza lipoaspiração para extrair gordura da própria paciente, está indicada para quem deseja uma melhoria moderada e muito natural e dispõe de tecido adiposo suficiente. Os implantes permitem uma maior alteração de volume; a gordura evita um corpo estranho, mas pode ser parcialmente reabsorvida. O cirurgião explicar-lhe-á a solução mais coerente com o seu corpo e as suas expectativas.</p>"
         },
         {
-          "question": "Implantes redondos ou anatómicos? Por cima ou por baixo do músculo?",
-          "answer": "<p>Os implantes redondos tendem a criar maior plenitude no polo superior, enquanto os anatómicos, em forma de lágrima, seguem um perfil mais suave e natural; ambos podem oferecer um excelente resultado na paciente adequada. A colocação por baixo do músculo costuma ser preferida pelo seu aspeto mais natural, um suporte mais duradouro dos tecidos e um menor risco de contratura capsular. A escolha final da forma, do tamanho, do perfil e do plano de colocação é feita em conjunto com a paciente segundo a sua constituição, o tecido existente e o resultado pretendido.</p>"
+          "question": "Implantes redondos ou anatômicos? Por cima ou por baixo do músculo?",
+          "answer": "<p>Os implantes redondos tendem a criar maior plenitude no polo superior, enquanto os anatómicos, em forma de lágrima, seguem um perfil mais suave e natural; ambos podem oferecer um excelente resultado na paciente adequada. A colocação por baixo do músculo costuma ser preferida pelo seu aspecto mais natural, um suporte mais duradouro dos tecidos e um menor risco de contratura capsular. A escolha final da forma, do tamanho, do perfil e do plano de colocação é feita em conjunto com a paciente segundo a sua constituição, o tecido existente e o resultado pretendido.</p>"
         },
         {
           "question": "Que anestesia é utilizada, quanto tempo dura a intervenção e é dolorosa?",
@@ -155,7 +155,7 @@
       "acf_fc_layout": "form",
       "eyebrow": "Consulta gratuita",
       "title": "Deseja uma silhueta naturalmente equilibrada?",
-      "lead": "Faculte-nos alguns dados e a nossa equipa responder-lhe-á com um plano personalizado de cirurgia mamária e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.",
+      "lead": "Faculte-nos alguns dados e a nossa equipa responderá com um plano personalizado de cirurgia mamária e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.",
       "points": [
         { "label": "Avaliação gratuita a partir das suas fotografias" },
         { "label": "Orçamento com tudo incluído, transparente e sem compromisso" },

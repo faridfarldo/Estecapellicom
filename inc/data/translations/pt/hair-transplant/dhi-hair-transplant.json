@@ -25,7 +25,7 @@
       "acf_fc_layout": "intro",
       "eyebrow": "O método",
       "title": "O que é o transplante capilar DHI?",
-      "body": "<p>DHI — Direct Hair Implantation ou implantação capilar direta — é uma técnica moderna e muito eficaz de transplante capilar. Os folículos extraídos são carregados num implantador Choi especial e colocados diretamente na zona recetora sem abrir previamente canais independentes. Isto permite ao cirurgião controlar com precisão a angulação, a direção e a profundidade de cada enxerto, conseguindo uma implantação densa, uma manipulação mínima e uma recuperação rápida.</p>"
+      "body": "<p>DHI — Direct Hair Implantation ou implantação capilar direta — é uma técnica moderna e muito eficaz de transplante capilar. Os folículos extraídos são carregados num implantador Choi especial e colocados diretamente na zona receptora sem abrir previamente canais independentes. Isto permite ao cirurgião controlar com precisão a angulação, a direção e a profundidade de cada enxerto, conseguindo uma implantação densa, uma manipulação mínima e uma recuperação rápida.</p>"
     },
     {
       "acf_fc_layout": "stepbook",
@@ -46,7 +46,7 @@
         {
           "eyebrow": "Etapa 3",
           "title": "Extração dos enxertos",
-          "body": "<p>Os folículos saudáveis são extraídos um a um da zona dadora segura através de micromotores ultrafinos e carregados imediatamente nos implantadores Choi. Assim reduzimos ao mínimo o tempo que os enxertos permanecem fora do couro cabeludo e conservamos a sua força e viabilidade.</p>"
+          "body": "<p>Os folículos saudáveis são extraídos um a um da zona doadora segura através de micromotores ultrafinos e carregados imediatamente nos implantadores Choi. Assim reduzimos ao mínimo o tempo que os enxertos permanecem fora do couro cabeludo e conservamos a sua força e viabilidade.</p>"
         },
         {
           "eyebrow": "Etapa 4",
@@ -58,7 +58,7 @@
     {
       "acf_fc_layout": "candidate",
       "eyebrow": "Porquê a Estecapelli",
-      "title": "Porque é a Estecapelli a melhor escolha para o DHI",
+      "title": "Por quê é a Estecapelli a melhor escolha para o DHI",
       "body": "O planeamento detalhado e a precisão do implantador Choi permitem obter resultados densos, naturais e duradouros:",
       "items": [
         { "label": "Resultados permanentes e fiáveis graças a um planeamento meticuloso" },
@@ -90,11 +90,11 @@
       "items": [
         {
           "question": "Qual é a diferença entre o DHI e o FUE?",
-          "answer": "<p>Ambas as técnicas extraem os folículos do mesmo modo; a diferença está na implantação. No FUE são primeiro abertos os canais recetores e depois colocados os enxertos, enquanto o DHI utiliza um implantador Choi que abre o ponto recetor e coloca o folículo num único movimento. Isto oferece um controlo preciso sobre a angulação, a profundidade e a densidade, permite uma implantação muito densa e, com o planeamento adequado, evita muitas vezes rapar o cabelo existente.</p>"
+          "answer": "<p>Ambas as técnicas extraem os folículos do mesmo modo; a diferença está na implantação. No FUE são primeiro abertos os canais receptores e depois colocados os enxertos, enquanto o DHI utiliza um implantador Choi que abre o ponto receptor e coloca o folículo num único movimento. Isto oferece um controle preciso sobre a angulação, a profundidade e a densidade, permite uma implantação muito densa e, com o planejamento adequado, evita muitas vezes rapar o cabelo existente.</p>"
         },
         {
           "question": "O DHI permite realmente evitar rapar o cabelo? Posso conservar o meu cabelo?",
-          "answer": "<p>O DHI é a técnica mais adequada a intervenções sem rapar e em zonas específicas. Em áreas pequenas ou para aumentar a densidade, pode frequentemente conservar-se todo o cabelo existente; em sessões mais amplas pode ser necessário um corte parcial ou oculto. O seu consultor confirmar-lhe-á exatamente o que é possível no seu caso depois de avaliar as suas fotografias.</p>"
+          "answer": "<p>O DHI é a técnica mais adequada a intervenções sem raspar e em zonas específicas. Em áreas pequenas ou para aumentar a densidade, pode-se frequentemente conservar todo o cabelo existente; em sessões mais amplas pode ser necessário um corte parcial ou oculto. O seu consultor confirmará exatamente o que é possível no seu caso depois de avaliar as suas fotografias.</p>"
         },
         {
           "question": "Sou um bom candidato ao DHI?",
@@ -110,7 +110,7 @@
         },
         {
           "question": "Os resultados são permanentes e naturais?",
-          "answer": "<p>Sim. Os folículos são extraídos de zonas geneticamente resistentes à queda, pelo que continuam a crescer de forma permanente. A implantação direta com controlo da angulação permite criar uma linha frontal e uma densidade completamente naturais; poderá cortar, lavar e pentear o seu cabelo normalmente. O cabelo existente não transplantado pode continuar a enfraquecer com o tempo, pelo que poderão ser recomendados tratamentos de apoio para conservar o resultado global.</p>"
+          "answer": "<p>Sim. Os folículos são extraídos de zonas geneticamente resistentes à queda, pelo que continuam a crescer de forma permanente. A implantação direta com controle da angulação permite criar uma linha frontal e densidade completamente naturais; poderá cortar, lavar e pentear o seu cabelo normalmente. O cabelo existente não transplantado pode continuar a enfraquecer com o tempo, pelo que poderão ser recomendados tratamentos de apoio para conservar o resultado global.</p>"
         }
       ]
     },
@@ -125,7 +125,7 @@
       "acf_fc_layout": "form",
       "eyebrow": "Consulta gratuita",
       "title": "Está preparado para recuperar o seu cabelo com o DHI?",
-      "lead": "Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano DHI personalizado, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.",
+      "lead": "Partilhe conosco alguns dados e a nossa equipa responderá com um plano DHI personalizado, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.",
       "points": [
         { "label": "Avaliação gratuita de enxertos a partir das suas fotografias" },
         { "label": "Implantação direta e precisa, muitas vezes sem rapar" },

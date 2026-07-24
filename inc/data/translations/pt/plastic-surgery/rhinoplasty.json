@@ -20,7 +20,7 @@
     {
       "acf_fc_layout": "candidate",
       "eyebrow": "Indicações",
-      "title": "Porque se realiza uma rinoplastia?",
+      "title": "Por quê se realiza uma rinoplastia?",
       "body": "As pessoas escolhem a rinoplastia por diferentes motivos, relacionados tanto com a estética como com a função do nariz. Entre os mais habituais encontram-se:",
       "items": [
         { "label": "Um nariz que parece demasiado grande ou demasiado pequeno em relação ao rosto" },
@@ -40,7 +40,7 @@
       "body": "A rinoplastia pode estar indicada para quem deseja melhorar tanto o aspeto como a função do nariz. Os candidatos ideais incluem habitualmente:",
       "items": [
         { "label": "Adultos que concluíram o crescimento facial e o desenvolvimento físico" },
-        { "label": "Pessoas insatisfeitas com o aspeto ou a forma do seu nariz" },
+        { "label": "Pessoas insatisfeitas com o aspecto ou a forma do seu nariz" },
         { "label": "Pessoas com dificuldades respiratórias devidas a problemas estruturais do nariz" },
         { "label": "Pessoas com deformidades nasais de origem genética ou causadas por lesões ou traumatismos anteriores" },
         { "label": "Quem deseja um rosto mais equilibrado, natural e harmonioso" }
@@ -90,13 +90,13 @@
       "acf_fc_layout": "intro",
       "eyebrow": "Informação útil",
       "title": "Riscos da rinoplastia",
-      "body": "<p>Como qualquer intervenção cirúrgica, a rinoplastia acarreta alguns riscos potenciais, como inflamação, hemorragia temporária, infeção ou dificuldades de cicatrização. Estas complicações são pouco frequentes e podem ser consideravelmente reduzidas quando a operação é realizada por cirurgiões experientes com técnicas adequadas.</p>"
+      "body": "<p>Como qualquer intervenção cirúrgica, a rinoplastia acarreta alguns riscos potenciais, como inflamação, hemorragia temporária, infecção ou dificuldades de cicatrização. Estas complicações são pouco frequentes e podem ser consideravelmente reduzidas quando a operação é realizada por cirurgiões experientes com técnicas adequadas.</p>"
     },
     {
       "acf_fc_layout": "gallery",
       "eyebrow": "Resultados reais",
       "title": "Rinoplastia: antes e depois",
-      "lead": "Descubra os resultados refinados e equilibrados dos nossos pacientes, sempre em harmonia com o restante rosto. Cada intervenção é planeada segundo as características individuais para oferecer um aspeto natural.",
+      "lead": "Descubra os resultados refinados e equilibrados dos nossos pacientes, sempre em harmonia com o restante rosto. Cada intervenção é planeada segundo as características individuais para oferecer um aspecto natural.",
       "cta": { "label": "Ver toda a galeria" }
     },
     {

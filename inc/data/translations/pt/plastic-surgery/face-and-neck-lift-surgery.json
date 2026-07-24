@@ -84,7 +84,7 @@
       "lead": "A recuperação varia entre pessoas, mas o processo geral é o seguinte.",
       "items": [
         { "time": "Primeiros dias", "title": "Inflamação e hematomas", "body": "É normal apresentar desconforto ligeiro, inflamação e hematomas. São aplicadas compressas frias e pode ser necessária uma noite de internamento." },
-        { "time": "Primeira semana", "title": "Regresso à vida quotidiana", "body": "A inflamação diminui consideravelmente e é possível retomar gradualmente as atividades diárias." },
+        { "time": "Primeira semana", "title": "Regresso à vida cotidiana", "body": "A inflamação diminui consideravelmente e é possível retomar gradualmente as atividades diárias." },
         { "time": "2–3 semanas", "title": "Os hematomas diminuem", "body": "A inflamação e os hematomas continuam a reduzir-se e é possível voltar à maioria das atividades habituais." },
         { "time": "1–3 meses", "title": "Perfil definitivo", "body": "O resultado torna-se visível e os contornos faciais ficam plenamente definidos." }
       ]

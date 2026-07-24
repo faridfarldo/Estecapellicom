@@ -30,7 +30,7 @@
         {
           "eyebrow": "Primeiras 24 horas",
           "title": "As primeiras 24 horas",
-          "body": "<p>A vermelhidão ligeira, o inchaço e a sensibilidade nas áreas dadora e recetora são completamente normais. Mantenha a cabeça elevada, durma de costas, não toque nem arranhe a zona e tome os medicamentos fornecidos exatamente de acordo com as instruções.</p>"
+          "body": "<p>A vermelhidão ligeira, o inchaço e a sensibilidade nas áreas doadora e receptora são completamente normais. Mantenha a cabeça elevada, durma de costas, não toque nem arranhe a zona e tome os medicamentos fornecidos exatamente de acordo com as instruções.</p>"
         },
         {
           "eyebrow": "Dia 1",
@@ -101,7 +101,7 @@
       "acf_fc_layout": "intro",
       "eyebrow": "Tratamentos complementares",
       "title": "Tratamentos recomendados para otimizar o resultado",
-      "body": "<p>Para fortalecer os novos folículos e promover um crescimento saudável, Estecapelli pode recomendar tratamentos complementares durante a recuperação:</p><ul><li>Injeções de exossomas — para apoiar a saúde e o crescimento folicular </li><li>PRP, plasma rico em plaquetas — para estimular o couro cabeludo e fortalecer o cabelo </li><li>Mesoterapia — para nutrir os folículos com vitaminas e minerais </li><li>Terapia com células estaminais — para promover um crescimento mais forte e saudável </li></ul>"
+      "body": "<p>Para fortalecer os novos folículos e promover um crescimento saudável, Estecapelli pode recomendar tratamentos complementares durante a recuperação:</p><ul><li>Injeções de exossomos — para apoiar a saúde e o crescimento folicular</li><li>PRP, plasma rico em plaquetas — para estimular o couro cabeludo e fortalecer o cabelo</li><li>Mesoterapia — para nutrir os folículos com vitaminas e minerais</li><li>Terapia com células estaminais — para promover um crescimento mais forte e saudável</li></ul>"
     },
     {
       "acf_fc_layout": "faq",

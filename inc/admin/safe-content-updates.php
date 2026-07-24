@@ -218,9 +218,469 @@ function estecapelli_safe_patch_exosome_localized_video_operation( $video_url ) 
 	);
 }
 
+/** Build one immutable before/after field pair for the Portuguese review. */
+function estecapelli_safe_patch_pt_review_pair( $before, $after ) {
+	return array( 'before' => $before, 'after' => $after );
+}
+
+/** Build one exact flexible-layout field operation for the Portuguese review. */
+function estecapelli_safe_patch_pt_review_layout( $layout, $layout_index, $fields ) {
+	return array(
+		'target'       => 'layout_fields',
+		'layout'       => $layout,
+		'layout_index' => $layout_index,
+		'fields'       => $fields,
+	);
+}
+
+/** Build one exact repeater-row operation for the Portuguese review. */
+function estecapelli_safe_patch_pt_review_row( $layout, $layout_index, $row_index, $fields ) {
+	return array(
+		'layout'       => $layout,
+		'layout_index' => $layout_index,
+		'repeater'     => 'items',
+		'row_index'    => $row_index,
+		'fields'       => $fields,
+	);
+}
+
+/** Exact, page-scoped operations from the 26-page Portuguese review document. */
+function estecapelli_safe_patch_pt_review_operations( $source_slug ) {
+	$p = 'estecapelli_safe_patch_pt_review_pair';
+
+	switch ( $source_slug ) {
+		case 'exosome-fue-hair-transplant':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'hero', 0, array(
+					'lead' => $p(
+						'A terapia patenteada da Estecapelli integra exossomas regenerativos para otimizar os resultados do transplante capilar. Graças ao apoio dos exossomas, esta técnica ajuda a conservar a vitalidade dos folículos até 72 horas, favorecendo uma maior sobrevivência dos enxertos e uma recuperação mais eficaz.',
+						'A terapia patenteada da Estecapelli integra exossomos regenerativos para otimizar os resultados do transplante capilar. Graças ao apoio dos exossomos, esta técnica ajuda a conservar a vitalidade dos folículos até 72 horas, favorecendo uma maior sobrevivência dos enxertos e uma recuperação mais eficaz.'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'stepbook', 3, array(
+					'lead' => $p(
+						'Um tratamento de vanguarda que combina a precisão do FUE com o poder regenerativo da tecnologia de exossomas. Consulte cada etapa em seguida.',
+						'Um tratamento de vanguarda que combina a precisão do FUE com o poder regenerativo da tecnologia de exossomos. Consulte cada etapa em seguida.'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'stepbook', 3, 1, array(
+					'title' => $p( 'Reforço na solução de exossomas', 'Exossomos' ),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 4, array(
+					'body' => $p(
+						'<p>O Exosome FUE representa o futuro da restauração capilar: a precisão do FUE combina-se com uma terapia de exossomas de última geração. A técnica pode elevar a sobrevivência folicular até 98 % durante 72 horas, acelerar a recuperação, favorecer um crescimento mais forte e oferecer resultados naturais e duradouros.</p>',
+						'<p>O Exosome FUE representa o futuro da restauração capilar: a precisão do FUE combina-se com uma terapia de exossomos de última geração. A técnica pode elevar a sobrevivência folicular até 98 % durante 72 horas, acelerar a recuperação, favorecer um crescimento mais forte e oferecer resultados naturais e duradouros.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 7, 0, array(
+					'answer' => $p(
+						'<p>O Exosome FUE segue a mesma técnica FUE de referência, na qual os folículos são extraídos e implantados individualmente, mas acrescenta terapia com exossomas para favorecer a recuperação e o crescimento. Os exossomas são pequenas vesículas derivadas de células, ricas em fatores de crescimento, que enviam sinais regenerativos aos folículos e aos tecidos circundantes. Deste modo combina-se a fiabilidade comprovada do FUE com um apoio biológico dirigido à recuperação dos enxertos.</p>',
+						'<p>O Exosome FUE segue a mesma técnica FUE de referência, na qual os folículos são extraídos e implantados individualmente, mas acrescenta terapia com exossomos para favorecer a recuperação e o crescimento. Os exossomos são pequenas vesículas derivadas de células, ricas em fatores de crescimento, que enviam sinais regenerativos aos folículos e aos tecidos circundantes. Deste modo combina-se a fiabilidade comprovada do FUE com um apoio biológico dirigido à recuperação dos enxertos.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 7, 2, array(
+					'answer' => $p(
+						'<p>A intervenção é realizada com anestesia local: permanecerá acordado mas confortável e não sentirá dor durante a sessão, que costuma durar entre seis e oito horas consoante o número de enxertos. Os folículos são extraídos da zona dadora, reforçados com a solução de exossomas e implantados seguindo uma linha frontal natural acordada previamente. Poderá regressar ao hotel ou a sua casa no mesmo dia.</p>',
+						'<p>A intervenção é realizada com anestesia local: permanecerá acordado mas confortável e não sentirá dor durante a sessão, que costuma durar entre seis e oito horas consoante o número de enxertos. Os folículos são extraídos da zona dadora, reforçados com a solução de exossomos e implantados seguindo uma linha frontal natural acordada previamente. Poderá regressar ao hotel ou a sua casa no mesmo dia.</p>'
+					),
+				) ),
+			);
+
+		case 'vita-treatment':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'form', 7, array(
+					'lead' => $p(
+						'Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano personalizado, explicar-lhe-á como o protocolo VITA pode melhorar a sobrevivência dos enxertos e enviar-lhe-á um orçamento completo sem compromisso, normalmente em poucas horas.',
+						'Partilhe connosco alguns dados e a nossa equipa responderá com um plano personalizado, explicará como o protocolo VITA pode melhorar a sobrevivência dos enxertos e enviar-lhe-á um orçamento completo sem compromisso, normalmente em poucas horas.'
+					),
+				) ),
+			);
+
+		case 'sapphire-fue-hair-transplant':
+			return array(
+				estecapelli_safe_patch_pt_review_row( 'stepbook', 3, 3, array(
+					'body' => $p(
+						'<p>Os canais são criados com lâminas de ponta de safira; esta é a etapa mais determinante para obter uma densidade, uma angulação e uma direção naturais. O bordo de safira, mais liso e afiado, produz incisões mais finas que permitem aproximar os enxertos, reduzir o traumatismo dos tecidos e acelerar a recuperação.</p>',
+						'<p>Os canais são criados com lâminas de ponta de safira; esta é a etapa mais determinante para obter densidade, angulação e direção natural. O bordo de safira, mais liso e afiado, produz incisões mais finas que permitem aproximar os enxertos, reduzir o traumatismo dos tecidos e acelerar a recuperação.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'candidate', 4, array(
+					'title' => $p( 'Porquê escolher a Estecapelli e a Turquia para o Sapphire FUE', 'Por quê escolher a Estecapelli e a Turquia para o Sapphire FUE' ),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'candidate', 4, 3, array(
+					'label' => $p( 'Elevada densidade e aspeto natural', 'Alta densidade e aspecto natural' ),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 5, array(
+					'body' => $p(
+						'<p><strong>Canais limpos e regulares.</strong> Enquanto o FUE tradicional utiliza lâminas de aço, o Sapphire FUE cria canais extremamente precisos através de lâminas de ponta de safira que se mantêm afiadas durante mais tempo. Isto permite realizar incisões mais pequenas e limpas, reduzindo ao mínimo o traumatismo dos tecidos e a hemorragia. A colocação precisa dos enxertos garante um crescimento e uma densidade naturais, além de favorecer uma recuperação mais rápida e confortável.</p><p><strong>Linha frontal natural.</strong> O Sapphire FUE é mais eficaz do que os métodos tradicionais para obter um aspeto natural. As lâminas de safira criam canais que respeitam a direção de crescimento dos folículos, proporcionando uma linha frontal mais natural. Além disso, permitem alcançar uma densidade máxima e um resultado mais povoado.</p><p><strong>Menos cicatrizes.</strong> O Sapphire FUE deixa menos cicatrizes do que as técnicas tradicionais. Como as lâminas de safira conservam o seu gume, as incisões são mais pequenas e as marcas após a recuperação são mínimas. Estes sinais desaparecem rapidamente.</p>',
+						'<p><strong>Canais limpos e regulares.</strong> Enquanto o FUE tradicional utiliza lâminas de aço, o Sapphire FUE cria canais extremamente precisos através de lâminas de ponta de safira que se mantêm afiadas durante mais tempo. Isto permite realizar incisões menores e mais limpas, reduzindo ao mínimo o traumatismo dos tecidos e a hemorragia. A colocação precisa dos enxertos garante crescimento e densidade naturais, além de favorecer uma recuperação mais rápida e confortável.</p><p><strong>Linha frontal natural.</strong> O Sapphire FUE é mais eficaz do que os métodos tradicionais para obter um aspeto natural. As lâminas de safira criam canais que respeitam a direção de crescimento dos folículos, proporcionando uma linha frontal mais natural. Além disso, permitem alcançar uma densidade máxima e um resultado mais povoado.</p><p><strong>Menos cicatrizes.</strong> O Sapphire FUE deixa menos cicatrizes do que as técnicas tradicionais. Como as lâminas de safira conservam o seu gume, as incisões menores e as marcas após a recuperação são mínimas. Estes sinais desaparecem rapidamente.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 8, 0, array(
+					'answer' => $p(
+						'<p>Ambos utilizam o mesmo método FUE, folículo a folículo; a diferença está na lâmina. O FUE padrão abre os canais recetores com lâminas de aço, enquanto o Sapphire FUE utiliza lâminas de ponta de safira que se mantêm afiadas e criam incisões mais pequenas e regulares. Isto permite colocar os enxertos mais próximos para aumentar a densidade, com menor traumatismo dos tecidos, uma linha frontal mais natural, cicatrizes mínimas e uma recuperação mais rápida.</p>',
+						'<p>Ambos utilizam o mesmo método FUE, folículo a folículo; a diferença está na lâmina. O FUE padrão abre os canais receptores com lâminas de aço, enquanto o Sapphire FUE utiliza lâminas de ponta de safira que se mantêm afiadas e criam micro incisões regulares. Isto permite colocar os enxertos mais próximos para aumentar a densidade, com menor traumatismo dos tecidos, uma linha frontal mais natural, cicatrizes mínimas e uma recuperação mais rápida.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 8, 5, array(
+					'answer' => $p(
+						'<p>Sim. Os folículos são extraídos de zonas geneticamente resistentes à queda, pelo que continuam a crescer de forma permanente. Os canais de safira seguem a direção natural de crescimento para criar uma linha frontal e uma densidade completamente naturais; poderá cortar, lavar e pentear o seu cabelo normalmente. O cabelo existente não transplantado pode continuar a enfraquecer com o tempo, pelo que poderão ser recomendados tratamentos de apoio para conservar o resultado global.</p>',
+						'<p>Sim. Os folículos são extraídos de zonas geneticamente resistentes à queda, pelo que continuam a crescer de forma permanente. Os canais de safira seguem a direção natural de crescimento para criar uma linha frontal e densidade completamente naturais; poderá cortar, lavar e pentear o seu cabelo normalmente. O cabelo existente não transplantado pode continuar a enfraquecer com o tempo, pelo que poderão ser recomendados tratamentos de apoio para conservar o resultado global.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'gallery', 9, array(
+					'lead' => $p(
+						'Veja a densidade e as linhas frontais naturais que os nossos pacientes alcançam com o Sapphire FUE. Cada resultado é planeado segundo o seu padrão de crescimento para se integrar harmoniosamente com o cabelo existente e oferecer um aspeto completamente natural.',
+						'Veja a densidade e as linhas frontais naturais que os nossos pacientes alcançam com o Sapphire FUE. Cada resultado é planeado segundo o seu padrão de crescimento para se integrar harmoniosamente com o cabelo existente e oferecer um aspecto completamente natural.'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'form', 10, array(
+					'lead' => $p(
+						'Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano Sapphire FUE personalizado, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.',
+						'Partilhe conosco alguns dados e a nossa equipa responderá com um plano Sapphire FUE personalizado, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.'
+					),
+				) ),
+			);
+
+		case 'dhi-hair-transplant':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'intro', 2, array(
+					'body' => $p(
+						'<p>DHI — Direct Hair Implantation ou implantação capilar direta — é uma técnica moderna e muito eficaz de transplante capilar. Os folículos extraídos são carregados num implantador Choi especial e colocados diretamente na zona recetora sem abrir previamente canais independentes. Isto permite ao cirurgião controlar com precisão a angulação, a direção e a profundidade de cada enxerto, conseguindo uma implantação densa, uma manipulação mínima e uma recuperação rápida.</p>',
+						'<p>DHI — Direct Hair Implantation ou implantação capilar direta — é uma técnica moderna e muito eficaz de transplante capilar. Os folículos extraídos são carregados num implantador Choi especial e colocados diretamente na zona receptora sem abrir previamente canais independentes. Isto permite ao cirurgião controlar com precisão a angulação, a direção e a profundidade de cada enxerto, conseguindo uma implantação densa, uma manipulação mínima e uma recuperação rápida.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'stepbook', 3, 2, array(
+					'body' => $p(
+						'<p>Os folículos saudáveis são extraídos um a um da zona dadora segura através de micromotores ultrafinos e carregados imediatamente nos implantadores Choi. Assim reduzimos ao mínimo o tempo que os enxertos permanecem fora do couro cabeludo e conservamos a sua força e viabilidade.</p>',
+						'<p>Os folículos saudáveis são extraídos um a um da zona doadora segura através de micromotores ultrafinos e carregados imediatamente nos implantadores Choi. Assim reduzimos ao mínimo o tempo que os enxertos permanecem fora do couro cabeludo e conservamos a sua força e viabilidade.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'candidate', 4, array(
+					'title' => $p( 'Porque é a Estecapelli a melhor escolha para o DHI', 'Por quê é a Estecapelli a melhor escolha para o DHI' ),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 7, 0, array(
+					'answer' => $p(
+						'<p>Ambas as técnicas extraem os folículos do mesmo modo; a diferença está na implantação. No FUE são primeiro abertos os canais recetores e depois colocados os enxertos, enquanto o DHI utiliza um implantador Choi que abre o ponto recetor e coloca o folículo num único movimento. Isto oferece um controlo preciso sobre a angulação, a profundidade e a densidade, permite uma implantação muito densa e, com o planeamento adequado, evita muitas vezes rapar o cabelo existente.</p>',
+						'<p>Ambas as técnicas extraem os folículos do mesmo modo; a diferença está na implantação. No FUE são primeiro abertos os canais receptores e depois colocados os enxertos, enquanto o DHI utiliza um implantador Choi que abre o ponto receptor e coloca o folículo num único movimento. Isto oferece um controle preciso sobre a angulação, a profundidade e a densidade, permite uma implantação muito densa e, com o planejamento adequado, evita muitas vezes rapar o cabelo existente.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 7, 1, array(
+					'answer' => $p(
+						'<p>O DHI é a técnica mais adequada a intervenções sem rapar e em zonas específicas. Em áreas pequenas ou para aumentar a densidade, pode frequentemente conservar-se todo o cabelo existente; em sessões mais amplas pode ser necessário um corte parcial ou oculto. O seu consultor confirmar-lhe-á exatamente o que é possível no seu caso depois de avaliar as suas fotografias.</p>',
+						'<p>O DHI é a técnica mais adequada a intervenções sem raspar e em zonas específicas. Em áreas pequenas ou para aumentar a densidade, pode-se frequentemente conservar todo o cabelo existente; em sessões mais amplas pode ser necessário um corte parcial ou oculto. O seu consultor confirmará exatamente o que é possível no seu caso depois de avaliar as suas fotografias.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 7, 5, array(
+					'answer' => $p(
+						'<p>Sim. Os folículos são extraídos de zonas geneticamente resistentes à queda, pelo que continuam a crescer de forma permanente. A implantação direta com controlo da angulação permite criar uma linha frontal e uma densidade completamente naturais; poderá cortar, lavar e pentear o seu cabelo normalmente. O cabelo existente não transplantado pode continuar a enfraquecer com o tempo, pelo que poderão ser recomendados tratamentos de apoio para conservar o resultado global.</p>',
+						'<p>Sim. Os folículos são extraídos de zonas geneticamente resistentes à queda, pelo que continuam a crescer de forma permanente. A implantação direta com controle da angulação permite criar uma linha frontal e densidade completamente naturais; poderá cortar, lavar e pentear o seu cabelo normalmente. O cabelo existente não transplantado pode continuar a enfraquecer com o tempo, pelo que poderão ser recomendados tratamentos de apoio para conservar o resultado global.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'form', 9, array(
+					'lead' => $p(
+						'Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano DHI personalizado, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.',
+						'Partilhe conosco alguns dados e a nossa equipa responderá com um plano DHI personalizado, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.'
+					),
+				) ),
+			);
+
+		case 'female-hair-transplant':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'intro', 3, array(
+					'body' => $p(
+						'<p>Na Estecapelli, a técnica que recomendamos com maior frequência às mulheres é o transplante DHI. As nossas pacientes valorizam especialmente o DHI porque permite implantar os folículos diretamente sem rapar o cabelo existente, sendo por isso ideal para quem deseja conservar o seu aspeto durante todo o processo.</p><p><strong>Vantagens do DHI:</strong> controlo preciso da angulação e da direção, maior densidade de implantação, ausência de corte total do cabelo, cicatrizes mínimas, recuperação mais rápida e menor risco de danificar os folículos existentes.</p>',
+						'<p>Na Estecapelli, a técnica que recomendamos com maior frequência às mulheres é o transplante DHI. As nossas pacientes valorizam especialmente o DHI porque permite implantar os folículos diretamente sem raspar o cabelo existente, sendo por isso ideal para quem deseja conservar o seu aspecto durante todo o processo.</p><p><strong>Vantagens do DHI:</strong> controle preciso da angulação e da direção, maior densidade de implantação, ausência de corte total do cabelo, cicatrizes mínimas, recuperação mais rápida e menor risco de danificar os folículos existentes.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 7, array(
+					'body' => $p(
+						'<p>Para as mulheres que apresentam queda de cabelo mas não desejam submeter-se a um procedimento cirúrgico, oferecemos também várias opções:</p><ul><li><strong>PRP</strong> — tratamento regenerativo natural que nutre e fortalece os folículos.</li><li><strong>Mesoterapia</strong> — microinjeções de vitaminas e minerais diretamente no couro cabeludo.</li><li><strong>Terapia com células estaminais</strong> — revitaliza os folículos inativos através de células regenerativas.</li><li><strong>Injeções de exossomas</strong> — tratamento de nova geração que estimula os processos naturais de reparação do couro cabeludo.</li></ul>',
+						'<p>Para as mulheres que apresentam queda de cabelo mas não desejam submeter-se a um procedimento cirúrgico, oferecemos também várias opções:</p><ul><li><strong>PRP</strong> — tratamento regenerativo natural que nutre e fortalece os folículos.</li><li><strong>Mesoterapia</strong> — microinjeções de vitaminas e minerais diretamente no couro cabeludo.</li><li><strong>Terapia com células estaminais</strong> — revitaliza os folículos inativos através de células regenerativas.</li><li><strong>Injeções de Exossomos</strong> — tratamento de nova geração que estimula os processos naturais de reparação do couro cabeludo.</li></ul>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 8, 0, array(
+					'answer' => $p(
+						'<p>A maioria das mulheres com uma queda estabilizada e uma zona dadora saudável na parte posterior do couro cabeludo pode ser candidata. O tratamento está especialmente indicado para o enfraquecimento ao longo do risco, uma linha frontal mais larga ou têmporas pouco densas. Como a queda difusa é mais frequente nas mulheres, identificar primeiro a causa é essencial; uma consulta com fotografias nítidas permite à nossa equipa confirmar a sua elegibilidade e estimar os enxertos necessários.</p>',
+						'<p>A maioria das mulheres com uma queda estabilizada e uma zona dadora saudável na parte posterior do couro cabeludo pode ser candidata. O tratamento está especialmente indicado para o enfraquecimento ao longo do fio, uma linha frontal mais ampla ou têmporas pouco densas. Como a queda difusa é mais frequente nas mulheres, identificar primeiro a causa é essencial; uma consulta com fotografias nítidas permite à nossa equipa confirmar a sua elegibilidade e estimar os enxertos necessários.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'form', 10, array(
+					'lead' => $p(
+						'Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano personalizado sem rapar o cabelo, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.',
+						'Partilhe conosco alguns dados e a nossa equipa responderá com um plano personalizado sem rapar o cabelo, uma estimativa de enxertos e um orçamento completo sem compromisso, normalmente em poucas horas.'
+					),
+				) ),
+			);
+
+		case 'hair-mesotherapy':
+			return array(
+				estecapelli_safe_patch_pt_review_row( 'stepbook', 3, 2, array(
+					'body' => $p(
+						'<p>A solução é injetada diretamente no couro cabeludo através de agulhas muito finas para levar os nutrientes até aos folículos. Se o couro cabeludo for especialmente sensível, pode ser aplicado um creme anestésico local. O procedimento é rápido, confortável e minimamente invasivo, pelo que poderá retomar de imediato as suas atividades quotidianas.</p>',
+						'<p>A solução é injetada diretamente no couro cabeludo através de agulhas muito finas para levar os nutrientes até aos folículos. Se o couro cabeludo for especialmente sensível, pode ser aplicado um creme anestésico local. O procedimento é rápido, confortável e minimamente invasivo, pelo que poderá retomar de imediato as suas atividades cotidianas.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'candidate', 4, array(
+					'body' => $p(
+						'Um tratamento complementar não cirúrgico que se integra facilmente na vida quotidiana:',
+						'Um tratamento complementar não cirúrgico que se integra facilmente na vida cotidiana:'
+					),
+				) ),
+			);
+
+		case 'eyebrow-transplant':
+			return array(
+				estecapelli_safe_patch_pt_review_row( 'stepbook', 4, 2, array(
+					'body' => $p(
+						'<p>Para as sobrancelhas é preferida a técnica DHI: através de implantadores Choi especiais, o ponto recetor é aberto e o folículo é implantado num único movimento. Isto permite controlar com precisão a angulação muito baixa e a direção necessárias para que cada pelo permaneça próximo da pele e cresça de forma natural.</p>',
+						'<p>Para as sobrancelhas é preferida a técnica DHI: através de implantadores Choi especiais, o ponto receptor é aberto e o folículo é implantado num único movimento. Isto permite controlar com precisão a angulação muito baixa e a direção necessárias para que cada pelo permaneça próximo da pele e cresça de forma natural.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 5, array(
+					'body' => $p(
+						'<p>Durante o primeiro dia são normais uma ligeira vermelhidão e alguma sensibilidade. Nas duas semanas seguintes formam-se pequenas crostas que se soltam por si; durante o mesmo período, os pelos transplantados podem cair temporariamente num processo conhecido como queda de choque.</p><p>As novas sobrancelhas começam a crescer a partir do terceiro mês. Precisam de aproximadamente nove a doze meses para estabilizarem completamente e alcançarem o seu aspeto definitivo. Como são utilizados muito menos enxertos do que num transplante do couro cabeludo, a recuperação costuma ser mais rápida e confortável.</p>',
+						'<p>Durante o primeiro dia é normal uma ligeira vermelhidão e alguma sensibilidade. Nas duas semanas seguintes formam-se pequenas crostas que se soltam por si; durante o mesmo período, os pelos transplantados podem cair temporariamente num processo conhecido como queda de choque.</p><p>As novas sobrancelhas começam a crescer a partir do terceiro mês. Precisam de aproximadamente nove a doze meses para estabilizarem completamente e alcançarem o seu aspecto definitivo. Como são utilizados muito menos enxertos do que num transplante de couro cabeludo, a recuperação costuma ser mais rápida e confortável.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 6, array(
+					'body' => $p(
+						'<p>No transplante de sobrancelhas podem ser utilizadas tanto a técnica DHI, implantação capilar direta, como a Sapphire FUE, consoante o estado das sobrancelhas, as características da zona dadora e o resultado estético pretendido.</p><p>A DHI utiliza implantadores Choi especiais que permitem inserir diretamente cada enxerto num único passo. Oferece um excelente controlo da angulação, da direção e da profundidade, especialmente útil para o alinhamento extremamente delicado, pelo a pelo, que umas sobrancelhas naturais exigem.</p><p>Com a Sapphire FUE são primeiro preparados os canais recetores através de lâminas de safira e depois introduzidos os enxertos. Deste modo, o cirurgião pode desenhar com grande precisão a forma geral, a simetria e a distribuição da densidade.</p><p>Ambas as técnicas são eficazes: a DHI costuma ser preferida pelo controlo direto da direção a nível microscópico, enquanto a Sapphire FUE pode oferecer vantagens ao desenhar de forma estruturada o arco da sobrancelha. A escolha é sempre feita de acordo com a anatomia individual e com o resultado mais natural.</p>',
+						'<p>No transplante de sobrancelhas podem ser utilizadas tanto a técnica DHI, implantação capilar direta, como a Sapphire FUE, consoante o estado das sobrancelhas, as características da zona doadora e o resultado estético pretendido.</p><p>A DHI utiliza implantadores Choi especiais que permitem inserir diretamente cada enxerto num único passo. Oferece um excelente controle da angulação, da direção e da profundidade, especialmente útil para o alinhamento extremamente delicado, pelo a pelo, que umas sobrancelhas naturais exigem.</p><p>Com a Sapphire FUE são primeiro preparados os canais receptores através de lâminas de safira e depois introduzidos os enxertos. Deste modo, o cirurgião pode desenhar com grande precisão a forma geral, a simetria e a distribuição da densidade.</p><p>Ambas as técnicas são eficazes: a DHI costuma ser preferida pelo controle direto da direção a nível microscópico, enquanto a Sapphire FUE pode oferecer vantagens ao desenhar de forma estruturada o arco da sobrancelha. A escolha é sempre feita de acordo com a anatomia individual e com o resultado mais natural.</p>'
+					),
+				) ),
+			);
+
+		case 'beard-transplant':
+			return array(
+				estecapelli_safe_patch_pt_review_row( 'stepbook', 3, 0, array(
+					'body' => $p(
+						'<p>Através da técnica FUE, os folículos são extraídos da zona dadora segura situada na parte posterior e nos lados da cabeça, onde o cabelo é geneticamente resistente à queda. Cada folículo é recolhido individualmente com micromotores ultrafinos para reduzir ao mínimo os danos e preservar o aspeto natural da zona dadora.</p>',
+						'<p>Através da técnica FUE, os folículos são extraídos da zona dadora segura situada na parte posterior e nos lados da cabeça, onde o cabelo é geneticamente resistente à queda. Cada folículo é recolhido individualmente com micromotores ultrafinos para reduzir ao mínimo os danos e preservar o aspecto natural da zona doadora.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 5, 0, array(
+					'answer' => $p(
+						'<p>Pode ser um bom candidato se apresentar um crescimento irregular ou pouco denso, zonas vazias causadas por cicatrizes ou traumatismos, ou se não conseguir desenvolver uma barba densa, desde que disponha de uma zona dadora saudável na parte posterior e nos lados do couro cabeludo. Uma consulta acompanhada de fotografias nítidas permite confirmar a sua elegibilidade e estimar o número de enxertos necessários.</p>',
+						'<p>Pode ser um bom candidato se apresentar um crescimento irregular ou pouco denso, zonas vazias causadas por cicatrizes ou traumatismos, ou se não conseguir desenvolver uma barba densa, desde que disponha de uma zona doadora saudável na parte posterior e nos lados do couro cabeludo. Uma consulta acompanhada de fotografias nítidas permite confirmar a sua elegibilidade e estimar o número de enxertos necessários.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 5, 1, array(
+					'question' => $p( 'De onde vêm os enxertos e a barba terá um aspeto natural?', 'De onde vêm os enxertos e a barba terá um aspecto natural?' ),
+					'answer'   => $p(
+						'<p>Os folículos saudáveis são extraídos através da técnica FUE da zona dadora segura situada na parte posterior e nos lados da cabeça. O controlo preciso da angulação, da profundidade e da direção, respeitando o crescimento mais plano e descendente próprio da barba, permite que os enxertos se integrem perfeitamente com o pelo existente e produzam um resultado completamente natural.</p>',
+						'<p>Os folículos saudáveis são extraídos através da técnica FUE da zona doadora segura situada na parte posterior e nos lados da cabeça. O controle preciso da angulação, da profundidade e da direção, respeitando o crescimento mais plano e descendente próprio da barba, permite que os enxertos se integrem perfeitamente com o pelo existente e produzam um resultado completamente natural.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 5, 5, array(
+					'answer' => $p(
+						'<p>Sim. Os folículos provêm de uma zona dadora geneticamente resistente à queda e, uma vez estabelecidos, continuam a crescer durante toda a vida. Quando a intervenção é realizada com a técnica correta e por uma equipa experiente, oferece resultados naturais, estáveis e duradouros.</p>',
+						'<p>Sim. Os folículos provêm de uma zona doadora geneticamente resistente à queda e, uma vez estabelecidos, continuam a crescer durante toda a vida. Quando a intervenção é realizada com a técnica correta e por uma equipa experiente, oferece resultados naturais, estáveis e duradouros.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'form', 7, array(
+					'lead' => $p(
+						'Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano personalizado, um desenho de barba adaptado ao seu rosto e um orçamento completo sem compromisso, normalmente em poucas horas.',
+						'Partilhe conosco alguns dados e a nossa equipa responderá com um plano personalizado, um desenho de barba adaptado ao seu rosto e um orçamento completo sem compromisso, normalmente em poucas horas.'
+					),
+				) ),
+			);
+
+		case 'pre-hair-transplant-period':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'intro', 1, array(
+					'title' => $p( 'Porque é que o período anterior ao transplante é importante', 'Por quê é que o período anterior ao transplante é importante' ),
+					'body'  => $p(
+						'<p>O período pré-transplante inclui todos os passos essenciais antes de iniciar o procedimento: avaliação médica completa, análise do couro cabeludo e escolha da técnica mais adequada.</p><p>A área dadora é examinada e a linha frontal é cuidadosamente planeada para alcançar um resultado natural. A preparação correta desempenha um papel decisivo na segurança da intervenção, na sobrevivência do enxerto e no resultado global.</p>',
+						'<p>O período pré-transplante inclui todos os passos essenciais antes de iniciar o procedimento: avaliação médica completa, análise do couro cabeludo e escolha da técnica mais adequada.</p><p>A área doadora é examinada e a linha frontal é cuidadosamente planeada para alcançar um resultado natural. A preparação correta desempenha um papel decisivo na segurança da intervenção, na sobrevivência do enxerto e no resultado global.</p>'
+					),
+				) ),
+			);
+
+		case 'post-hair-transplant-period':
+			return array(
+				estecapelli_safe_patch_pt_review_row( 'stepbook', 2, 0, array(
+					'body' => $p(
+						'<p>A vermelhidão ligeira, o inchaço e a sensibilidade nas áreas dadora e recetora são completamente normais. Mantenha a cabeça elevada, durma de costas, não toque nem arranhe a zona e tome os medicamentos fornecidos exatamente de acordo com as instruções.</p>',
+						'<p>A vermelhidão ligeira, o inchaço e a sensibilidade nas áreas doadora e receptora são completamente normais. Mantenha a cabeça elevada, durma de costas, não toque nem arranhe a zona e tome os medicamentos fornecidos exatamente de acordo com as instruções.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 4, array(
+					'body' => $p(
+						'<p>Para fortalecer os novos folículos e promover um crescimento saudável, Estecapelli pode recomendar tratamentos complementares durante a recuperação:</p><ul><li>Injeções de exossomas — para apoiar a saúde e o crescimento folicular </li><li>PRP, plasma rico em plaquetas — para estimular o couro cabeludo e fortalecer o cabelo </li><li>Mesoterapia — para nutrir os folículos com vitaminas e minerais </li><li>Terapia com células estaminais — para promover um crescimento mais forte e saudável </li></ul>',
+						'<p>Para fortalecer os novos folículos e promover um crescimento saudável, Estecapelli pode recomendar tratamentos complementares durante a recuperação:</p><ul><li>Injeções de exossomos — para apoiar a saúde e o crescimento folicular</li><li>PRP, plasma rico em plaquetas — para estimular o couro cabeludo e fortalecer o cabelo</li><li>Mesoterapia — para nutrir os folículos com vitaminas e minerais</li><li>Terapia com células estaminais — para promover um crescimento mais forte e saudável</li></ul>'
+					),
+				) ),
+			);
+
+		case 'tricholab':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'candidate', 3, array(
+					'body' => $p(
+						'A análise científica protege a área dadora e promove resultados naturais e simétricos:',
+						'A análise científica protege a área doadora e promove resultados naturais e simétricos:'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 4, array(
+					'title' => $p( 'Porquê escolher o TrichoLab em Estecapelli?', 'Porquê escolher o TrichoLab Estecapelli?' ),
+					'body'  => $p(
+						'<p>O TrichoLab é um sistema avançado disponível apenas num número limitado de clínicas na Turquia. Na Estecapelli, representa o ponto de partida do nosso trabalho e oferece aos pacientes um nível de análise que poucas clínicas conseguem proporcionar.</p><p>Cada avaliação é objetiva, mensurável e transparente. Para cada paciente é desenvolvida uma estratégia verdadeiramente personalizada, baseada em dados precisos e não em suposições, com o objetivo de proteger a área dadora e maximizar os resultados a longo prazo.</p>',
+						'<p>O TrichoLab é um sistema avançado disponível apenas num número limitado de clínicas na Turquia. Na Estecapelli, representa o ponto de partida do nosso trabalho e oferece aos pacientes um nível de análise que poucas clínicas conseguem proporcionar.</p><p>Cada avaliação é objetiva, mensurável e transparente. Para cada paciente é desenvolvida uma estratégia verdadeiramente personalizada, baseada em dados precisos e não em suposições, com o objetivo de proteger a área doadora e maximizar os resultados a longo prazo.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 5, 1, array(
+					'answer' => $p(
+						'<p>O TrichoLab mede a densidade, a qualidade dos folículos e a capacidade da área dadora, o que ajuda a calcular os enxertos necessários sem enfraquecer a área de extração. Estes dados tornam o planeamento mais preciso, natural e sustentável a longo prazo. O cirurgião combina-os com a avaliação clínica e o design da linha da frente.</p>',
+						'<p>O TrichoLab mede a densidade, a qualidade dos folículos e a capacidade da área doadora, o que ajuda a calcular os enxertos necessários sem enfraquecer a área de extração. Estes dados tornam o planejamento mais preciso, natural e sustentável a longo prazo. O cirurgião combina-os com a avaliação clínica e o design da linha da frente.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 5, 3, array(
+					'answer' => $p(
+						'<p>O TrichoLab fornece uma estimativa científica muito precisa da quantidade necessária e pode ser extraída com segurança. No entanto, a decisão final não depende de um único número: o especialista tem também em conta a qualidade do cabelo, os objetivos de densidade, a evolução futura da queda de cabelo e o desenho da linha frontal. Assim, o plano mantém-se realista e protege a área dadora.</p>',
+						'<p>O TrichoLab fornece uma estimativa científica muito precisa da quantidade necessária e pode ser extraída com segurança. No entanto, a decisão final não depende de um único número: o especialista tem também em conta a qualidade do cabelo, os objetivos de densidade, a evolução futura da queda de cabelo e o desenho da linha frontal. Assim, o plano mantém-se realista e protege a área doadora.</p>'
+					),
+				) ),
+			);
+
+		case 'our-team':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'hero', 0, array(
+					'title' => $p( 'As pessoas por detrás de cada transformação.', 'As pessoas por trás de cada transformação.' ),
+				) ),
+			);
+
+		case 'rhinoplasty':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'candidate', 2, array(
+					'title' => $p( 'Porque se realiza uma rinoplastia?', 'Por quê se realiza uma rinoplastia?' ),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'candidate', 3, 1, array(
+					'label' => $p( 'Pessoas insatisfeitas com o aspeto ou a forma do seu nariz', 'Pessoas insatisfeitas com o aspecto ou a forma do seu nariz' ),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 8, array(
+					'body' => $p(
+						'<p>Como qualquer intervenção cirúrgica, a rinoplastia acarreta alguns riscos potenciais, como inflamação, hemorragia temporária, infeção ou dificuldades de cicatrização. Estas complicações são pouco frequentes e podem ser consideravelmente reduzidas quando a operação é realizada por cirurgiões experientes com técnicas adequadas.</p>',
+						'<p>Como qualquer intervenção cirúrgica, a rinoplastia acarreta alguns riscos potenciais, como inflamação, hemorragia temporária, infecção ou dificuldades de cicatrização. Estas complicações são pouco frequentes e podem ser consideravelmente reduzidas quando a operação é realizada por cirurgiões experientes com técnicas adequadas.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'gallery', 9, array(
+					'lead' => $p(
+						'Descubra os resultados refinados e equilibrados dos nossos pacientes, sempre em harmonia com o restante rosto. Cada intervenção é planeada segundo as características individuais para oferecer um aspeto natural.',
+						'Descubra os resultados refinados e equilibrados dos nossos pacientes, sempre em harmonia com o restante rosto. Cada intervenção é planeada segundo as características individuais para oferecer um aspecto natural.'
+					),
+				) ),
+			);
+
+		case 'bbl':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'candidate', 3, array(
+					'title' => $p( 'Que aspetos pode o BBL corrigir?', 'Que aspectos pode o BBL corrigir?' ),
+					'body'  => $p(
+						'O lifting brasileiro de glúteos pode melhorar diferentes aspetos estéticos e de proporção, entre eles:',
+						'O lifting brasileiro de glúteos pode melhorar diferentes aspectos estéticos e de proporção, entre eles:'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 11, 4, array(
+					'answer' => $p(
+						'<p>A maioria dos pacientes internacionais permanece na Turquia cerca de 7–10 dias para concluir a intervenção, a primeira fase de recuperação e uma revisão antes do regresso. Como no início não se recomenda permanecer sentado durante muito tempo, a equipa médica indicar-lhe-á o momento mais seguro para o voo de regresso e como utilizar a almofada durante a viagem.</p>',
+						'<p>A maioria dos pacientes internacionais permanece na Turquia cerca de 7–10 dias para concluir a intervenção, a primeira fase de recuperação e uma revisão antes do regresso. Como no início não se recomenda permanecer sentado durante muito tempo, a equipa médica indicará o momento mais seguro para o voo de regresso e como utilizar a almofada durante a viagem.</p>'
+					),
+				) ),
+			);
+
+		case 'liposuction':
+			return array(
+				estecapelli_safe_patch_pt_review_row( 'steps', 8, 1, array(
+					'title' => $p( 'Regresso à vida quotidiana', 'Regresso à vida cotidiana' ),
+				) ),
+			);
+
+		case 'breast-aesthetics-breast-surgery':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'hero', 0, array(
+					'lead' => $p(
+						'Obtenha um peito com volume, natural e em harmonia com o seu corpo. O nosso planeamento personalizado oferece resultados estéticos e equilibrados, adaptados à sua silhueta e aos seus objetivos.',
+						'Obtenha um seio com volume, natural e em harmonia com o seu corpo. O nosso planeamento personalizado oferece resultados estéticos e equilibrados, adaptados à sua silhueta e aos seus objetivos.'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'intro', 4, array(
+					'body' => $p(
+						'<p>A cirurgia de aumento mamário é realizada sob anestesia geral, num bloco operatório totalmente equipado, e costuma durar entre 1,5 e 2 horas. Durante o procedimento, os implantes são cuidadosamente colocados para obter o resultado mais natural e proporcionado possível. A paciente tem normalmente alta no dia seguinte, após um controlo pós-operatório de rotina.</p>',
+						'<p>A cirurgia de aumento mamário é realizada sob anestesia geral, num bloco operatório totalmente equipado, e costuma durar entre 1,5 e 2 horas. Durante o procedimento, os implantes são cuidadosamente colocados para obter o resultado mais natural e proporcionado possível. A paciente tem normalmente alta no dia seguinte, após um controle pós-operatório de rotina.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_row( 'faq', 11, 2, array(
+					'question' => $p( 'Implantes redondos ou anatómicos? Por cima ou por baixo do músculo?', 'Implantes redondos ou anatômicos? Por cima ou por baixo do músculo?' ),
+					'answer'   => $p(
+						'<p>Os implantes redondos tendem a criar maior plenitude no polo superior, enquanto os anatómicos, em forma de lágrima, seguem um perfil mais suave e natural; ambos podem oferecer um excelente resultado na paciente adequada. A colocação por baixo do músculo costuma ser preferida pelo seu aspeto mais natural, um suporte mais duradouro dos tecidos e um menor risco de contratura capsular. A escolha final da forma, do tamanho, do perfil e do plano de colocação é feita em conjunto com a paciente segundo a sua constituição, o tecido existente e o resultado pretendido.</p>',
+						'<p>Os implantes redondos tendem a criar maior plenitude no polo superior, enquanto os anatómicos, em forma de lágrima, seguem um perfil mais suave e natural; ambos podem oferecer um excelente resultado na paciente adequada. A colocação por baixo do músculo costuma ser preferida pelo seu aspecto mais natural, um suporte mais duradouro dos tecidos e um menor risco de contratura capsular. A escolha final da forma, do tamanho, do perfil e do plano de colocação é feita em conjunto com a paciente segundo a sua constituição, o tecido existente e o resultado pretendido.</p>'
+					),
+				) ),
+				estecapelli_safe_patch_pt_review_layout( 'form', 13, array(
+					'lead' => $p(
+						'Faculte-nos alguns dados e a nossa equipa responder-lhe-á com um plano personalizado de cirurgia mamária e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.',
+						'Faculte-nos alguns dados e a nossa equipa responderá com um plano personalizado de cirurgia mamária e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.'
+					),
+				) ),
+			);
+
+		case 'face-and-neck-lift-surgery':
+			return array(
+				estecapelli_safe_patch_pt_review_row( 'steps', 7, 1, array(
+					'title' => $p( 'Regresso à vida quotidiana', 'Regresso à vida cotidiana' ),
+				) ),
+			);
+
+		case 'obesity-surgeries-bariatric-surgery-and-gastric-balloon':
+			return array(
+				estecapelli_safe_patch_pt_review_layout( 'form', 14, array(
+					'lead' => $p(
+						'Faculte-nos alguns dados e a nossa equipa responder-lhe-á com um plano personalizado de perda de peso e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.',
+						'Faculte-nos alguns dados e a nossa equipa responderá com um plano personalizado de perda de peso e um orçamento com tudo incluído, gratuito e sem compromisso, normalmente em poucas horas.'
+					),
+				) ),
+			);
+
+		default:
+			return array();
+	}
+}
+
+/** Assemble one page-scoped Portuguese review patch. */
+function estecapelli_safe_patch_pt_review_definition( $source_slug, $post_type, $title ) {
+	return array(
+		'title'       => $title,
+		'description' => 'Apply only the reviewed Portuguese fields from the 26-page language revision. Existing values are verified before writing and an exact rollback backup is retained.',
+		'post_type'   => $post_type,
+		'source_slug' => $source_slug,
+		'schema'      => 'field_groups_v2',
+		'languages'   => array(
+			'pt' => estecapelli_safe_patch_pt_review_operations( $source_slug ),
+		),
+	);
+}
+
 /** Immutable patch registry. Applied patch IDs must never be edited or reused. */
 function estecapelli_safe_content_patches() {
 	return array(
+		'pt-review-exosome-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'exosome-fue-hair-transplant', 'treatment', 'Portuguese review — Exosome FUE' ),
+		'pt-review-vita-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'vita-treatment', 'treatment', 'Portuguese review — VITA Treatment' ),
+		'pt-review-sapphire-fue-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'sapphire-fue-hair-transplant', 'treatment', 'Portuguese review — Sapphire FUE' ),
+		'pt-review-dhi-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'dhi-hair-transplant', 'treatment', 'Portuguese review — DHI' ),
+		'pt-review-female-hair-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'female-hair-transplant', 'treatment', 'Portuguese review — Female Hair Transplant' ),
+		'pt-review-mesotherapy-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'hair-mesotherapy', 'treatment', 'Portuguese review — Hair Mesotherapy' ),
+		'pt-review-eyebrow-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'eyebrow-transplant', 'treatment', 'Portuguese review — Eyebrow Transplant' ),
+		'pt-review-beard-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'beard-transplant', 'treatment', 'Portuguese review — Beard Transplant' ),
+		'pt-review-pre-transplant-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'pre-hair-transplant-period', 'page', 'Portuguese review — Pre-transplant Period' ),
+		'pt-review-post-transplant-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'post-hair-transplant-period', 'page', 'Portuguese review — Post-transplant Period' ),
+		'pt-review-tricholab-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'tricholab', 'page', 'Portuguese review — TrichoLab' ),
+		'pt-review-rhinoplasty-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'rhinoplasty', 'treatment', 'Portuguese review — Rhinoplasty' ),
+		'pt-review-bbl-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'bbl', 'treatment', 'Portuguese review — BBL' ),
+		'pt-review-liposuction-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'liposuction', 'treatment', 'Portuguese review — Liposuction' ),
+		'pt-review-breast-surgery-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'breast-aesthetics-breast-surgery', 'treatment', 'Portuguese review — Breast Surgery' ),
+		'pt-review-face-lift-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'face-and-neck-lift-surgery', 'treatment', 'Portuguese review — Face and Neck Lift' ),
+		'pt-review-bariatric-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'obesity-surgeries-bariatric-surgery-and-gastric-balloon', 'treatment', 'Portuguese review — Bariatric Surgery' ),
+		'pt-review-our-team-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'our-team', 'page', 'Portuguese review — Our Team' ),
 		'exosome-stepbook-rich-tr-20260724-v1' => array(
 			'title'       => 'Exosome FUE — Rich Turkish Step Book copy',
 			'description' => 'Expand all five Turkish procedure-stage descriptions to match the fuller two-to-three-sentence copy already used in the other six languages.',

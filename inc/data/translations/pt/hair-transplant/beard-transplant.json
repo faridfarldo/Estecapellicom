@@ -32,7 +32,7 @@
         {
           "eyebrow": "Etapa 1",
           "title": "Extração dos enxertos",
-          "body": "<p>Através da técnica FUE, os folículos são extraídos da zona dadora segura situada na parte posterior e nos lados da cabeça, onde o cabelo é geneticamente resistente à queda. Cada folículo é recolhido individualmente com micromotores ultrafinos para reduzir ao mínimo os danos e preservar o aspeto natural da zona dadora.</p>"
+          "body": "<p>Através da técnica FUE, os folículos são extraídos da zona dadora segura situada na parte posterior e nos lados da cabeça, onde o cabelo é geneticamente resistente à queda. Cada folículo é recolhido individualmente com micromotores ultrafinos para reduzir ao mínimo os danos e preservar o aspecto natural da zona doadora.</p>"
         },
         {
           "eyebrow": "Etapa 2",
@@ -59,11 +59,11 @@
       "items": [
         {
           "question": "Sou um bom candidato a um transplante de barba?",
-          "answer": "<p>Pode ser um bom candidato se apresentar um crescimento irregular ou pouco denso, zonas vazias causadas por cicatrizes ou traumatismos, ou se não conseguir desenvolver uma barba densa, desde que disponha de uma zona dadora saudável na parte posterior e nos lados do couro cabeludo. Uma consulta acompanhada de fotografias nítidas permite confirmar a sua elegibilidade e estimar o número de enxertos necessários.</p>"
+          "answer": "<p>Pode ser um bom candidato se apresentar um crescimento irregular ou pouco denso, zonas vazias causadas por cicatrizes ou traumatismos, ou se não conseguir desenvolver uma barba densa, desde que disponha de uma zona doadora saudável na parte posterior e nos lados do couro cabeludo. Uma consulta acompanhada de fotografias nítidas permite confirmar a sua elegibilidade e estimar o número de enxertos necessários.</p>"
         },
         {
-          "question": "De onde vêm os enxertos e a barba terá um aspeto natural?",
-          "answer": "<p>Os folículos saudáveis são extraídos através da técnica FUE da zona dadora segura situada na parte posterior e nos lados da cabeça. O controlo preciso da angulação, da profundidade e da direção, respeitando o crescimento mais plano e descendente próprio da barba, permite que os enxertos se integrem perfeitamente com o pelo existente e produzam um resultado completamente natural.</p>"
+          "question": "De onde vêm os enxertos e a barba terá um aspecto natural?",
+          "answer": "<p>Os folículos saudáveis são extraídos através da técnica FUE da zona doadora segura situada na parte posterior e nos lados da cabeça. O controle preciso da angulação, da profundidade e da direção, respeitando o crescimento mais plano e descendente próprio da barba, permite que os enxertos se integrem perfeitamente com o pelo existente e produzam um resultado completamente natural.</p>"
         },
         {
           "question": "Poderei barbear e modelar a barba normalmente?",
@@ -79,7 +79,7 @@
         },
         {
           "question": "O transplante de barba é permanente?",
-          "answer": "<p>Sim. Os folículos provêm de uma zona dadora geneticamente resistente à queda e, uma vez estabelecidos, continuam a crescer durante toda a vida. Quando a intervenção é realizada com a técnica correta e por uma equipa experiente, oferece resultados naturais, estáveis e duradouros.</p>"
+          "answer": "<p>Sim. Os folículos provêm de uma zona doadora geneticamente resistente à queda e, uma vez estabelecidos, continuam a crescer durante toda a vida. Quando a intervenção é realizada com a técnica correta e por uma equipa experiente, oferece resultados naturais, estáveis e duradouros.</p>"
         }
       ]
     },
@@ -94,7 +94,7 @@
       "acf_fc_layout": "form",
       "eyebrow": "Consulta gratuita",
       "title": "Está preparado para conseguir uma barba mais densa e natural?",
-      "lead": "Partilhe connosco alguns dados e a nossa equipa responder-lhe-á com um plano personalizado, um desenho de barba adaptado ao seu rosto e um orçamento completo sem compromisso, normalmente em poucas horas.",
+      "lead": "Partilhe conosco alguns dados e a nossa equipa responderá com um plano personalizado, um desenho de barba adaptado ao seu rosto e um orçamento completo sem compromisso, normalmente em poucas horas.",
       "points": [
         { "label": "Avaliação gratuita de enxertos a partir das suas fotografias" },
         { "label": "Linha de barba natural desenhada para o seu rosto" },
