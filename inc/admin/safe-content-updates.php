@@ -2119,10 +2119,10 @@ function estecapelli_safe_patch_option_key( $kind, $patch_id ) {
 	return 'estecapelli_safe_patch_' . $kind . '_' . substr( hash( 'sha256', $patch_id ), 0, 20 );
 }
 
-/** Canonicalise serialization-only differences in an HTML field. */
-function estecapelli_safe_patch_normalize_html( $value ) {
+/** Canonicalise serialization-only differences in a rich-text HTML field. */
+function estecapelli_safe_patch_normalize_html( $value, $force_html = false ) {
 	$value = (string) $value;
-	if ( false === strpos( $value, '<' ) ) {
+	if ( ! $force_html && false === strpos( $value, '<' ) ) {
 		return null;
 	}
 
@@ -2134,9 +2134,43 @@ function estecapelli_safe_patch_normalize_html( $value ) {
 	$value = html_entity_decode( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 	$value = str_replace( array( "\xC2\xA0", "\xE2\x80\xAF" ), ' ', $value );
 
-	// ACF's WYSIWYG formatter may add line breaks between block tags. Whitespace
-	// inside text nodes is deliberately untouched so real copy edits conflict.
-	return trim( preg_replace( '/>\s+</u', '><', $value ) );
+	// Canonicalise through the same formatter used by WordPress/ACF. This makes
+	// a raw blank-line paragraph and an explicitly stored <p> equivalent.
+	if ( function_exists( 'wpautop' ) ) {
+		$value = wpautop( $value );
+	}
+
+	// Compare the exact ordered tag structure separately from visible text.
+	// Editor indentation/newlines cannot affect the structure, while a real tag
+	// change (including an inserted <br>) remains a conflict.
+	$tags = array();
+	preg_match_all( '/<[^>]+>/s', $value, $tags );
+	$structure = implode(
+		'',
+		array_map(
+			static function ( $tag ) {
+				return preg_replace( '/\s+/u', ' ', trim( $tag ) );
+			},
+			$tags[0] ?? array()
+		)
+	);
+
+	// Block boundaries and explicit line breaks are visible whitespace. Add a
+	// separator before stripping tags, then collapse HTML whitespace exactly as
+	// a browser does. Inline spacing is retained, so "un mot" cannot match
+	// "unmot" and genuine copy edits still fail closed.
+	$text = preg_replace(
+		'#</?(?:address|article|aside|blockquote|div|figcaption|figure|footer|h[1-6]|header|hr|li|main|nav|ol|p|section|table|tbody|td|tfoot|th|thead|tr|ul)\b[^>]*>#i',
+		"\n",
+		$value
+	);
+	$text = preg_replace( '#<br\b[^>]*>#i', "\n", $text );
+	$text = function_exists( 'wp_strip_all_tags' ) ? wp_strip_all_tags( $text ) : strip_tags( $text );
+	$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	$text = str_replace( array( "\xC2\xA0", "\xE2\x80\xAF" ), ' ', $text );
+	$text = trim( preg_replace( '/[\p{Z}\s]+/u', ' ', $text ) );
+
+	return $structure . "\0" . $text;
 }
 
 /** Compare a current value with one or more allowed pre-patch values. */
@@ -2147,15 +2181,16 @@ function estecapelli_safe_patch_matches( $current, $allowed ) {
 		return true;
 	}
 
-	// Only HTML values receive serialization normalization. Plain text retains
-	// the exact-match behavior above, including its original whitespace.
-	$current_norm = estecapelli_safe_patch_normalize_html( $current );
-	if ( null !== $current_norm ) {
-		foreach ( $allowed as $candidate ) {
-			$candidate_norm = estecapelli_safe_patch_normalize_html( $candidate );
-			if ( null !== $candidate_norm && $current_norm === $candidate_norm ) {
-				return true;
-			}
+	// Only comparisons where at least one side contains HTML receive rich-text
+	// normalization. Plain text retains exact matching, including whitespace.
+	foreach ( $allowed as $candidate ) {
+		if ( false === strpos( (string) $current, '<' ) && false === strpos( $candidate, '<' ) ) {
+			continue;
+		}
+		$current_norm   = estecapelli_safe_patch_normalize_html( $current, true );
+		$candidate_norm = estecapelli_safe_patch_normalize_html( $candidate, true );
+		if ( $current_norm === $candidate_norm ) {
+			return true;
 		}
 	}
 
