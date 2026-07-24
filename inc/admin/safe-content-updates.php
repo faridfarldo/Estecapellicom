@@ -2127,6 +2127,29 @@ function estecapelli_safe_patch_matches( $current, $allowed ) {
 		return true;
 	}
 
+	// Rich-text (wysiwyg) fields are stored on the site with wpautop-style
+	// whitespace between block tags — e.g. "</p>\n<p>" or a trailing newline —
+	// that the seed strings do not contain. When a value carries HTML tags,
+	// compare again with the whitespace between tags collapsed and the ends
+	// trimmed, so a patch is not blocked by formatting-only differences. Plain
+	// text keeps strict matching (returns null and is skipped).
+	$normalize = static function ( $value ) {
+		$value = (string) $value;
+		if ( false === strpos( $value, '<' ) ) {
+			return null;
+		}
+		return trim( preg_replace( '/>\s+</', '><', $value ) );
+	};
+	$current_norm = $normalize( $current );
+	if ( null !== $current_norm ) {
+		foreach ( $allowed as $candidate ) {
+			$candidate_norm = $normalize( $candidate );
+			if ( null !== $candidate_norm && $current_norm === $candidate_norm ) {
+				return true;
+			}
+		}
+	}
+
 	// YouTube stores the same video in several equivalent URL forms. Treat a
 	// watch, Shorts, youtu.be or bare-ID value as equal when its video ID is the
 	// same, while preserving strict comparison for every non-video field.
