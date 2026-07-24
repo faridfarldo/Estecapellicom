@@ -37,6 +37,23 @@ function estecapelli_tr_gettext_fallback( $translation, $text, $domain ) {
 	static $strings = null;
 	if ( null === $strings ) {
 		$strings = array(
+			// Journal / blog UI.
+			'From the Journal' => 'Dergiden',
+			'Research, results & recovery' => 'Araştırma, sonuçlar ve iyileşme',
+			'Expert articles on hair restoration, plastic surgery, dental treatment and the journey to your transformation — written by the Estecapelli team.' => 'Saç restorasyonu, estetik cerrahi, diş tedavileri ve dönüşüm yolculuğunuz hakkında Estecapelli ekibi tarafından hazırlanan uzman yazıları.',
+			'Article categories' => 'Makale kategorileri',
+			'All' => 'Tümü',
+			'Latest article' => 'En yeni makale',
+			'Read the article' => 'Makaleyi okuyun',
+			'Articles from the Estecapelli journal.' => 'Estecapelli dergisinden makaleler.',
+			'All articles' => 'Tüm makaleler',
+			'Read more' => 'Devamını okuyun',
+			'Posts pagination' => 'Makale sayfaları',
+			'Newer' => 'Daha yeni',
+			'Older' => 'Daha eski',
+			'No articles found here yet.' => 'Burada henüz makale bulunamadı.',
+			'No articles have been published yet. New posts will appear here as soon as our team publishes them.' => 'Henüz hiçbir makale yayımlanmadı. Ekibimiz yeni içerikler yayımladığında burada görünecek.',
+
 			// Shared consultation popup and lead forms.
 			'Free Consultation' => 'Ücretsiz Konsültasyon',
 			'Close' => 'Kapat',
@@ -108,6 +125,22 @@ function estecapelli_tr_gettext_fallback( $translation, $text, $domain ) {
 	}
 
 	return $strings[ $text ] ?? $translation;
+}
+
+add_filter( 'ngettext', 'estecapelli_tr_ngettext_fallback', 25, 5 );
+/** Translate the reading-time label used by blog cards and articles. */
+function estecapelli_tr_ngettext_fallback( $translation, $single, $plural, $number, $domain ) {
+	if (
+		'estecapelli' === $domain &&
+		estecapelli_is_turkish_request() &&
+		in_array( $translation, array( $single, $plural ), true ) &&
+		'%d min read' === $single &&
+		'%d min read' === $plural
+	) {
+		return '%d dk okuma';
+	}
+
+	return $translation;
 }
 
 add_action( 'wp_enqueue_scripts', 'estecapelli_tr_enqueue_contact_i18n', 20 );

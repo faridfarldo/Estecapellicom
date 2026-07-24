@@ -33,6 +33,23 @@ function estecapelli_pt_gettext_fallback( $translation, $text, $domain ) {
 	static $strings = null;
 	if ( null === $strings ) {
 		$strings = array(
+			// Journal / blog UI.
+			'From the Journal' => 'Do nosso blog',
+			'Research, results & recovery' => 'Investigação, resultados e recuperação',
+			'Expert articles on hair restoration, plastic surgery, dental treatment and the journey to your transformation — written by the Estecapelli team.' => 'Artigos especializados sobre restauração capilar, cirurgia plástica, tratamentos dentários e o percurso da sua transformação — escritos pela equipa Estecapelli.',
+			'Article categories' => 'Categorias de artigos',
+			'All' => 'Todos',
+			'Latest article' => 'Artigo mais recente',
+			'Read the article' => 'Ler o artigo',
+			'Articles from the Estecapelli journal.' => 'Artigos do blog Estecapelli.',
+			'All articles' => 'Todos os artigos',
+			'Read more' => 'Ler mais',
+			'Posts pagination' => 'Paginação dos artigos',
+			'Newer' => 'Mais recentes',
+			'Older' => 'Mais antigos',
+			'No articles found here yet.' => 'Ainda não foram encontrados artigos.',
+			'No articles have been published yet. New posts will appear here as soon as our team publishes them.' => 'Ainda não foi publicado nenhum artigo. Os novos artigos aparecerão aqui assim que a nossa equipa os publicar.',
+
 			// Shared navigation, footer and lead forms.
 			'Skip to content' => 'Saltar para o conteúdo',
 			'Primary' => 'Navegação principal',

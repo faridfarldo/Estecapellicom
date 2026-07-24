@@ -44,6 +44,12 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 	$strings = array(
 		// Journal / blog UI.
 		'From the Journal'                        => 'Le journal',
+		'Research, results & recovery'             => 'Recherche, résultats et récupération',
+		'Expert articles on hair restoration, plastic surgery, dental treatment and the journey to your transformation — written by the Estecapelli team.' => 'Des articles d’experts sur la restauration capillaire, la chirurgie plastique, les soins dentaires et votre parcours de transformation — rédigés par l’équipe Estecapelli.',
+		'Article categories'                       => 'Catégories d’articles',
+		'All'                                      => 'Tous',
+		'Latest article'                           => 'Dernier article',
+		'Read the article'                         => 'Lire l’article',
 		'Articles from the Estecapelli journal.' => 'Articles du journal Estecapelli.',
 		'All articles'                            => 'Tous les articles',
 		'Read more'                               => 'En savoir plus',
@@ -51,6 +57,7 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 		'Newer'                                   => 'Plus récents',
 		'Older'                                   => 'Plus anciens',
 		'No articles found here yet.'             => 'Aucun article trouvé pour le moment.',
+		'No articles have been published yet. New posts will appear here as soon as our team publishes them.' => 'Aucun article n’a encore été publié. Les nouveaux articles apparaîtront ici dès leur publication par notre équipe.',
 
 		// Contact page (page-contact.php) — hardcoded UI, not ACF sections.
 		'Hello Estecapelli, I would like to book a free consultation.' => 'Bonjour Estecapelli, je souhaite réserver une consultation gratuite.',
