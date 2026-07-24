@@ -38,6 +38,21 @@ function estecapelli_safe_patch_vita_empty_step_operations() {
 	);
 }
 
+/** Remove the trailing Step Book row by decrementing its `items` row count. */
+function estecapelli_safe_patch_remove_last_step_operation( $current_count ) {
+	$current_count = (int) $current_count;
+	return array(
+		'target' => 'layout_fields',
+		'layout' => 'stepbook',
+		'fields' => array(
+			'items' => array(
+				'before' => array( (string) $current_count, $current_count ),
+				'after'  => (string) ( $current_count - 1 ),
+			),
+		),
+	);
+}
+
 /** Build the exact, language-specific VITA three-to-four-step migration. */
 function estecapelli_safe_patch_vita_four_step_operations( $copy ) {
 	$old_items = array_values( $copy['old_items'] );
@@ -672,6 +687,19 @@ function estecapelli_safe_content_patches() {
 		'pt-review-eyebrow-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'eyebrow-transplant', 'treatment', 'Portuguese review — Eyebrow Transplant' ),
 		'pt-review-beard-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'beard-transplant', 'treatment', 'Portuguese review — Beard Transplant' ),
 		'pt-review-pre-transplant-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'pre-hair-transplant-period', 'page', 'Portuguese review — Pre-transplant Period' ),
+		'remove-pretransplant-step7-20260724-v1' => array(
+			'title'       => 'Pre-transplant — remove erroneous Step 7',
+			'description' => 'Remove the extra 7th Step Book step ("Estecapelli Recommendations") from the pre-transplant page so Portuguese, Spanish, Polish and Turkish match the 6-step English page. Only the Step Book row count is changed (7 → 6); each language is verified to currently show 7 steps before writing, and an exact rollback backup is kept.',
+			'post_type'   => 'page',
+			'source_slug' => 'pre-hair-transplant-period',
+			'schema'      => 'field_groups_v2',
+			'languages'   => array(
+				'pt' => array( estecapelli_safe_patch_remove_last_step_operation( 7 ) ),
+				'es' => array( estecapelli_safe_patch_remove_last_step_operation( 7 ) ),
+				'pl' => array( estecapelli_safe_patch_remove_last_step_operation( 7 ) ),
+				'tr' => array( estecapelli_safe_patch_remove_last_step_operation( 7 ) ),
+			),
+		),
 		'pt-review-post-transplant-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'post-hair-transplant-period', 'page', 'Portuguese review — Post-transplant Period' ),
 		'pt-review-tricholab-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'tricholab', 'page', 'Portuguese review — TrichoLab' ),
 		'pt-review-rhinoplasty-20260724-v1' => estecapelli_safe_patch_pt_review_definition( 'rhinoplasty', 'treatment', 'Portuguese review — Rhinoplasty' ),
