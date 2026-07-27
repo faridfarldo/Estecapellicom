@@ -38,14 +38,25 @@ if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
 		// keeps it. Pure display, no database write.
 		if ( is_array( $source_section )
 			&& ( $section['acf_fc_layout'] ?? '' ) === ( $source_section['acf_fc_layout'] ?? '' ) ) {
-			$has_localized = ! empty( $section['localized_image_url'] );
-			$has_image     = ! empty( $section['image'] ) && ! empty( $section['image']['url'] );
-			$has_image_url = ! empty( $section['image_url'] );
-			if ( ! $has_localized && ! $has_image && ! $has_image_url ) {
-				if ( ! empty( $source_section['image'] ) && is_array( $source_section['image'] ) && ! empty( $source_section['image']['url'] ) ) {
-					$section['image'] = $source_section['image'];
-				} elseif ( ! empty( $source_section['image_url'] ) ) {
-					$section['image_url'] = $source_section['image_url'];
+			// Does the translation carry any media of its own? A localized text
+			// graphic, an uploaded image, a URL fallback, a video or a slider each
+			// count. If it carries none, the section is meant to reuse the shared
+			// media that lives only on the default-language post.
+			$has_own_media =
+				   ! empty( $section['localized_image_url'] )
+				|| ( ! empty( $section['image'] ) && ! empty( $section['image']['url'] ) )
+				|| ! empty( $section['image_url'] )
+				|| ! empty( $section['video_url'] )
+				|| ( ! empty( $section['slider_images'] ) && is_array( $section['slider_images'] ) );
+
+			if ( ! $has_own_media ) {
+				// Inherit the source row's whole media setup so media_type and its
+				// matching asset (image, URL fallback, video or slider) stay in step.
+				foreach ( array( 'media_type', 'image', 'image_url', 'video_url', 'slider_images' ) as $mkey ) {
+					$empty_here = ! isset( $section[ $mkey ] ) || '' === $section[ $mkey ] || array() === $section[ $mkey ];
+					if ( isset( $source_section[ $mkey ] ) && '' !== $source_section[ $mkey ] && array() !== $source_section[ $mkey ] && $empty_here ) {
+						$section[ $mkey ] = $source_section[ $mkey ];
+					}
 				}
 			}
 		}
