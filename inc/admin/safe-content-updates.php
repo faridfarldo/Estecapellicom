@@ -1479,7 +1479,6 @@ function estecapelli_safe_content_patches() {
 			'post_type'     => 'treatment',
 			'source_slug'   => 'gynecomastia',
 			'schema'        => 'field_groups_v2',
-			'superseded_by' => 'gynecomastia-localized-faq-and-gallery-20260724-v2',
 			'languages'     => array(
 				'fr' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
 				'it' => array( estecapelli_safe_patch_gynecomastia_layout_operation() ),
@@ -1489,12 +1488,13 @@ function estecapelli_safe_content_patches() {
 			),
 		),
 		'gynecomastia-localized-faq-and-gallery-20260724-v2' => array(
-			'title'       => 'Gynecomastia — restore localized FAQ + final image',
-			'description' => 'Write the seven pinned localized FAQ rows for French, Italian, Spanish, Polish and Portuguese, restore the previous final image inside the gallery, and correct the flexible-content layout map. Every existing meta value is verified and fully rollback-safe. Turkish already renders its localized FAQ correctly.',
-			'post_type'   => 'treatment',
-			'source_slug' => 'gynecomastia',
-			'schema'      => 'field_groups_v2',
-			'languages'   => array(
+			'title'         => 'Gynecomastia — restore localized FAQ + final image (RETIRED — do not apply)',
+			'description'   => 'RETIRED: this patch rewrote ACF internal field references by hand and could misalign the rows. It is kept in the registry only so an existing application can still be rolled back. Use the layout-map patch (v1) instead.',
+			'post_type'     => 'treatment',
+			'source_slug'   => 'gynecomastia',
+			'schema'        => 'field_groups_v2',
+			'superseded_by' => 'gynecomastia-localized-faq-layout-20260724-v1',
+			'languages'     => array(
 				'fr' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'fr' ),
 				'it' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'it' ),
 				'es' => estecapelli_safe_patch_gynecomastia_faq_gallery_operations( 'es' ),
