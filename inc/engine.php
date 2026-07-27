@@ -22,11 +22,34 @@ if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
 	 * render-only compatibility layer preserves all translated copy and all
 	 * three steps while avoiding a destructive database rewrite.
 	 *
-	 * @param array $section ACF flexible-content row.
-	 * @param int   $post_id Current post ID.
+	 * @param array      $section        ACF flexible-content row.
+	 * @param int        $post_id        Current post ID.
+	 * @param array|null $source_section Same-index row from the default-language
+	 *                                   post, when the current post is a translation.
 	 * @return array
 	 */
-	function estecapelli_prepare_page_section_for_render( array $section, $post_id ) {
+	function estecapelli_prepare_page_section_for_render( array $section, $post_id, $source_section = null ) {
+		// Shared uploaded section images (intro, candidate, hero, …) are attached
+		// only to the default-language post via the ACF image field; the per-language
+		// JSON carries no image for them, so a translation renders the section with an
+		// empty image slot. When the translation has no image of its own — and no
+		// localized text graphic — borrow the shared image from the source row at the
+		// same index. A translation that ships its own localized_image_url or image
+		// keeps it. Pure display, no database write.
+		if ( is_array( $source_section )
+			&& ( $section['acf_fc_layout'] ?? '' ) === ( $source_section['acf_fc_layout'] ?? '' ) ) {
+			$has_localized = ! empty( $section['localized_image_url'] );
+			$has_image     = ! empty( $section['image'] ) && ! empty( $section['image']['url'] );
+			$has_image_url = ! empty( $section['image_url'] );
+			if ( ! $has_localized && ! $has_image && ! $has_image_url ) {
+				if ( ! empty( $source_section['image'] ) && is_array( $source_section['image'] ) && ! empty( $source_section['image']['url'] ) ) {
+					$section['image'] = $source_section['image'];
+				} elseif ( ! empty( $source_section['image_url'] ) ) {
+					$section['image_url'] = $source_section['image_url'];
+				}
+			}
+		}
+
 		// Before/after galleries are language-neutral: the composite images live
 		// only on the default-language treatment. Translated posts keep an
 		// independent (ACFML "Copy Once") gallery whose row count can drift from the
@@ -81,8 +104,26 @@ if ( ! function_exists( 'estecapelli_render_page_sections' ) ) {
 			return false;
 		}
 
-		foreach ( $sections as $section ) {
-			$section = estecapelli_prepare_page_section_for_render( $section, $post_id );
+		// When this post is a translation, load the default-language builder once so
+		// each row can borrow a shared uploaded image the JSON translation omits.
+		$source_sections = null;
+		$default_lang = apply_filters( 'wpml_default_language', null );
+		$current_lang = apply_filters( 'wpml_current_language', null );
+		if ( $default_lang && $current_lang && $default_lang !== $current_lang ) {
+			$source_id = (int) apply_filters( 'wpml_object_id', $post_id, get_post_type( $post_id ), false, $default_lang );
+			if ( $source_id && $source_id !== (int) $post_id ) {
+				$maybe_source = get_field( 'page_sections', $source_id );
+				if ( is_array( $maybe_source ) ) {
+					$source_sections = $maybe_source;
+				}
+			}
+		}
+
+		foreach ( $sections as $index => $section ) {
+			$source_section = ( is_array( $source_sections ) && isset( $source_sections[ $index ] ) )
+				? $source_sections[ $index ]
+				: null;
+			$section = estecapelli_prepare_page_section_for_render( $section, $post_id, $source_section );
 			$layout = $section['acf_fc_layout'] ?? '';
 			if ( ! $layout ) {
 				continue;
