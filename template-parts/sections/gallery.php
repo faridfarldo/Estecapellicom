@@ -21,12 +21,25 @@ $cta     = $section['cta']     ?? array();
 
 if ( empty( $items ) ) { return; }
 
-// Drop items without an image up front so the nav reflects the real count.
+// Drop items without an image, and de-duplicate by attachment so a stale row
+// left behind by a cross-language sync cannot repeat the same composite. Done up
+// front so the carousel nav reflects the real count.
+$seen  = array();
 $items = array_values(
 	array_filter(
 		$items,
-		static function ( $item ) {
-			return ! empty( $item['image']['url'] );
+		static function ( $item ) use ( &$seen ) {
+			$image = $item['image'] ?? array();
+			$url   = $image['url'] ?? '';
+			if ( '' === $url ) {
+				return false;
+			}
+			$key = (string) ( $image['ID'] ?? $image['id'] ?? $url );
+			if ( isset( $seen[ $key ] ) ) {
+				return false;
+			}
+			$seen[ $key ] = true;
+			return true;
 		}
 	)
 );

@@ -27,6 +27,24 @@ if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
 	 * @return array
 	 */
 	function estecapelli_prepare_page_section_for_render( array $section, $post_id ) {
+		// Before/after galleries are language-neutral: the composite images live
+		// only on the default-language treatment. Translated posts keep an
+		// independent (ACFML "Copy Once") gallery whose row count can drift from the
+		// source when images are added or removed in the default language — leaving
+		// stale rows that render as duplicated or wrong photos. Pull the gallery
+		// items straight from the source-language post on translations so the two
+		// can never diverge. Translated labels (title/eyebrow/lead) are untouched.
+		if ( 'gallery' === ( $section['acf_fc_layout'] ?? '' ) && function_exists( 'estecapelli_collect_gallery_items' ) ) {
+			$default_lang = apply_filters( 'wpml_default_language', null );
+			$current_lang = apply_filters( 'wpml_current_language', null );
+			if ( $default_lang && $current_lang && $default_lang !== $current_lang ) {
+				$source_id = (int) apply_filters( 'wpml_object_id', $post_id, get_post_type( $post_id ), false, $default_lang );
+				if ( $source_id && $source_id !== (int) $post_id ) {
+					$section['items'] = estecapelli_collect_gallery_items( get_field( 'page_sections', $source_id ) );
+				}
+			}
+		}
+
 		$is_tricholab = 'tricholab' === get_post_field( 'post_name', $post_id );
 		$is_stepbook  = 'stepbook' === ( $section['acf_fc_layout'] ?? '' );
 
