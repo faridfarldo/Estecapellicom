@@ -3,19 +3,17 @@
  * One-time repair — refill the empty FAQ on the translated Gynecomastia pages.
  *
  * Five translated Gynecomastia treatments (fr, it, es, pl, pt) render an empty
- * FAQ because their faq repeater rows were never written by the import. This
- * tool injects the seven translated question/answer rows from each language's
- * own JSON directly into the faq repeater — the value meta, its ACF field-key
- * reference meta and the row count — at the faq layout's REAL index in the
- * post's section map. It:
+ * FAQ because their faq repeater rows are missing (or a previous raw-meta patch
+ * left broken rows that ACF cannot assemble). This tool injects the seven
+ * translated question/answer rows from each language's own JSON into the faq
+ * repeater at the faq layout's real index in the section map.
  *
- *   - only fills a faq that is currently empty (safe to run more than once);
- *   - touches nothing else — no gallery, no other section, no layout map;
- *   - writes exactly the ACF nested-repeater meta shape, using the confirmed
- *     field keys (field_faq_items / field_faq_q / field_faq_a).
+ * The decision to fill is based on what ACF actually ASSEMBLES (get_field), not
+ * on the raw meta, so a page that shows no FAQ is repaired even if broken raw
+ * rows are left behind. It only touches the faq repeater — no gallery, no other
+ * section, no layout map — and is safe to run more than once.
  *
- * It is manual, admin-only and nonce-guarded — like Safe Content Updates it
- * never runs on its own.
+ * Manual, admin-only and nonce-guarded — it never runs on its own.
  *
  * @package Estecapelli
  */
@@ -79,22 +77,59 @@ function estecapelli_gyno_faq_layout_index( $target_id ) {
 	return ( false === $i ) ? null : (int) $i;
 }
 
-/** Count faq rows that already carry a non-empty question. */
-function estecapelli_gyno_faq_current_count( $target_id, $faq_index ) {
-	$count = 0;
+/** Number of faq rows ACF actually assembles for a post (what the page sees). */
+function estecapelli_gyno_faq_rendered_count( $target_id ) {
+	if ( ! function_exists( 'get_field' ) ) {
+		return -1;
+	}
+	$sections = get_field( 'page_sections', $target_id );
+	if ( ! is_array( $sections ) ) {
+		return -1;
+	}
+	foreach ( $sections as $row ) {
+		if ( 'faq' === ( $row['acf_fc_layout'] ?? '' ) ) {
+			$n = 0;
+			foreach ( (array) ( $row['items'] ?? array() ) as $it ) {
+				if ( is_array( $it ) && '' !== trim( (string) ( $it['question'] ?? '' ) ) ) {
+					$n++;
+				}
+			}
+			return $n;
+		}
+	}
+	return 0;
+}
+
+/** Raw-meta count of faq questions actually stored at the faq index. */
+function estecapelli_gyno_faq_raw_count( $target_id, $faq_index ) {
+	if ( null === $faq_index ) {
+		return -1;
+	}
+	$n = 0;
 	for ( $r = 0; $r < 20; $r++ ) {
 		$q = (string) get_post_meta( $target_id, "page_sections_{$faq_index}_items_{$r}_question", true );
 		if ( '' !== trim( $q ) ) {
-			$count++;
+			$n++;
 		}
 	}
-	return $count;
+	return $n;
+}
+
+/** Drop ACF's in-request value cache so a fresh get_field re-reads the DB. */
+function estecapelli_gyno_faq_flush_cache( $target_id ) {
+	clean_post_cache( $target_id );
+	wp_cache_delete( $target_id, 'post_meta' );
+	if ( function_exists( 'acf_flush_value_cache' ) ) {
+		acf_flush_value_cache();
+	}
 }
 
 /**
- * Fill the empty FAQ for one language. Returns a human-readable status.
+ * Fill / repair the FAQ for one language. Returns a human-readable status.
  *
- * Only writes when the faq is currently empty, and only the faq repeater meta.
+ * Fills only when ACF currently assembles zero faq items (the page shows no
+ * FAQ). Writes only the faq repeater meta at the faq layout index, overwriting
+ * any broken leftover rows with the exact ACF shape and field-key references.
  */
 function estecapelli_gyno_faq_fill_one( $lang ) {
 	$target_id = estecapelli_gyno_faq_target_id( $lang );
@@ -105,9 +140,9 @@ function estecapelli_gyno_faq_fill_one( $lang ) {
 	if ( null === $faq_index ) {
 		return 'no faq layout in section map';
 	}
-	$current = estecapelli_gyno_faq_current_count( $target_id, $faq_index );
-	if ( $current > 0 ) {
-		return sprintf( 'already has %d items — skipped', $current );
+	$rendered = estecapelli_gyno_faq_rendered_count( $target_id );
+	if ( $rendered > 0 ) {
+		return sprintf( 'already renders %d items — skipped', $rendered );
 	}
 	$items = estecapelli_gyno_faq_json_items( $lang );
 	if ( ! is_array( $items ) || 7 !== count( $items ) ) {
@@ -115,6 +150,16 @@ function estecapelli_gyno_faq_fill_one( $lang ) {
 	}
 
 	$base = "page_sections_{$faq_index}_items";
+
+	// Clear any stale rows beyond the seven we write, so a broken longer row set
+	// left by an earlier attempt cannot linger.
+	for ( $r = 0; $r < 20; $r++ ) {
+		delete_post_meta( $target_id, "{$base}_{$r}_question" );
+		delete_post_meta( $target_id, "_{$base}_{$r}_question" );
+		delete_post_meta( $target_id, "{$base}_{$r}_answer" );
+		delete_post_meta( $target_id, "_{$base}_{$r}_answer" );
+	}
+
 	update_post_meta( $target_id, $base, count( $items ) );
 	update_post_meta( $target_id, "_{$base}", 'field_faq_items' );
 	foreach ( $items as $r => $item ) {
@@ -123,10 +168,10 @@ function estecapelli_gyno_faq_fill_one( $lang ) {
 		update_post_meta( $target_id, "{$base}_{$r}_answer", $item['answer'] );
 		update_post_meta( $target_id, "_{$base}_{$r}_answer", 'field_faq_a' );
 	}
-	clean_post_cache( $target_id );
 
-	$after = estecapelli_gyno_faq_current_count( $target_id, $faq_index );
-	return sprintf( 'filled — now %d items', $after );
+	estecapelli_gyno_faq_flush_cache( $target_id );
+	$after = estecapelli_gyno_faq_rendered_count( $target_id );
+	return sprintf( 'wrote 7 rows — ACF now assembles %d items', $after );
 }
 
 /** Register the manual repair page under Tools. */
@@ -141,7 +186,7 @@ function estecapelli_gyno_faq_register_page() {
 	);
 }
 
-/** Render the repair page: a preview table plus a manual fill button. */
+/** Render the repair page: diagnostics table plus a manual fill button. */
 function estecapelli_gyno_faq_render_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
@@ -157,34 +202,40 @@ function estecapelli_gyno_faq_render_page() {
 
 	echo '<div class="wrap">';
 	echo '<h1>' . esc_html__( 'Repair Gynecomastia FAQ', 'estecapelli' ) . '</h1>';
-	echo '<p>' . esc_html__( 'Fills the FAQ questions/answers on the translated Gynecomastia pages only when their FAQ is empty. It writes just the FAQ rows — nothing else is touched — and is safe to run more than once.', 'estecapelli' ) . '</p>';
+	echo '<p>' . esc_html__( 'Fills the FAQ on a translated Gynecomastia page only when ACF assembles zero questions there. Writes just the FAQ rows — nothing else — and is safe to run more than once.', 'estecapelli' ) . '</p>';
 
-	echo '<table class="widefat striped" style="max-width:900px;"><thead><tr>';
-	foreach ( array( 'Language', 'Post ID', 'FAQ index', 'Current items', 'JSON items', 'Result' ) as $th ) {
+	echo '<table class="widefat striped" style="max-width:1000px;"><thead><tr>';
+	foreach ( array( 'Language', 'Post ID', 'Section map', 'FAQ idx', 'ACF renders', 'Raw meta', 'JSON', 'Result' ) as $th ) {
 		echo '<th>' . esc_html( $th ) . '</th>';
 	}
 	echo '</tr></thead><tbody>';
 	foreach ( estecapelli_gyno_faq_languages() as $lang ) {
-		$tid   = estecapelli_gyno_faq_target_id( $lang );
-		$fi    = $tid ? estecapelli_gyno_faq_layout_index( $tid ) : null;
-		$cur   = ( $tid && null !== $fi ) ? estecapelli_gyno_faq_current_count( $tid, $fi ) : null;
-		$json  = estecapelli_gyno_faq_json_items( $lang );
-		$jc    = is_array( $json ) ? count( $json ) : null;
+		$tid  = estecapelli_gyno_faq_target_id( $lang );
+		$map  = $tid ? get_post_meta( $tid, 'page_sections', true ) : null;
+		$fi   = $tid ? estecapelli_gyno_faq_layout_index( $tid ) : null;
+		$ren  = $tid ? estecapelli_gyno_faq_rendered_count( $tid ) : null;
+		$raw  = ( $tid && null !== $fi ) ? estecapelli_gyno_faq_raw_count( $tid, $fi ) : null;
+		$json = estecapelli_gyno_faq_json_items( $lang );
+		$jc   = is_array( $json ) ? count( $json ) : null;
+		$map_str = is_array( $map ) ? implode( ', ', array_map( 'strval', $map ) ) : '—';
 		echo '<tr>';
 		echo '<td>' . esc_html( strtoupper( $lang ) ) . '</td>';
 		echo '<td>' . esc_html( $tid ? (string) $tid : '—' ) . '</td>';
+		echo '<td style="font-size:11px;max-width:280px;">' . esc_html( $map_str ) . '</td>';
 		echo '<td>' . esc_html( null === $fi ? '—' : (string) $fi ) . '</td>';
-		echo '<td>' . esc_html( null === $cur ? '—' : (string) $cur ) . '</td>';
+		echo '<td><strong>' . esc_html( null === $ren ? '—' : (string) $ren ) . '</strong></td>';
+		echo '<td>' . esc_html( null === $raw ? '—' : (string) $raw ) . '</td>';
 		echo '<td>' . esc_html( null === $jc ? '—' : (string) $jc ) . '</td>';
 		echo '<td>' . esc_html( $results[ $lang ] ?? '' ) . '</td>';
 		echo '</tr>';
 	}
 	echo '</tbody></table>';
+	echo '<p style="color:#666;font-size:12px;">' . esc_html__( '"ACF renders" is how many FAQ questions the live page actually shows. If it is 0 while JSON is 7, the row needs filling.', 'estecapelli' ) . '</p>';
 
-	echo '<form method="post" style="margin-top:1.5em;">';
+	echo '<form method="post" style="margin-top:1.2em;">';
 	wp_nonce_field( 'estecapelli_gyno_faq_run' );
 	echo '<input type="hidden" name="estecapelli_gyno_faq_run" value="1" />';
-	submit_button( __( 'Fill missing FAQ items', 'estecapelli' ) );
+	submit_button( __( 'Fill / repair missing FAQ items', 'estecapelli' ) );
 	echo '</form>';
 	echo '</div>';
 }
