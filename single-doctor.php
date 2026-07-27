@@ -32,6 +32,31 @@ while ( have_posts() ) :
 		$photo = array( 'url' => $resume_photo_url, 'alt' => $name );
 	}
 
+	// Doctor photos are uploaded through ACF image fields that live on whichever
+	// language the editor used — usually the default. A translated profile that
+	// carries no photo of its own borrows the shared photo from the
+	// default-language doctor, the same way page sections inherit shared media.
+	// Same résumé/roster priority, applied to the source post. Display only.
+	if ( ( ! is_array( $photo ) || empty( $photo['url'] ) ) && function_exists( 'get_field' ) ) {
+		$default_lang = apply_filters( 'wpml_default_language', null );
+		$current_lang = apply_filters( 'wpml_current_language', null );
+		if ( $default_lang && $current_lang && $default_lang !== $current_lang ) {
+			$source_id = (int) apply_filters( 'wpml_object_id', get_the_ID(), 'doctor', false, $default_lang );
+			if ( $source_id && $source_id !== (int) get_the_ID() ) {
+				$src_resume     = get_field( 'resume_photo', $source_id );
+				$src_resume_url = (string) get_field( 'resume_photo_url', $source_id );
+				$src_photo      = get_field( 'photo', $source_id );
+				if ( is_array( $src_resume ) && ! empty( $src_resume['url'] ) ) {
+					$photo = $src_resume;
+				} elseif ( '' !== $src_resume_url ) {
+					$photo = array( 'url' => $src_resume_url, 'alt' => $name );
+				} elseif ( is_array( $src_photo ) && ! empty( $src_photo['url'] ) ) {
+					$photo = $src_photo;
+				}
+			}
+		}
+	}
+
 	// Build the profile section payload the shared renderer expects, then load
 	// the same template the page builder uses. This keeps one source of truth
 	// for the profile markup and styling.
