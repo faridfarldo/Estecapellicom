@@ -56,12 +56,29 @@ foreach ( $ht_group['services'] as $sb ) {
 		continue;
 	}
 
+	// The plain-gallery decision keys on the slug, but a translated service has a
+	// translated post_name (e.g. kadin-sac-ekimi), so resolve the default-language
+	// slug — stable across all languages — for that comparison.
+	$stable_slug = $svc->post_name;
+	$default_lang = apply_filters( 'wpml_default_language', null );
+	$current_lang = apply_filters( 'wpml_current_language', null );
+	if ( $default_lang && $current_lang && $default_lang !== $current_lang ) {
+		$src_id = (int) apply_filters( 'wpml_object_id', $svc->ID, get_post_type( $svc ), false, $default_lang );
+		if ( $src_id ) {
+			$src_slug = get_post_field( 'post_name', $src_id );
+			if ( $src_slug ) {
+				$stable_slug = $src_slug;
+			}
+		}
+	}
+
 	$techniques[] = array(
-		'id'     => $svc->ID,
-		'slug'   => $svc->post_name,
-		'title'  => get_the_title( $svc ),
-		'url'    => get_permalink( $svc ),
-		'images' => $images,
+		'id'          => $svc->ID,
+		'slug'        => $svc->post_name,
+		'stable_slug' => $stable_slug,
+		'title'       => get_the_title( $svc ),
+		'url'         => get_permalink( $svc ),
+		'images'      => $images,
 	);
 }
 if ( empty( $techniques ) ) {
@@ -137,7 +154,7 @@ $gallery_url = estecapelli_indexed_url( '/en/before-after' );
 				<?php echo $is_first ? '' : 'hidden'; ?>
 			>
 
-				<?php $is_plain = in_array( $tech['slug'], $plain_gallery_slugs, true ); ?>
+				<?php $is_plain = in_array( $tech['stable_slug'], $plain_gallery_slugs, true ); ?>
 
 				<?php if ( $is_plain ) : ?>
 
