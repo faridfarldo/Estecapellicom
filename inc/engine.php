@@ -79,6 +79,12 @@ if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
 			}
 		}
 
+		// A small set of approved language revisions must remain visible even
+		// when an older translated ACF record still exists in WordPress.
+		if ( function_exists( 'estecapelli_fr_revision_prepare_section' ) ) {
+			$section = estecapelli_fr_revision_prepare_section( $section, $post_id );
+		}
+
 		$is_tricholab = 'tricholab' === get_post_field( 'post_name', $post_id );
 		$is_stepbook  = 'stepbook' === ( $section['acf_fc_layout'] ?? '' );
 

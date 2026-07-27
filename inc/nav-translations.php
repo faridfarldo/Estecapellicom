@@ -549,7 +549,7 @@ add_filter( 'gettext', 'estecapelli_nav_gettext_fallback', 30, 3 );
  * @return string
  */
 function estecapelli_nav_gettext_fallback( $translation, $text, $domain ) {
-	if ( ! estecapelli_is_public_translation_request() || 'estecapelli' !== $domain || $translation !== $text ) {
+	if ( ! estecapelli_is_public_translation_request() || 'estecapelli' !== $domain ) {
 		return $translation;
 	}
 	$all  = estecapelli_nav_translations();
@@ -557,6 +557,19 @@ function estecapelli_nav_gettext_fallback( $translation, $text, $domain ) {
 	if ( ! isset( $all[ $lang ] ) ) {
 		return $translation;
 	}
+
+	// This reviewed treatment name must remain a brand label. WPML String
+	// Translation may already have changed it to "Sourire Hollywood" before
+	// this fallback runs, so this one exact French source string intentionally
+	// overrides an existing translation as well as an untranslated value.
+	if ( 'fr' === $lang && 'Hollywood Smile' === $text ) {
+		return 'Hollywood Smile';
+	}
+
+	if ( $translation !== $text ) {
+		return $translation;
+	}
+
 	return $all[ $lang ][ $text ] ?? $translation;
 }
 
@@ -603,6 +616,27 @@ function estecapelli_nav_menu_title( $title, $item ) {
 	}
 
 	return $all[ $lang ][ $title ] ?? $title;
+}
+
+add_filter( 'nav_menu_item_title', 'estecapelli_fr_force_hollywood_smile_menu_title', PHP_INT_MAX, 4 );
+/**
+ * Keep the reviewed Hollywood Smile brand label after every WPML menu filter.
+ *
+ * The route check makes this safe even if a translated menu item has a custom
+ * database title or another plugin changes that title at a later priority.
+ *
+ * @param string $title Menu title after other filters.
+ * @param object $item  Menu item.
+ * @return string
+ */
+function estecapelli_fr_force_hollywood_smile_menu_title( $title, $item ) {
+	if ( 'fr' !== estecapelli_nav_current_lang() ) {
+		return $title;
+	}
+
+	return '/en/dental-treatment/hollywood-smile' === estecapelli_nav_item_route_key( $item )
+		? 'Hollywood Smile'
+		: $title;
 }
 
 add_filter( 'nav_menu_link_attributes', 'estecapelli_nav_menu_attributes', 1001, 4 );
