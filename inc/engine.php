@@ -106,7 +106,11 @@ if ( ! function_exists( 'estecapelli_render_page_sections' ) ) {
 
 		// When this post is a translation, load the default-language builder once so
 		// each row can borrow a shared uploaded image the JSON translation omits.
-		$source_sections = null;
+		// Rows are grouped by layout in source order: a translation row then finds
+		// its counterpart as "the Nth row of this layout", which survives unrelated
+		// sections being inserted or removed at a different index in either language
+		// (the live section maps can drift from the JSON per language).
+		$source_by_layout = array();
 		$default_lang = apply_filters( 'wpml_default_language', null );
 		$current_lang = apply_filters( 'wpml_current_language', null );
 		if ( $default_lang && $current_lang && $default_lang !== $current_lang ) {
@@ -114,14 +118,25 @@ if ( ! function_exists( 'estecapelli_render_page_sections' ) ) {
 			if ( $source_id && $source_id !== (int) $post_id ) {
 				$maybe_source = get_field( 'page_sections', $source_id );
 				if ( is_array( $maybe_source ) ) {
-					$source_sections = $maybe_source;
+					foreach ( $maybe_source as $src_row ) {
+						$src_layout = is_array( $src_row ) ? ( $src_row['acf_fc_layout'] ?? '' ) : '';
+						if ( '' !== $src_layout ) {
+							$source_by_layout[ $src_layout ][] = $src_row;
+						}
+					}
 				}
 			}
 		}
+		$layout_seen = array();
 
-		foreach ( $sections as $index => $section ) {
-			$source_section = ( is_array( $source_sections ) && isset( $source_sections[ $index ] ) )
-				? $source_sections[ $index ]
+		foreach ( $sections as $section ) {
+			$this_layout = is_array( $section ) ? ( $section['acf_fc_layout'] ?? '' ) : '';
+			$ordinal     = isset( $layout_seen[ $this_layout ] ) ? $layout_seen[ $this_layout ] : 0;
+			if ( '' !== $this_layout ) {
+				$layout_seen[ $this_layout ] = $ordinal + 1;
+			}
+			$source_section = ( '' !== $this_layout && isset( $source_by_layout[ $this_layout ][ $ordinal ] ) )
+				? $source_by_layout[ $this_layout ][ $ordinal ]
 				: null;
 			$section = estecapelli_prepare_page_section_for_render( $section, $post_id, $source_section );
 			$layout = $section['acf_fc_layout'] ?? '';
