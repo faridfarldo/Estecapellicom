@@ -7,11 +7,11 @@
 // NOTE: the ?v=N query on these relative imports cache-busts the whole module
 // graph. Bump N (here AND in analyze.js / submit.js / camera.js / face-detect.js)
 // whenever you change any widget JS, so browsers never run a stale mix.
-import { CONFIG } from './config.js?v=4';
-import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=4';
-import { startFaceGate } from './face-detect.js?v=4';
-import { analyzePhotos } from './analyze.js?v=4';
-import { submitLead } from './submit.js?v=4';
+import { CONFIG } from './config.js?v=5';
+import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=5';
+import { startFaceGate } from './face-detect.js?v=5';
+import { analyzePhotos } from './analyze.js?v=5';
+import { submitLead } from './submit.js?v=5';
 
 const STEPS = CONFIG.steps;
 const C = CONFIG.copy;
@@ -433,7 +433,8 @@ export class HairAnalysisWidget {
         <div class="hw-card hw-result hw-result--plain">
           <div class="hw-check" aria-hidden="true">✓</div>
           <h2 class="hw-title hw-title--sm">${esc(C.photosReachedTitle)}</h2>
-          <p class="hw-lead">${esc(format(C.analysisFailed, { methodSuffix }))}</p>
+          <p class="hw-lead">${esc(C.analysisFailed)}</p>
+          <p class="hw-cta-text">${esc(format(C.specialistReview, { methodSuffix }))}</p>
         </div>`;
     }
 
@@ -449,12 +450,15 @@ export class HairAnalysisWidget {
               : esc(C.unreadableFallback)
           }</p>
           <button class="hw-btn hw-btn--accent" data-action="retake-all">${esc(C.retakePhotos)}</button>
-          <p class="hw-disclaimer">${esc(format(C.detailsSent, { methodSuffix }))}</p>
+          <p class="hw-cta-text">${esc(C.detailsSent)}</p>
+          <p class="hw-disclaimer">${esc(format(C.specialistReview, { methodSuffix }))}</p>
         </div>`;
     }
 
-    // Minimal loss (≈ Norwood 1–2) → no transplant needed; hide the graft stat.
-    const noTransplant = a.transplant_recommended === false;
+    // We report the stage and the indicative graft range at every Norwood level
+    // — whether a transplant is worth it is the visitor's decision, not ours.
+    // The stat is only hidden if the model returned no usable range at all.
+    const hasGrafts = Number(a.graft_range?.max) > 0;
     return `
       <div class="hw-card hw-result">
         <span class="hw-eyebrow">${esc(C.preliminaryEstimate)}</span>
@@ -464,16 +468,16 @@ export class HairAnalysisWidget {
             <span class="hw-stat-value">Norwood ${esc(a.norwood_stage)}</span>
           </div>
           ${
-            noTransplant
-              ? ''
-              : `<div class="hw-stat">
+            hasGrafts
+              ? `<div class="hw-stat">
             <span class="hw-stat-label">${esc(C.estimatedGrafts)}</span>
             <span class="hw-stat-value">~${num(a.graft_range?.min)}–${num(a.graft_range?.max)}</span>
           </div>`
+              : ''
           }
         </div>
         ${a.summary ? `<p class="hw-lead">${esc(a.summary)}</p>` : ''}
-        <p class="hw-cta-text">${esc(format(C.preciseAnalysis, { methodSuffix }))}</p>
+        <p class="hw-cta-text">${esc(format(C.specialistReview, { methodSuffix }))}</p>
         <p class="hw-disclaimer">${esc(C.disclaimerStart)}
           <strong>${esc(C.disclaimerStrong)}</strong>.</p>
       </div>`;

@@ -10,7 +10,7 @@
  * @param {Record<string, Blob>} photos  keyed by step id (front/left/right/donor)
  * @returns {Promise<object>} analysis result
  */
-import { CONFIG, freshNonce } from './config.js?v=4';
+import { CONFIG, freshNonce } from './config.js?v=5';
 
 export async function analyzePhotos(photos) {
   // Front-end-only mode: return a placeholder estimate, no network call.
@@ -19,7 +19,6 @@ export async function analyzePhotos(photos) {
     return {
       status: 'ok',
       norwood_stage: 3,
-      transplant_recommended: true,
       graft_range: { min: 2000, max: 2800 },
       summary: CONFIG.copy.mockSummary,
     };

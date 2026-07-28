@@ -6,7 +6,7 @@
  * flag. While `mock` is true the widget runs fully on the front end with a
  * placeholder analysis and a no-op submit — wire the real endpoints later.
  */
-import { getHairWidgetCopy, normalizeLocale } from './i18n.js?v=4';
+import { getHairWidgetCopy, normalizeLocale } from './i18n.js?v=5';
 
 const OV = (typeof window !== 'undefined' && window.HAIR_WIDGET_CFG) || {};
 const IMG = OV.imageBase || 'image/';

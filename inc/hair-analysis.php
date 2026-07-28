@@ -86,6 +86,69 @@ function estecapelli_hair_check_nonce( $nonce ) {
 	return null;
 }
 
+/**
+ * Resolve the language Claude must write the summary in, as an English language
+ * name it will recognise ("French", "European Portuguese", …).
+ *
+ * Order of trust: the language the page told us it is rendered in → WPML's
+ * current language for this request → WordPress' locale. Deliberately NOT a
+ * closed list: any language the site is ever translated into resolves through
+ * the intl extension (or its own code as a last hint), so adding a WPML
+ * language needs no change here. English is only ever the final fallback when
+ * nothing identifies the visitor's language.
+ *
+ * @param string $locale Language code sent by the widget (may be empty).
+ * @return string English name of the language to answer in.
+ */
+function estecapelli_hair_language_name( $locale = '' ) {
+
+	$candidates = array( $locale );
+	if ( function_exists( 'estecapelli_indexed_language_code' ) ) {
+		$candidates[] = (string) estecapelli_indexed_language_code();
+	}
+	$candidates[] = (string) apply_filters( 'wpml_current_language', null );
+	$candidates[] = defined( 'ICL_LANGUAGE_CODE' ) ? (string) ICL_LANGUAGE_CODE : '';
+	$candidates[] = function_exists( 'determine_locale' ) ? (string) determine_locale() : get_locale();
+
+	// Names worth pinning because the generic lookup is too vague for the
+	// clinic's audiences (pt must be the European variant, not Brazilian).
+	$named = array(
+		'pt'    => 'European Portuguese',
+		'pt-pt' => 'European Portuguese',
+		'pt-br' => 'Brazilian Portuguese',
+		'zh-hant' => 'Traditional Chinese',
+		'zh-hans' => 'Simplified Chinese',
+	);
+
+	foreach ( $candidates as $candidate ) {
+		$code = strtolower( str_replace( '_', '-', trim( (string) $candidate ) ) );
+		if ( '' === $code ) {
+			continue;
+		}
+		if ( isset( $named[ $code ] ) ) {
+			return $named[ $code ];
+		}
+		$short = substr( $code, 0, 2 );
+		if ( isset( $named[ $short ] ) ) {
+			return $named[ $short ];
+		}
+		if ( function_exists( 'locale_get_display_language' ) ) {
+			$name = locale_get_display_language( $code, 'en' );
+			// intl echoes the input back when it cannot resolve the code.
+			if ( $name && strtolower( $name ) !== $code && strtolower( $name ) !== $short ) {
+				return $name;
+			}
+		}
+		// No intl on this host: hand Claude the code itself — it reads BCP-47
+		// fine, and that is still better than silently answering in English.
+		if ( strlen( $short ) === 2 ) {
+			return 'the language with ISO 639-1 code "' . $short . '"';
+		}
+	}
+
+	return 'English';
+}
+
 /* -------------------------------------------------------------------------
  * /analyze — Claude vision
  * ---------------------------------------------------------------------- */
@@ -106,17 +169,12 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 		return new WP_REST_Response( array( 'ok' => false, 'error' => 'no_photos' ), 400 );
 	}
 
-	$locale = isset( $body['locale'] ) ? sanitize_key( (string) $body['locale'] ) : 'en';
-	$summary_languages = array(
-		'en' => 'English',
-		'fr' => 'French',
-		'it' => 'Italian',
-		'es' => 'Spanish',
-		'pl' => 'Polish',
-		'pt' => 'European Portuguese',
-		'tr' => 'Turkish',
-	);
-	$summary_language = isset( $summary_languages[ $locale ] ) ? $summary_languages[ $locale ] : $summary_languages['en'];
+	// The visitor must always be answered in the language of the page they are
+	// on — never English by default. The page sends its own language; if that is
+	// missing we ask WPML / WordPress what language this request is in, and only
+	// fall back to English when nothing at all is known.
+	$locale = isset( $body['locale'] ) ? sanitize_key( (string) $body['locale'] ) : '';
+	$summary_language = estecapelli_hair_language_name( $locale );
 
 	// Build the multimodal user content: each photo as a base64 image block,
 	// then the instruction. Labels help Claude reason about each angle.
@@ -152,13 +210,14 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 	$content[] = array(
 		'type' => 'text',
 		'text' =>
-			"You are screening patient-submitted photos for a hair-transplant clinic. Give a BRIEF, surface-level first-impression estimate — NOT a clinical diagnosis. Be accurate and honest; do not invent detail you cannot see. Return:\n" .
+			"You are screening patient-submitted photos for a hair-transplant clinic. Give a BRIEF, surface-level first-impression estimate — NOT a clinical diagnosis. Be accurate and honest; do not invent detail you cannot see.\n\n" .
+			"LANGUAGE — MANDATORY: the visitor is reading a page written in {$summary_language}. Write the \"summary\" value entirely in {$summary_language}. Do not answer in English unless {$summary_language} is English, and do not mix languages. Only the JSON keys and the fixed \"status\" value stay in English.\n\n" .
+			"Return:\n" .
 			"- status: \"ok\" normally. Use \"no_hair_detected\" if the photos do NOT clearly show a human head/scalp/hair (blank, too dark, an unrelated object, a face with no visible hairline, etc.) — in that case do not guess numbers.\n" .
 			"- norwood_stage: approximate Norwood-Hamilton stage, integer 1-7.\n" .
-			"- transplant_recommended: false when hair loss is minimal (around Norwood 1-2) and a transplant is NOT needed yet; true otherwise.\n" .
-			"- graft_range: a BROAD, indicative FUE graft range {min,max} (realistic, usually 1000-5000; keep it wide, not a falsely exact number). If transplant_recommended is false, set both min and max to 0.\n" .
-			"- summary: AT MOST TWO short sentences, plain and friendly, written in {$summary_language}. Cover only: whether the donor area looks good or limited, what their Norwood stage means in everyday words, and roughly why that many grafts. If transplant_recommended is false, say their hair loss is minimal and a transplant isn't needed at this stage. If status is \"no_hair_detected\", say you couldn't clearly see their hair and ask for clearer, well-lit photos. Do NOT write a long paragraph, and do NOT mention consultations, bookings or next steps — keep it short. Keep every JSON key in English.\n\n" .
-			"Respond with ONLY a raw JSON object — no markdown, no code fences, no words before or after — with exactly these keys: status (\"ok\" or \"no_hair_detected\"), norwood_stage (integer 1-7), transplant_recommended (true/false), graft_range (object with integer \"min\" and \"max\"), summary (string).",
+			"- graft_range: a BROAD, indicative FUE graft range {min,max} (realistic, usually 1000-5000; keep it wide, not a falsely exact number). Give this range at every stage, including early ones.\n" .
+			"- summary: AT MOST TWO short sentences, plain and friendly, in {$summary_language}. Cover only: whether the donor area looks good or limited, what their Norwood stage means in everyday words, and roughly why that many grafts. NEVER tell the visitor whether they should or should not have a transplant, that their hair loss is too minimal, or that a transplant is not needed — that decision is theirs alone. Just describe the stage you see. If status is \"no_hair_detected\", say you couldn't clearly see their hair and ask for clearer, well-lit photos. Do NOT write a long paragraph, and do NOT mention consultations, bookings or next steps — keep it short.\n\n" .
+			"Respond with ONLY a raw JSON object — no markdown, no code fences, no words before or after — with exactly these keys: status (\"ok\" or \"no_hair_detected\"), norwood_stage (integer 1-7), graft_range (object with integer \"min\" and \"max\"), summary (string).",
 	);
 
 	$payload = array(
