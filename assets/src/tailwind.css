@@ -3037,6 +3037,255 @@
 		.float-wp-text { display: none; }
 	}
 
+	/* ---------- Fake WhatsApp chat popup ----------------------------------
+	   Ported from the Chile landing page (.wp-chat-*). Deliberately keeps
+	   WhatsApp's own dark palette in both site themes — the whole point is that
+	   it reads as WhatsApp, so it does not follow the site's light/dark mode. */
+	.wp-chat-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 70;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 16px;
+		background: rgba(0, 0, 0, 0.6);
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+	}
+	.wp-chat-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+	.wp-chat-window {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: 400px;
+		height: 80vh;
+		max-height: 640px;
+		overflow: hidden;
+		background: #0b141a;
+		border-radius: 16px;
+		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transform: scale(0.92) translateY(12px);
+		transition: transform 320ms cubic-bezier(0.34, 1.2, 0.64, 1), opacity 320ms ease;
+	}
+	.wp-chat-overlay.is-open .wp-chat-window { opacity: 1; transform: scale(1) translateY(0); }
+
+	.wp-chat-header {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		flex-shrink: 0;
+		padding: 12px 14px;
+		background: #1f2c33;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	}
+	.wp-chat-back {
+		display: flex;
+		align-items: center;
+		padding: 4px;
+		background: none;
+		border: 0;
+		color: #e8f0f8;
+		cursor: pointer;
+	}
+	.wp-chat-avatar {
+		width: 40px;
+		height: 40px;
+		flex-shrink: 0;
+		padding: 4px;
+		border-radius: 50%;
+		object-fit: contain;
+		background: #fff;
+	}
+	.wp-chat-avatar--fallback {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #25d366;
+		color: #fff;
+	}
+	.wp-chat-peer { flex: 1; min-width: 0; line-height: 1.3; }
+	.wp-chat-peer strong { display: block; font-size: 15px; font-weight: 600; color: #fff; }
+	.wp-chat-status { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #8fb39c; }
+	.wp-chat-dot { width: 7px; height: 7px; border-radius: 50%; background: #25d366; }
+	.wp-chat-wa { flex-shrink: 0; color: #25d366; line-height: 0; }
+
+	.wp-chat-body {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 16px 14px;
+		overflow-y: auto;
+		background: #0b141a;
+	}
+	.wp-chat-date {
+		align-self: center;
+		margin-bottom: 6px;
+		padding: 4px 12px;
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.08);
+		font-size: 11px;
+		color: #b8c4cc;
+	}
+	.wp-msg { display: flex; max-width: 82%; }
+	.wp-msg-in { align-self: flex-start; }
+	.wp-msg-out { align-self: flex-end; animation: wpSlideIn 280ms ease; }
+	.wp-bubble {
+		padding: 8px 12px 6px;
+		border-radius: 10px;
+		font-size: 13.5px;
+		line-height: 1.5;
+		color: #e9edef;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+	}
+	.wp-msg-in .wp-bubble { background: #202c33; border-top-left-radius: 2px; }
+	.wp-msg-out .wp-bubble { background: #005c4b; border-top-right-radius: 2px; }
+	.wp-msg-time {
+		float: right;
+		margin: 5px 0 0 10px;
+		font-size: 10px;
+		white-space: nowrap;
+		color: rgba(233, 237, 239, 0.6);
+	}
+	.wp-msg-time svg { display: inline-block; vertical-align: -2px; color: #53bdeb; }
+
+	@keyframes wpSlideIn {
+		from { opacity: 0; transform: translateY(8px); }
+		to   { opacity: 1; transform: translateY(0); }
+	}
+
+	.wp-chat-composer {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-shrink: 0;
+		padding: 10px 12px;
+		background: #1f2c33;
+	}
+	.wp-chat-input {
+		flex: 1;
+		min-width: 0;
+		padding: 11px 16px;
+		border: 0;
+		border-radius: 22px;
+		outline: none;
+		background: #2a3942;
+		color: #e9edef;
+		font-family: inherit;
+		font-size: 14px;
+	}
+	.wp-chat-input::placeholder { color: #8696a0; }
+	.wp-chat-input.wp-shake { animation: wpShake 400ms; }
+	@keyframes wpShake {
+		0%, 100% { transform: translateX(0); }
+		20% { transform: translateX(-7px); }
+		40% { transform: translateX(7px); }
+		60% { transform: translateX(-5px); }
+		80% { transform: translateX(5px); }
+	}
+	.wp-chat-send {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 44px;
+		height: 44px;
+		border: 0;
+		border-radius: 50%;
+		background: #25d366;
+		color: #0b141a;
+		cursor: pointer;
+		transition: background 200ms ease;
+	}
+	.wp-chat-send:hover { background: #1ebe5a; }
+
+	.wp-confirm {
+		position: absolute;
+		inset: 0;
+		z-index: 5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 24px;
+		background: rgba(0, 0, 0, 0.55);
+		backdrop-filter: blur(2px);
+		-webkit-backdrop-filter: blur(2px);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 250ms ease;
+	}
+	.wp-confirm.is-open { opacity: 1; pointer-events: auto; }
+	.wp-confirm-box {
+		width: 100%;
+		padding: 22px 20px;
+		border-radius: 14px;
+		background: #1f2c33;
+		transform: scale(0.94);
+		transition: transform 250ms ease;
+	}
+	.wp-confirm.is-open .wp-confirm-box { transform: scale(1); }
+	.wp-confirm-box h4 { margin-bottom: 6px; font-size: 17px; font-weight: 700; color: #fff; }
+	.wp-confirm-box > p { margin-bottom: 14px; font-size: 12.5px; color: #b8c4cc; }
+	.wp-confirm-preview {
+		max-height: 160px;
+		margin-bottom: 18px;
+		padding: 10px 14px;
+		overflow-y: auto;
+		border-radius: 10px;
+		border-top-right-radius: 2px;
+		background: #005c4b;
+		color: #e9edef;
+		font-size: 13.5px;
+		line-height: 1.5;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+	}
+	.wp-confirm-actions { display: flex; gap: 10px; }
+	.wp-confirm-cancel,
+	.wp-confirm-send {
+		flex: 1;
+		padding: 11px;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		border-radius: 10px;
+		font-family: inherit;
+		font-size: 14px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+	}
+	.wp-confirm-cancel { background: transparent; color: #b8c4cc; }
+	.wp-confirm-cancel:hover { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+	.wp-confirm-send {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		background: #25d366;
+		border-color: #25d366;
+		color: #0b141a;
+	}
+	.wp-confirm-send:hover { background: #1ebe5a; border-color: #1ebe5a; }
+
+	@media (max-width: 480px) {
+		.wp-chat-overlay { padding: 0; }
+		.wp-chat-window { height: 100dvh; max-height: none; border-radius: 0; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.wp-chat-overlay,
+		.wp-chat-window,
+		.wp-confirm,
+		.wp-confirm-box { transition: none; }
+		.wp-msg-out { animation: none; }
+	}
+
 	/* ---------- Mega-menu (hardcoded, full-width dropdowns) ---------- */
 	/* Higher-specificity override: .site-nav__list > li had position:relative,
 	   which trapped the absolutely-positioned .megamenu inside the narrow <li>.

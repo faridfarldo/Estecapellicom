@@ -1442,6 +1442,136 @@
 		io.observe(footer);
 	}
 
+	/**
+	 * Fake WhatsApp chat (template-parts/whatsapp-chat.php).
+	 *
+	 * Intercepts the floating button and anything marked [data-wa-chat], shows a
+	 * WhatsApp-looking window, and only hands off to the real wa.me link once the
+	 * visitor has written and confirmed a message. Progressive enhancement: the
+	 * button keeps its real href, so without JS the click still reaches WhatsApp.
+	 */
+	function initWhatsAppChat() {
+		var chat = document.getElementById('wpChat');
+		if (!chat) return;
+
+		var triggers = document.querySelectorAll('.float-wp, [data-wa-chat]');
+		if (!triggers.length) return;
+
+		var body      = document.getElementById('wpChatBody');
+		var input     = document.getElementById('wpChatInput');
+		var composer  = document.getElementById('wpChatComposer');
+		var confirm   = document.getElementById('wpConfirm');
+		var preview   = document.getElementById('wpConfirmPreview');
+		var closeBtn  = document.getElementById('wpChatClose');
+		var cancelBtn = document.getElementById('wpConfirmCancel');
+		var sendBtn   = document.getElementById('wpConfirmSend');
+		if (!body || !input || !composer || !confirm || !preview) return;
+
+		// The real wa.me URL lives on the button, so the number stays in PHP.
+		var waBase = triggers[0].getAttribute('href') || '';
+		var defaultPlaceholder = input.getAttribute('placeholder') || '';
+		var emptyHint = input.getAttribute('data-empty-hint') || defaultPlaceholder;
+		var hintTimer;
+
+		function now() {
+			var d = new Date();
+			return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+		}
+
+		// Stamp the pre-written welcome bubble with the visitor's local time.
+		chat.querySelectorAll('[data-wp-now]').forEach(function (el) { el.textContent = now(); });
+
+		function scrollToBottom() { body.scrollTop = body.scrollHeight; }
+
+		function openChat() {
+			chat.hidden = false;
+			// Next frame, so the transition runs instead of being skipped.
+			requestAnimationFrame(function () { chat.classList.add('is-open'); });
+			document.body.classList.add('no-scroll');
+			setTimeout(function () { input.focus(); scrollToBottom(); }, 320);
+		}
+		function closeChat() {
+			chat.classList.remove('is-open');
+			confirm.classList.remove('is-open');
+			document.body.classList.remove('no-scroll');
+			setTimeout(function () { chat.hidden = true; }, 300);
+		}
+
+		triggers.forEach(function (t) {
+			t.addEventListener('click', function (e) {
+				e.preventDefault();
+				openChat();
+			});
+		});
+
+		if (closeBtn) closeBtn.addEventListener('click', closeChat);
+		chat.addEventListener('click', function (e) { if (e.target === chat) closeChat(); });
+
+		document.addEventListener('keydown', function (e) {
+			if (e.key !== 'Escape' || chat.hidden) return;
+			if (confirm.classList.contains('is-open')) confirm.classList.remove('is-open');
+			else closeChat();
+		});
+
+		composer.addEventListener('submit', function (e) {
+			e.preventDefault();
+			var text = input.value.trim();
+			if (!text) {
+				input.classList.remove('wp-shake');
+				void input.offsetWidth; // reflow, so the animation replays
+				input.classList.add('wp-shake');
+				clearTimeout(hintTimer);
+				input.setAttribute('placeholder', emptyHint);
+				hintTimer = setTimeout(function () {
+					input.setAttribute('placeholder', defaultPlaceholder);
+				}, 2200);
+				input.focus();
+				return;
+			}
+			preview.textContent = text; // textContent, so the preview can't inject markup
+			confirm.classList.add('is-open');
+		});
+
+		if (cancelBtn) {
+			cancelBtn.addEventListener('click', function () {
+				confirm.classList.remove('is-open');
+				input.focus();
+			});
+		}
+
+		if (sendBtn) {
+			sendBtn.addEventListener('click', function () {
+				var text = input.value.trim();
+				if (!text) { confirm.classList.remove('is-open'); return; }
+
+				// Echo the message as an outgoing bubble before handing off, so the
+				// illusion holds for the moment before WhatsApp opens.
+				var msg = document.createElement('div');
+				msg.className = 'wp-msg wp-msg-out';
+				var bubble = document.createElement('div');
+				bubble.className = 'wp-bubble';
+				bubble.textContent = text;
+				var time = document.createElement('span');
+				time.className = 'wp-msg-time';
+				time.textContent = now();
+				bubble.appendChild(time);
+				msg.appendChild(bubble);
+				body.appendChild(msg);
+				scrollToBottom();
+
+				input.value = '';
+				confirm.classList.remove('is-open');
+
+				var sep = waBase.indexOf('?') === -1 ? '?' : '&';
+				var url = waBase + sep + 'text=' + encodeURIComponent(text);
+				setTimeout(function () {
+					window.open(url, '_blank', 'noopener,noreferrer');
+					setTimeout(closeChat, 800);
+				}, 600);
+			});
+		}
+	}
+
 	function initIntroSliders() {
 		var sliders = document.querySelectorAll('[data-intro-slider]');
 		if (!sliders.length) return;
@@ -1501,6 +1631,7 @@
 		initCarousels();
 		initIntroSliders();
 		initFloatWhatsApp();
+		initWhatsAppChat();
 		initStepbooks();
 		initCopyLink();
 		initTOC();

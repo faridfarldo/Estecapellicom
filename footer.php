@@ -240,7 +240,9 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 
 <?php get_template_part( 'template-parts/lead-popup' ); ?>
 
-<!-- Floating WhatsApp button — present on every page, fixed bottom-right. -->
+<!-- Floating WhatsApp button — present on every page, fixed bottom-right.
+     JS turns this into the fake-chat trigger; the href stays real so that
+     without JS the click still goes straight to WhatsApp. -->
 <a class="float-wp" href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Chat on WhatsApp', 'estecapelli' ); ?>">
 	<?php estecapelli_icon( 'whatsapp', array( 'width' => 24, 'height' => 24 ) ); ?>
 	<span class="float-wp-text">
@@ -248,6 +250,8 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 		<span><?php esc_html_e( 'Reply in 2 minutes', 'estecapelli' ); ?></span>
 	</span>
 </a>
+
+<?php get_template_part( 'template-parts/whatsapp-chat' ); ?>
 
 <!-- Global image lightbox — opened by any [data-img-zoom] (single) or
      [data-img-gallery] (JSON array → browsable gallery with arrows). -->
