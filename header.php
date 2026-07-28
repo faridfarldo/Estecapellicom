@@ -11,6 +11,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<?php // intl-tel-input's stylesheet is render-blocking in the head, so open
+	      // the connection early instead of paying DNS+TLS when the parser hits it. ?>
+	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+	<?php // YouTube poster frames (patient stories, ~19 on the homepage). ?>
+	<link rel="dns-prefetch" href="//i.ytimg.com" />
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
