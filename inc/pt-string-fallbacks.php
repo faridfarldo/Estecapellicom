@@ -15,6 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Whether the current request is the indexed Portuguese language. */
 function estecapelli_is_portuguese_request() {
+	// The URL is the contract, and it has to be checked first. WPML's own
+	// directory is pt-pt, so it does not recognise /pt/ and answers with the
+	// site's DEFAULT language wherever it cannot resolve the request — most
+	// visibly on a 404, which rendered the Portuguese error page in English
+	// while all six other languages translated correctly.
+	if ( function_exists( 'estecapelli_request_language_code' ) ) {
+		$requested = estecapelli_request_language_code();
+		if ( '' !== $requested ) {
+			return 'pt' === $requested;
+		}
+	}
+
 	$language = (string) apply_filters( 'wpml_current_language', null );
 	if ( function_exists( 'estecapelli_indexed_language_code' ) ) {
 		return 'pt' === estecapelli_indexed_language_code( $language );
