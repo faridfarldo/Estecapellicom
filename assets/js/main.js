@@ -923,22 +923,46 @@
 				return;
 			}
 
-			var decoded = images.map(function (img) {
-				if (typeof img.decode === 'function') {
-					return img.decode().catch(function () {});
-				}
-				if (img.complete) return Promise.resolve();
-				return new Promise(function (resolve) {
-					img.addEventListener('load', resolve, { once: true });
-					img.addEventListener('error', resolve, { once: true });
+			// Hold the marquee until every image has decoded, so it never starts
+			// half-drawn. This is why the images used to be loading="eager": a lazy
+			// image never decodes, so the gate would never open.
+			function openWhenDecoded() {
+				var decoded = images.map(function (img) {
+					if (typeof img.decode === 'function') {
+						return img.decode().catch(function () {});
+					}
+					if (img.complete) return Promise.resolve();
+					return new Promise(function (resolve) {
+						img.addEventListener('load', resolve, { once: true });
+						img.addEventListener('error', resolve, { once: true });
+					});
 				});
-			});
 
-			Promise.all(decoded).then(function () {
-				requestAnimationFrame(function () {
-					marquee.setAttribute('data-ready', 'true');
+				Promise.all(decoded).then(function () {
+					requestAnimationFrame(function () {
+						marquee.setAttribute('data-ready', 'true');
+					});
 				});
-			});
+			}
+
+			// The images are lazy now, keeping ~1.8 MB off the critical path of
+			// every page. Promote them to eager only as the section nears the
+			// viewport, then run the same decode gate.
+			function start() {
+				images.forEach(function (img) { img.loading = 'eager'; });
+				openWhenDecoded();
+			}
+
+			if ('IntersectionObserver' in window) {
+				var io = new IntersectionObserver(function (entries) {
+					if (!entries.some(function (e) { return e.isIntersecting; })) return;
+					io.disconnect();
+					start();
+				}, { rootMargin: '400px 0px' });
+				io.observe(marquee);
+			} else {
+				start();
+			}
 		});
 	}
 

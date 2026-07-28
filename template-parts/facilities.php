@@ -97,7 +97,15 @@ $partners = $data['partners'] ?? array();
 						<?php foreach ( $partners['logos'] as $logo ) : ?>
 							<li class="facilities__logo" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
 								<?php if ( ! empty( $logo['image'] ) ) : ?>
-									<img class="facilities__logo-photo" src="<?php echo esc_url( $logo['image'] ); ?>" alt="<?php echo esc_attr( $logo['label'] ?? '' ); ?>" loading="eager" decoding="sync" />
+									<?php
+									// Lazy on purpose. These sit far below the fold but used to
+									// load eagerly — 1.8 MB on the critical path of every page —
+									// because the marquee waits for every image to decode() before
+									// it starts, and a lazy image never decodes until it is in
+									// view. main.js now flips them to eager as the section
+									// approaches the viewport, then runs that same decode gate.
+									?>
+									<img class="facilities__logo-photo" src="<?php echo esc_url( $logo['image'] ); ?>" alt="<?php echo esc_attr( $logo['label'] ?? '' ); ?>" loading="lazy" decoding="async" />
 								<?php endif; ?>
 								<span class="facilities__logo-name">
 									<?php echo esc_html( $logo['label'] ?? '' ); ?>
