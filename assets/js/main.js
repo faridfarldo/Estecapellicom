@@ -912,6 +912,52 @@
 	 * Chromium can otherwise composite individual WebP frames as black while
 	 * the parent is moving, then repaint them only when hover pauses the strip.
 	 */
+	/**
+	 * Freeze every infinite animation while it is off screen.
+	 *
+	 * The two marquees (.home-ba__walltrack, .facilities__logos) translate
+	 * images sideways through the viewport, which defeats lazy loading: the
+	 * browser sees each image scroll into view and fetches it, even for a
+	 * visitor — or a Lighthouse run — that never scrolls. That alone was
+	 * pulling ~9 MB and keeping the main thread busy for ~10s, which is why
+	 * Lighthouse could not record an LCP at all.
+	 *
+	 * Pausing them offscreen costs nothing visually: by the time a section is
+	 * on screen it is running normally.
+	 */
+	function initOffscreenAnimationFreeze() {
+		if (!('IntersectionObserver' in window)) return;
+
+		var selector = [
+			'.home-ba__walltrack',
+			'.facilities__logos',
+			'.trust-reel__blob',
+			'.signature__inner',
+			'.hero-aw__video-ring',
+			'.why-choose__mark-pulse',
+			'.facilities__play-ring',
+			'.signature__card-eyebrow-dot',
+			'.signature__hint-icon',
+			'.hal__option-badge',
+			'.hal__option--ai'
+		].join(',');
+
+		var nodes = document.querySelectorAll(selector);
+		if (!nodes.length) return;
+
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				entry.target.classList.toggle('is-anim-idle', !entry.isIntersecting);
+			});
+		}, { rootMargin: '200px 0px' });
+
+		nodes.forEach(function (node) {
+			// Start frozen; the observer unfreezes whatever is already in view.
+			node.classList.add('is-anim-idle');
+			io.observe(node);
+		});
+	}
+
 	function initFacilitiesMarquee() {
 		var marquees = document.querySelectorAll('[data-facilities-marquee]');
 		if (!marquees.length) return;
@@ -1650,6 +1696,7 @@
 		initPatientStories();
 		initStoriesLightbox();
 		initFacilitiesMarquee();
+		initOffscreenAnimationFreeze();
 		initFacilitiesLightbox();
 		initImageLightbox();
 		initCarousels();

@@ -3037,6 +3037,22 @@
 		.float-wp-text { display: none; }
 	}
 
+	/* ---------- Offscreen animation freeze ---------------------------------
+	   The page carries a dozen infinite animations. Two of them are horizontal
+	   marquees that translate images across the viewport, which quietly defeats
+	   lazy loading: Lighthouse never scrolls, yet the marquee dragged offscreen
+	   images into view until ~9 MB had loaded, and the main thread never went
+	   quiet enough for a Largest Contentful Paint to be recorded at all
+	   (LCP reported NO_LCP).
+
+	   main.js adds .is-anim-idle to any animated element that is not near the
+	   viewport, so nothing animates — or repaints, or pulls in images — while
+	   it cannot be seen. */
+	.is-anim-idle,
+	.is-anim-idle::before,
+	.is-anim-idle::after,
+	.is-anim-idle * { animation-play-state: paused !important; }
+
 	/* ---------- Fake WhatsApp chat popup ----------------------------------
 	   Ported from the Chile landing page (.wp-chat-*). Deliberately keeps
 	   WhatsApp's own dark palette in both site themes — the whole point is that
