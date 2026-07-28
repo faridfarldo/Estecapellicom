@@ -761,9 +761,16 @@ function estecapelli_redirect_legacy_service_aliases() {
 		return;
 	}
 
-	$language = estecapelli_indexed_language_code();
-	$query    = (string) wp_parse_url( $request, PHP_URL_QUERY );
-	$target   = estecapelli_indexed_url( $aliases[ $key ], $language );
+	// Read the language off the URL, not from WPML. WPML does not recognise the
+	// /pt/ contract (its own directory is pt-pt) and answers with the default
+	// language, which is precisely the English fallback this function exists to
+	// prevent. Only ask WPML when the URL states no language.
+	$language = estecapelli_request_language_code( $request );
+	if ( '' === $language ) {
+		$language = estecapelli_indexed_language_code();
+	}
+	$query  = (string) wp_parse_url( $request, PHP_URL_QUERY );
+	$target = estecapelli_indexed_url( $aliases[ $key ], $language );
 	if ( $query ) {
 		$target .= '?' . $query;
 	}
