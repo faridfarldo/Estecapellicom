@@ -486,6 +486,13 @@ function estecapelli_pt_gettext_fallback( $translation, $text, $domain ) {
 			'Confirm your message' => 'Confirme a sua mensagem',
 			'This message will be sent to our WhatsApp:' => 'Esta mensagem será enviada para o nosso WhatsApp:',
 			'Cancel' => 'Cancelar',
+			// 404 page.
+			'This page could not be found' => 'Não foi possível encontrar esta página',
+			'The page you are looking for may have been moved or no longer exists. You can head back to the homepage, or pick one of the sections below.' => 'A página que procura pode ter sido movida ou já não existe. Pode voltar à página inicial ou escolher uma das secções abaixo.',
+			'Back to homepage' => 'Voltar à página inicial',
+			'Contact us' => 'Contacte-nos',
+			'Popular sections' => 'Secções principais',
+			'Site sections' => 'Secções do site',
 		);
 	}
 

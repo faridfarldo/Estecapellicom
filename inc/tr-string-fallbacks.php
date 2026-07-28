@@ -136,6 +136,13 @@ function estecapelli_tr_gettext_fallback( $translation, $text, $domain ) {
 			'Confirm your message' => 'Mesajınızı onaylayın',
 			'This message will be sent to our WhatsApp:' => 'Bu mesaj WhatsApp hattımıza gönderilecek:',
 			'Cancel' => 'İptal',
+			// 404 page.
+			'This page could not be found' => 'Bu sayfa bulunamadı',
+			'The page you are looking for may have been moved or no longer exists. You can head back to the homepage, or pick one of the sections below.' => 'Aradığınız sayfa taşınmış veya artık mevcut olmayabilir. Ana sayfaya dönebilir ya da aşağıdaki bölümlerden birini seçebilirsiniz.',
+			'Back to homepage' => 'Ana sayfaya dön',
+			'Contact us' => 'Bize ulaşın',
+			'Popular sections' => 'Öne çıkan bölümler',
+			'Site sections' => 'Site bölümleri',
 		);
 	}
 

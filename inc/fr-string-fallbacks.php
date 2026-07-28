@@ -135,6 +135,13 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 		'Confirm your message' => 'Confirmez votre message',
 		'This message will be sent to our WhatsApp:' => 'Ce message sera envoyé sur notre WhatsApp :',
 		'Cancel' => 'Annuler',
+		// 404 page.
+		'This page could not be found' => 'Cette page est introuvable',
+		'The page you are looking for may have been moved or no longer exists. You can head back to the homepage, or pick one of the sections below.' => 'La page que vous recherchez a peut-être été déplacée ou n’existe plus. Vous pouvez revenir à l’accueil ou choisir l’une des sections ci-dessous.',
+		'Back to homepage' => 'Retour à l’accueil',
+		'Contact us' => 'Nous contacter',
+		'Popular sections' => 'Sections principales',
+		'Site sections' => 'Sections du site',
 	);
 
 	return $strings[ $text ] ?? $translation;
