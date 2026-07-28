@@ -9,6 +9,7 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<?php estecapelli_gtm_head(); ?>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<?php // intl-tel-input's stylesheet is render-blocking in the head, so open
@@ -19,6 +20,7 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<?php estecapelli_gtm_body(); ?>
 <?php wp_body_open(); ?>
 
 <a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'estecapelli' ); ?></a>

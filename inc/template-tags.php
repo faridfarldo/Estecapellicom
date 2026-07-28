@@ -9,6 +9,67 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( 'estecapelli_gtm_id' ) ) {
+	/**
+	 * The Google Tag Manager container for this request, or '' when tracking
+	 * should not fire.
+	 *
+	 * Loads on every front-end page for every visitor, including logged-in
+	 * staff — otherwise an administrator testing the site sees no container and
+	 * concludes it is broken. To exclude staff instead, filter it:
+	 *
+	 *   add_filter( 'estecapelli_gtm_id', fn( $id ) => current_user_can( 'edit_posts' ) ? '' : $id );
+	 *
+	 * @return string
+	 */
+	function estecapelli_gtm_id() {
+		if ( ! defined( 'ESTECAPELLI_GTM_ID' ) || ! ESTECAPELLI_GTM_ID || is_admin() ) {
+			return '';
+		}
+		return (string) apply_filters( 'estecapelli_gtm_id', ESTECAPELLI_GTM_ID );
+	}
+}
+
+if ( ! function_exists( 'estecapelli_gtm_head' ) ) {
+	/**
+	 * GTM loader. Printed directly in header.php rather than hooked to wp_head
+	 * so it sits as high in <head> as Google asks — wp_head fires after the
+	 * theme's stylesheets, which would delay every tag in the container.
+	 */
+	function estecapelli_gtm_head() {
+		$id = estecapelli_gtm_id();
+		if ( ! $id ) {
+			return;
+		}
+		?>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','<?php echo esc_js( $id ); ?>');</script>
+<!-- End Google Tag Manager -->
+		<?php
+	}
+}
+
+if ( ! function_exists( 'estecapelli_gtm_body' ) ) {
+	/** GTM <noscript> fallback, required immediately after the opening <body>. */
+	function estecapelli_gtm_body() {
+		$id = estecapelli_gtm_id();
+		if ( ! $id ) {
+			return;
+		}
+		printf(
+			'<!-- Google Tag Manager (noscript) -->' .
+			'<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%s"' .
+			' height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>' .
+			'<!-- End Google Tag Manager (noscript) -->',
+			esc_attr( $id )
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_icon' ) ) {
 	/**
 	 * Inline SVG icons (single source of truth, no external sprite).

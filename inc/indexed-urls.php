@@ -53,6 +53,33 @@ function estecapelli_indexed_language_code( $language = '' ) {
 }
 
 /**
+ * The language a request URL declares, independent of WPML.
+ *
+ * WPML is the wrong source in a 404 context twice over: it answers with the
+ * site's DEFAULT language rather than the one that was asked for, and it does
+ * not recognise `/pt/` at all, because its own directory is `pt-pt`. Since 'en'
+ * is itself a valid indexed code, estecapelli_indexed_language_code() accepts
+ * that answer and never reaches its URL fallback — which sent every /pt/ 404 to
+ * the English page. When the URL states a language, that is the contract.
+ *
+ * @param string $request Optional request URI; defaults to the current one.
+ * @return string Indexed language code, or '' when the URL declares none.
+ */
+function estecapelli_request_language_code( $request = '' ) {
+	if ( '' === (string) $request ) {
+		$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	}
+
+	$path  = trim( (string) wp_parse_url( (string) $request, PHP_URL_PATH ), '/' );
+	$first = sanitize_key( strtolower( (string) strtok( $path, '/' ) ) );
+	if ( 'pt-pt' === $first ) {
+		$first = 'pt';
+	}
+
+	return in_array( $first, estecapelli_indexed_languages(), true ) ? $first : '';
+}
+
+/**
  * Resolve an indexed public language code to the code active inside WPML.
  *
  * The live contract uses /pt/, while existing installations may still use
@@ -1202,9 +1229,14 @@ function estecapelli_indexed_404_fallback() {
 	if ( is_admin() || ! is_404() ) {
 		return;
 	}
-	$request  = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
-	$key      = estecapelli_indexed_route_key( $request );
-	$language = estecapelli_indexed_language_code();
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$key     = estecapelli_indexed_route_key( $request );
+	// The URL wins here: a visitor who asked for /pt/ must land on /pt/, and on
+	// a 404 WPML would answer 'en' for it. Only fall back when the URL is silent.
+	$language = estecapelli_request_language_code( $request );
+	if ( '' === $language ) {
+		$language = estecapelli_indexed_language_code();
+	}
 	if ( ! $key ) {
 		return;
 	}

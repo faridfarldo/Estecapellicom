@@ -21,6 +21,14 @@ if ( ! defined( 'ESTECAPELLI_PATIENT_COUNT' ) ) {
 	define( 'ESTECAPELLI_PATIENT_COUNT', '15,000' );
 }
 
+/**
+ * Google Tag Manager container. Override in wp-config.php to point a staging
+ * copy at a different container, or set it to '' to disable tracking entirely.
+ */
+if ( ! defined( 'ESTECAPELLI_GTM_ID' ) ) {
+	define( 'ESTECAPELLI_GTM_ID', 'GTM-WVPFK35' );
+}
+
 if ( ! defined( 'ESTECAPELLI_COUNTRY_COUNT' ) ) {
 	define( 'ESTECAPELLI_COUNTRY_COUNT', '40' );
 }
