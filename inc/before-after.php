@@ -260,10 +260,108 @@ function estecapelli_collect_gallery_items( $sections ) {
 	return $items;
 }
 
+/**
+ * Transient holding the language-neutral gallery buckets.
+ *
+ * Bump the suffix if the cached structure ever changes shape, so live sites
+ * discard the old payload instead of unserializing something the templates no
+ * longer understand.
+ */
+const ESTECAPELLI_GALLERY_CACHE_KEY = 'estecapelli_gallery_buckets_v1';
+
+/**
+ * Above this serialized size the payload is served but NOT stored: reading one
+ * multi-megabyte option row every request would cost more than rebuilding it.
+ */
+const ESTECAPELLI_GALLERY_CACHE_MAX_BYTES = 4194304; // 4 MB.
+
 function estecapelli_gallery_grouped() {
 	if ( ! function_exists( 'get_field' ) ) {
 		return array();
 	}
+
+	$default_lang = apply_filters( 'wpml_default_language', null );
+	$current_lang = apply_filters( 'wpml_current_language', null );
+	$translate    = $default_lang && $current_lang && $default_lang !== $current_lang;
+
+	// The expensive half — every treatment, its ACF flexible-content sections and
+	// its terms — produces the SAME buckets for all seven languages, so it is
+	// built once and cached. Only the cheap localization below is per-request,
+	// which keeps translated labels live even on a cache hit.
+	$buckets = estecapelli_gallery_buckets();
+
+	if ( $translate ) {
+		$buckets = estecapelli_localize_gallery_buckets( $buckets, $current_lang );
+	}
+
+	return array_values( $buckets );
+}
+
+/**
+ * Language-neutral gallery buckets, memoized per request and cached across
+ * requests. Invalidated by estecapelli_flush_gallery_cache() whenever a
+ * treatment or its category changes.
+ *
+ * @return array<int,array<string,mixed>> Buckets keyed by category term id.
+ */
+function estecapelli_gallery_buckets() {
+	static $memo = null;
+	if ( null !== $memo ) {
+		return $memo;
+	}
+
+	$cached = get_transient( ESTECAPELLI_GALLERY_CACHE_KEY );
+	if ( is_array( $cached ) ) {
+		$memo = $cached;
+		return $memo;
+	}
+
+	$buckets = estecapelli_build_gallery_buckets();
+
+	// A gallery that outgrows the ceiling stays uncached rather than making every
+	// request pay for a huge option read.
+	if ( strlen( serialize( $buckets ) ) <= ESTECAPELLI_GALLERY_CACHE_MAX_BYTES ) { // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
+		// A day, not a week: the hooks below should catch every real change, but
+		// if one is ever missed the gallery self-heals within 24h.
+		set_transient( ESTECAPELLI_GALLERY_CACHE_KEY, $buckets, DAY_IN_SECONDS );
+	}
+
+	$memo = $buckets;
+	return $memo;
+}
+
+/**
+ * Drop the cached buckets. Cheap, so it is safe to hook broadly — the next
+ * front-end request rebuilds them.
+ */
+function estecapelli_flush_gallery_cache() {
+	delete_transient( ESTECAPELLI_GALLERY_CACHE_KEY );
+}
+
+// Any edit that can change what the galleries contain: the treatment itself
+// (including every importer run, which goes through wp_insert_post), its ACF
+// sections, its category, or an attachment being swapped/removed.
+add_action( 'save_post_treatment', 'estecapelli_flush_gallery_cache' );
+add_action( 'deleted_post', 'estecapelli_flush_gallery_cache' );
+add_action( 'acf/save_post', 'estecapelli_flush_gallery_cache', 20 );
+add_action( 'edited_treatment_category', 'estecapelli_flush_gallery_cache' );
+add_action( 'created_treatment_category', 'estecapelli_flush_gallery_cache' );
+add_action( 'delete_term', 'estecapelli_flush_gallery_cache' );
+add_action( 'add_attachment', 'estecapelli_flush_gallery_cache' );
+add_action( 'edit_attachment', 'estecapelli_flush_gallery_cache' );
+add_action( 'delete_attachment', 'estecapelli_flush_gallery_cache' );
+// "Clear cache" in WP Rocket should mean this cache too, or the button appears
+// not to work when someone is trying to shake loose a stale gallery.
+add_action( 'after_rocket_clean_domain', 'estecapelli_flush_gallery_cache' );
+add_action( 'rocket_purge_cache', 'estecapelli_flush_gallery_cache' );
+
+/**
+ * Build the buckets from scratch. Everything here runs in the default-language
+ * context, which is the only place the before/after images actually live.
+ *
+ * @return array<int,array<string,mixed>>
+ */
+function estecapelli_build_gallery_buckets() {
 
 	$default_lang = apply_filters( 'wpml_default_language', null );
 	$current_lang = apply_filters( 'wpml_current_language', null );
@@ -350,12 +448,13 @@ function estecapelli_gallery_grouped() {
 		estecapelli_sort_services_by_rank( $buckets[ $__key ]['services'] );
 	}
 
+	// Restore the request's own language. Localization is the caller's job now,
+	// so what is returned (and cached) stays language-neutral.
 	if ( $translate ) {
 		do_action( 'wpml_switch_language', $current_lang );
-		$buckets = estecapelli_localize_gallery_buckets( $buckets, $current_lang );
 	}
 
-	return array_values( $buckets );
+	return $buckets;
 }
 
 /**

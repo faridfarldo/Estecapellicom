@@ -194,38 +194,38 @@ $gallery_url = estecapelli_indexed_url( '/en/before-after' );
 				<?php else : ?>
 
 					<!-- Moving tableau wall — click any photo to open the gallery viewer.
-					     Images are emitted twice so the scroll loops seamlessly. -->
+					     The -50%→0 marquee needs two identical halves, but only ONE is
+					     rendered here: main.js clones the track on load. Emitting both
+					     server-side doubled the homepage's <img> count and HTML weight
+					     for markup the parser would otherwise build twice. Without JS
+					     the wall simply sits still (see .is-looped in the CSS). -->
 					<?php
-					// Widen one half so the full-bleed wall always covers the viewport,
-					// then emit two identical halves for a seamless -50%→0 loop.
+					// Widen one half so the full-bleed wall always covers the viewport.
 					$half_imgs = $tech['images'];
 					while ( count( $half_imgs ) < 12 ) {
 						$half_imgs = array_merge( $half_imgs, $tech['images'] );
 					}
 					?>
 					<div class="home-ba__wall" data-hba-board>
-						<ul class="home-ba__walltrack">
-							<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
-								<?php foreach ( $half_imgs as $idx => $img ) :
-									// Every 5th tile is a big 2x2 block; the pattern is keyed to the
-									// real index so both copies match and the loop stays seamless.
-									$is_big = ( 0 === $idx % 5 );
-									?>
-									<li class="home-ba__cell<?php echo $is_big ? ' home-ba__cell--big' : ''; ?>" <?php echo 1 === $dup ? 'aria-hidden="true"' : ''; ?>>
-										<button
-											type="button"
-											class="home-ba__open"
-											data-hba-open
-											data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
-											data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
-											<?php echo 1 === $dup ? 'tabindex="-1" aria-hidden="true"' : ''; ?>
-											aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
-										>
-											<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
-										</button>
-									</li>
-								<?php endforeach; ?>
-							<?php endfor; ?>
+						<ul class="home-ba__walltrack" data-hba-track>
+							<?php foreach ( $half_imgs as $idx => $img ) :
+								// Every 5th tile is a big 2x2 block; the pattern is keyed to the
+								// real index so the cloned half matches and the loop stays seamless.
+								$is_big = ( 0 === $idx % 5 );
+								?>
+								<li class="home-ba__cell<?php echo $is_big ? ' home-ba__cell--big' : ''; ?>">
+									<button
+										type="button"
+										class="home-ba__open"
+										data-hba-open
+										data-hba-src="<?php echo esc_url( $img['full'] ); ?>"
+										data-hba-alt="<?php echo esc_attr( $img['alt'] ); ?>"
+										aria-label="<?php esc_attr_e( 'Open the gallery', 'estecapelli' ); ?>"
+									>
+										<img src="<?php echo esc_url( $img['thumb'] ); ?>" alt="" loading="lazy" decoding="async" />
+									</button>
+								</li>
+							<?php endforeach; ?>
 						</ul>
 						<span class="home-ba__hint" aria-hidden="true">
 							<?php estecapelli_icon( 'image', array( 'width' => 16, 'height' => 16 ) ); ?>

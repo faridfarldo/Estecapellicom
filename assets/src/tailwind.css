@@ -1880,8 +1880,10 @@
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		animation: home-ba-wall 55s linear infinite;
 	}
+	/* Only scroll once main.js has cloned the second half — a -50% shift on a
+	   single copy would slide the wall off into empty space. */
+	.home-ba__walltrack.is-looped { animation: home-ba-wall 55s linear infinite; }
 	.home-ba__wall:hover .home-ba__walltrack { animation-play-state: paused; }
 	@keyframes home-ba-wall {
 		from { transform: translateX(-50%); }
@@ -1941,7 +1943,9 @@
 	.home-ba__hint .icon { color: var(--color-accent-300); }
 	.home-ba__wall:hover .home-ba__hint { transform: translateX(-50%) translateY(-3px); }
 	@media (prefers-reduced-motion: reduce) {
-		.home-ba__walltrack { animation: none; }
+		/* Matches .is-looped's specificity so it still wins after the clone. */
+		.home-ba__walltrack,
+		.home-ba__walltrack.is-looped { animation: none; }
 		.home-ba__wall { overflow-x: auto; }
 	}
 

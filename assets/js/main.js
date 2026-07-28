@@ -517,6 +517,24 @@
 			var thumbs  = Array.prototype.slice.call(root.querySelectorAll('[data-hba-thumb]'));
 			if (!board || !viewer || !mainImg) return;
 
+			// Rebuild the marquee's second half. The server sends one copy only —
+			// halving the homepage's <img> tags — and the seamless -50%→0 loop needs
+			// two, so clone it here. Must run BEFORE the [data-hba-open] binding
+			// below so the clones get their click handlers too.
+			var track = root.querySelector('[data-hba-track]');
+			if (track && !track.classList.contains('is-looped')) {
+				Array.prototype.slice.call(track.children).forEach(function (cell) {
+					var clone = cell.cloneNode(true);
+					clone.setAttribute('aria-hidden', 'true');
+					clone.querySelectorAll('button').forEach(function (btn) {
+						btn.setAttribute('tabindex', '-1');
+						btn.setAttribute('aria-hidden', 'true');
+					});
+					track.appendChild(clone);
+				});
+				track.classList.add('is-looped');
+			}
+
 			// The unique ordered list of results (from the thumbnails).
 			var slides = thumbs.map(function (t) {
 				return { src: t.getAttribute('data-hba-src'), alt: t.getAttribute('data-hba-alt') };
