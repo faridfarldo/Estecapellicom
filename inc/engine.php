@@ -26,9 +26,10 @@ if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
 	 * @param int        $post_id        Current post ID.
 	 * @param array|null $source_section Same-index row from the default-language
 	 *                                   post, when the current post is a translation.
+	 * @param int        $layout_ordinal Zero-based occurrence of this layout.
 	 * @return array
 	 */
-	function estecapelli_prepare_page_section_for_render( array $section, $post_id, $source_section = null ) {
+	function estecapelli_prepare_page_section_for_render( array $section, $post_id, $source_section = null, $layout_ordinal = 0 ) {
 		// Shared uploaded section images (intro, candidate, hero, …) are attached
 		// only to the default-language post via the ACF image field; the per-language
 		// JSON carries no image for them, so a translation renders the section with an
@@ -83,6 +84,9 @@ if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
 		// when an older translated ACF record still exists in WordPress.
 		if ( function_exists( 'estecapelli_fr_revision_prepare_section' ) ) {
 			$section = estecapelli_fr_revision_prepare_section( $section, $post_id );
+		}
+		if ( function_exists( 'estecapelli_tr_revision_prepare_section' ) ) {
+			$section = estecapelli_tr_revision_prepare_section( $section, $post_id, $layout_ordinal );
 		}
 
 		$is_tricholab = 'tricholab' === get_post_field( 'post_name', $post_id );
@@ -155,7 +159,7 @@ if ( ! function_exists( 'estecapelli_render_page_sections' ) ) {
 			$source_section = ( '' !== $this_layout && isset( $source_by_layout[ $this_layout ][ $ordinal ] ) )
 				? $source_by_layout[ $this_layout ][ $ordinal ]
 				: null;
-			$section = estecapelli_prepare_page_section_for_render( $section, $post_id, $source_section );
+			$section = estecapelli_prepare_page_section_for_render( $section, $post_id, $source_section, $ordinal );
 			$layout = $section['acf_fc_layout'] ?? '';
 			if ( ! $layout ) {
 				continue;

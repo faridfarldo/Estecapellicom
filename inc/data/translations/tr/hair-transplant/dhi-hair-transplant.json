@@ -6,8 +6,8 @@
         {
             "acf_fc_layout": "hero",
             "eyebrow": "Doğrudan Saç Ekimi",
-            "title": "DHI Saç Ekimi",
-            "lead": "Foliküllerin özel bir Choi kalemi ile önceden açılmış kanallar olmadan doğrudan alıcı alana implante edildiği modern, son derece hassas bir teknik. Sonuç, daha yoğun yerleştirme, minimum travma ve doğru planla mevcut saçların tıraş edilmesine gerek kalmamasıdır.",
+            "title": "DHI (Direct Hair Implantation)",
+            "lead": "DHI tekniğinde saç kökleri, özel Choi İmplanter Kalemi kullanılarak önceden kanal açılmasına gerek kalmadan doğrudan ekim yapılacak alana yerleştirilir. Bu yöntem, greftlerin doğru açı ve yönde hassas bir şekilde implante edilmesine olanak tanırken mevcut saçların daha iyi korunmasını destekler. Uygun hasta planlamasında tıraşsız veya kısmi tıraşlı uygulama yapılabilir ve doğal, yoğun görünümlü sonuçlar elde edilmesi hedeflenir.",
             "cta_primary": {
                 "label": "Ücretsiz Konsültasyon"
             },
@@ -41,7 +41,7 @@
             "acf_fc_layout": "intro",
             "eyebrow": "Yöntem",
             "title": "DHI Saç Ekimi Nedir?",
-            "body": "<p>DHI — Doğrudan Saç Ekimi — modern, son derece etkili bir saç ekim tekniğidir. Toplanan kökler özel bir Choi implanter kalemine yüklenir ve önce ayrı kanallar açılmadan doğrudan alıcı bölgeye yerleştirilir. Bu, cerraha her greftin açısı, yönü ve derinliği üzerinde hassas kontrol sağlayarak minimum müdahaleyle yoğun yerleştirme ve hızlı iyileşme sağlar.</p>"
+            "body": "<p>DHI (Direct Hair Implantation), saç köklerinin özel Choi İmplanter Kalemi kullanılarak doğrudan ekim alanına yerleştirildiği ileri saç ekimi tekniklerinden biridir. Bu yöntemde önceden ayrı bir kanal açılmasına gerek kalmadan greftler tek tek implante edilir. Choi kalemi sayesinde saç kökleri doğal çıkış açısı, yönü ve derinliği korunarak yüksek hassasiyetle yerleştirilir. Bu sayede mevcut saçların korunması desteklenirken, uygun hasta planlamasında daha yoğun, doğal görünümlü sonuçlar ve konforlu bir iyileşme süreci hedeflenir.</p>"
         },
         {
             "acf_fc_layout": "stepbook",
@@ -67,7 +67,7 @@
                 {
                     "eyebrow": "Aşama 4",
                     "title": "Choi Kalemi ile İmplantasyon",
-                    "body": "<p>Greftler doğrudan Choi kalemi ile kesin açı, derinlik ve yönde implante edilir; önce ayrı bir kanal açılmaz. Bu doğrudan yerleştirme, mevcut kıllar arasında çok yüksek bir yoğunluğa izin verir ve doğru planla, genellikle tıraş edilmeden, tamamen doğal bir sonuç elde edilmesini sağlar.</p>"
+                    "body": "<p>Saç kökleri, özel Choi İmplanter Kalemi kullanılarak doğal çıkış açısı, yönü ve uygun derinlikte tek tek yerleştirilir. Kanal oluşturma ve greft yerleştirme işlemi aynı anda gerçekleştirildiğinden, mevcut saçların korunması desteklenir. Uygun hasta planlamasında tıraşsız veya kısmi tıraşlı uygulama yapılabilir ve daha yoğun, doğal görünümlü sonuçlar hedeflenir.</p>"
                 }
             ]
         },

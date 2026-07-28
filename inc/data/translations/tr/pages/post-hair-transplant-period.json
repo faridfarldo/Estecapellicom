@@ -17,9 +17,9 @@
         },
         {
             "acf_fc_layout": "intro",
-            "eyebrow": "İyileşme Yolculuğu",
-            "title": "Yapılması ve Kaçınılması Gerekenler",
-            "body": "<p>Saç ekimi iyileşmeniz net ve öngörülebilir bir zaman çizelgesini takip eder. Her aşamada ne olacağını bilmek ve bakım sonrası planınızı yakından takip etmek, greftleri korur ve size en eksiksiz, en doğal sonucu verir.</p><p>Bu, Estecapelli'nin operasyon sonrası kılavuzudur: İşleminizin yapıldığı günden tam sonuçlara kadar adım adım yapılacaklar ve dikkat edilmesi gerekenler.</p>"
+            "eyebrow": "İyileşme Süreci",
+            "title": "Saç Ekimi Sonrası Sizi Neler Bekliyor?",
+            "body": "<p>Saç ekimi sonrasında uygulanacak doğru bakım ve uzman önerilerine uyum, operasyon kadar önemli bir rol oynar. İyileşme süreci boyunca her aşama uzman ekibimiz tarafından yakından takip edilir ve size gerekli tüm bilgilendirmeler sunulur.</p><p>Bu rehberde, ilk 24 saatten başlayarak ilk yıkama, kabuklanma süreci, günlük yaşama dönüş ve nihai sonuçlara kadar sizi bekleyen tüm aşamaları adım adım bulabilirsiniz. Böylece iyileşme sürecinizi güvenle takip edebilir ve yeni saçlarınıza en doğru şekilde bakım sağlayabilirsiniz.</p>"
         },
         {
             "acf_fc_layout": "stepbook",
@@ -30,47 +30,47 @@
                 {
                     "eyebrow": "İlk 24 Saat",
                     "title": "İlk 24 Saat",
-                    "body": "<p>Ekilen ve donör alanların çevresinde hafif kızarıklık, şişlik ve hassasiyet tamamen normaldir. Başınızı yüksekte tutun, sırtüstü uyuyun, o bölgeye dokunmayın veya kaşımayın ve verdiğimiz ilaçları tam olarak söylendiği şekilde alın.</p>"
+                    "body": "<p>Operasyonun ardından ekim yapılan bölgede ve donör alanda hafif kızarıklık, şişlik ve hassasiyet görülmesi normaldir. Bu belirtiler iyileşme sürecinin doğal bir parçasıdır ve genellikle ilk birkaç gün içinde azalmaya başlar.</p><p>İlk 24 saat boyunca başınızı yüksekte tutmanız, sırtüstü uyumanız ve ekim yapılan bölgeye temas etmekten kaçınmanız önemlidir. Ayrıca, doktorunuz tarafından reçete edilen ilaçları ve bakım önerilerini belirtilen şekilde uygulamanız, iyileşme sürecinin daha konforlu ilerlemesine yardımcı olur.</p>"
                 },
                 {
                     "eyebrow": "1. Gün",
                     "title": "Pansuman ve İlk Yıkama",
-                    "body": "<p>Pansumanınızın kontrol edilmesi ve ilk saç yıkamanızın ekibimiz tarafından gerçekleştirilmesi için kliniğe dönersiniz. Daha sonra greftlere zarar vermeden evde devam ettireceğiniz nazik tekniği size gösteriyoruz.</p>"
+                    "body": "<p>Operasyondan sonraki gün kliniğimizde gerçekleştirilen kontrolde, pansumanınız değerlendirilir ve ilk saç yıkamanız uzman ekibimiz tarafından özenle uygulanır.</p><p>Bu ziyaret sırasında, ekim yapılan bölgeye zarar vermeden saçlarınızı nasıl yıkamanız gerektiği size uygulamalı olarak gösterilir. Böylece evde bakım sürecinizi güvenle sürdürebilir ve iyileşme dönemini doğru şekilde destekleyebilirsiniz.</p>"
                 },
                 {
                     "eyebrow": "2-7. Günler",
                     "title": "Günlük Yıkama Rutini",
-                    "body": "<p>Verilen losyonu ve özel şampuanı kullanarak günlük yıkama rutinine size gösterildiği şekilde devam edin. Şişlik giderek azalırken greftlerin çevresinde küçük kabuklar oluşabilir; bu, normal iyileşme sürecinin bir parçasıdır.</p>"
+                    "body": "<p>İlk yıkamanın ardından, size önerilen özel losyon ve şampuan ile günlük saç yıkama rutininize uzman ekibimizin tarif ettiği şekilde devam etmeniz önemlidir.</p><p>Bu süreçte ekim yapılan bölgenin çevresinde küçük kabuklanmalar oluşması ve zamanla kendiliğinden dökülmesi, iyileşme sürecinin doğal bir parçasıdır. Düzenli bakım ve nazik yıkama rutini, hem greftlerin korunmasına hem de sağlıklı iyileşmenin desteklenmesine katkı sağlar.</p>"
                 },
                 {
                     "eyebrow": "7. Gün",
-                    "title": "Greftler Sabitlenir",
-                    "body": "<p>Yedinci gün civarında greftler güvenli hale gelir ve şişliğin çoğu düzelir. Saç derinizi darbelerden ve doğrudan güneş ışığından korurken yavaş yavaş normal rutininize dönebilirsiniz.</p>"
+                    "title": "Greftlerin Sabitlenme Dönemi",
+                    "body": "<p>Operasyondan sonraki ilk hafta tamamlandığında, ekilen greftler büyük ölçüde yerleşmiş olur ve iyileşme süreci daha konforlu bir döneme girer. Bu süreçte oluşan şişlik ve hassasiyet genellikle belirgin şekilde azalmaya başlar.</p><p>Günlük yaşamınıza kademeli olarak dönebilir; ancak saç derinizi darbelerden korumanız, doğrudan güneş ışığına uzun süre maruz bırakmamanız ve uzman ekibimizin bakım önerilerine uymanız önemlidir. Bu yaklaşım, iyileşme sürecinin sağlıklı şekilde devam etmesine katkı sağlar.</p>"
                 },
                 {
                     "eyebrow": "9-12 Günler",
-                    "title": "Kabuk Atma Aşaması",
-                    "body": "<p>Kabuk dökme aşaması, iyileşmenin doğal bir parçasıdır ve 7. ila 10. günler arasında meydana gelir. Nazik yıkamayla küçük kabuklar gevşer ve kendiliğinden düşer; kabukları asla kazımayın veya koparmayın.</p>"
+                    "title": "Kabuklanma Dönemi",
+                    "body": "<p>Operasyondan sonraki 7–10 gün arasında, ekim yapılan bölgede oluşan ince kabuklar yavaş yavaş dökülmeye başlar. Bu süreç, saç derisinin iyileşmesinin doğal bir parçasıdır.</p><p>Kabukların, önerilen yıkama rutiniyle kendiliğinden ayrılması beklenmelidir. Kabukları elle koparmamanız, kazımamanız veya zorlamamanız, ekilen greftlerin korunması açısından önemlidir. Sabırlı ve nazik bir bakım süreci, sağlıklı iyileşmeye katkı sağlar.</p>"
                 },
                 {
                     "eyebrow": "30. Gün",
-                    "title": "Şok Dökülme",
-                    "body": "<p>İlk bir ila üç ay içinde ekilen saçların bir kısmı geçici olarak dökülebilir. Şok dökülme olarak adlandırılan bu normal süreç, foliküllerin yeniden büyümeden önce kısa bir dinlenme evresine girmesinden kaynaklanır.</p>"
+                    "title": "Geçici Dökülme Dönemi",
+                    "body": "<p>Operasyondan sonraki ilk birkaç ay içerisinde, ekilen saç tellerinin bir kısmında geçici dökülme görülebilir. Bu durum, saç köklerinin yeni büyüme döngüsüne hazırlanırken verdiği doğal bir tepkidir ve iyileşme sürecinin beklenen aşamalarından biridir.</p><p>Bu dönemin ardından saç kökleri yeniden aktif hale gelerek yeni saç üretmeye başlar. Nihai sonuçlar ise kişinin saç yapısına ve iyileşme sürecine bağlı olarak 12 ay içerisinde kademeli şekilde ortaya çıkar.</p>"
                 },
                 {
                     "eyebrow": "2-4 ay",
-                    "title": "Yeni Büyüme Başlıyor",
-                    "body": "<p>Dinlenme halindeki foliküller yeniden etkinleşir ve yeni saç büyümesi genellikle üçüncü ila dördüncü ay civarında başlar. Erken dönemdeki tüyler ilk başta ince ve seyrek görünebilir, daha sonra ilerleyen haftalarda kalınlaşabilir.</p>"
+                    "title": "Yeni Saçlar Çıkmaya Başlar",
+                    "body": "<p>Operasyondan sonraki 3–4. ay itibarıyla, saç kökleri yeniden aktif hale gelir ve yeni saçların çıkışı kademeli olarak başlar. Bu dönemde çıkan ilk saç telleri ince, yumuşak ve seyrek görünebilir.</p><p>Zamanla saç telleri doğal büyüme döngüsüne devam ederek kalınlaşır, güçlenir ve yoğunluğu giderek artar. Her bireyin iyileşme ve saç uzama hızı farklı olduğundan, gelişim süreci kişiden kişiye değişiklik gösterebilir.</p>"
                 },
                 {
-                    "eyebrow": "4-12. Aylar",
+                    "eyebrow": "4–12. Aylar",
                     "title": "Yoğunluğun Artması",
-                    "body": "<p>Daha fazla folikül büyüme aşamasına girdikçe yoğunluk giderek artar. Ekilen saçlar kalınlaşır, doğal dokusuna kavuşur ve mevcut saçlarınızla kusursuz bir şekilde bütünleşmeye başlar.</p>"
+                    "body": "<p>Operasyondan sonraki 4–12 ay arasında, yeni çıkan saçlar giderek güçlenir ve yoğunluk belirgin şekilde artmaya devam eder. Saç telleri zamanla kalınlaşır, doğal yapısını kazanır ve mevcut saçlarınızla daha uyumlu bir görünüm oluşturur.</p><p>Bu süreç boyunca saçlar her ay daha olgun bir görünüm kazanır. Nihai sonuçlar genellikle 12. ay itibarıyla değerlendirilir; ancak iyileşme ve saç gelişim hızı kişiden kişiye farklılık gösterebilir.</p>"
                 },
                 {
-                    "eyebrow": "12-18 Aylar",
-                    "title": "Sonuçların Tamamlanması",
-                    "body": "<p>Nihai sonucunuz, tam yoğunluk ve tamamen doğal bir görünümle olgunlaşır. Ekilen saçlar kalıcıdır ve tıpkı saçınızın geri kalanı gibi kesilebilir, yıkanabilir ve şekillendirilebilir.</p>"
+                    "eyebrow": "12–18. Aylar",
+                    "title": "Sonuçların Olgunlaşması",
+                    "body": "<p>Operasyondan sonraki 12–18 ay arasında, saç ekimi sonuçları büyük ölçüde tamamlanır. Yeni saçlar doğal yoğunluğuna ulaşır, mevcut saçlarınızla uyumlu bir görünüm kazanır ve saç çizginiz daha doğal bir bütünlük oluşturur.</p><p>Bu aşamadan sonra ekilen saçlar, doğal saçlarınız gibi kesilebilir, yıkanabilir ve şekillendirilebilir. Nihai sonuçlar; kişinin saç yapısı, iyileşme süreci ve uygulanan bakım önerilerine uyumuna bağlı olarak değişiklik gösterebilir.</p>"
                 }
             ]
         },

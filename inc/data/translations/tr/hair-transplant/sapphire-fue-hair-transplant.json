@@ -41,7 +41,7 @@
             "acf_fc_layout": "intro",
             "eyebrow": "Yöntem",
             "title": "Safir FUE Saç Ekimi Nedir?",
-            "body": "<p>Teknoloji ilerledikçe saç ekim teknikleri de gelişti. Safir FUE, greftlerin alındığı kanalların çelik yerine safir değerli taş uçlu bıçaklarla açıldığı klasik FUE yönteminin modern bir versiyonudur. Daha pürüzsüz, daha keskin safir kenar, daha ince kesiler oluşturarak daha dolgun, tamamen doğal bir sonuç için greftlerin doğru açı ve yönde birbirine daha yakın yerleştirilmesine olanak tanır.</p>"
+            "body": "<p>Safir FUE, klasik FUE tekniğinin geliştirilmiş bir versiyonudur. Bu yöntemde, saç köklerinin yerleştirileceği mikro kanallar çelik bıçaklar yerine özel olarak üretilmiş safir uçlar ile açılır. Safir uçların daha ince ve pürüzsüz kesiler oluşturabilmesi, greftlerin doğru açı ve yönde daha sık yerleştirilmesine olanak tanır. Böylece doku travması en aza indirilmeye çalışılır, iyileşme süreci desteklenir ve daha yoğun, doğal görünümlü sonuçlar elde edilmesi hedeflenir.</p>"
         },
         {
             "acf_fc_layout": "stepbook",
@@ -52,27 +52,27 @@
                 {
                     "eyebrow": "Aşama 1",
                     "title": "Konsültasyon ve Planlama",
-                    "body": "<p>Kapsamlı bir danışmanlık ve TrichoLab saç derisi analizi, benzersiz saç yapınıza ve hedeflerinize göre en doğru tedavi planını oluşturur. Donör alanınız değerlendirilir, greft sayısı tahmin edilir ve her şey başlamadan önce doğal bir saç çizgisi tasarlanır.</p>"
+                    "body": "<p>Saç ekimi süreci, kapsamlı bir konsültasyon ve detaylı saç analizi ile başlar. Bu değerlendirme sayesinde saç yapınız, dökülme seviyeniz ve beklentileriniz doğrultusunda size özel bir tedavi planı oluşturulur. Donör alanınızın yeterliliği değerlendirilir, ihtiyaç duyulan greft sayısı planlanır ve yüz hatlarınıza uygun, doğal görünümlü saç çizginiz operasyon öncesinde birlikte tasarlanır.</p>"
                 },
                 {
                     "eyebrow": "Aşama 2",
-                    "title": "Ağrısız Anestezi",
-                    "body": "<p>Donör ve alıcı bölgelere ağrısız anestezi uygulanarak tüm seansın konforlu geçmesi sağlanır. İşlem boyunca uyanık ama rahat kalırsınız ve işlem sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>"
+                    "title": "Lokal Anestezi",
+                    "body": "<p>Operasyon öncesinde donör ve ekim yapılacak bölgelere lokal anestezi uygulanarak işlemin mümkün olduğunca konforlu ve ağrısız geçmesi hedeflenir. Operasyon boyunca bilinciniz açık olur; dilerseniz müzik dinleyebilir, film veya dizi izleyerek süreci rahat bir şekilde geçirebilirsiniz.</p>"
                 },
                 {
                     "eyebrow": "Aşama 3",
                     "title": "Greftlerin Alınması",
-                    "body": "<p>Ultra ince mikromotorlar kullanılarak kafa derisinin arka ve yanlarındaki güvenli donör alanından sağlıklı foliküller tek tek toplanır. Her bir greft, implante edilene kadar güçlü ve canlı kalmasını sağlamak için dikkatlice ayrılır ve korunur.</p>"
+                    "body": "<p>Saç kökleri, ense ve kulak üstü bölgelerinde bulunan güvenli donör alandan özel mikro motor cihazlar kullanılarak tek tek ve titizlikle alınır. Toplanan her greft, canlılığını koruyabilmesi için özel solüsyonlar içerisinde uygun koşullarda muhafaza edilir ve ekim aşamasına kadar büyük bir özenle korunur.</p>"
                 },
                 {
                     "eyebrow": "Aşama 4",
                     "title": "Safir Kanalların Açılması",
-                    "body": "<p>Kanallar, doğal yoğunluk, açı ve yön için en belirleyici aşama olan safir uçlu kanatlarla oluşturulur. Daha pürüzsüz, daha keskin safir kenar daha ince kesiler yapılmasını sağlar, böylece greftler birbirine daha yakın durur, daha az doku travması olur ve daha hızlı iyileşir.</p>"
+                    "body": "<p>Bu aşamada, saç köklerinin yerleştirileceği mikro kanallar özel safir uçlar kullanılarak açılır. Kanal açımı; saçların doğal çıkış yönü, açısı ve planlanan yoğunluğu açısından operasyonun en önemli aşamalarından biridir. Safir uçların ince ve pürüzsüz yapısı sayesinde daha hassas mikro kanallar oluşturulabilir. Bu da greftlerin daha sık yerleştirilmesine, doku travmasının en aza indirilmesine ve iyileşme sürecinin daha konforlu ilerlemesine katkı sağlar.</p>"
                 },
                 {
                     "eyebrow": "Aşama 5",
-                    "title": "Saç Köklerinin Ekimi",
-                    "body": "<p>Alınan kökler, önceden açılan kanallara doğru derinlik, açı ve yönde tek tek ekilir. Bu hassas yerleştirme, kendi saçınızla kusursuz bir şekilde büyüyen, tam ve tamamen doğal görünümlü bir sonuç sağlayan şeydir.</p>"
+                    "title": "Saç Köklerinin Yerleştirilmesi",
+                    "body": "<p>Operasyon sırasında alınan saç kökleri, önceden açılan mikro kanallara doğal çıkış açısı, yönü ve derinliği dikkate alınarak tek tek yerleştirilir. Bu titiz uygulama, doğal saç yoğunluğunu destekleyen ve mevcut saçlarınızla uyumlu bir görünüm elde edilmesini amaçlar.</p>"
                 }
             ]
         },

@@ -19,7 +19,7 @@
             "acf_fc_layout": "intro",
             "eyebrow": "Hazırlık Aşaması",
             "title": "Ekim Öncesi Dönem Neden Önemlidir?",
-            "body": "<p>Saç ekimi öncesi dönem, işlem başlamadan önce atılması gereken tüm adımları kapsar. Kapsamlı bir tıbbi değerlendirme, saç derisi analizi ve size en uygun tekniğin belirlenmesini içerir.</p><p>Doğal görünümlü sonuçlar elde etmek için donör alanı değerlendirilir ve saç çizgisi tasarımı dikkatle planlanır. Bu dönemde doğru hazırlık, saç ekiminin genel başarısında önemli bir rol oynar.</p>"
+            "body": "<p>Başarılı bir saç ekimi, operasyon öncesinde yapılan doğru planlama ile başlar. Bu süreçte saç dökülme tipiniz, donör alan kapasiteniz, saç deriniz ve beklentileriniz detaylı olarak değerlendirilerek size özel bir operasyon planı oluşturulur.</p><p>Doğal ve estetik bir görünüm elde edebilmek için ön saç çizgisi özenle tasarlanır, donör alan analiz edilir ve size en uygun ekim tekniği belirlenir. Operasyon öncesinde yapılan bu kişiye özel planlama, hem doğal sonuçların elde edilmesinde hem de operasyon sürecinin sağlıklı ilerlemesinde önemli bir rol oynar.</p>"
         },
         {
             "acf_fc_layout": "stepbook",
@@ -34,13 +34,13 @@
                 },
                 {
                     "eyebrow": "2. Adım",
-                    "title": "Alkol, Sigara ve Maddeler",
-                    "body": "<p>İşlemden en az 24 saat önce alkol almayı bırakın ve en az bir gün önce, ideal olarak işlemden sonra da bir hafta boyunca sigarayı bırakın. Sigara içmek kafa derisine giden kan akışını azaltır ve greftin hayatta kalmasını azaltır. Eğlence amaçlı tüm uyuşturuculardan kaçının.</p>"
+                    "title": "Alkol, Sigara ve Diğer Maddeler",
+                    "body": "<p>Operasyondan en az 24 saat önce alkol tüketmemeniz, mümkünse sigarayı en az 24 saat önce bırakmanız önerilir. İyileşme sürecini desteklemek adına sigara kullanımına operasyon sonrasında da mümkün olduğunca ara verilmesi tavsiye edilir.</p><p>Ayrıca, operasyon öncesinde eğlence amaçlı kullanılan maddelerden kaçınılması önemlidir. Bu önerilere uymak, operasyonun daha sağlıklı planlanmasına ve iyileşme sürecinin desteklenmesine katkı sağlar.</p>"
                 },
                 {
                     "eyebrow": "3. Adım",
-                    "title": "Testler ve Muayene",
-                    "body": "<p>Kan testleri enfeksiyon riskini, anemiyi, kan şekeri düzeylerini ve pıhtılaşma faktörlerini tarar. TrichoLab AI analizi saç yoğunluğunuzu ve donör alan kapasitenizi ölçer ve saç çizginiz yüz oranlarınıza uygun olarak tasarlanır.</p>"
+                    "title": "Testler ve Ön Değerlendirme",
+                    "body": "<p>Operasyon öncesinde gerekli görülen kan testleri ile genel sağlık durumunuz değerlendirilir. Ardından TrichoLab AI Saç Analizi sayesinde saç yoğunluğunuz, donör alan kapasiteniz ve saç dökülme yapınız detaylı olarak incelenir.</p><p>Elde edilen veriler doğrultusunda ön saç çizginiz yüz hatlarınıza uygun şekilde planlanır ve size en uygun ekim tekniği belirlenerek kişiye özel operasyon planınız oluşturulur.</p>"
                 },
                 {
                     "eyebrow": "4. Adım",
@@ -50,12 +50,12 @@
                 {
                     "eyebrow": "5. Adım",
                     "title": "Operasyon Günü Hazırlığı",
-                    "body": "<p>Kıyafet değiştirirken greftlere temas etmemek için düğmeli gömlek gibi rahat ve önü açık giysiler tercih edin. Tüm takı ve aksesuarları çıkarın; saç derinizde jel, vaks, sprey veya şampuan kalıntısı bulunmamasına dikkat edin ve kafein tüketimini sınırlayın.</p>"
+                    "body": "<p>Operasyon günü, kıyafet değiştirirken ekim yapılan bölgeye temas etmemek için önden düğmeli veya fermuarlı, rahat kıyafetler tercih etmeniz önerilir. İşlem öncesinde takı ve aksesuarlarınızı çıkarmanız, saçınızda jel, sprey, vaks gibi kozmetik ürünler bulundurmamanız önemlidir.</p><p>Daha konforlu bir operasyon süreci için aşırı kafein tüketiminden kaçınmanız da tavsiye edilir. Bu basit hazırlıklar, operasyonun güvenli ve planlandığı şekilde ilerlemesine katkı sağlar.</p>"
                 },
                 {
                     "eyebrow": "6. Adım",
-                    "title": "Önceden Kaçınılması Gerekenler",
-                    "body": "<p>Aspirin ve kan sulandırıcılardan (doktor onayı olmadan), enerji içeceklerinden ve yeşil çay, ginseng ve ginkgo gibi kan sulandırıcı bitki çaylarından kaçının. Bunlar işlem sırasında kanamayı artırabilir ve sonucu etkileyebilir.</p>"
+                    "title": "Operasyon Öncesinde Kaçınılması Gerekenler",
+                    "body": "<p>Operasyon öncesinde doktorunuzun onayı olmadan aspirin ve diğer kan sulandırıcı ilaçları kullanmamanız önemlidir. Ayrıca enerji içecekleri ile yeşil çay, ginseng ve ginkgo gibi kan dolaşımını etkileyebilecek bitkisel ürünlerin operasyon öncesinde tüketilmemesi önerilir.</p><p>Kullandığınız tüm ilaçlar ve takviye ürünleri hakkında uzman ekibimizi önceden bilgilendirmeniz, operasyonun güvenli ve kontrollü şekilde planlanmasına yardımcı olur.</p>"
                 }
             ]
         },
@@ -65,20 +65,20 @@
             "title": "Saç Ekiminden Önce — Sıkça Sorulan Sorular",
             "items": [
                 {
-                    "question": "İşlem öncesi düzenli kullandığım ilaçları bırakmalı mıyım?",
-                    "answer": "<p>Hiçbir ilacı asla kendi başınıza bırakmayın. Aldığınız her şeyi bize söyleyin, biz de size tavsiyede bulunalım. Aspirin gibi kan sulandırıcı ilaçlara ancak işlemden önce tıbbi gözetim altında ara verilir.</p>"
+                    "question": "İşlem Öncesi Düzenli Kullandığım İlaçları Bırakmalı mıyım?",
+                    "answer": "<p>Hayır. Düzenli kullandığınız hiçbir ilacı doktorunuzun onayı olmadan bırakmamalısınız. Operasyon öncesinde kullandığınız tüm ilaçları ve takviye ürünlerini uzman ekibimizle paylaşmanız yeterlidir.</p><p>Kan sulandırıcı ilaçlar başta olmak üzere, gerekli durumlarda nasıl bir yol izleneceği doktorunuzun onayı doğrultusunda planlanır. Böylece operasyonunuz güvenli ve kontrollü şekilde organize edilir.</p>"
                 },
                 {
-                    "question": "Operasyon günü yemek yiyebilir miyim?",
-                    "answer": "<p>Evet — hafif bir kahvaltı yapın. Aç karnına gelmek kan basıncı dengenizi bozabilir ancak ağır veya yağlı yiyeceklerden kaçınılmalıdır.</p>"
+                    "question": "Operasyon Günü Yemek Yiyebilir miyim?",
+                    "answer": "<p>Evet. Operasyon günü hafif bir kahvaltı yaparak tok gelmeniz önerilir. Aç karnına gelmek operasyon sırasında kendinizi daha halsiz hissetmenize neden olabilir.</p><p>Daha konforlu bir süreç için ağır ve yağlı yiyeceklerden kaçınmanız, yeterli miktarda su tüketmeniz ve aşırı kafein almamanız tavsiye edilir.</p>"
                 },
                 {
                     "question": "İşlemden ne kadar süre önce sigarayı bırakmalıyım?",
                     "answer": "<p>Sigarayı en az bir gün önce bırakın ve ideal olarak sonrasında da bir hafta boyunca sigarayı bırakın. Sigara içmek kafa derisine giden kan akışını azaltır ve greftin hayatta kalmasını azaltabilir.</p>"
                 },
                 {
-                    "question": "O gün ne giymeliyim?",
-                    "answer": "<p>Düğmeli gömlek veya geniş yakalı üst gibi rahat, önü açık giysiler sayesinde yeni ekim yapılan bölgenin üzerinden hiçbir şey çekmenize gerek kalmaz.</p>"
+                    "question": "Operasyon Günü Ne Giymeliyim?",
+                    "answer": "<p>Operasyon günü, kıyafet değiştirirken ekim yapılan bölgeye temas etmemek için önden düğmeli, fermuarlı veya geniş yakalı rahat kıyafetler tercih etmeniz önerilir. Bu sayede yeni ekilen greftlere temas etmeden kıyafetinizi kolayca giyip çıkarabilirsiniz.</p><p>Rahat bir kıyafet seçimi, operasyon sonrasında da konforunuzu artırmaya yardımcı olur.</p>"
                 }
             ]
         },

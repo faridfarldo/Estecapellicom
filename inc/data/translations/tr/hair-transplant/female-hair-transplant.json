@@ -6,8 +6,8 @@
         {
             "acf_fc_layout": "hero",
             "eyebrow": "Kadınlara Özel",
-            "title": "Kadın Saç Ekimi",
-            "lead": "Kadınlara özel olarak tasarlanmış olup tıraşa gerek kalmadan yoğun ve doğal görünümlü sonuçlar sunar. Her greft, mevcut saçlarınızla kusursuz bir şekilde uyum sağlayacak şekilde hassas bir şekilde yerleştirilir ve tüm süreç boyunca tarzınızı korur.",
+            "title": "Kadınlara Özel Saç Ekimi",
+            "lead": "Kadın saç ekimi, mevcut saç yapısını koruyarak doğal yoğunluğu yeniden kazandırmayı hedefleyen özel bir planlama gerektirir. Estecapelli'de her operasyon; saç yapınız, dökülme tipiniz ve estetik beklentileriniz doğrultusunda tamamen size özel olarak planlanır.",
             "cta_primary": {
                 "label": "Ücretsiz Konsültasyon"
             },
@@ -61,13 +61,13 @@
             "items": [
                 {
                     "eyebrow": "Aşama 1",
-                    "title": "Konsültasyon ve Planlama",
-                    "body": "<p>Saç dökülmeniz ayrıntılı bir şekilde analiz edilir ve altta yatan neden (hormonal, genetik veya beslenme) belirlenir, böylece plan gerçek soruna yönelik olur. Donör alanınızın gücünü değerlendiriyor, beklentilerinizi değerlendiriyor ve gerçekçi bir greft tahminini ve saçınıza en uygun tekniği içeren tamamen kişiselleştirilmiş bir tedavi planı oluşturuyoruz.</p>"
+                    "title": "Kişiye Özel Değerlendirme ve Planlama",
+                    "body": "<p>Saç dökülmeniz detaylı olarak değerlendirilir; dökülme tipi, saç yapınız, donör alan kapasiteniz ve beklentileriniz doğrultusunda size özel bir planlama yapılır. Yapılan analiz sonucunda ihtiyaç duyulan greft sayısı belirlenir ve saç yapınıza en uygun teknik seçilerek doğal, estetik ve uzun vadeli sonuçlar hedeflenir.</p>"
                 },
                 {
                     "eyebrow": "Aşama 2",
-                    "title": "Ağrısız Anestezi",
-                    "body": "<p>Konforlu bir deneyim için donör ve alıcı bölgelere ağrısız anestezi uygulanır. İşlem boyunca uyanık ancak rahat olursunuz; seans sırasında müzik dinleyebilir veya bir şeyler izleyebilirsiniz.</p>"
+                    "title": "Konforlu Lokal Anestezi",
+                    "body": "<p>Operasyon öncesinde donör ve ekim yapılacak bölgelere lokal anestezi uygulanarak işlemin mümkün olduğunca konforlu ilerlemesi hedeflenir. İşlem boyunca bilinciniz açık olur; dilerseniz müzik dinleyebilir veya film izleyerek operasyon sürecini rahat bir şekilde geçirebilirsiniz.</p>"
                 },
                 {
                     "eyebrow": "Aşama 3",
@@ -76,8 +76,8 @@
                 },
                 {
                     "eyebrow": "Aşama 4",
-                    "title": "Greftlerin Ekilmesi",
-                    "body": "<p>DHI implanter kalemleri kullanılarak foliküller, kesintisiz, doğal yoğunluk için doğru açı, derinlik ve yönde doğrudan incelme alanlarına yerleştirilir. Doğrudan implantasyon hassas kontrol sağlar ve greftlerin mevcut saçlarınızın arasına zarar vermeden eklenmesine olanak tanır.</p>"
+                    "title": "Saç Köklerinin Yerleştirilmesi",
+                    "body": "<p>Saç kökleri, özel Choi İmplanter Kalemi kullanılarak doğal saç çıkış yönü, açısı ve uygun derinlik dikkate alınarak tek tek yerleştirilir. Bu yüksek hassasiyetli uygulama, mevcut saçların korunmasını desteklerken greftlerin seyrelmiş alanlara doğal yoğunlukta yerleştirilmesine olanak tanır ve estetik açıdan doğal sonuçlar hedeflenir.</p>"
                 }
             ]
         },
