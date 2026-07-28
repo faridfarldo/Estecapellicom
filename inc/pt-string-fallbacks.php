@@ -474,6 +474,18 @@ function estecapelli_pt_gettext_fallback( $translation, $text, $domain ) {
 			'Our patented Exosome Treatment is derived from mesenchymal stem cells found in the umbilical cord — designed to lift hair-follicle survival to 98% over 72 hours, with faster recovery, stronger growth, and naturally lasting results.' => 'O nosso tratamento Exosome patenteado deriva de células estaminais mesenquimais do cordão umbilical e foi concebido para elevar a sobrevivência folicular a 98% durante mais de 72 horas, com recuperação mais rápida, crescimento mais forte e resultados naturais e duradouros.',
 			'TrichoLab examines your hair and scalp with millimetric accuracy — measuring follicle density, thickness, donor capacity, and loss patterns — so every graft is planned for your unique anatomy and the result feels naturally yours.' => 'O TrichoLab examina o cabelo e o couro cabeludo com precisão milimétrica, medindo a densidade folicular, a espessura, a capacidade dadora e os padrões de queda, para que cada enxerto seja planeado de acordo com a sua anatomia e o resultado pareça naturalmente seu.',
 			'Grafts lose strength the moment they leave the body. Our VITA Protocol bathes them in a specially formulated vitamin cocktail with cool-vapor application — keeping every follicle alive, nourished, and resilient until placement.' => 'Os enxertos começam a perder vitalidade assim que saem do corpo. O nosso protocolo VITA envolve-os num cocktail vitamínico especialmente formulado, aplicado com vapor frio, mantendo cada folículo vivo, nutrido e resistente até à implantação.',
+			// Floating WhatsApp button + fake WhatsApp chat popup.
+			'WhatsApp chat' => 'Chat do WhatsApp',
+			'Close chat' => 'Fechar o chat',
+			'online' => 'online',
+			'Today' => 'Hoje',
+			'Hi! 👋 Welcome to Estecapelli. Tell us which treatment you are interested in and we will get back to you within minutes.' => 'Olá! 👋 Bem-vindo à Estecapelli. Diga-nos qual o tratamento que lhe interessa e responderemos em poucos minutos.',
+			'Type a message' => 'Escreva uma mensagem',
+			'Write your message first' => 'Escreva primeiro a sua mensagem',
+			'Send' => 'Enviar',
+			'Confirm your message' => 'Confirme a sua mensagem',
+			'This message will be sent to our WhatsApp:' => 'Esta mensagem será enviada para o nosso WhatsApp:',
+			'Cancel' => 'Cancelar',
 		);
 	}
 

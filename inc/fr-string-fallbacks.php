@@ -120,6 +120,21 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 		'Spanish'                                 => 'Espagnol',
 		'Polish'                                  => 'Polonais',
 		'Portuguese'                              => 'Portugais',
+		// Floating WhatsApp button + fake WhatsApp chat popup.
+		'Chat on WhatsApp' => 'Discuter sur WhatsApp',
+		'Free Hair Analysis' => 'Analyse capillaire gratuite',
+		'Reply in 2 minutes' => 'Réponse en 2 minutes',
+		'WhatsApp chat' => 'Chat WhatsApp',
+		'Close chat' => 'Fermer le chat',
+		'online' => 'en ligne',
+		'Today' => 'Aujourd’hui',
+		'Hi! 👋 Welcome to Estecapelli. Tell us which treatment you are interested in and we will get back to you within minutes.' => 'Bonjour ! 👋 Bienvenue chez Estecapelli. Dites-nous quel traitement vous intéresse et nous vous répondrons en quelques minutes.',
+		'Type a message' => 'Écrivez un message',
+		'Write your message first' => 'Écrivez d’abord votre message',
+		'Send' => 'Envoyer',
+		'Confirm your message' => 'Confirmez votre message',
+		'This message will be sent to our WhatsApp:' => 'Ce message sera envoyé sur notre WhatsApp :',
+		'Cancel' => 'Annuler',
 	);
 
 	return $strings[ $text ] ?? $translation;

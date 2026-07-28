@@ -122,6 +122,20 @@ function estecapelli_pl_gettext_fallback( $translation, $text, $domain ) {
 			'Send Photos on WhatsApp' => 'Wyślij zdjęcia przez WhatsApp',
 			'Talk to us in your own language' => 'Porozmawiaj z nami w swoim języku',
 			'Estecapelli clinic location' => 'Lokalizacja kliniki Estecapelli',
+			// Floating WhatsApp button + fake WhatsApp chat popup.
+			'Free Hair Analysis' => 'Bezpłatna analiza włosów',
+			'Reply in 2 minutes' => 'Odpowiedź w 2 minuty',
+			'WhatsApp chat' => 'Czat WhatsApp',
+			'Close chat' => 'Zamknij czat',
+			'online' => 'online',
+			'Today' => 'Dzisiaj',
+			'Hi! 👋 Welcome to Estecapelli. Tell us which treatment you are interested in and we will get back to you within minutes.' => 'Cześć! 👋 Witamy w Estecapelli. Napisz, który zabieg Cię interesuje, a odpowiemy w ciągu kilku minut.',
+			'Type a message' => 'Napisz wiadomość',
+			'Write your message first' => 'Najpierw napisz wiadomość',
+			'Send' => 'Wyślij',
+			'Confirm your message' => 'Potwierdź wiadomość',
+			'This message will be sent to our WhatsApp:' => 'Ta wiadomość zostanie wysłana na nasz WhatsApp:',
+			'Cancel' => 'Anuluj',
 		);
 	}
 

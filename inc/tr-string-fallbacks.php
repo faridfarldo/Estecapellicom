@@ -121,6 +121,21 @@ function estecapelli_tr_gettext_fallback( $translation, $text, $domain ) {
 			'Send Photos on WhatsApp' => 'Fotoğrafları WhatsApp’tan Gönderin',
 			'Talk to us in your own language' => 'Bizimle kendi dilinizde konuşun',
 			'Estecapelli clinic location' => 'Estecapelli klinik konumu',
+			// Floating WhatsApp button + fake WhatsApp chat popup.
+			'Chat on WhatsApp' => 'WhatsApp’tan yazın',
+			'Free Hair Analysis' => 'Ücretsiz saç analizi',
+			'Reply in 2 minutes' => '2 dakikada yanıt',
+			'WhatsApp chat' => 'WhatsApp sohbeti',
+			'Close chat' => 'Sohbeti kapat',
+			'online' => 'çevrimiçi',
+			'Today' => 'Bugün',
+			'Hi! 👋 Welcome to Estecapelli. Tell us which treatment you are interested in and we will get back to you within minutes.' => 'Merhaba! 👋 Estecapelli’ye hoş geldiniz. Hangi tedaviyle ilgilendiğinizi yazın, birkaç dakika içinde size dönelim.',
+			'Type a message' => 'Bir mesaj yazın',
+			'Write your message first' => 'Önce mesajınızı yazın',
+			'Send' => 'Gönder',
+			'Confirm your message' => 'Mesajınızı onaylayın',
+			'This message will be sent to our WhatsApp:' => 'Bu mesaj WhatsApp hattımıza gönderilecek:',
+			'Cancel' => 'İptal',
 		);
 	}
 
