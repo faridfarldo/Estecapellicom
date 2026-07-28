@@ -13,7 +13,7 @@
  * @param {string} args.method          preferred contact channel (whatsapp|call|email)
  * @returns {Promise<object>}
  */
-import { CONFIG, freshNonce } from './config.js?v=5';
+import { CONFIG, freshNonce } from './config.js?v=6';
 
 export async function submitLead({ photos, analysis, contact, method }) {
   // Front-end-only mode: pretend the lead was sent (no backend yet).
@@ -29,6 +29,11 @@ export async function submitLead({ photos, analysis, contact, method }) {
   form.append('lead_consent', contact.consent ? '1' : '0');
   form.append('lead_method', method || '');
   form.append('lead_source', 'hero-hair-analysis');
+  // The REST endpoint can't resolve the visitor's language or page on its own —
+  // WPML has no request context there. Send what the page already knows.
+  form.append('lead_lang', CONFIG.locale || '');
+  form.append('lead_page_url', window.location.href);
+  form.append('lead_page_title', document.title);
   form.append('analysis_json', JSON.stringify(analysis ?? {}));
   // Fresh, uncached nonce — the baked-in page nonce may be stale behind a cache.
   form.append('nonce', await freshNonce());

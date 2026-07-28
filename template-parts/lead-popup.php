@@ -55,8 +55,12 @@ $wa_url = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_u
 				<textarea id="pop-note" name="lead_message" rows="3" placeholder="<?php esc_attr_e( 'Tell us about your goals, or any questions you have…', 'estecapelli' ); ?>"></textarea>
 			</div>
 
-			<!-- Tracking — lead_page_url/title + utm_* are filled by JS at open time. -->
+			<!-- Tracking — lead_page_url/title + utm_* are filled by JS at open time.
+			     lead_lang is stamped server-side instead: the popup posts to
+			     admin-ajax.php, where WPML can no longer tell which language page
+			     the visitor was on. -->
 			<input type="hidden" name="lead_source" value="popup" />
+			<input type="hidden" name="lead_lang" value="<?php echo esc_attr( estecapelli_lead_language_code() ); ?>" />
 			<input type="hidden" name="lead_page_url" value="" />
 			<input type="hidden" name="lead_page_title" value="" />
 			<input type="hidden" name="utm_source" value="" />

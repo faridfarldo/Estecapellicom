@@ -342,6 +342,17 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 
 	$source_label = __( 'AI Photo Hair Analysis', 'estecapelli' );
 
+	// The widget posts to the REST API, where WPML cannot resolve the visitor's
+	// language, so it sends the page's own language and URL along. Reuse the
+	// shared helpers so this lead reaches Kommo in the same shape as every form.
+	$lead_ctx = array(
+		'lang'       => sanitize_text_field( (string) $request->get_param( 'lead_lang' ) ),
+		'page_url'   => esc_url_raw( (string) $request->get_param( 'lead_page_url' ) ),
+		'page_title' => sanitize_text_field( (string) $request->get_param( 'lead_page_title' ) ),
+	);
+	$lead_lang   = function_exists( 'estecapelli_lead_language_code' ) ? estecapelli_lead_language_code( $lead_ctx ) : 'EN';
+	$kommo_source = function_exists( 'estecapelli_lead_kommo_source' ) ? estecapelli_lead_kommo_source( $lead_ctx ) : $source_label;
+
 	// Store the lead.
 	$lead_id = wp_insert_post(
 		array(
@@ -386,8 +397,8 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		'Greft Aralığı: ' . ( $grange ?: '-' ),
 		'Analiz: ' . ( $summary ?: '-' ),
 		'Onay (KVKK/GDPR): ' . ( $consent ? 'Evet' : 'Hayır' ),
-		'Dil: EN',
-		'Kaynak: ' . $source_label,
+		'Dil: ' . $lead_lang,
+		'Kaynak: ' . $kommo_source,
 	);
 
 	$from_name = get_bloginfo( 'name' );

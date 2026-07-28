@@ -110,6 +110,7 @@ function estecapelli_collect_lead() {
 		'treatment'  => $g( 'lead_treatment' ),
 		'message'    => $g( 'lead_message', 'textarea' ),
 		'source'     => $g( 'lead_source' ) ?: 'contact',
+		'lang'       => $g( 'lead_lang' ),
 		'page_url'   => $g( 'lead_page_url', 'url' ),
 		'page_title' => $g( 'lead_page_title' ),
 		'utm'        => array(
@@ -156,6 +157,93 @@ function estecapelli_lead_error_message( $code ) {
 		'missing_name'  => __( 'Please enter your name.', 'estecapelli' ),
 	);
 	return $map[ $code ] ?? '';
+}
+
+/**
+ * Two-letter uppercase language code for the CRM's `Dil` field.
+ *
+ * Order matters. The popup submits through admin-ajax.php and the hair widget
+ * through the REST API — in both, WPML has no idea which language page the
+ * visitor was actually on. So the value the form carried, and then the language
+ * prefix of the page URL, are both trusted ahead of asking WPML.
+ *
+ * @param array $d Collected lead data (may be empty when rendering a form).
+ * @return string Two uppercase letters, e.g. "TR". "EN" only as a last resort.
+ */
+function estecapelli_lead_language_code( array $d = array() ) {
+	$candidates = array();
+
+	if ( ! empty( $d['lang'] ) ) {
+		$candidates[] = $d['lang'];
+	}
+	if ( ! empty( $d['page_url'] ) ) {
+		$path = (string) wp_parse_url( $d['page_url'], PHP_URL_PATH );
+		if ( preg_match( '#^/([a-z]{2})(?:/|$)#i', $path, $m ) ) {
+			$candidates[] = $m[1];
+		}
+	}
+	$candidates[] = (string) apply_filters( 'wpml_current_language', null );
+	$candidates[] = defined( 'ICL_LANGUAGE_CODE' ) ? (string) ICL_LANGUAGE_CODE : '';
+	$candidates[] = function_exists( 'determine_locale' ) ? (string) determine_locale() : (string) get_locale();
+
+	foreach ( $candidates as $candidate ) {
+		$code = strtoupper( substr( (string) preg_replace( '/[^a-z]/i', '', (string) $candidate ), 0, 2 ) );
+		if ( 2 === strlen( $code ) ) {
+			return $code;
+		}
+	}
+
+	return 'EN';
+}
+
+/**
+ * The page a lead came from, cleaned for the CRM.
+ *
+ * Document titles arrive as "Sapphire FUE Hair Transplant – Estecapelli"; Kommo
+ * only wants the page part. The homepage's title IS the site name, so it falls
+ * through to the URL path.
+ *
+ * @param array $d Collected lead data.
+ * @return string
+ */
+function estecapelli_lead_page_name( array $d ) {
+	$site  = trim( wp_strip_all_tags( (string) get_bloginfo( 'name' ) ) );
+	$title = html_entity_decode( trim( (string) ( $d['page_title'] ?? '' ) ), ENT_QUOTES, 'UTF-8' );
+
+	if ( '' !== $site ) {
+		$title = (string) preg_replace(
+			'/\s*[-–—|:]\s*' . preg_quote( $site, '/' ) . '\s*$/ui',
+			'',
+			$title
+		);
+	}
+	$title = trim( $title );
+
+	if ( '' !== $title && 0 !== strcasecmp( $title, $site ) ) {
+		return $title;
+	}
+
+	$path = ! empty( $d['page_url'] ) ? trim( (string) wp_parse_url( $d['page_url'], PHP_URL_PATH ), '/' ) : '';
+	// "" or a bare language segment ("fr") is that language's front page.
+	if ( '' === $path || preg_match( '#^[a-z]{2}$#i', $path ) ) {
+		return 'Homepage';
+	}
+
+	return $path;
+}
+
+/**
+ * The `Kaynak` value sent to Kommo: "website - <page>".
+ *
+ * Kommo groups and filters leads on this string, so it stays a short, stable
+ * shape. The richer, form-aware label below is what wp-admin and the email
+ * subject use — no attribution detail is lost, it just isn't in this field.
+ *
+ * @param array $d Collected lead data.
+ * @return string
+ */
+function estecapelli_lead_kommo_source( array $d ) {
+	return apply_filters( 'estecapelli_lead_kommo_source', 'website - ' . estecapelli_lead_page_name( $d ), $d );
 }
 
 /**
@@ -243,8 +331,8 @@ function estecapelli_process_lead( array $d ) {
 		$lines[] = 'İlgilenilen: ' . $d['treatment'];
 	}
 	$lines[] = 'Mesajınız: ' . ( $d['message'] ?: '-' );
-	$lines[] = 'Dil: ' . strtoupper( substr( (string) apply_filters( 'estecapelli_lead_lang', 'EN', $d ), 0, 5 ) );
-	$lines[] = 'Kaynak: ' . $source_label;
+	$lines[] = 'Dil: ' . strtoupper( substr( (string) apply_filters( 'estecapelli_lead_lang', estecapelli_lead_language_code( $d ), $d ), 0, 5 ) );
+	$lines[] = 'Kaynak: ' . estecapelli_lead_kommo_source( $d );
 	if ( $d['page_url'] ) {
 		$lines[] = 'Sayfa: ' . $d['page_url'];
 	}
@@ -376,6 +464,9 @@ function estecapelli_lead_context() {
 function estecapelli_lead_tracking_fields( $source, $form_type = 'inline' ) {
 	$ctx = estecapelli_lead_context();
 	printf( '<input type="hidden" name="lead_source" value="%s" />', esc_attr( $source ) );
+	// Stamped server-side: the page is already cached per language, and the
+	// AJAX/REST endpoints these forms post to can't work the language out.
+	printf( '<input type="hidden" name="lead_lang" value="%s" />', esc_attr( estecapelli_lead_language_code() ) );
 	printf( '<input type="hidden" name="lead_page_url" value="%s" />', esc_url( $ctx['url'] ) );
 	printf( '<input type="hidden" name="lead_page_title" value="%s" />', esc_attr( $ctx['title'] ) );
 	foreach ( array( 'source', 'medium', 'campaign', 'content', 'term' ) as $k ) {

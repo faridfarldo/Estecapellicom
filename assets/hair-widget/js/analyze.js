@@ -10,7 +10,7 @@
  * @param {Record<string, Blob>} photos  keyed by step id (front/left/right/donor)
  * @returns {Promise<object>} analysis result
  */
-import { CONFIG, freshNonce } from './config.js?v=5';
+import { CONFIG, freshNonce } from './config.js?v=6';
 
 export async function analyzePhotos(photos) {
   // Front-end-only mode: return a placeholder estimate, no network call.
