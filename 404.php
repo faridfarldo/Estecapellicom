@@ -34,6 +34,16 @@ $e404_links = array(
 	array( 'path' => '/en/about-us',         'label' => __( 'About Us', 'estecapelli' ),         'icon' => 'medical-plus' ),
 	array( 'path' => '/en/blog',             'label' => __( 'Blog', 'estecapelli' ),             'icon' => 'link' ),
 );
+if ( 'tr' === $e404_language ) {
+	$e404_links = array_values(
+		array_filter(
+			$e404_links,
+			static function ( $link ) {
+				return '/en/before-after' !== $link['path'];
+			}
+		)
+	);
+}
 ?>
 
 <section class="shell py-20 md:py-28">

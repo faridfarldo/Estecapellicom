@@ -8,6 +8,9 @@
 $contact    = estecapelli_footer_contact();
 $treatments = estecapelli_footer_treatments();
 $sitemap    = estecapelli_footer_sitemap();
+if ( function_exists( 'estecapelli_tr_revision_footer' ) ) {
+	list( $contact, $sitemap ) = estecapelli_tr_revision_footer( $contact, $sitemap );
+}
 
 $footer_languages = estecapelli_header_languages();
 $footer_language  = reset( $footer_languages );

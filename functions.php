@@ -73,6 +73,7 @@ require get_template_directory() . '/inc/fr-string-fallbacks.php';
 require get_template_directory() . '/inc/fr-content-revisions.php';
 require get_template_directory() . '/inc/tr-string-fallbacks.php';
 require get_template_directory() . '/inc/tr-content-revisions.php';
+require get_template_directory() . '/inc/tr-site-revisions.php';
 require get_template_directory() . '/inc/it-navigation.php';
 require get_template_directory() . '/inc/it-string-fallbacks.php';
 require get_template_directory() . '/inc/pl-string-fallbacks.php';

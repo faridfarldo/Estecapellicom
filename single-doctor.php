@@ -57,11 +57,29 @@ while ( have_posts() ) :
 		}
 	}
 
+	if ( function_exists( 'estecapelli_tr_revision_doctor_profile' ) ) {
+		$profile = estecapelli_tr_revision_doctor_profile(
+			get_the_ID(),
+			array(
+				'name'        => $name,
+				'position'    => $position,
+				'bio'         => $bio,
+				'credentials' => is_array( $credentials ) ? $credentials : array(),
+			)
+		);
+		$name        = (string) ( $profile['name'] ?? $name );
+		$position    = (string) ( $profile['position'] ?? $position );
+		$bio         = (string) ( $profile['bio'] ?? $bio );
+		$credentials = is_array( $profile['credentials'] ?? null ) ? $profile['credentials'] : $credentials;
+	}
+
+	$is_turkish_profile = function_exists( 'estecapelli_is_turkish_request' ) && estecapelli_is_turkish_request();
+
 	// Build the profile section payload the shared renderer expects, then load
 	// the same template the page builder uses. This keeps one source of truth
 	// for the profile markup and styling.
 	$section = array(
-		'eyebrow'     => __( 'Résumé', 'estecapelli' ),
+		'eyebrow'     => $is_turkish_profile ? '' : __( 'Résumé', 'estecapelli' ),
 		'name'        => $name,
 		'role'        => $position,
 		'photo'       => is_array( $photo ) ? $photo : array(),

@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $data    = estecapelli_facilities();
+if ( function_exists( 'estecapelli_tr_revision_facilities' ) ) {
+	$data = estecapelli_tr_revision_facilities( $data );
+}
 $gallery = $data['gallery'] ?? array();
 if ( empty( $gallery ) ) {
 	return;

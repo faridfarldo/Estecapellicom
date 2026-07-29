@@ -17,7 +17,9 @@ get_header();
 
 <?php get_template_part( 'template-parts/hair-analysis-lab' ); ?>
 
-<?php get_template_part( 'template-parts/home-before-after' ); ?>
+<?php if ( ! function_exists( 'estecapelli_is_turkish_request' ) || ! estecapelli_is_turkish_request() ) : ?>
+	<?php get_template_part( 'template-parts/home-before-after' ); ?>
+<?php endif; ?>
 
 <?php get_template_part( 'template-parts/services', 'home' ); ?>
 

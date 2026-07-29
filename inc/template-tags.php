@@ -711,6 +711,16 @@ if ( ! function_exists( 'estecapelli_primary_menu_fallback' ) ) {
 			array( 'label' => __( 'Blog', 'estecapelli' ),             'url' => estecapelli_nav_url( '/en/blog' ) ),
 			array( 'label' => __( 'Contact Us', 'estecapelli' ),       'url' => estecapelli_nav_url( '/en/contact' ) ),
 		);
+		if ( function_exists( 'estecapelli_is_turkish_request' ) && estecapelli_is_turkish_request() ) {
+			$items = array_values(
+				array_filter(
+					$items,
+					static function ( $item ) {
+						return ! function_exists( 'estecapelli_tr_revision_is_before_after_url' ) || ! estecapelli_tr_revision_is_before_after_url( $item['url'] );
+					}
+				)
+			);
+		}
 
 		echo '<ul class="site-nav__list">';
 		foreach ( $items as $item ) {

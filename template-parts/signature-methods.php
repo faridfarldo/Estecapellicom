@@ -16,6 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $data = estecapelli_signature_methods();
+if ( function_exists( 'estecapelli_tr_revision_signature_methods' ) ) {
+	$data = estecapelli_tr_revision_signature_methods( $data );
+}
 if ( empty( $data['cards'] ) ) {
 	return;
 }

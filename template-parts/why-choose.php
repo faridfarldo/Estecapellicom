@@ -10,6 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $data = estecapelli_why_choose();
+if ( function_exists( 'estecapelli_tr_revision_why_choose' ) ) {
+	$data = estecapelli_tr_revision_why_choose( $data );
+}
 if ( empty( $data['features'] ) ) {
 	return;
 }

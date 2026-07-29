@@ -33,6 +33,37 @@ function estecapelli_tr_revision_is_turkish() {
  */
 function estecapelli_tr_revision_manifest() {
 	return array(
+		'/en/about-us' => array(
+			'file' => 'pages/about-us.json',
+			'rows' => array(
+				'intro:0' => array( 'fields' => array( 'body' ) ),
+				'intro:1' => array( 'fields' => array( 'title' ) ),
+				'intro:2' => array( 'fields' => array( 'body' ) ),
+			),
+		),
+		'/en/about-us/our-team' => array(
+			'file' => 'pages/our-team.json',
+			'rows' => array(
+				'hero:0' => array( 'fields' => array( 'title', 'lead' ) ),
+			),
+		),
+		'/en/dental-treatment/hollywood-smile' => array(
+			'file' => 'dental-treatment/hollywood-smile.json',
+			'rows' => array(
+				'stepbook:0' => array(
+					'items' => array(
+						4 => array( 'body' ),
+					),
+				),
+				'faq:0' => array(
+					'items' => array(
+						0 => array( 'question', 'answer' ),
+						1 => array( 'answer' ),
+						5 => array( 'answer' ),
+					),
+				),
+			),
+		),
 		'/en/hair-transplant/sapphire-fue-hair-transplant' => array(
 			'file' => 'hair-transplant/sapphire-fue-hair-transplant.json',
 			'rows' => array(
@@ -227,9 +258,34 @@ function estecapelli_tr_revision_apply_rule( array $section, array $canonical, a
 	return $section;
 }
 
+/** Correct the reviewed Lamine spelling in any Turkish builder text. */
+function estecapelli_tr_revision_lamine_spelling( $value ) {
+	if ( is_array( $value ) ) {
+		foreach ( $value as $key => $item ) {
+			$value[ $key ] = estecapelli_tr_revision_lamine_spelling( $item );
+		}
+		return $value;
+	}
+
+	if ( is_string( $value ) ) {
+		return str_replace(
+			array( 'Laminate', 'laminate', 'Lamina', 'lamina' ),
+			array( 'Lamine', 'lamine', 'Lamine', 'lamine' ),
+			$value
+		);
+	}
+
+	return $value;
+}
+
 /** Apply an approved Turkish revision to one rendered ACF section. */
 function estecapelli_tr_revision_prepare_section( array $section, $post_id, $layout_ordinal = 0 ) {
-	if ( ! estecapelli_tr_revision_is_turkish() || ! function_exists( 'estecapelli_indexed_post_route_key' ) ) {
+	if ( ! estecapelli_tr_revision_is_turkish() ) {
+		return $section;
+	}
+
+	$section = estecapelli_tr_revision_lamine_spelling( $section );
+	if ( ! function_exists( 'estecapelli_indexed_post_route_key' ) ) {
 		return $section;
 	}
 

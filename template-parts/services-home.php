@@ -11,6 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $data = estecapelli_home_services();
+if ( function_exists( 'estecapelli_tr_revision_home_services' ) ) {
+	$data = estecapelli_tr_revision_home_services( $data );
+}
 if ( empty( $data['categories'] ) ) {
 	return;
 }

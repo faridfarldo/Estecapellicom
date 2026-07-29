@@ -618,8 +618,19 @@
 		/* Equal heights on phones too: pin every slide to the dental height and let
 		   the media fill the leftover space so nothing is clipped. */
 		.hero-x .hero-x__slide { height: clamp(560px, 84vh, 860px); overflow: hidden; }
+		/* …except the dental slide, which must be free to grow.
+		   The other two are mostly imagery and shrink to fit happily. This one
+		   stacks a photo banner (up to 40vh) ON TOP of a headline, a paragraph,
+		   three bullets and a button: on a narrow phone, as soon as the title
+		   wraps to a third line the last bullet and the CTA were cut off by the
+		   overflow:hidden above. Longer translations hit the ceiling sooner, which
+		   is why it showed in every language. The carousel measures the ACTIVE
+		   slide to size its viewport, so a taller dental slide costs the other
+		   two nothing. */
+		.hero-x .hero-x__slide--dental { height: auto; min-height: clamp(560px, 84vh, 860px); }
 		.hero-x .hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; }
 		.hero-x .hero-dnt { min-height: 0; height: 100%; }
+		.hero-x .hero-x__slide--dental .hero-dnt { height: auto; }
 		.hero-x__slide--expert { align-items: stretch; }
 		.hero-x .hero-exp { display: flex; flex-direction: column; height: 100%; }
 		.hero-x .hero-exp__media { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0; }
@@ -632,7 +643,15 @@
 	}
 
 	/* ---------- Homepage hero — Estecapelli Dental (full-bleed photo) ---------- */
-	.hero-x__slide--dental { position: relative; overflow: hidden; background: #0b0b0d; --dnt-banner: clamp(240px, 40vh, 330px); }
+	.hero-x__slide--dental {
+		position: relative; overflow: hidden; background: #0b0b0d;
+		--dnt-banner: clamp(240px, 40vh, 330px);
+		/* The Before circle's size and how far it rides up into the photo banner.
+		   Both are variables because the mobile copy has to start below wherever
+		   the circle ends, and that distance is width minus rise. */
+		--dnt-before-size: clamp(90px, 26vw, 116px);
+		--dnt-before-rise: clamp(52px, 15vw, 70px);
+	}
 	.hero-dnt__bg {
 		position: absolute; inset: 0; z-index: 0;
 		width: 100%; height: 100%;
@@ -665,6 +684,13 @@
 		overflow: hidden;
 		border: 3px solid oklch(100% 0 0 / 0.9);
 		box-shadow: 0 10px 30px oklch(0% 0 0 / 0.5);
+	}
+	/* The Turkish review calls for a larger Before portrait placed farther into
+	   the dental hero. Other languages retain the original composition. */
+	html[lang^="tr"] .hero-dnt__before {
+		left: clamp(28px, 6vw, 96px);
+		bottom: clamp(22px, 5vw, 64px);
+		width: clamp(132px, 17vw, 190px);
 	}
 	.hero-dnt__before img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 	.hero-dnt__before figcaption {
@@ -735,7 +761,11 @@
 		.hero-dnt {
 			display: block;
 			min-height: 0;
-			padding-top: calc(var(--dnt-banner) + 1.25rem);
+			/* Start the copy below the Before circle, which hangs (size - rise)
+			   past the bottom of the banner. Computed rather than guessed, so the
+			   Turkish variant's larger circle stays clear too — it only has to
+			   override --dnt-before-size. */
+			padding-top: calc(var(--dnt-banner) + var(--dnt-before-size) - var(--dnt-before-rise) + 1rem);
 			padding-bottom: clamp(1.75rem, 6vw, 2.75rem);
 		}
 		.hero-dnt__copy { max-width: none; text-align: center; align-items: center; gap: 0.7rem; margin-inline: auto; }
@@ -746,9 +776,14 @@
 		/* Before circle overlaps the bottom-right of the photo banner. */
 		.hero-dnt__before {
 			left: auto; right: 16px; bottom: auto;
-			top: calc(var(--dnt-banner) - clamp(52px, 15vw, 70px));
-			width: clamp(90px, 26vw, 116px);
+			top: calc(var(--dnt-banner) - var(--dnt-before-rise));
+			width: var(--dnt-before-size);
 			border-width: 2px;
+		}
+		html[lang^="tr"] .hero-x__slide--dental { --dnt-before-size: clamp(100px, 29vw, 126px); }
+		html[lang^="tr"] .hero-dnt__before {
+			left: auto;
+			bottom: auto;
 		}
 		.hero-dnt__before figcaption { bottom: 6px; padding: 1px 9px; font-size: 0.5rem; }
 	}
