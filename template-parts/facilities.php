@@ -124,16 +124,24 @@ $partners = $data['partners'] ?? array();
 		</div>
 	<?php endif; ?>
 
-	<!-- Image lightbox — opened by any [data-facilities-zoom] photo tile. -->
-	<div class="facilities__lightbox" data-facilities-lightbox hidden role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Photo viewer', 'estecapelli' ); ?>">
-		<button type="button" class="facilities__lightbox-backdrop" data-facilities-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>"></button>
-		<figure class="facilities__lightbox-shell">
-			<button type="button" class="facilities__lightbox-close" data-facilities-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>">
-				<?php estecapelli_icon( 'close', array( 'width' => 22, 'height' => 22 ) ); ?>
-			</button>
-			<img class="facilities__lightbox-img" data-facilities-lightbox-img src="" alt="" />
-			<figcaption class="facilities__lightbox-caption" data-facilities-lightbox-caption></figcaption>
-		</figure>
-	</div>
-
 </section>
+
+<?php
+// The lightbox lives OUTSIDE the section on purpose. The section carries
+// content-visibility: auto so the browser can skip laying it out while it is
+// off screen — but that also makes the section a containing block for
+// position: fixed descendants, which would trap this full-screen overlay
+// inside the section's box. main.js looks it up with document.querySelector,
+// so being a sibling changes nothing else.
+?>
+<!-- Image lightbox — opened by any [data-facilities-zoom] photo tile. -->
+<div class="facilities__lightbox" data-facilities-lightbox hidden role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Photo viewer', 'estecapelli' ); ?>">
+	<button type="button" class="facilities__lightbox-backdrop" data-facilities-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>"></button>
+	<figure class="facilities__lightbox-shell">
+		<button type="button" class="facilities__lightbox-close" data-facilities-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>">
+			<?php estecapelli_icon( 'close', array( 'width' => 22, 'height' => 22 ) ); ?>
+		</button>
+		<img class="facilities__lightbox-img" data-facilities-lightbox-img src="" alt="" />
+		<figcaption class="facilities__lightbox-caption" data-facilities-lightbox-caption></figcaption>
+	</figure>
+</div>

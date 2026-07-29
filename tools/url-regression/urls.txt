@@ -1,0 +1,74 @@
+# ---------------------------------------------------------------------------
+# Authoritative "must-not-404" content paths for estecapelli.com.
+#
+# One content path per line, leading slash, NO language prefix.
+# The test script expands each into its live variants ( /en/<path> and /<path> )
+# and records the real HTTP status. Lines starting with # and blank lines are
+# ignored. Add a line here whenever a new page / treatment / doctor ships.
+#
+# Sources: inc/data/pages-seed.php, inc/data/treatments-seed.php,
+#          inc/data/doctors-seed.php, inc/redirects.php
+# ---------------------------------------------------------------------------
+
+# Homepage (expands to /en/ and /)
+/
+
+# --- Top-level pages ---
+/contact
+/about-us
+/blog
+/before-after
+/tricholab
+/hair-transplant
+/plastic-surgery
+/dental-treatment
+
+# --- About branch ---
+/about-us/our-team
+/about-us/our-doctors
+/about-us/medical-director
+
+# --- Doctor profiles (doctor CPT) ---
+/about-us/our-doctors/mehmet-hanifi-kutlar
+/about-us/our-doctors/op-dr-hasan-celik
+/about-us/our-doctors/op-dr-mehmet-palali
+/about-us/our-doctors/op-dr-necdet-derici
+/about-us/our-doctors/op-dr-ali-durmus
+
+# --- Hair Transplant: info pages ---
+/hair-transplant/pre-hair-transplant-period
+/hair-transplant/post-hair-transplant-period
+
+# --- Hair Transplant: treatments ---
+/hair-transplant/exosome-fue-hair-transplant
+/hair-transplant/female-hair-transplant
+/hair-transplant/hair-mesotherapy
+/hair-transplant/sapphire-fue-hair-transplant
+/hair-transplant/dhi-hair-transplant
+/hair-transplant/vita-treatment
+/hair-transplant/eyebrow-transplant
+/hair-transplant/beard-transplant
+
+# --- Plastic Surgery: treatments ---
+/plastic-surgery/rhinoplasty
+/plastic-surgery/bbl
+/plastic-surgery/breast-aesthetics-breast-surgery
+/plastic-surgery/abdominoplasty-tummy-tuck
+/plastic-surgery/liposuction
+/plastic-surgery/face-and-neck-lift-surgery
+/plastic-surgery/obesity-surgeries-bariatric-surgery-and-gastric-balloon
+/plastic-surgery/gynecomastia
+
+# --- Dental Treatment: treatments ---
+/dental-treatment/dental-implant
+/dental-treatment/hollywood-smile
+
+# --- Legal ---
+/privacy-policy
+/terms
+
+# --- Legacy paths that MUST keep redirecting (see inc/redirects.php) ---
+/home
+/treatments/vita
+/hair-transplant/tricholab
+/about-us/medical-director/mehmet-hanifi-kutlar

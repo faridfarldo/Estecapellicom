@@ -8236,6 +8236,42 @@
 	}
 }
 
+/* ============================================================ Offscreen render skipping
+
+   The homepage ships ~3,600 elements and ~400 images in one document. Even
+   with every below-fold image lazy-loaded, the browser still had to style and
+   lay out all of it before it could paint anything — 1.4s of styleLayout on a
+   throttled mobile run, which is what kept the hero image sitting in memory
+   for seconds after it had finished downloading.
+
+   content-visibility: auto lets the browser skip style, layout and paint for a
+   section until it approaches the viewport, then do that work once. The height
+   guess in contain-intrinsic-size only matters for the very first pass — the
+   `auto` keyword tells the browser to remember each section's real height once
+   it has rendered it, so the scrollbar settles and stays settled.
+
+   The hero is deliberately NOT in this list: it is on screen at load, so
+   containing it would only add work.
+
+   Note: containment makes each of these a containing block for position:fixed
+   descendants. The stories and facilities lightboxes were moved out of their
+   sections for exactly that reason — check before adding a section here. */
+@layer components {
+	.trust-reel,
+	.hal,
+	.home-ba,
+	.services-home,
+	.why-choose,
+	.signature,
+	.stories,
+	.facilities,
+	.posts,
+	.site-footer {
+		content-visibility: auto;
+		contain-intrinsic-size: auto 900px;
+	}
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after {

@@ -230,16 +230,23 @@ $image_style = function ( $story, $position_key, $transform_key ) {
 
 	</div>
 
-	<div class="stories__lightbox" data-stories-lightbox hidden role="dialog" aria-modal="true" aria-labelledby="stories-lightbox-title">
-		<button type="button" class="stories__lightbox-backdrop" data-stories-lightbox-close aria-label="<?php esc_attr_e( 'Close video', 'estecapelli' ); ?>"></button>
-		<div class="stories__lightbox-shell">
-			<header class="stories__lightbox-head">
-				<h4 id="stories-lightbox-title" class="stories__lightbox-title" data-stories-lightbox-title></h4>
-				<button type="button" class="stories__lightbox-close" data-stories-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>">
-					<?php estecapelli_icon( 'close', array( 'width' => 20, 'height' => 20 ) ); ?>
-				</button>
-			</header>
-			<div class="stories__lightbox-frame" data-stories-lightbox-frame></div>
-		</div>
-	</div>
 </section>
+
+<?php
+// Deliberately a sibling of the section, not a child: the section carries
+// content-visibility: auto, which would otherwise make it the containing
+// block for this position: fixed overlay and trap the video player inside
+// the section's box. main.js finds it via document.querySelector.
+?>
+<div class="stories__lightbox" data-stories-lightbox hidden role="dialog" aria-modal="true" aria-labelledby="stories-lightbox-title">
+	<button type="button" class="stories__lightbox-backdrop" data-stories-lightbox-close aria-label="<?php esc_attr_e( 'Close video', 'estecapelli' ); ?>"></button>
+	<div class="stories__lightbox-shell">
+		<header class="stories__lightbox-head">
+			<h4 id="stories-lightbox-title" class="stories__lightbox-title" data-stories-lightbox-title></h4>
+			<button type="button" class="stories__lightbox-close" data-stories-lightbox-close aria-label="<?php esc_attr_e( 'Close', 'estecapelli' ); ?>">
+				<?php estecapelli_icon( 'close', array( 'width' => 20, 'height' => 20 ) ); ?>
+			</button>
+		</header>
+		<div class="stories__lightbox-frame" data-stories-lightbox-frame></div>
+	</div>
+</div>
