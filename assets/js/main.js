@@ -384,10 +384,15 @@
 		var b2 = root.querySelector('[data-result-b2]');
 		if (!after || !b1 || !b2) return;
 
-		// Preload every set so swaps are instant (no flash on first cycle).
-		data.forEach(function (p) {
+		// Warm only the set that is about to be shown. This used to preload every
+		// set up front — a dozen patients x 3 photos — which fetched the lot on
+		// page load and bypassed lazy loading entirely.
+		function preloadSet(idx) {
+			var p = data[(idx + data.length) % data.length];
+			if (!p || p.__warmed) return;
+			p.__warmed = true;
 			['after', 'b1', 'b2'].forEach(function (k) { if (p[k]) { var im = new Image(); im.src = p[k]; } });
-		});
+		}
 
 		var i = 0;
 		function show(idx) {
@@ -402,8 +407,27 @@
 		}
 
 		var DELAY = 3500;
-		var timer = setInterval(function () { show(i + 1); }, DELAY);
-		function restart() { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, DELAY); }
+		var timer = null;
+
+		function tick() { show(i + 1); preloadSet(i + 1); }
+		function restart() { clearInterval(timer); preloadSet(i + 1); timer = setInterval(tick, DELAY); }
+
+		// Hold the rotation until the page has finished loading, then wait once
+		// more before the first swap.
+		//
+		// This photo is the page's largest element, so every swap registers a new
+		// Largest Contentful Paint. Rotating during load kept redefining LCP and
+		// pushed it to 11s — it only stops updating once the visitor interacts,
+		// which an audit never does. Starting late also keeps a dozen patient
+		// photos from competing with the rest of the page for bandwidth.
+		function beginRotation() {
+			if (timer) return;
+			preloadSet(i + 1);
+			timer = setInterval(tick, DELAY);
+		}
+		function scheduleRotation() { setTimeout(beginRotation, 3000); }
+		if ('complete' === document.readyState) scheduleRotation();
+		else window.addEventListener('load', scheduleRotation, { once: true });
 
 		var prev = root.querySelector('[data-result-prev]');
 		var next = root.querySelector('[data-result-next]');
