@@ -70,7 +70,13 @@ $partners = $data['partners'] ?? array();
 						$cover = $imgs[0] ?? '';
 						?>
 						<button type="button" class="facilities__media facilities__media--photo" data-img-gallery="<?php echo esc_attr( wp_json_encode( $imgs ) ); ?>" data-caption="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Open gallery: %s', 'estecapelli' ), $item['caption'] ?? '' ) ); ?>">
-							<img src="<?php echo esc_url( $cover ); ?>" alt="<?php echo esc_attr( $item['caption'] ?? '' ); ?>" loading="lazy" decoding="async" />
+							<?php
+							// alt="" on purpose: the caption below the photo already says
+							// "Lobby" / "Dental Clinic", and the button announces "Open
+							// gallery: <caption>". A matching alt made a screen reader read
+							// the same words three times over.
+							?>
+							<img src="<?php echo esc_url( $cover ); ?>" alt="" loading="lazy" decoding="async" />
 							<span class="facilities__zoom" aria-hidden="true">
 								<?php estecapelli_icon( 'image', array( 'width' => 18, 'height' => 18 ) ); ?>
 							</span>

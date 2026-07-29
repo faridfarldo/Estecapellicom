@@ -4269,7 +4269,6 @@
 
 	.why-choose__rows {
 		position: relative; z-index: 1;
-		list-style: none; margin: 0; padding: 0;
 	}
 	.why-choose__row {
 		display: grid;
@@ -4380,7 +4379,14 @@
 		position: relative;
 		isolation: isolate;
 		padding-block: clamp(3rem, 6vw, 5.5rem);
-		background:
+		/* Solid colour under the gradients. The section is unmistakably dark to
+		   the eye, but a contrast checker walking the computed styles finds only
+		   gradient layers here, gives up, and falls back to the nearest solid
+		   ancestor — white — then reports the gold eyebrow as unreadable. A base
+		   colour gives it the truth, and doubles as the paint before the
+		   gradients land. */
+		background-color: var(--color-brand-950);
+		background-image:
 			radial-gradient(ellipse 80% 60% at 80% 0%, oklch(35% 0.1 260 / 0.6), transparent 60%),
 			radial-gradient(ellipse 60% 80% at 10% 100%, oklch(45% 0.13 260 / 0.3), transparent 65%),
 			linear-gradient(160deg, var(--color-brand-950) 0%, oklch(11% 0.03 260) 60%, oklch(9% 0.025 265) 100%);
@@ -5947,7 +5953,9 @@
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
 	}
-	.posts__list-cat { color: var(--color-accent-600); }
+	/* accent-600 on white is 3.71:1 — below the 4.5:1 minimum, and this is 11px
+	   text. accent-700 measures 5.64:1 at the same hue. */
+	.posts__list-cat { color: var(--color-accent-700); }
 	.posts__list-title {
 		margin: 0;
 		font-size: 0.9375rem; line-height: 1.3;

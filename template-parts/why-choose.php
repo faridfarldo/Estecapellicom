@@ -111,9 +111,16 @@ $has_certs = file_exists( $certs_dir );
 					</span>
 				</div>
 
-				<ul class="why-choose__rows">
+				<?php
+				// Plain divs, not ul/li. This block is an ARIA table, and the two
+				// vocabularies do not mix: a <ul> carries an implicit list role that
+				// role="table" does not accept as a child, and <li> is not permitted
+				// to take role="row" at all. Keeping the list markup meant a screen
+				// reader was handed a table whose rows it could not find.
+				?>
+				<div class="why-choose__rows" role="rowgroup">
 					<?php foreach ( $data['features'] as $i => $row ) : ?>
-						<li
+						<div
 							class="why-choose__row"
 							role="row"
 							style="--row: <?php echo (int) $i; ?>"
@@ -125,27 +132,34 @@ $has_certs = file_exists( $certs_dir );
 								<span class="why-choose__row-text"><?php echo esc_html( $row['label'] ); ?></span>
 							</span>
 
+							<?php
+							// role="img" is what makes the aria-label legal here: a bare
+							// <span> has no role, and ARIA forbids labelling a roleless
+							// element — the label was simply being dropped. These marks
+							// are icons standing in for a word, which is precisely what
+							// role="img" describes.
+							?>
 							<span class="why-choose__cell why-choose__cell--them" role="cell">
 								<?php if ( ! empty( $row['them'] ) ) : ?>
-									<span class="why-choose__mark why-choose__mark--yes why-choose__mark--muted" aria-label="<?php esc_attr_e( 'Included', 'estecapelli' ); ?>">
+									<span class="why-choose__mark why-choose__mark--yes why-choose__mark--muted" role="img" aria-label="<?php esc_attr_e( 'Included', 'estecapelli' ); ?>">
 										<?php estecapelli_icon( 'check-circle', array( 'width' => 22, 'height' => 22 ) ); ?>
 									</span>
 								<?php else : ?>
-									<span class="why-choose__mark why-choose__mark--no" aria-label="<?php esc_attr_e( 'Not included', 'estecapelli' ); ?>">
+									<span class="why-choose__mark why-choose__mark--no" role="img" aria-label="<?php esc_attr_e( 'Not included', 'estecapelli' ); ?>">
 										<?php estecapelli_icon( 'x-circle', array( 'width' => 22, 'height' => 22 ) ); ?>
 									</span>
 								<?php endif; ?>
 							</span>
 
 							<span class="why-choose__cell why-choose__cell--us" role="cell">
-								<span class="why-choose__mark why-choose__mark--yes why-choose__mark--ours" aria-label="<?php esc_attr_e( 'Included at Estecapelli', 'estecapelli' ); ?>">
+								<span class="why-choose__mark why-choose__mark--yes why-choose__mark--ours" role="img" aria-label="<?php esc_attr_e( 'Included at Estecapelli', 'estecapelli' ); ?>">
 									<?php estecapelli_icon( 'check-circle', array( 'width' => 22, 'height' => 22 ) ); ?>
 									<span class="why-choose__mark-pulse" aria-hidden="true"></span>
 								</span>
 							</span>
-						</li>
+						</div>
 					<?php endforeach; ?>
-				</ul>
+				</div>
 
 				<?php if ( ! empty( $data['footnote'] ) ) : ?>
 					<footer class="why-choose__board-foot">
