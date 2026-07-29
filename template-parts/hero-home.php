@@ -95,7 +95,15 @@ foreach ( $result_ids as $rid ) {
 							<div class="hero-split__panel hero-split__panel--<?php echo esc_attr( $key ); ?>" data-split-panel="<?php echo esc_attr( $key ); ?>" data-open="false">
 
 								<?php if ( ! empty( $p['cover'] ) ) : ?>
-									<img class="hero-split__cover" src="<?php echo esc_url( $p['cover'] ); ?>" alt="<?php echo esc_attr( $p['name'] . ' ' . $p['tag'] ); ?>" loading="lazy" decoding="async" />
+									<?php
+									// These two covers ARE the Largest Contentful Paint: slide 1 is
+									// on screen at load and the panels fill it edge to edge. They
+									// used to ship loading="lazy", which makes the browser wait for
+									// layout before it even requests them — on a throttled 4G run
+									// that alone cost seconds of LCP. Eager + high priority puts
+									// them in the first wave, next to the stylesheet.
+									?>
+									<img class="hero-split__cover" src="<?php echo esc_url( $p['cover'] ); ?>" alt="<?php echo esc_attr( $p['name'] . ' ' . $p['tag'] ); ?>" loading="eager" fetchpriority="high" decoding="async" />
 								<?php endif; ?>
 
 								<?php if ( ! empty( $p['video'] ) ) : ?>

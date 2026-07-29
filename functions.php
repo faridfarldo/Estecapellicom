@@ -250,20 +250,65 @@ function estecapelli_fallback_favicon() {
 	printf( '<link rel="apple-touch-icon" href="%s" />' . "\n", esc_url( $url ) );
 }
 
-function estecapelli_enqueue_assets() {
-	wp_enqueue_style(
-		'estecapelli-fonts',
-		'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
-		array(),
-		null
+/**
+ * Self-hosted DM Sans.
+ *
+ * This used to be a <link> to fonts.googleapis.com, which put a third-party
+ * origin on the critical path twice over: the browser had to fetch and parse
+ * a stylesheet from googleapis.com before it even learned the font lived on
+ * gstatic.com. Serving the two woff2 subsets ourselves removes both hops —
+ * they come off our own connection, already open, and Cloudflare caches them
+ * for a year like every other static asset.
+ *
+ * DM Sans is a variable font: all four weights are the same file. The faces
+ * are declared per weight exactly as Google's own CSS did, so the browser
+ * picks the same axis position it always has.
+ */
+function estecapelli_font_face_css() {
+	$base = get_template_directory_uri() . '/assets/fonts/';
+	$subsets = array(
+		// Latin covers en/fr/it/es. latin-ext carries the Turkish and Polish
+		// diacritics (ş ğ ł ą ę ż) — both are required on this site.
+		'latin'     => 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD',
+		'latin-ext' => 'U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF',
 	);
 
+	$css = '';
+	foreach ( $subsets as $subset => $range ) {
+		foreach ( array( 400, 500, 600, 700 ) as $weight ) {
+			$css .= sprintf(
+				'@font-face{font-family:"DM Sans";font-style:normal;font-weight:%d;font-display:swap;src:url(%s) format("woff2");unicode-range:%s}',
+				$weight,
+				esc_url( $base . 'dm-sans-' . $subset . '.woff2' ),
+				$range
+			);
+		}
+	}
+	return $css;
+}
+
+/**
+ * Preload the Latin subset. Text is the first thing painted on every page, and
+ * font-display:swap means a late font arrival re-lays-out that text; starting
+ * the fetch in the first round trip avoids the flash. latin-ext is left to
+ * normal discovery — only tr/pl need it, and only for a handful of glyphs.
+ */
+function estecapelli_preload_font() {
+	printf(
+		"\t<link rel=\"preload\" as=\"font\" type=\"font/woff2\" href=\"%s\" crossorigin />\n",
+		esc_url( get_template_directory_uri() . '/assets/fonts/dm-sans-latin.woff2' )
+	);
+}
+add_action( 'wp_head', 'estecapelli_preload_font', 1 );
+
+function estecapelli_enqueue_assets() {
 	wp_enqueue_style(
 		'estecapelli-style',
 		get_stylesheet_uri(),
-		array( 'estecapelli-fonts' ),
+		array(),
 		ESTECAPELLI_VERSION
 	);
+	wp_add_inline_style( 'estecapelli-style', estecapelli_font_face_css() );
 
 	wp_enqueue_style(
 		'estecapelli-main',
@@ -345,6 +390,31 @@ function estecapelli_enqueue_assets() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_assets' );
+
+/**
+ * Take the phone-widget stylesheet off the critical path.
+ *
+ * intl-tel-input's CSS only styles the country dropdown on a phone field — the
+ * footer form, the contact page and the lead popup. None of that is on screen
+ * at first paint, yet as a plain <link> in the head it blocks rendering on a
+ * third-party origin (DNS + TLS + download before anything shows). Loading it
+ * as media="print" makes the browser fetch it without blocking, and the onload
+ * handler promotes it to all media the moment it arrives. The <noscript> copy
+ * keeps it working with JavaScript off.
+ *
+ * WP Rocket cannot do this for us: it leaves external stylesheets alone.
+ */
+function estecapelli_async_noncritical_styles( $tag, $handle ) {
+	if ( 'intl-tel-input' !== $handle || is_admin() ) {
+		return $tag;
+	}
+	$async = str_replace( "media='all'", "media='print' onload=\"this.media='all';this.onload=null\"", $tag );
+	if ( $async === $tag ) {
+		return $tag; // Markup was not what we expected — leave it render-blocking rather than break it.
+	}
+	return $async . '<noscript>' . $tag . '</noscript>' . "\n";
+}
+add_filter( 'style_loader_tag', 'estecapelli_async_noncritical_styles', 10, 2 );
 
 function estecapelli_widgets_init() {
 	register_sidebar( array(

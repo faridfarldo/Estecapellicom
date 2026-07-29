@@ -10,13 +10,28 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<?php estecapelli_gtm_head(); ?>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<?php // intl-tel-input's stylesheet is render-blocking in the head, so open
-	      // the connection early instead of paying DNS+TLS when the parser hits it. ?>
+	<?php // DM Sans is self-hosted (see estecapelli_font_face_css) — no Google
+	      // Fonts preconnect needed any more. ?>
+	<?php // intl-tel-input (phone field CSS + JS) is the last third party left on
+	      // the page — open the connection early rather than paying DNS+TLS when
+	      // the parser reaches it. ?>
 	<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 	<?php // YouTube poster frames (patient stories, ~19 on the homepage). ?>
 	<link rel="dns-prefetch" href="//i.ytimg.com" />
+	<?php
+	// The homepage LCP is the Exosome/VITA cover pair in hero slide 1. They sit
+	// far down the document, so even eager <img> tags are only discovered once
+	// the parser gets there — after the header, nav and language menu. Preloading
+	// starts both fetches in the very first round trip. Only on the front page.
+	if ( is_front_page() && function_exists( 'estecapelli_signature_split' ) ) {
+		$hero_split = estecapelli_signature_split();
+		foreach ( (array) ( $hero_split['panels'] ?? array() ) as $hero_panel ) {
+			if ( ! empty( $hero_panel['cover'] ) ) {
+				printf( "\t<link rel=\"preload\" as=\"image\" href=\"%s\" fetchpriority=\"high\" />\n", esc_url( $hero_panel['cover'] ) );
+			}
+		}
+	}
+	?>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
