@@ -618,19 +618,8 @@
 		/* Equal heights on phones too: pin every slide to the dental height and let
 		   the media fill the leftover space so nothing is clipped. */
 		.hero-x .hero-x__slide { height: clamp(560px, 84vh, 860px); overflow: hidden; }
-		/* …except the dental slide, which must be free to grow.
-		   The other two are mostly imagery and shrink to fit happily. This one
-		   stacks a photo banner (up to 40vh) ON TOP of a headline, a paragraph,
-		   three bullets and a button: on a narrow phone, as soon as the title
-		   wraps to a third line the last bullet and the CTA were cut off by the
-		   overflow:hidden above. Longer translations hit the ceiling sooner, which
-		   is why it showed in every language. The carousel measures the ACTIVE
-		   slide to size its viewport, so a taller dental slide costs the other
-		   two nothing. */
-		.hero-x .hero-x__slide--dental { height: auto; min-height: clamp(560px, 84vh, 860px); }
 		.hero-x .hero-split__stage { flex: 1 1 0; height: auto; min-height: 0; }
 		.hero-x .hero-dnt { min-height: 0; height: 100%; }
-		.hero-x .hero-x__slide--dental .hero-dnt { height: auto; }
 		.hero-x__slide--expert { align-items: stretch; }
 		.hero-x .hero-exp { display: flex; flex-direction: column; height: 100%; }
 		.hero-x .hero-exp__media { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0; }
@@ -766,13 +755,47 @@
 			   Turkish variant's larger circle stays clear too — it only has to
 			   override --dnt-before-size. */
 			padding-top: calc(var(--dnt-banner) + var(--dnt-before-size) - var(--dnt-before-rise) + 1rem);
-			padding-bottom: clamp(1.75rem, 6vw, 2.75rem);
+			/* Deep enough to clear the carousel dots, which are pinned 14px off the
+			   bottom of the slide and were being overlapped by the CTA. */
+			padding-bottom: clamp(2.25rem, 7vw, 2.75rem);
 		}
-		.hero-dnt__copy { max-width: none; text-align: center; align-items: center; gap: 0.7rem; margin-inline: auto; }
-		.hero-dnt__title { font-size: clamp(1.7rem, 1.3rem + 4vw, 2.4rem); }
-		.hero-dnt__lead { font-size: 0.95rem; max-width: 36ch; }
-		.hero-dnt__points li { justify-content: center; font-size: 0.9rem; }
+		/* ---- Fitting the copy into the slide ----
+		   All three slides share one fixed height and clip what does not fit, and
+		   this is the only slide that stacks a photo banner on top of real text.
+		   The budget is therefore whatever the banner and the Before circle leave
+		   behind — roughly 220px on a 360x640 phone — and the copy has to live
+		   inside it in seven languages, the longest of which run ~40% longer than
+		   English. Everything below buys back vertical space; the widths come
+		   first because a line saved is worth more than any font-size tweak. */
+
+		/* The 50px side gutter exists to keep text clear of the prev/next arrows.
+		   On this slide the arrows sit at the vertical centre, which lands on the
+		   photo banner well above the copy, so the gutter costs three wrapped
+		   lines and buys nothing. */
+		.hero-x .hero-dnt__copy { padding-inline: 14px; }
+		.hero-dnt__copy { max-width: none; text-align: center; align-items: center; gap: 0.5rem; margin-inline: auto; }
+		.hero-dnt__title { font-size: clamp(1.45rem, 1.05rem + 3.4vw, 2.1rem); line-height: 1.12; }
+		.hero-dnt__lead { font-size: 0.875rem; line-height: 1.5; max-width: 44ch; }
+		.hero-dnt__points { gap: 0.35rem; }
+		.hero-dnt__points li { justify-content: center; font-size: 0.85rem; line-height: 1.35; }
 		.hero-dnt .btn { align-self: center; }
+		.hero-dnt .btn-lg { padding-block: 0.7rem; font-size: 0.9375rem; }
+
+		/* The paragraph is what goes. It is the one block here that repeats itself:
+		   the three bullets underneath say the same thing — Hollywood Smile,
+		   veneers, implants, full-mouth — in a third of the height. Dropping it on
+		   phones buys ~70px, which is what turns a slide that only just fits in
+		   English into one that fits in all seven languages. It stays in the
+		   markup for crawlers, and comes back on tablets and desktop. */
+		.hero-dnt__lead { display: none; }
+
+		/* Short screens need one more concession. A 640px-tall phone gives the
+		   slide 560px, and at 40vh the photo alone would claim 256px of it —
+		   nothing else fits, in any language. The banner keeps its full height on
+		   normal phones; only genuinely short ones trade a little of the photo. */
+		@media (max-height: 780px) {
+			.hero-x__slide--dental { --dnt-banner: clamp(180px, 30vh, 260px); }
+		}
 		/* Before circle overlaps the bottom-right of the photo banner. */
 		.hero-dnt__before {
 			left: auto; right: 16px; bottom: auto;
