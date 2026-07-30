@@ -92,6 +92,7 @@ require get_template_directory() . '/inc/hair-analysis.php';
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/wpml-page-diagnostic.php';
 	require get_template_directory() . '/inc/admin/translation-lock-diagnostic.php';
+	require get_template_directory() . '/inc/admin/translation-save-recorder.php';
 }
 
 /**
