@@ -154,3 +154,10 @@ $partners = $data['partners'] ?? array();
 		<figcaption class="facilities__lightbox-caption" data-facilities-lightbox-caption></figcaption>
 	</figure>
 </div>
+
+<?php
+// The clinic-tour tile is a [data-stories-play] trigger, so this section needs
+// the shared video player too. It cannot rely on the patient-stories section
+// printing it: that section renders nothing on Turkish, where testimonials are
+// withheld, and the player would go missing along with it.
+get_template_part( 'template-parts/stories-lightbox' );
