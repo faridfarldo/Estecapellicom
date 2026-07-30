@@ -121,6 +121,18 @@ if ( ! function_exists( 'estecapelli_render_page_sections' ) ) {
 		$post_id  = $post_id ?: get_the_ID();
 		$sections = get_field( 'page_sections', $post_id );
 
+		/**
+		 * Display-only override of a page's builder rows.
+		 *
+		 * Lets a language ship reviewed content for a page whose stored rows are
+		 * wrong, without writing to the database. Nothing here is persisted: the
+		 * filter runs on the way to the renderer and on that request only.
+		 *
+		 * @param array|mixed $sections Rows read from ACF.
+		 * @param int         $post_id  Page being rendered.
+		 */
+		$sections = apply_filters( 'estecapelli_page_sections', $sections, (int) $post_id );
+
 		if ( empty( $sections ) || ! is_array( $sections ) ) {
 			return false;
 		}

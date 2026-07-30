@@ -77,6 +77,7 @@ require get_template_directory() . '/inc/tr-site-revisions.php';
 require get_template_directory() . '/inc/it-navigation.php';
 require get_template_directory() . '/inc/it-string-fallbacks.php';
 require get_template_directory() . '/inc/pl-string-fallbacks.php';
+require get_template_directory() . '/inc/pl-content-revisions.php';
 require get_template_directory() . '/inc/es-string-fallbacks.php';
 require get_template_directory() . '/inc/pt-string-fallbacks.php';
 require get_template_directory() . '/inc/legal-string-fallbacks.php';
