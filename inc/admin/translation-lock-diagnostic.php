@@ -451,19 +451,77 @@ function estecapelli_render_translation_lock_diagnostic() {
 					?>
 				</p>
 			<?php else : ?>
+				<?php
+				// Summarised, not dumped: the raw map runs to hundreds of rows and
+				// the shape of it is the answer, not any individual entry.
+				$rule_counts = array( 0 => 0, 1 => 0, 2 => 0, 3 => 0 );
+				$row_indexes = array();
+				$copied      = array();
+				foreach ( $relevant as $meta_key => $rule ) {
+					$rule = (int) $rule;
+					if ( isset( $rule_counts[ $rule ] ) ) {
+						$rule_counts[ $rule ]++;
+					}
+					if ( preg_match( '/^page_sections_(\d+)_/', (string) $meta_key, $m ) ) {
+						$row_indexes[ (int) $m[1] ] = true;
+					}
+					if ( 1 === $rule ) {
+						$copied[] = (string) $meta_key;
+					}
+				}
+				ksort( $row_indexes );
+				$indexes = array_keys( $row_indexes );
+				?>
 				<table class="widefat striped" style="max-width:860px;">
-					<thead><tr><th><?php esc_html_e( 'Meta key', 'estecapelli' ); ?></th><th><?php esc_html_e( 'WPML rule', 'estecapelli' ); ?></th></tr></thead>
 					<tbody>
-						<?php foreach ( $relevant as $meta_key => $rule ) : ?>
-							<tr>
-								<td><code><?php echo esc_html( (string) $meta_key ); ?></code></td>
-								<td>
-									<strong<?php echo ( 2 !== (int) $rule ) ? ' style="color:#b32d2e;"' : ''; ?>>
-										<?php echo esc_html( $labels[ (int) $rule ] ?? (string) $rule ); ?>
-									</strong>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+						<tr>
+							<th style="width:340px;"><?php esc_html_e( 'Rules for page_sections keys', 'estecapelli' ); ?></th>
+							<td><strong><?php echo (int) count( $relevant ); ?></strong> <?php esc_html_e( 'of', 'estecapelli' ); ?> <?php echo (int) count( $wpml_map ); ?> <?php esc_html_e( 'total', 'estecapelli' ); ?></td>
+						</tr>
+						<tr>
+							<th><?php esc_html_e( 'Breakdown', 'estecapelli' ); ?></th>
+							<td>
+								<?php
+								printf(
+									/* translators: 1: translate, 2: copy once, 3: copy, 4: ignore */
+									esc_html__( '%1$d Translate · %2$d Copy once · %3$d Copy · %4$d ignore', 'estecapelli' ),
+									(int) $rule_counts[2],
+									(int) $rule_counts[3],
+									(int) $rule_counts[1],
+									(int) $rule_counts[0]
+								);
+								?>
+							</td>
+						</tr>
+						<tr>
+							<th><?php esc_html_e( 'Row indexes WPML has rules for', 'estecapelli' ); ?></th>
+							<td>
+								<?php if ( empty( $indexes ) ) : ?>
+									—
+								<?php else : ?>
+									<code><?php echo esc_html( implode( ', ', $indexes ) ); ?></code>
+									<br>
+									<span class="description">
+										<?php esc_html_e( 'A builder row whose index is missing here has no rule of its own. Compare this with the longest page on the site: if a page has more rows than the highest index listed, those rows are unmanaged.', 'estecapelli' ); ?>
+									</span>
+								<?php endif; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><?php esc_html_e( 'Keys WPML copies from the source', 'estecapelli' ); ?></th>
+							<td>
+								<?php if ( empty( $copied ) ) : ?>
+									<span style="color:#1a7f37;font-weight:600;"><?php esc_html_e( 'None — WPML is not overwriting any builder field.', 'estecapelli' ); ?></span>
+								<?php else : ?>
+									<span style="color:#b32d2e;font-weight:600;"><?php echo (int) count( $copied ); ?> <?php esc_html_e( 'keys — these are replaced from the source language on save:', 'estecapelli' ); ?></span>
+									<div style="max-height:260px;overflow:auto;margin-top:.5rem;">
+										<?php foreach ( $copied as $meta_key ) : ?>
+											<code><?php echo esc_html( $meta_key ); ?></code><br>
+										<?php endforeach; ?>
+									</div>
+								<?php endif; ?>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			<?php endif; ?>
