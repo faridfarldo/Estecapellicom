@@ -87,9 +87,11 @@ require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/hair-analysis.php';
-// Read-only report, so it stays available even when content mutations are locked.
+// Read-only reports, so they stay available even when content mutations are
+// locked. Each carries its own opt-in constant for the actions it offers.
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/wpml-page-diagnostic.php';
+	require get_template_directory() . '/inc/admin/translation-lock-diagnostic.php';
 }
 
 /**
