@@ -28,6 +28,7 @@ function estecapelli_wpml_diag_targets() {
 				'it' => 'trapianto-di-capelli',
 				'es' => 'trasplante-de-cabello',
 				'pt' => 'transplante-capilar',
+				'pl' => 'przeszczep-wlosow',
 				'tr' => 'sac-ekimi',
 			),
 		),
@@ -38,6 +39,7 @@ function estecapelli_wpml_diag_targets() {
 				'it' => 'periodo-pre-trapianto-di-capelli',
 				'es' => 'periodo-previo-al-trasplante-capilar',
 				'pt' => 'periodo-pre-transplante-capilar',
+				'pl' => 'okres-przed-przeszczepem-wlosow',
 				'tr' => 'sac-ekim-oncesi-donem',
 			),
 		),
@@ -48,9 +50,23 @@ function estecapelli_wpml_diag_targets() {
 				'it' => 'periodo-post-trapianto-di-capelli',
 				'es' => 'periodo-posterior-al-trasplante-capilar',
 				'pt' => 'periodo-pos-transplante-capilar',
+				'pl' => 'okres-po-przeszczepie-wlosow',
 				'tr' => 'sac-ekimi-sonrasi-donem',
 			),
 		),
+		// The rest of the page set, so the report covers every page the Polish
+		// importer can act on. Only the Polish leaf slug is recorded for these;
+		// a language with no slug on record is reported as such, not as broken.
+		'tricholab'        => array( 'label' => 'TrichoLab',        'slugs' => array( 'pl' => 'tricholab' ) ),
+		'plastic-surgery'  => array( 'label' => 'Plastic Surgery',  'slugs' => array( 'pl' => 'chirurgia-plastyczna' ) ),
+		'dental-treatment' => array( 'label' => 'Dental Treatment', 'slugs' => array( 'pl' => 'leczenie-stomatologiczne' ) ),
+		'about-us'         => array( 'label' => 'About Us',         'slugs' => array( 'pl' => 'o-nas' ) ),
+		'our-team'         => array( 'label' => 'Our Team',         'slugs' => array( 'pl' => 'nasz-zespol' ) ),
+		'our-doctors'      => array( 'label' => 'Our Doctors',      'slugs' => array( 'pl' => 'nasi-lekarze' ) ),
+		'medical-director' => array( 'label' => 'Chief Physician',  'slugs' => array( 'pl' => 'dyrektor-medyczny' ) ),
+		'before-after'     => array( 'label' => 'Before & After',   'slugs' => array( 'pl' => 'przed-po' ) ),
+		'contact'          => array( 'label' => 'Contact',          'slugs' => array( 'pl' => 'kontakt' ) ),
+		'blog'             => array( 'label' => 'Blog',             'slugs' => array( 'pl' => 'blog' ) ),
 	);
 }
 
@@ -160,7 +176,16 @@ function estecapelli_render_wpml_page_diagnostic() {
 		endif;
 
 		foreach ( $targets as $source_slug => $target ) :
-			$source = get_page_by_path( $source_slug, OBJECT, 'page' );
+			// By slug, not by path. get_page_by_path() wants the full hierarchical
+			// path, so a child page such as hair-transplant/pre-hair-transplant-period
+			// was reported as a missing English source while it was live and
+			// perfectly fine. This is the same raw lookup the importers use to
+			// resolve their source page, so the report now agrees with them.
+			$source_id = function_exists( 'estecapelli_source_post_id' )
+				? (int) estecapelli_source_post_id( $source_slug, 'page' )
+				: 0;
+			// Never pass 0 to get_post(), which falls back to the global post.
+			$source = $source_id ? get_post( $source_id ) : get_page_by_path( $source_slug, OBJECT, 'page' );
 			?>
 			<h2 style="margin-top:2rem;"><?php echo esc_html( $target['label'] ); ?> <code><?php echo esc_html( $source_slug ); ?></code></h2>
 
