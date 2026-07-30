@@ -116,6 +116,59 @@ function estecapelli_handle_translation_unlock() {
 	exit;
 }
 
+/**
+ * Walk a field tree, collecting the effective ACFML preference of every field.
+ *
+ * The top-level view is not enough for the page builder: the visitor-facing text
+ * lives in sub-fields inside flexible-content layouts, and it is their
+ * preference that decides whether an edited translation survives a save.
+ *
+ * @param array  $fields ACF field definitions.
+ * @param string $path   Parent path for reporting.
+ * @param array  $found  Accumulator.
+ * @return array<int,array{path:string,type:string,pref:int|null}>
+ */
+function estecapelli_translation_lock_walk_fields( array $fields, $path = '', array $found = array() ) {
+	foreach ( $fields as $field ) {
+		if ( ! is_array( $field ) ) {
+			continue;
+		}
+
+		$name  = (string) ( $field['name'] ?? $field['key'] ?? '?' );
+		$here  = $path ? $path . '/' . $name : $name;
+		$found[] = array(
+			'path' => $here,
+			'type' => (string) ( $field['type'] ?? '?' ),
+			'pref' => array_key_exists( 'wpml_cf_preferences', $field ) ? (int) $field['wpml_cf_preferences'] : null,
+		);
+
+		if ( ! empty( $field['sub_fields'] ) && is_array( $field['sub_fields'] ) ) {
+			$found = estecapelli_translation_lock_walk_fields( $field['sub_fields'], $here, $found );
+		}
+		if ( ! empty( $field['layouts'] ) && is_array( $field['layouts'] ) ) {
+			foreach ( $field['layouts'] as $layout ) {
+				if ( ! empty( $layout['sub_fields'] ) && is_array( $layout['sub_fields'] ) ) {
+					$found = estecapelli_translation_lock_walk_fields(
+						$layout['sub_fields'],
+						$here . '[' . (string) ( $layout['name'] ?? '?' ) . ']',
+						$found
+					);
+				}
+			}
+		}
+	}
+
+	return $found;
+}
+
+/** WPML's own custom-field translation map, as stored. */
+function estecapelli_translation_lock_wpml_map() {
+	$settings = get_option( 'icl_sitepress_settings', array() );
+	$map      = $settings['translation-management']['custom_fields_translation'] ?? array();
+
+	return is_array( $map ) ? $map : array();
+}
+
 /** Render the report. */
 function estecapelli_render_translation_lock_diagnostic() {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -315,6 +368,105 @@ function estecapelli_render_translation_lock_diagnostic() {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+
+			<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Text inside the page builder', 'estecapelli' ); ?></h2>
+			<p class="description" style="max-width:860px;">
+				<?php esc_html_e( 'The table above only shows the container. Visitor-facing text lives in sub-fields inside the flexible-content layouts, and it is their preference that decides whether an edited translation survives a save. Anything listed below is a text field that will NOT be kept when the translation is saved.', 'estecapelli' ); ?>
+			</p>
+			<?php
+			$builder_fields = function_exists( 'acf_get_fields' ) ? (array) acf_get_fields( 'group_treatment_page_builder' ) : array();
+			$walked         = estecapelli_translation_lock_walk_fields( $builder_fields );
+			$text_types     = array( 'text', 'textarea', 'wysiwyg' );
+			$at_risk        = array();
+			$counts         = array( 'total' => 0, 'translate' => 0, 'copy' => 0, 'copy_once' => 0, 'unset' => 0 );
+			foreach ( $walked as $entry ) {
+				$counts['total']++;
+				if ( null === $entry['pref'] ) {
+					$counts['unset']++;
+				} elseif ( 2 === $entry['pref'] ) {
+					$counts['translate']++;
+				} elseif ( 3 === $entry['pref'] ) {
+					$counts['copy_once']++;
+				} else {
+					$counts['copy']++;
+				}
+				if ( in_array( $entry['type'], $text_types, true ) && 2 !== $entry['pref'] ) {
+					$at_risk[] = $entry;
+				}
+			}
+			?>
+			<p>
+				<?php
+				printf(
+					/* translators: 1: total, 2: translate, 3: copy once, 4: copy, 5: unset */
+					esc_html__( '%1$d fields: %2$d Translate, %3$d Copy once, %4$d Copy, %5$d with no preference.', 'estecapelli' ),
+					(int) $counts['total'],
+					(int) $counts['translate'],
+					(int) $counts['copy_once'],
+					(int) $counts['copy'],
+					(int) $counts['unset']
+				);
+				?>
+			</p>
+
+			<?php if ( empty( $at_risk ) ) : ?>
+				<div class="notice notice-success inline"><p><?php esc_html_e( 'Every text field in the builder is set to Translate. An edit to one of them is not being reverted by an ACFML preference.', 'estecapelli' ); ?></p></div>
+			<?php else : ?>
+				<div class="notice notice-error inline"><p><?php esc_html_e( 'These text fields are not set to Translate, so ACFML replaces them from the source language when the translation is saved:', 'estecapelli' ); ?></p>
+					<ul style="list-style:disc;margin-left:1.25rem;">
+						<?php foreach ( $at_risk as $entry ) : ?>
+							<li>
+								<code><?php echo esc_html( $entry['path'] ); ?></code>
+								(<?php echo esc_html( $entry['type'] ); ?>) —
+								<strong><?php echo esc_html( null === $entry['pref'] ? __( 'no preference', 'estecapelli' ) : ( $labels[ $entry['pref'] ] ?? $entry['pref'] ) ); ?></strong>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			<?php endif; ?>
+
+			<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'WPML’s own custom-field rules', 'estecapelli' ); ?></h2>
+			<p class="description" style="max-width:860px;">
+				<?php esc_html_e( 'ACF stores each builder value under a numbered meta key such as page_sections_0_title. If WPML holds its own rule for one of those keys it applies regardless of the ACFML preference above. 1 = Copy, 2 = Translate, 3 = Copy once, 0 = ignore.', 'estecapelli' ); ?>
+			</p>
+			<?php
+			$wpml_map = estecapelli_translation_lock_wpml_map();
+			$relevant = array();
+			foreach ( $wpml_map as $meta_key => $rule ) {
+				if ( false !== stripos( (string) $meta_key, 'page_sections' ) ) {
+					$relevant[ $meta_key ] = $rule;
+				}
+			}
+			?>
+			<?php if ( empty( $wpml_map ) ) : ?>
+				<p><em><?php esc_html_e( 'WPML has no custom-field rules stored at all.', 'estecapelli' ); ?></em></p>
+			<?php elseif ( empty( $relevant ) ) : ?>
+				<p>
+					<?php
+					printf(
+						/* translators: %d: number of rules */
+						esc_html__( 'WPML holds %d custom-field rules, none of them for a page_sections key. ACFML is deciding these fields.', 'estecapelli' ),
+						count( $wpml_map )
+					);
+					?>
+				</p>
+			<?php else : ?>
+				<table class="widefat striped" style="max-width:860px;">
+					<thead><tr><th><?php esc_html_e( 'Meta key', 'estecapelli' ); ?></th><th><?php esc_html_e( 'WPML rule', 'estecapelli' ); ?></th></tr></thead>
+					<tbody>
+						<?php foreach ( $relevant as $meta_key => $rule ) : ?>
+							<tr>
+								<td><code><?php echo esc_html( (string) $meta_key ); ?></code></td>
+								<td>
+									<strong<?php echo ( 2 !== (int) $rule ) ? ' style="color:#b32d2e;"' : ''; ?>>
+										<?php echo esc_html( $labels[ (int) $rule ] ?? (string) $rule ); ?>
+									</strong>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 	<?php
