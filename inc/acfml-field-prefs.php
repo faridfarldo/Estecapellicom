@@ -78,6 +78,21 @@ function estecapelli_acfml_prepare_field_group( $group ) {
 }
 
 /**
+ * Register a local field group with its ACFML preferences attached.
+ *
+ * Every group in this theme goes through here. Calling acf_add_local_field_group()
+ * directly registers a group ACFML has no preferences for, and it then falls back
+ * to its own defaults for every field in it — which is how eight of the ten groups
+ * were registered before this existed.
+ *
+ * @param array $group ACF local field-group definition.
+ * @return void
+ */
+function estecapelli_add_field_group( array $group ) {
+	acf_add_local_field_group( estecapelli_acfml_prepare_field_group( $group ) );
+}
+
+/**
  * Recursively attach preferences to fields, layout sub-fields and nested rows.
  *
  * Existing explicit preferences win, so an exceptional field can always be

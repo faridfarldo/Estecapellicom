@@ -244,6 +244,78 @@ function estecapelli_render_translation_lock_diagnostic() {
 				</tr>
 			</tbody>
 		</table>
+
+		<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Field groups and their ACFML preferences', 'estecapelli' ); ?></h2>
+		<p class="description" style="max-width:860px;">
+			<?php esc_html_e( 'The theme sets these in PHP at registration time. A group that has been synced into the database overrides the PHP definition completely, preferences included — so a synced copy made before the preferences existed would silently undo them. "Copy" means ACFML replaces that field from the source language when the translation is saved.', 'estecapelli' ); ?>
+		</p>
+
+		<?php if ( ! function_exists( 'acf_get_field_group' ) ) : ?>
+			<div class="notice notice-warning inline"><p><?php esc_html_e( 'ACF is not available, so nothing can be read here.', 'estecapelli' ); ?></p></div>
+		<?php else : ?>
+			<?php
+			$labels = array( 1 => 'Copy', 2 => 'Translate', 3 => 'Copy once' );
+			$keys   = array(
+				'group_treatment_page_builder',
+				'group_doctor_fields',
+				'group_result_fields',
+				'group_home_patient_stories',
+				'group_home_split',
+				'group_home_hero_slides',
+				'group_home_trust_stats',
+				'group_home_why_choose',
+				'group_home_methods',
+				'group_home_facilities',
+			);
+			?>
+			<table class="widefat striped" style="max-width:1100px;">
+				<thead>
+					<tr>
+						<th><?php esc_html_e( 'Group key', 'estecapelli' ); ?></th>
+						<th><?php esc_html_e( 'Source', 'estecapelli' ); ?></th>
+						<th><?php esc_html_e( 'ACFML mode', 'estecapelli' ); ?></th>
+						<th><?php esc_html_e( 'Top-level field preferences', 'estecapelli' ); ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $keys as $key ) :
+						$group = acf_get_field_group( $key );
+						if ( ! $group ) {
+							continue;
+						}
+						$from_db = ! empty( $group['ID'] );
+						$fields  = function_exists( 'acf_get_fields' ) ? (array) acf_get_fields( $key ) : array();
+						?>
+						<tr>
+							<td><code><?php echo esc_html( $key ); ?></code></td>
+							<td>
+								<?php if ( $from_db ) : ?>
+									<span style="color:#b32d2e;font-weight:600;"><?php esc_html_e( 'Database — overrides the theme', 'estecapelli' ); ?></span>
+								<?php else : ?>
+									<span style="color:#1a7f37;font-weight:600;"><?php esc_html_e( 'Theme (PHP)', 'estecapelli' ); ?></span>
+								<?php endif; ?>
+							</td>
+							<td><code><?php echo esc_html( (string) ( $group['acfml_field_group_mode'] ?? '—' ) ); ?></code></td>
+							<td>
+								<?php if ( ! $fields ) : ?>
+									—
+								<?php else : ?>
+									<?php foreach ( $fields as $field ) :
+										$pref = $field['wpml_cf_preferences'] ?? null;
+										?>
+										<code><?php echo esc_html( (string) ( $field['name'] ?? $field['key'] ?? '?' ) ); ?></code>
+										(<?php echo esc_html( (string) ( $field['type'] ?? '?' ) ); ?>):
+										<strong<?php echo ( null === $pref ) ? ' style="color:#b32d2e;"' : ''; ?>>
+											<?php echo esc_html( null === $pref ? __( 'not set', 'estecapelli' ) : ( $labels[ (int) $pref ] ?? $pref ) ); ?>
+										</strong><br>
+									<?php endforeach; ?>
+								<?php endif; ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		<?php endif; ?>
 	</div>
 	<?php
 }

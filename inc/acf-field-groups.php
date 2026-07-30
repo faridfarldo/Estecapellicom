@@ -684,12 +684,12 @@ function estecapelli_register_acf_field_groups() {
 				),
 			),
 		);
-	acf_add_local_field_group( estecapelli_acfml_prepare_field_group( $treatment_page_builder ) );
+	estecapelli_add_field_group( $treatment_page_builder );
 
 	// ============================================================
 	// Before & After result fields
 	// ============================================================
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'                   => 'group_result_fields',
 			'title'                 => __( 'Before & After', 'estecapelli' ),
@@ -842,13 +842,13 @@ function estecapelli_register_acf_field_groups() {
 				),
 			),
 		);
-	acf_add_local_field_group( estecapelli_acfml_prepare_field_group( $doctor_profile_fields ) );
+	estecapelli_add_field_group( $doctor_profile_fields );
 
 	/* ===== Homepage — Patient Stories =====
 	   Edits overlay the theme defaults: any field left empty keeps the current
 	   value, and an empty image keeps the current photo (matched by Key). So the
 	   page never loses data and nothing has to be re-imported. */
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'                   => 'group_home_patient_stories',
 			'title'                 => __( 'Homepage — Patient Stories', 'estecapelli' ),
@@ -915,7 +915,7 @@ function estecapelli_register_acf_field_groups() {
 			),
 		);
 	};
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'        => 'group_home_split',
 			'title'      => __( 'Homepage — Hero Signature Split', 'estecapelli' ),
@@ -950,7 +950,7 @@ function estecapelli_register_acf_field_groups() {
 	);
 
 	/* ===== Hero — Slides 2 & 3 (Expert + Women) ===== */
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'        => 'group_home_hero_slides',
 			'title'      => __( 'Homepage — Hero Slides 2 & 3', 'estecapelli' ),
@@ -986,7 +986,7 @@ function estecapelli_register_acf_field_groups() {
 	);
 
 	/* ===== Trust stats strip ===== */
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'        => 'group_home_trust_stats',
 			'title'      => __( 'Homepage — Trust Stats', 'estecapelli' ),
@@ -1008,7 +1008,7 @@ function estecapelli_register_acf_field_groups() {
 		)
 	);
 	/* ===== Why Choose ===== */
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'        => 'group_home_why_choose',
 			'title'      => __( 'Homepage — Why Choose', 'estecapelli' ),
@@ -1050,7 +1050,7 @@ function estecapelli_register_acf_field_groups() {
 	);
 
 	/* ===== Signature Methods (heading + button) ===== */
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'        => 'group_home_methods',
 			'title'      => __( 'Homepage — Signature Methods', 'estecapelli' ),
@@ -1079,7 +1079,7 @@ function estecapelli_register_acf_field_groups() {
 	);
 
 	/* ===== Our Facilities (heading + button) ===== */
-	acf_add_local_field_group(
+	estecapelli_add_field_group(
 		array(
 			'key'        => 'group_home_facilities',
 			'title'      => __( 'Homepage — Our Facilities', 'estecapelli' ),
