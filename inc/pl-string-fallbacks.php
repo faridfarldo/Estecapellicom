@@ -361,6 +361,12 @@ function estecapelli_pl_gettext_fallback( $translation, $text, $domain ) {
 			'Please enter your name.' => 'Podaj swoje imię.',
 			'Please enter a valid email address.' => 'Podaj prawidłowy adres e-mail.',
 			'Please enter a valid phone number.' => 'Podaj prawidłowy numer telefonu.',
+			'Please enter your phone number.' => 'Podaj swój numer telefonu.',
+			'Please select a valid country code.' => 'Wybierz prawidłowy numer kierunkowy kraju.',
+			'This number is too short for the selected country.' => 'Ten numer jest za krótki dla wybranego kraju.',
+			'This number is too long for the selected country.' => 'Ten numer jest za długi dla wybranego kraju.',
+			'Please enter the full phone number, including the area code.' => 'Podaj pełny numer telefonu wraz z numerem kierunkowym.',
+			'Please enter a valid phone number for the selected country.' => 'Podaj prawidłowy numer telefonu dla wybranego kraju.',
 
 			// Footer and shared chrome.
 			'Visit Us' => 'Odwiedź nas',

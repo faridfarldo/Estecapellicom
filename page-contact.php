@@ -35,8 +35,12 @@ $languages = array(
 	array( 'cc' => 'pt', 'label' => __( 'Portuguese', 'estecapelli' ) ),
 );
 
-$sent       = isset( $_GET['sent'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$error_code = isset( $_GET['lead_error'] ) ? sanitize_key( wp_unslash( $_GET['lead_error'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+// phpcs:disable WordPress.Security.NonceVerification.Recommended
+// A result tagged for the footer form belongs to the footer, not to this page.
+$mine       = ! isset( $_GET['lead_form'] ) || 'footer' !== $_GET['lead_form'];
+$sent       = $mine && isset( $_GET['sent'] );
+$error_code = ( $mine && isset( $_GET['lead_error'] ) ) ? sanitize_key( wp_unslash( $_GET['lead_error'] ) ) : '';
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
 $error_msg  = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_lead_error_message( $error_code ) : '';
 ?>
 

@@ -381,6 +381,39 @@ function estecapelli_enqueue_assets() {
 		true
 	);
 
+	// Validation messages for the two front-end form controllers. Both scripts
+	// carry English fallbacks inline, so these have to ship on every request or
+	// a non-English visitor gets an English error under a translated field.
+	wp_add_inline_script(
+		'estecapelli-main',
+		'window.EstecapelliLeadServerErrors=' . wp_json_encode(
+			array(
+				'Please enter your name.'            => __( 'Please enter your name.', 'estecapelli' ),
+				'Name is required.'                  => __( 'Name is required.', 'estecapelli' ),
+				'Please enter a valid phone number.' => __( 'Please enter a valid phone number.', 'estecapelli' ),
+				'Please enter a valid email address.' => __( 'Please enter a valid email address.', 'estecapelli' ),
+			)
+		) . ';',
+		'before'
+	);
+	wp_add_inline_script(
+		'estecapelli-phone',
+		'window.EstecapelliPhone=' . wp_json_encode(
+			array(
+				'i18n' => array(
+					'required'       => __( 'Please enter your phone number.', 'estecapelli' ),
+					'invalid'        => __( 'Please enter a valid phone number.', 'estecapelli' ),
+					'countryCode'    => __( 'Please select a valid country code.', 'estecapelli' ),
+					'tooShort'       => __( 'This number is too short for the selected country.', 'estecapelli' ),
+					'tooLong'        => __( 'This number is too long for the selected country.', 'estecapelli' ),
+					'areaCode'       => __( 'Please enter the full phone number, including the area code.', 'estecapelli' ),
+					'invalidCountry' => __( 'Please enter a valid phone number for the selected country.', 'estecapelli' ),
+				),
+			)
+		) . ';',
+		'before'
+	);
+
 	// Hair Analysis Lab widget styles — only on the front page where it mounts.
 	if ( is_front_page() ) {
 		wp_enqueue_style(

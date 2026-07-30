@@ -168,7 +168,35 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 					<?php estecapelli_brand_mark( 'footer' ); ?>
 				</div>
 
-				<form class="lead-form" method="post" action="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>">
+				<?php
+				// The footer form posts back to the page it was submitted from and
+				// reports the result here, instead of handing the visitor over to
+				// the contact page and its second, unrelated form.
+				$footer_lead_ctx    = estecapelli_lead_context();
+				$footer_lead_return = $footer_lead_ctx['url'];
+				// phpcs:disable WordPress.Security.NonceVerification.Recommended
+				$footer_lead_mine  = isset( $_GET['lead_form'] ) && 'footer' === $_GET['lead_form'];
+				$footer_lead_sent  = $footer_lead_mine && isset( $_GET['sent'] ) && '1' === $_GET['sent'];
+				$footer_lead_error = ( $footer_lead_mine && isset( $_GET['lead_error'] ) ) ? sanitize_key( wp_unslash( $_GET['lead_error'] ) ) : '';
+				// phpcs:enable WordPress.Security.NonceVerification.Recommended
+				$footer_lead_error_msg = ( $footer_lead_error && function_exists( 'estecapelli_lead_error_message' ) )
+					? estecapelli_lead_error_message( $footer_lead_error )
+					: '';
+				?>
+
+				<div id="footer-lead" class="site-footer__lead">
+					<?php if ( $footer_lead_sent ) : ?>
+						<div class="contact-alert" role="status">
+							<?php estecapelli_icon( 'check-circle', array( 'width' => 20, 'height' => 20 ) ); ?>
+							<span><?php esc_html_e( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ); ?></span>
+						</div>
+					<?php elseif ( $footer_lead_error_msg ) : ?>
+						<div class="contact-alert contact-alert--error" role="alert">
+							<span><?php echo esc_html( $footer_lead_error_msg ); ?></span>
+						</div>
+					<?php endif; ?>
+
+				<form class="lead-form" method="post" action="<?php echo esc_url( $footer_lead_return ); ?>">
 					<p class="lead-form__intro"><?php esc_html_e( 'Get a free consultation — leave your details and we will reach out.', 'estecapelli' ); ?></p>
 					<div class="lead-form__field">
 						<label for="lead-name" class="sr-only"><?php esc_html_e( 'Name and surname', 'estecapelli' ); ?></label>
@@ -195,12 +223,14 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 						/>
 					</div>
 					<?php estecapelli_lead_tracking_fields( 'footer' ); ?>
+					<input type="hidden" name="lead_return" value="<?php echo esc_url( $footer_lead_return ); ?>" />
 					<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
 					<button type="submit" class="btn btn-primary lead-form__submit">
 						<?php esc_html_e( 'Request Call Back', 'estecapelli' ); ?>
 						<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
 					</button>
 				</form>
+				</div>
 			</div>
 		</div>
 

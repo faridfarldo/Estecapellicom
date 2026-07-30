@@ -112,6 +112,18 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 		'Enlarge result'                          => 'Agrandir le résultat',
 		'Before and after result'                => 'Résultat avant/après',
 
+		// Lead form validation, printed by main.js and phone-intl.js.
+		'Please enter your name.'                 => 'Veuillez saisir votre nom.',
+		'Name is required.'                       => 'Le nom est obligatoire.',
+		'Please enter a valid email address.'     => 'Veuillez saisir une adresse e-mail valide.',
+		'Please enter a valid phone number.'      => 'Veuillez saisir un numéro de téléphone valide.',
+		'Please enter your phone number.'         => 'Veuillez saisir votre numéro de téléphone.',
+		'Please select a valid country code.'     => 'Veuillez sélectionner un indicatif pays valide.',
+		'This number is too short for the selected country.' => 'Ce numéro est trop court pour le pays sélectionné.',
+		'This number is too long for the selected country.' => 'Ce numéro est trop long pour le pays sélectionné.',
+		'Please enter the full phone number, including the area code.' => 'Veuillez saisir le numéro complet, indicatif régional inclus.',
+		'Please enter a valid phone number for the selected country.' => 'Veuillez saisir un numéro de téléphone valide pour le pays sélectionné.',
+
 		// Language chip labels shown on the contact page.
 		'English'                                 => 'Anglais',
 		'Türkçe'                                  => 'Turc',

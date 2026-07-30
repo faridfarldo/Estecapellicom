@@ -2652,6 +2652,22 @@
 	.hal__upload-label { font-size: 0.8125rem; font-weight: 600; }
 	.hal__upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
+	.hal__feedback {
+		margin: 0 0 0.25rem;
+		padding: 0.8rem 1rem;
+		border-radius: 12px;
+		border: 1px solid oklch(80% 0.09 145);
+		background: oklch(95% 0.04 145);
+		color: oklch(40% 0.13 145);
+		font-size: 0.9375rem;
+		font-weight: 600;
+	}
+	.hal__feedback.is-error {
+		border-color: oklch(80% 0.12 25);
+		background: oklch(96% 0.03 25);
+		color: oklch(50% 0.19 25);
+	}
+	.hal__submit:disabled { opacity: 0.65; cursor: progress; }
 	.hal__submit {
 		align-self: flex-start;
 		padding: 0.85rem 1.75rem;
@@ -4077,6 +4093,20 @@
 		color: oklch(75% 0.02 260);
 		line-height: 1.5;
 		margin: 0 0 0.25rem;
+	}
+	/* The shared contact alert is built for light cards; restate it for the
+	   dark footer so the footer form can report its own result in place. */
+	.site-footer__lead .contact-alert {
+		background: oklch(28% 0.07 155);
+		border-color: oklch(45% 0.11 155);
+		color: oklch(92% 0.05 155);
+		font-size: 0.8125rem;
+		margin-bottom: 0.875rem;
+	}
+	.site-footer__lead .contact-alert--error {
+		background: oklch(30% 0.09 25);
+		border-color: oklch(48% 0.14 25);
+		color: oklch(92% 0.05 25);
 	}
 	.lead-form__field input {
 		width: 100%;

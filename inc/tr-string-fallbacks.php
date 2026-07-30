@@ -165,37 +165,7 @@ function estecapelli_tr_ngettext_fallback( $translation, $single, $plural, $numb
 	return $translation;
 }
 
-add_action( 'wp_enqueue_scripts', 'estecapelli_tr_enqueue_contact_i18n', 20 );
-/** Add Turkish validation messages to the two front-end form controllers. */
-function estecapelli_tr_enqueue_contact_i18n() {
-	if ( ! estecapelli_is_turkish_request() ) {
-		return;
-	}
-
-	$server_errors = array(
-		'Please enter your name.' => __( 'Please enter your name.', 'estecapelli' ),
-		'Name is required.' => __( 'Name is required.', 'estecapelli' ),
-		'Please enter a valid phone number.' => __( 'Please enter a valid phone number.', 'estecapelli' ),
-		'Please enter a valid email address.' => __( 'Please enter a valid email address.', 'estecapelli' ),
-	);
-	wp_add_inline_script(
-		'estecapelli-main',
-		'window.EstecapelliLeadServerErrors=' . wp_json_encode( $server_errors ) . ';',
-		'before'
-	);
-
-	$phone_i18n = array(
-		'required' => __( 'Please enter your phone number.', 'estecapelli' ),
-		'invalid' => __( 'Please enter a valid phone number.', 'estecapelli' ),
-		'countryCode' => __( 'Please select a valid country code.', 'estecapelli' ),
-		'tooShort' => __( 'This number is too short for the selected country.', 'estecapelli' ),
-		'tooLong' => __( 'This number is too long for the selected country.', 'estecapelli' ),
-		'areaCode' => __( 'Please enter the full phone number, including the area code.', 'estecapelli' ),
-		'invalidCountry' => __( 'Please enter a valid phone number for the selected country.', 'estecapelli' ),
-	);
-	wp_add_inline_script(
-		'estecapelli-phone',
-		'window.EstecapelliPhone=' . wp_json_encode( array( 'i18n' => $phone_i18n ) ) . ';',
-		'before'
-	);
-}
+// The form validation messages these fallbacks feed used to be printed from
+// here, behind a Turkish-only guard, which left every other language reading
+// the English strings hard-coded in the JS. They are translated with __() like
+// everything else, so they now ship for all languages from functions.php.

@@ -243,7 +243,13 @@ function estecapelli_lead_page_name( array $d ) {
  * @return string
  */
 function estecapelli_lead_kommo_source( array $d ) {
-	return apply_filters( 'estecapelli_lead_kommo_source', 'website - ' . estecapelli_lead_page_name( $d ), $d );
+	// The footer form is on every page, so the page it was sent from says
+	// nothing about it. Kommo gets the form itself as the source instead.
+	$source = ( 'footer' === ( $d['source'] ?? '' ) )
+		? 'website - footer'
+		: 'website - ' . estecapelli_lead_page_name( $d );
+
+	return apply_filters( 'estecapelli_lead_kommo_source', $source, $d );
 }
 
 /**
@@ -257,6 +263,7 @@ function estecapelli_lead_source_label( array $d ) {
 		'footer'  => __( 'Footer form', 'estecapelli' ),
 		'section' => __( 'In-page form', 'estecapelli' ),
 		'home'    => __( 'Homepage', 'estecapelli' ),
+		'analysis' => __( 'Hair analysis', 'estecapelli' ),
 	);
 	$base = $labels[ $d['source'] ] ?? ucfirst( $d['source'] );
 
@@ -407,12 +414,20 @@ function estecapelli_handle_lead() {
 	// come back with ?error=… instead of ?sent=1 so we never fake success.
 	$return = isset( $_POST['lead_return'] ) ? wp_validate_redirect( esc_url_raw( wp_unslash( $_POST['lead_return'] ) ), '' ) : '';
 	$base   = $return ?: estecapelli_indexed_url( '/en/contact' );
-	$anchor = $return ? '#lead-form' : '#contact-form';
-	if ( is_wp_error( $result ) ) {
-		$redirect = add_query_arg( 'lead_error', rawurlencode( $result->get_error_code() ), $base ) . $anchor;
-	} else {
-		$redirect = add_query_arg( 'sent', '1', $base ) . $anchor;
+
+	// The footer form sits on every page alongside whatever else that page
+	// renders, so the result has to say which form it belongs to. Without the
+	// marker an in-page form section would also claim a footer submit's success
+	// or error, because both read the same query string.
+	$is_footer = 'footer' === $data['source'];
+	$anchor    = $return ? ( $is_footer ? '#footer-lead' : '#lead-form' ) : '#contact-form';
+	$args      = is_wp_error( $result )
+		? array( 'lead_error' => rawurlencode( $result->get_error_code() ) )
+		: array( 'sent' => '1' );
+	if ( $is_footer ) {
+		$args['lead_form'] = 'footer';
 	}
+	$redirect = add_query_arg( $args, $base ) . $anchor;
 	wp_safe_redirect( $redirect );
 	exit;
 }

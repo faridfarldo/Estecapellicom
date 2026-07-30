@@ -74,14 +74,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		</div>
 
-		<!-- Step 2a: self-assessment form (PLACEHOLDER) -->
+		<!-- Step 2a: self-assessment form -->
 		<div class="hal__panel" data-hal-form="self" hidden>
 			<button type="button" class="hal__back" data-hal-back>
 				<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
 				<?php esc_html_e( 'Back to options', 'estecapelli' ); ?>
 			</button>
 
-			<form class="hal__form" action="#" novalidate>
+			<form class="hal__form" method="post" action="<?php echo esc_url( estecapelli_lead_context()['url'] ); ?>" data-hal-lead>
 
 				<fieldset class="hal__fieldset">
 					<legend class="hal__legend"><?php esc_html_e( 'Tap the areas where you are losing hair', 'estecapelli' ); ?></legend>
@@ -99,7 +99,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</svg>
 					</div>
 
-					<input type="hidden" name="hal_zones" data-hal-zones value="" />
+					<?php // The picked zones travel as the lead's message, so the CRM sees them. ?>
+					<input
+						type="hidden"
+						name="lead_message"
+						data-hal-zones
+						data-hal-zones-label="<?php esc_attr_e( 'Selected areas', 'estecapelli' ); ?>"
+						value=""
+					/>
 
 					<div class="hal__zonesummary" data-hal-summary>
 						<span class="hal__zonesummary-label"><?php esc_html_e( 'Selected areas', 'estecapelli' ); ?></span>
@@ -111,19 +118,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="hal__row hal__row--3">
 					<label class="hal__field">
 						<span class="hal__label"><?php esc_html_e( 'Full name', 'estecapelli' ); ?></span>
-						<input type="text" name="hal_name" placeholder="<?php esc_attr_e( 'Your name', 'estecapelli' ); ?>" />
+						<input type="text" name="lead_name" required autocomplete="name" placeholder="<?php esc_attr_e( 'Your name', 'estecapelli' ); ?>" />
 					</label>
 					<label class="hal__field">
 						<span class="hal__label"><?php esc_html_e( 'Phone / WhatsApp', 'estecapelli' ); ?></span>
-						<input type="tel" class="js-intl-phone" name="hal_phone" inputmode="tel" placeholder="<?php esc_attr_e( 'Your number', 'estecapelli' ); ?>" />
+						<input type="tel" class="js-intl-phone" name="lead_phone" required autocomplete="tel" inputmode="tel" placeholder="<?php esc_attr_e( 'Your number', 'estecapelli' ); ?>" />
 					</label>
 					<label class="hal__field">
 						<span class="hal__label"><?php esc_html_e( 'Email', 'estecapelli' ); ?></span>
-						<input type="email" name="hal_email" inputmode="email" placeholder="<?php esc_attr_e( 'Your email', 'estecapelli' ); ?>" />
+						<input type="email" name="lead_email" autocomplete="email" inputmode="email" placeholder="<?php esc_attr_e( 'Your email', 'estecapelli' ); ?>" />
 					</label>
 				</div>
 
-				<button type="button" class="hal__submit"><?php esc_html_e( 'Get my analysis', 'estecapelli' ); ?></button>
+				<?php estecapelli_lead_tracking_fields( 'analysis' ); ?>
+				<input type="hidden" name="lead_return" value="<?php echo esc_url( estecapelli_lead_context()['url'] ); ?>" />
+				<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
+
+				<p class="hal__feedback" data-hal-feedback role="status" hidden></p>
+				<button type="submit" class="hal__submit"><?php esc_html_e( 'Get my analysis', 'estecapelli' ); ?></button>
 			</form>
 		</div>
 

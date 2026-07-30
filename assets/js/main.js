@@ -719,7 +719,12 @@
 			var selected = [];
 
 			function renderZones() {
-				if (field) field.value = selected.join(', ');
+				// The hidden field is the lead's message, so it carries a label
+				// rather than a bare list the CRM would have to guess at.
+				if (field) {
+					var zonesLabel = field.getAttribute('data-hal-zones-label') || 'Selected areas';
+					field.value = selected.length ? zonesLabel + ': ' + selected.join(', ') : '';
+				}
 				if (summary) summary.classList.toggle('has-selection', selected.length > 0);
 				if (list) {
 					list.textContent = '';
@@ -747,6 +752,55 @@
 					renderZones();
 				});
 			});
+		}
+
+		// Self-assessment form: submits over AJAX to the same lead endpoint as
+		// the popup, so it reaches the inbox and the CRM through one path. The
+		// classic POST it falls back to is handled server-side, which is what
+		// keeps it working with JS off.
+		var leadForm = root.querySelector('[data-hal-lead]');
+		if (leadForm) {
+			var cfg      = window.EstecapelliLead || {};
+			var i18n     = cfg.i18n || {};
+			var feedback = leadForm.querySelector('[data-hal-feedback]');
+			var button   = leadForm.querySelector('.hal__submit');
+
+			function say(message, isError) {
+				if (!feedback) return;
+				feedback.textContent = message;
+				feedback.classList.toggle('is-error', !!isError);
+				feedback.hidden = false;
+			}
+
+			if (cfg.ajax) {
+				leadForm.addEventListener('submit', function (e) {
+					e.preventDefault();
+					if (feedback) { feedback.hidden = true; }
+
+					var data = new FormData(leadForm);
+					data.append('action', 'estecapelli_lead');
+					data.append('nonce', cfg.nonce || '');
+
+					var label = button ? button.textContent : '';
+					if (button) { button.disabled = true; button.textContent = i18n.sending || 'Sending…'; }
+
+					fetch(cfg.ajax, { method: 'POST', body: data, credentials: 'same-origin' })
+						.then(function (r) { return r.json().catch(function () { return { success: false }; }); })
+						.then(function (res) {
+							if (res && res.success) {
+								leadForm.hidden = true;
+								say(i18n.thanks || ((res.data && res.data.message) ? res.data.message : 'Thank you!'), false);
+								if (feedback) { feedback.parentNode.insertBefore(feedback, leadForm); }
+							} else {
+								say((res && res.data && res.data.message) || i18n.error || 'Something went wrong.', true);
+							}
+						})
+						.catch(function () { say(i18n.error || 'Something went wrong.', true); })
+						.finally(function () {
+							if (button) { button.disabled = false; button.textContent = label; }
+						});
+				});
+			}
 		}
 	}
 
