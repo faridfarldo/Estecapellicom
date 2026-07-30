@@ -767,6 +767,8 @@
 
 			function say(message, isError) {
 				if (!feedback) return;
+				var serverErrors = window.EstecapelliLeadServerErrors || {};
+				if (isError && message && serverErrors[message]) { message = serverErrors[message]; }
 				feedback.textContent = message;
 				feedback.classList.toggle('is-error', !!isError);
 				feedback.hidden = false;
@@ -793,9 +795,13 @@
 								if (feedback) { feedback.parentNode.insertBefore(feedback, leadForm); }
 							} else {
 								say((res && res.data && res.data.message) || i18n.error || 'Something went wrong.', true);
+								resetTurnstileWithin(leadForm);
 							}
 						})
-						.catch(function () { say(i18n.error || 'Something went wrong.', true); })
+						.catch(function () {
+							say(i18n.error || 'Something went wrong.', true);
+							resetTurnstileWithin(leadForm);
+						})
 						.finally(function () {
 							if (button) { button.disabled = false; button.textContent = label; }
 						});
@@ -1373,6 +1379,28 @@
 		});
 	}
 
+	/** Render a Turnstile that was initially inside a hidden modal. */
+	function renderTurnstileWithin(root) {
+		if (!root || !window.turnstile) return;
+		root.querySelectorAll('.cf-turnstile').forEach(function (el) {
+			if (el.querySelector('iframe') || el.dataset.ecRendered === '1') return;
+			try {
+				window.turnstile.render(el);
+				el.dataset.ecRendered = '1';
+			} catch (e) {
+				// Implicit rendering may have won the race; the iframe is enough.
+			}
+		});
+	}
+
+	/** A Siteverify token is single-use, so every failed AJAX submit needs one. */
+	function resetTurnstileWithin(root) {
+		if (!root || !window.turnstile) return;
+		root.querySelectorAll('.cf-turnstile').forEach(function (el) {
+			try { window.turnstile.reset(el); } catch (e) {}
+		});
+	}
+
 	/*
 	 * Lead popup: opens on any "Free Consultation"/Contact CTA (or [data-lead-popup]),
 	 * submits over AJAX so the visitor stays on the page, and records which page +
@@ -1426,6 +1454,7 @@
 			document.body.classList.add('no-scroll');
 			requestAnimationFrame(function () {
 				popup.classList.add('is-open');
+				renderTurnstileWithin(popup);
 				var first = form.querySelector('input, textarea');
 				if (first) { first.focus(); }
 			});
@@ -1495,9 +1524,13 @@
 						form.querySelector('strong').textContent = msg;
 					} else {
 						showError(res && res.data && res.data.message);
+						resetTurnstileWithin(form);
 					}
 				})
-				.catch(function () { showError(); })
+				.catch(function () {
+					showError();
+					resetTurnstileWithin(form);
+				})
 				.finally(function () {
 					submit.disabled = false;
 					if (submitLabel) { submitLabel.textContent = original; }

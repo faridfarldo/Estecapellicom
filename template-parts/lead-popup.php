@@ -68,6 +68,7 @@ $wa_url = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_u
 			<input type="hidden" name="utm_campaign" value="" />
 			<input type="hidden" name="utm_content" value="" />
 			<input type="hidden" name="utm_term" value="" />
+			<?php estecapelli_lead_antispam_fields( 'popup' ); ?>
 			<input type="hidden" name="lead_return" value="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>" />
 			<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>
 

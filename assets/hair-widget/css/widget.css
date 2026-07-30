@@ -563,6 +563,15 @@
   flex: 0 0 auto;
   accent-color: var(--hw-accent);
 }
+.hw-turnstile {
+  min-height: 65px;
+  max-width: 100%;
+  overflow: hidden;
+}
+.hw-btn:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
 
 /* --- done ----------------------------------------------------------------- */
 .hw-done {

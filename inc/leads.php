@@ -41,6 +41,253 @@ if ( ! defined( 'ESTECAPELLI_KOMMO_PARSER' ) ) {
 if ( ! defined( 'ESTECAPELLI_MAIL_FROM' ) ) {
 	define( 'ESTECAPELLI_MAIL_FROM', 'info@estecapelli.com' );
 }
+/**
+ * Cloudflare Turnstile credentials. Define the real values in wp-config.php,
+ * never in the theme repository:
+ *
+ * define( 'ESTECAPELLI_TURNSTILE_SITE_KEY', '...' );
+ * define( 'ESTECAPELLI_TURNSTILE_SECRET_KEY', '...' );
+ *
+ * Empty defaults keep forms operational while the keys are being provisioned.
+ * As soon as both constants contain values, verification becomes mandatory.
+ */
+if ( ! defined( 'ESTECAPELLI_TURNSTILE_SITE_KEY' ) ) {
+	define( 'ESTECAPELLI_TURNSTILE_SITE_KEY', '' );
+}
+if ( ! defined( 'ESTECAPELLI_TURNSTILE_SECRET_KEY' ) ) {
+	define( 'ESTECAPELLI_TURNSTILE_SECRET_KEY', '' );
+}
+
+/* -------------------------------------------------------------------------
+ * Shared anti-spam primitives
+ * ---------------------------------------------------------------------- */
+
+/** Whether both halves of the Turnstile configuration are present. */
+function estecapelli_turnstile_is_configured() {
+	return '' !== trim( (string) ESTECAPELLI_TURNSTILE_SITE_KEY )
+		&& '' !== trim( (string) ESTECAPELLI_TURNSTILE_SECRET_KEY );
+}
+
+/**
+ * Stable, Cloudflare-compatible action for a form source.
+ *
+ * @param string $source Lead form source.
+ * @return string
+ */
+function estecapelli_turnstile_lead_action( $source ) {
+	$source = preg_replace( '/[^a-z0-9_-]/i', '_', (string) $source );
+	return substr( 'lead_' . trim( $source, '_' ), 0, 32 );
+}
+
+/**
+ * Best available visitor IP. The value is only used for abuse throttling and
+ * the optional Turnstile remoteip signal; it is never stored with the lead.
+ *
+ * @return string
+ */
+function estecapelli_client_ip() {
+	$candidates = array(
+		isset( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ? wp_unslash( $_SERVER['HTTP_CF_CONNECTING_IP'] ) : '',
+		isset( $_SERVER['REMOTE_ADDR'] ) ? wp_unslash( $_SERVER['REMOTE_ADDR'] ) : '',
+	);
+	foreach ( $candidates as $candidate ) {
+		$candidate = trim( (string) $candidate );
+		if ( filter_var( $candidate, FILTER_VALIDATE_IP ) ) {
+			return $candidate;
+		}
+	}
+	return 'unknown';
+}
+
+/**
+ * Fixed-window application rate limiter backed by WordPress transients.
+ *
+ * @param string $scope  Endpoint/form bucket.
+ * @param int    $limit  Maximum attempts in the window.
+ * @param int    $window Window length in seconds.
+ * @return true|WP_Error
+ */
+function estecapelli_rate_limit( $scope, $limit, $window ) {
+	$limit  = max( 1, (int) $limit );
+	$window = max( 60, (int) $window );
+	$key    = 'ec_rl_' . substr( hash( 'sha256', $scope . '|' . estecapelli_client_ip() ), 0, 32 );
+	$now    = time();
+	$state  = get_transient( $key );
+
+	if ( ! is_array( $state ) || empty( $state['reset'] ) || (int) $state['reset'] <= $now ) {
+		$state = array( 'count' => 0, 'reset' => $now + $window );
+	}
+	if ( (int) $state['count'] >= $limit ) {
+		return new WP_Error(
+			'rate_limited',
+			__( 'Too many requests. Please wait a few minutes and try again.', 'estecapelli' ),
+			array( 'retry_after' => max( 1, (int) $state['reset'] - $now ) )
+		);
+	}
+
+	$state['count']++;
+	set_transient( $key, $state, max( 1, (int) $state['reset'] - $now ) );
+	return true;
+}
+
+/**
+ * Verify a Turnstile token with Cloudflare Siteverify.
+ *
+ * @param string $token           Browser-issued token.
+ * @param string $expected_action Expected widget action.
+ * @return true|WP_Error
+ */
+function estecapelli_verify_turnstile( $token, $expected_action ) {
+	if ( ! estecapelli_turnstile_is_configured() ) {
+		return true;
+	}
+
+	$token = trim( (string) $token );
+	if ( '' === $token || strlen( $token ) > 2048 ) {
+		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
+	}
+
+	$response = wp_remote_post(
+		'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+		array(
+			'timeout' => 8,
+			'body'    => array(
+				'secret'   => ESTECAPELLI_TURNSTILE_SECRET_KEY,
+				'response' => $token,
+				'remoteip' => estecapelli_client_ip(),
+			),
+		)
+	);
+	if ( is_wp_error( $response ) ) {
+		return new WP_Error( 'verification_unavailable', __( 'The security check is temporarily unavailable. Please try again.', 'estecapelli' ) );
+	}
+
+	$result = json_decode( wp_remote_retrieve_body( $response ), true );
+	if ( ! is_array( $result ) || empty( $result['success'] ) ) {
+		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
+	}
+	if ( $expected_action && ( $result['action'] ?? '' ) !== $expected_action ) {
+		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
+	}
+
+	$site_host     = strtolower( (string) wp_parse_url( home_url( '/' ), PHP_URL_HOST ) );
+	$response_host = strtolower( (string) ( $result['hostname'] ?? '' ) );
+	$allowed_hosts = array_filter(
+		array_unique(
+			array(
+				$site_host,
+				0 === strpos( $site_host, 'www.' ) ? substr( $site_host, 4 ) : 'www.' . $site_host,
+			)
+		)
+	);
+	$allowed_hosts = (array) apply_filters( 'estecapelli_turnstile_allowed_hosts', $allowed_hosts );
+	if ( ! $response_host || ! in_array( $response_host, $allowed_hosts, true ) ) {
+		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
+	}
+
+	return true;
+}
+
+/** Enqueue Turnstile only after both credentials have been configured. */
+function estecapelli_enqueue_turnstile() {
+	if ( ! estecapelli_turnstile_is_configured() ) {
+		return;
+	}
+	wp_enqueue_script(
+		'estecapelli-turnstile',
+		'https://challenges.cloudflare.com/turnstile/v0/api.js',
+		array(),
+		null,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_turnstile', 20 );
+
+/**
+ * Render the shared honeypot, signed form-age fields and optional Turnstile.
+ *
+ * @param string $source Form source/action suffix.
+ */
+function estecapelli_lead_antispam_fields( $source ) {
+	$source  = sanitize_key( (string) $source );
+	$started = time();
+	$sig     = hash_hmac( 'sha256', $started . '|' . $source, wp_salt( 'nonce' ) );
+	?>
+	<div class="estecapelli-spam-trap" aria-hidden="true">
+		<label>
+			<?php esc_html_e( 'Leave this field empty', 'estecapelli' ); ?>
+			<input type="text" name="lead_company_website" value="" tabindex="-1" autocomplete="off" />
+		</label>
+	</div>
+	<input type="hidden" name="lead_form_started" value="<?php echo esc_attr( $started ); ?>" />
+	<input type="hidden" name="lead_form_signature" value="<?php echo esc_attr( $sig ); ?>" />
+	<?php if ( estecapelli_turnstile_is_configured() ) : ?>
+		<div
+			class="estecapelli-turnstile cf-turnstile"
+			data-sitekey="<?php echo esc_attr( ESTECAPELLI_TURNSTILE_SITE_KEY ); ?>"
+			data-action="<?php echo esc_attr( estecapelli_turnstile_lead_action( $source ) ); ?>"
+			data-theme="light"
+			data-size="flexible"
+		></div>
+	<?php endif; ?>
+	<?php
+}
+
+/**
+ * Check fields that must be present before a lead reaches storage or email.
+ *
+ * @param array $data Sanitised lead data.
+ * @return true|WP_Error
+ */
+function estecapelli_check_lead_antispam( array $data ) {
+	$honeypot_raw = isset( $_POST['lead_company_website'] ) ? wp_unslash( $_POST['lead_company_website'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$honeypot     = is_scalar( $honeypot_raw ) ? sanitize_text_field( $honeypot_raw ) : 'invalid';
+	if ( '' !== $honeypot ) {
+		return new WP_Error( 'spam_detected', 'Spam detected.' );
+	}
+
+	$started_raw = isset( $_POST['lead_form_started'] ) ? wp_unslash( $_POST['lead_form_started'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$sig_raw     = isset( $_POST['lead_form_signature'] ) ? wp_unslash( $_POST['lead_form_signature'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$started     = is_scalar( $started_raw ) ? absint( $started_raw ) : 0;
+	$sig         = is_scalar( $sig_raw ) ? sanitize_text_field( $sig_raw ) : '';
+	$expect  = $started ? hash_hmac( 'sha256', $started . '|' . $data['source'], wp_salt( 'nonce' ) ) : '';
+	if ( ! $started || ! $sig || ! hash_equals( $expect, $sig ) ) {
+		return new WP_Error( 'form_expired', __( 'Please refresh the page and submit the form again.', 'estecapelli' ) );
+	}
+	if ( time() - $started < 3 ) {
+		return new WP_Error( 'spam_detected', 'Spam detected.' );
+	}
+
+	$turnstile_raw = isset( $_POST['cf-turnstile-response'] ) ? wp_unslash( $_POST['cf-turnstile-response'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$turnstile     = is_scalar( $turnstile_raw ) ? sanitize_text_field( $turnstile_raw ) : '';
+	return estecapelli_verify_turnstile( $turnstile, estecapelli_turnstile_lead_action( $data['source'] ) );
+}
+
+/**
+ * Apply global lead throttling and suppress exact replay submissions.
+ *
+ * @param array $data Sanitised lead data.
+ * @return true|WP_Error
+ */
+function estecapelli_check_lead_limits( array $data ) {
+	$limited = estecapelli_rate_limit(
+		'lead_submission',
+		(int) apply_filters( 'estecapelli_lead_rate_limit', 5 ),
+		(int) apply_filters( 'estecapelli_lead_rate_window', 15 * MINUTE_IN_SECONDS )
+	);
+	if ( is_wp_error( $limited ) ) {
+		return $limited;
+	}
+
+	$fingerprint = strtolower( implode( '|', array( $data['name'], $data['phone'], $data['email'], $data['message'] ) ) );
+	$duplicate   = 'ec_lead_dup_' . substr( hash( 'sha256', $fingerprint ), 0, 32 );
+	if ( get_transient( $duplicate ) ) {
+		return new WP_Error( 'duplicate_lead', __( 'This request has already been received.', 'estecapelli' ) );
+	}
+	set_transient( $duplicate, 1, 30 * MINUTE_IN_SECONDS );
+
+	return true;
+}
 
 /* -------------------------------------------------------------------------
  * Lead post type
@@ -86,39 +333,49 @@ add_action( 'init', 'estecapelli_register_lead_cpt' );
  * @return array Sanitised lead data.
  */
 function estecapelli_collect_lead() {
-	$g = static function ( $key, $filter = 'text' ) {
+	$g = static function ( $key, $filter = 'text', $max_length = 255 ) {
 		if ( ! isset( $_POST[ $key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return '';
 		}
 		$raw = wp_unslash( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ! is_scalar( $raw ) ) {
+			return '';
+		}
 		switch ( $filter ) {
 			case 'email':
-				return sanitize_email( $raw );
+				$value = sanitize_email( $raw );
+				break;
 			case 'textarea':
-				return sanitize_textarea_field( $raw );
+				$value = sanitize_textarea_field( $raw );
+				break;
 			case 'url':
-				return esc_url_raw( $raw );
+				$value = esc_url_raw( $raw );
+				break;
 			default:
-				return sanitize_text_field( $raw );
+				$value = sanitize_text_field( $raw );
+				break;
 		}
+		return function_exists( 'mb_substr' )
+			? mb_substr( (string) $value, 0, $max_length )
+			: substr( (string) $value, 0, $max_length );
 	};
 
 	return array(
-		'name'       => $g( 'lead_name' ),
-		'phone'      => $g( 'lead_phone' ),
-		'email'      => $g( 'lead_email', 'email' ),
-		'treatment'  => $g( 'lead_treatment' ),
-		'message'    => $g( 'lead_message', 'textarea' ),
-		'source'     => $g( 'lead_source' ) ?: 'contact',
-		'lang'       => $g( 'lead_lang' ),
-		'page_url'   => $g( 'lead_page_url', 'url' ),
-		'page_title' => $g( 'lead_page_title' ),
+		'name'       => $g( 'lead_name', 'text', 120 ),
+		'phone'      => $g( 'lead_phone', 'text', 40 ),
+		'email'      => $g( 'lead_email', 'email', 254 ),
+		'treatment'  => $g( 'lead_treatment', 'text', 160 ),
+		'message'    => $g( 'lead_message', 'textarea', 4000 ),
+		'source'     => $g( 'lead_source', 'text', 32 ) ?: 'contact',
+		'lang'       => $g( 'lead_lang', 'text', 10 ),
+		'page_url'   => $g( 'lead_page_url', 'url', 1000 ),
+		'page_title' => $g( 'lead_page_title', 'text', 250 ),
 		'utm'        => array(
-			'source'   => $g( 'utm_source' ),
-			'medium'   => $g( 'utm_medium' ),
-			'campaign' => $g( 'utm_campaign' ),
-			'content'  => $g( 'utm_content' ),
-			'term'     => $g( 'utm_term' ),
+			'source'   => $g( 'utm_source', 'text', 200 ),
+			'medium'   => $g( 'utm_medium', 'text', 200 ),
+			'campaign' => $g( 'utm_campaign', 'text', 200 ),
+			'content'  => $g( 'utm_content', 'text', 200 ),
+			'term'     => $g( 'utm_term', 'text', 200 ),
 		),
 	);
 }
@@ -152,9 +409,14 @@ function estecapelli_phone_looks_valid( $phone ) {
  */
 function estecapelli_lead_error_message( $code ) {
 	$map = array(
-		'invalid_phone' => __( 'Please enter a valid phone number.', 'estecapelli' ),
-		'invalid_email' => __( 'Please enter a valid email address.', 'estecapelli' ),
-		'missing_name'  => __( 'Please enter your name.', 'estecapelli' ),
+		'invalid_phone'            => __( 'Please enter a valid phone number.', 'estecapelli' ),
+		'invalid_email'            => __( 'Please enter a valid email address.', 'estecapelli' ),
+		'missing_name'             => __( 'Please enter your name.', 'estecapelli' ),
+		'missing_phone'            => __( 'Please enter your phone number.', 'estecapelli' ),
+		'verification_failed'      => __( 'Please complete the security check and try again.', 'estecapelli' ),
+		'verification_unavailable' => __( 'The security check is temporarily unavailable. Please try again.', 'estecapelli' ),
+		'form_expired'             => __( 'Please refresh the page and submit the form again.', 'estecapelli' ),
+		'rate_limited'             => __( 'Too many requests. Please wait a few minutes and try again.', 'estecapelli' ),
 	);
 	return $map[ $code ] ?? '';
 }
@@ -288,14 +550,26 @@ function estecapelli_process_lead( array $d ) {
 	if ( '' === $d['name'] ) {
 		return new WP_Error( 'missing_name', __( 'Name is required.', 'estecapelli' ) );
 	}
+	if ( '' === $d['phone'] ) {
+		return new WP_Error( 'missing_phone', __( 'Please enter your phone number.', 'estecapelli' ) );
+	}
 
 	// Server-side safety net (the browser already blocks letters and checks the
 	// per-country format via intl-tel-input, but never trust the client).
-	if ( '' !== $d['phone'] && ! estecapelli_phone_looks_valid( $d['phone'] ) ) {
+	if ( ! estecapelli_phone_looks_valid( $d['phone'] ) ) {
 		return new WP_Error( 'invalid_phone', __( 'Please enter a valid phone number.', 'estecapelli' ) );
 	}
 	if ( '' !== $d['email'] && ! is_email( $d['email'] ) ) {
 		return new WP_Error( 'invalid_email', __( 'Please enter a valid email address.', 'estecapelli' ) );
+	}
+
+	$antispam = estecapelli_check_lead_antispam( $d );
+	if ( is_wp_error( $antispam ) ) {
+		return $antispam;
+	}
+	$limits = estecapelli_check_lead_limits( $d );
+	if ( is_wp_error( $limits ) ) {
+		return $limits;
 	}
 
 	$source_label = estecapelli_lead_source_label( $d );
@@ -397,7 +671,7 @@ add_action( 'phpmailer_init', 'estecapelli_lead_configure_smtp' );
  * Both the inline forms and a JS-disabled popup post here.
  * ---------------------------------------------------------------------- */
 function estecapelli_handle_lead() {
-	if ( empty( $_POST['estecapelli_lead_nonce'] ) ) {
+	if ( empty( $_POST['estecapelli_lead_nonce'] ) || ! is_scalar( $_POST['estecapelli_lead_nonce'] ) ) {
 		return;
 	}
 	if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['estecapelli_lead_nonce'] ) ), 'estecapelli_lead' ) ) {
@@ -405,10 +679,8 @@ function estecapelli_handle_lead() {
 	}
 
 	$data = estecapelli_collect_lead();
-	if ( '' === $data['name'] ) {
-		return; // Name is the minimum required field.
-	}
 	$result = estecapelli_process_lead( $data );
+	$silent = is_wp_error( $result ) && in_array( $result->get_error_code(), array( 'spam_detected', 'duplicate_lead' ), true );
 
 	// Post/Redirect/Get → return to the submitting page. On a validation error
 	// come back with ?error=… instead of ?sent=1 so we never fake success.
@@ -421,7 +693,7 @@ function estecapelli_handle_lead() {
 	// or error, because both read the same query string.
 	$is_footer = 'footer' === $data['source'];
 	$anchor    = $return ? ( $is_footer ? '#footer-lead' : '#lead-form' ) : '#contact-form';
-	$args      = is_wp_error( $result )
+	$args      = is_wp_error( $result ) && ! $silent
 		? array( 'lead_error' => rawurlencode( $result->get_error_code() ) )
 		: array( 'sent' => '1' );
 	if ( $is_footer ) {
@@ -440,13 +712,15 @@ function estecapelli_handle_lead_ajax() {
 	check_ajax_referer( 'estecapelli_lead_ajax', 'nonce' );
 
 	$data = estecapelli_collect_lead();
-	if ( '' === $data['name'] ) {
-		wp_send_json_error( array( 'message' => __( 'Please enter your name.', 'estecapelli' ) ), 422 );
-	}
-
 	$result = estecapelli_process_lead( $data );
 	if ( is_wp_error( $result ) ) {
-		wp_send_json_error( array( 'message' => $result->get_error_message() ), 500 );
+		if ( in_array( $result->get_error_code(), array( 'spam_detected', 'duplicate_lead' ), true ) ) {
+			wp_send_json_success(
+				array( 'message' => __( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ) )
+			);
+		}
+		$status = 'rate_limited' === $result->get_error_code() ? 429 : 422;
+		wp_send_json_error( array( 'message' => $result->get_error_message() ), $status );
 	}
 
 	wp_send_json_success(
@@ -487,6 +761,7 @@ function estecapelli_lead_tracking_fields( $source, $form_type = 'inline' ) {
 	foreach ( array( 'source', 'medium', 'campaign', 'content', 'term' ) as $k ) {
 		printf( '<input type="hidden" name="utm_%s" value="" />', esc_attr( $k ) );
 	}
+	estecapelli_lead_antispam_fields( $source );
 }
 
 /* -------------------------------------------------------------------------

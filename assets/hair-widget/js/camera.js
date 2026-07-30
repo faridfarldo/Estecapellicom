@@ -3,7 +3,7 @@
  * client-side before upload. Also a graceful file-input fallback for when
  * camera permission is denied or getUserMedia is unavailable.
  */
-import { CONFIG } from './config.js?v=6';
+import { CONFIG } from './config.js?v=7';
 
 /**
  * Request the camera. Returns the MediaStream, or throws so the caller can

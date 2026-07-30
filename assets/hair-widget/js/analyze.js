@@ -10,9 +10,9 @@
  * @param {Record<string, Blob>} photos  keyed by step id (front/left/right/donor)
  * @returns {Promise<object>} analysis result
  */
-import { CONFIG, freshNonce } from './config.js?v=6';
+import { CONFIG, freshNonce } from './config.js?v=7';
 
-export async function analyzePhotos(photos) {
+export async function analyzePhotos(photos, session = '') {
   // Front-end-only mode: return a placeholder estimate, no network call.
   if (CONFIG.mock) {
     await new Promise((r) => setTimeout(r, 1600));
@@ -29,7 +29,7 @@ export async function analyzePhotos(photos) {
   );
   // Fresh, uncached nonce — the baked-in page nonce may be stale behind a cache.
   const nonce = await freshNonce();
-  const payload = { photos: Object.fromEntries(entries), nonce, locale: CONFIG.locale };
+  const payload = { photos: Object.fromEntries(entries), nonce, locale: CONFIG.locale, session };
 
   const res = await fetch(CONFIG.analyzeUrl, {
     method: 'POST',
