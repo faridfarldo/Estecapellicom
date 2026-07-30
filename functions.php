@@ -86,6 +86,11 @@ require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/hair-analysis.php';
+// Read-only report, so it stays available even when content mutations are locked.
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/admin/wpml-page-diagnostic.php';
+}
+
 if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-database-guard.php';
 	require get_template_directory() . '/inc/admin/import-treatments.php';
