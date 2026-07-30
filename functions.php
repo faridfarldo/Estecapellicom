@@ -92,6 +92,16 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/wpml-page-diagnostic.php';
 }
 
+/**
+ * Polish page repair. Its own constant, not ESTECAPELLI_ENABLE_CONTENT_MUTATIONS,
+ * so repairing a translation never puts the bulk importers — "Re-import ALL
+ * Pages" among them — one misclick away. Enable it in wp-config.php only for as
+ * long as the repair takes.
+ */
+if ( is_admin() && defined( 'ESTECAPELLI_ENABLE_PL_PAGE_REPAIR' ) && true === ESTECAPELLI_ENABLE_PL_PAGE_REPAIR ) {
+	require get_template_directory() . '/inc/admin/repair-pl-pages.php';
+}
+
 if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-database-guard.php';
 	require get_template_directory() . '/inc/admin/import-treatments.php';
