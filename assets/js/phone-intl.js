@@ -10,6 +10,12 @@
  *   - store the number in canonical E.164 form (+<dialcode><national>) so the
  *     CRM always receives a clean, country-prefixed phone.
  *
+ * The dial code is rewritten into the field only on a submit that is actually
+ * going through — a number we reject is never prefixed. But every submit that
+ * *is* allowed through gets the prefix, including when utils failed to load and
+ * we could not validate at all, because the field itself never holds the dial
+ * code and an unprefixed number is useless to the CRM.
+ *
  * Runs its submit check in the CAPTURE phase so it fires *before* the popup's
  * AJAX handler (main.js) and can cancel a bad submit for every form.
  *
@@ -107,6 +113,33 @@
 
 		var touched = false; // don't nag before the visitor has finished the field
 
+		// The dial code lives in the country dropdown, never in the text field
+		// (separateDialCode), so the posted value has to be rebuilt here or the
+		// CRM receives a bare national number. getNumber() needs the library's
+		// utils bundle; when that has not loaded we assemble E.164 ourselves
+		// from the selected country rather than posting the number unprefixed.
+		function canonicalNumber() {
+			if (typeof iti.getNumber === 'function') {
+				var e164 = iti.getNumber();
+				if (e164) { return e164; }
+			}
+
+			var country = (typeof iti.getSelectedCountryData === 'function') ? iti.getSelectedCountryData() : null;
+			var dial = (country && country.dialCode) ? String(country.dialCode) : '';
+			var raw = (input.value || '').trim();
+			var national = raw.replace(/\D/g, '');
+			if (!dial || !national) { return ''; }
+
+			// Only strip a leading dial code the visitor typed themselves, which
+			// they can only have done with a literal "+". Digits that merely
+			// happen to match the dial code belong to the number.
+			if (raw.charAt(0) === '+' && national.indexOf(dial) === 0) {
+				national = national.slice(dial.length);
+			}
+
+			return national ? '+' + dial + national : '';
+		}
+
 		// Returns: true = valid, false = invalid, null = can't tell yet (no utils).
 		function checkValidity() {
 			if (typeof iti.isValidNumber !== 'function') return null;
@@ -179,15 +212,13 @@
 				return;
 			}
 
-			// Valid: store the canonical, country-prefixed number (E.164) for the
-			// CRM. We ONLY rewrite the field when the number is valid — never
-			// prepend a dial code to a wrong number. Form submits immediately
-			// after, so this value is what gets posted.
+			// Past this point the submit is going through, so the posted value
+			// must carry the dial code. Every path that rejects the number has
+			// already returned above, which is what keeps us from ever
+			// prefixing a wrong one.
 			setError(input, '');
-			if (valid === true && typeof iti.getNumber === 'function') {
-				var e164 = iti.getNumber(); // e.g. +905321234567
-				if (e164) { input.value = e164; }
-			}
+			var canonical = canonicalNumber(); // e.g. +905321234567
+			if (canonical) { input.value = canonical; }
 		}, true);
 	});
 })();
