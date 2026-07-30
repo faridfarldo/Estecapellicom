@@ -203,13 +203,26 @@ function estecapelli_enqueue_turnstile() {
 }
 add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_turnstile', 20 );
 
+/** Enqueue the footer's small, non-blocking AJAX controller. */
+function estecapelli_enqueue_footer_lead_script() {
+	wp_enqueue_script(
+		'estecapelli-footer-lead',
+		get_template_directory_uri() . '/assets/js/footer-lead.js',
+		array(),
+		function_exists( 'estecapelli_asset_ver' ) ? estecapelli_asset_ver( '/assets/js/footer-lead.js' ) : ESTECAPELLI_VERSION,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_footer_lead_script', 21 );
+
 /**
  * Turnstile must be ready before a visitor can submit a form. WP Rocket's
  * Delay JavaScript Execution otherwise rewrites this tag and waits for the
  * first interaction, which can race with a first submit click.
  */
 function estecapelli_turnstile_skip_js_delay( $tag, $handle ) {
-	if ( 'estecapelli-turnstile' !== $handle || false !== strpos( $tag, 'data-nowprocket' ) ) {
+	$critical_handles = array( 'estecapelli-turnstile', 'estecapelli-footer-lead' );
+	if ( ! in_array( $handle, $critical_handles, true ) || false !== strpos( $tag, 'data-nowprocket' ) ) {
 		return $tag;
 	}
 	return preg_replace( '/<script\b/', '<script data-nowprocket', $tag, 1 );

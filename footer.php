@@ -195,8 +195,12 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 							<span><?php echo esc_html( $footer_lead_error_msg ); ?></span>
 						</div>
 					<?php endif; ?>
+					<div class="contact-alert lead-form__feedback" data-footer-lead-feedback role="status" aria-live="polite" hidden>
+						<?php estecapelli_icon( 'check-circle', array( 'width' => 20, 'height' => 20 ) ); ?>
+						<span data-footer-lead-feedback-text></span>
+					</div>
 
-				<form class="lead-form" method="post" action="<?php echo esc_url( $footer_lead_return ); ?>">
+				<form class="lead-form" method="post" action="<?php echo esc_url( $footer_lead_return ); ?>" data-footer-lead-form>
 					<p class="lead-form__intro"><?php esc_html_e( 'Get a free consultation — leave your details and we will reach out.', 'estecapelli' ); ?></p>
 					<div class="lead-form__field">
 						<label for="lead-name" class="sr-only"><?php esc_html_e( 'Name and surname', 'estecapelli' ); ?></label>

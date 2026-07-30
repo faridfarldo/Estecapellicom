@@ -4127,6 +4127,8 @@
 		border-color: oklch(48% 0.14 25);
 		color: oklch(92% 0.05 25);
 	}
+	.lead-form__feedback[hidden] { display: none; }
+	.lead-form__feedback.contact-alert--error svg { display: none; }
 	.lead-form__field input {
 		width: 100%;
 		padding: 0.625rem 0.875rem;
