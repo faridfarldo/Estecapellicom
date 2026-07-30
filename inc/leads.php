@@ -204,6 +204,19 @@ function estecapelli_enqueue_turnstile() {
 add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_turnstile', 20 );
 
 /**
+ * Turnstile must be ready before a visitor can submit a form. WP Rocket's
+ * Delay JavaScript Execution otherwise rewrites this tag and waits for the
+ * first interaction, which can race with a first submit click.
+ */
+function estecapelli_turnstile_skip_js_delay( $tag, $handle ) {
+	if ( 'estecapelli-turnstile' !== $handle || false !== strpos( $tag, 'data-nowprocket' ) ) {
+		return $tag;
+	}
+	return preg_replace( '/<script\b/', '<script data-nowprocket', $tag, 1 );
+}
+add_filter( 'script_loader_tag', 'estecapelli_turnstile_skip_js_delay', 10, 2 );
+
+/**
  * Render the shared honeypot, signed form-age fields and optional Turnstile.
  *
  * @param string $source Form source/action suffix.
@@ -242,7 +255,10 @@ function estecapelli_lead_antispam_fields( $source ) {
 function estecapelli_check_lead_antispam( array $data ) {
 	$honeypot_raw = isset( $_POST['lead_company_website'] ) ? wp_unslash( $_POST['lead_company_website'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$honeypot     = is_scalar( $honeypot_raw ) ? sanitize_text_field( $honeypot_raw ) : 'invalid';
-	if ( '' !== $honeypot ) {
+	// Turnstile is the authoritative bot check when configured. Browser and
+	// password-manager autofill can occasionally populate off-screen inputs, so
+	// never let the heuristic honeypot silently discard a verified real lead.
+	if ( ! estecapelli_turnstile_is_configured() && '' !== $honeypot ) {
 		return new WP_Error( 'spam_detected', 'Spam detected.' );
 	}
 
@@ -254,7 +270,9 @@ function estecapelli_check_lead_antispam( array $data ) {
 	if ( ! $started || ! $sig || ! hash_equals( $expect, $sig ) ) {
 		return new WP_Error( 'form_expired', __( 'Please refresh the page and submit the form again.', 'estecapelli' ) );
 	}
-	if ( time() - $started < 3 ) {
+	// The minimum-time heuristic is only a fallback for installations that have
+	// not configured Turnstile yet. Fast autofill must not drop verified leads.
+	if ( ! estecapelli_turnstile_is_configured() && time() - $started < 3 ) {
 		return new WP_Error( 'spam_detected', 'Spam detected.' );
 	}
 
