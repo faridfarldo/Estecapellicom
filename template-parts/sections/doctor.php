@@ -50,10 +50,18 @@ if ( ! $name ) { return; }
 
 			<?php if ( ! empty( $credentials ) ) : ?>
 				<ul class="t-doctor__credentials">
-					<?php foreach ( $credentials as $c ) : ?>
+					<?php
+					foreach ( $credentials as $c ) :
+						// Repeater rows carry a label; a credential written as a
+						// plain string is used as the label itself.
+						$label = is_array( $c ) ? ( $c['label'] ?? '' ) : (string) $c;
+						if ( '' === $label ) {
+							continue;
+						}
+						?>
 						<li class="t-doctor__credential">
 							<span class="t-doctor__credential-dot" aria-hidden="true"></span>
-							<?php echo esc_html( $c['label'] ); ?>
+							<?php echo esc_html( $label ); ?>
 						</li>
 					<?php endforeach; ?>
 				</ul>

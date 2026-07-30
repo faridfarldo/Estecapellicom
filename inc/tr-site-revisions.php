@@ -170,10 +170,22 @@ function estecapelli_tr_revision_doctor_profile( $post_id, array $profile ) {
 		return $profile;
 	}
 
-	foreach ( array( 'name', 'position', 'bio', 'credentials' ) as $field ) {
+	foreach ( array( 'name', 'position', 'bio' ) as $field ) {
 		if ( array_key_exists( $field, $data ) ) {
 			$profile[ $field ] = $data[ $field ];
 		}
+	}
+
+	// Credentials are authored as plain strings, the same as every other doctor
+	// translation file. The importer wraps them into the ACF repeater rows the
+	// renderer reads, so this render-time override has to wrap them too.
+	if ( ! empty( $data['credentials'] ) && is_array( $data['credentials'] ) ) {
+		$profile['credentials'] = array_map(
+			static function ( $credential ) {
+				return is_array( $credential ) ? $credential : array( 'label' => (string) $credential );
+			},
+			$data['credentials']
+		);
 	}
 
 	return $profile;
