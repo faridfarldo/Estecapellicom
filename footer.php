@@ -270,6 +270,16 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 				}
 				?>
 			</nav>
+			<?php
+			// Withdrawing consent has to be as easy as giving it, so the banner
+			// stays reachable from every page. Printed outside the menu branch
+			// above so it survives an editor swapping the footer menu around.
+			if ( function_exists( 'estecapelli_analytics_enabled' ) && estecapelli_analytics_enabled() ) :
+				?>
+				<button type="button" class="site-footer__consent-link" data-consent-open>
+					<?php esc_html_e( 'Cookie settings', 'estecapelli' ); ?>
+				</button>
+			<?php endif; ?>
 		</div>
 
 	</div>

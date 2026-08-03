@@ -8518,3 +8518,145 @@
 		transform: rotate(45deg);
 	}
 }
+
+/* ── Cookie consent banner ────────────────────────────────────────────────
+   Bottom-anchored card rather than a full-screen interstitial: the visitor can
+   still read the page while deciding, and "Accept all" / "Reject all" carry
+   equal visual weight — a consent request that steers the answer is not one. */
+@layer components {
+	.consent {
+		position: fixed;
+		z-index: 120;
+		inset: auto 0 0 0;
+		padding: 0.75rem;
+		/* Clears the floating WhatsApp button on small screens. */
+		padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+		opacity: 0;
+		transform: translateY(1rem);
+		transition: opacity 0.25s ease, transform 0.25s ease;
+	}
+	.consent.is-open { opacity: 1; transform: translateY(0); }
+	@media (prefers-reduced-motion: reduce) {
+		.consent { transition: none; transform: none; }
+	}
+
+	.consent__card {
+		max-width: var(--container-screen);
+		margin-inline: auto;
+		background: white;
+		border: 1px solid var(--color-brand-100);
+		border-radius: var(--radius-2xl, 1rem);
+		box-shadow: var(--shadow-pop);
+		padding: 1.15rem 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+	}
+
+	.consent__title {
+		font-size: 1.05rem;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: var(--color-brand-950);
+		margin: 0 0 0.3rem;
+	}
+	.consent__text {
+		font-size: 0.875rem;
+		line-height: 1.55;
+		color: oklch(45% 0.015 260);
+		margin: 0;
+	}
+	.consent__link {
+		color: var(--color-brand-600);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		white-space: nowrap;
+	}
+	.consent__link + .consent__link { margin-inline-start: 0.5rem; }
+
+	.consent__options {
+		display: grid;
+		gap: 0.6rem;
+		padding: 0.85rem 0;
+		border-block: 1px solid var(--color-brand-100);
+	}
+	.consent__option {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.6rem;
+		font-size: 0.85rem;
+		color: var(--color-brand-900);
+		cursor: pointer;
+	}
+	.consent__option input {
+		margin-top: 0.2rem;
+		width: 1rem;
+		height: 1rem;
+		accent-color: var(--color-brand-600);
+		flex-shrink: 0;
+	}
+	.consent__option--locked { cursor: default; opacity: 0.75; }
+	.consent__option strong { display: block; font-weight: 600; }
+	.consent__option-note {
+		display: block;
+		margin-top: 0.15rem;
+		font-size: 0.8rem;
+		line-height: 1.45;
+		color: oklch(52% 0.015 260);
+	}
+
+	.consent__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.6rem;
+	}
+	.consent__btn { flex: 1 1 auto; justify-content: center; }
+	.consent__more {
+		background: none;
+		border: 0;
+		padding: 0.5rem 0.25rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--color-brand-600);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		cursor: pointer;
+	}
+
+	/* From tablet up the copy and the buttons sit side by side, so the banner
+	   costs one line of the viewport instead of four. */
+	@media (min-width: 48rem) {
+		.consent__card {
+			flex-direction: row;
+			align-items: center;
+			gap: 1.5rem;
+			padding: 1.1rem 1.5rem;
+		}
+		.consent__intro { flex: 1 1 auto; }
+		.consent__options {
+			flex: 0 1 26rem;
+			padding: 0;
+			border: 0;
+			border-inline-start: 1px solid var(--color-brand-100);
+			padding-inline-start: 1.25rem;
+		}
+		.consent__actions { flex: 0 0 auto; flex-wrap: nowrap; }
+		.consent__btn { flex: 0 0 auto; }
+	}
+
+	/* Footer "Cookie settings" — matches the legal links beside it. */
+	.site-footer__consent-link {
+		background: none;
+		border: 0;
+		padding: 0;
+		font: inherit;
+		font-size: 0.8125rem;
+		color: inherit;
+		opacity: 0.75;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		cursor: pointer;
+	}
+	.site-footer__consent-link:hover { opacity: 1; }
+}

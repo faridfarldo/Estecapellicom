@@ -9,6 +9,16 @@
 (function () {
 	'use strict';
 
+	/*
+	 * Announce something worth measuring. assets/js/analytics.js listens for
+	 * these and is the only file that knows GA4 exists — this one stays a UI
+	 * controller. Dispatching into the void is harmless, so tracking can be
+	 * switched off without touching any of the code below.
+	 */
+	function emit(name, detail) {
+		document.dispatchEvent(new CustomEvent('estecapelli:' + name, { detail: detail || {} }));
+	}
+
 	function initMobileNav() {
 		var toggle = document.querySelector('[data-nav-toggle]');
 		var nav    = document.querySelector('[data-site-nav]');
@@ -132,6 +142,11 @@
 
 			tabs.forEach(function (tab, idx) {
 				tab.addEventListener('click', function () {
+					// Which treatment family the homepage audience actually opens.
+					emit('tab', {
+						name: (tab.textContent || '').replace(/\s+/g, ' ').trim(),
+						group: 'services_home'
+					});
 					activate(idx);
 				});
 				tab.addEventListener('keydown', function (e) {
@@ -628,8 +643,20 @@
 			if (!strip) return;
 
 			function amount() { return Math.max(strip.clientWidth * 0.8, 220); }
-			if (prev) prev.addEventListener('click', function () { strip.scrollBy({ left: -amount(), behavior: 'smooth' }); });
-			if (next) next.addEventListener('click', function () { strip.scrollBy({ left: amount(), behavior: 'smooth' }); });
+
+			// How deep a visitor browses the results is one of the better
+			// predictors of intent here, so report the running position rather
+			// than a single "gallery used" flag.
+			var section = sc.closest('section[class]');
+			var gallery = section ? (section.className || '').split(/\s+/)[0] : 'before_after';
+			var steps = 0;
+			function report() {
+				steps++;
+				emit('before-after', { gallery: gallery, index: steps });
+			}
+
+			if (prev) prev.addEventListener('click', function () { report(); strip.scrollBy({ left: -amount(), behavior: 'smooth' }); });
+			if (next) next.addEventListener('click', function () { report(); strip.scrollBy({ left: amount(), behavior: 'smooth' }); });
 
 			// Click-and-drag to scroll with the mouse (touch/pen already scroll
 			// natively). A drag past a few px is flagged so the click it ends on is
@@ -689,6 +716,9 @@
 
 		root.querySelectorAll('[data-hal-pick]').forEach(function (btn) {
 			btn.addEventListener('click', function () {
+				// Which of the two routes into the lab a visitor takes — the AI
+				// photo wizard or the manual self-assessment.
+				emit('hair-lab', { action: 'select', mode: btn.getAttribute('data-hal-pick') });
 				show(btn.getAttribute('data-hal-pick'));
 			});
 		});
@@ -749,6 +779,7 @@
 						selected.push(name);
 						related.forEach(function (r) { r.classList.add('is-active'); });
 					}
+					emit('hair-lab', { action: 'zones', count: selected.length });
 					renderZones();
 				});
 			});
@@ -790,15 +821,24 @@
 						.then(function (r) { return r.json().catch(function () { return { success: false }; }); })
 						.then(function (res) {
 							if (res && res.success) {
+								var lang = leadForm.querySelector('[name="lead_lang"]');
+								emit('lead-success', {
+									location: 'hair_lab',
+									treatment: 'hair-analysis',
+									language: lang ? lang.value : ''
+								});
 								leadForm.hidden = true;
 								say(i18n.thanks || ((res.data && res.data.message) ? res.data.message : 'Thank you!'), false);
 								if (feedback) { feedback.parentNode.insertBefore(feedback, leadForm); }
 							} else {
+								var failure = (res && res.data && res.data.message) || 'unknown';
+								emit('lead-error', { location: 'hair_lab', message: failure });
 								say((res && res.data && res.data.message) || i18n.error || 'Something went wrong.', true);
 								resetTurnstileWithin(leadForm);
 							}
 						})
 						.catch(function () {
+							emit('lead-error', { location: 'hair_lab', message: 'network_error' });
 							say(i18n.error || 'Something went wrong.', true);
 							resetTurnstileWithin(leadForm);
 						})
@@ -859,6 +899,7 @@
 			posters.forEach(function (p) {
 				p.addEventListener('click', function () {
 					var key = p.getAttribute('data-stories-select');
+					emit('story-open', { name: p.getAttribute('data-story-title') || key });
 					activate(key);
 					// On stacked (mobile) layouts the playlist sits BELOW the video,
 					// so jump back up to the now-updated video if it isn't in view.
@@ -898,6 +939,9 @@
 
 		function open(videoId, title) {
 			if (!videoId) return;
+			// The embed autoplays, so opening the lightbox IS the video start.
+			// A YouTube iframe gives us nothing else without loading their API.
+			emit('video', { action: 'start', title: title || videoId, provider: 'youtube' });
 			lastFocused = document.activeElement;
 			// Keep captions off by default and use privacy-enhanced embeds. YouTube
 			// may still show its required title/channel overlay around playback.
@@ -1450,6 +1494,10 @@
 			var t = form.querySelector('[name="lead_page_title"]');
 			if (u) { u.value = window.location.href; }
 			if (t) { t.value = document.title; }
+			emit('lead-open', {
+				location: 'popup',
+				ctaText: trigger ? (trigger.textContent || '').replace(/\s+/g, ' ').trim() : ''
+			});
 			popup.hidden = false;
 			document.body.classList.add('no-scroll');
 			requestAnimationFrame(function () {
@@ -1486,7 +1534,14 @@
 			if (e.key === 'Escape' && popup.classList.contains('is-open')) { closePopup(); }
 		});
 
+		/** Value of a form field by name, for the lead's tracking parameters. */
+		function fieldValue(name) {
+			var field = form.querySelector('[name="' + name + '"]');
+			return field ? field.value : '';
+		}
+
 		function showError(msg) {
+			emit('lead-error', { location: 'popup', message: msg || 'network_or_unknown' });
 			if (!feedback) return;
 			var serverErrors = window.EstecapelliLeadServerErrors || {};
 			if (msg && serverErrors[msg]) {
@@ -1517,6 +1572,13 @@
 				.then(function (r) { return r.json().catch(function () { return { success: false }; }); })
 				.then(function (res) {
 					if (res && res.success) {
+						// Read the tracking fields before the form is replaced by
+						// the success panel — after that they no longer exist.
+						emit('lead-success', {
+							location: 'popup',
+							treatment: fieldValue('lead_treatment'),
+							language: fieldValue('lead_lang')
+						});
 						var msg = i18n.thanks || ((res.data && res.data.message) ? res.data.message : 'Thank you!');
 						form.innerHTML = '<div class="lead-popup__success" role="status">' +
 							'<span class="lead-popup__success-mark" aria-hidden="true"></span>' +
@@ -1681,6 +1743,11 @@
 		triggers.forEach(function (t) {
 			t.addEventListener('click', function (e) {
 				e.preventDefault();
+				// The overlay intercepts the wa.me link, so no whatsapp_click is
+				// recorded here — opening the chat is its own, earlier step.
+				emit('wa-chat-open', {
+					location: t.classList.contains('float-wp') ? 'floating' : 'inline'
+				});
 				openChat();
 			});
 		});
@@ -1724,6 +1791,10 @@
 			sendBtn.addEventListener('click', function () {
 				var text = input.value.trim();
 				if (!text) { confirm.classList.remove('is-open'); return; }
+
+				// The actual handoff to WhatsApp, with a message the visitor
+				// wrote — the strongest intent signal the chat overlay produces.
+				emit('wa-chat-send', { length: text.length });
 
 				// Echo the message as an outgoing bubble before handing off, so the
 				// illusion holds for the moment before WhatsApp opens.

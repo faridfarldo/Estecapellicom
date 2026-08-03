@@ -8,6 +8,11 @@
 (function () {
 	'use strict';
 
+	/* Mirrors the helper in main.js — assets/js/analytics.js listens for these. */
+	function emit(name, detail) {
+		document.dispatchEvent(new CustomEvent('estecapelli:' + name, { detail: detail || {} }));
+	}
+
 	function ready(callback) {
 		if ('loading' === document.readyState) {
 			document.addEventListener('DOMContentLoaded', callback, { once: true });
@@ -57,12 +62,21 @@
 				})
 				.then(function (result) {
 					if (result && result.success) {
+						// Read the language field before form.reset() clears it.
+						var lang = form.querySelector('[name="lead_lang"]');
+						var treatment = form.querySelector('[name="lead_treatment"]');
+						emit('lead-success', {
+							location: 'footer',
+							treatment: treatment ? treatment.value : '',
+							language: lang ? lang.value : ''
+						});
 						feedbackText.textContent = i18n.thanks || (result.data && result.data.message) || 'Thank you! Your request has been received.';
 						feedback.classList.remove('contact-alert--error');
 						form.reset();
 						root.querySelectorAll('.contact-form__error').forEach(function (error) { error.remove(); });
 					} else {
 						var message = (result && result.data && result.data.message) || i18n.error || 'Something went wrong. Please try again.';
+						emit('lead-error', { location: 'footer', message: message });
 						var serverErrors = window.EstecapelliLeadServerErrors || {};
 						feedbackText.textContent = serverErrors[message] || message;
 						feedback.classList.add('contact-alert--error');
@@ -71,6 +85,7 @@
 					resetTurnstile(form);
 				})
 				.catch(function () {
+					emit('lead-error', { location: 'footer', message: 'network_error' });
 					feedbackText.textContent = i18n.error || 'Something went wrong. Please try again.';
 					feedback.classList.add('contact-alert--error');
 					feedback.hidden = false;

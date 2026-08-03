@@ -16,6 +16,17 @@ import { submitLead } from './submit.js?v=7';
 const STEPS = CONFIG.steps;
 const C = CONFIG.copy;
 
+/*
+ * Announce a funnel step. assets/js/analytics.js listens and is the only place
+ * that knows GA4 exists; this module stays a wizard. The wizard is also the
+ * only thing that knows which pose was captured or that a lead was actually
+ * sent — none of that is inferable from the DOM, which is why it is emitted
+ * from here rather than sniffed by a click listener.
+ */
+function emit(detail) {
+  document.dispatchEvent(new CustomEvent('estecapelli:ai', { detail }));
+}
+
 export class HairAnalysisWidget {
   constructor(root) {
     this.root = root;
@@ -42,6 +53,7 @@ export class HairAnalysisWidget {
     this.stepIndex = 0;
     this.error = '';
 
+    emit({ action: 'start', mode: 'photos' });
     this.render();
   }
 
@@ -115,7 +127,7 @@ export class HairAnalysisWidget {
         this.root.querySelector('.hw-stage')?.classList.toggle('is-aligned', ok);
         if (ring) ring.style.setProperty('--p', String(holdProgress));
       },
-      onCapture: () => this.capture(),
+      onCapture: () => this.capture('auto'),
       onError: () => {
         // MediaPipe failed to load → fall back to manual capture for this step.
         const btn = this.root.querySelector('.hw-shutter');
@@ -125,7 +137,7 @@ export class HairAnalysisWidget {
     });
   }
 
-  async capture() {
+  async capture(method = 'manual') {
     const video = this.root.querySelector('.hw-video');
     if (!video) return;
     this.gate?.stop();
@@ -134,8 +146,12 @@ export class HairAnalysisWidget {
     try {
       const { blob, url } = await captureFromVideo(video, { mirror: this.mirror });
       this.setPhoto(this.step.id, blob, url);
+      // Which poses stall the wizard, and whether the auto face gate is doing
+      // its job or visitors are falling back to the shutter.
+      emit({ action: 'photo', step: this.step.id, method, index: this.stepIndex + 1 });
     } catch {
       this.error = C.captureError;
+      emit({ action: 'error', message: 'capture_failed' });
     }
     this.captureState = 'preview';
     stopStream(this.stream);
@@ -148,10 +164,12 @@ export class HairAnalysisWidget {
     try {
       const { blob, url } = await compressFile(file);
       this.setPhoto(this.step.id, blob, url);
+      emit({ action: 'photo', step: this.step.id, method: 'upload', index: this.stepIndex + 1 });
       this.captureState = 'preview';
       this.render();
     } catch {
       this.error = C.imageReadError;
+      emit({ action: 'error', message: 'image_read_failed' });
       this.render();
     }
   }
@@ -209,6 +227,9 @@ export class HairAnalysisWidget {
     }
 
     this.contact = { name, phone, email, consent };
+    // Contact details are in hand before a single photo is taken, so this — not
+    // the final submit — is where the visitor commits.
+    emit({ action: 'contact' });
     this.enterCaptureStep(0);
   }
 
@@ -242,8 +263,14 @@ export class HairAnalysisWidget {
 
     try {
       this.analysis = await analyzePhotos(this.photoBlobs(), this.hairSession);
+      emit({
+        action: 'complete',
+        norwood: this.analysis?.norwood_stage,
+        grafts: this.analysis?.graft_range?.max,
+      });
     } catch {
       this.analysis = null;
+      emit({ action: 'error', message: 'analysis_failed' });
     }
 
     if (!this.submitted && this.contact) {
@@ -256,9 +283,18 @@ export class HairAnalysisWidget {
           session: this.hairSession,
         });
         this.submitted = true;
+        // The widget's lead reaches the same inbox and CRM as every other
+        // form, so it reports the same conversion — with its own location, so
+        // the AI route can still be compared against the plain forms.
+        document.dispatchEvent(new CustomEvent('estecapelli:lead-success', {
+          detail: { location: 'ai_widget', treatment: 'hair-analysis' },
+        }));
       } catch {
         // The estimate is still shown; the team can be reached via the page's
         // other contact routes if this single POST failed.
+        document.dispatchEvent(new CustomEvent('estecapelli:lead-error', {
+          detail: { location: 'ai_widget', message: 'submit_failed' },
+        }));
       }
     }
 

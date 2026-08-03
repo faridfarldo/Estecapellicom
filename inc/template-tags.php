@@ -41,6 +41,14 @@ if ( ! function_exists( 'estecapelli_gtm_head' ) ) {
 		if ( ! $id ) {
 			return;
 		}
+
+		// Consent defaults and page context, in that order, immediately above
+		// the container. Both are useless once GTM has loaded: a consent default
+		// set afterwards has already been ignored by the first tag, and page
+		// context pushed afterwards is missing from the first page_view.
+		if ( function_exists( 'estecapelli_analytics_bootstrap' ) ) {
+			estecapelli_analytics_bootstrap();
+		}
 		?>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
