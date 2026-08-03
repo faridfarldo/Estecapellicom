@@ -27,11 +27,6 @@
 		}
 	}
 
-	function push(payload) {
-		window.dataLayer = window.dataLayer || [];
-		window.dataLayer.push(payload);
-	}
-
 	/** Stored choice, or null when absent, malformed or from an older version. */
 	function readChoice() {
 		var hit = document.cookie.match(new RegExp('(?:^|; )' + COOKIE + '=([^;]*)'));
@@ -82,12 +77,18 @@
 			restored: false
 		};
 
-		push({
-			event: 'consent_update',
-			consent_analytics: choice.analytics ? 'granted' : 'denied',
-			consent_marketing: choice.marketing ? 'granted' : 'denied',
-			consent_method: method
-		});
+		/* Reported through analytics.js like every other event, rather than
+		   pushed straight to the dataLayer: that is the only path that clears
+		   the parameters of the previous event, so a consent choice cannot
+		   arrive carrying the cta_location of the button clicked before it —
+		   and cannot leave its own parameters behind on the events after. */
+		document.dispatchEvent(new CustomEvent('estecapelli:consent', {
+			detail: {
+				analytics: choice.analytics ? 'granted' : 'denied',
+				marketing: choice.marketing ? 'granted' : 'denied',
+				method: method
+			}
+		}));
 	}
 
 	function ready(callback) {

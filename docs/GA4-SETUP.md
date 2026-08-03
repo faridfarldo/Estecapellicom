@@ -111,6 +111,35 @@ or everyone is falling back to the shutter.
 
 ## 4. Google Tag Manager
 
+### 4.0 The quick route — import the ready-made container
+
+`tools/gtm-container-estecapelli.json` contains everything in §4.1–4.3: 43 Data
+Layer Variables, the measurement-ID constant, three triggers and the event tag,
+all inside one folder. It is generated from the same parameter list the theme
+uses, so the names cannot drift:
+
+```
+node tools/build-gtm-container.js
+```
+
+**GTM → Admin → Import Container**
+
+1. Choose the file, and the **Default Workspace** (or a new one).
+2. **Choose "Merge" and "Rename conflicting tags, triggers and variables".**
+   *Never "Overwrite"* — that deletes everything already in the container,
+   including the GA4 configuration you have just connected.
+3. Review the preview: it should show additions only, no deletions.
+4. After importing, open the **`GA4 Measurement ID`** constant variable and
+   replace `G-XXXXXXXXXX` with the real ID from
+   **GA4 → Admin → Data streams → your web stream**.
+5. Add **`Exception - staff (page view)`** as an exception on your existing
+   Google tag (the GA4 configuration). The import cannot do this without
+   touching a tag it does not own.
+6. **Preview**, walk the checklist in §7, then **Submit**.
+
+The rest of this section documents what the import creates, for when something
+needs changing by hand.
+
 ### 4.1 Variables
 
 Create a **Data Layer Variable** (version 2, default empty) for each name in
@@ -317,5 +346,6 @@ Run in GTM Preview, logged out, in a fresh private window.
 3. **Add every new parameter to the `PARAMS` array at the top of
    `analytics.js`.** A parameter missing from that list will leak into
    unrelated events.
-4. Add the event name to the `CE - theme events` regex, the parameter to the
-   tag, and register the custom dimension in GA4.
+4. Add the event and its parameters to the lists at the top of
+   `tools/build-gtm-container.js`, re-run it, and re-import with **Merge**.
+5. Register the new custom dimension in GA4.

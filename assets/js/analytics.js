@@ -41,7 +41,8 @@
 		'story_name', 'video_title', 'video_provider',
 		'gallery_name', 'slide_index',
 		'faq_question', 'tab_name', 'tab_group',
-		'percent'
+		'percent',
+		'consent_analytics', 'consent_marketing', 'consent_method'
 	];
 
 	function push(name, params) {
@@ -415,6 +416,16 @@
 		push('tab_select', {
 			tab_name: d.name || '',
 			tab_group: d.group || ''
+		});
+	});
+
+	/* --- Cookie banner (consent.js) --- */
+
+	on('consent', function (d) {
+		push('consent_update', {
+			consent_analytics: d.analytics,
+			consent_marketing: d.marketing,
+			consent_method: d.method
 		});
 	});
 })();
