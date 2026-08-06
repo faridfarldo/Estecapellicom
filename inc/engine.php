@@ -88,6 +88,9 @@ if ( ! function_exists( 'estecapelli_prepare_page_section_for_render' ) ) {
 		if ( function_exists( 'estecapelli_tr_revision_prepare_section' ) ) {
 			$section = estecapelli_tr_revision_prepare_section( $section, $post_id, $layout_ordinal );
 		}
+		if ( function_exists( 'estecapelli_it_revision_prepare_section' ) ) {
+			$section = estecapelli_it_revision_prepare_section( $section, $post_id );
+		}
 
 		$is_tricholab = 'tricholab' === get_post_field( 'post_name', $post_id );
 		$is_stepbook  = 'stepbook' === ( $section['acf_fc_layout'] ?? '' );
