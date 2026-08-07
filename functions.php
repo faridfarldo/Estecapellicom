@@ -139,6 +139,7 @@ if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-pl-doctors.php';
 	require get_template_directory() . '/inc/admin/import-es-pages.php';
 	require get_template_directory() . '/inc/admin/import-pt-pages.php';
+	// Loaded after import-it-doctors.php, whose engine it shares.
 	require get_template_directory() . '/inc/admin/import-fr-doctors.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';
 	require get_template_directory() . '/inc/admin/import-fr-blog.php';
