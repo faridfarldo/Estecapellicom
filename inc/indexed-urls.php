@@ -1062,18 +1062,27 @@ function estecapelli_indexed_request( $query_vars ) {
 			)
 		);
 	}
-	if ( ! $source_id ) {
-		return $query_vars;
-	}
-
 	$wpml_language = estecapelli_wpml_language_code( $language );
 	if ( $wpml_language !== $language ) {
 		do_action( 'wpml_switch_language', $wpml_language );
 	}
-	$target_id = 'en' === $language
-		? $source_id
-		: (int) apply_filters( 'wpml_object_id', $source_id, $type, false, $wpml_language );
-	if ( 'en' !== $language ) {
+
+	/*
+	 * A translated post can outlive its English WPML source (for example when
+	 * the source is accidentally trashed). The exact indexed slug and language
+	 * still identify that published translation, so do not turn every localized
+	 * URL in the group into a 404 merely because the source row is unavailable.
+	 */
+	if ( ! $source_id ) {
+		$target_id = 'en' === $language
+			? 0
+			: estecapelli_indexed_raw_translation_id( 0, $type, $wpml_language, $localized_slug );
+	} else {
+		$target_id = 'en' === $language
+			? $source_id
+			: (int) apply_filters( 'wpml_object_id', $source_id, $type, false, $wpml_language );
+	}
+	if ( $source_id && 'en' !== $language ) {
 		$raw_target_id = estecapelli_indexed_raw_translation_id( $source_id, $type, $wpml_language, $localized_slug );
 		if ( $raw_target_id ) {
 			$target_id = $raw_target_id;

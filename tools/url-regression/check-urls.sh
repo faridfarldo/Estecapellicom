@@ -15,7 +15,8 @@
 #   CRAWL=0       skip link discovery (only test urls.txt)
 #   MAX_CRAWL=600 cap on discovered URLs
 #
-# A URL "resolves" if its final status (after redirects) is < 400.
+# A URL "resolves" if its final status (after redirects) is < 400 and a blog
+# article did not collapse to the language's blog landing page.
 # A regression = it resolved in the baseline but is now >= 400 (or unreachable).
 # ===========================================================================
 set -uo pipefail
@@ -29,10 +30,27 @@ CRAWL="${CRAWL:-1}"
 MAX_CRAWL="${MAX_CRAWL:-600}"
 UA='Mozilla/5.0 (estecapelli-url-regression-bot)'
 
-# Final HTTP status after following redirects; 000 = unreachable.
+# Final HTTP status after following redirects; 000 = unreachable. A synthetic
+# 409 marks a blog article that was redirected to its blog landing page: the
+# landing returns 200, but the requested content is still unavailable.
 http_status() {
-  curl -s -o /dev/null -L --max-redirs 10 --connect-timeout 15 --max-time 45 \
-       -A "$UA" -w '%{http_code}' "$1" 2>/dev/null || echo "000"
+  local result status effective language
+  result="$(curl -s -o /dev/null -L --max-redirs 10 --connect-timeout 15 --max-time 45 \
+       -A "$UA" -w $'%{http_code}\t%{url_effective}' "$1" 2>/dev/null)" || {
+    echo "000"
+    return
+  }
+  IFS=$'\t' read -r status effective <<< "$result"
+
+  if [[ "$1" =~ /([a-z]{2})/blog/.+ ]]; then
+    language="${BASH_REMATCH[1]}"
+    if [ "${effective%/}" = "$BASE_URL/$language/blog" ]; then
+      echo "409"
+      return
+    fi
+  fi
+
+  echo "${status:-000}"
 }
 
 resolves() { [ "$1" -ge 200 ] 2>/dev/null && [ "$1" -lt 400 ] 2>/dev/null; }
