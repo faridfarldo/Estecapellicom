@@ -548,9 +548,51 @@ function estecapelli_process_lead( array $d ) {
 		$headers[] = sprintf( 'Reply-To: %s <%s>', $d['name'], $d['email'] );
 	}
 
-	wp_mail( $to, $subject, implode( "\r\n", $lines ), apply_filters( 'estecapelli_lead_headers', $headers, $d ) );
+	$sent = wp_mail( $to, $subject, implode( "\r\n", $lines ), apply_filters( 'estecapelli_lead_headers', $headers, $d ) );
+	estecapelli_lead_record_delivery( $lead_id, $sent, $source_label );
 
 	return $lead_id;
+}
+
+/**
+ * Kommo only ever sees a lead that actually left as email (it ingests the BCC'd
+ * copy), so a silent wp_mail() failure looks exactly like "the form works but
+ * nothing reaches the CRM". Record the outcome on the lead and in the PHP log
+ * instead of discarding it.
+ *
+ * @param int|WP_Error $lead_id Stored lead, if storing succeeded.
+ * @param bool         $sent    wp_mail() return value.
+ * @param string       $source  Source label, for the log line.
+ */
+function estecapelli_lead_record_delivery( $lead_id, $sent, $source ) {
+	if ( ! is_wp_error( $lead_id ) && $lead_id ) {
+		update_post_meta( $lead_id, 'lead_mail_sent', $sent ? '1' : '0' );
+		if ( ! $sent ) {
+			update_post_meta( $lead_id, 'lead_mail_error', estecapelli_lead_last_mail_error() );
+		}
+	}
+	if ( ! $sent ) {
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf(
+				'[estecapelli] Lead email NOT sent (source: %s, lead #%s) — CRM will not receive it. %s',
+				$source,
+				is_wp_error( $lead_id ) ? 'not stored' : (string) $lead_id,
+				estecapelli_lead_last_mail_error()
+			)
+		);
+	}
+}
+
+/** Remember the last PHPMailer failure so the lead can be annotated with it. */
+function estecapelli_lead_capture_mail_error( $error ) {
+	$GLOBALS['estecapelli_last_mail_error'] = is_wp_error( $error ) ? $error->get_error_message() : '';
+}
+add_action( 'wp_mail_failed', 'estecapelli_lead_capture_mail_error' );
+
+/** Last wp_mail failure reason for this request, if any. */
+function estecapelli_lead_last_mail_error() {
+	$error = isset( $GLOBALS['estecapelli_last_mail_error'] ) ? (string) $GLOBALS['estecapelli_last_mail_error'] : '';
+	return $error ?: 'No PHPMailer error was reported — check SMTP settings and the host mail log.';
 }
 
 /* -------------------------------------------------------------------------
@@ -730,11 +772,32 @@ add_filter( 'manage_lead_posts_columns', function ( $cols ) {
 	$new['lead_email']     = __( 'Email', 'estecapelli' );
 	$new['lead_treatment'] = __( 'Interested in', 'estecapelli' );
 	$new['lead_source']    = __( 'Source', 'estecapelli' );
+	// A lead reaches Kommo only via the notification email, so whether that email
+	// left the server is the one thing this screen could not previously answer.
+	$new['lead_mail_sent'] = __( 'Sent to CRM', 'estecapelli' );
 	$new['date']           = __( 'Received', 'estecapelli' );
 	return $new;
 } );
 add_action( 'manage_lead_posts_custom_column', function ( $col, $post_id ) {
 	if ( in_array( $col, array( 'lead_email', 'lead_treatment', 'lead_source' ), true ) ) {
 		echo esc_html( get_post_meta( $post_id, $col, true ) );
+		return;
 	}
+	if ( 'lead_mail_sent' !== $col ) {
+		return;
+	}
+	$state = get_post_meta( $post_id, 'lead_mail_sent', true );
+	if ( '' === $state ) {
+		echo '—';
+		return;
+	}
+	if ( '1' === $state ) {
+		echo '✅ ' . esc_html__( 'Sent', 'estecapelli' );
+		return;
+	}
+	printf(
+		'<span style="color:#b32d2e">❌ %s</span><br /><small>%s</small>',
+		esc_html__( 'Failed', 'estecapelli' ),
+		esc_html( (string) get_post_meta( $post_id, 'lead_mail_error', true ) )
+	);
 }, 10, 2 );

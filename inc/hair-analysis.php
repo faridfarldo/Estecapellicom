@@ -451,7 +451,10 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		$headers[] = sprintf( 'Reply-To: %s <%s>', $name, $email );
 	}
 
-	wp_mail( $to, $subject, implode( "\r\n", $lines ), $headers, $attachments );
+	$sent = wp_mail( $to, $subject, implode( "\r\n", $lines ), $headers, $attachments );
+	if ( function_exists( 'estecapelli_lead_record_delivery' ) ) {
+		estecapelli_lead_record_delivery( $lead_id, $sent, 'AI Photo Hair Analysis' );
+	}
 
 	foreach ( $attachments as $tmp ) {
 		@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
