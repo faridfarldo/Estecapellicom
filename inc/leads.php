@@ -45,9 +45,14 @@ if ( ! defined( 'ESTECAPELLI_MAIL_FROM' ) ) {
 /* -------------------------------------------------------------------------
  * Shared anti-spam primitives
  *
- * No third-party CAPTCHA is used. Bots are kept out with a honeypot field, a
- * signed minimum form age, per-IP rate limiting and duplicate suppression —
- * all of which are invisible to a real visitor.
+ * No third-party CAPTCHA is used. Bots are slowed down by per-IP rate limiting,
+ * a signed form stamp, a honeypot and a submission timer — all invisible to a
+ * real visitor.
+ *
+ * Rule for everything in here: NEVER discard a submission silently. A lost
+ * enquiry costs the clinic a patient; a spam email costs it ten seconds. Only
+ * the signed-stamp check rejects, and it does so with a message the visitor can
+ * act on. The heuristics merely flag.
  * ---------------------------------------------------------------------- */
 
 /**
@@ -149,20 +154,15 @@ function estecapelli_lead_antispam_fields( $source ) {
 }
 
 /**
- * Check fields that must be present before a lead reaches storage or email.
+ * Integrity check: the form must carry the signed stamp this site rendered.
+ * This is the only anti-spam condition allowed to REJECT a submission, and it
+ * fails loudly ("please refresh"), never silently — a visitor who sees an
+ * error can retry, a visitor whose lead is quietly binned cannot.
  *
  * @param array $data Sanitised lead data.
  * @return true|WP_Error
  */
 function estecapelli_check_lead_antispam( array $data ) {
-	$honeypot_raw = isset( $_POST['lead_company_website'] ) ? wp_unslash( $_POST['lead_company_website'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-	$honeypot     = is_scalar( $honeypot_raw ) ? sanitize_text_field( $honeypot_raw ) : 'invalid';
-	// The honeypot is the primary bot check: it is hidden from real visitors and
-	// carries autocomplete="off", so anything filling it is automated.
-	if ( '' !== $honeypot ) {
-		return new WP_Error( 'spam_detected', 'Spam detected.' );
-	}
-
 	$started_raw = isset( $_POST['lead_form_started'] ) ? wp_unslash( $_POST['lead_form_started'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$sig_raw     = isset( $_POST['lead_form_signature'] ) ? wp_unslash( $_POST['lead_form_signature'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$started     = is_scalar( $started_raw ) ? absint( $started_raw ) : 0;
@@ -171,13 +171,40 @@ function estecapelli_check_lead_antispam( array $data ) {
 	if ( ! $started || ! $sig || ! hash_equals( $expect, $sig ) ) {
 		return new WP_Error( 'form_expired', __( 'Please refresh the page and submit the form again.', 'estecapelli' ) );
 	}
-	// A form filled in under three seconds was not filled in by a human reading
-	// the page. Kept deliberately low so fast autofill never drops a real lead.
-	if ( time() - $started < 3 ) {
-		return new WP_Error( 'spam_detected', 'Spam detected.' );
-	}
 
 	return true;
+}
+
+/**
+ * Heuristic spam signals — the honeypot and the "filled in impossibly fast"
+ * timer.
+ *
+ * These deliberately do NOT discard anything. Both misfire on real people:
+ * browsers and password managers autofill off-screen inputs, and a visitor who
+ * pastes their details is through the form in under three seconds. One hair
+ * transplant enquiry is worth far more than the nuisance of a flagged spam
+ * mail, so a suspicious lead is delivered like any other, marked so the clinic
+ * can judge it.
+ *
+ * @param array $data Sanitised lead data.
+ * @return string[] Human-readable signals; empty means clean.
+ */
+function estecapelli_lead_spam_signals( array $data ) {
+	$signals = array();
+
+	$honeypot_raw = isset( $_POST['lead_company_website'] ) ? wp_unslash( $_POST['lead_company_website'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$honeypot     = is_scalar( $honeypot_raw ) ? sanitize_text_field( $honeypot_raw ) : 'non-scalar value';
+	if ( '' !== $honeypot ) {
+		$signals[] = 'honeypot field was filled';
+	}
+
+	$started_raw = isset( $_POST['lead_form_started'] ) ? wp_unslash( $_POST['lead_form_started'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$started     = is_scalar( $started_raw ) ? absint( $started_raw ) : 0;
+	if ( $started && time() - $started < 3 ) {
+		$signals[] = 'submitted less than 3 seconds after the page was rendered';
+	}
+
+	return $signals;
 }
 
 /**
@@ -196,12 +223,20 @@ function estecapelli_check_lead_limits( array $data ) {
 		return $limited;
 	}
 
+	// Suppress an identical resend — a double-clicked button or a replayed POST.
+	// Kept short on purpose: the window only has to cover an accidental repeat,
+	// and anything longer silently swallows a visitor who genuinely submits
+	// again (or the clinic testing its own forms).
+	$window      = (int) apply_filters( 'estecapelli_lead_duplicate_window', 5 * MINUTE_IN_SECONDS );
 	$fingerprint = strtolower( implode( '|', array( $data['name'], $data['phone'], $data['email'], $data['message'] ) ) );
 	$duplicate   = 'ec_lead_dup_' . substr( hash( 'sha256', $fingerprint ), 0, 32 );
 	if ( get_transient( $duplicate ) ) {
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf( '[estecapelli] Lead suppressed as an identical resend within %d min: %s', (int) round( $window / 60 ), $data['name'] )
+		);
 		return new WP_Error( 'duplicate_lead', __( 'This request has already been received.', 'estecapelli' ) );
 	}
-	set_transient( $duplicate, 1, 30 * MINUTE_IN_SECONDS );
+	set_transient( $duplicate, 1, $window );
 
 	return true;
 }
@@ -480,12 +515,18 @@ function estecapelli_process_lead( array $d ) {
 
 	$antispam = estecapelli_check_lead_antispam( $d );
 	if ( is_wp_error( $antispam ) ) {
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf( '[estecapelli] Lead rejected (%s) from source "%s".', $antispam->get_error_code(), $d['source'] )
+		);
 		return $antispam;
 	}
 	$limits = estecapelli_check_lead_limits( $d );
 	if ( is_wp_error( $limits ) ) {
 		return $limits;
 	}
+
+	// Suspicious, but never dropped — see estecapelli_lead_spam_signals().
+	$spam_signals = estecapelli_lead_spam_signals( $d );
 
 	$source_label = estecapelli_lead_source_label( $d );
 
@@ -506,6 +547,9 @@ function estecapelli_process_lead( array $d ) {
 		update_post_meta( $lead_id, 'lead_source', $source_label );
 		update_post_meta( $lead_id, 'lead_page_url', $d['page_url'] );
 		update_post_meta( $lead_id, 'lead_utm', $d['utm'] );
+		if ( $spam_signals ) {
+			update_post_meta( $lead_id, 'lead_spam_signals', implode( '; ', $spam_signals ) );
+		}
 	}
 
 	// 2) Notify clinic + Kommo CRM. Body uses the labelled format the Kommo
@@ -517,6 +561,13 @@ function estecapelli_process_lead( array $d ) {
 		$source_label,
 		$d['name']
 	);
+	// Flagged in the subject rather than withheld, so the clinic decides.
+	if ( $spam_signals ) {
+		$subject = '[?] ' . $subject;
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf( '[estecapelli] Lead flagged but delivered (%s): %s', implode( '; ', $spam_signals ), $d['name'] )
+		);
+	}
 
 	$lines = array(
 		'Adı Soyadı: ' . $d['name'],
@@ -637,7 +688,7 @@ function estecapelli_handle_lead() {
 
 	$data = estecapelli_collect_lead();
 	$result = estecapelli_process_lead( $data );
-	$silent = is_wp_error( $result ) && in_array( $result->get_error_code(), array( 'spam_detected', 'duplicate_lead' ), true );
+	$silent = is_wp_error( $result ) && in_array( $result->get_error_code(), array( 'duplicate_lead' ), true );
 
 	// Post/Redirect/Get → return to the submitting page. On a validation error
 	// come back with ?error=… instead of ?sent=1 so we never fake success.
@@ -671,7 +722,7 @@ function estecapelli_handle_lead_ajax() {
 	$data = estecapelli_collect_lead();
 	$result = estecapelli_process_lead( $data );
 	if ( is_wp_error( $result ) ) {
-		if ( in_array( $result->get_error_code(), array( 'spam_detected', 'duplicate_lead' ), true ) ) {
+		if ( in_array( $result->get_error_code(), array( 'duplicate_lead' ), true ) ) {
 			wp_send_json_success(
 				array( 'message' => __( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ) )
 			);
@@ -781,6 +832,10 @@ add_filter( 'manage_lead_posts_columns', function ( $cols ) {
 add_action( 'manage_lead_posts_custom_column', function ( $col, $post_id ) {
 	if ( in_array( $col, array( 'lead_email', 'lead_treatment', 'lead_source' ), true ) ) {
 		echo esc_html( get_post_meta( $post_id, $col, true ) );
+		$flags = 'lead_source' === $col ? (string) get_post_meta( $post_id, 'lead_spam_signals', true ) : '';
+		if ( $flags ) {
+			printf( '<br /><small title="%s">⚠ %s</small>', esc_attr( $flags ), esc_html__( 'Possible spam', 'estecapelli' ) );
+		}
 		return;
 	}
 	if ( 'lead_mail_sent' !== $col ) {
