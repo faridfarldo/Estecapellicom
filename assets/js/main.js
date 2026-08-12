@@ -827,9 +827,16 @@
 									treatment: 'hair-analysis',
 									language: lang ? lang.value : ''
 								});
+								// The feedback element lives INSIDE the form, so it has to be
+								// lifted out before the form is hidden — otherwise the whole
+								// panel goes blank and the visitor never sees the thank-you.
+								// (Inserting it relative to leadForm while still parented BY
+								// leadForm also threw NotFoundError, killing this handler.)
+								if (feedback && leadForm.parentNode) {
+									leadForm.parentNode.insertBefore(feedback, leadForm);
+								}
 								leadForm.hidden = true;
 								say(i18n.thanks || ((res.data && res.data.message) ? res.data.message : 'Thank you!'), false);
-								if (feedback) { feedback.parentNode.insertBefore(feedback, leadForm); }
 							} else {
 								var failure = (res && res.data && res.data.message) || 'unknown';
 								emit('lead-error', { location: 'hair_lab', message: failure });
