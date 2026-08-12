@@ -6,7 +6,7 @@
  * flag. While `mock` is true the widget runs fully on the front end with a
  * placeholder analysis and a no-op submit — wire the real endpoints later.
  */
-import { getHairWidgetCopy, normalizeLocale } from './i18n.js?v=7';
+import { getHairWidgetCopy, normalizeLocale } from './i18n.js?v=8';
 
 const OV = (typeof window !== 'undefined' && window.HAIR_WIDGET_CFG) || {};
 const IMG = OV.imageBase || 'image/';
@@ -17,8 +17,6 @@ export const CONFIG = {
   // Endpoints (used only when mock === false).
   analyzeUrl: OV.analyzeUrl || '/api/analyze',
   submitUrl: OV.submitUrl || '/api/submit',
-  sessionUrl: OV.sessionUrl || '/api/hair-session',
-  turnstileSiteKey: OV.turnstileSiteKey || '',
 
   // WordPress nonce for the theme REST routes (estecapelli_hair action).
   // NOTE: the baked-in `nonce` below is a fallback only — it lives in the page
@@ -123,24 +121,3 @@ export async function freshNonce() {
   return CONFIG.nonce;
 }
 
-/**
- * Verify Turnstile once before the camera flow and exchange it for a short-lived
- * server session that authorizes both the AI request and the final lead upload.
- * @param {string} turnstileToken
- * @returns {Promise<string>}
- */
-export async function createHairSession(turnstileToken) {
-  if (!CONFIG.turnstileSiteKey) return '';
-
-  const nonce = await freshNonce();
-  const res = await fetch(CONFIG.sessionUrl, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ nonce, turnstile_token: turnstileToken || '' }),
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok || !data.ok || !data.session) {
-    throw new Error(data.message || 'Security verification failed');
-  }
-  return data.session;
-}

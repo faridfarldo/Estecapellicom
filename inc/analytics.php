@@ -413,8 +413,8 @@ function estecapelli_analytics_consent_defaults() {
 			'analytics_storage'      => 'denied',
 			'functionality_storage'  => 'granted',
 			'personalization_storage' => 'denied',
-			// Never gated: this covers anti-fraud and the Turnstile check that
-			// protects every lead form.
+			// Never gated: this covers the anti-fraud/anti-spam checks that
+			// protect every lead form.
 			'security_storage'       => 'granted',
 			'wait_for_update'        => 500,
 		)

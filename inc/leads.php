@@ -41,47 +41,18 @@ if ( ! defined( 'ESTECAPELLI_KOMMO_PARSER' ) ) {
 if ( ! defined( 'ESTECAPELLI_MAIL_FROM' ) ) {
 	define( 'ESTECAPELLI_MAIL_FROM', 'info@estecapelli.com' );
 }
-/**
- * Cloudflare Turnstile credentials. Define the real values in wp-config.php,
- * never in the theme repository:
- *
- * define( 'ESTECAPELLI_TURNSTILE_SITE_KEY', '...' );
- * define( 'ESTECAPELLI_TURNSTILE_SECRET_KEY', '...' );
- *
- * Empty defaults keep forms operational while the keys are being provisioned.
- * As soon as both constants contain values, verification becomes mandatory.
- */
-if ( ! defined( 'ESTECAPELLI_TURNSTILE_SITE_KEY' ) ) {
-	define( 'ESTECAPELLI_TURNSTILE_SITE_KEY', '' );
-}
-if ( ! defined( 'ESTECAPELLI_TURNSTILE_SECRET_KEY' ) ) {
-	define( 'ESTECAPELLI_TURNSTILE_SECRET_KEY', '' );
-}
 
 /* -------------------------------------------------------------------------
  * Shared anti-spam primitives
+ *
+ * No third-party CAPTCHA is used. Bots are kept out with a honeypot field, a
+ * signed minimum form age, per-IP rate limiting and duplicate suppression —
+ * all of which are invisible to a real visitor.
  * ---------------------------------------------------------------------- */
 
-/** Whether both halves of the Turnstile configuration are present. */
-function estecapelli_turnstile_is_configured() {
-	return '' !== trim( (string) ESTECAPELLI_TURNSTILE_SITE_KEY )
-		&& '' !== trim( (string) ESTECAPELLI_TURNSTILE_SECRET_KEY );
-}
-
 /**
- * Stable, Cloudflare-compatible action for a form source.
- *
- * @param string $source Lead form source.
- * @return string
- */
-function estecapelli_turnstile_lead_action( $source ) {
-	$source = preg_replace( '/[^a-z0-9_-]/i', '_', (string) $source );
-	return substr( 'lead_' . trim( $source, '_' ), 0, 32 );
-}
-
-/**
- * Best available visitor IP. The value is only used for abuse throttling and
- * the optional Turnstile remoteip signal; it is never stored with the lead.
+ * Best available visitor IP. The value is only used for abuse throttling;
+ * it is never stored with the lead.
  *
  * @return string
  */
@@ -130,79 +101,6 @@ function estecapelli_rate_limit( $scope, $limit, $window ) {
 	return true;
 }
 
-/**
- * Verify a Turnstile token with Cloudflare Siteverify.
- *
- * @param string $token           Browser-issued token.
- * @param string $expected_action Expected widget action.
- * @return true|WP_Error
- */
-function estecapelli_verify_turnstile( $token, $expected_action ) {
-	if ( ! estecapelli_turnstile_is_configured() ) {
-		return true;
-	}
-
-	$token = trim( (string) $token );
-	if ( '' === $token || strlen( $token ) > 2048 ) {
-		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
-	}
-
-	$response = wp_remote_post(
-		'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-		array(
-			'timeout' => 8,
-			'body'    => array(
-				'secret'   => ESTECAPELLI_TURNSTILE_SECRET_KEY,
-				'response' => $token,
-				'remoteip' => estecapelli_client_ip(),
-			),
-		)
-	);
-	if ( is_wp_error( $response ) ) {
-		return new WP_Error( 'verification_unavailable', __( 'The security check is temporarily unavailable. Please try again.', 'estecapelli' ) );
-	}
-
-	$result = json_decode( wp_remote_retrieve_body( $response ), true );
-	if ( ! is_array( $result ) || empty( $result['success'] ) ) {
-		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
-	}
-	if ( $expected_action && ( $result['action'] ?? '' ) !== $expected_action ) {
-		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
-	}
-
-	$site_host     = strtolower( (string) wp_parse_url( home_url( '/' ), PHP_URL_HOST ) );
-	$response_host = strtolower( (string) ( $result['hostname'] ?? '' ) );
-	$allowed_hosts = array_filter(
-		array_unique(
-			array(
-				$site_host,
-				0 === strpos( $site_host, 'www.' ) ? substr( $site_host, 4 ) : 'www.' . $site_host,
-			)
-		)
-	);
-	$allowed_hosts = (array) apply_filters( 'estecapelli_turnstile_allowed_hosts', $allowed_hosts );
-	if ( ! $response_host || ! in_array( $response_host, $allowed_hosts, true ) ) {
-		return new WP_Error( 'verification_failed', __( 'Please complete the security check and try again.', 'estecapelli' ) );
-	}
-
-	return true;
-}
-
-/** Enqueue Turnstile only after both credentials have been configured. */
-function estecapelli_enqueue_turnstile() {
-	if ( ! estecapelli_turnstile_is_configured() ) {
-		return;
-	}
-	wp_enqueue_script(
-		'estecapelli-turnstile',
-		'https://challenges.cloudflare.com/turnstile/v0/api.js',
-		array(),
-		null,
-		true
-	);
-}
-add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_turnstile', 20 );
-
 /** Enqueue the footer's small, non-blocking AJAX controller. */
 function estecapelli_enqueue_footer_lead_script() {
 	wp_enqueue_script(
@@ -216,21 +114,21 @@ function estecapelli_enqueue_footer_lead_script() {
 add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_footer_lead_script', 21 );
 
 /**
- * Turnstile must be ready before a visitor can submit a form. WP Rocket's
- * Delay JavaScript Execution otherwise rewrites this tag and waits for the
- * first interaction, which can race with a first submit click.
+ * The footer form controller must be ready before a visitor can submit. WP
+ * Rocket's Delay JavaScript Execution otherwise rewrites this tag and waits for
+ * the first interaction, which can race with a first submit click.
  */
-function estecapelli_turnstile_skip_js_delay( $tag, $handle ) {
-	$critical_handles = array( 'estecapelli-turnstile', 'estecapelli-footer-lead' );
+function estecapelli_lead_scripts_skip_js_delay( $tag, $handle ) {
+	$critical_handles = array( 'estecapelli-footer-lead' );
 	if ( ! in_array( $handle, $critical_handles, true ) || false !== strpos( $tag, 'data-nowprocket' ) ) {
 		return $tag;
 	}
 	return preg_replace( '/<script\b/', '<script data-nowprocket', $tag, 1 );
 }
-add_filter( 'script_loader_tag', 'estecapelli_turnstile_skip_js_delay', 10, 2 );
+add_filter( 'script_loader_tag', 'estecapelli_lead_scripts_skip_js_delay', 10, 2 );
 
 /**
- * Render the shared honeypot, signed form-age fields and optional Turnstile.
+ * Render the shared honeypot and signed form-age fields.
  *
  * @param string $source Form source/action suffix.
  */
@@ -247,15 +145,6 @@ function estecapelli_lead_antispam_fields( $source ) {
 	</div>
 	<input type="hidden" name="lead_form_started" value="<?php echo esc_attr( $started ); ?>" />
 	<input type="hidden" name="lead_form_signature" value="<?php echo esc_attr( $sig ); ?>" />
-	<?php if ( estecapelli_turnstile_is_configured() ) : ?>
-		<div
-			class="estecapelli-turnstile cf-turnstile"
-			data-sitekey="<?php echo esc_attr( ESTECAPELLI_TURNSTILE_SITE_KEY ); ?>"
-			data-action="<?php echo esc_attr( estecapelli_turnstile_lead_action( $source ) ); ?>"
-			data-theme="light"
-			data-size="flexible"
-		></div>
-	<?php endif; ?>
 	<?php
 }
 
@@ -268,10 +157,9 @@ function estecapelli_lead_antispam_fields( $source ) {
 function estecapelli_check_lead_antispam( array $data ) {
 	$honeypot_raw = isset( $_POST['lead_company_website'] ) ? wp_unslash( $_POST['lead_company_website'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$honeypot     = is_scalar( $honeypot_raw ) ? sanitize_text_field( $honeypot_raw ) : 'invalid';
-	// Turnstile is the authoritative bot check when configured. Browser and
-	// password-manager autofill can occasionally populate off-screen inputs, so
-	// never let the heuristic honeypot silently discard a verified real lead.
-	if ( ! estecapelli_turnstile_is_configured() && '' !== $honeypot ) {
+	// The honeypot is the primary bot check: it is hidden from real visitors and
+	// carries autocomplete="off", so anything filling it is automated.
+	if ( '' !== $honeypot ) {
 		return new WP_Error( 'spam_detected', 'Spam detected.' );
 	}
 
@@ -283,15 +171,13 @@ function estecapelli_check_lead_antispam( array $data ) {
 	if ( ! $started || ! $sig || ! hash_equals( $expect, $sig ) ) {
 		return new WP_Error( 'form_expired', __( 'Please refresh the page and submit the form again.', 'estecapelli' ) );
 	}
-	// The minimum-time heuristic is only a fallback for installations that have
-	// not configured Turnstile yet. Fast autofill must not drop verified leads.
-	if ( ! estecapelli_turnstile_is_configured() && time() - $started < 3 ) {
+	// A form filled in under three seconds was not filled in by a human reading
+	// the page. Kept deliberately low so fast autofill never drops a real lead.
+	if ( time() - $started < 3 ) {
 		return new WP_Error( 'spam_detected', 'Spam detected.' );
 	}
 
-	$turnstile_raw = isset( $_POST['cf-turnstile-response'] ) ? wp_unslash( $_POST['cf-turnstile-response'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-	$turnstile     = is_scalar( $turnstile_raw ) ? sanitize_text_field( $turnstile_raw ) : '';
-	return estecapelli_verify_turnstile( $turnstile, estecapelli_turnstile_lead_action( $data['source'] ) );
+	return true;
 }
 
 /**
@@ -444,8 +330,6 @@ function estecapelli_lead_error_message( $code ) {
 		'invalid_email'            => __( 'Please enter a valid email address.', 'estecapelli' ),
 		'missing_name'             => __( 'Please enter your name.', 'estecapelli' ),
 		'missing_phone'            => __( 'Please enter your phone number.', 'estecapelli' ),
-		'verification_failed'      => __( 'Please complete the security check and try again.', 'estecapelli' ),
-		'verification_unavailable' => __( 'The security check is temporarily unavailable. Please try again.', 'estecapelli' ),
 		'form_expired'             => __( 'Please refresh the page and submit the form again.', 'estecapelli' ),
 		'rate_limited'             => __( 'Too many requests. Please wait a few minutes and try again.', 'estecapelli' ),
 	);

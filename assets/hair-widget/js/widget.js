@@ -7,11 +7,11 @@
 // NOTE: the ?v=N query on these relative imports cache-busts the whole module
 // graph. Bump N (here AND in analyze.js / submit.js / camera.js / face-detect.js)
 // whenever you change any widget JS, so browsers never run a stale mix.
-import { CONFIG, createHairSession } from './config.js?v=7';
-import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=7';
-import { startFaceGate } from './face-detect.js?v=7';
-import { analyzePhotos } from './analyze.js?v=7';
-import { submitLead } from './submit.js?v=7';
+import { CONFIG } from './config.js?v=8';
+import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=8';
+import { startFaceGate } from './face-detect.js?v=8';
+import { analyzePhotos } from './analyze.js?v=8';
+import { submitLead } from './submit.js?v=8';
 
 const STEPS = CONFIG.steps;
 const C = CONFIG.copy;
@@ -40,9 +40,6 @@ export class HairAnalysisWidget {
     this.contact = null; // { name, phone, email, consent }
     this.method = ''; // preferred contact channel: 'whatsapp' | 'call' | 'email'
     this.submitted = false; // guard so the lead is sent only once
-    this.hairSession = '';
-    this.turnstileToken = '';
-    this.turnstileWidgetId = null;
 
     // Camera/runtime state for the active capture step.
     this.stream = null;
@@ -211,20 +208,7 @@ export class HairAnalysisWidget {
     if (!consent) return this.showError(C.consentError);
 
     const submit = form.querySelector('button[type="submit"]');
-    if (CONFIG.turnstileSiteKey && !this.turnstileToken) {
-      return this.showError(C.verificationError);
-    }
     if (submit) submit.disabled = true;
-    try {
-      this.hairSession = await createHairSession(this.turnstileToken);
-    } catch {
-      this.turnstileToken = '';
-      if (window.turnstile && this.turnstileWidgetId !== null) {
-        try { window.turnstile.reset(this.turnstileWidgetId); } catch (e) {}
-      }
-      if (submit) submit.disabled = false;
-      return this.showError(C.verificationError);
-    }
 
     this.contact = { name, phone, email, consent };
     // Contact details are in hand before a single photo is taken, so this — not
@@ -262,7 +246,7 @@ export class HairAnalysisWidget {
     this.setStage('analyzing');
 
     try {
-      this.analysis = await analyzePhotos(this.photoBlobs(), this.hairSession);
+      this.analysis = await analyzePhotos(this.photoBlobs());
       emit({
         action: 'complete',
         norwood: this.analysis?.norwood_stage,
@@ -280,7 +264,6 @@ export class HairAnalysisWidget {
           analysis: this.analysis,
           contact: this.contact,
           method: this.method,
-          session: this.hairSession,
         });
         this.submitted = true;
         // The widget's lead reaches the same inbox and CRM as every other
@@ -395,7 +378,6 @@ export class HairAnalysisWidget {
                 <input name="consent" type="checkbox" required />
                 <span>${esc(C.consent)}</span>
               </label>
-              ${CONFIG.turnstileSiteKey ? '<div class="hw-turnstile" data-hw-turnstile></div>' : ''}
               <button class="hw-btn hw-btn--accent" type="submit">${esc(C.submitIntro)}</button>
             </form>
 
@@ -583,46 +565,7 @@ export class HairAnalysisWidget {
         this.onIntroSubmit(e.currentTarget);
       });
       this.initPhone(form);
-      this.initTurnstile(form);
     }
-  }
-
-  // The intro is rendered dynamically, after Cloudflare's implicit scan. Render
-  // its challenge explicitly and retain the callback token for session exchange.
-  initTurnstile(form) {
-    if (!CONFIG.turnstileSiteKey || this.turnstileWidgetId !== null) return;
-    const mount = form.querySelector('[data-hw-turnstile]');
-    if (!mount) return;
-
-    let attempts = 0;
-    const render = () => {
-      if (!mount.isConnected || this.turnstileWidgetId !== null) return;
-      if (!window.turnstile) {
-        attempts += 1;
-        if (attempts < 100) setTimeout(render, 100);
-        else this.showError(C.verificationError);
-        return;
-      }
-      try {
-        this.turnstileWidgetId = window.turnstile.render(mount, {
-          sitekey: CONFIG.turnstileSiteKey,
-          action: 'hair_analysis',
-          theme: 'light',
-          size: 'flexible',
-          callback: (token) => { this.turnstileToken = token || ''; },
-          'expired-callback': () => { this.turnstileToken = ''; },
-          'timeout-callback': () => { this.turnstileToken = ''; },
-          'error-callback': () => {
-            this.turnstileToken = '';
-            this.showError(C.verificationError);
-            return true;
-          },
-        });
-      } catch {
-        this.showError(C.verificationError);
-      }
-    };
-    render();
   }
 
   // Upgrade the phone field with the international dial-code selector. The

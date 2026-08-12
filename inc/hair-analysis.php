@@ -51,15 +51,6 @@ add_action( 'rest_api_init', function () {
 			'permission_callback' => '__return_true',
 		)
 	);
-	register_rest_route(
-		'estecapelli/v1',
-		'/hair-session',
-		array(
-			'methods'             => 'POST',
-			'callback'            => 'estecapelli_hair_session',
-			'permission_callback' => '__return_true', // nonce + Turnstile checked inside
-		)
-	);
 	// Fresh nonce for the widget. The nonce printed in the page HTML gets frozen
 	// by full-page caches and expires after ~12–24h → 403 for every visitor.
 	// This uncached route hands out a live nonce right before each submission.
@@ -93,83 +84,6 @@ function estecapelli_hair_check_nonce( $nonce ) {
 		return new WP_REST_Response( array( 'ok' => false, 'error' => 'bad_nonce' ), 403 );
 	}
 	return null;
-}
-
-/** Transient key for an opaque hair-analysis session. */
-function estecapelli_hair_session_key( $session ) {
-	return 'ec_hair_' . substr( hash( 'sha256', (string) $session ), 0, 40 );
-}
-
-/**
- * Exchange one successful Turnstile challenge for a short-lived, two-operation
- * session. This avoids asking the visitor to solve a second challenge after
- * spending several minutes taking photos, while keeping both expensive routes
- * inaccessible to bots.
- */
-function estecapelli_hair_session( WP_REST_Request $request ) {
-	$nonce = sanitize_text_field( (string) $request->get_param( 'nonce' ) );
-	if ( $err = estecapelli_hair_check_nonce( $nonce ) ) {
-		return $err;
-	}
-
-	$limited = function_exists( 'estecapelli_rate_limit' )
-		? estecapelli_rate_limit( 'hair_session', 8, 15 * MINUTE_IN_SECONDS )
-		: true;
-	if ( is_wp_error( $limited ) ) {
-		return new WP_REST_Response( array( 'ok' => false, 'error' => 'rate_limited' ), 429 );
-	}
-
-	if ( ! function_exists( 'estecapelli_turnstile_is_configured' ) || ! estecapelli_turnstile_is_configured() ) {
-		return new WP_REST_Response( array( 'ok' => true, 'session' => '' ), 200 );
-	}
-
-	$token    = sanitize_text_field( (string) $request->get_param( 'turnstile_token' ) );
-	$verified = estecapelli_verify_turnstile( $token, 'hair_analysis' );
-	if ( is_wp_error( $verified ) ) {
-		return new WP_REST_Response(
-			array( 'ok' => false, 'error' => $verified->get_error_code(), 'message' => $verified->get_error_message() ),
-			422
-		);
-	}
-
-	$session = wp_generate_password( 64, false, false );
-	set_transient(
-		estecapelli_hair_session_key( $session ),
-		array( 'analyze' => false, 'lead' => false ),
-		30 * MINUTE_IN_SECONDS
-	);
-
-	return new WP_REST_Response( array( 'ok' => true, 'session' => $session ), 200 );
-}
-
-/**
- * Authorize and consume one operation on a hair-analysis session.
- *
- * @param string $session   Opaque browser session.
- * @param string $operation analyze|lead.
- * @return true|WP_Error
- */
-function estecapelli_hair_use_session( $session, $operation ) {
-	if ( ! function_exists( 'estecapelli_turnstile_is_configured' ) || ! estecapelli_turnstile_is_configured() ) {
-		return true;
-	}
-	if ( ! in_array( $operation, array( 'analyze', 'lead' ), true ) || '' === (string) $session ) {
-		return new WP_Error( 'invalid_session', 'Invalid analysis session.' );
-	}
-
-	$key   = estecapelli_hair_session_key( $session );
-	$state = get_transient( $key );
-	if ( ! is_array( $state ) || ! empty( $state[ $operation ] ) ) {
-		return new WP_Error( 'invalid_session', 'Invalid or expired analysis session.' );
-	}
-
-	$state[ $operation ] = true;
-	if ( ! empty( $state['analyze'] ) && ! empty( $state['lead'] ) ) {
-		delete_transient( $key );
-	} else {
-		set_transient( $key, $state, 30 * MINUTE_IN_SECONDS );
-	}
-	return true;
 }
 
 /**
@@ -250,11 +164,6 @@ function estecapelli_hair_analyze( WP_REST_Request $request ) {
 		: true;
 	if ( is_wp_error( $limited ) ) {
 		return new WP_REST_Response( array( 'ok' => false, 'error' => 'rate_limited' ), 429 );
-	}
-	$session = isset( $body['session'] ) ? sanitize_text_field( (string) $body['session'] ) : '';
-	$allowed = estecapelli_hair_use_session( $session, 'analyze' );
-	if ( is_wp_error( $allowed ) ) {
-		return new WP_REST_Response( array( 'ok' => false, 'error' => $allowed->get_error_code() ), 403 );
 	}
 
 	if ( ! defined( 'ESTECAPELLI_ANTHROPIC_KEY' ) || ! ESTECAPELLI_ANTHROPIC_KEY ) {
@@ -420,11 +329,6 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		: true;
 	if ( is_wp_error( $limited ) ) {
 		return new WP_REST_Response( array( 'ok' => false, 'error' => 'rate_limited' ), 429 );
-	}
-	$session = sanitize_text_field( (string) $request->get_param( 'session' ) );
-	$allowed = estecapelli_hair_use_session( $session, 'lead' );
-	if ( is_wp_error( $allowed ) ) {
-		return new WP_REST_Response( array( 'ok' => false, 'error' => $allowed->get_error_code() ), 403 );
 	}
 
 	$name = sanitize_text_field( (string) $request->get_param( 'lead_name' ) );

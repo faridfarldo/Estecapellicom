@@ -13,9 +13,9 @@
  * @param {string} args.method          preferred contact channel (whatsapp|call|email)
  * @returns {Promise<object>}
  */
-import { CONFIG, freshNonce } from './config.js?v=7';
+import { CONFIG, freshNonce } from './config.js?v=8';
 
-export async function submitLead({ photos, analysis, contact, method, session = '' }) {
+export async function submitLead({ photos, analysis, contact, method }) {
   // Front-end-only mode: pretend the lead was sent (no backend yet).
   if (CONFIG.mock) {
     await new Promise((r) => setTimeout(r, 1200));
@@ -29,7 +29,6 @@ export async function submitLead({ photos, analysis, contact, method, session = 
   form.append('lead_consent', contact.consent ? '1' : '0');
   form.append('lead_method', method || '');
   form.append('lead_source', 'hero-hair-analysis');
-  form.append('session', session);
   // The REST endpoint can't resolve the visitor's language or page on its own —
   // WPML has no request context there. Send what the page already knows.
   form.append('lead_lang', CONFIG.locale || '');

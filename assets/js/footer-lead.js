@@ -21,13 +21,6 @@
 		}
 	}
 
-	function resetTurnstile(form) {
-		if (!window.turnstile) return;
-		form.querySelectorAll('.cf-turnstile').forEach(function (widget) {
-			try { window.turnstile.reset(widget); } catch (e) {}
-		});
-	}
-
 	ready(function () {
 		var root = document.getElementById('footer-lead');
 		if (!root) return;
@@ -82,14 +75,12 @@
 						feedback.classList.add('contact-alert--error');
 					}
 					feedback.hidden = false;
-					resetTurnstile(form);
 				})
 				.catch(function () {
 					emit('lead-error', { location: 'footer', message: 'network_error' });
 					feedbackText.textContent = i18n.error || 'Something went wrong. Please try again.';
 					feedback.classList.add('contact-alert--error');
 					feedback.hidden = false;
-					resetTurnstile(form);
 				})
 				.finally(function () {
 					delete form.dataset.submitting;
