@@ -8393,6 +8393,14 @@
 	}
 }
 
+/* intl-tel-input moves its mobile country picker to <body>. Its default
+   z-index (1060) leaves it behind the lead modal (9999), so keep the
+   fullscreen picker in front. This must stay outside a cascade layer because
+   the third-party stylesheet is unlayered and is loaded asynchronously. */
+.iti--fullscreen-popup.iti--container {
+	z-index: 10000 !important;
+}
+
 /* ============================================================ Lead popup (modal consultation form) */
 @layer components {
 	.lead-popup {
