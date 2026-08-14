@@ -76,6 +76,7 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 		'Name and surname'                        => 'Nom et prénom',
 		'Phone'                                   => 'Téléphone',
 		'Phone number'                            => 'Numéro de téléphone',
+		'Email address'                           => 'Adresse e-mail',
 		'Interested in'                           => 'Intéressé(e) par',
 		'Select a treatment'                      => 'Sélectionnez un traitement',
 		'Hair Transplant'                         => 'Greffe de cheveux',

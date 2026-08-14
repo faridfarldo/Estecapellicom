@@ -226,6 +226,19 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 							placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>"
 						/>
 					</div>
+					<div class="lead-form__field">
+						<label for="lead-email" class="sr-only"><?php esc_html_e( 'Email address', 'estecapelli' ); ?></label>
+						<?php // Optional, exactly as on the popup and the contact page: the
+							// phone is what the clinic calls back on, and making a second
+							// field mandatory in a two-field footer form costs enquiries. ?>
+						<input
+							id="lead-email"
+							type="email"
+							name="lead_email"
+							autocomplete="email"
+							placeholder="<?php esc_attr_e( 'Email address', 'estecapelli' ); ?>"
+						/>
+					</div>
 					<?php estecapelli_lead_tracking_fields( 'footer' ); ?>
 					<input type="hidden" name="lead_return" value="<?php echo esc_url( $footer_lead_return ); ?>" />
 					<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>

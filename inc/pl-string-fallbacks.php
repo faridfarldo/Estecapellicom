@@ -40,6 +40,7 @@ function estecapelli_pl_gettext_fallback( $translation, $text, $domain ) {
 			'Chat on WhatsApp' => 'Napisz na WhatsApp',
 			'Name and surname' => 'Imię i nazwisko',
 			'Phone number' => 'Numer telefonu',
+			'Email address' => 'Adres e-mail',
 			'Full name' => 'Imię i nazwisko',
 			'Phone' => 'Telefon',
 			'Email' => 'E-mail',

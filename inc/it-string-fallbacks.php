@@ -42,6 +42,7 @@ function estecapelli_it_gettext_fallback( $translation, $text, $domain ) {
 		'Get a free consultation — leave your details and we will reach out.' => 'Richiedi una consulenza gratuita: lascia i tuoi dati e ti contatteremo.',
 		'Name and surname' => 'Nome e cognome',
 		'Phone number' => 'Numero di telefono',
+		'Email address' => 'Indirizzo email',
 		'Request Call Back' => 'Richiedi di essere richiamato',
 		'All rights reserved.' => 'Tutti i diritti riservati.',
 		'Footer legal' => 'Link legali nel piè di pagina',

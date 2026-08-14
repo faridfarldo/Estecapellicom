@@ -63,6 +63,7 @@ function estecapelli_tr_gettext_fallback( $translation, $text, $domain ) {
 			'Name and surname' => 'Adınız ve soyadınız',
 			'Phone' => 'Telefon',
 			'Phone number' => 'Telefon numarası',
+			'Email address' => 'E-posta adresi',
 			'Email' => 'E-posta',
 			'Note' => 'Not',
 			'Tell us about your goals, or any questions you have…' => 'Hedeflerinizi veya sorularınızı bize iletin…',
