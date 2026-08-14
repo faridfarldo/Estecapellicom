@@ -1285,6 +1285,36 @@
 		.hero-split__panel--exosome .hero-split__cover { transform: scale(1.12) translateY(-14%); }
 		.hero-split__panel--vita .hero-split__cover { transform: scale(1.12) translateY(14%); }
 
+		/* The playing video must NOT inherit the rotated geometry. The ±12%
+		   sideways nudge is a desktop trick for the vertical seam; with the
+		   panels stacked there is no side to nudge toward, so it only pushed the
+		   video off-centre and opened a gap beside it. */
+		.hero-split__panel[data-open="true"] .hero-split__video { transform: none; }
+
+		/* Then give the open video the whole stage, shaped like the video that is
+		   actually playing. The two are not the same shape — VITA is a 9:16
+		   Short, Exosome a 16:9 upload — so any single fixed stage letterboxes
+		   one of them whatever height it is given, which is where the black bars
+		   came from. Keying off the active panel lets each play edge to edge
+		   with no bars and nothing cropped. */
+		.hero-split__stage[data-split-active="exosome"],
+		.hero-split__stage[data-split-active="vita"] {
+			--slant: 0%;
+			height: auto;
+		}
+		.hero-split__stage[data-split-active="exosome"] {
+			--split: 100%;
+			aspect-ratio: 16 / 9;
+		}
+		.hero-split__stage[data-split-active="vita"] {
+			--split: 0%;
+			aspect-ratio: 9 / 16;
+			/* A 9:16 stage is taller than most phone screens; cap it so the hero
+			   still fits, at the cost of a few pixels of bar rather than a video
+			   the visitor has to scroll to see. */
+			max-height: 76vh;
+		}
+
 		/* Anchor each panel's copy to its own edge so the heading stays inside
 		   the visible strip when collapsed; full width, always left-aligned. */
 		.hero-split__content {
