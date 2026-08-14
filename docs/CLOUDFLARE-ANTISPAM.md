@@ -54,19 +54,30 @@ building it from the dropdowns field by field.
 | Rule name | `Lead form flood` |
 | If incoming requests match | Custom filter expression (see below) |
 | Expression | `(http.request.method eq "POST" and http.request.uri.path contains "/wp-admin/admin-ajax.php") or (http.request.method eq "POST" and http.request.uri.path contains "/wp-json/estecapelli/v1/")` |
-| Rate | `8` requests per `1 minute` |
+| Rate | `5` requests per `10 seconds` |
 | Counting characteristic | IP |
-| Action | **Managed Challenge** |
-| Duration | `10 minutes` |
+| Action | **Managed Challenge**, or **Block** where the plan offers no challenge |
+| Duration | the shortest the plan allows |
 
-Managed Challenge rather than Block on purpose: a real person who somehow trips
-it sees a Cloudflare interstitial and continues, instead of a dead form. Eight
-posts a minute is far above any human filling in a consultation form and far
-below what the August run did.
+Five posts in ten seconds is far above anyone filling in a consultation form —
+one person sends one — and far below what the August run did. The Free plan
+caps the counting period at ten seconds, which is why the rate reads this way
+rather than as a per-minute figure.
+
+Prefer Managed Challenge where it is available: a real person who somehow trips
+it sees a Cloudflare interstitial and continues, instead of a dead form.
+
+**Applied on the live site (Free plan) on 2026-08-14** with Block, since the
+Free plan offers no challenge action here.
 
 ## 2. Rate limit the AI analysis endpoint separately
 
 Same screen, second rule. This one costs real money per request.
+
+**Not applied — the site is on the Free plan, which allows exactly one rate
+limiting rule, and rule 1 is the one worth having.** Nothing but rule 1 stands
+in front of the lead forms, whereas this endpoint is already capped at 3/hour
+per IP in `estecapelli_hair_analyze()`. Add this if the plan is ever upgraded.
 
 | Field | Value |
 |---|---|
@@ -80,23 +91,37 @@ Same screen, second rule. This one costs real money per request.
 Block is safe here: PHP already limits this endpoint to 3/hour per IP, so
 anything hitting five in ten minutes is not a patient.
 
-## 3. Challenge known bots on POST only
+## 3. Block script clients from posting forms
 
-**Security → WAF → Custom rules → Create rule**
+**Security → Custom rules → Create rule** (older dashboards: Security → WAF →
+*Custom rules*). The Free plan allows five of these.
 
 | Field | Value |
 |---|---|
-| Rule name | `Bots may not post forms` |
-| Expression | `http.request.method eq "POST" and (cf.client.bot or cf.threat_score gt 14) and not http.request.uri.path contains "/wp-admin/"` |
-| Action | **Managed Challenge** |
+| Rule name | `Script clients may not post forms` |
+| Expression | see below |
+| Action | **Block** |
 
-The `not /wp-admin/` clause keeps the clinic's own logins and editing out of it.
-Verified good bots (Googlebot) never POST to these paths, so nothing about SEO
-is affected.
+```
+http.request.method eq "POST" and (http.request.uri.path contains "/wp-admin/admin-ajax.php" or http.request.uri.path contains "/wp-json/estecapelli/v1/") and (http.user_agent eq "" or http.user_agent contains "python" or http.user_agent contains "curl" or http.user_agent contains "Go-http-client" or http.user_agent contains "Scrapy" or http.user_agent contains "okhttp" or http.user_agent contains "libwww")
+```
+
+This matches on the client announcing itself as a script. A browser never sends
+these user agents, and a bot that bothers to forge one has already been pushed
+up a tier — which is the whole game at the edge.
+
+An earlier version of this rule used `cf.client.bot or cf.threat_score gt 14`.
+That was wrong for this site: `cf.client.bot` is true for *verified* bots such
+as Googlebot, which are precisely the ones that should not be challenged, and it
+says nothing at all about the unverified scripts that actually send this spam.
+Bot Fight Mode (rule 4) is the free tier's answer to those; real bot scoring
+needs a paid Bot Management plan.
+
+**Applied on the live site on 2026-08-14.**
 
 ## 4. Turn on Bot Fight Mode
 
-**Security → Bots → Bot Fight Mode: On**
+**Security → Bots → Bot Fight Mode: On** — **applied on 2026-08-14.**
 
 Free, and it drops the crudest scripted clients before any rule is evaluated.
 If the site is on a paid plan, use **Super Bot Fight Mode** and set *Definitely
