@@ -148,7 +148,10 @@ function estecapelli_lead_antispam_fields( $source ) {
 	<div class="estecapelli-spam-trap" aria-hidden="true">
 		<label>
 			<?php esc_html_e( 'Leave this field empty', 'estecapelli' ); ?>
-			<input type="text" name="lead_company_website" value="" tabindex="-1" autocomplete="off" />
+			<?php // The name must mean nothing to a browser. "lead_company_website"
+				// meant "organization" and "url" to Chrome's autofill and to every
+				// password manager, so they filled the trap for real visitors. ?>
+			<input type="text" name="lead_delta" value="" tabindex="-1" autocomplete="off" />
 		</label>
 	</div>
 	<input type="hidden" name="lead_form_started" value="<?php echo esc_attr( $started ); ?>" />
@@ -201,7 +204,7 @@ function estecapelli_check_lead_antispam( array $data ) {
 function estecapelli_lead_spam_signals( array $data ) {
 	$signals = array();
 
-	$honeypot_raw = isset( $_POST['lead_company_website'] ) ? wp_unslash( $_POST['lead_company_website'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$honeypot_raw = isset( $_POST['lead_delta'] ) ? wp_unslash( $_POST['lead_delta'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$honeypot     = is_scalar( $honeypot_raw ) ? sanitize_text_field( $honeypot_raw ) : 'non-scalar value';
 	if ( '' !== $honeypot ) {
 		$signals[] = 'honeypot field was filled';

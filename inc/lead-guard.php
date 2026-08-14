@@ -339,13 +339,30 @@ function estecapelli_lead_burst_state( $suspicious ) {
 function estecapelli_lead_assess( array $d ) {
 	$weighted = estecapelli_lead_content_signals( $d );
 
-	// Layer 3 — the original honeypot and timer. The honeypot is fatal on its
-	// own now that "fatal" only means "does not reach Kommo": the field is
-	// tabindex="-1" and autocomplete="off", and the clinic still gets the email.
-	$honeypot_raw = isset( $_POST['lead_company_website'] ) ? wp_unslash( $_POST['lead_company_website'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	// Layer 3 — the original honeypot and timer.
+	//
+	// The honeypot needs corroboration rather than deciding on its own. It was
+	// fatal here for one day and immediately quarantined a genuine test lead:
+	// the trap was named "lead_company_website", which Chrome reads as
+	// organization + url and fills from the visitor's own saved profile. The
+	// field is named "lead_delta" now, but a browser that fills a hidden input
+	// once will find another excuse, so 3 points — enough to quarantine
+	// alongside any second signal, never enough alone.
+	$honeypot_raw = isset( $_POST['lead_delta'] ) ? wp_unslash( $_POST['lead_delta'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$honeypot     = is_scalar( $honeypot_raw ) ? sanitize_text_field( $honeypot_raw ) : 'non-scalar value';
 	if ( '' !== $honeypot ) {
-		$weighted['honeypot field was filled'] = 5;
+		// Autofill puts the visitor's OWN details in the trap, so a trap echoing
+		// a field they really filled in is a browser, not a bot.
+		$autofilled = false;
+		foreach ( array( $d['name'] ?? '', $d['phone'] ?? '', $d['email'] ?? '' ) as $own ) {
+			if ( '' !== trim( (string) $own ) && 0 === strcasecmp( trim( (string) $own ), $honeypot ) ) {
+				$autofilled = true;
+				break;
+			}
+		}
+		if ( ! $autofilled ) {
+			$weighted['honeypot field was filled'] = 3;
+		}
 	}
 
 	$started_raw = isset( $_POST['lead_form_started'] ) ? wp_unslash( $_POST['lead_form_started'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
