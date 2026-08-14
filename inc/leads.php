@@ -584,11 +584,15 @@ function estecapelli_process_lead( array $d ) {
 		$source_label,
 		$d['name']
 	);
-	// Flagged in the subject rather than withheld, so the clinic decides. The
-	// two prefixes mean different things: "[?]" still reached the CRM, "[SPAM?]"
-	// did not and is waiting in wp-admin → Leads → Quarantined.
+	// Only a lead that was actually held back is marked, because only that one
+	// needs the clinic to do something about it. A low score on a lead that
+	// reached Kommo anyway is tuning information, not news: it stays in the log
+	// and on the lead in wp-admin, and out of an inbox where "[?]" beside a real
+	// patient's name is just alarming.
+	if ( $quarantine ) {
+		$subject = '[SPAM?] ' . $subject;
+	}
 	if ( $spam_signals ) {
-		$subject = ( $quarantine ? '[SPAM?] ' : '[?] ' ) . $subject;
 		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			sprintf(
 				'[estecapelli] Lead %s (score %d: %s): %s',

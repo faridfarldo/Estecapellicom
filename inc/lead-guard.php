@@ -379,9 +379,13 @@ function estecapelli_lead_assess( array $d ) {
 		$weighted[ $token_bad ] = ( false !== strpos( $token_bad, 'replayed' ) || false !== strpos( $token_bad, 'forged' ) ) ? 4 : 3;
 	}
 
-	// One IP filling the form all day is not a patient.
+	// One IP filling the form all day is not a patient — but "one IP" is a much
+	// blunter idea than it sounds. Mobile visitors in Turkey and Italy sit behind
+	// carrier-grade NAT in their thousands, and the clinic testing its own forms
+	// looks identical to abuse. Hence a cap high enough that only a machine
+	// reaches it, and only 3 points when it does.
 	$daily = estecapelli_lead_ip_daily_count();
-	if ( $daily > (int) apply_filters( 'estecapelli_lead_daily_ip_cap', 12 ) ) {
+	if ( $daily > (int) apply_filters( 'estecapelli_lead_daily_ip_cap', 25 ) ) {
 		$weighted[ sprintf( 'more than %d submissions from this address today', $daily - 1 ) ] = 3;
 	}
 
