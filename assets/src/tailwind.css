@@ -1291,28 +1291,36 @@
 		   video off-centre and opened a gap beside it. */
 		.hero-split__panel[data-open="true"] .hero-split__video { transform: none; }
 
-		/* Then give the open video the whole stage, shaped like the video that is
-		   actually playing. The two are not the same shape — VITA is a 9:16
-		   Short, Exosome a 16:9 upload — so any single fixed stage letterboxes
-		   one of them whatever height it is given, which is where the black bars
-		   came from. Keying off the active panel lets each play edge to edge
-		   with no bars and nothing cropped. */
+		/* Then shape the stage around the video that is actually playing. The two
+		   are not the same shape — VITA is a 9:16 Short, Exosome a 16:9 upload —
+		   so any single fixed stage letterboxes one of them whatever height it
+		   is given, which is where the black bars came from.
+
+		   The open panel deliberately stops short of the full stage: the other
+		   technique keeps a 14% strip so it stays on screen and one tap away.
+		   Each panel's copy is already anchored to its own outer edge, so the
+		   name lands inside that strip rather than being clipped out of it.
+
+		   Which makes the stage 1/0.86 taller than the video alone would need,
+		   so that the 86% the video occupies is what lands on its aspect ratio.
+		   Change 14% and both ratios below have to move with it. */
 		.hero-split__stage[data-split-active="exosome"],
 		.hero-split__stage[data-split-active="vita"] {
 			--slant: 0%;
 			height: auto;
 		}
 		.hero-split__stage[data-split-active="exosome"] {
-			--split: 100%;
-			aspect-ratio: 16 / 9;
+			--split: 86%;
+			aspect-ratio: 1.529; /* 16 / 9 × 0.86 */
 		}
 		.hero-split__stage[data-split-active="vita"] {
-			--split: 0%;
-			aspect-ratio: 9 / 16;
-			/* A 9:16 stage is taller than most phone screens; cap it so the hero
-			   still fits, at the cost of a few pixels of bar rather than a video
-			   the visitor has to scroll to see. */
-			max-height: 76vh;
+			--split: 14%;
+			aspect-ratio: 0.484; /* 9 / 16 × 0.86 */
+			/* A portrait video, a phone screen and a visible strip of the other
+			   technique cannot all fit at once. This caps the hero at four
+			   fifths of the screen and lets VITA keep a thin bar either side,
+			   rather than growing into a video the visitor must scroll through. */
+			max-height: 80vh;
 		}
 
 		/* Anchor each panel's copy to its own edge so the heading stays inside
