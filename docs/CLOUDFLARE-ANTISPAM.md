@@ -14,6 +14,37 @@ the POST endpoints the forms use.
 
 ---
 
+## Where these go
+
+Sign in at **dash.cloudflare.com**, pick the account, then click the
+**estecapelli.com** domain — every screen below is inside that domain, not in
+the account-level menu. The left sidebar has a **Security** section:
+
+| Rule | Sidebar path |
+|---|---|
+| 1 and 2 | Security → **Rate limiting rules** (older dashboards: Security → WAF → *Rate limiting rules* tab) |
+| 3 | Security → **Custom rules** (older: Security → WAF → *Custom rules* tab) |
+| 4 | Security → **Bots** |
+| Checking results | Security → **Events** (newer dashboards: Security → *Analytics*, "Events" tab) |
+
+Cloudflare reorganised this sidebar during 2025, so if "WAF" is not where you
+expect it, look for **Security rules** — the rule editors themselves are
+identical either way.
+
+In every rule editor, choose **Custom filter expression** and then the
+**Edit expression** / `</>` link to paste the expression text as-is, rather than
+building it from the dropdowns field by field.
+
+> **If you can only create one rate limiting rule,** you are on the Free plan,
+> which allows exactly that. Create **rule 1** and skip rule 2 — the analysis
+> endpoint is already capped at 3/hour per IP in PHP, whereas nothing but rule 1
+> stands in front of the lead forms. The Free plan also restricts the counting
+> period and the action list; pick the closest available values (a 10-second
+> period with a proportionally lower request count is fine) and leave the action
+> on **Managed Challenge** if it is offered, **Block** if it is not.
+
+---
+
 ## 1. Rate limit the form endpoints (the important one)
 
 **Security → WAF → Rate limiting rules → Create rule**
