@@ -124,7 +124,10 @@ add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_footer_lead_script', 21 )
  * the first interaction, which can race with a first submit click.
  */
 function estecapelli_lead_scripts_skip_js_delay( $tag, $handle ) {
-	$critical_handles = array( 'estecapelli-footer-lead' );
+	// The guard must be able to mint its token on the visitor's first focus; if
+	// WP Rocket holds it back until "first interaction" it can lose that race and
+	// a genuine lead arrives looking tokenless.
+	$critical_handles = array( 'estecapelli-footer-lead', 'estecapelli-lead-guard' );
 	if ( ! in_array( $handle, $critical_handles, true ) || false !== strpos( $tag, 'data-nowprocket' ) ) {
 		return $tag;
 	}
@@ -150,6 +153,12 @@ function estecapelli_lead_antispam_fields( $source ) {
 	</div>
 	<input type="hidden" name="lead_form_started" value="<?php echo esc_attr( $started ); ?>" />
 	<input type="hidden" name="lead_form_signature" value="<?php echo esc_attr( $sig ); ?>" />
+	<?php
+	// Filled in by assets/js/lead-guard.js on the visitor's first interaction.
+	// Deliberately empty in the HTML: a value baked into a cached page would be
+	// exactly as free for a bot to copy as the two fields above.
+	?>
+	<input type="hidden" name="lead_token" value="" />
 	<?php
 }
 
@@ -525,8 +534,15 @@ function estecapelli_process_lead( array $d ) {
 		return $limits;
 	}
 
-	// Suspicious, but never dropped — see estecapelli_lead_spam_signals().
-	$spam_signals = estecapelli_lead_spam_signals( $d );
+	// Scored, never dropped — see inc/lead-guard.php. A quarantined lead is
+	// stored and emailed to the clinic exactly like any other; the only thing it
+	// loses is the BCC that would have created a Kommo record, and wp-admin can
+	// hand it that back with one click.
+	$assessment   = function_exists( 'estecapelli_lead_assess' )
+		? estecapelli_lead_assess( $d )
+		: array( 'signals' => estecapelli_lead_spam_signals( $d ), 'score' => 0, 'quarantine' => false );
+	$spam_signals = $assessment['signals'];
+	$quarantine   = ! empty( $assessment['quarantine'] );
 
 	$source_label = estecapelli_lead_source_label( $d );
 
@@ -549,6 +565,10 @@ function estecapelli_process_lead( array $d ) {
 		update_post_meta( $lead_id, 'lead_utm', $d['utm'] );
 		if ( $spam_signals ) {
 			update_post_meta( $lead_id, 'lead_spam_signals', implode( '; ', $spam_signals ) );
+			update_post_meta( $lead_id, 'lead_spam_score', (int) $assessment['score'] );
+		}
+		if ( $quarantine ) {
+			update_post_meta( $lead_id, 'lead_is_spam', '1' );
 		}
 	}
 
@@ -561,11 +581,19 @@ function estecapelli_process_lead( array $d ) {
 		$source_label,
 		$d['name']
 	);
-	// Flagged in the subject rather than withheld, so the clinic decides.
+	// Flagged in the subject rather than withheld, so the clinic decides. The
+	// two prefixes mean different things: "[?]" still reached the CRM, "[SPAM?]"
+	// did not and is waiting in wp-admin → Leads → Quarantined.
 	if ( $spam_signals ) {
-		$subject = '[?] ' . $subject;
+		$subject = ( $quarantine ? '[SPAM?] ' : '[?] ' ) . $subject;
 		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-			sprintf( '[estecapelli] Lead flagged but delivered (%s): %s', implode( '; ', $spam_signals ), $d['name'] )
+			sprintf(
+				'[estecapelli] Lead %s (score %d: %s): %s',
+				$quarantine ? 'QUARANTINED — not sent to Kommo' : 'flagged but delivered',
+				(int) $assessment['score'],
+				implode( '; ', $spam_signals ),
+				$d['name']
+			)
 		);
 	}
 
@@ -589,17 +617,36 @@ function estecapelli_process_lead( array $d ) {
 	$lines[] = 'UTM Content: ' . $d['utm']['content'];
 	$lines[] = 'UTM Term: ' . $d['utm']['term'];
 
+	$body      = implode( "\r\n", $lines );
 	$from_name = get_bloginfo( 'name' );
 	$headers   = array(
 		'Content-Type: text/plain; charset=UTF-8',
 		sprintf( 'From: %s <%s>', $from_name, ESTECAPELLI_MAIL_FROM ),
-		'Bcc: ' . ESTECAPELLI_KOMMO_PARSER,
 	);
+	// The single line that keeps spam out of Kommo: the CRM only ever sees a lead
+	// through this BCC, so withholding it withholds the CRM record — while the
+	// clinic's own copy above goes out either way.
+	if ( ! $quarantine ) {
+		$headers[] = 'Bcc: ' . ESTECAPELLI_KOMMO_PARSER;
+	}
 	if ( $d['email'] && is_email( $d['email'] ) ) {
 		$headers[] = sprintf( 'Reply-To: %s <%s>', $d['name'], $d['email'] );
 	}
 
-	$sent = wp_mail( $to, $subject, implode( "\r\n", $lines ), apply_filters( 'estecapelli_lead_headers', $headers, $d ) );
+	if ( $quarantine ) {
+		// Stored before the explanation below is appended, so releasing a false
+		// positive re-sends the exact mail the Kommo parser expects rather than a
+		// rebuilt approximation of it.
+		if ( ! is_wp_error( $lead_id ) ) {
+			update_post_meta( $lead_id, 'lead_mail_subject', $subject );
+			update_post_meta( $lead_id, 'lead_mail_body', $body );
+		}
+		$body .= "\r\n\r\n--\r\n"
+			. 'NOT sent to the CRM — scored as automated spam (' . implode( '; ', $spam_signals ) . ").\r\n"
+			. 'If this is a real enquiry, release it from wp-admin → Leads → Quarantined.';
+	}
+
+	$sent = wp_mail( $to, $subject, $body, apply_filters( 'estecapelli_lead_headers', $headers, $d ) );
 	estecapelli_lead_record_delivery( $lead_id, $sent, $source_label );
 
 	return $lead_id;
@@ -834,7 +881,18 @@ add_action( 'manage_lead_posts_custom_column', function ( $col, $post_id ) {
 		echo esc_html( get_post_meta( $post_id, $col, true ) );
 		$flags = 'lead_source' === $col ? (string) get_post_meta( $post_id, 'lead_spam_signals', true ) : '';
 		if ( $flags ) {
-			printf( '<br /><small title="%s">⚠ %s</small>', esc_attr( $flags ), esc_html__( 'Possible spam', 'estecapelli' ) );
+			// Two very different states share this cell: a lead that scored but
+			// still reached Kommo, and one that was held back from it.
+			$held = '1' === get_post_meta( $post_id, 'lead_is_spam', true );
+			printf(
+				'<br /><small title="%s" style="color:%s">%s %s</small>',
+				esc_attr( $flags ),
+				$held ? '#b32d2e' : 'inherit',
+				$held ? '⛔' : '⚠',
+				$held
+					? esc_html__( 'Quarantined — not sent to CRM', 'estecapelli' )
+					: esc_html__( 'Possible spam (still sent)', 'estecapelli' )
+			);
 		}
 		return;
 	}

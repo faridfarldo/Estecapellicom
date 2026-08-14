@@ -378,6 +378,22 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		return new WP_REST_Response( array( 'ok' => false, 'error' => $lead_limits->get_error_code() ), 429 );
 	}
 
+	// Same quarantine lane as every other form (inc/lead-guard.php): a scored
+	// submission is still stored and still emailed to the clinic, it just never
+	// gets the BCC that would turn it into a Kommo record.
+	$assessment = function_exists( 'estecapelli_lead_assess' )
+		? estecapelli_lead_assess(
+			array(
+				'name'    => $name,
+				'phone'   => $phone,
+				'email'   => $email,
+				'message' => $summary,
+				'token'   => (string) $request->get_param( 'lead_token' ),
+			)
+		)
+		: array( 'signals' => array(), 'score' => 0, 'quarantine' => false );
+	$quarantine = ! empty( $assessment['quarantine'] );
+
 	$source_label = __( 'AI Photo Hair Analysis', 'estecapelli' );
 
 	// The widget posts to the REST API, where WPML cannot resolve the visitor's
@@ -408,6 +424,13 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		update_post_meta( $lead_id, 'lead_norwood', $norwood );
 		update_post_meta( $lead_id, 'lead_graft_range', $grange );
 		update_post_meta( $lead_id, 'lead_message', $summary );
+		if ( ! empty( $assessment['signals'] ) ) {
+			update_post_meta( $lead_id, 'lead_spam_signals', implode( '; ', $assessment['signals'] ) );
+			update_post_meta( $lead_id, 'lead_spam_score', (int) $assessment['score'] );
+		}
+		if ( $quarantine ) {
+			update_post_meta( $lead_id, 'lead_is_spam', '1' );
+		}
 	}
 
 	// Save the uploaded photos to temp files so they can be attached.
@@ -426,6 +449,9 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 	// Notify clinic + Kommo CRM (same recipients/format as the other forms).
 	$to      = apply_filters( 'estecapelli_lead_email_to', defined( 'ESTECAPELLI_LEAD_TO' ) ? ESTECAPELLI_LEAD_TO : get_option( 'admin_email' ), array() );
 	$subject = sprintf( /* translators: %s: lead name */ __( 'New lead (AI Photo Analysis) — %s', 'estecapelli' ), $name );
+	if ( $quarantine ) {
+		$subject = '[SPAM?] ' . $subject;
+	}
 	$lines   = array(
 		'Adı Soyadı: ' . $name,
 		'Email: ' . ( $email ?: '-' ),
@@ -444,14 +470,22 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		'Content-Type: text/plain; charset=UTF-8',
 		sprintf( 'From: %s <%s>', $from_name, defined( 'ESTECAPELLI_MAIL_FROM' ) ? ESTECAPELLI_MAIL_FROM : get_option( 'admin_email' ) ),
 	);
-	if ( defined( 'ESTECAPELLI_KOMMO_PARSER' ) && ESTECAPELLI_KOMMO_PARSER ) {
+	if ( ! $quarantine && defined( 'ESTECAPELLI_KOMMO_PARSER' ) && ESTECAPELLI_KOMMO_PARSER ) {
 		$headers[] = 'Bcc: ' . ESTECAPELLI_KOMMO_PARSER;
 	}
 	if ( $email && is_email( $email ) ) {
 		$headers[] = sprintf( 'Reply-To: %s <%s>', $name, $email );
 	}
 
-	$sent = wp_mail( $to, $subject, implode( "\r\n", $lines ), $headers, $attachments );
+	$body = implode( "\r\n", $lines );
+	if ( $quarantine && ! is_wp_error( $lead_id ) ) {
+		// Releasing this later re-sends the text to the parser; the photos stay in
+		// the clinic's own copy, which is the only place they are read anyway.
+		update_post_meta( $lead_id, 'lead_mail_subject', $subject );
+		update_post_meta( $lead_id, 'lead_mail_body', $body );
+	}
+
+	$sent = wp_mail( $to, $subject, $body, $headers, $attachments );
 	if ( function_exists( 'estecapelli_lead_record_delivery' ) ) {
 		estecapelli_lead_record_delivery( $lead_id, $sent, 'AI Photo Hair Analysis' );
 	}
