@@ -68,7 +68,7 @@ the first `page_view`.
 |---|---|---|
 | ★ `generate_lead` | Any of the six lead forms succeeds | `form_location`, `lead_treatment`, `lead_language` |
 | ★ `whatsapp_click` | A `wa.me` link is clicked | `link_location`, `message_length` (1 = prefilled) |
-| ★ `whatsapp_chat_send` | Visitor confirms a written message and is handed to WhatsApp | `message_length` |
+| ★ `whatsapp_chat_send` | Visitor reads the hand-off notice and continues to WhatsApp | `message_length` |
 | ★ `phone_click` | A `tel:` link is clicked | `link_location`, `link_url`, `link_text` |
 | ★ `ai_analysis_complete` | The AI returns an estimate | `norwood_stage`, `graft_estimate` |
 
@@ -83,7 +83,7 @@ the first `page_view`.
 | `lead_form_open` | The consultation popup opens | `form_location`, `cta_text` |
 | `form_start` | First field touched in a lead form | `form_location` |
 | `form_error` | A submit is rejected | `form_location`, `error_message` |
-| `whatsapp_chat_open` | The chat overlay opens | `link_location` |
+| `whatsapp_chat_open` | The hand-off notice opens | `link_location` |
 | `email_click` | A `mailto:` link is clicked | `link_location`, `link_url` |
 | `ai_analysis_start` | The photo wizard mounts | `analysis_mode` |
 | `ai_analysis_contact` | Contact details accepted, before any photo | `form_location` |
@@ -323,7 +323,7 @@ Run in GTM Preview, logged out, in a fresh private window.
       `generate_lead`.**
 - [ ] Popup CTA → `cta_click` then `lead_form_open`; submit → `generate_lead`
       with `form_location: popup`.
-- [ ] Floating WhatsApp → `whatsapp_chat_open`; write a message and confirm →
+- [ ] Floating WhatsApp → `whatsapp_chat_open`; continue to WhatsApp →
       `whatsapp_chat_send`. Footer WhatsApp link → `whatsapp_click`.
 - [ ] A `tel:` link → `phone_click` with the right `link_location`.
 - [ ] AI widget: `ai_analysis_start` → `ai_analysis_contact` →

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! function_exists( 'estecapelli_treatments_seed' ) ) {
 	function estecapelli_treatments_seed() {
 
-		$whatsapp = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_url() : '#';
+		$whatsapp = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_url( '' ) : '#';
 
 		return array(
 

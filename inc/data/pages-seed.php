@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 	function estecapelli_pages_seed() {
 
-		$whatsapp = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_url() : '#';
+		$whatsapp = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_url( '' ) : '#';
 
 		/**
 		 * Helper: build a minimal hero scaffold so each page renders something

@@ -293,18 +293,95 @@ if ( ! function_exists( 'estecapelli_trustpilot_badge' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_whatsapp_intro_message' ) ) {
+	/**
+	 * The opening line every WhatsApp thread from this site arrives with.
+	 *
+	 * Client-supplied copy, one entry per public language, each naming its own
+	 * language root so the inbound thread says which site the visitor came from.
+	 *
+	 * Deliberately NOT a gettext string: sales routes threads by this exact
+	 * wording, so it must arrive verbatim and must not drift through WPML
+	 * String Translation. Edit it here or nowhere.
+	 *
+	 * @param string $language Optional indexed language code; current if empty.
+	 * @return string
+	 */
+	function estecapelli_whatsapp_intro_message( $language = '' ) {
+		$language = function_exists( 'estecapelli_indexed_language_code' )
+			? estecapelli_indexed_language_code( $language )
+			: 'en';
+
+		$messages = array(
+			'en' => 'Hello, I am contacting you via https://estecapelli.com/en/ Can you give me more information?',
+			'pl' => 'Witam, kontaktuję się przez https://estecapelli.com/pl/ Czy możecie podać mi więcej informacji?',
+			'fr' => 'Bonjour, je vous contacte via https://estecapelli.com/fr/ Pouvez-vous me donner plus d\'informations?',
+			'it' => 'Ciao, ti sto contattando tramite https://estecapelli.com/it/ Puoi darmi maggiori informazioni?',
+			'pt' => 'Olá, estou a entrar em contacto convosco através do https://estecapelli.com/pt/ Pode dar-me mais informações?',
+			'es' => 'Hola, me pongo en contacto con ustedes a través de https://estecapelli.com/es/ ¿Podrían darme más información?',
+			'tr' => 'Merhaba, sizinle https://estecapelli.com/tr/ üzerinden iletişime geçiyorum. Bana daha fazla bilgi verebilir misiniz?',
+		);
+
+		return isset( $messages[ $language ] ) ? $messages[ $language ] : $messages['en'];
+	}
+}
+
 if ( ! function_exists( 'estecapelli_whatsapp_url' ) ) {
 	/**
 	 * Build a wa.me URL from the configured WhatsApp number.
+	 *
+	 * @param string|null $message Prefilled text. Omit for the language's
+	 *                             standard opening line; pass '' for a bare
+	 *                             link (importers bake those, so the line is
+	 *                             added at render time in the right language).
 	 */
-	function estecapelli_whatsapp_url( $message = '' ) {
+	function estecapelli_whatsapp_url( $message = null ) {
 		$number = preg_replace( '/[^0-9]/', '', ESTECAPELLI_WHATSAPP );
 		$url    = 'https://wa.me/' . $number;
-		if ( $message ) {
-			$url .= '?text=' . rawurlencode( $message );
+		if ( null === $message ) {
+			$message = estecapelli_whatsapp_intro_message();
+		}
+		if ( '' !== (string) $message ) {
+			$url .= '?text=' . rawurlencode( (string) $message );
 		}
 		return $url;
 	}
+}
+
+if ( ! function_exists( 'estecapelli_whatsapp_prefill_url' ) ) {
+	/**
+	 * Add the language's opening line to a bare WhatsApp link.
+	 *
+	 * Hero and section CTAs store their WhatsApp URL in ACF, baked bare by the
+	 * importers. Filling the message in at render time means every language gets
+	 * its own line without a re-import, and a link that already carries text
+	 * (the article share button, the photo CTA) is left alone.
+	 */
+	function estecapelli_whatsapp_prefill_url( $url ) {
+		$url = (string) $url;
+		if ( ! preg_match( '#^https?://(?:wa\.me|api\.whatsapp\.com)/#i', $url ) ) {
+			return $url;
+		}
+		if ( false !== strpos( $url, 'text=' ) ) {
+			return $url;
+		}
+		$separator = false === strpos( $url, '?' ) ? '?' : '&';
+		return $url . $separator . 'text=' . rawurlencode( estecapelli_whatsapp_intro_message() );
+	}
+}
+
+/** Fill the opening line into ACF-stored WhatsApp links on the front end. */
+add_filter( 'acf/format_value/type=url', 'estecapelli_whatsapp_acf_url', 1000 );
+function estecapelli_whatsapp_acf_url( $value ) {
+	return is_admin() ? $value : estecapelli_whatsapp_prefill_url( $value );
+}
+
+add_filter( 'acf/format_value/type=link', 'estecapelli_whatsapp_acf_link', 1000 );
+function estecapelli_whatsapp_acf_link( $value ) {
+	if ( ! is_admin() && is_array( $value ) && ! empty( $value['url'] ) ) {
+		$value['url'] = estecapelli_whatsapp_prefill_url( $value['url'] );
+	}
+	return $value;
 }
 
 if ( ! function_exists( 'estecapelli_youtube_id' ) ) {
@@ -837,7 +914,7 @@ if ( ! function_exists( 'estecapelli_home_hero_defaults' ) ) {
 			),
 			'cta_whatsapp' => array(
 				'label' => __( 'Chat on WhatsApp', 'estecapelli' ),
-				'url'   => estecapelli_whatsapp_url( __( 'Hello Estecapelli, I would like to book a free consultation.', 'estecapelli' ) ),
+				'url'   => estecapelli_whatsapp_url(),
 			),
 			'doctor'     => array(
 				'image'    => get_template_directory_uri() . '/assets/images/doctors/mehmet-hanifi-kutlar.jpg',

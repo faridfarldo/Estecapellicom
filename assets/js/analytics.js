@@ -86,7 +86,7 @@
 		if (explicit) return explicit.getAttribute('data-track-location');
 
 		if (el.closest('#lead-popup')) return 'lead_popup';
-		if (el.closest('#wpChat')) return 'whatsapp_chat';
+		if (el.closest('#waNotice')) return 'whatsapp_notice';
 		if (el.closest('#consent-banner')) return 'consent_banner';
 		if (el.closest('.float-wp') || (el.classList && el.classList.contains('float-wp'))) return 'floating';
 		if (el.closest('.site-header')) return 'header';
@@ -339,14 +339,15 @@
 		});
 	});
 
-	/* --- WhatsApp chat overlay (main.js) --- */
+	/* --- WhatsApp hand-off notice (main.js) --- */
 
 	on('wa-chat-open', function (d) {
 		push('whatsapp_chat_open', { link_location: d.location || 'floating' });
 	});
 
-	/* The handoff to the real WhatsApp, with a message the visitor wrote. This
-	   is a stronger signal than a bare whatsapp_click and is its own Key Event. */
+	/* The confirmed handoff from the notice to the real WhatsApp. Stronger than a
+	   bare whatsapp_click — the visitor read the note and went on — and its own
+	   Key Event, so the name is kept even though the notice replaced the chat. */
 	on('wa-chat-send', function (d) {
 		push('whatsapp_chat_send', { message_length: d.length || 0 });
 	});

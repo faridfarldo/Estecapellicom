@@ -3178,253 +3178,104 @@
 	.is-anim-idle::after,
 	.is-anim-idle * { animation-play-state: paused !important; }
 
-	/* ---------- Fake WhatsApp chat popup ----------------------------------
-	   Ported from the Chile landing page (.wp-chat-*). Deliberately keeps
-	   WhatsApp's own dark palette in both site themes — the whole point is that
-	   it reads as WhatsApp, so it does not follow the site's light/dark mode. */
-	.wp-chat-overlay {
+	/* ---------- WhatsApp hand-off notice ----------------------------------
+	   A small card anchored just above the floating button. It replaced a fake
+	   chat window: no pretend conversation, only the opening line the visitor is
+	   about to send and a request to keep it. Follows the site palette, with
+	   WhatsApp green reserved for the button that actually leaves the site. */
+	.wa-notice {
 		position: fixed;
-		inset: 0;
-		z-index: 70;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 16px;
-		background: rgba(0, 0, 0, 0.6);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
+		right: 28px;
+		bottom: 104px;
+		z-index: 61;
+		width: min(360px, calc(100vw - 32px));
 		opacity: 0;
-		pointer-events: none;
-		transition: opacity 300ms ease;
+		transform: translateY(12px) scale(0.97);
+		transform-origin: bottom right;
+		transition: opacity 240ms ease, transform 240ms var(--ease-spring);
 	}
-	.wp-chat-overlay.is-open { opacity: 1; pointer-events: auto; }
+	.wa-notice.is-open { opacity: 1; transform: translateY(0) scale(1); }
 
-	.wp-chat-window {
+	.wa-notice__card {
 		position: relative;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		max-width: 400px;
-		height: 80vh;
-		max-height: 640px;
-		overflow: hidden;
-		background: #0b141a;
-		border-radius: 16px;
-		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-		opacity: 0;
-		transform: scale(0.92) translateY(12px);
-		transition: transform 320ms cubic-bezier(0.34, 1.2, 0.64, 1), opacity 320ms ease;
+		padding: 1rem 1.1rem 1.15rem;
+		border-radius: 20px;
+		background:
+			radial-gradient(18rem 10rem at 110% -30%, oklch(72% 0.18 145 / 0.18), transparent 62%),
+			linear-gradient(170deg, white, oklch(98% 0.012 260));
+		border: 1px solid oklch(90% 0.025 260);
+		box-shadow: 0 18px 44px oklch(20% 0.05 260 / 0.18), 0 2px 6px oklch(20% 0.05 260 / 0.06);
 	}
-	.wp-chat-overlay.is-open .wp-chat-window { opacity: 1; transform: scale(1) translateY(0); }
-
-	.wp-chat-header {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-		flex-shrink: 0;
-		padding: 12px 14px;
-		background: #1f2c33;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-	}
-	.wp-chat-back {
-		display: flex;
-		align-items: center;
-		padding: 4px;
-		background: none;
-		border: 0;
-		color: #e8f0f8;
-		cursor: pointer;
-	}
-	.wp-chat-avatar {
-		width: 40px;
-		height: 40px;
-		flex-shrink: 0;
-		padding: 4px;
-		border-radius: 50%;
-		object-fit: contain;
-		background: #fff;
-	}
-	.wp-chat-avatar--fallback {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: #25d366;
-		color: #fff;
-	}
-	.wp-chat-peer { flex: 1; min-width: 0; line-height: 1.3; }
-	.wp-chat-peer strong { display: block; font-size: 15px; font-weight: 600; color: #fff; }
-	.wp-chat-status { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #8fb39c; }
-	.wp-chat-dot { width: 7px; height: 7px; border-radius: 50%; background: #25d366; }
-	.wp-chat-wa { flex-shrink: 0; color: #25d366; line-height: 0; }
-
-	.wp-chat-body {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		padding: 16px 14px;
-		overflow-y: auto;
-		background: #0b141a;
-	}
-	.wp-chat-date {
-		align-self: center;
-		margin-bottom: 6px;
-		padding: 4px 12px;
-		border-radius: 8px;
-		background: rgba(255, 255, 255, 0.08);
-		font-size: 11px;
-		color: #b8c4cc;
-	}
-	.wp-msg { display: flex; max-width: 82%; }
-	.wp-msg-in { align-self: flex-start; }
-	.wp-msg-out { align-self: flex-end; animation: wpSlideIn 280ms ease; }
-	.wp-bubble {
-		padding: 8px 12px 6px;
-		border-radius: 10px;
-		font-size: 13.5px;
-		line-height: 1.5;
-		color: #e9edef;
-		white-space: pre-wrap;
-		overflow-wrap: anywhere;
-	}
-	.wp-msg-in .wp-bubble { background: #202c33; border-top-left-radius: 2px; }
-	.wp-msg-out .wp-bubble { background: #005c4b; border-top-right-radius: 2px; }
-	.wp-msg-time {
-		float: right;
-		margin: 5px 0 0 10px;
-		font-size: 10px;
-		white-space: nowrap;
-		color: rgba(233, 237, 239, 0.6);
-	}
-	.wp-msg-time svg { display: inline-block; vertical-align: -2px; color: #53bdeb; }
-
-	@keyframes wpSlideIn {
-		from { opacity: 0; transform: translateY(8px); }
-		to   { opacity: 1; transform: translateY(0); }
-	}
-
-	.wp-chat-composer {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		flex-shrink: 0;
-		padding: 10px 12px;
-		background: #1f2c33;
-	}
-	.wp-chat-input {
-		flex: 1;
-		min-width: 0;
-		padding: 11px 16px;
-		border: 0;
-		border-radius: 22px;
-		outline: none;
-		background: #2a3942;
-		color: #e9edef;
-		font-family: inherit;
-		font-size: 14px;
-	}
-	.wp-chat-input::placeholder { color: #8696a0; }
-	.wp-chat-input.wp-shake { animation: wpShake 400ms; }
-	@keyframes wpShake {
-		0%, 100% { transform: translateX(0); }
-		20% { transform: translateX(-7px); }
-		40% { transform: translateX(7px); }
-		60% { transform: translateX(-5px); }
-		80% { transform: translateX(5px); }
-	}
-	.wp-chat-send {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		width: 44px;
-		height: 44px;
-		border: 0;
-		border-radius: 50%;
-		background: #25d366;
-		color: #0b141a;
-		cursor: pointer;
-		transition: background 200ms ease;
-	}
-	.wp-chat-send:hover { background: #1ebe5a; }
-
-	.wp-confirm {
+	/* Pointer towards the floating button below. */
+	.wa-notice__card::after {
+		content: "";
 		position: absolute;
-		inset: 0;
-		z-index: 5;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 24px;
-		background: rgba(0, 0, 0, 0.55);
-		backdrop-filter: blur(2px);
-		-webkit-backdrop-filter: blur(2px);
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 250ms ease;
+		right: 34px;
+		bottom: -7px;
+		width: 14px;
+		height: 14px;
+		background: oklch(98% 0.012 260);
+		border-right: 1px solid oklch(90% 0.025 260);
+		border-bottom: 1px solid oklch(90% 0.025 260);
+		transform: rotate(45deg);
+		border-bottom-right-radius: 3px;
 	}
-	.wp-confirm.is-open { opacity: 1; pointer-events: auto; }
-	.wp-confirm-box {
-		width: 100%;
-		padding: 22px 20px;
-		border-radius: 14px;
-		background: #1f2c33;
-		transform: scale(0.94);
-		transition: transform 250ms ease;
+
+	.wa-notice__head { display: flex; align-items: center; gap: 0.6rem; }
+	.wa-notice__mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(140deg, #25d366, #12a250); color: white; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35); }
+	.wa-notice__heading { display: flex; flex-direction: column; gap: 1px; line-height: 1.25; min-width: 0; }
+	.wa-notice__heading strong { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; color: var(--color-brand-950); }
+	.wa-notice__heading span { font-size: 0.78rem; color: var(--color-trust-600); font-weight: 600; }
+	.wa-notice__close {
+		margin-left: auto; flex-shrink: 0;
+		display: grid; place-items: center;
+		width: 30px; height: 30px;
+		border: 0; border-radius: 9px;
+		background: oklch(95% 0.012 260);
+		color: var(--color-brand-700);
+		cursor: pointer;
+		transition: background 0.2s ease, color 0.2s ease;
 	}
-	.wp-confirm.is-open .wp-confirm-box { transform: scale(1); }
-	.wp-confirm-box h4 { margin-bottom: 6px; font-size: 17px; font-weight: 700; color: #fff; }
-	.wp-confirm-box > p { margin-bottom: 14px; font-size: 12.5px; color: #b8c4cc; }
-	.wp-confirm-preview {
-		max-height: 160px;
-		margin-bottom: 18px;
-		padding: 10px 14px;
-		overflow-y: auto;
-		border-radius: 10px;
-		border-top-right-radius: 2px;
-		background: #005c4b;
-		color: #e9edef;
-		font-size: 13.5px;
+	.wa-notice__close:hover { background: var(--color-brand-100); color: var(--color-brand-950); }
+
+	.wa-notice__text { margin: 0.85rem 0 0; font-size: 0.86rem; line-height: 1.55; color: oklch(40% 0.02 260); }
+
+	/* The exact line WhatsApp will open with, shown as an outgoing bubble so it
+	   is recognisable the moment WhatsApp appears. */
+	.wa-notice__preview { display: flex; justify-content: flex-end; margin-top: 0.85rem; }
+	.wa-notice__bubble {
+		max-width: 100%;
+		padding: 0.6rem 0.75rem;
+		border-radius: 14px 14px 4px 14px;
+		background: #d9fdd3;
+		font-size: 0.82rem;
 		line-height: 1.5;
-		white-space: pre-wrap;
+		color: oklch(25% 0.03 145);
 		overflow-wrap: anywhere;
 	}
-	.wp-confirm-actions { display: flex; gap: 10px; }
-	.wp-confirm-cancel,
-	.wp-confirm-send {
-		flex: 1;
-		padding: 11px;
-		border: 1px solid rgba(255, 255, 255, 0.15);
-		border-radius: 10px;
-		font-family: inherit;
-		font-size: 14px;
-		font-weight: 600;
-		cursor: pointer;
-		transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
-	}
-	.wp-confirm-cancel { background: transparent; color: #b8c4cc; }
-	.wp-confirm-cancel:hover { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
-	.wp-confirm-send {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 6px;
-		background: #25d366;
-		border-color: #25d366;
-		color: #0b141a;
-	}
-	.wp-confirm-send:hover { background: #1ebe5a; border-color: #1ebe5a; }
 
-	@media (max-width: 480px) {
-		.wp-chat-overlay { padding: 0; }
-		.wp-chat-window { height: 100dvh; max-height: none; border-radius: 0; }
+	.wa-notice__go {
+		display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+		margin-top: 1rem;
+		padding: 0.75rem 1rem;
+		border-radius: 12px;
+		background: linear-gradient(135deg, #25d366, #17ab52);
+		color: white;
+		font-size: 0.92rem; font-weight: 700;
+		text-decoration: none;
+		box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+		transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
+	}
+	.wa-notice__go:hover { color: white; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(37, 211, 102, 0.5); }
+
+	@media (max-width: 768px) {
+		.wa-notice { right: 16px; bottom: 88px; }
+		.wa-notice__card::after { right: 22px; }
 	}
 	@media (prefers-reduced-motion: reduce) {
-		.wp-chat-overlay,
-		.wp-chat-window,
-		.wp-confirm,
-		.wp-confirm-box { transition: none; }
-		.wp-msg-out { animation: none; }
+		.wa-notice { transition: opacity 240ms ease; transform: none; }
+		.wa-notice.is-open { transform: none; }
+		.wa-notice__go:hover { transform: none; }
 	}
 
 	/* ---------- Mega-menu (hardcoded, full-width dropdowns) ---------- */

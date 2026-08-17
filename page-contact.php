@@ -18,8 +18,12 @@ $phone     = $contact['phone']   ?? '';
 $email     = $contact['email']   ?? '';
 $address   = $contact['address'] ?? '';
 $tel       = preg_replace( '/[^0-9+]/', '', $phone );
-$wa_url    = estecapelli_whatsapp_url( __( 'Hello Estecapelli, I would like to book a free consultation.', 'estecapelli' ) );
-$wa_photos = estecapelli_whatsapp_url( __( 'Hello Estecapelli, I would like a free analysis. Here are my photos:', 'estecapelli' ) );
+$wa_url    = estecapelli_whatsapp_url();
+// The photo CTA keeps its own instruction, but only after the standard opening
+// line — sales still needs to see which page the thread came from.
+$wa_photos = estecapelli_whatsapp_url(
+	estecapelli_whatsapp_intro_message() . "\n\n" . __( 'Here are my photos:', 'estecapelli' )
+);
 $instagram = '';
 foreach ( (array) ( $contact['socials'] ?? array() ) as $s ) {
 	if ( 'instagram' === ( $s['icon'] ?? '' ) ) { $instagram = $s['url']; break; }

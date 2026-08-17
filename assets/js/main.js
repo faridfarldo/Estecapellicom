@@ -1689,142 +1689,79 @@
 	}
 
 	/**
-	 * Fake WhatsApp chat (template-parts/whatsapp-chat.php).
+	 * WhatsApp hand-off notice (template-parts/whatsapp-notice.php).
 	 *
-	 * Intercepts the floating button and anything marked [data-wa-chat], shows a
-	 * WhatsApp-looking window, and only hands off to the real wa.me link once the
-	 * visitor has written and confirmed a message. Progressive enhancement: the
-	 * button keeps its real href, so without JS the click still reaches WhatsApp.
+	 * The floating button and anything marked [data-wa-chat] open a small card
+	 * above the button, which shows the opening line WhatsApp will arrive
+	 * prefilled with and asks the visitor to keep it. Progressive enhancement:
+	 * the trigger keeps its real href, so without JS the click still reaches
+	 * WhatsApp with the same message.
 	 */
-	function initWhatsAppChat() {
-		var chat = document.getElementById('wpChat');
-		if (!chat) return;
+	function initWhatsAppNotice() {
+		var notice = document.getElementById('waNotice');
+		if (!notice) return;
 
 		var triggers = document.querySelectorAll('.float-wp, [data-wa-chat]');
 		if (!triggers.length) return;
 
-		var body      = document.getElementById('wpChatBody');
-		var input     = document.getElementById('wpChatInput');
-		var composer  = document.getElementById('wpChatComposer');
-		var confirm   = document.getElementById('wpConfirm');
-		var preview   = document.getElementById('wpConfirmPreview');
-		var closeBtn  = document.getElementById('wpChatClose');
-		var cancelBtn = document.getElementById('wpConfirmCancel');
-		var sendBtn   = document.getElementById('wpConfirmSend');
-		if (!body || !input || !composer || !confirm || !preview) return;
+		var go = notice.querySelector('[data-wa-go]');
+		var lastFocus = null;
 
-		// The real wa.me URL lives on the button, so the number stays in PHP.
-		var waBase = triggers[0].getAttribute('href') || '';
-		var defaultPlaceholder = input.getAttribute('placeholder') || '';
-		var emptyHint = input.getAttribute('data-empty-hint') || defaultPlaceholder;
-		var hintTimer;
+		function open(trigger) {
+			lastFocus = trigger || document.activeElement;
+			// Carry the trigger's own wa.me link through, so a CTA with its own
+			// prefilled text (the photo button) keeps it.
+			var href = trigger && trigger.getAttribute('href');
+			if (go && href && href.indexOf('wa.me') > -1) go.setAttribute('href', href);
 
-		function now() {
-			var d = new Date();
-			return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
-		}
-
-		// Stamp the pre-written welcome bubble with the visitor's local time.
-		chat.querySelectorAll('[data-wp-now]').forEach(function (el) { el.textContent = now(); });
-
-		function scrollToBottom() { body.scrollTop = body.scrollHeight; }
-
-		function openChat() {
-			chat.hidden = false;
+			notice.hidden = false;
 			// Next frame, so the transition runs instead of being skipped.
-			requestAnimationFrame(function () { chat.classList.add('is-open'); });
-			document.body.classList.add('no-scroll');
-			setTimeout(function () { input.focus(); scrollToBottom(); }, 320);
+			window.requestAnimationFrame(function () { notice.classList.add('is-open'); });
+			if (go) setTimeout(function () { go.focus(); }, 260);
 		}
-		function closeChat() {
-			chat.classList.remove('is-open');
-			confirm.classList.remove('is-open');
-			document.body.classList.remove('no-scroll');
-			setTimeout(function () { chat.hidden = true; }, 300);
+
+		function close() {
+			if (notice.hidden) return;
+			notice.classList.remove('is-open');
+			setTimeout(function () { notice.hidden = true; }, 260);
+			if (lastFocus && lastFocus.focus) lastFocus.focus();
 		}
 
 		triggers.forEach(function (t) {
 			t.addEventListener('click', function (e) {
 				e.preventDefault();
-				// The overlay intercepts the wa.me link, so no whatsapp_click is
-				// recorded here — opening the chat is its own, earlier step.
+				// The notice intercepts the wa.me link, so no whatsapp_click is
+				// recorded here — opening the notice is its own, earlier step.
 				emit('wa-chat-open', {
 					location: t.classList.contains('float-wp') ? 'floating' : 'inline'
 				});
-				openChat();
+				open(t);
 			});
 		});
 
-		if (closeBtn) closeBtn.addEventListener('click', closeChat);
-		chat.addEventListener('click', function (e) { if (e.target === chat) closeChat(); });
+		notice.querySelectorAll('[data-wa-close]').forEach(function (btn) {
+			btn.addEventListener('click', close);
+		});
+
+		if (go) {
+			go.addEventListener('click', function () {
+				// The confirmed hand-off. whatsapp_click fires from the anchor
+				// itself; this is the stronger, notice-level signal.
+				emit('wa-chat-send', { length: 1 });
+				setTimeout(close, 400);
+			});
+		}
 
 		document.addEventListener('keydown', function (e) {
-			if (e.key !== 'Escape' || chat.hidden) return;
-			if (confirm.classList.contains('is-open')) confirm.classList.remove('is-open');
-			else closeChat();
+			if (e.key === 'Escape') close();
 		});
 
-		composer.addEventListener('submit', function (e) {
-			e.preventDefault();
-			var text = input.value.trim();
-			if (!text) {
-				input.classList.remove('wp-shake');
-				void input.offsetWidth; // reflow, so the animation replays
-				input.classList.add('wp-shake');
-				clearTimeout(hintTimer);
-				input.setAttribute('placeholder', emptyHint);
-				hintTimer = setTimeout(function () {
-					input.setAttribute('placeholder', defaultPlaceholder);
-				}, 2200);
-				input.focus();
-				return;
-			}
-			preview.textContent = text; // textContent, so the preview can't inject markup
-			confirm.classList.add('is-open');
+		// A click anywhere else dismisses it — it is a note, not a modal.
+		document.addEventListener('click', function (e) {
+			if (notice.hidden || notice.contains(e.target)) return;
+			if (e.target.closest && e.target.closest('.float-wp, [data-wa-chat]')) return;
+			close();
 		});
-
-		if (cancelBtn) {
-			cancelBtn.addEventListener('click', function () {
-				confirm.classList.remove('is-open');
-				input.focus();
-			});
-		}
-
-		if (sendBtn) {
-			sendBtn.addEventListener('click', function () {
-				var text = input.value.trim();
-				if (!text) { confirm.classList.remove('is-open'); return; }
-
-				// The actual handoff to WhatsApp, with a message the visitor
-				// wrote — the strongest intent signal the chat overlay produces.
-				emit('wa-chat-send', { length: text.length });
-
-				// Echo the message as an outgoing bubble before handing off, so the
-				// illusion holds for the moment before WhatsApp opens.
-				var msg = document.createElement('div');
-				msg.className = 'wp-msg wp-msg-out';
-				var bubble = document.createElement('div');
-				bubble.className = 'wp-bubble';
-				bubble.textContent = text;
-				var time = document.createElement('span');
-				time.className = 'wp-msg-time';
-				time.textContent = now();
-				bubble.appendChild(time);
-				msg.appendChild(bubble);
-				body.appendChild(msg);
-				scrollToBottom();
-
-				input.value = '';
-				confirm.classList.remove('is-open');
-
-				var sep = waBase.indexOf('?') === -1 ? '?' : '&';
-				var url = waBase + sep + 'text=' + encodeURIComponent(text);
-				setTimeout(function () {
-					window.open(url, '_blank', 'noopener,noreferrer');
-					setTimeout(closeChat, 800);
-				}, 600);
-			});
-		}
 	}
 
 	function initIntroSliders() {
@@ -1887,7 +1824,7 @@
 		initCarousels();
 		initIntroSliders();
 		initFloatWhatsApp();
-		initWhatsAppChat();
+		initWhatsAppNotice();
 		initStepbooks();
 		initCopyLink();
 		initTOC();

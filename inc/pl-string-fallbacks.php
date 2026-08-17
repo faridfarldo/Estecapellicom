@@ -38,6 +38,10 @@ function estecapelli_pl_gettext_fallback( $translation, $text, $domain ) {
 			// Shared lead forms and reusable treatment sections.
 			'Free Consultation' => 'Bezpłatna konsultacja',
 			'Chat on WhatsApp' => 'Napisz na WhatsApp',
+			// WhatsApp hand-off notice.
+			'Please leave the message already prepared in WhatsApp exactly as it is — it tells our team which page you are writing from, so we can reply to you faster. You are very welcome to add your question right after it.' => 'Prosimy o pozostawienie bez zmian wiadomości, która jest już przygotowana w WhatsAppie — wskazuje ona naszemu zespołowi, z której strony do nas piszesz, dzięki czemu odpowiemy szybciej. Swoje pytanie możesz dopisać zaraz pod nią.',
+			'Continue to WhatsApp' => 'Przejdź do WhatsAppa',
+			'Here are my photos:' => 'Oto moje zdjęcia:',
 			'Name and surname' => 'Imię i nazwisko',
 			'Phone number' => 'Numer telefonu',
 			'Email address' => 'Adres e-mail',

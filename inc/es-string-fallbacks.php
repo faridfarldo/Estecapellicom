@@ -46,6 +46,10 @@ function estecapelli_es_gettext_fallback( $translation, $text, $domain ) {
 			'Speak with our medical team — free, no obligation. Get a personalized plan based on your goals.' => 'Habla con nuestro equipo médico gratis y sin compromiso. Recibe un plan personalizado según tus objetivos.',
 			'Get a Free Consultation' => 'Solicita una consulta gratuita',
 			'Chat on WhatsApp' => 'Habla por WhatsApp',
+			// WhatsApp hand-off notice.
+			'Please leave the message already prepared in WhatsApp exactly as it is — it tells our team which page you are writing from, so we can reply to you faster. You are very welcome to add your question right after it.' => 'Le pedimos que deje tal cual el mensaje ya preparado en WhatsApp: indica a nuestro equipo desde qué página nos escribe y así podemos responderle más rápido. Puede añadir su pregunta justo después.',
+			'Continue to WhatsApp' => 'Continuar a WhatsApp',
+			'Here are my photos:' => 'Estas son mis fotos:',
 			'Our Licences' => 'Nuestras acreditaciones',
 			'Sitemap' => 'Mapa del sitio',
 			'Language' => 'Idioma',

@@ -145,6 +145,11 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 		'Portuguese'                              => 'Portugais',
 		// Floating WhatsApp button + fake WhatsApp chat popup.
 		'Chat on WhatsApp' => 'Discuter sur WhatsApp',
+		'Close' => 'Fermer',
+		// WhatsApp hand-off notice.
+		'Please leave the message already prepared in WhatsApp exactly as it is — it tells our team which page you are writing from, so we can reply to you faster. You are very welcome to add your question right after it.' => 'Merci de laisser tel quel le message déjà préparé dans WhatsApp : il indique à notre équipe depuis quelle page vous nous écrivez, ce qui nous permet de vous répondre plus rapidement. N’hésitez pas à ajouter votre question juste après.',
+		'Continue to WhatsApp' => 'Continuer vers WhatsApp',
+		'Here are my photos:' => 'Voici mes photos :',
 		'Free Hair Analysis' => 'Analyse capillaire gratuite',
 		'Reply in 2 minutes' => 'Réponse en 2 minutes',
 		'WhatsApp chat' => 'Chat WhatsApp',

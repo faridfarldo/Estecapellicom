@@ -134,6 +134,10 @@ function estecapelli_tr_gettext_fallback( $translation, $text, $domain ) {
 			'Estecapelli clinic location' => 'Estecapelli klinik konumu',
 			// Floating WhatsApp button + fake WhatsApp chat popup.
 			'Chat on WhatsApp' => 'WhatsApp’tan yazın',
+			// WhatsApp hand-off notice.
+			'Please leave the message already prepared in WhatsApp exactly as it is — it tells our team which page you are writing from, so we can reply to you faster. You are very welcome to add your question right after it.' => 'WhatsApp’ta hazır gelen mesajı olduğu gibi bırakmanızı rica ediyoruz: bu mesaj ekibimize hangi sayfadan yazdığınızı gösterir ve size daha hızlı yanıt vermemizi sağlar. Sorunuzu hemen bu mesajın altına ekleyebilirsiniz.',
+			'Continue to WhatsApp' => 'WhatsApp’tan devam et',
+			'Here are my photos:' => 'Fotoğraflarım:',
 			'Free Hair Analysis' => 'Ücretsiz saç analizi',
 			'Reply in 2 minutes' => '2 dakikada yanıt',
 			'WhatsApp chat' => 'WhatsApp sohbeti',
