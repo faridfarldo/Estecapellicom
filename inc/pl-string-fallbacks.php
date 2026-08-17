@@ -351,6 +351,11 @@ function estecapelli_pl_gettext_fallback( $translation, $text, $domain ) {
 			'Articles from the Estecapelli journal.' => 'Artykuły z magazynu Estecapelli.',
 			'No articles found here yet.' => 'Nie znaleziono tu jeszcze żadnych artykułów.',
 			'Keep reading' => 'Czytaj dalej',
+			'Share' => 'Udostępnij',
+			'Share on Facebook' => 'Udostępnij na Facebooku',
+			'Share on WhatsApp' => 'Udostępnij na WhatsAppie',
+			'Copy link' => 'Skopiuj link',
+			'Pages:' => 'Strony:',
 
 			// Lead forms: labels, placeholders and validation messages.
 			'Your name' => 'Twoje imię',

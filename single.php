@@ -98,7 +98,14 @@ while ( have_posts() ) :
 		</div>
 
 		<?php
-		// Related posts — same category, excluding current.
+		/*
+		 * Related posts — same category first, then the newest other articles.
+		 *
+		 * Category alone is not a reliable source here: a translated article may
+		 * carry no category, or sit in a category that holds only itself, and the
+		 * section then disappeared entirely (as it did across Italian). Topping
+		 * the row up keeps "Keep reading" under every article in every language.
+		 */
 		$related_args = array(
 			'post_type'           => 'post',
 			'post_status'         => 'publish',
@@ -106,12 +113,38 @@ while ( have_posts() ) :
 			'post__not_in'        => array( get_the_ID() ),
 			'ignore_sticky_posts' => true,
 			'no_found_rows'       => true,
+			'fields'              => 'ids',
 		);
+
+		$related_ids = array();
 		if ( $cat ) {
-			$related_args['cat'] = $cat->term_id;
+			$in_category = new WP_Query( array_merge( $related_args, array( 'cat' => $cat->term_id ) ) );
+			$related_ids = $in_category->posts;
 		}
-		$related = new WP_Query( $related_args );
-		if ( $related->have_posts() ) :
+		if ( count( $related_ids ) < 3 ) {
+			$fill = new WP_Query(
+				array_merge(
+					$related_args,
+					array(
+						'posts_per_page' => 3 - count( $related_ids ),
+						'post__not_in'   => array_merge( array( get_the_ID() ), $related_ids ),
+					)
+				)
+			);
+			$related_ids = array_merge( $related_ids, $fill->posts );
+		}
+
+		if ( $related_ids ) :
+			$related = new WP_Query(
+				array(
+					'post_type'           => 'post',
+					'post__in'            => $related_ids,
+					'orderby'             => 'post__in',
+					'posts_per_page'      => count( $related_ids ),
+					'ignore_sticky_posts' => true,
+					'no_found_rows'       => true,
+				)
+			);
 			?>
 			<section class="single-related">
 				<div class="shell">
