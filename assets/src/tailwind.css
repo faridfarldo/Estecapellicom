@@ -8284,24 +8284,37 @@
 	.reading-bar__fill { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--color-brand-600), var(--color-accent-500)); transition: width 120ms linear; }
 
 	.article-hero {
+		position: relative;
 		padding-block: clamp(1.75rem, 4vw, 3.25rem) clamp(2rem, 4vw, 3.25rem);
 		background:
-			radial-gradient(52rem 26rem at 88% -15%, oklch(93% 0.045 82 / 0.5), transparent 62%),
-			radial-gradient(46rem 24rem at 2% 0%, oklch(90% 0.05 260 / 0.4), transparent 58%),
-			linear-gradient(180deg, oklch(98% 0.012 260), white);
+			radial-gradient(44rem 22rem at 92% -12%, oklch(87% 0.085 82 / 0.55), transparent 60%),
+			radial-gradient(48rem 26rem at -5% 105%, oklch(84% 0.075 260 / 0.55), transparent 62%),
+			linear-gradient(155deg, oklch(95% 0.03 260), oklch(97% 0.025 82) 52%, oklch(98% 0.015 260));
+		border-bottom: 1px solid oklch(88% 0.03 260);
+		overflow: hidden;
 	}
-	.article-hero__shell { display: grid; gap: clamp(1.75rem, 4vw, 2.5rem); align-items: center; }
+	/* Faint brand dot-grid, faded out downwards, for texture behind the headline. */
+	.article-hero::before {
+		content: ""; position: absolute; inset: 0;
+		background-image: radial-gradient(oklch(48% 0.13 260 / 0.13) 1px, transparent 1px);
+		background-size: 22px 22px;
+		-webkit-mask-image: linear-gradient(180deg, black, transparent 72%);
+		mask-image: linear-gradient(180deg, black, transparent 72%);
+		pointer-events: none;
+	}
+	.article-hero__shell { position: relative; display: grid; gap: clamp(1.75rem, 4vw, 2.5rem); align-items: center; }
 	.article-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: 0.95rem; min-width: 0; }
 	.article-hero__back { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.875rem; font-weight: 600; color: var(--color-brand-600); text-decoration: none; transition: color 0.2s ease; }
 	.article-hero__back:hover { color: var(--color-brand-900); }
-	.article-hero__cat { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.34rem 0.85rem; border-radius: 9999px; background: oklch(100% 0 0 / 0.75); border: 1px solid var(--color-brand-100); box-shadow: var(--shadow-soft); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; color: var(--color-brand-800); text-decoration: none; transition: border-color 0.2s ease; }
-	.article-hero__cat:hover { border-color: var(--color-brand-300, var(--color-brand-200)); }
+	.article-hero__cat { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.38rem 0.9rem; border-radius: 9999px; background: linear-gradient(135deg, var(--color-accent-400), var(--color-accent-600)); box-shadow: var(--shadow-accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: oklch(20% 0.045 70); text-decoration: none; transition: box-shadow 0.25s ease, transform 0.25s var(--ease-spring); }
+	.article-hero__cat:hover { transform: translateY(-1px); box-shadow: var(--shadow-accent-lg); }
 	.article-hero__title { margin: 0; font-size: clamp(2rem, 1.25rem + 2.9vw, 3.4rem); line-height: 1.06; letter-spacing: -0.035em; font-weight: 700; color: var(--color-brand-950); text-wrap: balance; }
-	.article-hero__lead { margin: 0; max-width: 48ch; font-size: clamp(1.02rem, 0.98rem + 0.25vw, 1.18rem); line-height: 1.6; color: oklch(45% 0.02 260); }
-	.article-hero__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.35rem; font-size: 0.9rem; color: oklch(48% 0.015 260); }
-	.article-hero__avatar { display: grid; place-items: center; width: 34px; height: 34px; margin-right: 0.15rem; border-radius: 9999px; background: linear-gradient(140deg, var(--color-brand-600), var(--color-brand-950)); color: white; font-size: 0.85rem; font-weight: 700; }
-	.article-hero__author { font-weight: 700; color: var(--color-brand-900); }
-	.article-hero__dot { width: 3px; height: 3px; border-radius: 9999px; background: var(--color-brand-200); }
+	.article-hero__lead { margin: 0; max-width: 48ch; padding-left: 0.9rem; border-left: 3px solid var(--color-accent-500); font-size: clamp(1.02rem, 0.98rem + 0.25vw, 1.18rem); line-height: 1.6; color: oklch(40% 0.03 260); }
+	.article-hero__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; margin-top: 0.35rem; font-size: 0.9rem; font-weight: 600; color: var(--color-brand-700); }
+	.article-hero__brand { display: inline-flex; align-items: center; padding: 5px 10px; margin-right: 0.15rem; border-radius: 11px; background: white; border: 1px solid oklch(88% 0.03 260); box-shadow: var(--shadow-soft); }
+	/* Same crop as the header wordmark, scaled down for a byline. */
+	.article-hero__brand-img { display: block; width: 116px; height: 33px; object-fit: cover; object-position: center; }
+	.article-hero__dot { width: 4px; height: 4px; border-radius: 9999px; background: var(--color-accent-500); }
 
 	.article-hero__media { position: relative; margin: 0; }
 	/* Warm halo behind the image so it reads as a composed pair with the text. */
@@ -8326,8 +8339,8 @@
 		max-width: 70rem; margin-inline: auto;
 		padding-block: clamp(1.75rem, 4vw, 2.75rem);
 	}
-	.article-layout--solo { max-width: 52rem; }
 	.article-main { min-width: 0; }
+	.article-aside { display: flex; flex-direction: column; gap: 1rem; }
 
 	@media (min-width: 1024px) {
 		.article-layout { grid-template-columns: minmax(0, 1fr) 17.5rem; gap: clamp(2.5rem, 5vw, 4rem); }
@@ -8335,9 +8348,31 @@
 		   above the article on phones where sticky positioning does nothing. */
 		.article-main { grid-column: 1; grid-row: 1; }
 		.article-aside { grid-column: 2; grid-row: 1; position: sticky; top: 6.5rem; }
-		.article-aside .toc__list { max-height: calc(100vh - 12rem); }
+		.article-aside .toc__list { max-height: calc(100vh - 20rem); }
 	}
-	.article-aside .toc { margin: 0; }
+
+	/* The rail's table of contents wears the brand, unlike the plain in-page
+	   version pages use — scoped so page.php keeps its quieter card. */
+	.article-aside .toc { margin: 0; border-color: oklch(90% 0.025 260); box-shadow: var(--shadow-card); }
+	.article-aside .toc__head { background: linear-gradient(135deg, var(--color-brand-700), var(--color-brand-950)); }
+	.article-aside .toc__title { color: white; }
+	.article-aside .toc__chevron { color: oklch(100% 0 0 / 0.65); }
+	.article-aside .toc__list { background: linear-gradient(180deg, oklch(97% 0.018 260), white); }
+
+	/* Consultation card — the one deliberately loud block on the page. */
+	.article-cta {
+		padding: 1.2rem 1.25rem 1.35rem;
+		border-radius: 18px;
+		background:
+			radial-gradient(20rem 12rem at 110% -20%, oklch(70% 0.15 78 / 0.35), transparent 60%),
+			linear-gradient(160deg, var(--color-brand-800), var(--color-brand-950));
+		box-shadow: var(--shadow-pop);
+		color: oklch(90% 0.02 260);
+	}
+	.article-cta__eyebrow { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent-300); }
+	.article-cta__title { margin: 0.55rem 0 0; font-size: 1.08rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; color: white; }
+	.article-cta__text { margin: 0.3rem 0 0; font-size: 0.85rem; color: oklch(78% 0.02 260); }
+	.article-cta__btn { width: 100%; margin-top: 0.95rem; }
 
 	/* ---- Table of contents (blog posts + plain pages) ---- */
 	.toc {
@@ -8394,8 +8429,10 @@
 	.single-post__content > * + * { margin-top: 1.3rem; }
 	/* Opening paragraph carries a little more weight, the way a printed lead does. */
 	.single-post__content > p:first-child { font-size: 1.2rem; line-height: 1.65; color: oklch(28% 0.02 260); }
-	.single-post__content h2 { margin-top: 2.5rem; font-size: clamp(1.5rem, 1.35rem + 0.6vw, 1.85rem); line-height: 1.22; letter-spacing: -0.025em; font-weight: 700; color: var(--color-brand-950); }
-	.single-post__content h3 { margin-top: 1.95rem; font-size: 1.32rem; letter-spacing: -0.015em; font-weight: 700; color: var(--color-brand-950); }
+	.single-post__content h2 { position: relative; margin-top: 2.6rem; padding-top: 0.95rem; font-size: clamp(1.5rem, 1.35rem + 0.6vw, 1.85rem); line-height: 1.22; letter-spacing: -0.025em; font-weight: 700; color: var(--color-brand-950); }
+	/* Short brand rule over every section heading, so scanning the article has rhythm. */
+	.single-post__content h2::before { content: ""; position: absolute; top: 0; left: 0; width: 46px; height: 4px; border-radius: 9999px; background: linear-gradient(90deg, var(--color-accent-500), var(--color-brand-500)); }
+	.single-post__content h3 { margin-top: 1.95rem; font-size: 1.32rem; letter-spacing: -0.015em; font-weight: 700; color: var(--color-brand-800); }
 	.single-post__content a { color: var(--color-brand-700); text-decoration: underline; text-underline-offset: 2px; }
 	.single-post__content a:hover { color: var(--color-brand-800); }
 	.single-post__content strong { color: var(--color-brand-950); }
@@ -8418,9 +8455,18 @@
 	.single-post__share-btn.is-copied { background: var(--color-trust-500); border-color: var(--color-trust-500); color: white; }
 
 
-	.single-related { padding-block: clamp(2.5rem, 5vw, 4rem); background: linear-gradient(180deg, white, oklch(98% 0.008 260)); border-top: 1px solid var(--color-brand-100); }
-	.single-related__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem; margin-bottom: clamp(1.25rem, 3vw, 2rem); }
-	.single-related__title { margin: 0; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); font-weight: 700; letter-spacing: -0.025em; color: var(--color-brand-950); }
+	.single-related {
+		position: relative;
+		padding-block: clamp(2.5rem, 5vw, 4rem);
+		background:
+			radial-gradient(40rem 20rem at 100% 0%, oklch(88% 0.07 82 / 0.35), transparent 60%),
+			linear-gradient(180deg, oklch(96% 0.025 260), oklch(98% 0.014 260));
+		border-top: 1px solid oklch(89% 0.03 260);
+	}
+	.single-related__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 0.75rem; margin-bottom: clamp(1.25rem, 3vw, 2rem); }
+	.single-related__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-brand-600); }
+	.single-related__eyebrow-mark { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-accent-500); box-shadow: 0 0 0 3px oklch(70% 0.15 78 / 0.2); }
+	.single-related__title { margin: 0.45rem 0 0; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); font-weight: 700; letter-spacing: -0.025em; color: var(--color-brand-950); }
 	.single-related__all { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.9rem; font-weight: 700; color: var(--color-brand-700); text-decoration: none; transition: color 0.2s ease, gap 0.2s ease; }
 	.single-related__all:hover { color: var(--color-brand-950); gap: 0.55rem; }
 	/* auto-fit, not auto-fill: three cards must fill the row rather than leave

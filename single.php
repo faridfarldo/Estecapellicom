@@ -35,9 +35,9 @@ while ( have_posts() ) :
 	$tags   = get_the_tags();
 	$permal = get_permalink();
 	$title  = get_the_title();
-	$author = get_the_author();
 	$lead   = wp_trim_words( wp_strip_all_tags( get_the_excerpt() ), 30, '…' );
 	$blog   = estecapelli_indexed_url( '/en/blog' );
+	$logo   = get_template_directory_uri() . '/assets/images/logo.webp';
 
 	// Build the article HTML once, add heading anchors, and derive the TOC. Two
 	// headings are enough to be worth a rail — most articles then carry one.
@@ -71,8 +71,10 @@ while ( have_posts() ) :
 					<?php endif; ?>
 
 					<div class="article-hero__meta">
-						<span class="article-hero__avatar" aria-hidden="true"><?php echo esc_html( mb_strtoupper( mb_substr( $author, 0, 1 ) ) ); ?></span>
-						<span class="article-hero__author"><?php echo esc_html( $author ); ?></span>
+						<?php // Byline is always the clinic, never the WordPress account that typed it. ?>
+						<span class="article-hero__brand">
+							<img class="article-hero__brand-img" src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="116" height="33" loading="eager" decoding="async" />
+						</span>
 						<span class="article-hero__dot" aria-hidden="true"></span>
 						<span><?php echo esc_html( get_the_date() ); ?></span>
 						<span class="article-hero__dot" aria-hidden="true"></span>
@@ -93,13 +95,26 @@ while ( have_posts() ) :
 		</header>
 
 		<div class="shell">
-			<div class="article-layout<?php echo $toc_html ? '' : ' article-layout--solo'; ?>">
+			<div class="article-layout">
 
-				<?php if ( $toc_html ) : ?>
-					<aside class="article-aside">
-						<?php echo $toc_html; // Escaped inside the renderer. ?>
-					</aside>
-				<?php endif; ?>
+				<?php // The rail always renders: an article with too few headings for a ?>
+				<?php // table of contents still gets the consultation card beside it.     ?>
+				<aside class="article-aside">
+					<?php echo $toc_html; // Escaped inside the renderer. ?>
+
+					<div class="article-cta">
+						<span class="article-cta__eyebrow">
+							<?php estecapelli_icon( 'sparkles', array( 'width' => 14, 'height' => 14 ) ); ?>
+							<?php esc_html_e( 'Free Consultation', 'estecapelli' ); ?>
+						</span>
+						<p class="article-cta__title"><?php esc_html_e( 'Book your free consultation', 'estecapelli' ); ?></p>
+						<p class="article-cta__text"><?php esc_html_e( 'Reply in 2 minutes', 'estecapelli' ); ?></p>
+						<a class="btn btn-accent article-cta__btn" href="<?php echo esc_url( estecapelli_indexed_url( '/en/contact' ) ); ?>">
+							<?php esc_html_e( 'Get a Free Consultation', 'estecapelli' ); ?>
+							<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
+						</a>
+					</div>
+				</aside>
 
 				<div class="article-main">
 					<div class="single-post__content prose-content" data-article-body>
@@ -191,7 +206,13 @@ while ( have_posts() ) :
 			<section class="single-related">
 				<div class="shell">
 					<div class="single-related__head">
-						<h2 class="single-related__title"><?php esc_html_e( 'Keep reading', 'estecapelli' ); ?></h2>
+						<div>
+							<span class="single-related__eyebrow">
+								<span class="single-related__eyebrow-mark" aria-hidden="true"></span>
+								<?php esc_html_e( 'From the Journal', 'estecapelli' ); ?>
+							</span>
+							<h2 class="single-related__title"><?php esc_html_e( 'Keep reading', 'estecapelli' ); ?></h2>
+						</div>
 						<a class="single-related__all" href="<?php echo esc_url( $blog ); ?>">
 							<?php esc_html_e( 'All articles', 'estecapelli' ); ?>
 							<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
