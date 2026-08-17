@@ -1405,6 +1405,29 @@
 		measure();
 	}
 
+	/* Reading progress bar — fills as the article body scrolls past. */
+	function initReadingProgress() {
+		var fill = document.querySelector('[data-reading-progress]');
+		var body = document.querySelector('[data-article-body]');
+		if (!fill || !body) return;
+
+		var ticking = false;
+		function measure() {
+			ticking = false;
+			var rect = body.getBoundingClientRect();
+			var scrollable = rect.height - window.innerHeight;
+			var done = scrollable > 0 ? -rect.top / scrollable : (rect.bottom <= window.innerHeight ? 1 : 0);
+			fill.style.width = Math.max(0, Math.min(1, done)) * 100 + '%';
+		}
+		function onScroll() {
+			if (!ticking) { ticking = true; window.requestAnimationFrame(measure); }
+		}
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onScroll);
+		measure();
+	}
+
 	function initCopyLink() {
 		document.querySelectorAll('[data-copy-link]').forEach(function (btn) {
 			btn.addEventListener('click', function () {
@@ -1868,6 +1891,7 @@
 		initStepbooks();
 		initCopyLink();
 		initTOC();
+		initReadingProgress();
 		initLeadPopup();
 		initTrustReel();
 	});

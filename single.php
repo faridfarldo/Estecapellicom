@@ -1,7 +1,10 @@
 <?php
 /**
- * Single post — article layout with featured image, content, tags, share,
- * and related posts.
+ * Single post — magazine-style article layout.
+ *
+ * The hero pairs the headline with the featured image side by side, the body
+ * runs beside a sticky "On this page" rail, and the article always closes with
+ * the related-articles row.
  *
  * @package Estecapelli
  */
@@ -11,89 +14,128 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
-	$cats   = get_the_category();
-	$cat    = ! empty( $cats ) ? $cats[0] : null;
+	$cats = get_the_category();
+	$cat  = ! empty( $cats ) ? $cats[0] : null;
+
+	/*
+	 * Drop the default "Uncategorized" term. Every language inherits it from
+	 * WordPress rather than from editorial work, so it surfaces in the wrong
+	 * language ("Non classé" on an Italian article) and tells the reader
+	 * nothing. Without it the related row falls back to the newest articles,
+	 * which is a better signal than an empty category anyway.
+	 */
+	if ( $cat ) {
+		$cat_source = (int) apply_filters( 'wpml_object_id', $cat->term_id, 'category', true, 'en' );
+		if ( ( $cat_source ? $cat_source : $cat->term_id ) === (int) get_option( 'default_category' ) ) {
+			$cat = null;
+		}
+	}
+
 	$mins   = max( 1, (int) ceil( str_word_count( wp_strip_all_tags( get_the_content() ) ) / 220 ) );
 	$tags   = get_the_tags();
 	$permal = get_permalink();
 	$title  = get_the_title();
+	$author = get_the_author();
+	$lead   = wp_trim_words( wp_strip_all_tags( get_the_excerpt() ), 30, '…' );
+	$blog   = estecapelli_indexed_url( '/en/blog' );
+
+	// Build the article HTML once, add heading anchors, and derive the TOC. Two
+	// headings are enough to be worth a rail — most articles then carry one.
+	list( $post_html, $toc_items ) = estecapelli_extract_toc( apply_filters( 'the_content', get_the_content() ) );
+	$toc_html = estecapelli_toc_is_hidden() ? '' : estecapelli_render_toc( $toc_items, array( 'min' => 2 ) );
 	?>
 
-	<article class="single-post">
+	<div class="reading-bar" aria-hidden="true"><span class="reading-bar__fill" data-reading-progress></span></div>
 
-		<header class="single-post__hero">
-			<div class="shell single-post__hero-shell">
-				<a class="single-post__back" href="<?php echo esc_url( estecapelli_indexed_url( '/en/blog' ) ); ?>">
-					<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
-					<?php esc_html_e( 'All articles', 'estecapelli' ); ?>
-				</a>
+	<article class="article">
 
-				<?php if ( $cat ) : ?>
-					<a class="single-post__cat" href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>">
-						<?php estecapelli_icon( 'tag', array( 'width' => 12, 'height' => 12 ) ); ?>
-						<?php echo esc_html( $cat->name ); ?>
+		<header class="article-hero">
+			<div class="shell article-hero__shell">
+				<div class="article-hero__text">
+					<a class="article-hero__back" href="<?php echo esc_url( $blog ); ?>">
+						<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
+						<?php esc_html_e( 'All articles', 'estecapelli' ); ?>
 					</a>
-				<?php endif; ?>
 
-				<h1 class="single-post__title"><?php the_title(); ?></h1>
+					<?php if ( $cat ) : ?>
+						<a class="article-hero__cat" href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>">
+							<?php estecapelli_icon( 'tag', array( 'width' => 13, 'height' => 13 ) ); ?>
+							<?php echo esc_html( $cat->name ); ?>
+						</a>
+					<?php endif; ?>
 
-				<div class="single-post__meta">
-					<span class="single-post__author"><?php echo esc_html( get_the_author() ); ?></span>
-					<span class="post-card__sep" aria-hidden="true">·</span>
-					<span><?php echo esc_html( get_the_date() ); ?></span>
-					<span class="post-card__sep" aria-hidden="true">·</span>
-					<span><?php echo esc_html( sprintf( /* translators: %d: minutes */ _n( '%d min read', '%d min read', $mins, 'estecapelli' ), $mins ) ); ?></span>
+					<h1 class="article-hero__title"><?php the_title(); ?></h1>
+
+					<?php if ( $lead ) : ?>
+						<p class="article-hero__lead"><?php echo esc_html( $lead ); ?></p>
+					<?php endif; ?>
+
+					<div class="article-hero__meta">
+						<span class="article-hero__avatar" aria-hidden="true"><?php echo esc_html( mb_strtoupper( mb_substr( $author, 0, 1 ) ) ); ?></span>
+						<span class="article-hero__author"><?php echo esc_html( $author ); ?></span>
+						<span class="article-hero__dot" aria-hidden="true"></span>
+						<span><?php echo esc_html( get_the_date() ); ?></span>
+						<span class="article-hero__dot" aria-hidden="true"></span>
+						<span><?php echo esc_html( sprintf( /* translators: %d: minutes */ _n( '%d min read', '%d min read', $mins, 'estecapelli' ), $mins ) ); ?></span>
+					</div>
 				</div>
+
+				<figure class="article-hero__media">
+					<?php if ( has_post_thumbnail() ) : ?>
+						<?php the_post_thumbnail( 'large', array( 'class' => 'article-hero__img', 'loading' => 'eager', 'decoding' => 'async', 'alt' => '' ) ); ?>
+					<?php else : ?>
+						<span class="article-hero__img article-hero__img--empty" aria-hidden="true">
+							<?php estecapelli_icon( 'book-open', array( 'width' => 56, 'height' => 56 ) ); ?>
+						</span>
+					<?php endif; ?>
+				</figure>
 			</div>
 		</header>
 
-		<?php if ( has_post_thumbnail() ) : ?>
-			<figure class="single-post__media">
-				<div class="shell">
-					<?php the_post_thumbnail( 'large', array( 'class' => 'single-post__img', 'loading' => 'eager', 'decoding' => 'async', 'alt' => '' ) ); ?>
+		<div class="shell">
+			<div class="article-layout<?php echo $toc_html ? '' : ' article-layout--solo'; ?>">
+
+				<?php if ( $toc_html ) : ?>
+					<aside class="article-aside">
+						<?php echo $toc_html; // Escaped inside the renderer. ?>
+					</aside>
+				<?php endif; ?>
+
+				<div class="article-main">
+					<div class="single-post__content prose-content" data-article-body>
+						<?php
+						echo $post_html; // phpcs:ignore WordPress.Security.EscapeOutput -- already run through the_content filters.
+						wp_link_pages(
+							array(
+								'before' => '<div class="single-post__pages">' . esc_html__( 'Pages:', 'estecapelli' ),
+								'after'  => '</div>',
+							)
+						);
+						?>
+					</div>
+
+					<?php if ( $tags ) : ?>
+						<div class="single-post__tags">
+							<?php foreach ( $tags as $tag ) : ?>
+								<a class="single-post__tag" href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>">#<?php echo esc_html( $tag->name ); ?></a>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
+
+					<div class="single-post__share">
+						<span class="single-post__share-label"><?php esc_html_e( 'Share', 'estecapelli' ); ?></span>
+						<a class="single-post__share-btn single-post__share-btn--fb" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo rawurlencode( $permal ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on Facebook', 'estecapelli' ); ?>">
+							<?php estecapelli_icon( 'facebook', array( 'width' => 18, 'height' => 18 ) ); ?>
+						</a>
+						<a class="single-post__share-btn single-post__share-btn--wa" href="https://wa.me/?text=<?php echo rawurlencode( $title . ' ' . $permal ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on WhatsApp', 'estecapelli' ); ?>">
+							<?php estecapelli_icon( 'whatsapp', array( 'width' => 18, 'height' => 18 ) ); ?>
+						</a>
+						<button type="button" class="single-post__share-btn" data-copy-link="<?php echo esc_url( $permal ); ?>" aria-label="<?php esc_attr_e( 'Copy link', 'estecapelli' ); ?>">
+							<?php estecapelli_icon( 'link', array( 'width' => 18, 'height' => 18 ) ); ?>
+						</button>
+					</div>
 				</div>
-			</figure>
-		<?php endif; ?>
 
-		<div class="shell single-post__shell">
-			<?php
-			// Build the article HTML once, add heading anchors, and derive the TOC.
-			list( $post_html, $toc_items ) = estecapelli_extract_toc( apply_filters( 'the_content', get_the_content() ) );
-			if ( ! estecapelli_toc_is_hidden() ) {
-				echo estecapelli_render_toc( $toc_items ); // Escaped inside the renderer.
-			}
-			?>
-			<div class="single-post__content prose-content">
-				<?php
-				echo $post_html; // phpcs:ignore WordPress.Security.EscapeOutput -- already run through the_content filters.
-				wp_link_pages(
-					array(
-						'before' => '<div class="single-post__pages">' . esc_html__( 'Pages:', 'estecapelli' ),
-						'after'  => '</div>',
-					)
-				);
-				?>
-			</div>
-
-			<?php if ( $tags ) : ?>
-				<div class="single-post__tags">
-					<?php foreach ( $tags as $tag ) : ?>
-						<a class="single-post__tag" href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>">#<?php echo esc_html( $tag->name ); ?></a>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; ?>
-
-			<div class="single-post__share">
-				<span class="single-post__share-label"><?php esc_html_e( 'Share', 'estecapelli' ); ?></span>
-				<a class="single-post__share-btn" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo rawurlencode( $permal ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on Facebook', 'estecapelli' ); ?>">
-					<?php estecapelli_icon( 'facebook', array( 'width' => 18, 'height' => 18 ) ); ?>
-				</a>
-				<a class="single-post__share-btn" href="https://wa.me/?text=<?php echo rawurlencode( $title . ' ' . $permal ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Share on WhatsApp', 'estecapelli' ); ?>">
-					<?php estecapelli_icon( 'whatsapp', array( 'width' => 18, 'height' => 18 ) ); ?>
-				</a>
-				<button type="button" class="single-post__share-btn" data-copy-link="<?php echo esc_url( $permal ); ?>" aria-label="<?php esc_attr_e( 'Copy link', 'estecapelli' ); ?>">
-					<?php estecapelli_icon( 'link', array( 'width' => 18, 'height' => 18 ) ); ?>
-				</button>
 			</div>
 		</div>
 
@@ -148,7 +190,13 @@ while ( have_posts() ) :
 			?>
 			<section class="single-related">
 				<div class="shell">
-					<h2 class="single-related__title"><?php esc_html_e( 'Keep reading', 'estecapelli' ); ?></h2>
+					<div class="single-related__head">
+						<h2 class="single-related__title"><?php esc_html_e( 'Keep reading', 'estecapelli' ); ?></h2>
+						<a class="single-related__all" href="<?php echo esc_url( $blog ); ?>">
+							<?php esc_html_e( 'All articles', 'estecapelli' ); ?>
+							<?php estecapelli_icon( 'arrow-right', array( 'width' => 16, 'height' => 16 ) ); ?>
+						</a>
+					</div>
 					<div class="blog-grid">
 						<?php
 						while ( $related->have_posts() ) :
