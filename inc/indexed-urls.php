@@ -1103,6 +1103,94 @@ function estecapelli_indexed_request( $query_vars ) {
 add_filter( 'request', 'estecapelli_indexed_request', 30 );
 
 /**
+ * Indexed language of a /{lang}/blog/{slug} path that the contract does not own.
+ *
+ * The contract froze the articles that were live at migration time. Articles
+ * published since then have no contract route, and this installation does not
+ * resolve /{lang}/blog/{slug} from its rewrite rules alone — the same reason the
+ * English side carries its own resolver in inc/local-en-routing.php. Returns ''
+ * for anything the resolver below must not touch: /en/ (handled there), an
+ * unknown language prefix, and every route the contract already resolves.
+ */
+function estecapelli_localized_blog_language( $path ) {
+	$path = untrailingslashit( '/' . trim( (string) wp_parse_url( (string) $path, PHP_URL_PATH ), '/' ) );
+	if ( ! preg_match( '#^/[a-z-]{2,5}/blog/[^/]+$#i', $path ) ) {
+		return '';
+	}
+
+	$language = estecapelli_request_language_code( $path );
+	if ( '' === $language || 'en' === $language || estecapelli_indexed_route_key( $path ) ) {
+		return '';
+	}
+	return $language;
+}
+
+/**
+ * Published translated post ID for such a path, or 0.
+ */
+function estecapelli_localized_blog_post_id( $path ) {
+	$language = estecapelli_localized_blog_language( $path );
+	if ( '' === $language || ! preg_match( '#/blog/([^/]+)/?$#', (string) wp_parse_url( (string) $path, PHP_URL_PATH ), $match ) ) {
+		return 0;
+	}
+
+	return estecapelli_indexed_raw_translation_id(
+		0,
+		'post',
+		estecapelli_wpml_language_code( $language ),
+		sanitize_title( rawurldecode( $match[1] ) )
+	);
+}
+
+/**
+ * Resolve a translated blog post that is newer than the indexed contract.
+ *
+ * Runs after the contract resolver and only for the routes it declined, so a new
+ * article in any translated language is reachable the moment it is published —
+ * no contract entry, no re-deploy. A valid preview link resolves to its own post
+ * ID first so a draft translation can be previewed at its real URL.
+ */
+function estecapelli_localized_blog_request( $query_vars ) {
+	$request  = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$language = estecapelli_localized_blog_language( $request );
+	if ( '' === $language ) {
+		return $query_vars;
+	}
+
+	$is_preview   = false;
+	$preview_id   = estecapelli_en_preview_post_id();
+	$preview_post = $preview_id ? get_post( $preview_id ) : null;
+	if ( $preview_post && 'post' === $preview_post->post_type ) {
+		$target_id  = (int) $preview_id;
+		$is_preview = true;
+	} else {
+		$target_id = estecapelli_localized_blog_post_id( $request );
+	}
+	if ( ! $target_id ) {
+		return $query_vars;
+	}
+
+	$wpml_language = estecapelli_wpml_language_code( $language );
+	do_action( 'wpml_switch_language', $wpml_language );
+
+	$resolved = array( 'p' => $target_id, 'post_type' => 'post' );
+	if ( $is_preview ) {
+		$resolved['preview'] = 'true';
+	}
+	if ( isset( $query_vars['lang'] ) ) {
+		$resolved['lang'] = $wpml_language;
+	}
+	return $resolved;
+}
+add_filter( 'request', 'estecapelli_localized_blog_request', 35 );
+
+/** Keep WordPress on a translated blog URL resolved by the fallback above. */
+function estecapelli_preserve_localized_blog_canonical( $redirect_url, $requested_url ) {
+	return estecapelli_localized_blog_post_id( $requested_url ) ? false : $redirect_url;
+}
+add_filter( 'redirect_canonical', 'estecapelli_preserve_localized_blog_canonical', 998, 2 );
+
+/**
  * Exact source/language context for a legal-page request, or an empty array.
  *
  * Legal pages are newer than the historical indexed contract. They still need
