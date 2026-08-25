@@ -160,6 +160,200 @@ if ( ! function_exists( 'estecapelli_icon' ) ) {
 	}
 }
 
+if ( ! function_exists( 'estecapelli_country_code' ) ) {
+	/**
+	 * Reduce a flag value to a lowercase country code.
+	 *
+	 * Content authors write flags as emoji (🇬🇧). Windows has no glyphs for the
+	 * regional-indicator range, so Chrome and Edge there render the two letters
+	 * instead of a flag — which is why the same page looks right on a phone and
+	 * wrong on a desktop. Everything that displays a flag therefore goes through
+	 * a code first and draws its own SVG.
+	 *
+	 * Accepts a regional-indicator emoji, a tag-sequence emoji (England,
+	 * Scotland), or a plain code already ("GB", "GB-ENG").
+	 *
+	 * @param string $value Flag emoji or country code.
+	 * @return string Lowercase code, or '' when it cannot be read.
+	 */
+	function estecapelli_country_code( $value ) {
+		$value = trim( (string) $value );
+		if ( '' === $value ) {
+			return '';
+		}
+
+		// Already a code: "gb", "gb-eng".
+		if ( preg_match( '/^[A-Za-z]{2}(?:-[A-Za-z]{2,3})?$/', $value ) ) {
+			return strtolower( $value );
+		}
+
+		/*
+		 * Decode straight from the UTF-8 bytes rather than through mbstring,
+		 * which is not guaranteed to be loaded. Both ranges are fixed-width
+		 * 4-byte sequences whose final byte carries the letter:
+		 *   U+1F1E6..U+1F1FF (regional indicator A-Z) = F0 9F 87 A6..BF
+		 *   U+E0061..U+E007A (tag letter a-z)         = F3 A0 81 A1..BA
+		 */
+		$letters = '';
+		if ( preg_match_all( '/\xF0\x9F\x87([\xA6-\xBF])/', $value, $matches ) ) {
+			foreach ( $matches[1] as $byte ) {
+				$letters .= chr( ord( $byte ) - 0xA6 + 65 );
+			}
+		}
+		if ( 2 === strlen( $letters ) ) {
+			return strtolower( $letters );
+		}
+
+		// Tag sequences spell the whole subdivision: "gbeng" → "gb-eng".
+		$tags = '';
+		if ( preg_match_all( '/\xF3\xA0\x81([\xA1-\xBA])/', $value, $matches ) ) {
+			foreach ( $matches[1] as $byte ) {
+				$tags .= chr( ord( $byte ) - 0xA1 + 97 );
+			}
+		}
+		if ( 5 === strlen( $tags ) ) {
+			return substr( $tags, 0, 2 ) . '-' . substr( $tags, 2 );
+		}
+
+		return '';
+	}
+}
+
+if ( ! function_exists( 'estecapelli_flag_shapes' ) ) {
+	/**
+	 * Inline flag artwork, drawn in a 24×16 box.
+	 *
+	 * Deliberately simplified — at 22px wide a flag reads by its colours and
+	 * layout, not by the detail of a coat of arms. Only the countries the site
+	 * actually names are here; anything else falls back to a code chip.
+	 *
+	 * @return array<string,string>
+	 */
+	function estecapelli_flag_shapes() {
+		static $shapes = null;
+		if ( null !== $shapes ) {
+			return $shapes;
+		}
+
+		// US stripes: 13 bands over the full height, 7 of them red.
+		$us_stripes = '';
+		for ( $i = 0; $i < 7; $i++ ) {
+			$us_stripes .= sprintf( '<rect y="%.3f" width="24" height="1.231" fill="#B22234"/>', $i * 2.462 );
+		}
+		// A hint of the star field: 4 rows of 5 dots, offset every other row.
+		$us_stars = '';
+		for ( $row = 0; $row < 4; $row++ ) {
+			for ( $col = 0; $col < 5; $col++ ) {
+				$us_stars .= sprintf(
+					'<circle cx="%.2f" cy="%.2f" r="0.34" fill="#fff"/>',
+					1.1 + $col * 2.05 + ( $row % 2 ? 1.02 : 0 ),
+					1.15 + $row * 2.1
+				);
+			}
+		}
+
+		// Venezuela: an arc of white stars across the blue band.
+		$ve_stars = '';
+		$ve_arc   = array( 0, -0.28, -0.55, -0.28, 0 ); // lift towards the middle.
+		foreach ( $ve_arc as $i => $lift ) {
+			$ve_stars .= sprintf(
+				'<circle cx="%.2f" cy="%.2f" r="0.42" fill="#fff"/>',
+				8.4 + $i * 1.8,
+				8.6 + $lift
+			);
+		}
+
+		$shapes = array(
+			'us' => '<rect width="24" height="16" fill="#fff"/>' . $us_stripes
+				. '<rect width="10.4" height="8.615" fill="#3C3B6E"/>' . $us_stars,
+
+			'gb' => '<rect width="24" height="16" fill="#012169"/>'
+				. '<path d="M0 0 24 16M24 0 0 16" stroke="#fff" stroke-width="3.2"/>'
+				. '<path d="M0 0 24 16M24 0 0 16" stroke="#C8102E" stroke-width="1.7"/>'
+				. '<path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5.3"/>'
+				. '<path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3.2"/>',
+
+			'gb-eng' => '<rect width="24" height="16" fill="#fff"/>'
+				. '<path d="M12 0v16M0 8h24" stroke="#CE1124" stroke-width="3.2"/>',
+
+			'gb-sct' => '<rect width="24" height="16" fill="#005EB8"/>'
+				. '<path d="M0 0 24 16M24 0 0 16" stroke="#fff" stroke-width="3"/>',
+
+			'ca' => '<rect width="24" height="16" fill="#fff"/>'
+				. '<rect width="6" height="16" fill="#D52B1E"/><rect x="18" width="6" height="16" fill="#D52B1E"/>'
+				. '<polygon fill="#D52B1E" points="12,2.6 12.8,4.6 14.4,4.2 14,6 15.6,5.6 15.2,7.2 17,7 16,8.4 17.2,9.4 14,10.6 14.6,12.2 12.6,11.9 12.6,13.6 11.4,13.6 11.4,11.9 9.4,12.2 10,10.6 6.8,9.4 8,8.4 7,7 8.8,7.2 8.4,5.6 10,6 9.6,4.2 11.2,4.6"/>',
+
+			'de' => '<rect width="24" height="5.333" fill="#000"/>'
+				. '<rect y="5.333" width="24" height="5.334" fill="#DD0000"/>'
+				. '<rect y="10.667" width="24" height="5.333" fill="#FFCE00"/>',
+
+			'fr' => '<rect width="8" height="16" fill="#002395"/><rect x="8" width="8" height="16" fill="#fff"/>'
+				. '<rect x="16" width="8" height="16" fill="#ED2939"/>',
+
+			'it' => '<rect width="8" height="16" fill="#008C45"/><rect x="8" width="8" height="16" fill="#F4F5F0"/>'
+				. '<rect x="16" width="8" height="16" fill="#CD212A"/>',
+
+			'ie' => '<rect width="8" height="16" fill="#169B62"/><rect x="8" width="8" height="16" fill="#fff"/>'
+				. '<rect x="16" width="8" height="16" fill="#FF883E"/>',
+
+			'es' => '<rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/>',
+
+			'pl' => '<rect width="24" height="16" fill="#fff"/><rect y="8" width="24" height="8" fill="#DC143C"/>',
+
+			'pt' => '<rect width="24" height="16" fill="#DA291C"/><rect width="9.6" height="16" fill="#046A38"/>'
+				. '<circle cx="9.6" cy="8" r="3.1" fill="#FFE900"/><circle cx="9.6" cy="8" r="2" fill="#fff"/>'
+				. '<rect x="8.6" y="6.6" width="2" height="2.8" rx="0.4" fill="#DA291C"/>',
+
+			'tr' => '<rect width="24" height="16" fill="#E30A17"/>'
+				. '<circle cx="9.6" cy="8" r="4" fill="#fff"/><circle cx="11.1" cy="8" r="3.2" fill="#E30A17"/>'
+				. '<polygon fill="#fff" points="15.4,5.9 16.1,7.8 18.1,7.8 16.5,9 17.1,10.9 15.4,9.8 13.7,10.9 14.3,9 12.7,7.8 14.7,7.8"/>',
+
+			've' => '<rect width="24" height="5.333" fill="#FFCE00"/>'
+				. '<rect y="5.333" width="24" height="5.334" fill="#00247D"/>'
+				. '<rect y="10.667" width="24" height="5.333" fill="#CF142B"/>' . $ve_stars,
+		);
+
+		return $shapes;
+	}
+}
+
+if ( ! function_exists( 'estecapelli_flag' ) ) {
+	/**
+	 * Print a country flag that renders identically on every platform.
+	 *
+	 * @param string $value Flag emoji or country code.
+	 * @param array  $args  Optional: 'class' extra classes, 'label' accessible name.
+	 */
+	function estecapelli_flag( $value, $args = array() ) {
+		$code = estecapelli_country_code( $value );
+		if ( '' === $code ) {
+			return;
+		}
+
+		$args   = wp_parse_args( $args, array( 'class' => '', 'label' => '' ) );
+		$class  = trim( 'flag ' . $args['class'] );
+		$shapes = estecapelli_flag_shapes();
+
+		// No artwork for this country: show the code itself rather than nothing.
+		if ( empty( $shapes[ $code ] ) ) {
+			printf(
+				'<span class="%1$s flag--code"%2$s>%3$s</span>',
+				esc_attr( $class ),
+				$args['label'] ? sprintf( ' role="img" aria-label="%s"', esc_attr( $args['label'] ) ) : ' aria-hidden="true"',
+				esc_html( strtoupper( str_replace( '-', ' ', $code ) ) )
+			);
+			return;
+		}
+
+		printf(
+			'<svg class="%1$s" viewBox="0 0 24 16" width="22" height="15" %2$s>%3$s</svg>',
+			esc_attr( $class ),
+			$args['label'] ? sprintf( 'role="img" aria-label="%s"', esc_attr( $args['label'] ) ) : 'aria-hidden="true" focusable="false"',
+			$shapes[ $code ] // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static artwork.
+		);
+	}
+}
+
 if ( ! function_exists( 'estecapelli_render_item_icon' ) ) {
 	/**
 	 * Render an item's icon: an uploaded custom icon wins; otherwise the built-in

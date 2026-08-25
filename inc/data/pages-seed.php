@@ -770,6 +770,18 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 					),
 
 					array(
+						// Reads the composites already attached to the hair-transplant
+						// treatments, so this strip is never empty and needs no upload.
+						'acf_fc_layout' => 'results',
+						'eyebrow'       => __( 'Proof', 'estecapelli' ),
+						'title'         => __( 'These Techniques, on Real Patients', 'estecapelli' ),
+						'lead'          => __( 'Results from patients treated with our Exosome, VITA, Sapphire FUE and DHI protocols — every one planned around that person’s own hairline, donor area and growth pattern.', 'estecapelli' ),
+						'category'      => 'hair-transplant',
+						'count'         => 8,
+						'cta'           => array( 'label' => __( 'View the full gallery', 'estecapelli' ), 'url' => home_url( '/en/before-after' ) ),
+					),
+
+					array(
 						'acf_fc_layout' => 'price_compare',
 						'eyebrow'       => __( 'Cost Comparison', 'estecapelli' ),
 						'title'         => __( 'The Same Procedure, a Very Different Price', 'estecapelli' ),

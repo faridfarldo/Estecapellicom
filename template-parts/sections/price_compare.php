@@ -134,9 +134,7 @@ $uid = 'price-grafts-' . wp_rand( 1000, 9999 );
 						data-per-graft-max="<?php echo esc_attr( $max ); ?>"
 					>
 						<span class="t-cmp__cell t-cmp__cell--country">
-							<?php if ( ! empty( $row['flag'] ) ) : ?>
-								<span class="t-cmp__flag" aria-hidden="true"><?php echo esc_html( $row['flag'] ); ?></span>
-							<?php endif; ?>
+							<?php estecapelli_flag( $row['flag'] ?? '', array( 'class' => 't-cmp__flag' ) ); ?>
 							<span class="t-cmp__country"><?php echo esc_html( $row['country'] ); ?></span>
 						</span>
 
@@ -155,9 +153,7 @@ $uid = 'price-grafts-' . wp_rand( 1000, 9999 );
 				<?php if ( ! empty( $hl['country'] ) ) : ?>
 					<li class="t-cmp__row t-cmp__row--us">
 						<span class="t-cmp__cell t-cmp__cell--country">
-							<?php if ( ! empty( $hl['flag'] ) ) : ?>
-								<span class="t-cmp__flag" aria-hidden="true"><?php echo esc_html( $hl['flag'] ); ?></span>
-							<?php endif; ?>
+							<?php estecapelli_flag( $hl['flag'] ?? '', array( 'class' => 't-cmp__flag' ) ); ?>
 							<span class="t-cmp__country">
 								<?php echo esc_html( $hl['country'] ); ?>
 								<?php if ( ! empty( $hl['clinic'] ) ) : ?>

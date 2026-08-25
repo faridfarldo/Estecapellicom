@@ -739,6 +739,32 @@ function estecapelli_register_acf_field_groups() {
 							),
 						),
 
+						// ============================================================ Auto before/after
+						'results' => array(
+							'key'        => 'layout_results',
+							'name'       => 'results',
+							'label'      => __( 'Before & After (automatic) — pulls composites from the treatments', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_results_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_results_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text' ),
+								array( 'key' => 'field_results_lead',    'label' => __( 'Lead paragraph', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 3 ),
+								array( 'key' => 'field_results_category', 'label' => __( 'Treatment category slug', 'estecapelli' ), 'name' => 'category', 'type' => 'text', 'default_value' => 'hair-transplant', 'instructions' => __( 'Which category to pull results from — hair-transplant, plastic-surgery or dental-treatment.', 'estecapelli' ) ),
+								array( 'key' => 'field_results_count',   'label' => __( 'How many results', 'estecapelli' ), 'name' => 'count', 'type' => 'number', 'default_value' => 8, 'min' => 1, 'max' => 30 ),
+								array(
+									'key'        => 'field_results_cta',
+									'label'      => __( 'CTA', 'estecapelli' ),
+									'name'       => 'cta',
+									'type'       => 'group',
+									'layout'     => 'block',
+									'sub_fields' => array(
+										array( 'key' => 'field_results_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text' ),
+										array( 'key' => 'field_results_cta_url',   'label' => __( 'URL', 'estecapelli' ), 'name' => 'url', 'type' => 'url' ),
+									),
+								),
+							),
+						),
+
 						// ============================================================ Price comparison
 						'price_compare' => array(
 							'key'        => 'layout_price_compare',

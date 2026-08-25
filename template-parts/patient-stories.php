@@ -156,7 +156,7 @@ $image_style = function ( $story, $position_key, $transform_key ) {
 								</li>
 								<li class="stories__hero-pill stories__hero-pill--country">
 									<span class="stories__hero-pill-value">
-										<span class="stories__hero-pill-flag" aria-hidden="true"><?php echo esc_html( $story['flag'] ); ?></span>
+										<?php estecapelli_flag( ( $story['country_iso'] ?? '' ) ?: ( $story['flag'] ?? '' ), array( 'class' => 'stories__hero-pill-flag' ) ); ?>
 										<?php echo esc_html( $story['country'] ); ?>
 									</span>
 									<span class="stories__hero-pill-label"><?php esc_html_e( 'Patient from', 'estecapelli' ); ?></span>
@@ -200,7 +200,7 @@ $image_style = function ( $story, $position_key, $transform_key ) {
 									<?php else : ?>
 										<span class="stories__poster-initial" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
 									<?php endif; ?>
-									<span class="stories__poster-flag" aria-hidden="true"><?php echo esc_html( $story['flag'] ); ?></span>
+									<?php estecapelli_flag( ( $story['country_iso'] ?? '' ) ?: ( $story['flag'] ?? '' ), array( 'class' => 'stories__poster-flag' ) ); ?>
 								</span>
 								<span class="stories__poster-body">
 									<span class="stories__poster-name"><?php echo esc_html( $story['name'] ); ?></span>
