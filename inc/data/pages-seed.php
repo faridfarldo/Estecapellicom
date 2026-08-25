@@ -693,6 +693,21 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 						'gallery_title' => __( 'Take a look inside', 'estecapelli' ),
 						'gallery_lead'  => __( 'Our operating theatres, the TrichoLab room, the dental clinic and the spaces in between.', 'estecapelli' ),
 					),
+
+					array(
+						'acf_fc_layout' => 'form',
+						'eyebrow'       => __( 'Free Consultation', 'estecapelli' ),
+						'title'         => __( 'Now Let Us Look at Your Case', 'estecapelli' ),
+						'lead'          => __( 'You have read who we are. The next step is the other way round: send us a few photos and our medical team will reply with the technique they would recommend, an honest assessment of what is achievable, and a no-obligation, all-inclusive quote — usually within a few hours.', 'estecapelli' ),
+						'points'        => array(
+							array( 'icon' => 'sparkles',     'label' => __( 'Free graft assessment from your photos', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'No-obligation, transparent all-inclusive quote', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Fast reply from our dedicated patient-care team', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Multilingual support at every step', 'estecapelli' ) ),
+						),
+						'submit_label'  => __( 'Request a Free Consultation', 'estecapelli' ),
+						'show_whatsapp' => true,
+					),
 				),
 			),
 			array(
