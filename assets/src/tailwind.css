@@ -6254,7 +6254,8 @@
 	.t-steps__eyebrow, .t-cand__eyebrow, .t-gallery__eyebrow,
 	.t-faq__eyebrow,  .t-price__eyebrow, .t-doctor__eyebrow,
 	.t-related__eyebrow, .t-tech__eyebrow, .t-cmp__eyebrow,
-	.t-care__eyebrow {
+	.t-care__eyebrow, .t-branch__eyebrow,
+	.t-clinic__eyebrow {
 		display: inline-flex; align-items: center; gap: 0.5rem;
 		padding: 5px 12px 5px 8px;
 		background: oklch(48% 0.13 260 / 0.06);
@@ -6268,7 +6269,8 @@
 	.t-steps__eyebrow-mark, .t-cand__eyebrow-mark, .t-gallery__eyebrow-mark,
 	.t-faq__eyebrow-mark,  .t-price__eyebrow-mark, .t-doctor__eyebrow-mark,
 	.t-related__eyebrow-mark, .t-tech__eyebrow-mark, .t-cmp__eyebrow-mark,
-	.t-care__eyebrow-mark {
+	.t-care__eyebrow-mark, .t-branch__eyebrow-mark,
+	.t-clinic__eyebrow-mark {
 		width: 6px; height: 6px; border-radius: 9999px;
 		background: var(--color-accent-500);
 		box-shadow: 0 0 0 3px oklch(70% 0.15 78 / 0.18);
@@ -7510,7 +7512,9 @@
 	.t-related__eyebrow,
 	.t-tech__eyebrow,
 	.t-cmp__eyebrow,
-	.t-care__eyebrow {
+	.t-care__eyebrow,
+	.t-branch__eyebrow,
+	.t-clinic__eyebrow {
 		background: transparent !important;
 		border: 0 !important;
 		-webkit-backdrop-filter: none !important;
@@ -7549,7 +7553,9 @@
 	.t-related__eyebrow-mark,
 	.t-tech__eyebrow-mark,
 	.t-cmp__eyebrow-mark,
-	.t-care__eyebrow-mark {
+	.t-care__eyebrow-mark,
+	.t-branch__eyebrow-mark,
+	.t-clinic__eyebrow-mark {
 		width: 36px !important;
 		height: 1.5px !important;
 		background: linear-gradient(90deg, var(--color-accent-500), var(--color-accent-700)) !important;
@@ -7968,6 +7974,210 @@
 		}
 		.t-cmp__row--us .t-cmp__cell--rate { align-self: end; }
 	}
+
+	/* ---- Branches ---- */
+	.t-branch {
+		padding-block: clamp(3rem, 6vw, 5rem);
+		background: linear-gradient(180deg, white 0%, oklch(98% 0.008 260) 100%);
+	}
+	.t-branch__head {
+		text-align: center;
+		display: flex; flex-direction: column; align-items: center;
+		gap: 0.875rem;
+		max-width: 780px;
+		margin: 0 auto clamp(2rem, 4vw, 3rem);
+	}
+	.t-branch__title {
+		margin: 0;
+		font-size: var(--text-h2); line-height: 1.2;
+		letter-spacing: -0.025em; font-weight: 700;
+		color: var(--color-brand-950);
+		text-wrap: balance;
+	}
+	.t-branch__lead {
+		margin: 0; max-width: 64ch;
+		font-size: 1rem; line-height: 1.6;
+		color: oklch(45% 0.015 260);
+	}
+	.t-branch__grid {
+		list-style: none; margin: 0; padding: 0;
+		display: grid;
+		grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+		gap: clamp(1rem, 2.5vw, 1.75rem);
+		align-items: stretch;
+	}
+	.t-branch__card {
+		display: flex; flex-direction: column;
+		gap: 0.875rem;
+		padding: clamp(1.375rem, 2.5vw, 1.75rem);
+		background: white;
+		border: 1px solid var(--color-brand-100);
+		border-radius: 20px;
+		box-shadow: var(--shadow-card);
+		transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
+	}
+	.t-branch__card:hover { transform: translateY(-3px); box-shadow: var(--shadow-pop); }
+	.t-branch__media {
+		margin: 0;
+		aspect-ratio: 16 / 10;
+		border-radius: 14px;
+		overflow: hidden;
+		background: var(--color-brand-50);
+	}
+	.t-branch__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+	.t-branch__card-head { display: flex; flex-direction: column; gap: 0.375rem; }
+	.t-branch__badge {
+		display: inline-flex; align-items: center;
+		width: fit-content;
+		padding: 4px 11px;
+		background: oklch(48% 0.13 260 / 0.08);
+		border: 1px solid oklch(48% 0.13 260 / 0.16);
+		border-radius: 9999px;
+		font-size: 0.625rem; font-weight: 700;
+		letter-spacing: 0.14em; text-transform: uppercase;
+		color: var(--color-brand-700);
+	}
+	.t-branch__city {
+		display: flex; align-items: center; gap: 0.5rem;
+		margin: 0.125rem 0 0;
+		font-size: var(--text-h3); line-height: 1.2;
+		letter-spacing: -0.02em; font-weight: 700;
+		color: var(--color-brand-950);
+	}
+	.t-branch__flag { vertical-align: 0; }
+	.t-branch__country {
+		font-size: 0.75rem; font-weight: 600;
+		letter-spacing: 0.1em; text-transform: uppercase;
+		color: oklch(52% 0.015 260);
+	}
+	.t-branch__kicker {
+		margin: 0.25rem 0 0;
+		font-size: 0.9375rem; line-height: 1.45; font-weight: 500;
+		color: var(--color-brand-600);
+	}
+	.t-branch__body { font-size: 0.9375rem; line-height: 1.65; color: oklch(35% 0.015 260); }
+	.t-branch__body p { margin: 0 0 0.75rem; }
+	.t-branch__body p:last-child { margin-bottom: 0; }
+	.t-branch__points {
+		list-style: none; margin: 0; padding: 0;
+		display: flex; flex-direction: column; gap: 0.5rem;
+	}
+	.t-branch__point { display: flex; align-items: flex-start; gap: 0.5rem; }
+	.t-branch__point-icon { color: var(--color-brand-600); flex-shrink: 0; margin-top: 1px; }
+	.t-branch__point-label {
+		font-size: 0.875rem; line-height: 1.45; font-weight: 500;
+		color: oklch(30% 0.015 260);
+	}
+	.t-branch__contact {
+		margin: auto 0 0;
+		padding-top: 0.875rem;
+		border-top: 1px solid var(--color-brand-100);
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 0.25rem 0.75rem;
+		font-size: 0.8125rem;
+	}
+	.t-branch__contact-term {
+		font-weight: 700;
+		letter-spacing: 0.06em; text-transform: uppercase;
+		font-size: 0.625rem;
+		color: oklch(55% 0.015 260);
+		padding-top: 2px;
+	}
+	.t-branch__contact-def { margin: 0; color: oklch(32% 0.015 260); line-height: 1.5; }
+	.t-branch__contact-def a { color: var(--color-brand-700); text-decoration: none; }
+	.t-branch__contact-def a:hover { text-decoration: underline; }
+	.t-branch__map {
+		display: inline-flex; align-items: center; gap: 0.375rem;
+		margin-top: 0.625rem;
+		font-size: 0.8125rem; font-weight: 600;
+		color: var(--color-brand-700);
+		text-decoration: none;
+	}
+	.t-branch__map:hover { color: var(--color-brand-900); }
+	.t-branch__foot {
+		margin-top: clamp(1.75rem, 3vw, 2.5rem);
+		display: flex; flex-direction: column; align-items: center;
+		gap: 1rem;
+		text-align: center;
+	}
+	.t-branch__footnote {
+		margin: 0; max-width: 62ch;
+		font-size: 0.9375rem; line-height: 1.55;
+		color: oklch(45% 0.015 260);
+	}
+	@media (max-width: 1000px) {
+		.t-branch__grid { grid-template-columns: 1fr; }
+	}
+
+	/* ---- Our clinic ---- */
+	.t-clinic {
+		padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+		background: white;
+	}
+	.t-clinic__head {
+		display: flex; flex-direction: column;
+		gap: 0.875rem;
+		max-width: 780px;
+		margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+	}
+	.t-clinic__title {
+		margin: 0;
+		font-size: var(--text-h2); line-height: 1.2;
+		letter-spacing: -0.025em; font-weight: 700;
+		color: var(--color-brand-950);
+		text-wrap: balance;
+	}
+	.t-clinic__lead {
+		margin: 0; max-width: 62ch;
+		font-size: 1.0625rem; line-height: 1.6;
+		color: oklch(42% 0.015 260);
+	}
+	.t-clinic__body {
+		max-width: 68ch;
+		font-size: 1rem; line-height: 1.7;
+		color: oklch(33% 0.015 260);
+	}
+	.t-clinic__body p { margin: 0 0 1rem; }
+	.t-clinic__body p:last-child { margin-bottom: 0; }
+	.t-clinic__points {
+		list-style: none;
+		margin: clamp(2rem, 4vw, 2.75rem) 0 0; padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: clamp(1rem, 2vw, 1.5rem);
+	}
+	.t-clinic__point {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		grid-template-rows: auto auto;
+		column-gap: 0.875rem; row-gap: 0.25rem;
+		padding: 1.125rem 1.25rem;
+		background: linear-gradient(160deg, oklch(98% 0.008 260), white);
+		border: 1px solid var(--color-brand-100);
+		border-radius: 16px;
+	}
+	.t-clinic__point-icon {
+		grid-row: 1 / 3;
+		display: inline-flex; align-items: center; justify-content: center;
+		width: 40px; height: 40px;
+		border-radius: 11px;
+		background: oklch(48% 0.13 260 / 0.08);
+		color: var(--color-brand-600);
+		align-self: start;
+	}
+	.t-clinic__point-title {
+		font-size: 0.9375rem; font-weight: 700;
+		letter-spacing: -0.01em;
+		color: var(--color-brand-950);
+		align-self: center;
+	}
+	.t-clinic__point-body {
+		font-size: 0.875rem; line-height: 1.5;
+		color: oklch(42% 0.015 260);
+	}
+	/* The shared photo wall follows this block, so drop its own top padding. */
+	.t-clinic + .facilities { padding-top: clamp(1rem, 2vw, 1.5rem); }
 
 	/* ---- After care ---- */
 	.t-care {

@@ -739,6 +739,105 @@ function estecapelli_register_acf_field_groups() {
 							),
 						),
 
+						// ============================================================ Branches
+						'branches' => array(
+							'key'        => 'layout_branches',
+							'name'       => 'branches',
+							'label'      => __( 'Our Branches — one card per clinic location', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_br_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_br_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_br_lead',    'label' => __( 'Lead paragraph', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 3 ),
+								array(
+									'key'          => 'field_br_items',
+									'label'        => __( 'Branches', 'estecapelli' ),
+									'name'         => 'items',
+									'type'         => 'repeater',
+									'min'          => 1,
+									'max'          => 8,
+									'button_label' => __( '+ Add Branch', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_br_item_badge',   'label' => __( 'Badge', 'estecapelli' ), 'name' => 'badge', 'type' => 'text' ),
+										array( 'key' => 'field_br_item_flag',    'label' => __( 'Flag', 'estecapelli' ), 'name' => 'flag', 'type' => 'text', 'instructions' => __( 'Flag emoji or country code, e.g. 🇹🇷 or TR.', 'estecapelli' ) ),
+										array( 'key' => 'field_br_item_city',    'label' => __( 'City', 'estecapelli' ), 'name' => 'city', 'type' => 'text', 'required' => 1 ),
+										array( 'key' => 'field_br_item_country', 'label' => __( 'Country', 'estecapelli' ), 'name' => 'country', 'type' => 'text' ),
+										array( 'key' => 'field_br_item_kicker',  'label' => __( 'One-line summary', 'estecapelli' ), 'name' => 'kicker', 'type' => 'text' ),
+										array( 'key' => 'field_br_item_body',    'label' => __( 'Body', 'estecapelli' ), 'name' => 'body', 'type' => 'wysiwyg', 'tabs' => 'visual', 'media_upload' => 0 ),
+										array(
+											'key'          => 'field_br_item_points',
+											'label'        => __( 'Highlights', 'estecapelli' ),
+											'name'         => 'points',
+											'type'         => 'repeater',
+											'min'          => 0,
+											'max'          => 8,
+											'button_label' => __( '+ Add Highlight', 'estecapelli' ),
+											'layout'       => 'table',
+											'sub_fields'   => array(
+												array( 'key' => 'field_br_point_icon',      'label' => __( 'Icon (built-in)', 'estecapelli' ), 'name' => 'icon', 'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1, 'wrapper' => array( 'class' => 'estecapelli-icon-select' ) ),
+												array( 'key' => 'field_br_point_icon_file', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon_file', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'library' => 'all', 'mime_types' => 'svg,png' ),
+												array( 'key' => 'field_br_point_label',     'label' => __( 'Text', 'estecapelli' ), 'name' => 'label', 'type' => 'text', 'required' => 1 ),
+											),
+										),
+										// Contact details are optional: an empty field simply
+										// does not print, so a branch can go live with a city
+										// and gain its address later without a re-import.
+										array( 'key' => 'field_br_item_address', 'label' => __( 'Address (optional)', 'estecapelli' ), 'name' => 'address', 'type' => 'textarea', 'rows' => 2 ),
+										array( 'key' => 'field_br_item_phone',   'label' => __( 'Phone (optional)', 'estecapelli' ), 'name' => 'phone', 'type' => 'text' ),
+										array( 'key' => 'field_br_item_hours',   'label' => __( 'Opening hours (optional)', 'estecapelli' ), 'name' => 'hours', 'type' => 'text' ),
+										array( 'key' => 'field_br_item_map',     'label' => __( 'Map link (optional)', 'estecapelli' ), 'name' => 'map_url', 'type' => 'url' ),
+										array( 'key' => 'field_br_item_image',     'label' => __( 'Photo (optional)', 'estecapelli' ), 'name' => 'image', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium' ),
+										array( 'key' => 'field_br_item_image_url', 'label' => __( 'Photo URL (fallback)', 'estecapelli' ), 'name' => 'image_url', 'type' => 'text' ),
+									),
+								),
+								array( 'key' => 'field_br_footnote', 'label' => __( 'Footnote', 'estecapelli' ), 'name' => 'footnote', 'type' => 'textarea', 'rows' => 2 ),
+								array(
+									'key'        => 'field_br_cta',
+									'label'      => __( 'CTA', 'estecapelli' ),
+									'name'       => 'cta',
+									'type'       => 'group',
+									'layout'     => 'block',
+									'sub_fields' => array(
+										array( 'key' => 'field_br_cta_label', 'label' => __( 'Label', 'estecapelli' ), 'name' => 'label', 'type' => 'text' ),
+										array( 'key' => 'field_br_cta_url',   'label' => __( 'URL', 'estecapelli' ), 'name' => 'url', 'type' => 'url' ),
+									),
+								),
+							),
+						),
+
+						// ============================================================ Our clinic
+						'clinic' => array(
+							'key'        => 'layout_clinic',
+							'name'       => 'clinic',
+							'label'      => __( 'Our Clinic — copy block plus the shared clinic photo wall', 'estecapelli' ),
+							'display'    => 'block',
+							'sub_fields' => array(
+								array( 'key' => 'field_cl_eyebrow', 'label' => __( 'Eyebrow', 'estecapelli' ), 'name' => 'eyebrow', 'type' => 'text' ),
+								array( 'key' => 'field_cl_title',   'label' => __( 'Title', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+								array( 'key' => 'field_cl_lead',    'label' => __( 'Lead paragraph', 'estecapelli' ), 'name' => 'lead', 'type' => 'textarea', 'rows' => 3 ),
+								array( 'key' => 'field_cl_body',    'label' => __( 'Body', 'estecapelli' ), 'name' => 'body', 'type' => 'wysiwyg', 'tabs' => 'visual', 'media_upload' => 0 ),
+								array(
+									'key'          => 'field_cl_points',
+									'label'        => __( 'Equipment & safety points', 'estecapelli' ),
+									'name'         => 'points',
+									'type'         => 'repeater',
+									'min'          => 0,
+									'max'          => 10,
+									'button_label' => __( '+ Add Point', 'estecapelli' ),
+									'layout'       => 'block',
+									'sub_fields'   => array(
+										array( 'key' => 'field_cl_point_icon',      'label' => __( 'Icon (built-in)', 'estecapelli' ), 'name' => 'icon', 'type' => 'select', 'choices' => $icon_choices, 'allow_null' => 1, 'wrapper' => array( 'class' => 'estecapelli-icon-select' ) ),
+										array( 'key' => 'field_cl_point_icon_file', 'label' => __( 'Icon', 'estecapelli' ), 'name' => 'icon_file', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'thumbnail', 'library' => 'all', 'mime_types' => 'svg,png' ),
+										array( 'key' => 'field_cl_point_title',     'label' => __( 'Heading', 'estecapelli' ), 'name' => 'title', 'type' => 'text', 'required' => 1 ),
+										array( 'key' => 'field_cl_point_body',      'label' => __( 'Text', 'estecapelli' ), 'name' => 'body', 'type' => 'textarea', 'rows' => 2 ),
+									),
+								),
+								array( 'key' => 'field_cl_gallery_title', 'label' => __( 'Heading above the photo wall', 'estecapelli' ), 'name' => 'gallery_title', 'type' => 'text', 'instructions' => __( 'Leave empty to hide the photo wall entirely.', 'estecapelli' ) ),
+								array( 'key' => 'field_cl_gallery_lead',  'label' => __( 'Line under that heading', 'estecapelli' ), 'name' => 'gallery_lead', 'type' => 'text' ),
+							),
+						),
+
 						// ============================================================ Auto before/after
 						'results' => array(
 							'key'        => 'layout_results',

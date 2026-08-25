@@ -2678,10 +2678,22 @@ if ( ! function_exists( 'estecapelli_facilities' ) ) {
 	 */
 	function estecapelli_facilities() {
 		$defaults = estecapelli_facilities_defaults();
-		if ( ! function_exists( 'get_field' ) ) {
-			return $defaults;
-		}
-		return estecapelli_acf_overlay( $defaults, get_field( 'home_facilities', 'option' ) );
+		$data     = function_exists( 'get_field' )
+			? estecapelli_acf_overlay( $defaults, get_field( 'home_facilities', 'option' ) )
+			: $defaults;
+
+		/**
+		 * Filter the facilities payload.
+		 *
+		 * The photo wall is reused outside the homepage — the `clinic`
+		 * page-builder section drops it into any page — where it needs its own
+		 * heading and usually no partner-hotel strip.
+		 *
+		 * @param array $data Facilities data (eyebrow, headline, lead, gallery, partners, cta).
+		 */
+		$filtered = apply_filters( 'estecapelli_facilities', $data );
+
+		return is_array( $filtered ) ? $filtered : $data;
 	}
 }
 

@@ -507,7 +507,7 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 						'acf_fc_layout'  => 'intro',
 						'eyebrow'        => __( 'Who We Are', 'estecapelli' ),
 						'title'          => __( 'A trusted name in hair transplantation', 'estecapelli' ),
-						'body'           => '<p>' . esc_html__( 'With more than 15 years of experience in the healthcare sector, Estecapelli is an internationally trusted name in hair transplantation. Founded in Turkey, our clinic quickly earned worldwide recognition through outstanding patient satisfaction and consistently successful operations — and today we serve patients on a global scale from our centres in Turkey and Chile.', 'estecapelli' ) . '</p>'
+						'body'           => '<p>' . esc_html__( 'With more than 15 years of experience in the healthcare sector, Estecapelli is an internationally trusted name in hair transplantation. Founded in Turkey, our clinic quickly earned worldwide recognition through outstanding patient satisfaction and consistently successful operations — and today we serve patients on a global scale from our clinics in Istanbul, Santiago and Miami.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'Performing more than 2,500 hair transplants every year in Turkey alone, Estecapelli delivers natural, aesthetic and permanent results through innovative technology and personalised treatment plans. Our patented VITA and Exosome techniques accelerate the healing process while increasing graft survival rates — making a genuine difference in hair restoration.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'With our unlimited maximum-graft and fixed-price approach, we offer every patient the most ideal solution, and every operation is carried out meticulously by our expert, experienced Turkish medical team.', 'estecapelli' ) . '</p>'
 							. '<p>' . esc_html__( 'Our modern, hygienic clinical facilities, our international-standard approach to service, and a patient satisfaction proven across thousands of successful operations make Estecapelli a standout name in hair transplantation. Wherever you are in the world, Estecapelli is by your side to deliver the very best hair transplant experience.', 'estecapelli' ) . '</p>',
@@ -567,10 +567,131 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 						'acf_fc_layout'  => 'intro',
 						'eyebrow'        => __( 'Looking Ahead', 'estecapelli' ),
 						'title'          => __( 'Our Vision', 'estecapelli' ),
-						'body'           => '<p>' . esc_html__( 'Our vision is to be a global leading brand in hair transplantation and medical aesthetics, pioneering the industry through our innovative practices and meticulous, detail-focused approach. With our centres in Turkey and Santiago, Chile, we aim to reach more patients and bring our superior-quality service to an ever-wider audience.', 'estecapelli' ) . '</p>',
+						'body'           => '<p>' . esc_html__( 'Our vision is to be a global leading brand in hair transplantation and medical aesthetics, pioneering the industry through our innovative practices and meticulous, detail-focused approach. With our clinics in Istanbul, Santiago and Miami, we aim to reach more patients and bring our superior-quality service to an ever-wider audience.', 'estecapelli' ) . '</p>',
 						'image'          => '',
 						'image_position' => 'left',
 						'cta'            => array( 'label' => __( 'Meet Our Doctors', 'estecapelli' ), 'url' => home_url( '/en/about-us/our-doctors' ) ),
+					),
+
+					// Where we operate. A branch can go live with only its city —
+					// address, phone and hours print only once they are filled in.
+					array(
+						'acf_fc_layout' => 'branches',
+						'eyebrow'       => __( 'Our Branches', 'estecapelli' ),
+						'title'         => __( 'Three Clinics, One Standard of Care', 'estecapelli' ),
+						'lead'          => __( 'Estecapelli began in Istanbul and grew towards its patients. Today we run our own clinics on three continents, each performing the full procedure with the same techniques, the same protocols and the same fixed, all-inclusive pricing — so where you are treated changes the journey, never the standard.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'badge'   => __( 'Headquarters', 'estecapelli' ),
+								'flag'    => '🇹🇷',
+								'city'    => __( 'Istanbul', 'estecapelli' ),
+								'country' => __( 'Türkiye', 'estecapelli' ),
+								'kicker'  => __( 'Where Estecapelli began.', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Our Istanbul clinic is the centre of everything we do — a Ministry-of-Health licensed, hospital-grade facility with its own sterile operating theatres, TrichoLab analysis room and dental clinic under one roof. It is where our surgical protocols are developed and refined, and where most of our international patients are treated.', 'estecapelli' ) . '</p>'
+									. '<p>' . esc_html__( 'Patients who travel to us usually plan around three days in the city. Hotel, VIP transfers and a personal translator are arranged around the procedure, so the only thing left to think about is the result.', 'estecapelli' ) . '</p>',
+								'points'  => array(
+									array( 'icon' => 'calendar',     'label' => __( 'More than 15 years in the healthcare sector', 'estecapelli' ) ),
+									array( 'icon' => 'hair',         'label' => __( 'Over 2,500 hair transplants a year in Türkiye alone', 'estecapelli' ) ),
+									array( 'icon' => 'shield-check', 'label' => __( 'Ministry-of-Health licensed, hospital-grade facility', 'estecapelli' ) ),
+									array( 'icon' => 'building',     'label' => __( 'Hair, plastic surgery and dental under one roof', 'estecapelli' ) ),
+								),
+								'address' => '',
+								'phone'   => '',
+								'hours'   => '',
+								'map_url' => '',
+								'image'     => '',
+								'image_url' => '',
+							),
+							array(
+								'badge'   => __( 'South America', 'estecapelli' ),
+								'flag'    => '🇨🇱',
+								'city'    => __( 'Santiago', 'estecapelli' ),
+								'country' => __( 'Chile', 'estecapelli' ),
+								'kicker'  => __( 'Estecapelli in Latin America.', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Our Santiago clinic brings the complete Estecapelli procedure to Latin America. Hair transplants are performed on site by our own medical team, using the same FUE and DHI techniques and the same Exosome and VITA protocols developed in Istanbul — with the consultation, the operation and every follow-up visit handled in Spanish.', 'estecapelli' ) . '</p>'
+									. '<p>' . esc_html__( 'For patients across Chile and the wider region it removes the hardest part of the journey. There is no long-haul flight to plan around, and aftercare is a short trip into the city rather than a video call across nine time zones.', 'estecapelli' ) . '</p>',
+								'points'  => array(
+									array( 'icon' => 'medical-plus', 'label' => __( 'Full procedure performed on site', 'estecapelli' ) ),
+									array( 'icon' => 'atom',         'label' => __( 'The same FUE, DHI, Exosome and VITA protocols', 'estecapelli' ) ),
+									array( 'icon' => 'languages',    'label' => __( 'Consultation and aftercare in Spanish', 'estecapelli' ) ),
+									array( 'icon' => 'plane',        'label' => __( 'No long-haul travel for Latin American patients', 'estecapelli' ) ),
+								),
+								'address' => '',
+								'phone'   => '',
+								'hours'   => '',
+								'map_url' => '',
+								'image'     => '',
+								'image_url' => '',
+							),
+							array(
+								'badge'   => __( 'North America', 'estecapelli' ),
+								'flag'    => '🇺🇸',
+								'city'    => __( 'Miami', 'estecapelli' ),
+								'country' => __( 'United States', 'estecapelli' ),
+								'kicker'  => __( 'Estecapelli in the United States.', 'estecapelli' ),
+								'body'    => '<p>' . esc_html__( 'Our Miami clinic serves patients across North America. The full procedure is carried out on site by our medical team, following exactly the surgical protocols and techniques used in Istanbul — so a patient in the United States can have the Estecapelli result without leaving the country.', 'estecapelli' ) . '</p>'
+									. '<p>' . esc_html__( 'Consultations and follow-up are handled in English and Spanish, and the plan still begins where it always has: a detailed assessment of your scalp, your donor area and the density you want, before a single graft is discussed.', 'estecapelli' ) . '</p>',
+								'points'  => array(
+									array( 'icon' => 'medical-plus', 'label' => __( 'Full procedure performed on site', 'estecapelli' ) ),
+									array( 'icon' => 'shield-check', 'label' => __( 'The same surgical protocols as Istanbul', 'estecapelli' ) ),
+									array( 'icon' => 'languages',    'label' => __( 'Consultation and aftercare in English and Spanish', 'estecapelli' ) ),
+									array( 'icon' => 'globe',        'label' => __( 'Serving patients across North America', 'estecapelli' ) ),
+								),
+								'address' => '',
+								'phone'   => '',
+								'hours'   => '',
+								'map_url' => '',
+								'image'     => '',
+								'image_url' => '',
+							),
+						),
+						'footnote'      => __( 'Not sure which clinic suits you best? Send us your photos and we will tell you which of the three is the shortest route to the result you want.', 'estecapelli' ),
+						'cta'           => array( 'label' => __( 'Ask Which Clinic Is Right for Me', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+
+					// The facility itself, then the shared clinic photo wall.
+					array(
+						'acf_fc_layout' => 'clinic',
+						'eyebrow'       => __( 'Our Clinic', 'estecapelli' ),
+						'title'         => __( 'A Modern Clinic Built Around One Thing: Your Safety', 'estecapelli' ),
+						'lead'          => __( 'Equipment is the easy part to buy. What makes a clinic safe is everything around it — sterile theatres, a permanent medical team, and a protocol that does not bend because a day is busy.', 'estecapelli' ),
+						'body'          => '<p>' . esc_html__( 'Our clinic is a licensed, hospital-grade facility, not a treatment room inside a salon or a hotel suite. Procedures take place in dedicated sterile operating theatres, with single-use instruments, medical-grade sterilisation for everything that is not disposable, and the same infection-control standards a hospital operating room is held to.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'The technology is genuinely current, because in hair restoration the equipment decides the result. Sapphire-tipped instruments open micro-channels at a controlled depth and angle. Micromotor punches lift each follicular unit without cutting or stitching. Our TrichoLab room analyses your scalp and hair density before a single graft is planned, and the Exosome and VITA protocols protect the grafts during the hours they spend outside the body.', 'estecapelli' ) . '</p>'
+							. '<p>' . esc_html__( 'Every operation is performed by our own expert medical team, never subcontracted, with an anaesthetist and full monitoring on site. You are awake, comfortable and looked after throughout, and there is a permanent medical team in the building for the whole of your stay — not a phone number to call afterwards.', 'estecapelli' ) . '</p>',
+						'points'        => array(
+							array(
+								'icon'  => 'shield-check',
+								'title' => __( 'Sterile operating theatres', 'estecapelli' ),
+								'body'  => __( 'Dedicated theatres with single-use instruments and medical-grade sterilisation, held to hospital infection-control standards.', 'estecapelli' ),
+							),
+							array(
+								'icon'  => 'atom',
+								'title' => __( 'Current-generation equipment', 'estecapelli' ),
+								'body'  => __( 'Sapphire-tipped instruments and micromotor punches for controlled depth, angle and a donor area that heals without stitches.', 'estecapelli' ),
+							),
+							array(
+								'icon'  => 'cpu',
+								'title' => __( 'TrichoLab scalp analysis', 'estecapelli' ),
+								'body'  => __( 'Your scalp, hair density and donor capacity are measured on site before the graft plan is drawn up.', 'estecapelli' ),
+							),
+							array(
+								'icon'  => 'medical-plus',
+								'title' => __( 'Anaesthetist and monitoring on site', 'estecapelli' ),
+								'body'  => __( 'Local anaesthesia administered and monitored by medical staff, so you stay awake, comfortable and observed throughout.', 'estecapelli' ),
+							),
+							array(
+								'icon'  => 'headset',
+								'title' => __( 'A permanent medical team', 'estecapelli' ),
+								'body'  => __( 'Our own team performs every operation — nothing is subcontracted — and stays reachable through your recovery.', 'estecapelli' ),
+							),
+							array(
+								'icon'  => 'building',
+								'title' => __( 'Everything under one roof', 'estecapelli' ),
+								'body'  => __( 'Hair restoration, plastic surgery and dental treatment share one facility, one record and one care team.', 'estecapelli' ),
+							),
+						),
+						'gallery_title' => __( 'Take a look inside', 'estecapelli' ),
+						'gallery_lead'  => __( 'Our operating theatres, the TrichoLab room, the dental clinic and the spaces in between.', 'estecapelli' ),
 					),
 				),
 			),
