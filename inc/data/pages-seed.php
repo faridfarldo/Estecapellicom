@@ -714,10 +714,147 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 						'eyebrow'       => __( 'Why Patients Choose Estecapelli', 'estecapelli' ),
 						'stats'         => array(
 							array( 'icon' => 'sparkles',     'value' => __( '6 techniques', 'estecapelli' ), 'label' => __( 'FUE, DHI, Sapphire, Exosome, VITA & more', 'estecapelli' ) ),
-							array( 'icon' => 'shield-check', 'value' => __( 'Local', 'estecapelli' ),        'label' => __( 'Anaesthesia — awake and comfortable', 'estecapelli' ) ),
+							// Edited in wp-admin on the live site; kept here so a re-import
+							// cannot revert it back to the old anaesthesia cell.
+							array( 'icon' => 'shield-check', 'value' => __( 'Trico Lab', 'estecapelli' ),    'label' => __( 'AI hair analysis', 'estecapelli' ) ),
 							array( 'icon' => 'calendar',     'value' => __( '~3 days', 'estecapelli' ),       'label' => __( 'Typical stay in Turkey', 'estecapelli' ) ),
 							array( 'icon' => 'check-circle', 'value' => __( 'Permanent', 'estecapelli' ),     'label' => __( 'Grafts resistant to future loss', 'estecapelli' ) ),
 						),
+					),
+
+					array(
+						'acf_fc_layout' => 'techniques',
+						'eyebrow'       => __( 'Only at Estecapelli', 'estecapelli' ),
+						'title'         => __( 'Two Protocols That Change What a Transplant Can Achieve', 'estecapelli' ),
+						'lead'          => __( 'Every Estecapelli transplant is performed with the gold-standard FUE or DHI method. What sets the result apart is what we add to it — two protocols developed by our own medical team to protect your grafts through the hours that decide how much of your new hair actually grows.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'badge'      => __( 'Estecapelli exclusive', 'estecapelli' ),
+								'name'       => __( 'Exosome FUE', 'estecapelli' ),
+								'tagline'    => __( 'Regenerative exosomes that keep follicles alive while they are outside the body.', 'estecapelli' ),
+								'body'       => '<p>' . esc_html__( 'The moment a graft leaves the scalp it loses its blood supply, and every hour outside the body costs survival. Rather than an ordinary holding fluid, Estecapelli keeps your grafts in a solution derived from mesenchymal stem cells and rich in exosomes — the natural vesicles cells use to signal one another to repair.', 'estecapelli' ) . '</p>'
+									. '<p>' . esc_html__( 'The follicles are nourished and protected through the most critical window of the operation, and the anti-inflammatory effect carries into recovery: redness and scalp sensitivity settle sooner, circulation around the new grafts improves, and the hair that grows from them starts from a stronger position.', 'estecapelli' ) . '</p>',
+								'stat_value' => __( 'Up to 98%', 'estecapelli' ),
+								'stat_label' => __( 'Follicle survival across 72 hours', 'estecapelli' ),
+								'points'     => array(
+									array( 'icon' => 'atom',         'label' => __( 'Grafts held in an exosome solution, not a standard holding fluid', 'estecapelli' ) ),
+									array( 'icon' => 'shield-check', 'label' => __( 'Follicle viability supported for up to 72 hours', 'estecapelli' ) ),
+									array( 'icon' => 'check-circle', 'label' => __( 'Graft loss reduced from the usual 15–20% to around 1%', 'estecapelli' ) ),
+									array( 'icon' => 'hands-heart',  'label' => __( 'Anti-inflammatory effect — redness and sensitivity settle faster', 'estecapelli' ) ),
+									array( 'icon' => 'dna',          'label' => __( 'Approved by TÜBİTAK, Turkey’s scientific research council', 'estecapelli' ) ),
+								),
+								'image'      => '',
+								'image_url'  => '',
+								'cta'        => array( 'label' => __( 'Explore Exosome FUE', 'estecapelli' ), 'url' => home_url( '/en/hair-transplant/exosome-fue-hair-transplant' ) ),
+							),
+							array(
+								'badge'      => __( 'Estecapelli signature method', 'estecapelli' ),
+								'name'       => __( 'VITA Protocol', 'estecapelli' ),
+								'tagline'    => __( 'A vitamin-derived serum that feeds the scalp and the grafts at every stage.', 'estecapelli' ),
+								'body'       => '<p>' . esc_html__( 'The VITA Protocol is a three-phase treatment built around a concentrated formula of amino acids, vitamins, growth factors and ATP. Micro-channels opened with a dermaroller carry the serum deep into the scalp, so the recipient area is prepared and nourished before a single graft is placed.', 'estecapelli' ) . '</p>'
+									. '<p>' . esc_html__( 'Once harvested, the grafts are preserved in that same serum under cold-air vapour to keep them hydrated and minimise cellular stress. A PRP session immediately after the procedure closes the protocol, using your own growth factors to accelerate healing and support graft retention.', 'estecapelli' ) . '</p>',
+								'stat_value' => __( '3 phases', 'estecapelli' ),
+								'stat_label' => __( 'Before, during and after your transplant', 'estecapelli' ),
+								'points'     => array(
+									array( 'icon' => 'shield-check', 'label' => __( 'Protects graft vitality outside the body', 'estecapelli' ) ),
+									array( 'icon' => 'sparkles',     'label' => __( 'Nourishes follicles with vitamins, minerals and ATP', 'estecapelli' ) ),
+									array( 'icon' => 'medical-plus', 'label' => __( 'PRP session on the day, from your own blood', 'estecapelli' ) ),
+									array( 'icon' => 'atom',         'label' => __( 'Combines with both FUE and DHI procedures', 'estecapelli' ) ),
+									array( 'icon' => 'hair',         'label' => __( 'Ideal for weak follicles, fine hair or a limited donor area', 'estecapelli' ) ),
+								),
+								'image'      => '',
+								'image_url'  => '',
+								'cta'        => array( 'label' => __( 'Explore the VITA Protocol', 'estecapelli' ), 'url' => home_url( '/en/hair-transplant/vita-treatment' ) ),
+							),
+						),
+					),
+
+					array(
+						'acf_fc_layout' => 'price_compare',
+						'eyebrow'       => __( 'Cost Comparison', 'estecapelli' ),
+						'title'         => __( 'The Same Procedure, a Very Different Price', 'estecapelli' ),
+						'lead'          => __( 'Abroad, a hair transplant is almost always billed per graft — so the more hair you need, the steeper the bill grows. At Estecapelli the price is fixed and all-inclusive whatever your graft count. Move the slider to see what your own case would cost elsewhere.', 'estecapelli' ),
+						'slider_label'  => __( 'Number of grafts', 'estecapelli' ),
+						'currency'      => '$',
+						'grafts_min'     => 1000,
+						'grafts_max'     => 6000,
+						'grafts_step'    => 250,
+						'grafts_default' => 3000,
+						'rows'          => array(
+							array( 'flag' => '🇺🇸', 'country' => __( 'United States', 'estecapelli' ),  'per_graft_min' => 6,   'per_graft_max' => 12 ),
+							array( 'flag' => '🇬🇧', 'country' => __( 'United Kingdom', 'estecapelli' ), 'per_graft_min' => 4,   'per_graft_max' => 9 ),
+							array( 'flag' => '🇨🇦', 'country' => __( 'Canada', 'estecapelli' ),         'per_graft_min' => 5,   'per_graft_max' => 10 ),
+							array( 'flag' => '🇩🇪', 'country' => __( 'Germany', 'estecapelli' ),        'per_graft_min' => 3.5, 'per_graft_max' => 8 ),
+							array( 'flag' => '🇫🇷', 'country' => __( 'France', 'estecapelli' ),         'per_graft_min' => 3,   'per_graft_max' => 7 ),
+							array( 'flag' => '🇪🇸', 'country' => __( 'Spain', 'estecapelli' ),          'per_graft_min' => 2.5, 'per_graft_max' => 6 ),
+						),
+						'highlight'     => array(
+							'flag'      => '🇹🇷',
+							'country'   => __( 'Turkey', 'estecapelli' ),
+							'clinic'    => __( 'Estecapelli', 'estecapelli' ),
+							'badge'     => __( 'Fixed price', 'estecapelli' ),
+							'price_min' => 1700,
+							'price_max' => 4500,
+							'note'      => __( 'Whatever your graft count', 'estecapelli' ),
+						),
+						'includes'      => array(
+							array( 'icon' => 'atom',         'label' => __( 'Your procedure with the technique chosen for your case', 'estecapelli' ) ),
+							array( 'icon' => 'bed',          'label' => __( '5-star hotel accommodation', 'estecapelli' ) ),
+							array( 'icon' => 'car',          'label' => __( 'VIP transfer service', 'estecapelli' ) ),
+							array( 'icon' => 'languages',    'label' => __( 'Personal translator', 'estecapelli' ) ),
+							array( 'icon' => 'shield-check', 'label' => __( 'Pain-free anaesthesia', 'estecapelli' ) ),
+							array( 'icon' => 'headset',      'label' => __( 'Dedicated post-op follow-up team', 'estecapelli' ) ),
+						),
+						'footnote'      => __( 'Per-graft figures are indicative market ranges published by clinics in each country and are shown for comparison only — they are not quotes. Your Estecapelli price is confirmed after a free assessment of your photos.', 'estecapelli' ),
+						'cta'           => array( 'label' => __( 'Get My Fixed Price', 'estecapelli' ), 'url' => home_url( '/en/contact' ) ),
+					),
+
+					array(
+						// Empty headings on purpose: the stage then uses the shared,
+						// already-translated homepage wording for every language.
+						'acf_fc_layout' => 'stories',
+						'eyebrow'       => '',
+						'title'         => '',
+						'lead'          => '',
+					),
+
+					array(
+						'acf_fc_layout' => 'aftercare',
+						'eyebrow'       => __( 'After You Fly Home', 'estecapelli' ),
+						'title'         => __( 'Our Own After-Care, Built for the First Year of Growth', 'estecapelli' ),
+						'lead'          => __( 'The transplant takes a day; the result is built over the twelve months that follow. Every patient leaves the clinic with the Estecapelli after-care kit and a routine demonstrated in person — because how the grafts are cared for in the first weeks shapes how much of the new hair survives.', 'estecapelli' ),
+						'items'         => array(
+							array(
+								'icon'      => 'sparkles',
+								'name'      => __( 'Post-Operative Shampoo', 'estecapelli' ),
+								'body'      => __( 'A gentle, non-stripping wash used from your first day at home. It cleans the recipient area without friction, so the crusts soften and lift on their own instead of being rubbed away.', 'estecapelli' ),
+								'image'     => '',
+								'image_url' => '',
+							),
+							array(
+								'icon'      => 'hands-heart',
+								'name'      => __( 'Repair Lotion', 'estecapelli' ),
+								'body'      => __( 'Applied before each wash to loosen the crusts around every graft and stop the scalp drying out. It is the step that makes the first ten days comfortable rather than tense.', 'estecapelli' ),
+								'image'     => '',
+								'image_url' => '',
+							),
+							array(
+								'icon'      => 'medical-plus',
+								'name'      => __( 'Saline Spray & Medication', 'estecapelli' ),
+								'body'      => __( 'A saline spray keeps the grafted area moist through the first days, alongside the medication your surgeon prescribes for swelling and comfort.', 'estecapelli' ),
+								'image'     => '',
+								'image_url' => '',
+							),
+							array(
+								'icon'      => 'headset',
+								'name'      => __( 'A Routine, Not Just a Bag', 'estecapelli' ),
+								'body'      => __( 'Your first wash is done with you at the clinic and the whole routine is written down before you leave. Our post-op team then stays with you through shedding, regrowth and the twelve-month result.', 'estecapelli' ),
+								'image'     => '',
+								'image_url' => '',
+							),
+						),
+						'footnote'      => __( 'Always follow the instructions you are given at the clinic — they may be adapted to your own procedure.', 'estecapelli' ),
+						'cta'           => array( 'label' => __( 'See the full post-transplant timeline', 'estecapelli' ), 'url' => home_url( '/en/hair-transplant/post-hair-transplant-period' ) ),
 					),
 
 					array(

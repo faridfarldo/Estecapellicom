@@ -1599,19 +1599,19 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 		// Empty stories makes the whole section render nothing — the template
 		// (template-parts/patient-stories.php) returns early when 'stories' is empty.
 		if ( 'tr' === $lang ) {
-			return array( 'eyebrow' => '', 'headline' => '', 'lead' => '', 'stories' => array() );
+			return estecapelli_patient_stories_filter( array( 'eyebrow' => '', 'headline' => '', 'lead' => '', 'stories' => array() ) );
 		}
 
 		// A language with its own authored patient set takes over completely for
 		// that language (its own patients, country, flag, grafts, video, story).
 		$localized = estecapelli_patient_stories_localized();
 		if ( isset( $localized[ $lang ] ) ) {
-			return $localized[ $lang ];
+			return estecapelli_patient_stories_filter( $localized[ $lang ] );
 		}
 
 		$defaults = estecapelli_patient_stories_defaults();
 		if ( ! function_exists( 'get_field' ) ) {
-			return $defaults;
+			return estecapelli_patient_stories_filter( $defaults );
 		}
 
 		$out = $defaults;
@@ -1673,7 +1673,32 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 			}
 		}
 
-		return $out;
+		return estecapelli_patient_stories_filter( $out );
+	}
+}
+
+if ( ! function_exists( 'estecapelli_patient_stories_filter' ) ) {
+	/**
+	 * Last stop before the stories renderer reads the data.
+	 *
+	 * The stage is reused outside the homepage — the `stories` page-builder
+	 * section drops it into any page — and that section may carry its own
+	 * heading. Filtering here keeps every return path of
+	 * estecapelli_patient_stories() (Turkish, per-language, ACF-overlaid) under
+	 * the same override, so a caller never has to know which one it hit.
+	 *
+	 * @param array $data Story stage data.
+	 * @return array
+	 */
+	function estecapelli_patient_stories_filter( array $data ) {
+		/**
+		 * Filter the patient-stories stage data.
+		 *
+		 * @param array $data Story stage data (eyebrow, headline, lead, stories).
+		 */
+		$filtered = apply_filters( 'estecapelli_patient_stories', $data );
+
+		return is_array( $filtered ) ? $filtered : $data;
 	}
 }
 

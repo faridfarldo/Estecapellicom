@@ -53,7 +53,15 @@ function estecapelli_image_to_id( $img ) {
  * We read the EXISTING value formatted (get_field default) — for flexible
  * content the unformatted value is just an array of layout-name strings, not the
  * row data — then reduce any image back to its attachment ID before writing, so
- * update_field stores it correctly. Matching is by position AND layout type.
+ * update_field stores it correctly.
+ *
+ * Rows are matched by LAYOUT ORDINAL, not by raw position: a seed row finds its
+ * counterpart as "the Nth row of this layout". Raw position breaks the moment a
+ * new section is added to the seed above an existing one — every later row would
+ * then face a different layout, the merge would skip it, and the seed's empty
+ * media slots would wipe the images an editor uploaded. Ordinal matching
+ * survives insertions and removals anywhere in the page, and matches how
+ * estecapelli_render_page_sections() pairs a translation with its source row.
  *
  * @param array $new_sections Sections from the seed.
  * @param int   $post_id      Target post.
@@ -68,18 +76,34 @@ function estecapelli_merge_preserve_media( array $new_sections, $post_id ) {
 		return $new_sections;
 	}
 
-	foreach ( $new_sections as $i => $section ) {
-		if ( empty( $existing[ $i ] ) || ! is_array( $existing[ $i ] ) ) {
+	// Group the stored rows by layout, in stored order.
+	$existing_by_layout = array();
+	foreach ( $existing as $stored_row ) {
+		if ( ! is_array( $stored_row ) ) {
 			continue;
 		}
-		$old = $existing[ $i ];
+		$stored_layout = $stored_row['acf_fc_layout'] ?? '';
+		if ( '' === $stored_layout ) {
+			continue;
+		}
+		$existing_by_layout[ $stored_layout ][] = $stored_row;
+	}
 
-		// Only merge same-type sections so positions can't drift across types.
+	$layout_seen = array();
+
+	foreach ( $new_sections as $i => $section ) {
 		$new_layout = $section['acf_fc_layout'] ?? '';
-		$old_layout = $old['acf_fc_layout'] ?? '';
-		if ( $new_layout && $old_layout && $new_layout !== $old_layout ) {
+		if ( '' === $new_layout ) {
 			continue;
 		}
+
+		$ordinal                    = isset( $layout_seen[ $new_layout ] ) ? $layout_seen[ $new_layout ] : 0;
+		$layout_seen[ $new_layout ] = $ordinal + 1;
+
+		if ( empty( $existing_by_layout[ $new_layout ][ $ordinal ] ) ) {
+			continue; // brand-new section — nothing stored to preserve.
+		}
+		$old = $existing_by_layout[ $new_layout ][ $ordinal ];
 
 		// Preserve a single uploaded image (store its ID).
 		if ( empty( $section['image'] ) && ! empty( $old['image'] ) ) {

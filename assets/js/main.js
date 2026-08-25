@@ -1610,6 +1610,79 @@
 	 * clones (last item before the first; first + second after the last) so a real
 	 * neighbour always fills the top and bottom rows. Skipped for reduced motion.
 	 */
+	/*
+	 * Price comparison — a graft-count slider that re-prices every country row.
+	 *
+	 * The markup already carries the totals for the starting graft count, so
+	 * this only recalculates them; with JS off the section stays readable and
+	 * correct. The Estecapelli row is deliberately untouched: its all-inclusive
+	 * price does not scale with the graft count, which is the comparison's point.
+	 */
+	function initPriceCompare() {
+		var panels = Array.prototype.slice.call(document.querySelectorAll('[data-price-compare]'));
+		if (!panels.length) return;
+
+		var locale = document.documentElement.getAttribute('lang') || 'en';
+
+		function formatter(digits) {
+			try {
+				return new Intl.NumberFormat(locale, { maximumFractionDigits: digits });
+			} catch (e) {
+				return null;
+			}
+		}
+		var nf = formatter(0);
+
+		function num(value) {
+			var rounded = Math.round(value);
+			return nf ? nf.format(rounded) : String(rounded);
+		}
+
+		panels.forEach(function (panel) {
+			var slider = panel.querySelector('[data-price-slider]');
+			var rows   = Array.prototype.slice.call(panel.querySelectorAll('[data-price-row]'));
+			if (!slider || !rows.length) return;
+
+			var count    = panel.querySelector('[data-price-count]');
+			var currency = panel.getAttribute('data-currency') || '';
+			var min      = parseFloat(slider.min) || 0;
+			var max      = parseFloat(slider.max) || 0;
+			var last     = null;
+
+			function paintTrack(grafts) {
+				if (max <= min) return;
+				var pct = ((grafts - min) / (max - min)) * 100;
+				slider.style.setProperty('--fill', pct + '%');
+			}
+
+			function update() {
+				var grafts = parseInt(slider.value, 10);
+				if (isNaN(grafts)) return;
+
+				if (count) count.textContent = num(grafts);
+				paintTrack(grafts);
+
+				rows.forEach(function (row) {
+					var out = row.querySelector('[data-price-total]');
+					if (!out) return;
+					var lo = parseFloat(row.getAttribute('data-per-graft-min')) || 0;
+					var hi = parseFloat(row.getAttribute('data-per-graft-max')) || 0;
+					out.textContent = currency + num(lo * grafts) + ' – ' + currency + num(hi * grafts);
+				});
+
+				last = grafts;
+			}
+
+			slider.addEventListener('input', update);
+			// One event per settled choice, not per pixel of drag.
+			slider.addEventListener('change', function () {
+				emit('price-compare', { grafts: last });
+			});
+
+			update();
+		});
+	}
+
 	function initTrustReel() {
 		var vp = document.querySelector('[data-reel]');
 		if (!vp) return;
@@ -1830,6 +1903,7 @@
 		initTOC();
 		initReadingProgress();
 		initLeadPopup();
+		initPriceCompare();
 		initTrustReel();
 	});
 })();
