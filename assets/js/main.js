@@ -1779,8 +1779,12 @@
 
 		var go = notice.querySelector('[data-wa-go]');
 		var lastFocus = null;
+		var isOpen = false;
+		var hideTimer = null;
 
 		function open(trigger) {
+			if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+			isOpen = true;
 			lastFocus = trigger || document.activeElement;
 			// Carry the trigger's own wa.me link through, so a CTA with its own
 			// prefilled text (the photo button) keeps it.
@@ -1794,15 +1798,23 @@
 		}
 
 		function close() {
-			if (notice.hidden) return;
+			if (!isOpen) return;
+			isOpen = false;
 			notice.classList.remove('is-open');
-			setTimeout(function () { notice.hidden = true; }, 260);
+			if (hideTimer) clearTimeout(hideTimer);
+			hideTimer = setTimeout(function () { notice.hidden = true; hideTimer = null; }, 260);
 			if (lastFocus && lastFocus.focus) lastFocus.focus();
 		}
 
 		triggers.forEach(function (t) {
 			t.addEventListener('click', function (e) {
 				e.preventDefault();
+				// The trigger is a toggle: a second press on the same button
+				// closes the card, exactly like the X does.
+				if (isOpen) {
+					close();
+					return;
+				}
 				// The notice intercepts the wa.me link, so no whatsapp_click is
 				// recorded here — opening the notice is its own, earlier step.
 				emit('wa-chat-open', {
