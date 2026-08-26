@@ -1,0 +1,47 @@
+{
+  "source_slug": "our-doctors",
+  "slug": "medicii-nostri",
+  "title": "Medicii noștri",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Medicii noștri",
+      "title": "Chirurgi care conduc fiecare procedură.",
+      "lead": "Fă cunoștință cu chirurgii specialiști care efectuează fiecare operație la Estecapelli — fiecare dintre ei ales personal pentru experiența, rezultatele și grija față de pacienți.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "doctors",
+      "eyebrow": "Chirurgi specialiști",
+      "title": "Cunoaște-i pe chirurgi",
+      "lead": "Fiecare operație este condusă personal de unul dintre chirurgii noștri specialiști. Deschide oricare dintre profiluri pentru a-i citi formarea, calificările și domeniile de expertiză.",
+      "members": [
+        {
+          "name": "Dr. Mehmet Hanifi Kutlar",
+          "position": "Specialist în transplant de păr și cofondator"
+        },
+        {
+          "name": "Dr. Hasan Çelik",
+          "position": "Chirurg estetic, plastic și reconstructiv"
+        },
+        {
+          "name": "Dr. Mehmet Palalı",
+          "position": "Medic specialist ORL (otorinolaringologie)"
+        },
+        {
+          "name": "Dr. Necdet Derici",
+          "position": "Medic specialist chirurgie generală"
+        },
+        {
+          "name": "Dr. Ali Durmuş",
+          "position": "Chirurg plastic și reconstructiv"
+        }
+      ]
+    }
+  ]
+}

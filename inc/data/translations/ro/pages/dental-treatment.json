@@ -1,0 +1,113 @@
+{
+  "source_slug": "dental-treatment",
+  "slug": "tratament-dentar",
+  "title": "Tratament dentar",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Tratament dentar",
+      "title": "Îngrijire dentară cu o abordare personală.",
+      "lead": "De la un implant dentar pentru un singur dinte până la o transformare completă a zâmbetului de Hollywood, fiecare plan este construit în jurul aspectului pe care ți-l dorești și al ocluziei de care ai nevoie.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Abordarea noastră",
+      "title": "O ocluzie sănătoasă și un zâmbet care îți place",
+      "body": "<p>Un zâmbet frumos înseamnă mai mult decât aspect — depinde de dinți sănătoși, de gingii sănătoase și de o ocluzie care funcționează. La Estecapelli, tratamentul începe cu o evaluare orală completă, astfel încât estetica și funcționalitatea să fie planificate împreună, fie că trebuie să înlocuiești un dinte lipsă, fie că vrei să îți reproiectezi complet zâmbetul.</p><p>Echipa noastră stomatologică îmbină planificarea digitală modernă cu materiale de înaltă calitate, pentru a obține rezultate durabile și cu aspect natural. De la implanturi dentare care redau rezistența unui dinte natural până la un zâmbet de Hollywood personalizat, fiecare plan este construit în jurul aspectului pe care ți-l dorești și al ocluziei de care ai nevoie — și îți este explicat clar înainte de începerea oricărui tratament.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "De ce aleg pacienții Estecapelli",
+      "stats": [
+        {
+          "value": "Digital",
+          "label": "Design al zâmbetului planificat înainte de a începe"
+        },
+        {
+          "value": "Premium",
+          "label": "Materiale de înaltă calitate, de lungă durată"
+        },
+        {
+          "value": "Natural",
+          "label": "Rezultate potrivite feței și ocluziei tale"
+        },
+        {
+          "value": "All-inclusive",
+          "label": "Oferte transparente, fără nicio obligație"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Tratamentele noastre",
+      "title": "Explorează tratamentele dentare"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Rezultate reale",
+      "title": "Tratament dentar — înainte și după",
+      "lead": "Vezi zâmbetele cu care pleacă pacienții noștri. Fiecare rezultat este proiectat să arate natural și să se potrivească feței, buzelor și ocluziei fiecărei persoane.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultație gratuită",
+      "title": "Proiectează-ți noul zâmbet",
+      "lead": "Trimite-ne o fotografie cu zâmbetul tău, iar echipa noastră stomatologică îți va răspunde cu un plan de tratament personalizat și o ofertă all-inclusive, fără nicio obligație — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare gratuită a zâmbetului pe baza fotografiilor tale"
+        },
+        {
+          "label": "Ofertă all-inclusive transparentă, fără nicio obligație"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Asistență în mai multe limbi la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicită o consultație gratuită"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "Tratamentul dentar — întrebări frecvente",
+      "items": [
+        {
+          "question": "Care este diferența dintre implanturile dentare și zâmbetul de Hollywood?",
+          "answer": "<p>Un implant dentar înlocuiește un dinte lipsă începând de la rădăcină, redând forța deplină de masticație printr-un șurub din titan și o coroană. Zâmbetul de Hollywood este o transformare estetică ce reproiectează aspectul dinților tăi vizibili, folosind fațete sau coroane, pentru un aspect mai luminos și mai uniform. Mulți pacienți combină cele două — implanturi pentru a înlocui dinții lipsă și fațete pentru a perfecționa zâmbetul.</p>"
+        },
+        {
+          "question": "Cât durează tratamentul dentar și câte deplasări sunt necesare?",
+          "answer": "<p>Un zâmbet de Hollywood cu fațete sau coroane poate fi finalizat, de obicei, într-o singură deplasare de aproximativ cinci-șapte zile. Implanturile dentare presupun o perioadă de vindecare după montarea implantului, așa că necesită adesea două vizite la câteva luni distanță sau o consultație de planificare urmată de lucrarea finală. Îți stabilim programul exact înainte de a călători.</p>"
+        },
+        {
+          "question": "Tratamentul dentar este dureros?",
+          "answer": "<p>Tratamentul se efectuează sub anestezie locală, așa că nu ar trebui să simți durere în timpul procedurii. O sensibilitate ușoară sau o jenă ulterioară sunt normale și se gestionează simplu, cu analgezice obișnuite. Echipa noastră se asigură că ești confortabil în fiecare etapă și îți explică exact la ce să te aștepți.</p>"
+        },
+        {
+          "question": "Dinții mei noi vor arăta natural?",
+          "answer": "<p>Da. Folosim designul digital al zâmbetului pentru a planifica forma, dimensiunea și nuanța dinților tăi în proporție cu buzele, gingiile și fața ta, astfel încât rezultatul să ți se potrivească, nu să arate artificial. Poți analiza și ajusta planul înainte de efectuarea oricărei lucrări definitive, ca să fii mulțumit de aspectul final.</p>"
+        },
+        {
+          "question": "Cât durează rezultatele?",
+          "answer": "<p>Implanturile dentare sunt concepute să reziste decenii — adesea o viață întreagă — cu o igienă orală bună și controale regulate. Fațetele și coroanele de înaltă calitate durează de obicei mulți ani înainte de a fi nevoie să fie înlocuite. Îngrijirea dinților și a gingiilor și prezența la controalele stomatologice de rutină sunt cea mai bună modalitate de a-ți proteja investiția.</p>"
+        },
+        {
+          "question": "Sunt un candidat potrivit?",
+          "answer": "<p>Majoritatea oamenilor sunt potriviți, dar tratamentul adecvat depinde de sănătatea dinților și a gingiilor tale și de cantitatea de os natural disponibilă pentru implanturi. O consultație cu fotografii — și, acolo unde este nevoie, o radiografie realizată la sosire — îi permite echipei noastre stomatologice să confirme cel mai bun plan pentru tine și să semnaleze orice ar trebui tratat mai întâi.</p>"
+        }
+      ]
+    }
+  ]
+}

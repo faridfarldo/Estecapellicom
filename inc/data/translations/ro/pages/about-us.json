@@ -1,0 +1,80 @@
+{
+  "source_slug": "about-us",
+  "slug": "despre-noi",
+  "title": "Despre noi",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Despre Estecapelli",
+      "title": "Excelență estetică, susținută de încredere medicală.",
+      "lead": "Estecapelli este o clinică din Istanbul, specializată în restaurare capilară, chirurgie plastică, tratamente dentare și estetică nechirurgicală. Îmbinăm chirurgi specialiști, dotări la standard spitalicesc și o filozofie centrată pe pacient, pentru a obține rezultatele pentru care pacienții noștri ne acordă încredere.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Apreciați în întreaga lume",
+      "stats": [
+        {
+          "value": "15+",
+          "label": "Ani de experiență"
+        },
+        {
+          "value": "+50.000",
+          "label": "Transplanturi de păr"
+        },
+        {
+          "value": "+40",
+          "label": "Țări deservite"
+        },
+        {
+          "value": "24/7",
+          "label": "Asistență pentru pacienți"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Cine suntem",
+      "title": "Un nume de încredere în transplantul de păr",
+      "body": "<p>Cu peste 15 ani de experiență în domeniul medical, Estecapelli este un nume de încredere la nivel internațional în transplantul de păr. Fondată în Turcia, clinica noastră a câștigat rapid recunoaștere mondială datorită satisfacției remarcabile a pacienților și operațiilor constant reușite — iar astăzi deservim pacienți la scară globală, din clinicile noastre din Istanbul, Santiago și Miami.</p><p>Efectuând peste 2.500 de transplanturi de păr în fiecare an numai în Turcia, Estecapelli oferă rezultate naturale, estetice și permanente, prin tehnologie inovatoare și planuri de tratament personalizate. Tehnicile noastre brevetate VITA și Exosome accelerează procesul de vindecare și cresc totodată ratele de supraviețuire a grefelor — făcând o diferență reală în restaurarea capilară.</p><p>Prin abordarea noastră bazată pe număr maxim nelimitat de grefe și preț fix, îi oferim fiecărui pacient soluția cea mai potrivită, iar fiecare operație este realizată meticulos de echipa noastră medicală turcă, formată din specialiști cu experiență.</p><p>Spațiile noastre clinice moderne și igienice, abordarea noastră față de servicii la standarde internaționale și satisfacția pacienților, dovedită în mii de operații reușite, fac din Estecapelli un nume aparte în transplantul de păr. Oriunde te-ai afla în lume, Estecapelli este alături de tine pentru a-ți oferi cea mai bună experiență de transplant de păr.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "De ce Turcia",
+      "title": "Rezultate de clasă mondială, fără prețul umflat",
+      "body": "<p>De ce să plătești mai mult în Marea Britanie, SUA sau Europa? La Estecapelli îmbinăm excelența medicală, tehnicile acreditate internațional și prețurile competitive, pentru a oferi rezultate de clasă mondială la transplantul de păr, la o fracțiune din cost.</p><p>Dotările noastre de ultimă generație din Turcia oferă aceeași calitate a îngrijirii la care te-ai aștepta de la clinicile de top din întreaga lume — fără prețurile umflate. Cu chirurgi experimentați, planuri de tratament personalizate și îngrijire post-operatorie completă, primești o valoare excepțională, care nu face niciodată compromisuri la capitolul calitate.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Tehnologia noastră",
+      "title": "Descoperă Exosome FUE",
+      "body": "<p>Soluția Exosome este derivată din fluide de cultură care conțin celule stem mezenchimale obținute din cordonul ombilical matern. Aceste celule stem remarcabile posedă proprietăți regenerative și reparatorii extraordinare. Valorificând capacitatea lor naturală de a comunica cu celulele din jur și de a le revitaliza, soluția Exosome susține repararea avansată a țesuturilor, favorizează o funcție celulară mai sănătoasă și îmbunătățește vitalitatea generală a pielii. Tehnica Exosome FUE este o aplicație brevetată Estecapelli.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Metoda noastră semnătură",
+      "title": "Fă cunoștință cu tratamentul VITA",
+      "body": "<p>Dezvoltat de Estecapelli, tratamentul VITA este o tehnologie revoluționară care depășește transplantul de păr convențional — sporind vitalitatea foliculilor de păr, accelerând vindecarea și oferind rezultate naturale.</p><p>Aplicată cu succes timp de șase ani întregi, această metodă unică a devenit tratamentul-semnătură al Estecapelli. Până în prezent, peste 10.000 de pacienți au ales tratamentul VITA pentru a obține un păr natural, des și permanent. Acest succes stă la baza poveștii de succes recunoscute internațional a Estecapelli.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Ce ne motivează",
+      "title": "Misiunea noastră",
+      "body": "<p>La Estecapelli, misiunea noastră este să le oferim pacienților rezultate durabile și estetice, folosind cele mai noi tehnologii medicale și metode inovatoare. Ghidați de angajamentul nostru față de îmbunătățirea continuă și inovație, de colaborările noastre internaționale și de echipa noastră de specialiști, urmărim excelența în domeniul medical, continuând totodată să oferim servicii de clasă mondială.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Privind înainte",
+      "title": "Viziunea noastră",
+      "body": "<p>Viziunea noastră este să fim un brand lider global în transplantul de păr și estetica medicală, deschizând drumuri în industrie prin practicile noastre inovatoare și prin abordarea noastră meticuloasă, atentă la detalii. Prin clinicile noastre din Istanbul, Santiago și Miami, ne propunem să ajungem la mai mulți pacienți și să ducem serviciile noastre de calitate superioară către un public tot mai larg.</p>",
+      "cta": {
+        "label": "Cunoaște-i pe medicii noștri"
+      }
+    }
+  ]
+}

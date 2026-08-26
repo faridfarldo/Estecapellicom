@@ -1,0 +1,113 @@
+{
+  "source_slug": "plastic-surgery",
+  "slug": "chirurgie-plastica",
+  "title": "Chirurgie plastică",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Chirurgie plastică",
+      "title": "Chirurgie estetică, planificată în jurul tău.",
+      "lead": "Rinoplastie, BBL, estetica sânilor, lifting facial și de gât și multe altele — realizate de chirurgi specialiști, în spații la standard spitalicesc.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Abordarea noastră",
+      "title": "Chirurgie estetică, făcută în siguranță și cu naturalețe",
+      "body": "<p>Chirurgia plastică este o decizie profund personală, iar rezultatul potrivit este cel care arată ca tine — echilibrat, natural și proporționat — nu exagerat. La Estecapelli, fiecare procedură este realizată de chirurgi plasticieni specialiști, în spații pe deplin acreditate, la standard spitalicesc, cu anestezia, monitorizarea și îngrijirea post-operatorie la care te-ai aștepta de la o clinică de top.</p><p>De la rinoplastie și întinerire facială până la remodelarea corporală, estetica sânilor și chirurgia bariatrică, parcursul tău începe cu o consultație sinceră. Discutăm ce se poate obține realist, planificăm procedura în funcție de anatomia și de obiectivele tale și te ghidăm prin recuperare, alături de o echipă dedicată de îngrijire a pacienților, care îți vorbește limba.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "De ce aleg pacienții Estecapelli",
+      "stats": [
+        {
+          "value": "Specialiști",
+          "label": "Chirurgi plasticieni cu experiență"
+        },
+        {
+          "value": "Standard spitalicesc",
+          "label": "Spații acreditate, complet echipate"
+        },
+        {
+          "value": "De la un capăt la altul",
+          "label": "Îngrijire de la primul mesaj până la recuperare"
+        },
+        {
+          "value": "All-inclusive",
+          "label": "Oferte transparente, fără nicio obligație"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Tratamentele noastre",
+      "title": "Explorează procedurile de chirurgie plastică"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Rezultate reale",
+      "title": "Chirurgie plastică — înainte și după",
+      "lead": "Răsfoiește rezultatele înainte-după ale unor pacienți reali. Fiecare transformare este planificată în jurul persoanei, pentru un rezultat natural și echilibrat.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultație gratuită",
+      "title": "Planifică-ți procedura împreună cu chirurgii noștri",
+      "lead": "Spune-ne ce ți-ai dori să obții, iar echipa noastră medicală îți va răspunde cu un plan personalizat și o ofertă all-inclusive, fără nicio obligație — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare realizată de chirurgi specialiști"
+        },
+        {
+          "label": "Așteptări realiste și sincere de la bun început"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Asistență în mai multe limbi la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicită o consultație gratuită"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "Chirurgia plastică — întrebări frecvente",
+      "items": [
+        {
+          "question": "Cum știu care procedură este potrivită pentru mine?",
+          "answer": "<p>Totul începe cu o consultație. Ascultăm ce te deranjează și ce ai vrea să schimbi, îți evaluăm anatomia și îți explicăm care procedură — sau ce combinație — va duce la un rezultat natural și echilibrat. Suntem la fel de clari și în privința a ceea ce nu este recomandabil, pentru că planul potrivit este cel sigur și realist pentru tine, nu pur și simplu cel pe care îl ceri.</p>"
+        },
+        {
+          "question": "Chirurgii sunt calificați, iar spațiile sunt sigure?",
+          "answer": "<p>Da. Toate procedurile sunt realizate de chirurgi plasticieni specialiști, în spații acreditate, la standard spitalicesc, cu anestezie și monitorizare complete. Siguranța ta este evaluată înainte de intervenție prin analizele necesare și printr-o trecere în revistă a istoricului tău medical, iar pe toată durata șederii ești îngrijit de personal medical calificat.</p>"
+        },
+        {
+          "question": "Ce tip de anestezie se folosește?",
+          "answer": "<p>Majoritatea procedurilor de chirurgie plastică se efectuează sub anestezie generală, administrată de un medic anestezist specialist, în timp ce unele tratamente mai mici se pot face sub sedare sau anestezie locală. Opțiunea potrivită este stabilită în timpul evaluării preoperatorii, în funcție de procedură și de starea ta de sănătate.</p>"
+        },
+        {
+          "question": "Cât durează recuperarea și cât timp ar trebui să rămân în Turcia?",
+          "answer": "<p>Recuperarea depinde de procedură. Mulți pacienți rămân în Turcia aproximativ cinci-zece zile, ca să putem urmări vindecarea în faza incipientă și să îndepărtăm eventualele fire de sutură sau tuburi de dren înainte de plecare. Îți oferim un calendar de recuperare clar, în scris, și rămânem disponibili pentru întrebări și după ce te întorci acasă.</p>"
+        },
+        {
+          "question": "Vor rămâne cicatrici vizibile?",
+          "answer": "<p>Unele proceduri chirurgicale lasă cicatrici, dar chirurgii noștri plasează inciziile în locuri discrete, ascunse natural, ori de câte ori este posibil, și folosesc tehnici de sutură atente, pentru a le păstra cât mai fine. Cicatricile se estompează de obicei semnificativ în lunile următoare, iar noi îți oferim indicații de îngrijire care să le ajute să se vindece bine.</p>"
+        },
+        {
+          "question": "Rezultatele sunt permanente?",
+          "answer": "<p>Multe rezultate, precum cele ale rinoplastiei sau ale remodelării sânilor și a corpului, sunt de lungă durată. Cu toate acestea, îmbătrânirea naturală, variațiile importante de greutate și stilul de viață îți influențează în continuare corpul în timp. Menținerea unei greutăți stabile și a unei rutine sănătoase ajută la păstrarea rezultatului cât mai mult posibil, iar noi te sfătuim în această privință în timpul consultației.</p>"
+        }
+      ]
+    }
+  ]
+}

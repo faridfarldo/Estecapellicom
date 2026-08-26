@@ -70,6 +70,14 @@ Breaking any of these makes the importer reject the batch.
    must have the same length as the Portuguese one, with the same layout in
    each position. Section images are matched to the English post *by ordinal*,
    so a shifted array silently attaches the wrong picture.
+
+   **An overlay is deliberately a sparse subset of the seed.** A landing page
+   may have twelve sections in the seed while the overlay translates only
+   seven of them — the untranslated ones are rendered from the English source
+   on purpose. Do not "complete" an overlay by adding the sections it skips.
+   Match the Portuguese file's section list exactly, no more and no less.
+   (Note that this also means seed section *n* is usually not overlay section
+   *n*: line them up by `acf_fc_layout`, in order, not by position.)
 3. **Never add, remove, or rename a key.** Same keys, same nesting, same array
    lengths for `items`, `points`, `credentials`, `stats`, `faq`.
 4. **`source_slug` = the filename** without `.json`. Never translated.
@@ -84,6 +92,11 @@ Breaking any of these makes the importer reject the batch.
 8. **Encoding is UTF-8, and Romanian diacritics belong in the text**: ă, â, î,
    ș, ț. Use the comma-below forms ș/ț (U+0219 / U+021B), not the cedilla
    ş/ţ. Slugs are the opposite — ASCII only, no diacritics.
+
+   This rule governs *Romanian words only*. Turkish proper names keep their own
+   Turkish letters: `Durmuş` and `Çelik` are spelled with the Turkish ş and Ç
+   and must never be "corrected" to Romanian ș. A person's name is not text to
+   be normalised.
 
 Translatable keys are: `title`, `eyebrow`, `lead`, `body`, `label`, `question`,
 `answer`, `name` (section names only, never a doctor's name), `position`,

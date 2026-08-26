@@ -1,0 +1,145 @@
+{
+  "source_slug": "our-team",
+  "slug": "echipa-noastra",
+  "title": "Echipa noastră",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Echipa noastră",
+      "title": "Oamenii din spatele fiecărei transformări.",
+      "lead": "De la primul tău mesaj și până la ultima verificare, echipa noastră medicală, de consultanță și de îngrijire a pacienților, vorbitoare de mai multe limbi, este alături de tine la fiecare pas al parcursului.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "team",
+      "eyebrow": "Primul tău punct de contact",
+      "title": "Consultanți medicali",
+      "lead": "Consultanți vorbitori de mai multe limbi, care îți ghidează parcursul în limba ta — de la prima întrebare până la rezultatul final.",
+      "members": [
+        {
+          "name": "Marcus",
+          "languages": [
+            {
+              "label": "Engleză"
+            }
+          ]
+        },
+        {
+          "name": "Matthew",
+          "languages": [
+            {
+              "label": "Engleză"
+            }
+          ]
+        },
+        {
+          "name": "Rachel",
+          "languages": [
+            {
+              "label": "Engleză"
+            }
+          ]
+        },
+        {
+          "name": "Roxane",
+          "languages": [
+            {
+              "label": "Franceză"
+            }
+          ]
+        },
+        {
+          "name": "Emilia",
+          "languages": [
+            {
+              "label": "Franceză"
+            }
+          ]
+        },
+        {
+          "name": "Sana",
+          "languages": [
+            {
+              "label": "Franceză"
+            },
+            {
+              "label": "Arabă"
+            },
+            {
+              "label": "Spaniolă"
+            }
+          ]
+        },
+        {
+          "name": "Amanda",
+          "languages": [
+            {
+              "label": "Spaniolă"
+            }
+          ]
+        },
+        {
+          "name": "Melissa",
+          "languages": [
+            {
+              "label": "Italiană"
+            }
+          ]
+        },
+        {
+          "name": "Natalia",
+          "languages": [
+            {
+              "label": "Poloneză"
+            }
+          ]
+        },
+        {
+          "name": "Cynthia",
+          "languages": [
+            {
+              "label": "Portugheză"
+            }
+          ]
+        },
+        {
+          "name": "Damla",
+          "languages": [
+            {
+              "label": "Turcă"
+            }
+          ]
+        },
+        {
+          "name": "Samet",
+          "languages": [
+            {
+              "label": "Turcă"
+            }
+          ]
+        },
+        {
+          "name": "Hamza",
+          "languages": [
+            {
+              "label": "Urdu"
+            }
+          ]
+        },
+        {
+          "name": "Wali",
+          "languages": [
+            {
+              "label": "Urdu"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
