@@ -219,11 +219,22 @@ function validateFile(folder, name, seedName) {
 		fail(rel, 'content is missing');
 	}
 
+	const body = JSON.stringify(ro);
+
 	// Internal links carry a language prefix. A /pt/ path left in a Romanian
 	// file points the reader at the Portuguese site.
-	const stray = JSON.stringify(ro).match(/\/(en|tr|fr|it|es|pl|pt)\//g);
+	const stray = body.match(/\/(en|tr|fr|it|es|pl|pt)\//g);
 	if (stray) {
 		fail(rel, `internal links still point at another language: ${[...new Set(stray)].join(', ')}`);
+	}
+
+	// Romanian uses no ã or õ, so either one is a passage left in Portuguese.
+	// Six candidate `footer` fields shipped that way once: the coverage check
+	// could not see it, because Portuguese is every bit as non-empty as
+	// Romanian, and comparing against English misses it too.
+	const foreign = [...new Set((body.match(/[^\s"\\]*[ãõ][^\s"\\]*/g) || []))];
+	if (foreign.length) {
+		fail(rel, `Portuguese text left untranslated: ${foreign.slice(0, 4).join(', ')}`);
 	}
 }
 
