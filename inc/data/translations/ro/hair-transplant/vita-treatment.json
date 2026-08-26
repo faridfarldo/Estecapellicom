@@ -1,0 +1,152 @@
+{
+  "source_slug": "vita-treatment",
+  "slug": "tratament-vita",
+  "title": "Tratamentul VITA",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Metoda semnătură Estecapelli",
+      "title": "Tratamentul VITA",
+      "lead": "Protocolul semnătură al Estecapelli revitalizează scalpul, hrănește foliculii de păr și accelerează vindecarea. Un ser derivat din vitamine protejează vitalitatea grefelor înainte și în timpul transplantului, pentru a maximiza supraviețuirea și creșterea acestora.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Metoda",
+      "title": "Ce este protocolul VITA?",
+      "media_type": "video",
+      "video_url": "https://youtube.com/shorts/8C9DLaNJynU",
+      "body": "<p>Protocolul VITA este un tratament avansat în trei faze, dezvoltat exclusiv de specialiștii medicali ai Estecapelli pentru a maximiza supraviețuirea grefelor și pentru a îmbunătăți succesul general al transplantului tău de păr. Este pe deplin compatibil atât cu tehnica Sapphire FUE, cât și cu DHI, și combină o formulă puternic îmbogățită cu aminoacizi, vitamine, factori de creștere și ATP, care hrănește și protejează foliculii de păr pe tot parcursul procedurii.</p><p>În prima fază, un ser VITA bogat în nutrienți este aplicat pe scalp prin microcanale create cu un dermaroller, permițând ingredientelor active să pătrundă în profunzime și pregătind zona receptoare pentru implantare. În a doua fază, după recoltarea grefelor, acestea sunt păstrate în serul VITA, în timp ce se aplică o terapie cu vapori de aer rece combinată cu soluție salină, pentru a le menține hidratate, a reduce stresul celular și a le crește rata de supraviețuire înainte de implantare.</p><p>Ca etapă finală, imediat după procedură se efectuează o ședință de PRP (plasmă îmbogățită cu trombocite), care folosește proprii tăi factori de creștere pentru a accelera vindecarea, a susține menținerea grefelor și a favoriza o creștere a părului mai puternică și mai sănătoasă.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Știința din spate",
+      "title": "Tehnica semnătură Estecapelli — puterea VITA derivată din vitamine",
+      "body": "<p>Perioada în care foliculii de păr rămân în afara corpului este un factor critic, care influențează direct succesul procedurii. Odată extrase, grefele își pierd accesul la circulația sangvină și la nutrienții vitali, ceea ce duce la o slăbire treptată.</p><p>Protocolul VITA intervine exact în aceste etape sensibile ale operației, oferind grefelor sprijinul esențial de care au nevoie. Datorită unei soluții de ser vitaminizat cu formulă specială și aplicării de vapori de aer rece, acesta contribuie semnificativ la păstrarea viabilității grefelor, atât în tehnica FUE, cât și în DHI.</p>",
+      "image_url": "assets/images/treatments/vita-science-en.webp",
+      "localized_image_url": "assets/images/treatments/vita-science-en.webp"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "De ce contează",
+      "title": "Avantajele protocolului VITA",
+      "body": "Vitaminele, mineralele, factorii de creștere și ATP-ul din serul VITA întăresc foliculii și susțin o dezvoltare mai puternică:",
+      "items": [
+        {
+          "label": "Protejează vitalitatea grefelor în afara corpului"
+        },
+        {
+          "label": "Rată mai mare de supraviețuire și de menținere a grefelor"
+        },
+        {
+          "label": "Hrănește foliculii cu vitamine, minerale și ATP"
+        },
+        {
+          "label": "Accelerează procesul de vindecare"
+        },
+        {
+          "label": "Se combină atât cu procedura FUE, cât și cu DHI"
+        },
+        {
+          "label": "Ideal pentru foliculi slăbiți, păr fin sau zone donatoare limitate"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Procedura",
+      "title": "Cum se aplică protocolul VITA?",
+      "lead": "Un protocol în patru etape, care se integrează perfect în transplantul tău Sapphire FUE sau DHI. Parcurge etapele de mai jos.",
+      "items": [
+        {
+          "eyebrow": "Etapa 1",
+          "title": "Alegerea între FUE și DHI",
+          "body": "<p>Atât Sapphire FUE, cât și DHI pot fi combinate perfect cu protocolul de tratament VITA. Poți alege între aceste două metode în funcție de structura părului tău, de zona donatoare și de obiectivele tale, iar echipa noastră medicală te ajută să identifici abordarea cea mai potrivită.</p>"
+        },
+        {
+          "eyebrow": "Etapa 2",
+          "title": "Microneedling și ser nutritiv",
+          "body": "<p>Se creează microcanale cu ajutorul unui dermaroller și se aplică un ser puternic concentrat, cu vitamine, aminoacizi, factori de creștere și minerale, pentru a stimula circulația sangvină. Zona donatoare este pregătită ideal pentru o recoltare ușoară și bine hrănită, în timp ce zona receptoare este alimentată cu un complex vitaminic concentrat, pe care scalpul îl absoarbe mult mai eficient datorită microcanalelor.</p>"
+        },
+        {
+          "eyebrow": "Etapa 3",
+          "title": "Ser cu vapori reci aplicat pe grefe",
+          "body": "<p>Același ser hrănitor este amestecat cu soluție salină în tăvița de recoltare și este aplicat pe grefele recoltate prin metoda vaporilor reci. Aceasta este fereastra cea mai critică — perioada în care foliculii se află în afara corpului — așa că protejarea lor în acest moment previne deteriorarea, maximizează supraviețuirea și crește potențialul lor de regenerare după transplant.</p>"
+        },
+        {
+          "eyebrow": "Etapa 4",
+          "title": "PRP după procedură",
+          "body": "<p>PRP-ul (plasma îmbogățită cu trombocite) se aplică drept etapă finală a tratamentului — o terapie regenerativă efectuată imediat după transplantul de păr, pentru a susține vindecarea și a îmbunătăți rezultatul general. Se recoltează o cantitate mică din sângele tău, care este procesată într-o centrifugă pentru a separa plasma bogată în trombocite, cu o concentrație ridicată de factori naturali de creștere. PRP-ul este apoi injectat cu atenție în zonele tratate ale scalpului, unde ajută la accelerarea reparării țesuturilor, la reducerea inflamației, la îmbunătățirea circulației sangvine și la crearea unui mediu optim pentru grefele nou-transplantate. Prin stimularea procesului de vindecare și hrănirea foliculilor, PRP-ul contribuie la o menținere mai bună a grefelor, la o recuperare mai rapidă și la o creștere a părului mai sănătoasă și mai densă.</p>",
+          "image_url": "https://estecapelli.com/wp-content/uploads/2026/06/prp.webp"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "Tratamentul VITA — întrebări frecvente",
+      "items": [
+        {
+          "question": "VITA este un tratament de sine stătător?",
+          "answer": "<p>Nu — VITA este un protocol care îmbunătățește un transplant de păr, nu un tratament separat. Se aplică în timpul procedurii tale Sapphire FUE sau DHI, pentru a hrăni scalpul și a proteja grefele, îmbunătățind supraviețuirea acestora și rezultatul tău final.</p>"
+        },
+        {
+          "question": "De ce contează atât de mult supraviețuirea grefelor?",
+          "answer": "<p>Timpul petrecut de foliculi în afara corpului este unul dintre cei mai importanți factori pentru succesul unui transplant. După recoltare, grefele își pierd accesul la circulația sangvină și la nutrienți și încep să slăbească. Hrănindu-le și protejându-le la rece în această fereastră, VITA ajută mai multe grefe să supraviețuiască și să crească — ceea ce înseamnă rezultate mai dense și mai bogate.</p>"
+        },
+        {
+          "question": "Cine beneficiază cel mai mult de VITA?",
+          "answer": "<p>Este valoros pentru aproape orice transplant, dar mai ales pentru pacienții cu foliculi slăbiți, păr fin sau o zonă donatoare limitată, unde fiecare grefă contează. Medicul tău îți va spune dacă adăugarea protocolului VITA merită în cazul tău specific.</p>"
+        },
+        {
+          "question": "VITA funcționează atât cu FUE, cât și cu DHI?",
+          "answer": "<p>Da. Protocolul VITA este pe deplin compatibil atât cu tehnica Sapphire FUE, cât și cu DHI, integrându-se perfect în oricare dintre proceduri, fără a schimba modul în care se desfășoară transplantul tău.</p>"
+        },
+        {
+          "question": "VITA modifică recuperarea sau provoacă efecte secundare?",
+          "answer": "<p>Prin hrănirea scalpului și a grefelor, protocolul susține un proces de vindecare mai rapid și mai sănătos. Folosește vitamine, minerale, aminoacizi și factori de creștere potriviți în mod natural organismului, așa că nu adaugă perioade de recuperare sau efecte secundare semnificative dincolo de cele ale transplantului în sine.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Rezultate reale",
+      "title": "Transplanturi susținute de VITA — înainte și după",
+      "lead": "Vezi densitatea și rezultatele naturale pe care le obțin pacienții noștri atunci când protocolul VITA le susține transplantul Sapphire FUE sau DHI — o supraviețuire mai bună a grefelor care se traduce printr-un păr mai bogat și mai sănătos.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultație gratuită",
+      "title": "Vrei ca VITA să fie inclus în transplantul tău?",
+      "lead": "Trimite-ne câteva detalii, iar echipa noastră îți va răspunde cu un plan de transplant personalizat, îți va explica cum poate crește protocolul VITA supraviețuirea grefelor și îți va trimite o ofertă all-inclusive, fără nicio obligație — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare gratuită a numărului de grefe pe baza fotografiilor tale"
+        },
+        {
+          "label": "Supraviețuire maximizată a grefelor cu protocolul VITA"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Asistență în mai multe limbi la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicită o consultație gratuită"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Explorează mai departe",
+      "title": "Tratamente similare"
+    }
+  ]
+}

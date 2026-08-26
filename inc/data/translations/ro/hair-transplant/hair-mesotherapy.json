@@ -1,0 +1,171 @@
+{
+  "source_slug": "hair-mesotherapy",
+  "slug": "mezoterapie-capilara",
+  "title": "Mezoterapie capilară",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Tratament capilar nechirurgical",
+      "title": "Mezoterapie capilară",
+      "lead": "Revitalizează-ți foliculii de păr cu un amestec personalizat de vitamine, minerale și aminoacizi, administrat direct în scalp prin microinjecții nedureroase.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "Pe scurt",
+      "stats": [
+        {
+          "value": "4–6",
+          "label": "Ședințe"
+        },
+        {
+          "value": "4–6 săptămâni",
+          "label": "Interval"
+        },
+        {
+          "value": "Nedureroasă",
+          "label": "Procedură"
+        },
+        {
+          "value": "Fără perioadă de repaus",
+          "label": "Recuperare"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Abordarea",
+      "title": "Mezoterapia capilară: abordarea personalizată Estecapelli",
+      "body": "<p>Mezoterapia capilară este o metodă rapidă și eficientă de a combate căderea părului și de a-i îmbunătăți sănătatea. Tratamentul livrează un amestec personalizat de vitamine, minerale și aminoacizi direct la nivelul foliculilor de păr, oferind nutrienții esențiali exact acolo unde este cea mai mare nevoie de ei.</p><p>La Estecapelli, procesul este atent adaptat: scalpul și foliculii sunt analizați, amestecul este preparat în funcție de nevoile individuale și este administrat prin microinjecții nedureroase. Ședințele sunt scurte și confortabile, iar tu îți poți relua imediat rutina zilnică.</p>"
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Procesul",
+      "title": "Cum se realizează mezoterapia capilară?",
+      "lead": "Procesul Estecapelli pas cu pas, de la analiza scalpului până la un program de ședințe personalizat. Parcurge pașii de mai jos.",
+      "items": [
+        {
+          "eyebrow": "Pasul 1",
+          "title": "Analiza",
+          "body": "<p>Părul și scalpul sunt evaluate cu atenție, pentru a înțelege structura foliculilor de păr, starea generală a scalpului și cauza căderii părului. La Estecapelli, acest lucru se face prin analiza TrichoLab, care le permite specialiștilor noștri să examineze lungimea, calitatea și densitatea foliculilor — baza unui plan de tratament precis și personalizat, nu a unui cocktail universal.</p>"
+        },
+        {
+          "eyebrow": "Pasul 2",
+          "title": "Prepararea amestecului de mezoterapie",
+          "body": "<p>Pentru fiecare pacient se prepară o soluție de mezoterapie personalizată, care conține o combinație atent echilibrată de vitamine, minerale, aminoacizi și factori de creștere, esențiali pentru un păr sănătos. Amestecul este adaptat nevoilor tale specifice — pentru a susține rezistența foliculilor, a stimula creșterea și a îmbunătăți calitatea generală a părului.</p>"
+        },
+        {
+          "eyebrow": "Pasul 3",
+          "title": "Aplicarea",
+          "body": "<p>Amestecul personalizat este injectat direct în scalp cu ace foarte fine, livrând nutrienții direct la nivelul foliculilor de păr. Pentru persoanele cu scalp sensibil se poate aplica o cremă anestezică topică. Procedura este rapidă, confortabilă și minim invazivă, așa că îți poți relua imediat activitățile zilnice.</p>"
+        },
+        {
+          "eyebrow": "Pasul 4",
+          "title": "Programul de tratament",
+          "body": "<p>Se aplică un program de tratament de, de obicei, 4-6 ședințe, la intervale de 4-6 săptămâni. Programul exact este ajustat în funcție de gradul căderii părului și de modul în care răspunde părul tău, iar ulterior se recomandă ședințe periodice de întreținere pentru a păstra rezultatele.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "De ce să o alegi",
+      "title": "Avantajele mezoterapiei capilare",
+      "body": "Un tratament de susținere, neinvaziv, care se integrează ușor în viața ta de zi cu zi:",
+      "items": [
+        {
+          "label": "Întărește foliculii de păr și stimulează creșterea de fire noi"
+        },
+        {
+          "label": "Reduce căderea părului, fără perioadă de repaus"
+        },
+        {
+          "label": "Cocktail personalizat de vitamine și minerale"
+        },
+        {
+          "label": "Ședințe nedureroase și confortabile"
+        },
+        {
+          "label": "Compatibilă cu îngrijirea post-operatorie a transplantului de păr"
+        },
+        {
+          "label": "Rezultate vizibile rapid, în câteva ședințe"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "Mezoterapia capilară — întrebări frecvente",
+      "items": [
+        {
+          "question": "Sunt un candidat potrivit pentru mezoterapia capilară?",
+          "answer": "<p>Mezoterapia este potrivită pentru bărbați și femei aflați în stadiile incipiente sau moderate ale căderii părului — păr subțiat, slăbit sau care cade, inclusiv în cazul alopeciei androgenetice și al efluviului telogen. Este, de asemenea, un tratament de susținere puternic după un transplant de păr. Nu înlocuiește intervenția chirurgicală în cazul unei chelii avansate, așa că este bine ca mai întâi cauza să fie evaluată în detaliu de un specialist.</p>"
+        },
+        {
+          "question": "De câte ședințe voi avea nevoie și când voi vedea rezultate?",
+          "answer": "<p>Un program obișnuit cuprinde patru până la șase ședințe, la interval de patru-șase săptămâni. Mulți pacienți observă o reducere a căderii părului după primele două-trei ședințe, iar densitatea și firele noi se acumulează pe parcursul întregului program. Numărul exact este personalizat în funcție de severitatea căderii părului și de modul în care răspunde părul tău.</p>"
+        },
+        {
+          "question": "Mezoterapia capilară este dureroasă și necesită perioadă de repaus?",
+          "answer": "<p>Este, în general, nedureroasă — poți simți cel mult o ușoară înțepătură, iar pentru scalpurile sensibile se poate folosi o cremă anestezică topică. Nu există perioadă de repaus: ședințele sunt scurte și îți poți relua imediat rutina zilnică, inclusiv serviciul.</p>"
+        },
+        {
+          "question": "Ce conține, de fapt, amestecul de mezoterapie?",
+          "answer": "<p>Soluția este un cocktail personalizat de vitamine, minerale, aminoacizi și factori de creștere care hrănesc direct foliculii. În loc de o formulă fixă, amestecul este ajustat în funcție de analiza scalpului tău, astfel încât să vizeze deficiențele și slăbiciunile specifice identificate la părul tău.</p>"
+        },
+        {
+          "question": "Poate fi combinată cu alte tratamente?",
+          "answer": "<p>Da. Se combină bine cu PRP și cu tratamente medicale precum minoxidilul și este adesea folosită pentru a susține și a consolida rezultatele după un transplant DHI, FUE sau Sapphire FUE. Specialiștii noștri concep cea mai bună combinație pentru obiectivele tale.</p>"
+        },
+        {
+          "question": "Există efecte secundare?",
+          "answer": "<p>Este o procedură sigură și minim invazivă. Rareori pot apărea roșeață temporară, o umflare ușoară sau mâncărimi la locurile de injectare, care dispar de la sine în scurt timp.</p>"
+        },
+        {
+          "question": "Cât durează rezultatele?",
+          "answer": "<p>Rezultatele mezoterapiei pot fi de lungă durată, mai ales atunci când sunt însoțite de un stil de viață sănătos și de o îngrijire corespunzătoare a părului. Totuși, deoarece tratamentul susține și stimulează foliculii de păr existenți, fără a opri definitiv cauzele care stau la baza căderii părului, în funcție de situația ta individuală se pot recomanda ședințe de întreținere. Tratamentele periodice ajută la păstrarea densității părului, la menținerea sănătății scalpului și la susținerea unei creșteri mai puternice și mai sănătoase în timp.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Rezultate reale",
+      "title": "Mezoterapie capilară — înainte și după",
+      "lead": "Vezi îmbunătățirea densității și a calității părului pe care o obțin pacienții noștri pe parcursul unui program de mezoterapie. Rezultatele se acumulează treptat, de la o ședință la alta, pe măsură ce foliculii sunt hrăniți și întăriți.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultație gratuită",
+      "title": "Ești pregătit să îți întărești părul?",
+      "lead": "Trimite-ne câteva detalii, iar echipa noastră îți va răspunde cu un plan de mezoterapie personalizat, numărul recomandat de ședințe și o ofertă fără nicio obligație — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare gratuită a scalpului pe baza fotografiilor tale"
+        },
+        {
+          "label": "Cocktail personalizat de vitamine și minerale"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Asistență în mai multe limbi la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicită o consultație gratuită"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Explorează mai departe",
+      "title": "Tratamente similare"
+    }
+  ]
+}
