@@ -33,7 +33,7 @@ function estecapelli_seo_en_url( $url ) {
 	$path = isset( $parts['path'] ) ? ltrim( $parts['path'], '/' ) : '';
 
 	// Already under a language directory — leave it exactly as WPML built it.
-	if ( preg_match( '#^(en|tr|fr|it|es|pl|pt)(/|$)#', $path ) ) {
+	if ( preg_match( '#^(en|tr|fr|it|es|pl|pt|ro)(/|$)#', $path ) ) {
 		return $url;
 	}
 
