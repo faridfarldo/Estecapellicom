@@ -35,6 +35,18 @@ The English original is **not** a JSON file. It lives in PHP seeds:
 - doctors → `inc/data/doctors-seed.php`
 - blog → `inc/data/blog/*.html`
 
+Those seeds wrap every string in `__()`, so reading them raw is awkward. Dump
+the English for one entry as JSON instead:
+
+```
+php tools/dump-english-source.php . treatments rhinoplasty
+php tools/dump-english-source.php . pages about-us
+```
+
+Use `treatments` for the `plastic-surgery/` and `dental-treatment/` folders,
+`pages` for the rest. Doctors come from `inc/data/doctors-seed.php`, which is
+small enough to read directly.
+
 Translate from those. Use the **Portuguese** overlay in
 `inc/data/translations/pt/<same folder>/<same filename>.json` as your structural
 template — every language overlays the identical seed, so the Portuguese file
