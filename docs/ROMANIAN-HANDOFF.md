@@ -47,15 +47,15 @@ Use `treatments` for the `plastic-surgery/` and `dental-treatment/` folders,
 `pages` for the rest. Doctors come from `inc/data/doctors-seed.php`, which is
 small enough to read directly.
 
-Translate from those. Use the **Portuguese** overlay in
-`inc/data/translations/pt/<same folder>/<same filename>.json` as your structural
-template — every language overlays the identical seed, so the Portuguese file
-tells you exactly which keys exist and in what order. Copy its shape, replace
-its text.
+Translate from those. The seed dump is both your source text **and** your
+structural template: the shape your overlay must match is the seed's own.
 
-Do not translate from Portuguese. It is the shape reference, not the source.
-Some of it is visibly machine-translated (`para coordenar seu tratamento.
-visita.`) — do not reproduce those errors in Romanian.
+The Portuguese overlay in `inc/data/translations/pt/<same folder>/<same
+filename>.json` is worth reading as an example of house style — how formal the
+register is, how a CTA is phrased. Do not use it as a structural reference and
+do not translate from it. It is a translation itself, some of it visibly
+machine-made (`para coordenar seu tratamento. visita.`), and on two pages it
+is behind the seed.
 
 ## Hard structural rules
 
@@ -66,29 +66,35 @@ Breaking any of these makes the importer reject the batch.
    `related`, `doctors`, `team`. They stay in English, exactly. Translating one
    breaks rendering — this is a bug the theme already had once, which is why
    `inc/acfml-layout-guard.php` exists.
-2. **Never add, remove, or reorder a section.** The Romanian `sections` array
-   must have the same length as the Portuguese one, with the same layout in
-   each position. Section images are matched to the English post *by ordinal*,
-   so a shifted array silently attaches the wrong picture.
+2. **The seed is the contract, not the Portuguese file.** The Romanian
+   `sections` array must have the same length as the **English seed**, with the
+   same `acf_fc_layout` at every position. The importer walks the seed and
+   compares position by position, so a section that is missing, extra or out of
+   order makes the whole batch fail — and section images are matched to the
+   English post by ordinal, so a shifted array attaches the wrong picture.
 
-   **An overlay is deliberately a sparse subset of the seed.** A landing page
-   may have twelve sections in the seed while the overlay translates only
-   seven of them — the untranslated ones are rendered from the English source
-   on purpose. Do not "complete" an overlay by adding the sections it skips.
-   Match the Portuguese file's section list exactly, no more and no less.
-   (Note that this also means seed section *n* is usually not overlay section
-   *n*: line them up by `acf_fc_layout`, in order, not by position.)
+   Portuguese is a useful example of house style, but it is **not** a
+   structural reference: `pages/about-us` and `pages/hair-transplant` are
+   behind the seed in every existing language and would fail to import today.
+   Romanian is complete on both. Always check your section list against
+   `php tools/dump-english-source.php . pages <slug>`, never against `pt/`.
+
+   Within a section you may **omit** a key: the merge only copies what you
+   supply, so anything left out simply keeps its English value. What you may
+   never do is supply a key the seed does not have, or an array of a different
+   length than the seed's.
 3. **Never add, remove, or rename a key.** Same keys, same nesting, same array
    lengths for `items`, `points`, `credentials`, `stats`, `faq`.
 4. **`source_slug` = the filename** without `.json`. Never translated.
 5. **`slug`** = exactly the value in the table below.
 6. **Do not touch** `image_url`, `localized_image_url`, `video_url`,
    `media_type`, or any URL that is not an internal site link. Copy them
-   verbatim from the Portuguese file.
-7. **Internal links carry a language prefix.** The Portuguese files contain
-   hrefs like `/pt/politica-de-cookies`. In Romanian these become `/ro/` plus
-   the Romanian slug from the table. A `/pt/` or `/en/` path left in a Romanian
-   file is a validator failure.
+   verbatim from the seed, or omit them entirely — either way the English
+   asset is inherited, which is what we want while no Romanian asset exists.
+7. **Internal links carry a language prefix.** The seed's links point at
+   `/en/…`, and Portuguese has hrefs like `/pt/politica-de-cookies`. In
+   Romanian these become `/ro/` plus the Romanian slug from the table. A
+   `/pt/` or `/en/` path left in a Romanian file is a validator failure.
 8. **Encoding is UTF-8, and Romanian diacritics belong in the text**: ă, â, î,
    ș, ț. Use the comma-below forms ș/ț (U+0219 / U+021B), not the cedilla
    ş/ţ. Slugs are the opposite — ASCII only, no diacritics.
@@ -230,10 +236,14 @@ medical advertising.
 node tools/validate-ro-translations.js plastic-surgery dental-treatment legal doctors
 ```
 
-It compares each Romanian file against the Portuguese one and reports: invalid
-JSON, wrong `source_slug` or `slug`, missing/extra/renamed keys, mismatched
-array lengths, translated `acf_fc_layout`, and internal links still pointing at
-another language. Exit code 0 means clean.
+It runs the importer's own coverage rules offline, against the English seed:
+invalid JSON, wrong `source_slug` or `slug`, a missing or mismatched
+`acf_fc_layout`, any required copy left untranslated, an array whose length
+does not match the seed, a doctor whose `credentials` count has drifted, and
+internal links still pointing at another language. Exit code 0 means clean.
+
+It needs `php` on PATH, because it reads the seeds through
+`tools/dump-english-source.php`.
 
 Run it with no arguments to check every folder. Files not yet written report as
 `missing`, which is expected until the batch is complete.

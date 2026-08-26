@@ -75,6 +75,122 @@
       "cta": {
         "label": "Cunoaște-i pe medicii noștri"
       }
+    },
+    {
+      "acf_fc_layout": "branches",
+      "eyebrow": "Filialele noastre",
+      "title": "Trei clinici, un singur standard de îngrijire",
+      "lead": "Estecapelli a început la Istanbul și a crescut apropiindu-se de pacienții săi. Astăzi avem clinici proprii pe trei continente, fiecare efectuând procedura completă cu aceleași tehnici, aceleași protocoale și aceleași prețuri fixe, all-inclusive — așa că locul în care ești tratat schimbă doar parcursul, niciodată standardul.",
+      "items": [
+        {
+          "body": "<p>Clinica noastră din Istanbul este centrul a tot ceea ce facem — o unitate la standard spitalicesc, autorizată de Ministerul Sănătății, cu propriile săli de operație sterile, cu sala de analiză TrichoLab și cu clinica stomatologică sub același acoperiș. Aici sunt dezvoltate și rafinate protocoalele noastre chirurgicale și tot aici sunt tratați majoritatea pacienților noștri internaționali.</p><p>Pacienții care vin la noi își planifică de obicei aproximativ trei zile în oraș. Hotelul, transferurile VIP și un translator personal sunt organizate în jurul procedurii, astfel încât singurul lucru la care mai trebuie să te gândești să fie rezultatul.</p>",
+          "points": [
+            {
+              "label": "Peste 15 ani în domeniul medical"
+            },
+            {
+              "label": "Peste 2.500 de transplanturi de păr pe an numai în Turcia"
+            },
+            {
+              "label": "Unitate la standard spitalicesc, autorizată de Ministerul Sănătății"
+            },
+            {
+              "label": "Transplant de păr, chirurgie plastică și stomatologie sub același acoperiș"
+            }
+          ]
+        },
+        {
+          "body": "<p>Clinica noastră din Santiago aduce procedura Estecapelli completă în America Latină. Transplanturile de păr sunt efectuate la fața locului de propria noastră echipă medicală, folosind aceleași tehnici FUE și DHI și aceleași protocoale Exosome și VITA dezvoltate la Istanbul — cu consultația, operația și fiecare vizită de control desfășurate în spaniolă.</p><p>Pentru pacienții din Chile și din regiunea extinsă, acest lucru elimină partea cea mai grea a parcursului. Nu mai e nevoie de un zbor lung de planificat, iar îngrijirea post-operatorie devine o scurtă deplasare în oraș, în loc de un apel video peste nouă fuse orare.</p>",
+          "points": [
+            {
+              "label": "Procedura completă efectuată la fața locului"
+            },
+            {
+              "label": "Aceleași protocoale FUE, DHI, Exosome și VITA"
+            },
+            {
+              "label": "Consultație și îngrijire post-operatorie în spaniolă"
+            },
+            {
+              "label": "Fără zboruri lungi pentru pacienții din America Latină"
+            }
+          ]
+        },
+        {
+          "body": "<p>Clinica noastră din Miami deservește pacienți din întreaga Americă de Nord. Procedura completă este realizată la fața locului de echipa noastră medicală, urmând exact protocoalele chirurgicale și tehnicile folosite la Istanbul — astfel încât un pacient din Statele Unite să poată obține rezultatul Estecapelli fără să părăsească țara.</p><p>Consultațiile și controalele se desfășoară în engleză și spaniolă, iar planul începe tot de unde a început dintotdeauna: o evaluare detaliată a scalpului tău, a zonei donatoare și a densității pe care ți-o dorești, înainte de a discuta despre vreo grefă.</p>",
+          "points": [
+            {
+              "label": "Procedura completă efectuată la fața locului"
+            },
+            {
+              "label": "Aceleași protocoale chirurgicale ca la Istanbul"
+            },
+            {
+              "label": "Consultație și îngrijire post-operatorie în engleză și spaniolă"
+            },
+            {
+              "label": "Deservim pacienți din întreaga Americă de Nord"
+            }
+          ]
+        }
+      ],
+      "cta": {
+        "label": "Întreabă-ne ce clinică ți se potrivește"
+      }
+    },
+    {
+      "acf_fc_layout": "clinic",
+      "eyebrow": "Clinica noastră",
+      "title": "O clinică modernă, construită în jurul unui singur lucru: siguranța ta",
+      "lead": "Echipamentele sunt partea ușor de cumpărat. Ceea ce face o clinică sigură este tot ce se află în jurul lor — săli de operație sterile, o echipă medicală permanentă și un protocol care nu se îndoaie pentru că o zi este aglomerată.",
+      "body": "<p>Clinica noastră este o unitate autorizată, la standard spitalicesc, nu o cameră de tratament dintr-un salon sau dintr-un apartament de hotel. Procedurile au loc în săli de operație sterile dedicate, cu instrumentar de unică folosință, cu sterilizare de grad medical pentru tot ce nu este de unică folosință și cu aceleași standarde de control al infecțiilor la care este ținută o sală de operație de spital.</p><p>Tehnologia este cu adevărat actuală, pentru că în restaurarea capilară echipamentul decide rezultatul. Instrumentele cu vârf de safir deschid microcanale la o adâncime și un unghi controlate. Punch-urile cu micromotor ridică fiecare unitate foliculară fără tăieturi și fără suturi. Sala noastră TrichoLab îți analizează scalpul și densitatea părului înainte de a se planifica vreo grefă, iar protocoalele Exosome și VITA protejează grefele în orele pe care le petrec în afara corpului.</p><p>Fiecare operație este efectuată de propria noastră echipă medicală de specialiști, niciodată subcontractată, cu un medic anestezist și monitorizare completă la fața locului. Ești treaz, confortabil și îngrijit pe tot parcursul, iar în clădire există o echipă medicală permanentă pe toată durata șederii tale — nu doar un număr de telefon la care să suni după aceea.</p>",
+      "points": [
+        {
+          "title": "Săli de operație sterile",
+          "body": "Săli dedicate, cu instrumentar de unică folosință și sterilizare de grad medical, ținute la standardele spitalicești de control al infecțiilor."
+        },
+        {
+          "title": "Echipamente de ultimă generație",
+          "body": "Instrumente cu vârf de safir și punch-uri cu micromotor, pentru adâncime și unghi controlate și o zonă donatoare care se vindecă fără suturi."
+        },
+        {
+          "title": "Analiză a scalpului cu TrichoLab",
+          "body": "Scalpul tău, densitatea părului și capacitatea zonei donatoare sunt măsurate la fața locului, înainte de conceperea planului de grefe."
+        },
+        {
+          "title": "Medic anestezist și monitorizare la fața locului",
+          "body": "Anestezie locală administrată și monitorizată de personal medical, așa că rămâi treaz, confortabil și supravegheat pe tot parcursul."
+        },
+        {
+          "title": "O echipă medicală permanentă",
+          "body": "Propria noastră echipă efectuează fiecare operație — nimic nu este subcontractat — și rămâne disponibilă pe tot parcursul recuperării tale."
+        },
+        {
+          "title": "Totul sub același acoperiș",
+          "body": "Restaurarea capilară, chirurgia plastică și tratamentele dentare împart aceeași unitate, aceeași fișă și aceeași echipă de îngrijire."
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultație gratuită",
+      "title": "Acum hai să analizăm cazul tău",
+      "lead": "Ai citit cine suntem. Pasul următor este invers: trimite-ne câteva fotografii, iar echipa noastră medicală îți va răspunde cu tehnica pe care ți-ar recomanda-o, cu o evaluare sinceră a ceea ce se poate obține și cu o ofertă all-inclusive, fără nicio obligație — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare gratuită a numărului de grefe pe baza fotografiilor tale"
+        },
+        {
+          "label": "Ofertă all-inclusive transparentă, fără nicio obligație"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Asistență în mai multe limbi la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicită o consultație gratuită"
     }
   ]
 }

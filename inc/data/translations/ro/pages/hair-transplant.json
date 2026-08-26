@@ -44,6 +44,158 @@
       ]
     },
     {
+      "acf_fc_layout": "techniques",
+      "eyebrow": "Doar la Estecapelli",
+      "title": "Două protocoale care schimbă ce poate obține un transplant",
+      "lead": "Fiecare transplant Estecapelli este realizat cu metoda FUE sau DHI, considerate standardul de aur. Ceea ce face diferența în rezultat este ce adăugăm peste ele — două protocoale dezvoltate de propria noastră echipă medicală, care îți protejează grefele în orele ce decid cât din părul tău nou va crește cu adevărat.",
+      "items": [
+        {
+          "name": "Exosome FUE",
+          "body": "<p>În clipa în care o grefă părăsește scalpul, își pierde alimentarea cu sânge, iar fiecare oră petrecută în afara corpului costă din supraviețuire. În loc de un lichid de conservare obișnuit, Estecapelli îți păstrează grefele într-o soluție derivată din celule stem mezenchimale și bogată în exozomi — veziculele naturale prin care celulele își semnalizează una alteia să se repare.</p><p>Foliculii sunt hrăniți și protejați în fereastra cea mai critică a operației, iar efectul antiinflamator se prelungește în recuperare: roșeața și sensibilitatea scalpului se remit mai devreme, circulația din jurul noilor grefe se îmbunătățește, iar părul care crește din ele pornește dintr-o poziție mai puternică.</p>",
+          "points": [
+            {
+              "label": "Grefe păstrate într-o soluție cu exozomi, nu într-un lichid de conservare obișnuit"
+            },
+            {
+              "label": "Viabilitatea foliculilor susținută timp de până la 72 de ore"
+            },
+            {
+              "label": "Pierderea de grefe redusă de la obișnuitele 15–20% la aproximativ 1%"
+            },
+            {
+              "label": "Efect antiinflamator — roșeața și sensibilitatea se remit mai repede"
+            },
+            {
+              "label": "Aprobat de TÜBİTAK, consiliul de cercetare științifică al Turciei"
+            }
+          ],
+          "cta": {
+            "label": "Descoperă Exosome FUE"
+          }
+        },
+        {
+          "name": "Protocolul VITA",
+          "body": "<p>Protocolul VITA este un tratament în trei faze, construit în jurul unei formule concentrate de aminoacizi, vitamine, factori de creștere și ATP. Microcanalele deschise cu un dermaroller duc serul în profunzimea scalpului, astfel încât zona receptoare să fie pregătită și hrănită înainte de implantarea vreunei grefe.</p><p>După recoltare, grefele sunt păstrate în același ser, sub vapori de aer rece, pentru a rămâne hidratate și pentru a reduce la minimum stresul celular. O ședință de PRP imediat după procedură încheie protocolul, folosind proprii tăi factori de creștere pentru a accelera vindecarea și a susține menținerea grefelor.</p>",
+          "points": [
+            {
+              "label": "Protejează vitalitatea grefelor în afara corpului"
+            },
+            {
+              "label": "Hrănește foliculii cu vitamine, minerale și ATP"
+            },
+            {
+              "label": "Ședință de PRP în aceeași zi, din propriul tău sânge"
+            },
+            {
+              "label": "Se combină atât cu procedura FUE, cât și cu DHI"
+            },
+            {
+              "label": "Ideal pentru foliculi slăbiți, păr fin sau o zonă donatoare limitată"
+            }
+          ],
+          "cta": {
+            "label": "Descoperă protocolul VITA"
+          }
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "results",
+      "eyebrow": "Dovada",
+      "title": "Aceste tehnici, pe pacienți reali",
+      "lead": "Rezultate ale pacienților tratați cu protocoalele noastre Exosome, VITA, Sapphire FUE și DHI — fiecare planificat în jurul liniei frontale, al zonei donatoare și al tiparului de creștere al persoanei respective.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "price_compare",
+      "eyebrow": "Comparație de costuri",
+      "title": "Aceeași procedură, un preț cu totul diferit",
+      "lead": "În străinătate, un transplant de păr se facturează aproape întotdeauna per grefă — așa că, cu cât ai nevoie de mai mult păr, cu atât nota de plată crește mai abrupt. La Estecapelli prețul este fix și all-inclusive, indiferent de numărul tău de grefe. Mișcă glisorul ca să vezi cât ar costa cazul tău în altă parte.",
+      "slider_label": "Numărul de grefe",
+      "rows": [
+        {
+          "country": "Statele Unite"
+        },
+        {
+          "country": "Regatul Unit"
+        },
+        {
+          "country": "Canada"
+        },
+        {
+          "country": "Germania"
+        },
+        {
+          "country": "Franța"
+        },
+        {
+          "country": "Spania"
+        }
+      ],
+      "highlight": {
+        "country": "Turcia",
+        "clinic": "Estecapelli",
+        "badge": "Preț fix",
+        "note": "Indiferent de numărul tău de grefe"
+      },
+      "includes": [
+        {
+          "label": "Procedura ta, cu tehnica aleasă pentru cazul tău"
+        },
+        {
+          "label": "Cazare la hotel de 5 stele"
+        },
+        {
+          "label": "Serviciu de transfer VIP"
+        },
+        {
+          "label": "Translator personal"
+        },
+        {
+          "label": "Anestezie fără durere"
+        },
+        {
+          "label": "Echipă dedicată de monitorizare post-operatorie"
+        }
+      ],
+      "footnote": "Cifrele per grefă sunt intervale orientative de piață, publicate de clinici din fiecare țară, și sunt afișate doar pentru comparație — nu sunt oferte. Prețul tău Estecapelli se confirmă după o evaluare gratuită a fotografiilor tale.",
+      "cta": {
+        "label": "Află prețul meu fix"
+      }
+    },
+    {
+      "acf_fc_layout": "stories"
+    },
+    {
+      "acf_fc_layout": "aftercare",
+      "eyebrow": "După ce te întorci acasă",
+      "title": "Îngrijirea noastră post-operatorie, gândită pentru primul an de creștere",
+      "lead": "Transplantul durează o zi; rezultatul se construiește în cele douăsprezece luni care urmează. Fiecare pacient pleacă din clinică cu kitul Estecapelli de îngrijire post-operatorie și cu o rutină arătată personal — pentru că felul în care sunt îngrijite grefele în primele săptămâni decide cât din părul nou supraviețuiește.",
+      "items": [
+        {
+          "name": "Șampon post-operator",
+          "body": "O spălare delicată, care nu agresează, folosită din prima ta zi acasă. Curăță zona receptoare fără frecare, astfel încât crustele să se înmoaie și să se desprindă singure, în loc să fie frecate."
+        },
+        {
+          "name": "Loțiune reparatoare",
+          "body": "Se aplică înaintea fiecărei spălări, pentru a desprinde crustele din jurul fiecărei grefe și a împiedica uscarea scalpului. Este pasul care face primele zece zile confortabile, nu tensionate."
+        },
+        {
+          "name": "Spray cu ser fiziologic și medicație",
+          "body": "Un spray cu ser fiziologic menține zona grefată umedă în primele zile, alături de medicația prescrisă de medicul tău pentru umflături și confort."
+        },
+        {
+          "name": "O rutină, nu doar o trusă",
+          "body": "Prima ta spălare se face împreună cu tine, la clinică, iar întreaga rutină îți este notată înainte de plecare. Echipa noastră post-operatorie rămâne apoi alături de tine prin faza de cădere, prin creșterea nouă și până la rezultatul de douăsprezece luni."
+        }
+      ],
+      "cta": {
+        "label": "Vezi calendarul complet de după transplant"
+      }
+    },
+    {
       "acf_fc_layout": "related",
       "eyebrow": "Tratamentele noastre",
       "title": "Explorează tratamentele de transplant de păr"

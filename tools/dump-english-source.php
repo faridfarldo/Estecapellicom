@@ -32,9 +32,18 @@ $theme = rtrim( $argv[1], '/\\' );
 $which = $argv[2] ?? 'pages';
 $only  = $argv[3] ?? '';
 
-require $theme . '/inc/data/' . ( 'pages' === $which ? 'pages-seed.php' : 'treatments-seed.php' );
+$files = array(
+	'pages'      => 'pages-seed.php',
+	'treatments' => 'treatments-seed.php',
+	'doctors'    => 'doctors-seed.php',
+);
+if ( ! isset( $files[ $which ] ) ) {
+	fwrite( STDERR, "Unknown seed '$which'. Use: pages, treatments, doctors.\n" );
+	exit( 1 );
+}
+require $theme . '/inc/data/' . $files[ $which ];
 
-$seed = 'pages' === $which ? estecapelli_pages_seed() : estecapelli_treatments_seed();
+$seed = call_user_func( 'estecapelli_' . $which . '_seed' );
 
 $out = array();
 foreach ( $seed as $entry ) {

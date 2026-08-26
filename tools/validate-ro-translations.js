@@ -2,34 +2,59 @@
 /**
  * Structural validator for the Romanian translation overlays.
  *
- * The WordPress importer refuses anything whose shape does not match the
- * English seed, but that check only runs on a live site. This runs the same
- * idea offline, against the Portuguese overlay as the reference: every
- * language overlays the identical seed, so pt and ro must agree on every key,
- * every array length, and every acf_fc_layout in every position.
+ * This reproduces, offline, the check the WordPress importer runs on a live
+ * site (estecapelli_it_hair_validate_coverage): it walks the ENGLISH SEED and
+ * requires the overlay to carry, at the same position, every acf_fc_layout
+ * verbatim and every text field that is non-empty in the source.
+ *
+ * The seed is the contract — not another language's overlay. Validating
+ * against Portuguese was the earlier approach and it was wrong: pt is itself
+ * behind the seed on two pages, so it would both bless a stale Romanian file
+ * and reject a correct one.
  *
  * Usage:  node tools/validate-ro-translations.js [folder ...]
  * Exit 0 = clean, 1 = problems found.
+ *
+ * Requires php on PATH (it reads the seeds via tools/dump-english-source.php).
  */
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const BASE = path.join(ROOT, 'inc', 'data', 'translations');
-const REFERENCE = 'pt';
 const TARGET = 'ro';
+
+/** Which seed backs each overlay folder. */
+const SEED_OF = {
+	pages: 'pages',
+	'hair-transplant': 'treatments',
+	'plastic-surgery': 'treatments',
+	'dental-treatment': 'treatments',
+	doctors: 'doctors',
+	legal: null, // Prose pages: no sections to line up.
+};
+
+/**
+ * Exactly the field list in the importer's coverage check. A field outside
+ * this list is not required, however translatable it looks.
+ */
+const TEXT_FIELDS = new Set([
+	'eyebrow', 'title', 'lead', 'body', 'footer', 'label', 'value',
+	'question', 'answer', 'submit_label', 'caption', 'time', 'position',
+	'role', 'name',
+]);
 
 /**
  * Frozen Romanian slug contract. inc/indexed-urls.php is authoritative; this
- * mirrors it so the validator needs no PHP. Doctors keep their English slug
- * because a person's name is not translated.
+ * mirrors it so the slug check needs no routing code. Doctors keep their
+ * English slug because a person's name is not translated.
  */
 const RO_SLUGS = {
-	// pages/
 	'about-us': 'despre-noi',
 	'before-after': 'inainte-dupa',
-	'contact': 'contact',
+	contact: 'contact',
 	'dental-treatment': 'tratament-dentar',
 	'hair-transplant': 'transplant-de-par',
 	'medical-director': 'director-medical',
@@ -38,9 +63,8 @@ const RO_SLUGS = {
 	'plastic-surgery': 'chirurgie-plastica',
 	'post-hair-transplant-period': 'perioada-de-dupa-transplantul-de-par',
 	'pre-hair-transplant-period': 'perioada-dinainte-de-transplantul-de-par',
-	'tricholab': 'tricholab',
+	tricholab: 'tricholab',
 
-	// hair-transplant/
 	'beard-transplant': 'transplant-de-barba',
 	'dhi-hair-transplant': 'transplant-de-par-dhi',
 	'exosome-fue-hair-transplant': 'transplant-de-par-exosome-fue',
@@ -50,90 +74,97 @@ const RO_SLUGS = {
 	'sapphire-fue-hair-transplant': 'transplant-de-par-fue-sapphire',
 	'vita-treatment': 'tratament-vita',
 
-	// plastic-surgery/
 	'abdominoplasty-tummy-tuck': 'abdominoplastie',
-	'bbl': 'bbl',
+	bbl: 'bbl',
 	'breast-aesthetics-breast-surgery': 'estetica-sanilor-chirurgia-sanilor',
 	'face-and-neck-lift-surgery': 'lifting-facial-si-de-gat',
-	'gynecomastia': 'ginecomastie',
-	'liposuction': 'liposuctie',
+	gynecomastia: 'ginecomastie',
+	liposuction: 'liposuctie',
 	'obesity-surgeries-bariatric-surgery-and-gastric-balloon':
 		'operatii-de-obezitate-chirurgie-bariatrica-si-balon-gastric',
-	'rhinoplasty': 'rinoplastie',
+	rhinoplasty: 'rinoplastie',
 
-	// dental-treatment/
 	'dental-implant': 'implant-dentar',
 	'hollywood-smile': 'zambet-de-hollywood',
 
-	// legal/
 	'cookie-policy': 'politica-de-cookie-uri',
 	'kvkk-disclosure': 'nota-de-informare-kvkk',
 	'privacy-policy': 'politica-de-confidentialitate',
-	'terms': 'termeni-si-conditii',
+	terms: 'termeni-si-conditii',
 };
-
-/** Doctors keep the English slug: a person's name is not translated. */
-const DOCTOR_SLUG_IS_SOURCE = true;
 
 const problems = [];
 let checked = 0;
 
-function fail(file, message) {
-	problems.push(`${file}: ${message}`);
-}
+const fail = (file, message) => problems.push(`${file}: ${message}`);
+const stripTags = (s) => String(s).replace(/<[^>]*>/g, '').trim();
 
-/** Describe a value's shape without caring about the text inside it. */
-function shape(value) {
-	if (Array.isArray(value)) return 'array';
-	if (value === null) return 'null';
-	return typeof value;
+/** Load one seed wholesale, keyed by slug. Cached per seed name. */
+const seedCache = {};
+function loadSeed(name) {
+	if (seedCache[name]) return seedCache[name];
+	let raw;
+	try {
+		raw = execFileSync(
+			'php',
+			[path.join(ROOT, 'tools', 'dump-english-source.php'), ROOT, name],
+			{ encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }
+		);
+	} catch (e) {
+		console.error(`Could not read the ${name} seed. Is php on PATH?\n${e.message}`);
+		process.exit(2);
+	}
+	const byslug = {};
+	for (const entry of JSON.parse(raw)) byslug[entry.slug] = entry;
+	seedCache[name] = byslug;
+	return byslug;
 }
 
 /**
- * Walk reference and target together. Text may differ; structure may not.
+ * Walk the seed and demand the overlay match it, exactly as the importer does.
  */
-function compare(file, refValue, roValue, trail) {
-	const where = trail || '(root)';
+function coverage(file, source, translation, trail) {
+	const where = trail || 'page_sections';
 
-	if (shape(refValue) !== shape(roValue)) {
-		fail(file, `${where}: expected ${shape(refValue)}, found ${shape(roValue)}`);
-		return;
-	}
+	for (const [key, value] of Object.entries(source)) {
+		const here = `${where}/${key}`;
 
-	if (Array.isArray(refValue)) {
-		if (refValue.length !== roValue.length) {
-			fail(file, `${where}: expected ${refValue.length} entries, found ${roValue.length}`);
-			return;
+		if (key === 'acf_fc_layout') {
+			if (translation[key] !== value) {
+				fail(file, `${where}: layout must be "${value}", found "${translation[key] ?? '(absent)'}"`);
+			}
+			continue;
 		}
-		refValue.forEach((item, i) => compare(file, item, roValue[i], `${where}[${i}]`));
-		return;
-	}
 
-	if (refValue && typeof refValue === 'object') {
-		const refKeys = Object.keys(refValue).sort();
-		const roKeys = Object.keys(roValue).sort();
+		if (value && typeof value === 'object') {
+			let nested = translation[key];
+			// Omitting a branch is legal — the overlay merge simply leaves the
+			// English in place. Recursing into an empty object mirrors the
+			// importer, and still reports any required copy underneath it.
+			if (!nested || typeof nested !== 'object') nested = Array.isArray(value) ? [] : {};
+			// A branch that IS supplied must line up, or the merge writes the
+			// wrong entry over the wrong one.
+			if (Array.isArray(value) && Array.isArray(translation[key])
+				&& translation[key].length !== value.length) {
+				fail(file, `${here}: expected ${value.length} entries, found ${translation[key].length}`);
+				continue;
+			}
+			coverage(file, value, nested, here);
+			continue;
+		}
 
-		refKeys.filter((k) => !roKeys.includes(k))
-			.forEach((k) => fail(file, `${where}: missing key "${k}"`));
-		roKeys.filter((k) => !refKeys.includes(k))
-			.forEach((k) => fail(file, `${where}: unexpected key "${k}"`));
-
-		refKeys.filter((k) => roKeys.includes(k))
-			.forEach((k) => compare(file, refValue[k], roValue[k], `${where}.${k}`));
-		return;
-	}
-
-	// A layout selector is machinery, not copy. Translating one silently breaks
-	// rendering, which is why acfml-layout-guard.php exists.
-	if (trail && trail.endsWith('.acf_fc_layout') && refValue !== roValue) {
-		fail(file, `${where}: layout must stay "${refValue}", found "${roValue}"`);
+		if (TEXT_FIELDS.has(key) && stripTags(value) !== '') {
+			if (!(key in translation) || stripTags(translation[key]) === '') {
+				fail(file, `${here}: Romanian copy is missing`);
+			}
+		}
 	}
 }
 
-function validateFile(folder, name) {
+function validateFile(folder, name, seedName) {
 	const rel = `${folder}/${name}`;
-	const refPath = path.join(BASE, REFERENCE, folder, name);
 	const roPath = path.join(BASE, TARGET, folder, name);
+	const sourceSlug = name.replace(/\.json$/, '');
 
 	if (!fs.existsSync(roPath)) {
 		fail(rel, 'missing — no Romanian file for this English source');
@@ -141,14 +172,7 @@ function validateFile(folder, name) {
 	}
 	checked += 1;
 
-	let ref;
 	let ro;
-	try {
-		ref = JSON.parse(fs.readFileSync(refPath, 'utf8'));
-	} catch (e) {
-		fail(rel, `reference ${REFERENCE} file is unreadable: ${e.message}`);
-		return;
-	}
 	try {
 		ro = JSON.parse(fs.readFileSync(roPath, 'utf8'));
 	} catch (e) {
@@ -156,51 +180,88 @@ function validateFile(folder, name) {
 		return;
 	}
 
-	const sourceSlug = name.replace(/\.json$/, '');
 	if (ro.source_slug !== sourceSlug) {
 		fail(rel, `source_slug must be "${sourceSlug}", found "${ro.source_slug}"`);
 	}
 
-	const expectedSlug = folder === 'doctors' && DOCTOR_SLUG_IS_SOURCE
-		? sourceSlug
-		: RO_SLUGS[sourceSlug];
+	const expectedSlug = folder === 'doctors' ? sourceSlug : RO_SLUGS[sourceSlug];
 	if (!expectedSlug) {
 		fail(rel, `no Romanian slug is defined for "${sourceSlug}" — check the contract`);
 	} else if (ro.slug !== expectedSlug) {
 		fail(rel, `slug must be "${expectedSlug}", found "${ro.slug}"`);
 	}
 
-	if (!ro.title || typeof ro.title !== 'string') {
-		fail(rel, 'title is missing or not a string');
+	const displayField = folder === 'doctors' ? 'name' : 'title';
+	if (!ro[displayField] || typeof ro[displayField] !== 'string') {
+		fail(rel, `${displayField} is missing or not a string`);
 	}
 
-	compare(rel, ref, ro, '');
+	if (seedName) {
+		const seed = loadSeed(seedName)[sourceSlug];
+		if (!seed) {
+			fail(rel, `no English seed entry found for "${sourceSlug}"`);
+		} else if (folder === 'doctors') {
+			// The doctor importer compares credential counts explicitly.
+			const want = (seed.credentials || []).length;
+			const got = (ro.credentials || []).length;
+			if (want !== got) {
+				fail(rel, `credentials must have ${want} entries, found ${got}`);
+			}
+			for (const field of ['position', 'bio']) {
+				if (stripTags(seed[field] || '') !== '' && stripTags(ro[field] || '') === '') {
+					fail(rel, `${field} is missing`);
+				}
+			}
+		} else {
+			coverage(rel, seed.sections || {}, ro.sections || [], 'page_sections');
+		}
+	} else if (stripTags(ro.content || '') === '') {
+		fail(rel, 'content is missing');
+	}
 
 	// Internal links carry a language prefix. A /pt/ path left in a Romanian
 	// file points the reader at the Portuguese site.
-	const body = JSON.stringify(ro);
-	const strayPrefix = body.match(/\/(en|tr|fr|it|es|pl|pt)\//g);
-	if (strayPrefix) {
-		const unique = [...new Set(strayPrefix)].join(', ');
-		fail(rel, `internal links still point at another language: ${unique}`);
+	const stray = JSON.stringify(ro).match(/\/(en|tr|fr|it|es|pl|pt)\//g);
+	if (stray) {
+		fail(rel, `internal links still point at another language: ${[...new Set(stray)].join(', ')}`);
 	}
+}
+
+/** The file list comes from the seeds, so a folder cannot silently go short. */
+function filesFor(folder) {
+	const seedName = SEED_OF[folder];
+	if (folder === 'legal') {
+		// Legal pages live in the page seed but carry prose, not sections.
+		return ['privacy-policy', 'terms', 'kvkk-disclosure', 'cookie-policy'];
+	}
+	const seed = loadSeed(seedName);
+	if (folder === 'pages') {
+		return Object.keys(RO_SLUGS).filter(
+			(s) => seed[s] && !['privacy-policy', 'terms', 'kvkk-disclosure', 'cookie-policy'].includes(s)
+		);
+	}
+	if (folder === 'doctors') return Object.keys(seed);
+	// Treatment folders: whichever treatments belong to that category.
+	const category = {
+		'hair-transplant': 'Hair Transplant',
+		'plastic-surgery': 'Plastic Surgery',
+		'dental-treatment': 'Dental Treatment',
+	}[folder];
+	return Object.keys(seed).filter(
+		(s) => seed[s].category === category && s in RO_SLUGS
+	);
 }
 
 const folders = process.argv.slice(2).length
 	? process.argv.slice(2)
-	: fs.readdirSync(path.join(BASE, REFERENCE)).filter(
-		(f) => fs.statSync(path.join(BASE, REFERENCE, f)).isDirectory()
-	);
+	: Object.keys(SEED_OF);
 
 folders.forEach((folder) => {
-	const refDir = path.join(BASE, REFERENCE, folder);
-	if (!fs.existsSync(refDir)) {
-		problems.push(`${folder}: no such folder under ${REFERENCE}/`);
+	if (!(folder in SEED_OF)) {
+		problems.push(`${folder}: not a known overlay folder`);
 		return;
 	}
-	fs.readdirSync(refDir)
-		.filter((n) => n.endsWith('.json'))
-		.forEach((name) => validateFile(folder, name));
+	filesFor(folder).forEach((slug) => validateFile(folder, `${slug}.json`, SEED_OF[folder]));
 });
 
 console.log(`checked ${checked} file(s) in: ${folders.join(', ')}`);
