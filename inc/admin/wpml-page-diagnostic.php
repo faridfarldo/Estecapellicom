@@ -230,10 +230,27 @@ function estecapelli_render_wpml_page_diagnostic() {
 						$expected_slug = $target['slugs'][ $lang ] ?? '';
 						$raw_matches   = $expected_slug ? estecapelli_wpml_diag_raw_posts_by_slug( $expected_slug ) : array();
 
+						// Only a page that is ITSELF in this language can be this
+						// language's orphan. Some slugs are deliberately identical
+						// across languages — "blog" and "tricholab" are — so the raw
+						// lookup always returns something, and judging on that alone
+						// reported the Romanian blog page as an orphan to relink when
+						// no Romanian page existed at all. The whole list is still
+						// printed in the next column, because seeing which languages
+						// do hold the slug is the useful part.
+						$own_language_matches = array();
+						foreach ( $raw_matches as $raw_match ) {
+							$raw_details = estecapelli_wpml_diag_details( (int) $raw_match->ID );
+							$raw_lang    = strtolower( (string) $raw_details['language_code'] );
+							if ( $raw_lang === strtolower( (string) estecapelli_wpml_language_code( $lang ) ) ) {
+								$own_language_matches[] = $raw_match;
+							}
+						}
+
 						// Verdict logic.
 						if ( $linked_id && $linked_post ) {
 							$verdict = '<span style="color:#1a7f37;font-weight:600;">' . esc_html__( 'OK — linked', 'estecapelli' ) . '</span>';
-						} elseif ( $raw_matches ) {
+						} elseif ( $own_language_matches ) {
 							$verdict = '<span style="color:#b32d2e;font-weight:600;">' . esc_html__( 'ORPHAN — page exists but NOT linked (this is the "+")', 'estecapelli' ) . '</span>';
 						} elseif ( ! $expected_slug ) {
 							$verdict = '<span style="color:#8a6d00;">' . esc_html__( 'No expected slug on record for this language', 'estecapelli' ) . '</span>';
