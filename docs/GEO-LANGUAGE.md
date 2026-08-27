@@ -1,23 +1,23 @@
 # Automatic language detection
 
-Sends a visitor to the site in their own language without putting the six
+Sends a visitor to the site in their own language without putting the seven
 non-English indexes at risk. All of it lives in `inc/geo-language.php`.
 
 ## What a visitor actually experiences
 
 | Where they land | What happens |
 |---|---|
-| The homepage (`/` or `/en/`), first visit | 302 to their language's homepage, e.g. `/ro/` |
+| The homepage (`/` or `/en/`), first visit | Sent to their language's homepage, e.g. `/ro/` |
 | The homepage, after they have ever picked a language | Nothing. Their choice wins forever. |
 | Any other page, e.g. `/it/trapianto-di-capelli/` | No redirect. A dismissible bar offers the translated page as a link. |
-| Any page, as a crawler | Nothing at all. No redirect, no bar, no markup. |
+| Any page, as a crawler | Nothing at all. The route answers `{"mode":"none"}`. |
 | Any page, logged in | Nothing. Editors previewing a language are never moved. |
 
 ## Why deep pages are never redirected
 
 Google crawls this site almost entirely from US IP addresses. If `/it/`, `/pl/`
 or `/ro/` URLs answered a US IP with a redirect to English, Googlebot would see
-the translated pages vanish — and the ~590 indexed URLs across seven languages
+the translated pages vanish — and the ~590 indexed URLs across eight languages
 are the whole asset. Redirecting only the default-language homepage keeps every
 indexed URL answering exactly as it always did, and a *link* offered on a deep
 page is a pattern Google is explicitly fine with.
@@ -57,34 +57,92 @@ The switcher click is caught with one delegated listener on `a[hreflang]`, which
 appears only on the header and footer switchers. The bar's own "view in …" link
 carries `hreflang` too, so clicking it records the choice by the same path.
 
-## Two things to get right on the server
+## How it survives WP Rocket
 
-**1. Cloudflare must be sending the country.** Turn on *IP Geolocation* under
-Cloudflare → **Network** for `estecapelli.com`. Without it `CF-IPCountry` is
+WP Rocket serves cached pages from `advanced-cache.php`, long before
+`template_redirect` or `wp_footer` run. So nothing about the visitor is decided
+in the page. The split is:
+
+| Piece | Cached? | Why it is safe |
+|---|---|---|
+| The inline script in `<head>` | Yes | Byte-identical for every visitor |
+| The empty, hidden bar skeleton in the footer | Yes | Carries no text, no link, no language |
+| `GET /wp-json/estecapelli/v1/language-hint?path=…` | **No** | Sent `no-store, private`; WP Rocket does not cache REST |
+
+The page asks the route, then redirects itself (homepage) or fills in the
+skeleton (everywhere else). **Nothing needs excluding from the page cache**, and
+the homepage stays fully cached.
+
+The skeleton exists for one reason: WP Rocket's *Remove Unused CSS* strips any
+selector it cannot find in the cached HTML, so a bar built entirely in JS would
+arrive unstyled. Printing it hidden keeps every `.lang-suggest*` class visible
+to that pass.
+
+## Three settings to get right
+
+**1. Cloudflare → Network → IP Geolocation: on.** Without it `CF-IPCountry` is
 absent and detection quietly falls back to `Accept-Language` only — which still
 works, just less often.
 
-**2. The homepage must not be page-cached.** Its response now varies per
-visitor, so it is sent with `Cache-Control: private, no-store`. WordPress HTML
-is not cached by Cloudflare by default, so nothing to do today — but if a page
-cache plugin or **Cloudflare APO** is ever enabled, exclude the homepage or
-every visitor will be served the first visitor's language.
+**2. WP Rocket → File Optimization → "Delay JavaScript execution".** If this is
+on, add an exclusion for:
+
+```
+estecapelli-language-hint
+```
+
+Otherwise the script waits for the visitor's first interaction — which is
+exactly when a homepage redirect is no longer wanted. (Cloudflare Rocket Loader
+is already handled: the tag carries `data-cfasync="false"`.)
+
+**3. WP Rocket → "Remove Unused CSS".** If it ever strips the bar's styles
+anyway, add to the safelist:
+
+```
+.lang-suggest
+```
+
+Nothing here needs a cache exclusion, and clearing the WP Rocket cache is not
+required after changing the country map — the map is only ever read by the
+uncached route.
 
 ## Checking it works
 
-The redirect is a 302 and only fires without the `este_lang` cookie:
+The page itself never redirects, so test the route directly. A Romanian visitor
+on the English homepage:
 
 ```
-curl -sI -H 'CF-IPCountry: RO' -H 'Accept-Language: ro-RO,ro;q=0.9' \
-     -A 'Mozilla/5.0' https://estecapelli.com/en/ | grep -i '^location\|^HTTP'
+curl -s -H 'CF-IPCountry: RO' -H 'Accept-Language: ro-RO,ro;q=0.9' \
+     -A 'Mozilla/5.0' \
+     'https://estecapelli.com/wp-json/estecapelli/v1/language-hint?path=/en/'
 ```
 
-Expect `302` to `/ro/`. Then confirm a crawler is left alone:
+Expect `{"mode":"redirect","language":"ro","url":".../ro/"}`.
+
+The same visitor deep in the Italian site — a link, never a move:
 
 ```
-curl -sI -H 'CF-IPCountry: RO' -A 'Googlebot/2.1' https://estecapelli.com/en/ \
-  | grep -i '^HTTP'
+curl -s -H 'CF-IPCountry: RO' -A 'Mozilla/5.0' \
+     'https://estecapelli.com/wp-json/estecapelli/v1/language-hint?path=/it/trapianto-di-capelli/'
 ```
 
-Expect `200`. Any redirect here is a bug and should be treated as urgent — it
-is the failure mode this whole design exists to prevent.
+Expect `{"mode":"suggest",…}`.
+
+Now the one that matters most — a crawler must always get nothing:
+
+```
+curl -s -H 'CF-IPCountry: RO' -A 'Googlebot/2.1' \
+     'https://estecapelli.com/wp-json/estecapelli/v1/language-hint?path=/en/'
+```
+
+Expect `{"mode":"none"}`. Anything else is a bug and should be treated as
+urgent: it is the failure mode this whole design exists to prevent.
+
+Finally, confirm the page itself is boring for everyone:
+
+```
+curl -sI -H 'CF-IPCountry: RO' -A 'Mozilla/5.0' https://estecapelli.com/en/ \
+  | grep -i '^HTTP\|^location'
+```
+
+Expect `200` and no `Location` — with or without WP Rocket serving it.

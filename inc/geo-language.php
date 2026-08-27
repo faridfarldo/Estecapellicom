@@ -1,33 +1,39 @@
 <?php
 /**
  * Send a visitor to the site in their own language, without costing us the
- * six non-English indexes.
+ * six non-English indexes and without fighting the page cache.
  *
- * The rule that shapes every decision below: Google crawls this site almost
- * entirely from US IP addresses. If /it/, /pl/ or /ro/ URLs answered a US IP
- * with a redirect to English, Googlebot would see the translated pages
- * disappear, and the ~590 indexed URLs across seven languages are the whole
- * asset here. So:
+ * Two constraints shape everything below.
  *
- * - A redirect happens on the HOMEPAGE ONLY, and only from the default
- *   language's root. Someone who arrives on /it/trapianto-di-capelli/ from a
- *   search result stays exactly where they landed.
- * - Every other page offers a dismissible SUGGESTION bar instead — a link, not
- *   a redirect, which Google is explicitly fine with.
- * - Crawlers are never redirected and never shown the bar.
- * - A manual language choice is remembered and permanently outranks detection.
+ * 1. Google crawls this site almost entirely from US IP addresses. If /it/,
+ *    /pl/ or /ro/ URLs answered a US IP with a redirect to English, Googlebot
+ *    would see the translated pages disappear, and the ~590 indexed URLs
+ *    across eight languages are the whole asset here. So a redirect happens on
+ *    the HOMEPAGE ONLY. Every other page offers a dismissible link instead,
+ *    which is a pattern Google is explicitly fine with.
+ *
+ * 2. WP Rocket serves cached pages from advanced-cache.php, long before
+ *    template_redirect or wp_footer ever run. Anything visitor-specific that
+ *    is decided in PHP and printed into the page is therefore either dead (the
+ *    hook never fires) or actively wrong (the first visitor's answer is baked
+ *    into the cache file and served to everyone after them). The same trap is
+ *    already documented on the hair widget's nonce route.
+ *
+ * So the split is: the CACHED HTML carries nothing about the visitor, and one
+ * uncached REST route answers "who is this and where should they go". The page
+ * asks it, then either redirects itself (homepage) or injects the bar. Full
+ * page caching stays on, and nothing needs excluding.
  *
  * Detection prefers the browser's own Accept-Language over the IP country: a
- * Romanian living in Germany wants Romanian, and only their browser knows that.
- * The country is the fallback, read from Cloudflare's CF-IPCountry header,
- * which is already in front of this site — no API call, no latency, no cost.
- * It needs "IP Geolocation" switched on under Cloudflare → Network.
+ * Romanian living in Germany wants Romanian, and only their browser knows
+ * that. The country is the fallback, read from Cloudflare's CF-IPCountry
+ * header, which is already in front of this site — no third-party API, no
+ * latency, no cost. It needs "IP Geolocation" switched on under
+ * Cloudflare → Network.
  *
- * CACHING NOTE: the homepage response now varies by visitor. It is sent with
- * Cache-Control: private, no-store, and WordPress HTML is not cached by
- * Cloudflare by default. If a page cache or Cloudflare APO is ever enabled,
- * the homepage MUST be excluded or every visitor gets the first visitor's
- * language.
+ * Crawlers are answered by the route with "no opinion", so a JS-rendering
+ * Googlebot has nothing to act on. That check lives at the route, not in the
+ * page, precisely because the page is cached and the route is not.
  *
  * @package Estecapelli
  */
@@ -163,11 +169,6 @@ function estecapelli_geo_browser_language() {
  * publish — the caller then leaves the visitor on English.
  */
 function estecapelli_geo_target_language() {
-	static $target = null;
-	if ( null !== $target ) {
-		return $target;
-	}
-
 	$target = estecapelli_geo_browser_language();
 	if ( '' === $target ) {
 		$country = estecapelli_geo_country();
@@ -175,21 +176,7 @@ function estecapelli_geo_target_language() {
 		$target  = $country && isset( $map[ $country ] ) ? $map[ $country ] : '';
 	}
 
-	if ( $target && ! in_array( $target, estecapelli_indexed_languages(), true ) ) {
-		$target = '';
-	}
-
-	return $target;
-}
-
-/** The visitor's remembered choice, or '' if they have not made one. */
-function estecapelli_geo_stored_language() {
-	if ( empty( $_COOKIE[ ESTECAPELLI_GEO_COOKIE ] ) ) {
-		return '';
-	}
-	$stored = sanitize_key( (string) wp_unslash( $_COOKIE[ ESTECAPELLI_GEO_COOKIE ] ) );
-
-	return in_array( $stored, estecapelli_indexed_languages(), true ) ? $stored : '';
+	return in_array( $target, estecapelli_indexed_languages(), true ) ? $target : '';
 }
 
 /**
@@ -212,86 +199,6 @@ function estecapelli_geo_is_crawler() {
 	}
 
 	return false;
-}
-
-/** Whether language detection may act on this request at all. */
-function estecapelli_geo_may_run() {
-	if ( is_admin() || wp_doing_ajax() || wp_doing_cron() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-		return false;
-	}
-	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-		return false;
-	}
-	if ( is_user_logged_in() ) {
-		return false; // Editors previewing a language must never be moved.
-	}
-	if ( ! isset( $_SERVER['REQUEST_METHOD'] ) || 'GET' !== strtoupper( (string) wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) {
-		return false;
-	}
-
-	return ! estecapelli_geo_is_crawler();
-}
-
-/** Remember a language server-side so the next request skips detection. */
-function estecapelli_geo_remember( $language ) {
-	if ( headers_sent() ) {
-		return;
-	}
-	setcookie(
-		ESTECAPELLI_GEO_COOKIE,
-		$language,
-		array(
-			'expires'  => time() + ESTECAPELLI_GEO_COOKIE_LIFETIME,
-			'path'     => '/',
-			'secure'   => is_ssl(),
-			'httponly' => false, // The switcher's JS writes the same cookie.
-			'samesite' => 'Lax',
-		)
-	);
-}
-
-add_action( 'template_redirect', 'estecapelli_geo_redirect_home', 5 );
-/**
- * Move a first-time visitor from the default-language homepage to their own.
- *
- * Only from the English root: a visitor already on /it/ or /ro/ has a language
- * in the URL, and second-guessing that is how you send someone who deliberately
- * clicked "English" back to Italian on every visit.
- */
-function estecapelli_geo_redirect_home() {
-	if ( ! is_front_page() || ! estecapelli_geo_may_run() ) {
-		return;
-	}
-	if ( estecapelli_geo_stored_language() ) {
-		return; // They have chosen; detection is over for good.
-	}
-
-	$current = estecapelli_indexed_language_code();
-	if ( 'en' !== $current ) {
-		return;
-	}
-
-	$target = estecapelli_geo_target_language();
-	if ( '' === $target || 'en' === $target ) {
-		return;
-	}
-
-	$url = estecapelli_language_root_url( $target );
-	if ( ! $url ) {
-		return;
-	}
-
-	// Remember it first, so this is a one-time event even if they come back to
-	// the bare root later, and so the redirect cannot loop.
-	estecapelli_geo_remember( $target );
-
-	// This response is visitor-specific and must never be cached or made
-	// permanent. 302, never 301.
-	if ( ! headers_sent() ) {
-		header( 'Cache-Control: private, no-store, max-age=0' );
-	}
-	wp_safe_redirect( $url, 302 );
-	exit;
 }
 
 /**
@@ -349,105 +256,273 @@ function estecapelli_geo_bar_strings() {
 }
 
 /**
- * The exact translated URL of the page being viewed, or '' if there is none.
+ * Whether a path is a language root — the one place a redirect is allowed.
  *
- * Built from the frozen URL contract rather than assembled by hand, so the bar
- * either points at a real translated page or is not shown at all. Offering a
- * link that 404s is worse than offering nothing.
+ * Matches "/", "/en", "/en/" and the same for every indexed code, and nothing
+ * deeper. Deriving this from the path rather than is_front_page() is what lets
+ * the decision live at the REST route, where the cache cannot reach it.
  */
-function estecapelli_geo_translated_url( $language ) {
-	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
-	$key     = estecapelli_indexed_route_key( $request );
-	if ( ! $key || ! estecapelli_indexed_route_path( $key, $language ) ) {
-		return '';
+function estecapelli_geo_path_language( $path ) {
+	$trimmed = trim( (string) wp_parse_url( (string) $path, PHP_URL_PATH ), '/' );
+	if ( '' === $trimmed ) {
+		return array( 'en', true );
 	}
 
-	return estecapelli_indexed_url( $key, $language );
+	$segments = explode( '/', $trimmed );
+	$first    = sanitize_key( strtolower( $segments[0] ) );
+	if ( 'pt-pt' === $first ) {
+		$first = 'pt';
+	}
+	if ( ! in_array( $first, estecapelli_indexed_languages(), true ) ) {
+		// No language directory: an English page under the bare permalink.
+		return array( 'en', false );
+	}
+
+	return array( $first, 1 === count( $segments ) );
 }
 
-add_action( 'wp_footer', 'estecapelli_geo_render_suggestion_bar', 30 );
-/** Offer the visitor's language on any page we are deliberately not redirecting. */
-function estecapelli_geo_render_suggestion_bar() {
-	if ( is_front_page() || is_404() || ! estecapelli_geo_may_run() ) {
-		return;
-	}
-	if ( ! empty( $_COOKIE[ ESTECAPELLI_GEO_BAR_COOKIE ] ) ) {
-		return;
+add_action( 'rest_api_init', 'estecapelli_geo_register_route' );
+/** One uncached route, because the page that asks it is cached. */
+function estecapelli_geo_register_route() {
+	register_rest_route(
+		'estecapelli/v1',
+		'/language-hint',
+		array(
+			'methods'             => 'GET',
+			'callback'            => 'estecapelli_geo_language_hint',
+			'permission_callback' => '__return_true',
+			'args'                => array(
+				'path' => array(
+					'required'          => true,
+					'sanitize_callback' => static function ( $value ) {
+						// Path only: a full URL here would let a caller ask us
+						// to describe somewhere that is not this site.
+						return (string) wp_parse_url( (string) $value, PHP_URL_PATH );
+					},
+				),
+			),
+		)
+	);
+}
+
+/**
+ * Answer "what language is this visitor, and where should they go from here".
+ *
+ * Returns mode "none" for anyone we must not act on — crawlers above all, but
+ * also logged-in editors previewing a language and visitors who have already
+ * chosen. The page treats "none" as "do nothing", so every one of those cases
+ * fails safe.
+ *
+ * @param WP_REST_Request $request Incoming request.
+ * @return WP_REST_Response
+ */
+function estecapelli_geo_language_hint( WP_REST_Request $request ) {
+	$payload = array( 'mode' => 'none' );
+
+	$respond = static function ( $payload ) {
+		$response = new WP_REST_Response( $payload, 200 );
+		// Visitor-specific: no layer (browser, plugin, CDN) may keep this.
+		$response->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0, private' );
+		$response->header( 'Vary', 'Accept-Language, CF-IPCountry, Cookie' );
+		return $response;
+	};
+
+	if ( estecapelli_geo_is_crawler() || is_user_logged_in() ) {
+		return $respond( $payload );
 	}
 
 	// A stored choice is a decision, not a hint: never second-guess it.
-	if ( estecapelli_geo_stored_language() ) {
-		return;
+	if ( ! empty( $_COOKIE[ ESTECAPELLI_GEO_COOKIE ] ) ) {
+		return $respond( $payload );
 	}
 
-	$target  = estecapelli_geo_target_language();
-	$current = estecapelli_indexed_language_code();
-	if ( '' === $target || $target === $current ) {
-		return;
+	$target = estecapelli_geo_target_language();
+	if ( '' === $target ) {
+		return $respond( $payload );
+	}
+
+	list( $current, $is_root ) = estecapelli_geo_path_language( (string) $request->get_param( 'path' ) );
+	if ( $target === $current ) {
+		return $respond( $payload );
+	}
+
+	if ( $is_root ) {
+		// Redirect only from the DEFAULT language's root. Someone already on
+		// /it/ has a language in the URL, and second-guessing that is how you
+		// send a person who deliberately clicked "English" back to Italian on
+		// every single visit.
+		if ( 'en' !== $current ) {
+			return $respond( $payload );
+		}
+		$url = estecapelli_language_root_url( $target );
+		if ( $url ) {
+			$payload = array(
+				'mode'     => 'redirect',
+				'language' => $target,
+				'url'      => $url,
+			);
+		}
+		return $respond( $payload );
+	}
+
+	if ( ! empty( $_COOKIE[ ESTECAPELLI_GEO_BAR_COOKIE ] ) ) {
+		return $respond( $payload );
+	}
+
+	// Built from the frozen URL contract rather than assembled by hand, so the
+	// bar either points at a real translated page or is not offered at all.
+	// A link that 404s is worse than no link.
+	$key = estecapelli_indexed_route_key( (string) $request->get_param( 'path' ) );
+	if ( ! $key || ! estecapelli_indexed_route_path( $key, $target ) ) {
+		return $respond( $payload );
 	}
 
 	$strings = estecapelli_geo_bar_strings();
 	if ( ! isset( $strings[ $target ] ) ) {
-		return;
+		return $respond( $payload );
 	}
 
-	$url = estecapelli_geo_translated_url( $target );
-	if ( '' === $url ) {
+	return $respond(
+		array(
+			'mode'     => 'suggest',
+			'language' => $target,
+			'url'      => estecapelli_indexed_url( $key, $target ),
+			'strings'  => $strings[ $target ],
+		)
+	);
+}
+
+add_action( 'wp_footer', 'estecapelli_geo_render_bar_skeleton', 30 );
+/**
+ * An empty, hidden bar that every visitor receives identically.
+ *
+ * Building the whole element in JS would be simpler, but WP Rocket's "Remove
+ * Unused CSS" reads the cached HTML and strips any selector it cannot find
+ * there — so a bar that only ever exists after fetch() would arrive unstyled.
+ * Printing the skeleton keeps every class visible to that pass while carrying
+ * nothing about who is reading, so the cache stays correct.
+ */
+function estecapelli_geo_render_bar_skeleton() {
+	if ( is_admin() ) {
 		return;
 	}
 	?>
-	<div class="lang-suggest" data-lang-suggest data-lang="<?php echo esc_attr( $target ); ?>" role="region" aria-label="<?php echo esc_attr( $strings[ $target ]['message'] ); ?>">
-		<p class="lang-suggest__text" lang="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $strings[ $target ]['message'] ); ?></p>
-		<a class="lang-suggest__action" href="<?php echo esc_url( $url ); ?>" lang="<?php echo esc_attr( $target ); ?>" hreflang="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $strings[ $target ]['action'] ); ?></a>
-		<button type="button" class="lang-suggest__close" data-lang-suggest-close aria-label="<?php echo esc_attr( $strings[ $target ]['dismiss'] ); ?>">&times;</button>
+	<div class="lang-suggest" data-lang-suggest hidden>
+		<p class="lang-suggest__text" data-lang-suggest-text></p>
+		<a class="lang-suggest__action" data-lang-suggest-action></a>
+		<button type="button" class="lang-suggest__close" data-lang-suggest-close>&times;</button>
 	</div>
 	<?php
 }
 
-add_action( 'wp_footer', 'estecapelli_geo_inline_script', 31 );
+add_action( 'wp_head', 'estecapelli_geo_inline_script', 2 );
 /**
- * Record a manual language choice, and let the bar be dismissed.
+ * The only script printed into the cached HTML — identical for every visitor,
+ * which is exactly why it survives the cache.
  *
- * The switcher's links are plain anchors in the header and footer, so a click
- * listener is enough — no URL parameter, and nothing to strip back out of the
- * indexed URLs afterwards.
+ * Runs in <head> so the homepage redirect fires before the page has painted
+ * much. It is a location.replace(), so it leaves no entry in history and the
+ * back button still works normally.
+ *
+ * data-cfasync="false" keeps Cloudflare Rocket Loader from deferring it. WP
+ * Rocket's "Delay JavaScript execution" must be told the same — see
+ * docs/GEO-LANGUAGE.md — or the redirect waits for the visitor to interact,
+ * which is precisely when it is no longer wanted.
  */
 function estecapelli_geo_inline_script() {
-	if ( ! estecapelli_geo_may_run() ) {
+	if ( is_admin() ) {
 		return;
 	}
+
+	$endpoint   = esc_url_raw( rest_url( 'estecapelli/v1/language-hint' ) );
 	$cookie     = ESTECAPELLI_GEO_COOKIE;
 	$bar_cookie = ESTECAPELLI_GEO_BAR_COOKIE;
 	$lifetime   = (int) ESTECAPELLI_GEO_COOKIE_LIFETIME;
 	?>
-	<script>
+	<script id="estecapelli-language-hint" data-cfasync="false">
 	(function () {
+		var ENDPOINT = <?php echo wp_json_encode( $endpoint ); ?>;
+		var LANG_COOKIE = <?php echo wp_json_encode( $cookie ); ?>;
+		var BAR_COOKIE = <?php echo wp_json_encode( $bar_cookie ); ?>;
+		var MAX_AGE = <?php echo (int) $lifetime; ?>;
 		var SECURE = location.protocol === 'https:' ? '; secure' : '';
+
 		function remember(name, value) {
 			try {
 				document.cookie = name + '=' + encodeURIComponent(value) +
-					'; max-age=<?php echo esc_js( $lifetime ); ?>; path=/; samesite=lax' + SECURE;
+					'; max-age=' + MAX_AGE + '; path=/; samesite=lax' + SECURE;
 			} catch (e) {}
 		}
+		function hasCookie(name) {
+			return document.cookie.indexOf(name + '=') !== -1;
+		}
 
-		// Any language-switcher link is a deliberate choice. hreflang only ever
-		// appears on those two switchers, in the header and the footer.
+		// Any language-switcher click is a deliberate choice, and it outranks
+		// detection permanently. hreflang appears only on the header and footer
+		// switchers — and on the suggestion bar's own link, which is the same
+		// kind of decision.
 		document.addEventListener('click', function (event) {
 			var link = event.target && event.target.closest ? event.target.closest('a[hreflang]') : null;
-			if (link) {
-				remember('<?php echo esc_js( $cookie ); ?>', link.getAttribute('hreflang'));
-			}
+			if (link) { remember(LANG_COOKIE, link.getAttribute('hreflang')); }
 		}, true);
 
-		var bar = document.querySelector('[data-lang-suggest]');
-		if (!bar) { return; }
-		var close = bar.querySelector('[data-lang-suggest-close]');
-		if (close) {
+		// Already chosen, or already dismissed and nothing else to do: never ask.
+		if (hasCookie(LANG_COOKIE)) { return; }
+		if (!window.fetch) { return; }
+
+		function showBar(data) {
+			var bar = document.querySelector('[data-lang-suggest]');
+			if (!bar || !data.strings) { return; }
+
+			var text = bar.querySelector('[data-lang-suggest-text]');
+			var action = bar.querySelector('[data-lang-suggest-action]');
+			var close = bar.querySelector('[data-lang-suggest-close]');
+			if (!text || !action || !close) { return; }
+
+			bar.setAttribute('role', 'region');
+			bar.setAttribute('aria-label', data.strings.message);
+
+			text.lang = data.language;
+			text.textContent = data.strings.message;
+
+			action.href = data.url;
+			action.lang = data.language;
+			action.setAttribute('hreflang', data.language);
+			action.textContent = data.strings.action;
+
+			close.setAttribute('aria-label', data.strings.dismiss);
 			close.addEventListener('click', function () {
-				remember('<?php echo esc_js( $bar_cookie ); ?>', '1');
-				bar.parentNode && bar.parentNode.removeChild(bar);
+				remember(BAR_COOKIE, '1');
+				bar.hidden = true;
 			});
+
+			bar.hidden = false;
 		}
+
+		fetch(ENDPOINT + '?path=' + encodeURIComponent(location.pathname), {
+			credentials: 'same-origin',
+			headers: { 'Accept': 'application/json' }
+		}).then(function (r) {
+			return r.ok ? r.json() : null;
+		}).then(function (data) {
+			if (!data || !data.mode || data.mode === 'none') { return; }
+
+			if (data.mode === 'redirect' && data.url) {
+				// Remember it first: this is a one-time event, and the cookie
+				// is what guarantees the redirect cannot happen twice.
+				remember(LANG_COOKIE, data.language);
+				location.replace(data.url);
+				return;
+			}
+
+			if (data.mode === 'suggest') {
+				if (document.body) {
+					showBar(data);
+				} else {
+					document.addEventListener('DOMContentLoaded', function () { showBar(data); });
+				}
+			}
+		}).catch(function () {});
 	}());
 	</script>
 	<?php

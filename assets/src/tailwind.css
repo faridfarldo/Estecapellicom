@@ -9349,6 +9349,10 @@
 		box-shadow: var(--shadow-pop);
 	}
 
+	/* The skeleton ships hidden on every page, and `display: flex` above would
+	   otherwise beat the [hidden] attribute's own display: none. */
+	.lang-suggest[hidden] { display: none; }
+
 	/* Consent first. */
 	body:has(.consent.is-open) .lang-suggest { display: none; }
 
