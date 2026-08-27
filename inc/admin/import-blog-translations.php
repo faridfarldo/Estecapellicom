@@ -343,7 +343,7 @@ function estecapelli_blog_i18n_raw_page_id( $slug, $exclude_id = 0 ) {
  * page-blog.php. Without a translated copy at the same slug, /{lang}/blog 404s.
  * The English original is the source of truth; only the WPML link + slug matter.
  *
- * @param string $lang Indexed language code (fr/tr/it/es/pl/pt).
+ * @param string $lang Indexed language code (fr/tr/it/es/pl/pt/ro).
  * @return int|WP_Error Translated blog page ID.
  */
 function estecapelli_blog_i18n_ensure_landing_page( $lang ) {

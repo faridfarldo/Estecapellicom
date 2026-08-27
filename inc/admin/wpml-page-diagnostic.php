@@ -66,7 +66,7 @@ function estecapelli_wpml_diag_targets() {
 		'medical-director' => array( 'label' => 'Chief Physician',  'slugs' => array( 'pl' => 'dyrektor-medyczny' ) ),
 		'before-after'     => array( 'label' => 'Before & After',   'slugs' => array( 'pl' => 'przed-po' ) ),
 		'contact'          => array( 'label' => 'Contact',          'slugs' => array( 'pl' => 'kontakt' ) ),
-		'blog'             => array( 'label' => 'Blog',             'slugs' => array( 'pl' => 'blog' ) ),
+		'blog'             => array( 'label' => 'Blog',             'slugs' => array( 'pl' => 'blog', 'ro' => 'blog' ) ),
 	);
 }
 
