@@ -484,7 +484,18 @@ function estecapelli_blog_i18n_ensure_landing_page( $lang ) {
 /**
  * Run the complete unified import: English SEO + every translated article.
  *
- * @return array{en:int,imported:array<string,int>}|WP_Error
+ * One unimportable article no longer takes the whole run down with it. The
+ * English source for hair-transplant-for-hiv-positive-patients-in-turkey was
+ * renamed at some point, so that entry in the frozen contract had nothing to
+ * translate from — and because the loop returned on the first error, and French
+ * is first in the list, seven languages' worth of work stopped there. Romanian
+ * never got as far as having its /ro/blog landing page created.
+ *
+ * Failures are collected and reported instead. A missing English post is not
+ * something a re-run fixes, so it must not be able to block everything behind
+ * it either.
+ *
+ * @return array{en:int,imported:array<string,int>,skipped:string[]}|WP_Error
  */
 function estecapelli_run_blog_i18n_import() {
 	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) && ! defined( 'WPML_VERSION' ) ) {
@@ -498,6 +509,7 @@ function estecapelli_run_blog_i18n_import() {
 
 	$en_updated = estecapelli_blog_i18n_apply_en_seo();
 	$imported   = array();
+	$skipped    = array();
 
 	foreach ( estecapelli_blog_i18n_languages() as $lang ) {
 		// Portuguese may be active under the built-in "pt-pt" code, so test the
@@ -510,12 +522,10 @@ function estecapelli_run_blog_i18n_import() {
 		// The blog landing page must exist in this language first so /{lang}/blog resolves.
 		$landing = estecapelli_blog_i18n_ensure_landing_page( $lang );
 		if ( is_wp_error( $landing ) ) {
-			return new WP_Error(
-				$landing->get_error_code(),
-				sprintf( '%s blog landing: %s', $lang, $landing->get_error_message() )
-			);
+			$skipped[] = sprintf( '%s blog landing: %s', $lang, $landing->get_error_message() );
+		} else {
+			$imported[ $lang . '/__landing__' ] = $landing;
 		}
-		$imported[ $lang . '/__landing__' ] = $landing;
 
 		foreach ( estecapelli_indexed_blog_slugs() as $english_slug => $langs ) {
 			if ( empty( $langs[ $lang ] ) ) {
@@ -523,16 +533,14 @@ function estecapelli_run_blog_i18n_import() {
 			}
 			$result = estecapelli_blog_i18n_import_one( $lang, $english_slug );
 			if ( is_wp_error( $result ) ) {
-				return new WP_Error(
-					$result->get_error_code(),
-					sprintf( '%s/%s: %s', $lang, $english_slug, $result->get_error_message() )
-				);
+				$skipped[] = sprintf( '%s/%s: %s', $lang, $english_slug, $result->get_error_message() );
+				continue;
 			}
 			$imported[ $lang . '/' . $english_slug ] = $result;
 		}
 	}
 
-	return array( 'en' => $en_updated, 'imported' => $imported );
+	return array( 'en' => $en_updated, 'imported' => $imported, 'skipped' => $skipped );
 }
 
 add_action( 'admin_menu', 'estecapelli_register_blog_i18n_importer' );
@@ -589,6 +597,19 @@ function estecapelli_render_blog_i18n_importer() {
 		<?php endif; ?>
 		<?php if ( $error ) : ?>
 			<div class="notice notice-error"><p><strong><?php esc_html_e( 'Last import failed:', 'estecapelli' ); ?></strong> <?php echo esc_html( $error ); ?></p></div>
+		<?php endif; ?>
+
+		<?php $skipped = (array) get_option( 'estecapelli_blog_i18n_import_skipped', array() ); ?>
+		<?php if ( $skipped ) : ?>
+			<div class="notice notice-warning">
+				<p><strong><?php esc_html_e( 'Skipped by the last run — everything else still imported:', 'estecapelli' ); ?></strong></p>
+				<ul style="list-style:disc;margin-left:1.5rem;">
+					<?php foreach ( $skipped as $line ) : ?>
+						<li><code><?php echo esc_html( $line ); ?></code></li>
+					<?php endforeach; ?>
+				</ul>
+				<p class="description"><?php esc_html_e( 'An entry whose English post no longer exists cannot be translated from; re-running will skip it again. Either restore that English post or remove the entry from the frozen URL contract.', 'estecapelli' ); ?></p>
+			</div>
 		<?php endif; ?>
 
 		<p>
@@ -702,6 +723,7 @@ function estecapelli_handle_blog_i18n_manual_import() {
 		update_option( 'estecapelli_blog_i18n_import_error', $result->get_error_message(), false );
 	} else {
 		delete_option( 'estecapelli_blog_i18n_import_error' );
+		estecapelli_blog_i18n_store_skipped( $result );
 		set_transient(
 			'estecapelli_blog_i18n_import_success',
 			sprintf( '%d translated posts, %d English SEO entries', count( $result['imported'] ), (int) $result['en'] ),
@@ -711,6 +733,21 @@ function estecapelli_handle_blog_i18n_manual_import() {
 
 	wp_safe_redirect( estecapelli_blog_i18n_return_url() );
 	exit;
+}
+
+/**
+ * Keep the list of entries the run could not import, for the screen to show.
+ *
+ * These are not failures to retry — an English post that no longer exists will
+ * not exist next time either — so they are recorded rather than raised, and the
+ * run is still a success for everything else.
+ */
+function estecapelli_blog_i18n_store_skipped( array $result ) {
+	if ( empty( $result['skipped'] ) ) {
+		delete_option( 'estecapelli_blog_i18n_import_skipped' );
+		return;
+	}
+	update_option( 'estecapelli_blog_i18n_import_skipped', (array) $result['skipped'], false );
 }
 
 add_action( 'admin_post_estecapelli_import_blog_i18n_one', 'estecapelli_handle_blog_i18n_single_import' );
@@ -754,6 +791,7 @@ function estecapelli_maybe_import_blog_i18n() {
 
 	update_option( 'estecapelli_blog_i18n_import_version', ESTECAPELLI_BLOG_I18N_IMPORT_VERSION, false );
 	delete_option( 'estecapelli_blog_i18n_import_error' );
+	estecapelli_blog_i18n_store_skipped( $result );
 	set_transient(
 		'estecapelli_blog_i18n_import_success',
 		sprintf( '%d translated posts, %d English SEO entries', count( $result['imported'] ), (int) $result['en'] ),
