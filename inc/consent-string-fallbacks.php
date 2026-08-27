@@ -131,6 +131,23 @@ function estecapelli_consent_strings() {
 			'Save my choices'       => 'Guardar as minhas escolhas',
 			'Cookie settings'       => 'Definições de cookies',
 		),
+		'ro' => array(
+			'We value your privacy' => 'Confidențialitatea ta contează',
+			'We use cookies to keep the site working, to understand how it is used and to improve it. You choose what we may store — your choice can be changed at any time.' => 'Folosim cookie-uri pentru ca site-ul să funcționeze, pentru a înțelege cum este utilizat și pentru a-l îmbunătăți. Tu alegi ce putem stoca — îți poți schimba oricând alegerea.',
+			'Privacy Policy'        => 'Politica de confidențialitate',
+			'Cookie Policy'         => 'Politica de cookie-uri',
+			'Strictly necessary'    => 'Strict necesare',
+			'Required for the site, its forms and the security check to work. Always on.' => 'Necesare pentru funcționarea site-ului, a formularelor sale și a verificării de securitate. Sunt mereu active.',
+			'Analytics'             => 'Statistici',
+			'Anonymous statistics about which pages are read and where visitors struggle, so we can improve them.' => 'Statistici anonime despre paginile care sunt citite și despre locurile în care vizitatorii întâmpină dificultăți, ca să le putem îmbunătăți.',
+			'Marketing'             => 'Marketing',
+			'Lets us measure our advertising and show you more relevant information.' => 'Ne permit să măsurăm eficiența reclamelor și să îți arătăm informații mai relevante.',
+			'Accept all'            => 'Acceptă toate',
+			'Reject all'            => 'Respinge toate',
+			'Customise'             => 'Personalizează',
+			'Save my choices'       => 'Salvează alegerile mele',
+			'Cookie settings'       => 'Setări cookie-uri',
+		),
 	);
 }
 

@@ -60,6 +60,12 @@ function estecapelli_legal_gettext_fallback( $translation, $text, $domain ) {
 			'Cookie Policy'  => 'Política de cookies',
 			'KVKK Notice'    => 'Aviso KVKK',
 		),
+		'ro' => array(
+			'Privacy Policy' => 'Politica de confidențialitate',
+			'Terms'          => 'Termeni și condiții',
+			'Cookie Policy'  => 'Politica de cookie-uri',
+			'KVKK Notice'    => 'Notificare KVKK',
+		),
 	);
 
 	return $strings[ $language ][ $text ] ?? $translation;

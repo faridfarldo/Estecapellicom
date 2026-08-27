@@ -300,6 +300,9 @@ if ( ! function_exists( 'estecapelli_flag_shapes' ) ) {
 
 			'pl' => '<rect width="24" height="16" fill="#fff"/><rect y="8" width="24" height="8" fill="#DC143C"/>',
 
+			'ro' => '<rect width="8" height="16" fill="#002B7F"/><rect x="8" width="8" height="16" fill="#FCD116"/>'
+				. '<rect x="16" width="8" height="16" fill="#CE1126"/>',
+
 			'pt' => '<rect width="24" height="16" fill="#DA291C"/><rect width="9.6" height="16" fill="#046A38"/>'
 				. '<circle cx="9.6" cy="8" r="3.1" fill="#FFE900"/><circle cx="9.6" cy="8" r="2" fill="#fff"/>'
 				. '<rect x="8.6" y="6.6" width="2" height="2.8" rx="0.4" fill="#DA291C"/>',
@@ -512,6 +515,7 @@ if ( ! function_exists( 'estecapelli_whatsapp_intro_message' ) ) {
 			'fr' => 'Bonjour, je vous contacte via https://estecapelli.com/fr/ Pouvez-vous me donner plus d\'informations?',
 			'it' => 'Ciao, ti sto contattando tramite https://estecapelli.com/it/ Puoi darmi maggiori informazioni?',
 			'pt' => 'Olá, estou a entrar em contacto convosco através do https://estecapelli.com/pt/ Pode dar-me mais informações?',
+			'ro' => 'Bună ziua, vă contactez prin https://estecapelli.com/ro/ Îmi puteți da mai multe informații?',
 			'es' => 'Hola, me pongo en contacto con ustedes a través de https://estecapelli.com/es/ ¿Podrían darme más información?',
 			'tr' => 'Merhaba, sizinle https://estecapelli.com/tr/ üzerinden iletişime geçiyorum. Bana daha fazla bilgi verebilir misiniz?',
 		);
