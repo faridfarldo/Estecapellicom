@@ -1933,7 +1933,7 @@ function estecapelli_render_treatments_importer() {
 			<?php if ( function_exists( 'estecapelli_run_blog_i18n_import' ) ) : ?>
 				<h2 style="margin-top:2.5rem;"><?php esc_html_e( 'Blog translations + SEO (all languages)', 'estecapelli' ); ?></h2>
 				<p class="description" style="max-width:740px;">
-					<?php esc_html_e( 'One import brings every translated blog article (French, Turkish, Italian, Spanish, Polish, Portuguese) into WordPress, links each to its English original, and writes the Rank Math meta description + focus keyword for every language, English included. Idempotent and safe to run again.', 'estecapelli' ); ?>
+					<?php esc_html_e( 'One import brings every translated blog article (French, Turkish, Italian, Spanish, Polish, Portuguese, Romanian) into WordPress, links each to its English original, and writes the Rank Math meta description + focus keyword for every language, English included. Idempotent and safe to run again.', 'estecapelli' ); ?>
 				</p>
 
 				<?php
