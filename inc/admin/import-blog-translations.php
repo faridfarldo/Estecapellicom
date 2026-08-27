@@ -26,8 +26,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once get_template_directory() . '/inc/data/blog-i18n-meta.php';
 
+// Bump whenever a language or an article is added, or the auto-run below sees
+// the stored option already matching and skips for good. Adding Romanian to
+// estecapelli_blog_i18n_languages() without touching this is why /ro/blog/ had
+// no landing page: the sweep that would have created it believed it had
+// already run.
 if ( ! defined( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION' ) ) {
-	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-07-22.1' );
+	define( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION', '2026-08-27.1-ro' );
 }
 
 /** Translated languages this importer handles (English is meta-only). */
@@ -530,6 +535,160 @@ function estecapelli_run_blog_i18n_import() {
 	return array( 'en' => $en_updated, 'imported' => $imported );
 }
 
+add_action( 'admin_menu', 'estecapelli_register_blog_i18n_importer' );
+/**
+ * A Tools entry of its own, like every other importer has.
+ *
+ * This one used to exist only as a section near the bottom of the thousand-line
+ * Estecapelli Imports screen, which is a place nobody finds when they are
+ * looking for it.
+ */
+function estecapelli_register_blog_i18n_importer() {
+	add_management_page(
+		__( 'Blog Translations Importer', 'estecapelli' ),
+		__( 'Blog Translations', 'estecapelli' ),
+		'manage_options',
+		'estecapelli-blog-importer',
+		'estecapelli_render_blog_i18n_importer'
+	);
+}
+
+/** Where an import button should send the browser back to. */
+function estecapelli_blog_i18n_return_url() {
+	$referer = wp_get_referer();
+	if ( $referer && false !== strpos( $referer, 'page=estecapelli-' ) ) {
+		return $referer;
+	}
+
+	return add_query_arg( 'page', 'estecapelli-blog-importer', admin_url( 'tools.php' ) );
+}
+
+/** The whole blog import screen: one button for everything, one row per article. */
+function estecapelli_render_blog_i18n_importer() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$error   = get_option( 'estecapelli_blog_i18n_import_error' );
+	$success = get_transient( 'estecapelli_blog_i18n_import_success' );
+	delete_transient( 'estecapelli_blog_i18n_import_success' );
+
+	$all_url = wp_nonce_url(
+		add_query_arg( array( 'action' => 'estecapelli_import_blog_i18n' ), admin_url( 'admin-post.php' ) ),
+		'estecapelli_import_blog_i18n'
+	);
+	?>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'Blog Translations Importer', 'estecapelli' ); ?></h1>
+		<p class="description" style="max-width:740px;">
+			<?php esc_html_e( 'Brings every translated blog article into WordPress, links each to its English original, and writes the Rank Math meta description + focus keyword for every language, English included. It also creates the /{lang}/blog landing page, without which that URL redirects to the language homepage. Idempotent and safe to run again.', 'estecapelli' ); ?>
+		</p>
+
+		<?php if ( $success ) : ?>
+			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( $success ); ?></p></div>
+		<?php endif; ?>
+		<?php if ( $error ) : ?>
+			<div class="notice notice-error"><p><strong><?php esc_html_e( 'Last import failed:', 'estecapelli' ); ?></strong> <?php echo esc_html( $error ); ?></p></div>
+		<?php endif; ?>
+
+		<p>
+			<a href="<?php echo esc_url( $all_url ); ?>" class="button button-primary button-hero">
+				<?php esc_html_e( 'Import ALL blog translations + SEO', 'estecapelli' ); ?>
+			</a>
+		</p>
+
+		<h2 style="margin-top:2rem;"><?php esc_html_e( 'Landing pages', 'estecapelli' ); ?></h2>
+		<p class="description" style="max-width:740px;">
+			<?php esc_html_e( 'The /{lang}/blog page itself. A language missing here answers /{lang}/blog with a redirect to its homepage, however many translated articles it has.', 'estecapelli' ); ?>
+		</p>
+		<table class="widefat striped" style="max-width:620px;margin-bottom:2rem;">
+			<thead><tr><th><?php esc_html_e( 'Lang', 'estecapelli' ); ?></th><th><?php esc_html_e( 'Landing page', 'estecapelli' ); ?></th></tr></thead>
+			<tbody>
+				<?php
+				$landing_source = estecapelli_source_post_id( 'blog', 'page' );
+				foreach ( estecapelli_blog_i18n_languages() as $lang ) :
+					$wpml_lang = estecapelli_wpml_language_code( $lang );
+					$landing   = $landing_source ? (int) apply_filters( 'wpml_object_id', $landing_source, 'page', false, $wpml_lang ) : 0;
+					$exists    = ( $landing && $landing !== $landing_source );
+					?>
+					<tr>
+						<td><code><?php echo esc_html( strtoupper( $lang ) ); ?></code></td>
+						<td>
+							<?php if ( $exists ) : ?>
+								<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+								— <a href="<?php echo esc_url( get_edit_post_link( $landing ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+							<?php else : ?>
+								<span style="color:#b32d2e;font-weight:600;"><?php esc_html_e( 'MISSING — /{lang}/blog will redirect away', 'estecapelli' ); ?></span>
+							<?php endif; ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+
+		<h2><?php esc_html_e( 'Articles', 'estecapelli' ); ?></h2>
+		<table class="widefat striped" style="max-width:980px;">
+			<thead>
+				<tr>
+					<th style="width:8%;"><?php esc_html_e( 'Lang', 'estecapelli' ); ?></th>
+					<th style="width:30%;"><?php esc_html_e( 'English post', 'estecapelli' ); ?></th>
+					<th style="width:32%;"><?php esc_html_e( 'Translated slug', 'estecapelli' ); ?></th>
+					<th style="width:18%;"><?php esc_html_e( 'Status', 'estecapelli' ); ?></th>
+					<th style="width:12%;"><?php esc_html_e( 'Action', 'estecapelli' ); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				foreach ( estecapelli_blog_i18n_languages() as $lang ) :
+					foreach ( estecapelli_indexed_blog_slugs() as $source_slug => $langs ) :
+						if ( empty( $langs[ $lang ] ) ) {
+							continue;
+						}
+						$target_slug = $langs[ $lang ];
+						$wpml_lang   = estecapelli_wpml_language_code( $lang );
+						$source_id   = estecapelli_source_post_id( $source_slug, 'post' );
+						$linked_id   = $source_id ? (int) apply_filters( 'wpml_object_id', $source_id, 'post', false, $wpml_lang ) : 0;
+						$candidate   = estecapelli_blog_i18n_raw_post_id( $target_slug, $source_id );
+						$exists      = ( $linked_id && $linked_id !== $source_id );
+						$view_id     = $exists ? $linked_id : $candidate;
+						$one_url     = wp_nonce_url(
+							add_query_arg(
+								array(
+									'action' => 'estecapelli_import_blog_i18n_one',
+									'lang'   => $lang,
+									'source' => $source_slug,
+								),
+								admin_url( 'admin-post.php' )
+							),
+							'estecapelli_import_blog_i18n_one_' . $lang . '_' . $source_slug
+						);
+						?>
+						<tr>
+							<td><code><?php echo esc_html( strtoupper( $lang ) ); ?></code></td>
+							<td><code><?php echo esc_html( $source_slug ); ?></code></td>
+							<td><code><?php echo esc_html( $target_slug ); ?></code></td>
+							<td>
+								<?php if ( $exists ) : ?>
+									<span style="color:#0d8551;"><?php esc_html_e( 'Exists', 'estecapelli' ); ?></span>
+								<?php elseif ( $candidate ) : ?>
+									<span style="color:#b26200;"><?php esc_html_e( 'Exists - link needs repair', 'estecapelli' ); ?></span>
+								<?php else : ?>
+									<span style="color:#888;"><?php esc_html_e( 'Not yet imported', 'estecapelli' ); ?></span>
+								<?php endif; ?>
+								<?php if ( $view_id ) : ?>
+									- <a href="<?php echo esc_url( get_edit_post_link( $view_id ) ); ?>"><?php esc_html_e( 'edit', 'estecapelli' ); ?></a>
+								<?php endif; ?>
+							</td>
+							<td><a href="<?php echo esc_url( $one_url ); ?>" class="button"><?php esc_html_e( 'Import / Repair', 'estecapelli' ); ?></a></td>
+						</tr>
+					<?php endforeach; ?>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+	<?php
+}
+
 add_action( 'admin_post_estecapelli_import_blog_i18n', 'estecapelli_handle_blog_i18n_manual_import' );
 /** Process the manual "Import all blog translations + SEO" button. */
 function estecapelli_handle_blog_i18n_manual_import() {
@@ -550,7 +709,7 @@ function estecapelli_handle_blog_i18n_manual_import() {
 		);
 	}
 
-	wp_safe_redirect( add_query_arg( 'page', 'estecapelli-treatment-importer', admin_url( 'tools.php' ) ) );
+	wp_safe_redirect( estecapelli_blog_i18n_return_url() );
 	exit;
 }
 
@@ -572,7 +731,7 @@ function estecapelli_handle_blog_i18n_single_import() {
 		set_transient( 'estecapelli_blog_i18n_import_success', sprintf( '%s / %s imported', $lang, $slug ), 5 * MINUTE_IN_SECONDS );
 	}
 
-	wp_safe_redirect( add_query_arg( 'page', 'estecapelli-treatment-importer', admin_url( 'tools.php' ) ) );
+	wp_safe_redirect( estecapelli_blog_i18n_return_url() );
 	exit;
 }
 
