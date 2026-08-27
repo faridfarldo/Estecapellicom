@@ -116,19 +116,23 @@ function estecapelli_geo_country() {
 }
 
 /**
- * Highest-priority Accept-Language tag we actually publish, or ''.
+ * Every Accept-Language entry, best first, reduced to primary subtags.
+ *
+ * Languages we do NOT publish are kept, because their position is the whole
+ * signal: see estecapelli_geo_target_language().
  *
  * Only the primary subtag matters to us: pt-BR and pt-PT are both "pt" here,
  * because there is one Portuguese translation to offer either way.
+ *
+ * @return string[]
  */
-function estecapelli_geo_browser_language() {
+function estecapelli_geo_browser_languages() {
 	if ( empty( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) {
-		return '';
+		return array();
 	}
 
-	$header    = (string) wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
-	$available = estecapelli_indexed_languages();
-	$ranked    = array();
+	$header = (string) wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
+	$ranked = array();
 
 	foreach ( explode( ',', $header ) as $index => $chunk ) {
 		$parts = explode( ';', trim( $chunk ) );
@@ -141,15 +145,11 @@ function estecapelli_geo_browser_language() {
 			$quality = (float) $m[1];
 		}
 		$primary = sanitize_key( strtok( str_replace( '_', '-', $tag ), '-' ) );
-		if ( ! in_array( $primary, $available, true ) ) {
+		if ( '' === $primary || '*' === $primary ) {
 			continue;
 		}
 		// Ties keep header order, which is the visitor's own ordering.
 		$ranked[] = array( $quality, -$index, $primary );
-	}
-
-	if ( ! $ranked ) {
-		return '';
 	}
 
 	usort(
@@ -159,24 +159,55 @@ function estecapelli_geo_browser_language() {
 		}
 	);
 
-	return $ranked[0][2];
+	return array_values( array_unique( array_column( $ranked, 2 ) ) );
+}
+
+/** Highest-priority Accept-Language entry we actually publish, or ''. */
+function estecapelli_geo_browser_language() {
+	$available = estecapelli_indexed_languages();
+	foreach ( estecapelli_geo_browser_languages() as $language ) {
+		if ( in_array( $language, $available, true ) ) {
+			return $language;
+		}
+	}
+
+	return '';
 }
 
 /**
  * The language this visitor should be offered.
  *
- * Browser first, country second. Returns '' when neither says anything we
- * publish — the caller then leaves the visitor on English.
+ * The browser wins only when the visitor's FIRST choice is a language we
+ * publish. That distinction is the whole feature: almost every non-English
+ * browser on earth lists English as a low-priority fallback — a Persian
+ * browser sends "fa-IR,fa;q=0.9,en;q=0.8", and so do German, Arabic, Russian
+ * and Greek ones. Taking the best *published* entry from that header picks
+ * "en" every time and never once looks at the country, which quietly switched
+ * this whole feature off for most of the world.
+ *
+ * So: first choice if we publish it, otherwise the country, otherwise the best
+ * published entry the browser did offer (usually English, which is also the
+ * honest answer at that point).
  */
 function estecapelli_geo_target_language() {
-	$target = estecapelli_geo_browser_language();
-	if ( '' === $target ) {
-		$country = estecapelli_geo_country();
-		$map     = estecapelli_geo_country_languages();
-		$target  = $country && isset( $map[ $country ] ) ? $map[ $country ] : '';
+	$available = estecapelli_indexed_languages();
+	$ranked    = estecapelli_geo_browser_languages();
+
+	// Their actual first choice. "I read English" is respected here too — an
+	// English-first browser in Istanbul stays on English.
+	if ( isset( $ranked[0] ) && in_array( $ranked[0], $available, true ) ) {
+		return $ranked[0];
 	}
 
-	return in_array( $target, estecapelli_indexed_languages(), true ) ? $target : '';
+	$country = estecapelli_geo_country();
+	$map     = estecapelli_geo_country_languages();
+	if ( $country && isset( $map[ $country ] ) ) {
+		return $map[ $country ];
+	}
+
+	$fallback = estecapelli_geo_browser_language();
+
+	return in_array( $fallback, $available, true ) ? $fallback : '';
 }
 
 /**

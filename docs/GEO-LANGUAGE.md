@@ -24,13 +24,18 @@ page is a pattern Google is explicitly fine with.
 
 ## How the language is chosen
 
-1. **`Accept-Language` first.** A Romanian living in Germany wants Romanian, and
-   only their browser knows that. `q`-values are honoured; `pt-BR` and `pt-PT`
-   both resolve to `pt`.
-2. **Country second**, from Cloudflare's `CF-IPCountry` header. `XX`
-   (anonymising proxy) and `T1` (Tor) are treated as "no country", not as a
-   country.
-3. **Otherwise English.** Nothing is guessed.
+1. **The visitor's FIRST choice in `Accept-Language`**, if we publish it. A
+   Romanian living in Germany wants Romanian, and only their browser knows
+   that. `q`-values are honoured; `pt-BR` and `pt-PT` both resolve to `pt`.
+2. **Country second**, from Cloudflare's `CF-IPCountry` header — used whenever
+   the browser's first choice is a language we do not publish. This ordering
+   matters more than it looks: almost every non-English browser lists English
+   as a low-priority fallback (`fa-IR,fa;q=0.9,en;q=0.8`), so picking the best
+   *published* entry would answer "English" for most of the world and never
+   consult the country at all. `XX` (anonymising proxy) and `T1` (Tor) count as
+   no country.
+3. **Otherwise** the best published entry the browser did offer, usually
+   English. Nothing is guessed.
 
 Belgium, Switzerland and Canada are deliberately **not** in the country map.
 Guessing one language from those borders is worse than letting the browser
