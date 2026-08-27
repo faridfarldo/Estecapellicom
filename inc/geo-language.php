@@ -440,6 +440,10 @@ function estecapelli_geo_inline_script() {
 	$lifetime   = (int) ESTECAPELLI_GEO_COOKIE_LIFETIME;
 	?>
 	<script id="estecapelli-language-hint" data-cfasync="false">
+	/* estecapelli-language-hint — the same string as the id above, repeated
+	   inside the body on purpose: WP Rocket's "Delay JavaScript execution"
+	   exclusion list matches inline scripts on their CONTENT in some versions
+	   and on the tag in others, and this must be excluded in both. */
 	(function () {
 		var ENDPOINT = <?php echo wp_json_encode( $endpoint ); ?>;
 		var LANG_COOKIE = <?php echo wp_json_encode( $cookie ); ?>;
