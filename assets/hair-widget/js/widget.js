@@ -11,7 +11,7 @@ import { CONFIG } from './config.js?v=8';
 import { openCamera, stopStream, captureFromVideo, compressFile } from './camera.js?v=8';
 import { startFaceGate } from './face-detect.js?v=8';
 import { analyzePhotos } from './analyze.js?v=8';
-import { submitLead } from './submit.js?v=8';
+import { submitLead } from './submit.js?v=9';
 
 const STEPS = CONFIG.steps;
 const C = CONFIG.copy;
@@ -31,6 +31,13 @@ export class HairAnalysisWidget {
   constructor(root) {
     this.root = root;
     this.root.classList.add('hair-widget');
+
+    // Mint the lead-guard token now, not at submit. The guard scores a token
+    // spent within two seconds of being issued as machine-like, and the whole
+    // photo flow takes minutes — so minting here is both early enough to look
+    // human and recent enough to stay inside the 45-minute lifetime.
+    const guard = window.EstecapelliLeadGuard;
+    if (guard && typeof guard.mint === 'function') { guard.mint(); }
 
     // Captured photos keyed by step id → { blob, url }.
     this.photos = {};

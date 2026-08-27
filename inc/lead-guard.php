@@ -183,6 +183,27 @@ function estecapelli_lead_token_check( $token ) {
  *
  * @return string[]
  */
+/**
+ * Providers a person signs up to by hand, and where the shape of the local part
+ * therefore says nothing about whether a machine created it.
+ *
+ * @return string[]
+ */
+function estecapelli_mainstream_email_domains() {
+	return (array) apply_filters(
+		'estecapelli_mainstream_email_domains',
+		array(
+			'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com', 'hotmail.co.uk',
+			'live.com', 'msn.com', 'yahoo.com', 'yahoo.co.uk', 'yahoo.fr', 'yahoo.it',
+			'yahoo.es', 'ymail.com', 'icloud.com', 'me.com', 'mac.com', 'aol.com',
+			'proton.me', 'protonmail.com', 'gmx.com', 'gmx.de', 'web.de', 't-online.de',
+			'orange.fr', 'free.fr', 'wanadoo.fr', 'libero.it', 'virgilio.it', 'alice.it',
+			'wp.pl', 'onet.pl', 'o2.pl', 'interia.pl', 'sapo.pt', 'terra.es',
+			'hotmail.fr', 'hotmail.it', 'hotmail.es', 'outlook.fr', 'outlook.it', 'outlook.es',
+		)
+	);
+}
+
 function estecapelli_disposable_email_domains() {
 	return (array) apply_filters(
 		'estecapelli_disposable_email_domains',
@@ -248,7 +269,11 @@ function estecapelli_lead_content_signals( array $d ) {
 	$email   = (string) ( $d['email'] ?? '' );
 	$phone   = (string) ( $d['phone'] ?? '' );
 
-	$link = '#(https?://|www\.|\b[a-z0-9][a-z0-9-]*\.(?:com|net|org|ru|xyz|top|info|biz|club|online|site|shop|link|click|live|icu|cc|pw|su|space|website|store)\b)#i';
+	// Each alternative swallows a WHOLE url, so one link counts once. Matching
+	// only the scheme let "https://instagram.com/p/x" score twice — as a scheme
+	// and again as a .com — and a patient pasting a single link to the result
+	// they want was two points from being treated as a spam run.
+	$link = '#(?:https?://\S+|www\.\S+|\b[a-z0-9][a-z0-9-]*\.(?:com|net|org|ru|xyz|top|info|biz|club|online|site|shop|link|click|live|icu|cc|pw|su|space|website|store)\b)#i';
 
 	// A link in the name field is the signature of the August run and has no
 	// legitimate explanation whatsoever.
@@ -269,11 +294,39 @@ function estecapelli_lead_content_signals( array $d ) {
 	if ( preg_match( '/[\p{Cyrillic}\p{Han}\p{Hiragana}\p{Katakana}\p{Hangul}]/u', $name ) ) {
 		$signals['name field is in a script no site language uses'] = 3;
 	}
-	// Weak on purpose: patients really do paste an Instagram link of the result
-	// they want. Worth 1 so that it cannot combine with a missing JS token (3)
-	// to quarantine an otherwise perfectly ordinary enquiry.
-	if ( preg_match( $link, $message ) ) {
+	// One link is weak on purpose: patients really do paste an Instagram link of
+	// the result they want, and that must never combine with a missing JS token
+	// to quarantine an ordinary enquiry. Several links is a different animal —
+	// the August/Russian runs posted five to ten product URLs per submission,
+	// and no patient has ever done that.
+	$link_count = preg_match_all( $link, $message );
+	if ( $link_count >= 5 ) {
+		$signals['message is a list of links'] = 5;
+	} elseif ( $link_count >= 3 ) {
+		$signals['message contains several links'] = 4;
+	} elseif ( $link_count >= 2 ) {
+		$signals['message contains more than one link'] = 2;
+	} elseif ( $link_count >= 1 ) {
 		$signals['message contains a link'] = 1;
+	}
+
+	// A message in a script none of the site's languages use. Worth 1, for the
+	// same reason a single link is worth 1: Turkish clinics genuinely do
+	// receive Russian-speaking patients, and at 2 this quietly quarantined one
+	// the moment it met the 3 points that any submission without JS already
+	// carries. Paired with a wall of links it is still decisive, which is the
+	// shape the run actually took.
+	if ( preg_match( '/[\p{Cyrillic}\p{Han}\p{Hiragana}\p{Katakana}\p{Hangul}]/u', $message ) ) {
+		$signals['message is in a script no site language uses'] = 1;
+	}
+
+	// Cold outreach ("I noticed your website and…") runs long. A patient asking
+	// about grafts and dates does not. Alone it means nothing; alongside links
+	// it completes the picture. Falls back to strlen because a host without
+	// mbstring would otherwise switch the rule off without saying so.
+	$length = function_exists( 'mb_strlen' ) ? mb_strlen( $message ) : strlen( $message );
+	if ( $length > 1200 ) {
+		$signals['unusually long message'] = 2;
 	}
 	// Spam runs write the payload into the name and leave the real fields blank.
 	if ( '' === trim( $message, " -\t\n\r" ) && function_exists( 'mb_strlen' ) && mb_strlen( $name ) > 45 ) {
@@ -287,9 +340,19 @@ function estecapelli_lead_content_signals( array $d ) {
 		} elseif ( ! estecapelli_email_domain_deliverable( $domain ) ) {
 			$signals['email domain cannot receive mail'] = 3;
 		}
-		// "dx6ffjl4tt6gud" — long, no separator, letters and digits shuffled
-		// together. Real addresses almost always carry a name, a dot or a year.
-		if ( strlen( $local ) >= 12 && ! preg_match( '/[._\-+]/', $local ) && preg_match( '/[a-z]\d|\d[a-z]/', $local ) ) {
+		// "dx6ffjl4tt6gud" — long, no separator, digits shuffled THROUGH the
+		// letters. The digits have to be interleaved, not a trailing run: this
+		// rule used to fire on "shashankreddy9994@gmail.com", which is a name
+		// and a number like millions of real addresses, and those two points
+		// were enough to mark a patient's own photographs as spam. A mailbox at
+		// a provider people sign up to by hand is exempt outright.
+		$trailing_stripped = rtrim( $local, '0123456789' );
+		if (
+			strlen( $local ) >= 12
+			&& ! preg_match( '/[._\-+]/', $local )
+			&& preg_match( '/\d/', $trailing_stripped )
+			&& ! in_array( $domain, estecapelli_mainstream_email_domains(), true )
+		) {
 			$signals['machine-generated email address'] = 2;
 		}
 	}

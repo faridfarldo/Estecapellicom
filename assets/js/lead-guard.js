@@ -61,4 +61,21 @@
 			mint();
 		}, { capture: true, passive: true });
 	});
+
+	/*
+	 * The AI photo widget has no <form> and no token field, so none of the
+	 * listeners above ever fire for it. Without this every AI lead arrived with
+	 * no token at all and carried that penalty permanently — three of the five
+	 * points needed to quarantine it, on a lane made of real patients sending
+	 * photographs of their own heads. It mints when the widget opens, minutes
+	 * before the visitor can finish, so the token is neither missing nor spent
+	 * the instant it was issued.
+	 */
+	cfg.mint = mint;
+	cfg.token = function () { return minted; };
+	cfg.ready = function () {
+		if (minted) { return Promise.resolve(minted); }
+		mint();
+		return Promise.resolve(inFlight).then(function () { return minted; });
+	};
 })();

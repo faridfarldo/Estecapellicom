@@ -37,6 +37,13 @@ export async function submitLead({ photos, analysis, contact, method }) {
   form.append('analysis_json', JSON.stringify(analysis ?? {}));
   // Fresh, uncached nonce — the baked-in page nonce may be stale behind a cache.
   form.append('nonce', await freshNonce());
+  // The interaction token every other form carries. Without it the spam guard
+  // scored this whole lane as "posted without running the page JS", which is
+  // how a patient's own photographs ended up marked [SPAM?].
+  const guard = window.EstecapelliLeadGuard;
+  if (guard && typeof guard.ready === 'function') {
+    try { form.append('lead_token', (await guard.ready()) || ''); } catch (e) { /* scored, never rejected */ }
+  }
 
   for (const [id, blob] of Object.entries(photos)) {
     form.append(`photo_${id}`, blob, `${id}.jpg`);
