@@ -51,6 +51,13 @@ function estecapelli_ro_gettext_fallback( $translation, $text, $domain ) {
 			// Journal / blog UI.
 			'From the Journal' => 'De pe blogul nostru',
 			'Research, results & recovery' => 'Cercetare, rezultate și recuperare',
+			// The homepage strip uses these longer variants, not the two above.
+			// Only Italian and Spanish carried them, so five languages were
+			// showing an English headline under a translated eyebrow.
+			'Research, results and recovery — written by our team.' => 'Cercetare, rezultate și recuperare — scrise de echipa noastră.',
+			'View all articles' => 'Vezi toate articolele',
+			'Write the first article' => 'Scrie primul articol',
+			'No articles have been published yet. New posts will appear here as soon as your team publishes them.' => 'Încă nu a fost publicat niciun articol. Articolele noi vor apărea aici imediat ce echipa ta le publică.',
 			'Expert articles on hair restoration, plastic surgery, dental treatment and the journey to your transformation — written by the Estecapelli team.' => 'Articole de specialitate despre restaurarea părului, chirurgie plastică, tratamente dentare și drumul către transformarea ta — scrise de echipa Estecapelli.',
 			'Article categories' => 'Categorii de articole',
 			'All' => 'Toate',

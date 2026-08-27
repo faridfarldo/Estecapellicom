@@ -44,6 +44,10 @@ function estecapelli_fr_gettext_fallback( $translation, $text, $domain ) {
 	$strings = array(
 		// Journal / blog UI.
 		'From the Journal'                        => 'Le journal',
+		'Research, results and recovery — written by our team.' => 'Recherche, résultats et convalescence — écrits par notre équipe.',
+		'View all articles'                       => 'Voir tous les articles',
+		'Write the first article'                 => 'Rédiger le premier article',
+		'No articles have been published yet. New posts will appear here as soon as your team publishes them.' => 'Aucun article n’a encore été publié. Les nouveaux articles apparaîtront ici dès que votre équipe les publiera.',
 		'Research, results & recovery'             => 'Recherche, résultats et récupération',
 		'Expert articles on hair restoration, plastic surgery, dental treatment and the journey to your transformation — written by the Estecapelli team.' => 'Des articles d’experts sur la restauration capillaire, la chirurgie plastique, les soins dentaires et votre parcours de transformation — rédigés par l’équipe Estecapelli.',
 		'Article categories'                       => 'Catégories d’articles',

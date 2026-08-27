@@ -39,6 +39,10 @@ function estecapelli_tr_gettext_fallback( $translation, $text, $domain ) {
 		$strings = array(
 			// Journal / blog UI.
 			'From the Journal' => 'Dergiden',
+			'Research, results and recovery — written by our team.' => 'Araştırma, sonuçlar ve iyileşme — ekibimiz tarafından yazıldı.',
+			'View all articles' => 'Tüm yazıları görüntüle',
+			'Write the first article' => 'İlk yazıyı yaz',
+			'No articles have been published yet. New posts will appear here as soon as your team publishes them.' => 'Henüz hiçbir yazı yayımlanmadı. Yeni yazılar, ekibiniz yayımladığı anda burada görünecek.',
 			'Research, results & recovery' => 'Araştırma, sonuçlar ve iyileşme',
 			'Expert articles on hair restoration, plastic surgery, dental treatment and the journey to your transformation — written by the Estecapelli team.' => 'Saç restorasyonu, estetik cerrahi, diş tedavileri ve dönüşüm yolculuğunuz hakkında Estecapelli ekibi tarafından hazırlanan uzman yazıları.',
 			'Article categories' => 'Makale kategorileri',

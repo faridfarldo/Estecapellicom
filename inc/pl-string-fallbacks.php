@@ -77,6 +77,10 @@ function estecapelli_pl_gettext_fallback( $translation, $text, $domain ) {
 
 			// Blog landing and cards. Article content stays outside this scope.
 			'From the Journal' => 'Z naszego magazynu',
+			'Research, results and recovery — written by our team.' => 'Badania, efekty i rekonwalescencja — napisane przez nasz zespół.',
+			'View all articles' => 'Zobacz wszystkie artykuły',
+			'Write the first article' => 'Napisz pierwszy artykuł',
+			'No articles have been published yet. New posts will appear here as soon as your team publishes them.' => 'Nie opublikowano jeszcze żadnego artykułu. Nowe wpisy pojawią się tutaj, gdy tylko Twój zespół je opublikuje.',
 			'Research, results & recovery' => 'Wiedza, rezultaty i rekonwalescencja',
 			'Expert articles on hair restoration, plastic surgery, dental treatment and the journey to your transformation — written by the Estecapelli team.' => 'Eksperckie artykuły o odbudowie włosów, chirurgii plastycznej, stomatologii i drodze do przemiany — przygotowane przez zespół Estecapelli.',
 			'Article categories' => 'Kategorie artykułów',
