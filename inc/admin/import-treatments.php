@@ -2255,7 +2255,7 @@ function estecapelli_language_autorun_notice() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	foreach ( array( 'es', 'pt', 'pl', 'tr' ) as $lang ) {
+	foreach ( array( 'es', 'pt', 'ro', 'pl', 'tr' ) as $lang ) {
 		$error = get_transient( "estecapelli_{$lang}_autorun_version_error" );
 		if ( $error ) {
 			printf(

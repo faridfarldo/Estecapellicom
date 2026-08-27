@@ -74,6 +74,11 @@ function estecapelli_blog_i18n_meta() {
 				'description'   => 'O transplante capilar sem raspagem em mulheres devolve densidade sem cortar o cabelo. Descubra como funciona o método sem raspar e para quem é indicado.',
 				'focus_keyword' => 'transplante capilar sem raspagem mulheres',
 			),
+			'ro' => array(
+				'title'         => 'Transplant de Păr Fără Bărbierire la Femei',
+				'description'   => 'Transplantul de păr fără bărbierire la femei redă densitatea fără să îți tai părul. Află cum funcționează metoda fără ras și cui i se potrivește.',
+				'focus_keyword' => 'transplant de păr fără bărbierire femei',
+			),
 		),
 
 		'unshaven-hair-transplant' => array(
@@ -111,6 +116,11 @@ function estecapelli_blog_i18n_meta() {
 				'title'         => 'Transplante Capilar Sem Barbear',
 				'description'   => 'O transplante capilar sem barbear recompõe a sua linha capilar sem raspar a cabeça. Saiba como funciona o método FUE sem raspagem e quais são os seus limites.',
 				'focus_keyword' => 'transplante capilar sem barbear',
+			),
+			'ro' => array(
+				'title'         => 'Transplant de Păr Fără Bărbierire',
+				'description'   => 'Transplantul de păr fără bărbierire îți reface linia frontală fără să îți razi capul. Află cum funcționează metoda FUE fără ras și care sunt limitele ei.',
+				'focus_keyword' => 'transplant de păr fără bărbierire',
 			),
 		),
 
@@ -150,6 +160,11 @@ function estecapelli_blog_i18n_meta() {
 				'description'   => 'Pacientes com diabetes podem fazer transplante capilar? Sim, com a glicemia controlada. Conheça as condições, os riscos e os cuidados necessários.',
 				'focus_keyword' => 'transplante capilar diabéticos',
 			),
+			'ro' => array(
+				'title'         => 'Pot Pacienții Diabetici Să Facă Transplant de Păr?',
+				'description'   => 'Pot pacienții diabetici să facă transplant de păr? Da, cu glicemia sub control și clinica potrivită. Află condițiile, riscurile și măsurile de precauție.',
+				'focus_keyword' => 'transplant de păr diabetici',
+			),
 		),
 
 		'is-hair-transplant-a-painful-procedure' => array(
@@ -187,6 +202,11 @@ function estecapelli_blog_i18n_meta() {
 				'title'         => 'O Transplante Capilar É um Procedimento Doloroso?',
 				'description'   => 'O transplante capilar dói? Graças à anestesia local moderna, o procedimento é quase indolor. Saiba o que esperar durante e após a cirurgia.',
 				'focus_keyword' => 'transplante capilar dói',
+			),
+			'ro' => array(
+				'title'         => 'Este Transplantul de Păr o Procedură Dureroasă?',
+				'description'   => 'Doare transplantul de păr? Datorită anesteziei locale moderne, procedura este aproape nedureroasă. Află la ce să te aștepți în timpul și după operație.',
+				'focus_keyword' => 'doare transplantul de păr',
 			),
 		),
 
@@ -226,6 +246,11 @@ function estecapelli_blog_i18n_meta() {
 				'description'   => 'O cabelo transplantado cai de novo? Após a queda de choque, os fios da área doadora são permanentes e resistentes à queda. Saiba por quê.',
 				'focus_keyword' => 'cabelo transplantado cai',
 			),
+			'ro' => array(
+				'title'         => 'Îmi Va Cădea Părul Din Nou După Transplantul de Păr?',
+				'description'   => 'Cade din nou părul transplantat? După căderea de șoc, firele din zona donatoare sunt permanente și rezistente genetic la cădere. Iată de ce.',
+				'focus_keyword' => 'cade părul transplantat',
+			),
 		),
 
 		'hair-transplant-with-the-fue-vita-technique' => array(
@@ -263,6 +288,11 @@ function estecapelli_blog_i18n_meta() {
 				'title'         => 'Transplante Capilar com a Técnica FUE Vita',
 				'description'   => 'A FUE Vita é um transplante FUE avançado enriquecido com vitaminas, minerais e aminoácidos que nutrem os enxertos para resultados mais fortes.',
 				'focus_keyword' => 'técnica FUE Vita',
+			),
+			'ro' => array(
+				'title'         => 'Transplant de Păr cu Tehnica FUE Vita',
+				'description'   => 'FUE Vita este un transplant de păr FUE avansat, îmbogățit cu vitamine, minerale și aminoacizi care hrănesc grefele pentru rezultate mai puternice.',
+				'focus_keyword' => 'tehnica FUE Vita',
 			),
 		),
 
@@ -302,6 +332,11 @@ function estecapelli_blog_i18n_meta() {
 				'description'   => 'Pacientes HIV positivos podem fazer um transplante capilar seguro na Turquia. Com um sistema imunológico forte e protocolos rigorosos há bons resultados.',
 				'focus_keyword' => 'transplante capilar HIV positivo Turquia',
 			),
+			'ro' => array(
+				'title'         => 'Transplant de Păr pentru Pacienții HIV Pozitivi în Turcia',
+				'description'   => 'Pacienții HIV pozitivi pot face un transplant de păr în siguranță în Turcia. Cu un sistem imunitar puternic și protocoale stricte, rezultatele sunt naturale.',
+				'focus_keyword' => 'transplant de păr HIV pozitiv Turcia',
+			),
 		),
 
 		'hair-transplant-for-hiv-positive-patients' => array(
@@ -339,6 +374,11 @@ function estecapelli_blog_i18n_meta() {
 				'title'         => 'Transplante Capilar para Pacientes HIV Positivos',
 				'description'   => 'O transplante capilar é possível para pacientes HIV positivos com sistema imunológico forte. Saiba sobre segurança, controlo de infeções e etapas.',
 				'focus_keyword' => 'transplante capilar HIV positivo',
+			),
+			'ro' => array(
+				'title'         => 'Transplant de Păr pentru Pacienții HIV Pozitivi',
+				'description'   => 'Transplantul de păr este posibil pentru pacienții HIV pozitivi când sistemul imunitar este puternic. Află despre siguranță, controlul infecțiilor și etape.',
+				'focus_keyword' => 'transplant de păr HIV pozitiv',
 			),
 		),
 
