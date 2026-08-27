@@ -4,7 +4,7 @@
  *
  * Nothing in the theme should translate a slug or assemble a multilingual URL
  * heuristically. English source paths are keys; the values below are the exact
- * indexed routes for all seven languages.
+ * indexed routes for all eight languages.
  *
  * @package Estecapelli
  */
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string[]
  */
 function estecapelli_indexed_languages() {
-	return array( 'en', 'tr', 'fr', 'it', 'es', 'pl', 'pt' );
+	return array( 'en', 'tr', 'fr', 'it', 'es', 'pl', 'pt', 'ro' );
 }
 
 /**
@@ -164,14 +164,14 @@ function estecapelli_unfiltered_home_url() {
 function estecapelli_indexed_section_slugs() {
 	return array(
 		// Home is the language root. It intentionally has no leaf slug.
-		'home'             => array( 'en' => '', 'tr' => '', 'fr' => '', 'it' => '', 'es' => '', 'pl' => '', 'pt' => '' ),
-		'hair-transplant'  => array( 'en' => 'hair-transplant', 'tr' => 'sac-ekimi', 'fr' => 'greffe-de-cheveux', 'it' => 'trapianto-di-capelli', 'es' => 'trasplante-capilar', 'pl' => 'przeszczep-wlosow', 'pt' => 'transplante-capilar' ),
-		'plastic-surgery'  => array( 'en' => 'plastic-surgery', 'tr' => 'estetik-cerrahi', 'fr' => 'chirurgie-plastique', 'it' => 'chirurgia-plastica', 'es' => 'cirugia-plastica', 'pl' => 'chirurgia-plastyczna', 'pt' => 'cirurgia-plastica' ),
-		'dental-treatment' => array( 'en' => 'dental-treatment', 'tr' => 'dis-tedavisi', 'fr' => 'traitement-dentaire', 'it' => 'trattamento-dentale', 'es' => 'tratamiento-dental', 'pl' => 'leczenie-stomatologiczne', 'pt' => 'tratamento-dentario' ),
-		'before-after'     => array( 'en' => 'before-after', 'tr' => 'oncesi-sonrasi', 'fr' => 'avant-apres', 'it' => 'prima-dopo', 'es' => 'antes-despues', 'pl' => 'przed-po', 'pt' => 'antes-depois' ),
-		'about-us'         => array( 'en' => 'about-us', 'tr' => 'hakkimizda', 'fr' => 'a-propos-de-nous', 'it' => 'chi-siamo', 'es' => 'sobre-nosotros', 'pl' => 'o-nas', 'pt' => 'sobre-nos' ),
-		'blog'             => array( 'en' => 'blog', 'tr' => 'blog', 'fr' => 'blog', 'it' => 'blog', 'es' => 'blog', 'pl' => 'blog', 'pt' => 'blog' ),
-		'contact'          => array( 'en' => 'contact', 'tr' => 'iletisim', 'fr' => 'contact', 'it' => 'contatto', 'es' => 'contacto', 'pl' => 'kontakt', 'pt' => 'contato' ),
+		'home'             => array( 'en' => '', 'tr' => '', 'fr' => '', 'it' => '', 'es' => '', 'pl' => '', 'pt' => '', 'ro' => '' ),
+		'hair-transplant'  => array( 'en' => 'hair-transplant', 'tr' => 'sac-ekimi', 'fr' => 'greffe-de-cheveux', 'it' => 'trapianto-di-capelli', 'es' => 'trasplante-capilar', 'pl' => 'przeszczep-wlosow', 'pt' => 'transplante-capilar', 'ro' => 'transplant-de-par' ),
+		'plastic-surgery'  => array( 'en' => 'plastic-surgery', 'tr' => 'estetik-cerrahi', 'fr' => 'chirurgie-plastique', 'it' => 'chirurgia-plastica', 'es' => 'cirugia-plastica', 'pl' => 'chirurgia-plastyczna', 'pt' => 'cirurgia-plastica', 'ro' => 'chirurgie-plastica' ),
+		'dental-treatment' => array( 'en' => 'dental-treatment', 'tr' => 'dis-tedavisi', 'fr' => 'traitement-dentaire', 'it' => 'trattamento-dentale', 'es' => 'tratamiento-dental', 'pl' => 'leczenie-stomatologiczne', 'pt' => 'tratamento-dentario', 'ro' => 'tratament-dentar' ),
+		'before-after'     => array( 'en' => 'before-after', 'tr' => 'oncesi-sonrasi', 'fr' => 'avant-apres', 'it' => 'prima-dopo', 'es' => 'antes-despues', 'pl' => 'przed-po', 'pt' => 'antes-depois', 'ro' => 'inainte-dupa' ),
+		'about-us'         => array( 'en' => 'about-us', 'tr' => 'hakkimizda', 'fr' => 'a-propos-de-nous', 'it' => 'chi-siamo', 'es' => 'sobre-nosotros', 'pl' => 'o-nas', 'pt' => 'sobre-nos', 'ro' => 'despre-noi' ),
+		'blog'             => array( 'en' => 'blog', 'tr' => 'blog', 'fr' => 'blog', 'it' => 'blog', 'es' => 'blog', 'pl' => 'blog', 'pt' => 'blog', 'ro' => 'blog' ),
+		'contact'          => array( 'en' => 'contact', 'tr' => 'iletisim', 'fr' => 'contact', 'it' => 'contatto', 'es' => 'contacto', 'pl' => 'kontakt', 'pt' => 'contato', 'ro' => 'contact' ),
 	);
 }
 
@@ -185,6 +185,10 @@ function estecapelli_legacy_home_slugs() {
 		'es' => 'inicio',
 		'pl' => 'strona-glowna',
 		'pt' => 'inicio',
+		// Romanian was never on the legacy structure, so it has no legacy leaf
+		// to redirect from. The entry exists only so callers can read every
+		// indexed language without a missing-key check.
+		'ro' => '',
 	);
 }
 
@@ -193,9 +197,9 @@ function estecapelli_legacy_home_slugs() {
  */
 function estecapelli_indexed_about_slugs() {
 	return array(
-		'our-doctors'     => array( 'en' => 'our-doctors', 'tr' => 'doktorlarimiz', 'fr' => 'nos-medecins', 'it' => 'i-nostri-medici', 'es' => 'nuestros-doctores', 'pl' => 'nasi-lekarze', 'pt' => 'nossos-medicos' ),
-		'medical-director' => array( 'en' => 'medical-director', 'tr' => 'tibbi-direktor', 'fr' => 'directeur-medical', 'it' => 'direttore-medico', 'es' => 'director-medico', 'pl' => 'dyrektor-medyczny', 'pt' => 'diretor-medico' ),
-		'our-team'         => array( 'en' => 'our-team', 'tr' => 'ekibimiz', 'fr' => 'notre-equipe', 'it' => 'il-nostro-team', 'es' => 'nuestro-equipo', 'pl' => 'nasz-zespol', 'pt' => 'nossa-equipe' ),
+		'our-doctors'     => array( 'en' => 'our-doctors', 'tr' => 'doktorlarimiz', 'fr' => 'nos-medecins', 'it' => 'i-nostri-medici', 'es' => 'nuestros-doctores', 'pl' => 'nasi-lekarze', 'pt' => 'nossos-medicos', 'ro' => 'medicii-nostri' ),
+		'medical-director' => array( 'en' => 'medical-director', 'tr' => 'tibbi-direktor', 'fr' => 'directeur-medical', 'it' => 'direttore-medico', 'es' => 'director-medico', 'pl' => 'dyrektor-medyczny', 'pt' => 'diretor-medico', 'ro' => 'director-medical' ),
+		'our-team'         => array( 'en' => 'our-team', 'tr' => 'ekibimiz', 'fr' => 'notre-equipe', 'it' => 'il-nostro-team', 'es' => 'nuestro-equipo', 'pl' => 'nasz-zespol', 'pt' => 'nossa-equipe', 'ro' => 'echipa-noastra' ),
 	);
 }
 
@@ -217,35 +221,35 @@ function estecapelli_indexed_category_slugs() {
 function estecapelli_indexed_treatment_slugs() {
 	return array(
 		// Hair transplant.
-		'hair-transplant-overview'                                => array( 'en' => 'hair-transplant-overview', 'tr' => 'sac-ekimi-genel-bakis', 'fr' => 'apercu-de-la-greffe-de-cheveux', 'it' => 'panoramica-sul-trapianto-di-capelli', 'es' => 'descripcion-general-del-trasplante-capilar', 'pl' => 'przeglad-przeszczepu-wlosow', 'pt' => 'visao-geral-do-transplante-capilar' ),
-		'sapphire-fue-hair-transplant'                            => array( 'en' => 'sapphire-fue-hair-transplant', 'tr' => 'safir-fue-sac-ekimi', 'fr' => 'greffe-de-cheveux-fue-sapphire', 'it' => 'trapianto-di-capelli-fue-sapphire', 'es' => 'trasplante-capilar-fue-sapphire', 'pl' => 'przeszczep-wlosow-metoda-sapphire-fue', 'pt' => 'transplante-capilar-fue-sapphire' ),
-		'dhi-hair-transplant'                                     => array( 'en' => 'dhi-hair-transplant', 'tr' => 'dhi-sac-ekimi', 'fr' => 'greffe-de-cheveux-dhi', 'it' => 'trapianto-di-capelli-dhi', 'es' => 'trasplante-de-cabello-dhi', 'pl' => 'przeszczep-wlosow-dhi', 'pt' => 'transplante-capilar-dhi' ),
-		'exosome-fue-hair-transplant'                             => array( 'en' => 'exosome-fue-hair-transplant', 'tr' => 'exosome-fue-sac-ekimi', 'fr' => 'greffe-capillaire-exosome-fue', 'it' => 'trapianto-di-capelli-exosome-fue', 'es' => 'trasplante-capilar-exosome-fue', 'pl' => 'przeszczep-wlosow-exosome-fue', 'pt' => 'transplante-capilar-exosome-fue' ),
-		'vita-treatment'                                          => array( 'en' => 'vita-treatment', 'tr' => 'vita-tedavisi', 'fr' => 'traitement-vita', 'it' => 'trattamento-vita', 'es' => 'tratamiento-vita', 'pl' => 'leczenie-vita', 'pt' => 'tratamento-vita' ),
-		'tricholab'                                               => array( 'en' => 'tricholab', 'tr' => 'tricholab', 'fr' => 'tricholab', 'it' => 'tricholab', 'es' => 'tricholab', 'pl' => 'tricholab', 'pt' => 'tricholab' ),
-		'female-hair-transplant'                                  => array( 'en' => 'female-hair-transplant', 'tr' => 'kadin-sac-ekimi', 'fr' => 'greffe-de-cheveux-feminine', 'it' => 'trapianto-di-capelli-femminile', 'es' => 'trasplante-capilar-femenino', 'pl' => 'przeszczep-wlosow-u-kobiet', 'pt' => 'transplante-capilar-feminino' ),
-		'eyebrow-transplant'                                      => array( 'en' => 'eyebrow-transplant', 'tr' => 'kas-ekimi', 'fr' => 'transplantation-de-sourcils', 'it' => 'trapianto-di-sopracciglia', 'es' => 'trasplante-de-cejas', 'pl' => 'przeszczep-brwi', 'pt' => 'transplante-de-sobrancelhas' ),
-		'beard-transplant'                                        => array( 'en' => 'beard-transplant', 'tr' => 'sakal-ekimi', 'fr' => 'transplantation-de-barbe', 'it' => 'beard-trapianto-di-barba', 'es' => 'trasplante-de-barba', 'pl' => 'przeszczep-brody', 'pt' => 'transplante-de-barba' ),
-		'hair-mesotherapy'                                        => array( 'en' => 'hair-mesotherapy', 'tr' => 'sac-mezoterapisi', 'fr' => 'mesotherapie-capillaire', 'it' => 'mesoterapia-per-capelli', 'es' => 'mesoterapia-capilar', 'pl' => 'mezoterapia-wlosow', 'pt' => 'mesoterapia-capilar' ),
-		'pre-hair-transplant-period'                              => array( 'en' => 'pre-hair-transplant-period', 'tr' => 'sac-ekim-oncesi-donem', 'fr' => 'periode-pre-transplantation-capillaire', 'it' => 'periodo-pre-trapianto-di-capelli', 'es' => 'periodo-previo-al-trasplante-capilar', 'pl' => 'okres-przed-przeszczepem-wlosow', 'pt' => 'periodo-pre-transplante-capilar' ),
-		'post-hair-transplant-period'                             => array( 'en' => 'post-hair-transplant-period', 'tr' => 'sac-ekimi-sonrasi-donem', 'fr' => 'periode-post-greffe-de-cheveux', 'it' => 'periodo-post-trapianto-di-capelli', 'es' => 'periodo-posterior-al-trasplante-capilar', 'pl' => 'okres-po-przeszczepie-wlosow', 'pt' => 'periodo-pos-transplante-capilar' ),
-		'hair-transplant-techniques-comparison2'                  => array( 'en' => 'hair-transplant-techniques-comparison2', 'tr' => 'sac-ekimi-teknikleri-karsilastirmasi-2', 'fr' => 'comparaison-des-techniques-de-greffe-de-cheveux-2', 'it' => 'confronto-tra-tecniche-di-trapianto-capillare-2', 'es' => 'comparacion-de-tecnicas-de-trasplante-capilar-2', 'pl' => 'porownanie-technik-przeszczepu-wlosow-2', 'pt' => 'comparacao-das-tecnicas-de-transplante-capilar-2' ),
+		'hair-transplant-overview'                                => array( 'en' => 'hair-transplant-overview', 'tr' => 'sac-ekimi-genel-bakis', 'fr' => 'apercu-de-la-greffe-de-cheveux', 'it' => 'panoramica-sul-trapianto-di-capelli', 'es' => 'descripcion-general-del-trasplante-capilar', 'pl' => 'przeglad-przeszczepu-wlosow', 'pt' => 'visao-geral-do-transplante-capilar', 'ro' => 'prezentare-generala-transplant-de-par' ),
+		'sapphire-fue-hair-transplant'                            => array( 'en' => 'sapphire-fue-hair-transplant', 'tr' => 'safir-fue-sac-ekimi', 'fr' => 'greffe-de-cheveux-fue-sapphire', 'it' => 'trapianto-di-capelli-fue-sapphire', 'es' => 'trasplante-capilar-fue-sapphire', 'pl' => 'przeszczep-wlosow-metoda-sapphire-fue', 'pt' => 'transplante-capilar-fue-sapphire', 'ro' => 'transplant-de-par-fue-sapphire' ),
+		'dhi-hair-transplant'                                     => array( 'en' => 'dhi-hair-transplant', 'tr' => 'dhi-sac-ekimi', 'fr' => 'greffe-de-cheveux-dhi', 'it' => 'trapianto-di-capelli-dhi', 'es' => 'trasplante-de-cabello-dhi', 'pl' => 'przeszczep-wlosow-dhi', 'pt' => 'transplante-capilar-dhi', 'ro' => 'transplant-de-par-dhi' ),
+		'exosome-fue-hair-transplant'                             => array( 'en' => 'exosome-fue-hair-transplant', 'tr' => 'exosome-fue-sac-ekimi', 'fr' => 'greffe-capillaire-exosome-fue', 'it' => 'trapianto-di-capelli-exosome-fue', 'es' => 'trasplante-capilar-exosome-fue', 'pl' => 'przeszczep-wlosow-exosome-fue', 'pt' => 'transplante-capilar-exosome-fue', 'ro' => 'transplant-de-par-exosome-fue' ),
+		'vita-treatment'                                          => array( 'en' => 'vita-treatment', 'tr' => 'vita-tedavisi', 'fr' => 'traitement-vita', 'it' => 'trattamento-vita', 'es' => 'tratamiento-vita', 'pl' => 'leczenie-vita', 'pt' => 'tratamento-vita', 'ro' => 'tratament-vita' ),
+		'tricholab'                                               => array( 'en' => 'tricholab', 'tr' => 'tricholab', 'fr' => 'tricholab', 'it' => 'tricholab', 'es' => 'tricholab', 'pl' => 'tricholab', 'pt' => 'tricholab', 'ro' => 'tricholab' ),
+		'female-hair-transplant'                                  => array( 'en' => 'female-hair-transplant', 'tr' => 'kadin-sac-ekimi', 'fr' => 'greffe-de-cheveux-feminine', 'it' => 'trapianto-di-capelli-femminile', 'es' => 'trasplante-capilar-femenino', 'pl' => 'przeszczep-wlosow-u-kobiet', 'pt' => 'transplante-capilar-feminino', 'ro' => 'transplant-de-par-la-femei' ),
+		'eyebrow-transplant'                                      => array( 'en' => 'eyebrow-transplant', 'tr' => 'kas-ekimi', 'fr' => 'transplantation-de-sourcils', 'it' => 'trapianto-di-sopracciglia', 'es' => 'trasplante-de-cejas', 'pl' => 'przeszczep-brwi', 'pt' => 'transplante-de-sobrancelhas', 'ro' => 'transplant-de-sprancene' ),
+		'beard-transplant'                                        => array( 'en' => 'beard-transplant', 'tr' => 'sakal-ekimi', 'fr' => 'transplantation-de-barbe', 'it' => 'beard-trapianto-di-barba', 'es' => 'trasplante-de-barba', 'pl' => 'przeszczep-brody', 'pt' => 'transplante-de-barba', 'ro' => 'transplant-de-barba' ),
+		'hair-mesotherapy'                                        => array( 'en' => 'hair-mesotherapy', 'tr' => 'sac-mezoterapisi', 'fr' => 'mesotherapie-capillaire', 'it' => 'mesoterapia-per-capelli', 'es' => 'mesoterapia-capilar', 'pl' => 'mezoterapia-wlosow', 'pt' => 'mesoterapia-capilar', 'ro' => 'mezoterapie-capilara' ),
+		'pre-hair-transplant-period'                              => array( 'en' => 'pre-hair-transplant-period', 'tr' => 'sac-ekim-oncesi-donem', 'fr' => 'periode-pre-transplantation-capillaire', 'it' => 'periodo-pre-trapianto-di-capelli', 'es' => 'periodo-previo-al-trasplante-capilar', 'pl' => 'okres-przed-przeszczepem-wlosow', 'pt' => 'periodo-pre-transplante-capilar', 'ro' => 'perioada-dinainte-de-transplantul-de-par' ),
+		'post-hair-transplant-period'                             => array( 'en' => 'post-hair-transplant-period', 'tr' => 'sac-ekimi-sonrasi-donem', 'fr' => 'periode-post-greffe-de-cheveux', 'it' => 'periodo-post-trapianto-di-capelli', 'es' => 'periodo-posterior-al-trasplante-capilar', 'pl' => 'okres-po-przeszczepie-wlosow', 'pt' => 'periodo-pos-transplante-capilar', 'ro' => 'perioada-de-dupa-transplantul-de-par' ),
+		'hair-transplant-techniques-comparison2'                  => array( 'en' => 'hair-transplant-techniques-comparison2', 'tr' => 'sac-ekimi-teknikleri-karsilastirmasi-2', 'fr' => 'comparaison-des-techniques-de-greffe-de-cheveux-2', 'it' => 'confronto-tra-tecniche-di-trapianto-capillare-2', 'es' => 'comparacion-de-tecnicas-de-trasplante-capilar-2', 'pl' => 'porownanie-technik-przeszczepu-wlosow-2', 'pt' => 'comparacao-das-tecnicas-de-transplante-capilar-2', 'ro' => 'comparatie-intre-tehnicile-de-transplant-de-par-2' ),
 
 		// Plastic surgery.
-		'plastic-surgery-overview'                               => array( 'en' => 'plastic-surgery-overview', 'tr' => 'plastic-surgery-overview', 'fr' => 'plastic-surgery-overview', 'it' => 'plastic-surgery-overview', 'es' => 'plastic-surgery-overview', 'pl' => 'plastic-surgery-overview', 'pt' => 'plastic-surgery-overview' ),
-		'rhinoplasty'                                             => array( 'en' => 'rhinoplasty', 'tr' => 'burun-estetigi', 'fr' => 'rhinoplastie', 'it' => 'rinoplastica', 'es' => 'rinoplastia', 'pl' => 'rynoplastyka', 'pt' => 'rinoplastia' ),
-		'breast-aesthetics-breast-surgery'                        => array( 'en' => 'breast-aesthetics-breast-surgery', 'tr' => 'meme-estetigi-gogus-estetigi', 'fr' => 'esthetique-mammaire-chirurgie-mammaire', 'it' => 'estetica-del-seno-chirurgia-del-seno', 'es' => 'estetica-mamaria-cirugia-de-pecho', 'pl' => 'estetyka-piersi-chirurgia-piersi', 'pt' => 'estetica-mamaria-cirurgia-de-mama' ),
-		'bbl'                                                      => array( 'en' => 'bbl', 'tr' => 'bbl', 'fr' => 'bbl', 'it' => 'bbl', 'es' => 'bbl', 'pl' => 'bbl', 'pt' => 'bbl' ),
-		'liposuction'                                              => array( 'en' => 'liposuction', 'tr' => 'liposuction', 'fr' => 'liposuccion', 'it' => 'liposuzione', 'es' => 'liposuccion', 'pl' => 'liposukcja', 'pt' => 'lipoaspiracao' ),
-		'face-and-neck-lift-surgery'                              => array( 'en' => 'face-and-neck-lift-surgery', 'tr' => 'yuz-ve-boyun-germe-ameliyati', 'fr' => 'chirurgie-de-lifting-du-visage-et-du-cou', 'it' => 'chirurgia-di-lifting-del-viso-e-del-collo', 'es' => 'cirugia-de-lifting-facial-y-de-cuello', 'pl' => 'chirurgia-liftingu-twarzy-i-szyi', 'pt' => 'cirurgia-de-lifting-facial-e-de-pescoco' ),
-		'abdominoplasty-tummy-tuck'                               => array( 'en' => 'abdominoplasty-tummy-tuck', 'tr' => 'karin-germe-ameliyati', 'fr' => 'abdominoplastie', 'it' => 'addominoplastica', 'es' => 'abdominoplastia', 'pl' => 'plastyka-brzucha', 'pt' => 'abdominoplastia' ),
-		'gynecomastia'                                            => array( 'en' => 'gynecomastia', 'tr' => 'jinekomasti', 'fr' => 'gynecomastie', 'it' => 'ginecomastia', 'es' => 'ginecomastia', 'pl' => 'ginekomastia', 'pt' => 'ginecomastia' ),
-		'obesity-surgeries-bariatric-surgery-and-gastric-balloon' => array( 'en' => 'obesity-surgeries-bariatric-surgery-and-gastric-balloon', 'tr' => 'obezite-ameliyatlari-bariatrik-cerrahi-ve-mide-balonu', 'fr' => 'chirurgies-de-l-obesite-chirurgie-bariatrique-et-ballon-gastrique', 'it' => 'chirurgie-dell-obesita-chirurgia-bariatrica-e-palloncino-gastrico', 'es' => 'cirugias-de-obesidad-cirugia-bariatrica-y-balon-gastrico', 'pl' => 'operacje-otylosci-chirurgia-bariatryczna-i-balon-zoladkowy', 'pt' => 'cirurgias-de-obesidade-cirurgia-bariatrica-e-balao-gastrico' ),
+		'plastic-surgery-overview'                               => array( 'en' => 'plastic-surgery-overview', 'tr' => 'plastic-surgery-overview', 'fr' => 'plastic-surgery-overview', 'it' => 'plastic-surgery-overview', 'es' => 'plastic-surgery-overview', 'pl' => 'plastic-surgery-overview', 'pt' => 'plastic-surgery-overview', 'ro' => 'plastic-surgery-overview' ),
+		'rhinoplasty'                                             => array( 'en' => 'rhinoplasty', 'tr' => 'burun-estetigi', 'fr' => 'rhinoplastie', 'it' => 'rinoplastica', 'es' => 'rinoplastia', 'pl' => 'rynoplastyka', 'pt' => 'rinoplastia', 'ro' => 'rinoplastie' ),
+		'breast-aesthetics-breast-surgery'                        => array( 'en' => 'breast-aesthetics-breast-surgery', 'tr' => 'meme-estetigi-gogus-estetigi', 'fr' => 'esthetique-mammaire-chirurgie-mammaire', 'it' => 'estetica-del-seno-chirurgia-del-seno', 'es' => 'estetica-mamaria-cirugia-de-pecho', 'pl' => 'estetyka-piersi-chirurgia-piersi', 'pt' => 'estetica-mamaria-cirurgia-de-mama', 'ro' => 'estetica-sanilor-chirurgia-sanilor' ),
+		'bbl'                                                      => array( 'en' => 'bbl', 'tr' => 'bbl', 'fr' => 'bbl', 'it' => 'bbl', 'es' => 'bbl', 'pl' => 'bbl', 'pt' => 'bbl', 'ro' => 'bbl' ),
+		'liposuction'                                              => array( 'en' => 'liposuction', 'tr' => 'liposuction', 'fr' => 'liposuccion', 'it' => 'liposuzione', 'es' => 'liposuccion', 'pl' => 'liposukcja', 'pt' => 'lipoaspiracao', 'ro' => 'liposuctie' ),
+		'face-and-neck-lift-surgery'                              => array( 'en' => 'face-and-neck-lift-surgery', 'tr' => 'yuz-ve-boyun-germe-ameliyati', 'fr' => 'chirurgie-de-lifting-du-visage-et-du-cou', 'it' => 'chirurgia-di-lifting-del-viso-e-del-collo', 'es' => 'cirugia-de-lifting-facial-y-de-cuello', 'pl' => 'chirurgia-liftingu-twarzy-i-szyi', 'pt' => 'cirurgia-de-lifting-facial-e-de-pescoco', 'ro' => 'lifting-facial-si-de-gat' ),
+		'abdominoplasty-tummy-tuck'                               => array( 'en' => 'abdominoplasty-tummy-tuck', 'tr' => 'karin-germe-ameliyati', 'fr' => 'abdominoplastie', 'it' => 'addominoplastica', 'es' => 'abdominoplastia', 'pl' => 'plastyka-brzucha', 'pt' => 'abdominoplastia', 'ro' => 'abdominoplastie' ),
+		'gynecomastia'                                            => array( 'en' => 'gynecomastia', 'tr' => 'jinekomasti', 'fr' => 'gynecomastie', 'it' => 'ginecomastia', 'es' => 'ginecomastia', 'pl' => 'ginekomastia', 'pt' => 'ginecomastia', 'ro' => 'ginecomastie' ),
+		'obesity-surgeries-bariatric-surgery-and-gastric-balloon' => array( 'en' => 'obesity-surgeries-bariatric-surgery-and-gastric-balloon', 'tr' => 'obezite-ameliyatlari-bariatrik-cerrahi-ve-mide-balonu', 'fr' => 'chirurgies-de-l-obesite-chirurgie-bariatrique-et-ballon-gastrique', 'it' => 'chirurgie-dell-obesita-chirurgia-bariatrica-e-palloncino-gastrico', 'es' => 'cirugias-de-obesidad-cirugia-bariatrica-y-balon-gastrico', 'pl' => 'operacje-otylosci-chirurgia-bariatryczna-i-balon-zoladkowy', 'pt' => 'cirurgias-de-obesidade-cirurgia-bariatrica-e-balao-gastrico', 'ro' => 'operatii-de-obezitate-chirurgie-bariatrica-si-balon-gastric' ),
 
 		// Dental treatment.
-		'dental-treatment-overview'                               => array( 'en' => 'dental-treatment-overview', 'tr' => 'dis-tedavisi-genel-bakis', 'fr' => 'apercu-du-traitement-dentaire', 'it' => 'panoramica-del-trattamento-dentale', 'es' => 'resumen-del-tratamiento-dental', 'pl' => 'przeglad-leczenia-stomatologicznego', 'pt' => 'visao-geral-do-tratamento-dentario' ),
-		'dental-implant'                                          => array( 'en' => 'dental-implant', 'tr' => 'dis-implanti', 'fr' => 'implant-dentaire', 'it' => 'impianto-dentale', 'es' => 'implante-dental', 'pl' => 'implant-zebowy', 'pt' => 'implante-dentario' ),
-		'hollywood-smile'                                         => array( 'en' => 'hollywood-smile', 'tr' => 'hollywood-gulusu', 'fr' => 'sourire-hollywoodien', 'it' => 'sorriso-hollywoodiano', 'es' => 'sonrisa-hollywoodense', 'pl' => 'hollywoodzki-usmiech', 'pt' => 'sorriso-hollywoodiano' ),
+		'dental-treatment-overview'                               => array( 'en' => 'dental-treatment-overview', 'tr' => 'dis-tedavisi-genel-bakis', 'fr' => 'apercu-du-traitement-dentaire', 'it' => 'panoramica-del-trattamento-dentale', 'es' => 'resumen-del-tratamiento-dental', 'pl' => 'przeglad-leczenia-stomatologicznego', 'pt' => 'visao-geral-do-tratamento-dentario', 'ro' => 'prezentare-generala-tratament-dentar' ),
+		'dental-implant'                                          => array( 'en' => 'dental-implant', 'tr' => 'dis-implanti', 'fr' => 'implant-dentaire', 'it' => 'impianto-dentale', 'es' => 'implante-dental', 'pl' => 'implant-zebowy', 'pt' => 'implante-dentario', 'ro' => 'implant-dentar' ),
+		'hollywood-smile'                                         => array( 'en' => 'hollywood-smile', 'tr' => 'hollywood-gulusu', 'fr' => 'sourire-hollywoodien', 'it' => 'sorriso-hollywoodiano', 'es' => 'sonrisa-hollywoodense', 'pl' => 'hollywoodzki-usmiech', 'pt' => 'sorriso-hollywoodiano', 'ro' => 'zambet-de-hollywood' ),
 	);
 }
 
@@ -255,14 +259,14 @@ function estecapelli_indexed_treatment_slugs() {
 function estecapelli_indexed_blog_slugs() {
 	return array(
 		'hair-transplant-turkey-complete-expert-guide'              => array( 'en' => 'hair-transplant-turkey-complete-expert-guide', 'it' => 'trapianto-capelli-in-turchia-la-guida-completa' ),
-		'hair-transplant-for-hiv-positive-patients-in-turkey'       => array( 'en' => 'hair-transplant-for-hiv-positive-patients-in-turkey', 'tr' => 'hiv-pozitif-hastalarina-turkiye-de-sac-ekimi', 'fr' => 'greffe-de-cheveux-pour-patients-seropositifs-en-turquie', 'it' => 'trapianto-di-capelli-per-pazienti-hiv-positivi-in-turchia', 'es' => 'trasplante-capilar-para-pacientes-vih-positivos-en-turquia', 'pl' => 'przeszczep-wlosow-u-pacjentow-hiv-pozytywnych-w-turcji', 'pt' => 'transplante-capilar-para-pacientes-hiv-positivos-na-turquia' ),
-		'unshaven-hair-transplant'                                  => array( 'en' => 'unshaven-hair-transplant', 'tr' => 'tirassiz-sac-ekimi', 'fr' => 'greffe-de-cheveux-sans-rasage', 'it' => 'trapianto-di-capelli-senza-rasatura', 'es' => 'trasplante-de-cabello-sin-afeitar', 'pl' => 'przeszczep-wlosow-bez-golenia', 'pt' => 'transplante-capilar-sem-barbear' ),
-		'can-diabetic-patients-undergo-a-hair-transplant'           => array( 'en' => 'can-diabetic-patients-undergo-a-hair-transplant', 'tr' => 'diyabet-hastalari-sac-ekimi-yaptirabilir-mi', 'fr' => 'les-patients-diabetiques-peuvent-ils-subir-une-greffe-de-cheveux', 'it' => 'i-pazienti-diabetici-possono-sottoporsi-a-un-trapianto-di-capelli', 'es' => 'los-pacientes-diabeticos-pueden-someterse-a-un-trasplante-capilar', 'pl' => 'czy-pacjenci-z-cukrzyca-moga-poddac-sie-przeszczepowi-wlosow', 'pt' => 'pacientes-com-diabetes-podem-realizar-transplante-capilar' ),
-		'is-hair-transplant-a-painful-procedure'                    => array( 'en' => 'is-hair-transplant-a-painful-procedure', 'tr' => 'sac-ekimi-agrili-bir-islem-midir', 'fr' => 'la-greffe-de-cheveux-est-elle-une-procedure-douloureuse', 'it' => 'il-trapianto-di-capelli-e-una-procedura-dolorosa', 'es' => '-es-doloroso-el-trasplante-capilar', 'pl' => 'czy-przeszczep-wlosow-jest-bolesnym-zabiegiem', 'pt' => 'o-transplante-capilar-e-um-procedimento-doloroso' ),
-		'will-my-hair-fall-out-again-after-a-hair-transplant'       => array( 'en' => 'will-my-hair-fall-out-again-after-a-hair-transplant', 'tr' => 'sac-ekimi-sonrasinda-saclarim-tekrar-dokulur-mu', 'fr' => 'mes-cheveux-vont-ils-retomber-apres-une-greffe-de-cheveux', 'it' => 'i-miei-capelli-ricadranno-dopo-un-trapianto-di-capelli', 'es' => '-se-volvera-a-caer-mi-cabello-despues-de-un-trasplante-capilar', 'pl' => 'czy-moje-wlosy-wypadna-ponownie-po-przeszczepie-wlosow', 'pt' => 'meu-cabelo-vai-cair-novamente-apos-o-transplante-capilar' ),
-		'hair-transplant-with-the-fue-vita-technique'               => array( 'en' => 'hair-transplant-with-the-fue-vita-technique', 'tr' => 'fue-vita-teknigi-ile-sac-ekimi', 'fr' => 'greffe-de-cheveux-avec-la-technique-fue-vita', 'it' => 'trapianto-di-capelli-con-la-tecnica-fue-vita', 'es' => 'trasplante-capilar-con-la-tecnica-fue-vita', 'pl' => 'przeszczep-wlosow-technika-fue-vita', 'pt' => 'transplante-capilar-com-a-tecnica-fue-vita' ),
-		'hair-transplant-for-hiv-positive-patients'                 => array( 'en' => 'hair-transplant-for-hiv-positive-patients', 'tr' => 'hiv-pozitif-hastalara-sac-ekimi', 'fr' => 'greffe-de-cheveux-pour-les-patients-seropositifs-vih', 'it' => 'trapianto-di-capelli-per-pazienti-sieropositivi-hiv', 'es' => 'trasplante-capilar-para-pacientes-vih-positivos', 'pl' => 'przeszczep-wlosow-u-pacjentow-hiv-pozytywnych', 'pt' => 'transplante-capilar-para-pacientes-hiv-positivos' ),
-		'unshaven-hair-transplant-for-women'                        => array( 'en' => 'unshaven-hair-transplant-for-women', 'tr' => 'kadinlarda-trassiz-sac-ekimi', 'fr' => 'greffe-de-cheveux-sans-rasage-chez-la-femme', 'it' => 'trapianto-di-capelli-senza-rasatura-nelle-donne', 'es' => 'trasplante-capilar-sin-rasurado-en-mujeres', 'pl' => 'przeszczep-wlosow-bez-golenia-u-kobiet', 'pt' => 'transplante-capilar-sem-raspagem-em-mulheres' ),
+		'hair-transplant-for-hiv-positive-patients-in-turkey'       => array( 'en' => 'hair-transplant-for-hiv-positive-patients-in-turkey', 'tr' => 'hiv-pozitif-hastalarina-turkiye-de-sac-ekimi', 'fr' => 'greffe-de-cheveux-pour-patients-seropositifs-en-turquie', 'it' => 'trapianto-di-capelli-per-pazienti-hiv-positivi-in-turchia', 'es' => 'trasplante-capilar-para-pacientes-vih-positivos-en-turquia', 'pl' => 'przeszczep-wlosow-u-pacjentow-hiv-pozytywnych-w-turcji', 'pt' => 'transplante-capilar-para-pacientes-hiv-positivos-na-turquia', 'ro' => 'transplant-de-par-pentru-pacientii-hiv-pozitivi-in-turcia' ),
+		'unshaven-hair-transplant'                                  => array( 'en' => 'unshaven-hair-transplant', 'tr' => 'tirassiz-sac-ekimi', 'fr' => 'greffe-de-cheveux-sans-rasage', 'it' => 'trapianto-di-capelli-senza-rasatura', 'es' => 'trasplante-de-cabello-sin-afeitar', 'pl' => 'przeszczep-wlosow-bez-golenia', 'pt' => 'transplante-capilar-sem-barbear', 'ro' => 'transplant-de-par-fara-barbierire' ),
+		'can-diabetic-patients-undergo-a-hair-transplant'           => array( 'en' => 'can-diabetic-patients-undergo-a-hair-transplant', 'tr' => 'diyabet-hastalari-sac-ekimi-yaptirabilir-mi', 'fr' => 'les-patients-diabetiques-peuvent-ils-subir-une-greffe-de-cheveux', 'it' => 'i-pazienti-diabetici-possono-sottoporsi-a-un-trapianto-di-capelli', 'es' => 'los-pacientes-diabeticos-pueden-someterse-a-un-trasplante-capilar', 'pl' => 'czy-pacjenci-z-cukrzyca-moga-poddac-sie-przeszczepowi-wlosow', 'pt' => 'pacientes-com-diabetes-podem-realizar-transplante-capilar', 'ro' => 'pot-pacientii-diabetici-sa-faca-transplant-de-par' ),
+		'is-hair-transplant-a-painful-procedure'                    => array( 'en' => 'is-hair-transplant-a-painful-procedure', 'tr' => 'sac-ekimi-agrili-bir-islem-midir', 'fr' => 'la-greffe-de-cheveux-est-elle-une-procedure-douloureuse', 'it' => 'il-trapianto-di-capelli-e-una-procedura-dolorosa', 'es' => '-es-doloroso-el-trasplante-capilar', 'pl' => 'czy-przeszczep-wlosow-jest-bolesnym-zabiegiem', 'pt' => 'o-transplante-capilar-e-um-procedimento-doloroso', 'ro' => 'este-transplantul-de-par-o-procedura-dureroasa' ),
+		'will-my-hair-fall-out-again-after-a-hair-transplant'       => array( 'en' => 'will-my-hair-fall-out-again-after-a-hair-transplant', 'tr' => 'sac-ekimi-sonrasinda-saclarim-tekrar-dokulur-mu', 'fr' => 'mes-cheveux-vont-ils-retomber-apres-une-greffe-de-cheveux', 'it' => 'i-miei-capelli-ricadranno-dopo-un-trapianto-di-capelli', 'es' => '-se-volvera-a-caer-mi-cabello-despues-de-un-trasplante-capilar', 'pl' => 'czy-moje-wlosy-wypadna-ponownie-po-przeszczepie-wlosow', 'pt' => 'meu-cabelo-vai-cair-novamente-apos-o-transplante-capilar', 'ro' => 'imi-va-cadea-parul-din-nou-dupa-transplantul-de-par' ),
+		'hair-transplant-with-the-fue-vita-technique'               => array( 'en' => 'hair-transplant-with-the-fue-vita-technique', 'tr' => 'fue-vita-teknigi-ile-sac-ekimi', 'fr' => 'greffe-de-cheveux-avec-la-technique-fue-vita', 'it' => 'trapianto-di-capelli-con-la-tecnica-fue-vita', 'es' => 'trasplante-capilar-con-la-tecnica-fue-vita', 'pl' => 'przeszczep-wlosow-technika-fue-vita', 'pt' => 'transplante-capilar-com-a-tecnica-fue-vita', 'ro' => 'transplant-de-par-cu-tehnica-fue-vita' ),
+		'hair-transplant-for-hiv-positive-patients'                 => array( 'en' => 'hair-transplant-for-hiv-positive-patients', 'tr' => 'hiv-pozitif-hastalara-sac-ekimi', 'fr' => 'greffe-de-cheveux-pour-les-patients-seropositifs-vih', 'it' => 'trapianto-di-capelli-per-pazienti-sieropositivi-hiv', 'es' => 'trasplante-capilar-para-pacientes-vih-positivos', 'pl' => 'przeszczep-wlosow-u-pacjentow-hiv-pozytywnych', 'pt' => 'transplante-capilar-para-pacientes-hiv-positivos', 'ro' => 'transplant-de-par-pentru-pacientii-hiv-pozitivi' ),
+		'unshaven-hair-transplant-for-women'                        => array( 'en' => 'unshaven-hair-transplant-for-women', 'tr' => 'kadinlarda-trassiz-sac-ekimi', 'fr' => 'greffe-de-cheveux-sans-rasage-chez-la-femme', 'it' => 'trapianto-di-capelli-senza-rasatura-nelle-donne', 'es' => 'trasplante-capilar-sin-rasurado-en-mujeres', 'pl' => 'przeszczep-wlosow-bez-golenia-u-kobiet', 'pt' => 'transplante-capilar-sem-raspagem-em-mulheres', 'ro' => 'transplant-de-par-fara-barbierire-la-femei' ),
 	);
 }
 
@@ -389,6 +393,13 @@ function estecapelli_indexed_route_contract() {
 	foreach ( estecapelli_indexed_blog_slugs() as $source_slug => $localized ) {
 		$key = '/en/blog/' . $source_slug;
 		foreach ( $localized as $lang => $slug ) {
+			// Unlike every other map, blog rows are sparse — a language appears
+			// only where an indexed copy exists. Honour the active language list
+			// anyway, so a language whose slugs are staged but not yet switched
+			// on does not leak routes here ahead of the rest of the site.
+			if ( ! in_array( $lang, $langs, true ) ) {
+				continue;
+			}
 			$routes[ $key ][ $lang ] = '/' . $lang . '/blog/' . $slug;
 		}
 	}
@@ -413,6 +424,9 @@ function estecapelli_indexed_route_key( $path ) {
 			}
 		}
 		foreach ( estecapelli_legacy_home_slugs() as $language => $slug ) {
+			if ( '' === $slug ) {
+				continue;
+			}
 			$reverse[ '/' . $language . '/' . $slug ] = '/en';
 		}
 		$reverse['/pt-pt/inicio'] = '/en';
@@ -538,7 +552,7 @@ function estecapelli_localize_theme_url( $url, $language = '', $use_contract = t
 		return estecapelli_indexed_url( $key, $language ) . $suffix;
 	}
 
-	if ( preg_match( '#^/(?:en|tr|fr|it|es|pl|pt|pt-pt)(?:/|$)#i', $path ) ) {
+	if ( preg_match( '#^/(?:en|tr|fr|it|es|pl|pt|pt-pt|ro)(?:/|$)#i', $path ) ) {
 		$first = strtolower( explode( '/', trim( $path, '/' ) )[0] );
 		return estecapelli_normalize_wpml_url( $url, 'pt-pt' === $first ? 'pt' : $first );
 	}
@@ -642,6 +656,12 @@ function estecapelli_legal_pages_manifest() {
 			'kvkk-disclosure' => array( 'slug' => 'aviso-de-tratamento-de-dados-kvkk', 'title' => 'Aviso KVKK sobre o tratamento de dados' ),
 			'cookie-policy'   => array( 'slug' => 'politica-de-cookies', 'title' => 'Política de cookies' ),
 		),
+		'ro' => array(
+			'privacy-policy'  => array( 'slug' => 'politica-de-confidentialitate', 'title' => 'Politica de confidențialitate' ),
+			'terms'           => array( 'slug' => 'termeni-si-conditii', 'title' => 'Termeni și condiții' ),
+			'kvkk-disclosure' => array( 'slug' => 'nota-de-informare-kvkk', 'title' => 'Notă de informare KVKK privind prelucrarea datelor' ),
+			'cookie-policy'   => array( 'slug' => 'politica-de-cookie-uri', 'title' => 'Politica de cookie-uri' ),
+		),
 	);
 }
 
@@ -719,6 +739,12 @@ function estecapelli_redirect_legacy_language_home() {
 	$path    = strtolower( untrailingslashit( (string) wp_parse_url( $request, PHP_URL_PATH ) ) );
 	$targets = array();
 	foreach ( estecapelli_legacy_home_slugs() as $language => $slug ) {
+		// A language with no legacy leaf must not register '/xx/' as a target;
+		// that is the language root itself, and redirecting it to itself would
+		// be a loop.
+		if ( '' === $slug ) {
+			continue;
+		}
 		$targets[ '/' . $language . '/' . $slug ] = $language;
 	}
 	$targets['/pt-pt/inicio'] = 'pt';

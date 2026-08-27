@@ -22,6 +22,7 @@ function estecapelli_legal_page_languages() {
 		'es' => 'Spanish',
 		'pl' => 'Polish',
 		'pt' => 'Portuguese',
+		'ro' => 'Romanian',
 	);
 
 	foreach ( $languages as $public_code => $name ) {

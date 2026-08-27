@@ -1,0 +1,198 @@
+{
+  "source_slug": "dental-implant",
+  "slug": "implant-dentar",
+  "title": "Implant Dentar",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Înlocuire Permanentă a Dinților",
+      "title": "Implant Dentar",
+      "lead": "Restaurați dinții lipsă cu soluții permanente, cu aspect natural. Rădăcinile din titan biocompatibil oferă rezultate puternice, estetice și de durată.",
+      "cta_primary": {
+        "label": "Consultație Gratuită"
+      },
+      "cta_secondary": {
+        "label": "Chat pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Tratamentul",
+      "title": "Ce este un Implant Dentar?",
+      "body": "<p>Un implant dentar este o metodă modernă de tratament care restaurează funcția naturală a dinților și aspectul estetic prin plasarea rădăcinilor de titan biocompatibil în osul maxilar pentru a înlocui dinții lipsă. Implantele preiau rolul rădăcinii dintelui pierdut și, împreună cu dintele protetic plasat deasupra, oferă cea mai apropiată soluție de un dinte natural atât din punct de vedere al aspectului, cât și al funcției.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "De ce este important",
+      "title": "De ce să alegi implanturile dentare?",
+      "body": "Pierderea dinților nu este doar o problemă estetică. Funcția de mestecare afectată poate avea un impact negativ asupra sistemului digestiv, resorbția osului maxilar poate să apară în timp, iar dinții învecinați se pot deplasa și deteriora treptat. Implanturile dentare sunt cea mai ideală soluție de tratament din următoarele motive:",
+      "items": [
+        {
+          "label": "Umple permanent golul lăsat de dinții lipsă"
+        },
+        {
+          "label": "Protejează osul maxilar și previne pierderea osului"
+        },
+        {
+          "label": "Păstrează dinții sănătoși din jur fără a le provoca daune"
+        },
+        {
+          "label": "Restabilește puterea de mestecare la un nivel cât mai apropiat de cel al dinților naturali"
+        },
+        {
+          "label": "Îmbunătățește estetica feței și aspectul general"
+        },
+        {
+          "label": "Oferă o soluție durabilă pe viață"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "stepbook",
+      "eyebrow": "Procesul",
+      "title": "Cum se aplică un implant dentar?",
+      "lead": "Tratamentul cu implant urmează un proces structurat conceput pentru a oferi rezultate sigure, durabile și cu aspect natural. Etapele principale ale tratamentului sunt următoarele.",
+      "items": [
+        {
+          "eyebrow": "Pasul 1",
+          "title": "Examinare clinică și imagistică",
+          "body": "<p>Maxilarul este analizat în detaliu folosind radiografii panoramice și tomografie digitală. Densitatea osoasă, dimensiunea implantului și zona de tratament sunt evaluate cu atenție pentru a crea un plan de implant personalizat, iar sănătatea orală generală și istoricul medical al pacientului sunt revizuite.</p>"
+        },
+        {
+          "eyebrow": "Pasul 2",
+          "title": "Planificarea tratamentului",
+          "body": "<p>Un plan de tratament personalizat este pregătit în funcție de numărul dinților lipsă, structura maxilarului și sănătatea orală generală. Dacă sunt necesare proceduri preliminare, cum ar fi grefarea osoasă sau extracția dentară, acestea sunt incluse în plan.</p>"
+        },
+        {
+          "eyebrow": "Pasul 3",
+          "title": "Plasarea implantului",
+          "body": "<p>Sub anestezie locală, rădăcina de titan a implantului este plasată cu atenție în osul maxilarului, procesul durând de obicei între 15 și 30 de minute pentru fiecare implant. Ușoare dureri sau umflături în zilele următoare sunt o parte normală a vindecării.</p>"
+        },
+        {
+          "eyebrow": "Pasul 4",
+          "title": "Osteointegrare",
+          "body": "<p>O perioadă de vindecare de aproximativ 2 până la 3 luni permite rădăcinii de titan să se integreze complet cu osul înconjurător, creând o bază puternică și stabilă pentru dintele protetic.</p>"
+        },
+        {
+          "eyebrow": "Pasul 5",
+          "title": "Structura protetică",
+          "body": "<p>Odată ce osseointegrarea este finalizată, este atașat un dinte protetic personalizat. Se pot folosi proteze din porțelan, zirconiu sau hibride, proiectate să se potrivească cu culoarea, forma și dimensiunea dinților naturali din jur.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Beneficii",
+      "title": "Avantajele implanturilor dentare",
+      "body": "Implanturile sunt standardul de aur pentru înlocuirea dinților lipsă:",
+      "items": [
+        {
+          "label": "Oferă un aspect și o senzație naturală a dintelui"
+        },
+        {
+          "label": "Asigură performanța maximă la mestecat"
+        },
+        {
+          "label": "Nu se efectuează nicio procedură pe dinții sănătoși adiacenți"
+        },
+        {
+          "label": "Păstrează sănătatea orală pe termen lung"
+        },
+        {
+          "label": "Susține estetica feței și previne riscul de colaps facial"
+        },
+        {
+          "label": "Oferă utilizare pe viață cu îngrijire și întreținere corespunzătoare"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "De ce Turcia",
+      "title": "De ce sunt preferate implanturile dentare în Turcia?",
+      "body": "<p>Turcia a devenit una dintre cele mai preferate destinații la nivel mondial pentru tratamentele cu implanturi, datorită clinicilor sale acreditate internațional, chirurgilor experimentați și opțiunilor de tratament rentabile. Clinica noastră din Istanbul oferă pacienților care călătoresc pentru tratamente cu implanturi o experiență completă de turism medical, incluzând transferuri VIP, suport pentru cazare și un plan de tratament personalizat și cuprinzător.</p>",
+      "cta": {
+        "label": "Planifică-ți vizita"
+      }
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Rezultate reale",
+      "title": "Implanturi dentare — Înainte & După",
+      "lead": "Vezi cum un zâmbet complet este restaurat prin tratamentul cu implanturi. Fiecare caz este planificat individual pentru un aspect natural, o mușcătură confortabilă și un rezultat durabil.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "Implanturi dentare — Întrebări frecvente",
+      "items": [
+        {
+          "question": "Cine este un candidat bun pentru un implant dentar?",
+          "answer": "<p>Majoritatea adulților cu o sănătate generală bună, care au pierdut unul sau mai mulți dinți și au suficient os al maxilarului sănătos sunt candidați potriviți. Afecțiuni precum diabetul necontrolat, boala avansată a gingiilor sau pierderea osoasă semnificativă nu exclud neapărat tratamentul, dar acestea sunt evaluate și gestionate mai întâi. O scurtă examinare cu radiografii sau o scanare 3D îi permite stomatologilor noștri să confirme potrivirea ta și să contureze planul potrivit.</p>"
+        },
+        {
+          "question": "Cât durează întregul tratament?",
+          "answer": "<p>De la început până la sfârșit, tratamentul cu implanturi durează de obicei între două și patru luni. Implantul în sine este plasat într-o scurtă programare, dar apoi are nevoie de aproximativ două până la trei luni pentru a se integra cu osul (oseointegrare) înainte ca dintele final să fie montat. În cazuri selectate cu calitate bună a osului, implanturile cu încărcare imediată sau aceeași zi pot scurta considerabil acest timp.</p>"
+        },
+        {
+          "question": "Este procedura dureroasă?",
+          "answer": "<p>Plasarea se realizează sub anestezie locală, deci nu veți simți durere în timpul procedurii. Ulterior, este normal să aveți umflături ușoare sau durere timp de câteva zile, care se gestionează ușor cu analgezice simple și îngrijire post-operatorie. Majoritatea pacienților compară recuperarea cu o extracție dentară obișnuită.</p>"
+        },
+        {
+          "question": "Ce se întâmplă dacă nu am suficient os maxilar?",
+          "answer": "<p>Osul insuficient este frecvent după pierderea lungă a dinților și rareori reprezintă o barieră. Proceduri precum grefa osoasă sau ridicarea sinusurilor pot reconstrui volumul osos necesar pentru a susține un implant în siguranță. Dacă este necesar, se planifică dinainte și poate adăuga timp de vindecare înainte de plasarea implantului.</p>"
+        },
+        {
+          "question": "Pot implanturile să înlocuiască mai mulți sau toți dinții mei?",
+          "answer": "<p>Da. Un singur implant poate înlocui un dinte, în timp ce câteva implanturi pot susține o punte pentru mai mulți dinți lipsă. Pentru un arc complet, tratamente precum All-on-4 sau All-on-6 folosesc doar patru până la șase implanturi pentru a ancora un set complet fix de dinți — o alternativă stabilă și confortabilă la protezele detașabile.</p>"
+        },
+        {
+          "question": "Implanturile arată și se simt natural?",
+          "answer": "<p>Așa este. Rădăcina de titan stă ascunsă în os, iar dintele protetic personalizat de deasupra este potrivit după culoarea, forma și dimensiunea dinților tăi naturali. Deoarece implantul este ancorat ferm, îți permite să muști, să mesteci și să vorbești la fel ca un dinte real — fără mișcarea asociată cu protezele dentare.</p>"
+        },
+        {
+          "question": "Cât timp durează implanturile dentare?",
+          "answer": "<p>Rădăcina implantului este proiectată să fie o soluție pe viață și, cu o îngrijire bună, poate dura decenii. Coroana vizibilă de deasupra poate arăta în cele din urmă uzură după mulți ani de utilizare și poate fi reînnoită fără a înlocui implantul. Igiena zilnică, gingiile sănătoase și controalele regulate sunt cheia succesului pe termen lung.</p>"
+        },
+        {
+          "question": "Fumează sau vârsta afectează tratamentul cu implanturi?",
+          "answer": "<p>Nu există o limită superioară de vârstă — ceea ce contează este sănătatea oaselor și a gingiilor, nu vârsta. Fumatul, însă, încetinește vindecarea și crește riscul de eșec al implantului, așa că reducerea sau oprirea fumatului în perioada tratamentului îmbunătățește semnificativ rezultatul. Dentistul dumneavoastră vă va oferi sfaturi personalizate în timpul evaluării.</p>"
+        },
+        {
+          "question": "Cum să am grijă de implantul meu?",
+          "answer": "<p>Îngrijirea unui implant este la fel ca îngrijirea dinților naturali: periați de două ori pe zi, curățați între dinți cu ață dentară sau o periuță interdentară și participați la controale dentare de rutină. O igienă zilnică bună menține sănătatea gingiilor din jur și protejează stabilitatea pe termen lung a implantului.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultație Gratuită",
+      "title": "Obțineți planul de tratament pentru implantul dumneavoastră",
+      "lead": "Împărtășiți câteva detalii și echipa noastră vă va răspunde cu un plan personalizat pentru implant dentar și un deviz complet, fără obligații — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare gratuită a tratamentului din fotografiile sau radiografia dumneavoastră"
+        },
+        {
+          "label": "Deviz transparent, complet și fără obligații"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Suport multilingv la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicitați o Consultare Gratuită"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Explorați Mai Departe",
+      "title": "Tratamente Relaționate"
+    }
+  ]
+}
+

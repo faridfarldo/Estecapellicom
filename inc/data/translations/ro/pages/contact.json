@@ -1,0 +1,19 @@
+{
+  "source_slug": "contact",
+  "slug": "contact",
+  "title": "Contact",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Contactează-ne",
+      "title": "Suntem aici ca să răspundem la întrebările tale.",
+      "lead": "Scrie-ne pe WhatsApp, sună-ne sau trimite-ne un e-mail, ori programează o consultație online gratuită cu unul dintre consultanții noștri medicali.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    }
+  ]
+}

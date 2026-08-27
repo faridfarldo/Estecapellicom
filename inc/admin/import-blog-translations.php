@@ -32,7 +32,7 @@ if ( ! defined( 'ESTECAPELLI_BLOG_I18N_IMPORT_VERSION' ) ) {
 
 /** Translated languages this importer handles (English is meta-only). */
 function estecapelli_blog_i18n_languages() {
-	return array( 'fr', 'tr', 'it', 'es', 'pl', 'pt' );
+	return array( 'fr', 'tr', 'it', 'es', 'pl', 'pt', 'ro' );
 }
 
 /** Localized metadata entry for one article + language, or null. */

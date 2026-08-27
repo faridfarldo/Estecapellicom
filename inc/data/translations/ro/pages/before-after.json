@@ -1,0 +1,19 @@
+{
+  "source_slug": "before-after",
+  "slug": "inainte-dupa",
+  "title": "Înainte și după",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Înainte și după",
+      "title": "Rezultate reale, de la pacienți reali.",
+      "lead": "Răsfoiește imaginile comparative înainte-după din tratamentele noastre de transplant de păr, chirurgie plastică și stomatologie. Fiecare imagine reprezintă un pacient care ne-a încredințat transformarea lui.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    }
+  ]
+}

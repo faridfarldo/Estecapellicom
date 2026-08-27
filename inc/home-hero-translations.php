@@ -23,7 +23,7 @@ function estecapelli_home_hero_language() {
 	$path    = trim( (string) wp_parse_url( $request, PHP_URL_PATH ), '/' );
 	$prefix  = strtolower( (string) strtok( $path, '/' ) );
 	$prefix  = 'pt-pt' === $prefix ? 'pt' : $prefix;
-	if ( in_array( $prefix, array( 'en', 'tr', 'fr', 'it', 'es', 'pl', 'pt' ), true ) ) {
+	if ( in_array( $prefix, array( 'en', 'tr', 'fr', 'it', 'es', 'pl', 'pt', 'ro' ), true ) ) {
 		return $prefix;
 	}
 

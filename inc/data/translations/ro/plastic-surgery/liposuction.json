@@ -1,0 +1,264 @@
+{
+  "source_slug": "liposuction",
+  "slug": "liposuctie",
+  "title": "Liposucție",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Conturarea corpului",
+      "title": "Liposucție",
+      "lead": "O procedură modernă de conturare a corpului care reduce depozitele de grăsime localizate și încăpățânate și redefinește contururile estetice.",
+      "cta_primary": {
+        "label": "Consult gratuit"
+      },
+      "cta_secondary": {
+        "label": "Conversație pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Procedura",
+      "title": "Ce este liposucția?",
+      "body": "<p>Liposucția este o procedură modernă de conturare a corpului concepută pentru a reduce depozitele de grăsime localizate și a remodela contururile estetice. În timpul procedurii, celulele de grăsime sunt îndepărtate chirurgical, ceea ce reduce permanent numărul acestora în zona tratată. Din această cauză, liposucția oferă o soluție eficientă și de încredere, cu rezultate care pot dura mulți ani.</p><p>Tehnicile de liposucție utilizate la Estecapelli depășesc simpla subțiere a corpului și ajută la obținerea unui aspect mai proporțional și estetic.</p>"
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Zone de tratament",
+      "title": "Ce zone pot fi modelate prin liposucție?",
+      "body": "Liposucția poate fi efectuată pe diferite zone ale corpului unde se acumulează grăsime și este rezistentă la alte metode. Cele mai frecvent tratate zone includ:",
+      "items": [
+        {
+          "label": "Abdomen și stomac"
+        },
+        {
+          "label": "Talie și flancuri"
+        },
+        {
+          "label": "Șolduri și șolduri exterioare"
+        },
+        {
+          "label": "Coapse interne și externe"
+        },
+        {
+          "label": "Spate"
+        },
+        {
+          "label": "Brațe și axile"
+        },
+        {
+          "label": "Piept (pentru tratarea ginecomastiei la bărbați)"
+        },
+        {
+          "label": "Bărbie dublă și sub maxilar"
+        }
+      ],
+      "footer": "Această procedură nu este o metodă de slăbire. În schimb, elimină eficient depozitele de grăsime localizate care nu dispar în ciuda scăderii generale în greutate."
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Tehnici",
+      "title": "Tipuri de liposucție",
+      "lead": "La Estecapelli, sunt utilizate diferite tehnici de liposucție pentru a atinge obiectivele de conturare a corpului dumneavoastră. Metoda potrivită este aleasă în funcție de distribuția grăsimii, elasticitatea pielii și rezultatul dorit. Glisați pentru a vedea principalele opțiuni de mai jos.",
+      "items": [
+        {
+          "eyebrow": "Tehnică",
+          "title": "Liposucție Vaser",
+          "body": "<p>Liposucția Vaser este o tehnică avansată care folosește energia cu ultrasunete pentru a lichefia celulele adipoase înainte de îndepărtare, permițând un contur corporal precis și delicat.</p><p><strong>Avantaje:</strong></p><ul><li>Țintește grăsimea cu precizie</li><li>Minim invazivă, cu mai puțin traumatism tisular</li><li>Rezultate netede și cu aspect natural</li><li>Recuperare mai rapidă comparativ cu liposucția tradițională</li></ul>"
+        },
+        {
+          "eyebrow": "Tehnică",
+          "title": "Liposucție cu laser",
+          "body": "<p>Liposucția cu laser folosește energie laser intensă pentru a descompune celulele de grăsime, în timp ce promovează simultan fermitatea pielii pentru contururi mai netede.</p><p><strong>Avantaje:</strong></p><ul><li>Topeste grăsimea precis</li><li>Sprijină fermitatea pielii</li><li>Minim invaziv cu recuperare rapidă</li><li>Rezultate netede și cu aspect natural</li></ul>"
+        },
+        {
+          "eyebrow": "Tehnică",
+          "title": "Liposucție tumescentă",
+          "body": "<p>Liposucția tumescentă implică injectarea unei soluții speciale în zona vizată înainte de îndepărtarea grăsimii pentru a minimiza sângerarea și vânătăile. Astăzi, aceasta este adesea combinată cu alte tehnici de liposucție pentru rezultate îmbunătățite.</p>"
+        },
+        {
+          "eyebrow": "Tehnică",
+          "title": "PAL (Liposucție asistată de putere)",
+          "body": "<p>PAL (Liposucție asistată de putere) folosește canule asistate de vibrații pentru a descompune grăsimea mai ușor și mai eficient, făcând procedura mai rapidă și mai lină.</p><p><strong>Avantaje:</strong></p><ul><li>Îndepărtarea grăsimii mai ușoară și mai rapidă</li><li>Oboseală redusă a chirurgului, mai precis</li><li>Minim invaziv cu rezultate mai netede</li><li>Poate fi combinată cu alte tehnici</li></ul>"
+        },
+        {
+          "eyebrow": "Tehnică",
+          "title": "Liposucție clasică",
+          "body": "<p>Liposucția tradițională este o tehnică convențională de îndepărtare a grăsimii efectuată manual, fără dispozitive. Rămâne o opțiune preferată în anumite cazuri.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Candidați",
+      "title": "Cine poate să facă liposucție?",
+      "body": "Dacă îndepliniți oricare dintre aceste criterii, ați putea fi un candidat pentru liposucție:",
+      "items": [
+        {
+          "label": "Adulți care și-au terminat faza de creștere"
+        },
+        {
+          "label": "Persoane cu zone de grăsime încăpățânate care nu se ameliorează cu dieta și exercițiile"
+        },
+        {
+          "label": "Cei care doresc să își definească contururile corporale"
+        },
+        {
+          "label": "Persoane fără afecțiuni medicale care să împiedice chirurgia"
+        },
+        {
+          "label": "Persoane cu elasticitate bună a pielii"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Important",
+      "title": "Când nu este recomandată liposucția",
+      "body": "<ul><li>Perioada de sarcină și alăptare</li><li>Boli cronice grave</li><li>Tulburări de coagulare</li><li>Obezitate severă</li></ul>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Înainte de intervenție",
+      "title": "Pregătirea înainte de liposucție",
+      "body": "<p>Procesul preoperator la Estecapelli este gestionat cu meticulozitate pentru a asigura o planificare chirurgicală sigură.</p>"
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Operațiunea",
+      "title": "Cum se realizează operația de liposucție?",
+      "body": "<p>Liposucția se efectuează sub anestezie locală sau generală. Tehnica aleasă depinde de cantitatea și caracteristicile grăsimii ce urmează a fi îndepărtată, precum și de dimensiunea zonei tratate.</p><p><strong>Pași generali:</strong></p><ol><li>Fă incizii mici</li><li>Descompune grăsimea folosind tehnologia adecvată (vaser, laser etc.)</li><li>Îndepărtează celulele adipoase cu canule</li><li>Conturează și modelează zona</li><li>Incizii apropiate cu cicatrici minime</li></ol><p>Durata: 30 de minute până la 3 ore, în funcție de mărimea procedurii.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "După operație",
+      "title": "Procesul de recuperare după liposucție",
+      "lead": "La Estecapelli, prioritizăm confortul prin monitorizarea atentă a procesului de recuperare post-liposucție.",
+      "items": [
+        {
+          "time": "Primele Zile",
+          "title": "Îmbrăcăminte de compresie",
+          "body": "Pot apărea dureri ușoare, vânătăi și umflături. Începe să folosești un articol de compresie."
+        },
+        {
+          "time": "Săptămâna 1",
+          "title": "Înapoi la Viața Cotidiană",
+          "body": "Pacientul poate relua activitățile zilnice. Mersul și mișcările ușoare sunt încurajate."
+        },
+        {
+          "time": "2–3 Săptămâni",
+          "title": "Umflătura scade",
+          "body": "Umflătura scade semnificativ. Revenirea treptată la activități sportive este posibilă."
+        },
+        {
+          "time": "6 săptămâni – 3 luni",
+          "title": "Contururile prind formă",
+          "body": "Contururile corpului încep să prindă contur."
+        },
+        {
+          "time": "3–6 luni",
+          "title": "Rezultate finale",
+          "body": "Rezultatele finale sunt dezvăluite."
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "Îngrijire Postoperatorie",
+      "title": "Lucruri de luat în considerare după liposucție",
+      "body": "Pentru a sprijini vindecarea și a proteja rezultatele, țineți cont de următoarele:",
+      "items": [
+        {
+          "label": "Poartă regulat piesa de compresie recomandată"
+        },
+        {
+          "label": "Evitați sporturile intense pentru o perioadă"
+        },
+        {
+          "label": "Stați departe de băi fierbinți, saune sau medii similare"
+        },
+        {
+          "label": "Beți multă apă și mențineți o dietă echilibrată"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Rezultate reale",
+      "title": "Liposucție — Înainte & După",
+      "lead": "Vedeți contururile mai netede și mai definite pe care pacienții noștri le obțin. Fiecare rezultat este adaptat corpului individual, cu grăsimea eliminată precis pentru o formă naturală și proporționată.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "Liposucție — Întrebări frecvente",
+      "items": [
+        {
+          "question": "Este liposucția o metodă de pierdere în greutate?",
+          "answer": "<p>Nu — liposucția este o procedură de modelare a corpului, nu o metodă de slăbit. Ea elimină depozitele de grăsime încăpățânate și localizate, care rezistă la dietă și exerciții, pentru a-ți rafina forma, dar schimbarea pe cântar este de obicei mică. Funcționează cel mai bine atunci când te apropii de o greutate stabilă și sănătoasă și nu este un tratament pentru obezitate.</p>"
+        },
+        {
+          "question": "Care tehnică este potrivită pentru mine — Vaser, laser, PAL, tumescentă sau clasică?",
+          "answer": "<p>Cea mai bună metodă depinde de zona tratată, de cantitatea și fermitatea grăsimii și de elasticitatea pielii. Vaser utilizează ultrasunete pentru conturarea precisă și delicată a zonelor definite, laserul adaugă o oarecare fermitate a pielii, PAL accelerează eliminarea volumelor mai mari, iar tehnica tumescentă este adesea combinată cu celelalte pentru a reduce sângerarea și vânătăile. După examinare, chirurgul dumneavoastră va recomanda tehnica unică — sau combinația — care va oferi cel mai neted și mai natural rezultat.</p>"
+        },
+        {
+          "question": "Ce zone ale corpului pot fi tratate?",
+          "answer": "<p>Liposucția poate trata majoritatea zonelor în care se acumulează grăsimea încăpățânată — abdomenul, talia, flancurile (colăceii), șoldurile, coapsele, genunchii, brațele, spatele, linia sutienului și bărbia sau gâtul. Mai multe zone pot fi adesea tratate într-o singură ședință, iar procedura este frecvent combinată cu alte operații, cum ar fi abdominoplastia sau BBL. Chirurgul dumneavoastră va confirma ce zone sunt potrivite în timpul consultației.</p>"
+        },
+        {
+          "question": "Ce anestezie se folosește și procedura este dureroasă?",
+          "answer": "<p>În funcție de numărul și dimensiunea zonelor, liposucția se efectuează fie sub anestezie locală, fie generală, astfel încât să fiți confortabil pe tot parcursul procedurii. Operația durează, de obicei, între aproximativ treizeci de minute și trei ore. Ulterior, vă puteți aștepta la durere, vânătăi și umflături în primele zile până la săptămâni, bine gestionate cu medicamentele prescrise și un corset de compresie.</p>"
+        },
+        {
+          "question": "Cât durează perioada de recuperare și șederea în Turcia?",
+          "answer": "<p>Majoritatea pacienților rămân în Turcia pentru câteva zile, inclusiv pentru un control postoperator înainte de a zbura acasă. Recuperarea inițială durează aproximativ una până la două săptămâni, perioadă în care mulți revin la munca de birou, iar corsetul de compresie se poartă timp de câteva săptămâni pentru a sprijini vindecarea și a netezi conturul. Rezultatele finale apar treptat pe măsură ce umflăturile se reduc, devenind de obicei clare în trei până la șase luni.</p>"
+        },
+        {
+          "question": "Sunt rezultatele permanente și cu aspect natural?",
+          "answer": "<p>Celulele adipoase îndepărtate în timpul liposucției dispar definitiv, astfel încât zonele tratate rămân mai slabe pe termen lung. Creșterea semnificativă în greutate în viitor poate, totuși, să mărească celulele adipoase rămase în alte părți, așa că menținerea unei greutăți stabile păstrează cel mai bine rezultatul. Realizată cu tehnica potrivită de un chirurg experimentat, conturul arată neted, echilibrat și natural.</p>"
+        },
+        {
+          "question": "Când pot să reiau exercițiile fizice?",
+          "answer": "<p>Plimbările ușoare sunt încurajate după câteva zile pentru a sprijini circulația și vindecarea. Activitatea ușoară poate fi reluată în primele două săptămâni, în timp ce exercițiile intense, ridicarea greutăților și antrenamentele de mare impact trebuie amânate până la aproximativ patru până la șase săptămâni, odată ce chirurgul confirmă că sunteți complet vindecat.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Prețuri",
+      "title": "Prețuri Liposucție",
+      "body": "<p>Prețul liposucției depinde de mai mulți factori:</p><ul><li>Cantitatea de grăsime care trebuie îndepărtată</li><li>Numărul de zone care urmează a fi tratate</li><li>Tehnica utilizată (Vaser, laser, clasică, etc.)</li><li>Durata intervenției chirurgicale</li><li>Așteptările pacientului</li></ul><p>Prețul cel mai exact se stabilește după o consultație online cu specialiștii Estecapelli.</p>",
+      "cta": {
+        "label": "Solicită o cotație personalizată"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consult gratuit",
+      "title": "Gata să-ți definești contururile?",
+      "lead": "Distribuie câteva detalii și echipa noastră va răspunde cu un plan personalizat de liposucție și o ofertă completă fără obligații — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare gratuită pe baza fotografiilor tale"
+        },
+        {
+          "label": "Cotație completă, transparentă, fără obligații"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Asistență multilingvă la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicită o consultație gratuită"
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Explorează mai departe",
+      "title": "Tratamente conexe"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Signature of the current slug tables. Bump when rows/languages are added so
  * the sweep re-runs against the new data.
  */
-define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v4-indexed-pt-alias' );
+define( 'ESTECAPELLI_SLUG_FIX_SIG', 'v5-indexed-ro' );
 
 /**
  * treatment_category base slugs, keyed by the English (source) slug.

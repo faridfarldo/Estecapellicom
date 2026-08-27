@@ -1,0 +1,265 @@
+{
+  "source_slug": "hair-transplant",
+  "slug": "transplant-de-par",
+  "title": "Transplant de păr",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Transplant de păr",
+      "title": "Restaurare capilară, construită pentru o densitate naturală.",
+      "lead": "De la FUE cu lamă de safir până la protocoalele noastre brevetate Exosome și VITA, fiecare plan de transplant de păr Estecapelli este construit în jurul scalpului tău, al zonei tale donatoare și al obiectivelor tale.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "De unde începi",
+      "title": "Un transplant de păr planificat în întregime în jurul tău",
+      "body": "<p>Căderea părului arată rareori la fel de la o persoană la alta, așa că nici soluția potrivită nu este aceeași. La Estecapelli, fiecare plan începe cu o evaluare detaliată a scalpului tău, a zonei donatoare, a caracteristicilor părului tău și a densității pe care vrei să o obții — niciodată cu un pachet standard, valabil pentru toată lumea. Pornind de aici, îți recomandăm tehnica, numărul de grefe și abordarea care îți vor da rezultatul cel mai natural.</p><p>Chirurgii noștri lucrează exclusiv în spații la standard spitalicesc, folosind metodele FUE și DHI considerate standardul de aur, îmbunătățite de propriile noastre protocoale Sapphire, Exosome și VITA. Fie că îți refaci o linie frontală care s-a retras, adaugi densitate sau conturezi sprâncene și barbă, obiectivul rămâne același: rezultate care să arate ca și cum nu ar fi fost niciodată altceva decât ale tale.</p>"
+    },
+    {
+      "acf_fc_layout": "quick_stats",
+      "eyebrow": "De ce aleg pacienții Estecapelli",
+      "stats": [
+        {
+          "value": "6 tehnici",
+          "label": "FUE, DHI, Sapphire, Exosome, VITA și altele"
+        },
+        {
+          "value": "Trico Lab",
+          "label": "Analiză capilară cu inteligență artificială"
+        },
+        {
+          "value": "~3 zile",
+          "label": "Ședere obișnuită în Turcia"
+        },
+        {
+          "value": "Permanent",
+          "label": "Grefe rezistente la căderea viitoare"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "techniques",
+      "eyebrow": "Doar la Estecapelli",
+      "title": "Două protocoale care schimbă ce poate obține un transplant",
+      "lead": "Fiecare transplant Estecapelli este realizat cu metoda FUE sau DHI, considerate standardul de aur. Ceea ce face diferența în rezultat este ce adăugăm peste ele — două protocoale dezvoltate de propria noastră echipă medicală, care îți protejează grefele în orele ce decid cât din părul tău nou va crește cu adevărat.",
+      "items": [
+        {
+          "name": "Exosome FUE",
+          "body": "<p>În clipa în care o grefă părăsește scalpul, își pierde alimentarea cu sânge, iar fiecare oră petrecută în afara corpului costă din supraviețuire. În loc de un lichid de conservare obișnuit, Estecapelli îți păstrează grefele într-o soluție derivată din celule stem mezenchimale și bogată în exozomi — veziculele naturale prin care celulele își semnalizează una alteia să se repare.</p><p>Foliculii sunt hrăniți și protejați în fereastra cea mai critică a operației, iar efectul antiinflamator se prelungește în recuperare: roșeața și sensibilitatea scalpului se remit mai devreme, circulația din jurul noilor grefe se îmbunătățește, iar părul care crește din ele pornește dintr-o poziție mai puternică.</p>",
+          "points": [
+            {
+              "label": "Grefe păstrate într-o soluție cu exozomi, nu într-un lichid de conservare obișnuit"
+            },
+            {
+              "label": "Viabilitatea foliculilor susținută timp de până la 72 de ore"
+            },
+            {
+              "label": "Pierderea de grefe redusă de la obișnuitele 15–20% la aproximativ 1%"
+            },
+            {
+              "label": "Efect antiinflamator — roșeața și sensibilitatea se remit mai repede"
+            },
+            {
+              "label": "Aprobat de TÜBİTAK, consiliul de cercetare științifică al Turciei"
+            }
+          ],
+          "cta": {
+            "label": "Descoperă Exosome FUE"
+          }
+        },
+        {
+          "name": "Protocolul VITA",
+          "body": "<p>Protocolul VITA este un tratament în trei faze, construit în jurul unei formule concentrate de aminoacizi, vitamine, factori de creștere și ATP. Microcanalele deschise cu un dermaroller duc serul în profunzimea scalpului, astfel încât zona receptoare să fie pregătită și hrănită înainte de implantarea vreunei grefe.</p><p>După recoltare, grefele sunt păstrate în același ser, sub vapori de aer rece, pentru a rămâne hidratate și pentru a reduce la minimum stresul celular. O ședință de PRP imediat după procedură încheie protocolul, folosind proprii tăi factori de creștere pentru a accelera vindecarea și a susține menținerea grefelor.</p>",
+          "points": [
+            {
+              "label": "Protejează vitalitatea grefelor în afara corpului"
+            },
+            {
+              "label": "Hrănește foliculii cu vitamine, minerale și ATP"
+            },
+            {
+              "label": "Ședință de PRP în aceeași zi, din propriul tău sânge"
+            },
+            {
+              "label": "Se combină atât cu procedura FUE, cât și cu DHI"
+            },
+            {
+              "label": "Ideal pentru foliculi slăbiți, păr fin sau o zonă donatoare limitată"
+            }
+          ],
+          "cta": {
+            "label": "Descoperă protocolul VITA"
+          }
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "results",
+      "eyebrow": "Dovada",
+      "title": "Aceste tehnici, pe pacienți reali",
+      "lead": "Rezultate ale pacienților tratați cu protocoalele noastre Exosome, VITA, Sapphire FUE și DHI — fiecare planificat în jurul liniei frontale, al zonei donatoare și al tiparului de creștere al persoanei respective.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "price_compare",
+      "eyebrow": "Comparație de costuri",
+      "title": "Aceeași procedură, un preț cu totul diferit",
+      "lead": "În străinătate, un transplant de păr se facturează aproape întotdeauna per grefă — așa că, cu cât ai nevoie de mai mult păr, cu atât nota de plată crește mai abrupt. La Estecapelli prețul este fix și all-inclusive, indiferent de numărul tău de grefe. Mișcă glisorul ca să vezi cât ar costa cazul tău în altă parte.",
+      "slider_label": "Numărul de grefe",
+      "rows": [
+        {
+          "country": "Statele Unite"
+        },
+        {
+          "country": "Regatul Unit"
+        },
+        {
+          "country": "Canada"
+        },
+        {
+          "country": "Germania"
+        },
+        {
+          "country": "Franța"
+        },
+        {
+          "country": "Spania"
+        }
+      ],
+      "highlight": {
+        "country": "Turcia",
+        "clinic": "Estecapelli",
+        "badge": "Preț fix",
+        "note": "Indiferent de numărul tău de grefe"
+      },
+      "includes": [
+        {
+          "label": "Procedura ta, cu tehnica aleasă pentru cazul tău"
+        },
+        {
+          "label": "Cazare la hotel de 5 stele"
+        },
+        {
+          "label": "Serviciu de transfer VIP"
+        },
+        {
+          "label": "Translator personal"
+        },
+        {
+          "label": "Anestezie fără durere"
+        },
+        {
+          "label": "Echipă dedicată de monitorizare post-operatorie"
+        }
+      ],
+      "footnote": "Cifrele per grefă sunt intervale orientative de piață, publicate de clinici din fiecare țară, și sunt afișate doar pentru comparație — nu sunt oferte. Prețul tău Estecapelli se confirmă după o evaluare gratuită a fotografiilor tale.",
+      "cta": {
+        "label": "Află prețul meu fix"
+      }
+    },
+    {
+      "acf_fc_layout": "stories"
+    },
+    {
+      "acf_fc_layout": "aftercare",
+      "eyebrow": "După ce te întorci acasă",
+      "title": "Îngrijirea noastră post-operatorie, gândită pentru primul an de creștere",
+      "lead": "Transplantul durează o zi; rezultatul se construiește în cele douăsprezece luni care urmează. Fiecare pacient pleacă din clinică cu kitul Estecapelli de îngrijire post-operatorie și cu o rutină arătată personal — pentru că felul în care sunt îngrijite grefele în primele săptămâni decide cât din părul nou supraviețuiește.",
+      "items": [
+        {
+          "name": "Șampon post-operator",
+          "body": "O spălare delicată, care nu agresează, folosită din prima ta zi acasă. Curăță zona receptoare fără frecare, astfel încât crustele să se înmoaie și să se desprindă singure, în loc să fie frecate."
+        },
+        {
+          "name": "Loțiune reparatoare",
+          "body": "Se aplică înaintea fiecărei spălări, pentru a desprinde crustele din jurul fiecărei grefe și a împiedica uscarea scalpului. Este pasul care face primele zece zile confortabile, nu tensionate."
+        },
+        {
+          "name": "Spray cu ser fiziologic și medicație",
+          "body": "Un spray cu ser fiziologic menține zona grefată umedă în primele zile, alături de medicația prescrisă de medicul tău pentru umflături și confort."
+        },
+        {
+          "name": "O rutină, nu doar o trusă",
+          "body": "Prima ta spălare se face împreună cu tine, la clinică, iar întreaga rutină îți este notată înainte de plecare. Echipa noastră post-operatorie rămâne apoi alături de tine prin faza de cădere, prin creșterea nouă și până la rezultatul de douăsprezece luni."
+        }
+      ],
+      "cta": {
+        "label": "Vezi calendarul complet de după transplant"
+      }
+    },
+    {
+      "acf_fc_layout": "related",
+      "eyebrow": "Tratamentele noastre",
+      "title": "Explorează tratamentele de transplant de păr"
+    },
+    {
+      "acf_fc_layout": "gallery",
+      "eyebrow": "Rezultate reale",
+      "title": "Transplant de păr — înainte și după",
+      "lead": "Vezi densitatea naturală și liniile frontale pe care le obțin pacienții noștri. Fiecare rezultat este proiectat în jurul tiparului individual de creștere, pentru un aspect complet natural.",
+      "cta": {
+        "label": "Vezi galeria completă"
+      }
+    },
+    {
+      "acf_fc_layout": "form",
+      "eyebrow": "Consultație gratuită",
+      "title": "Află care transplant de păr este potrivit pentru tine",
+      "lead": "Trimite-ne câteva fotografii, iar echipa noastră medicală îți va răspunde cu tehnica recomandată, o estimare a numărului de grefe și o ofertă all-inclusive, fără nicio obligație — de obicei în câteva ore.",
+      "points": [
+        {
+          "label": "Evaluare gratuită a numărului de grefe pe baza fotografiilor tale"
+        },
+        {
+          "label": "Ofertă all-inclusive transparentă, fără nicio obligație"
+        },
+        {
+          "label": "Răspuns rapid din partea echipei noastre dedicate de îngrijire a pacienților"
+        },
+        {
+          "label": "Asistență în mai multe limbi la fiecare pas"
+        }
+      ],
+      "submit_label": "Solicită o consultație gratuită"
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "Transplantul de păr — întrebări frecvente",
+      "items": [
+        {
+          "question": "Care tehnică de transplant de păr este cea mai bună pentru mine?",
+          "answer": "<p>Nu există o singură tehnică cea mai bună — alegerea potrivită depinde de gradul căderii părului, de calitatea și dimensiunea zonei tale donatoare, de suprafața care trebuie acoperită și de stilul tău de viață. FUE și DHI sunt ambele metode considerate standardul de aur, în timp ce protocoalele noastre Sapphire, Exosome și VITA adaugă avantaje specifice pentru vindecare, densitate sau supraviețuirea grefelor. După ce îți analizează fotografiile, chirurgii noștri îți recomandă metoda care îți va da rezultatul cel mai natural și mai durabil în cazul tău.</p>"
+        },
+        {
+          "question": "Sunt un candidat potrivit pentru un transplant de păr?",
+          "answer": "<p>Majoritatea adulților cu o cădere a părului stabilă și cu o zonă donatoare sănătoasă în partea din spate și pe lateralele scalpului sunt potriviți, inclusiv bărbații cu calviție de tip masculin și multe femei cu părul rărit. O stare bună de sănătate contează mai mult decât vârsta. O consultație gratuită cu fotografii îi permite echipei noastre să îți confirme eligibilitatea și să estimeze numărul de grefe de care ai avea nevoie.</p>"
+        },
+        {
+          "question": "Procedura este dureroasă și ce fel de anestezie se folosește?",
+          "answer": "<p>Procedura se efectuează sub anestezie locală, așa că rămâi treaz, dar nu simți durere în timpul ședinței. Majoritatea pacienților descriu doar un ușor disconfort în momentul în care se aplică prima dată anestezicul. O ședință durează de obicei șase-opt ore, în funcție de numărul de grefe, iar tu te întorci la hotel în aceeași zi.</p>"
+        },
+        {
+          "question": "Cât timp ar trebui să rămân în Turcia?",
+          "answer": "<p>Majoritatea pacienților își planifică aproximativ trei zile în Turcia. Acestea acoperă ziua consultației și a procedurii, prima spălare și un instructaj personal de îngrijire post-operatorie cu echipa noastră, înainte de zborul spre casă. Te ajutăm să îți coordonezi cazarea la hotel și transferurile de la aeroport, ca întreaga călătorie să decurgă cât mai lin.</p>"
+        },
+        {
+          "question": "Când voi vedea rezultatele și sunt ele permanente?",
+          "answer": "<p>Firele transplantate cad, de obicei, în primele săptămâni, ceea ce este complet normal. Creșterea nouă începe în jurul lunilor trei-patru, o densitate vizibilă se dezvoltă până la șase-nouă luni, iar rezultatul final se maturizează în jurul lunii a douăsprezecea. Pentru că grefele sunt preluate din zone rezistente genetic la căderea părului, ele continuă să crească permanent — poți tunde, spăla și coafa părul ca de obicei.</p>"
+        },
+        {
+          "question": "Rezultatul va arăta natural?",
+          "answer": "<p>Da. Cei mai importanți factori pentru un aspect natural sunt designul liniei frontale și unghiul, direcția și densitatea fiecărui folicul implantat. Chirurgii noștri îți proiectează linia frontală împreună cu tine, în prealabil, și implantează grefele una câte una, urmând tiparul tău natural de creștere, astfel încât rezultatul să se integreze perfect cu părul tău existent și să pară că a fost dintotdeauna acolo.</p>"
+        }
+      ]
+    }
+  ]
+}

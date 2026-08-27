@@ -1,0 +1,103 @@
+{
+  "source_slug": "tricholab",
+  "slug": "tricholab",
+  "title": "TrichoLab",
+  "sections": [
+    {
+      "acf_fc_layout": "hero",
+      "eyebrow": "Analiză capilară cu inteligență artificială",
+      "title": "TrichoLab",
+      "lead": "Un sistem avansat de analiză capilară, bazat pe inteligență artificială, care examinează părul și scalpul prin imagistică tricoscopică de înaltă rezoluție — transformându-ți scalpul în date precise, pe baza cărora se construiește un plan de transplant complet personalizat.",
+      "cta_primary": {
+        "label": "Consultație gratuită"
+      },
+      "cta_secondary": {
+        "label": "Scrie-ne pe WhatsApp"
+      }
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "Tehnologia",
+      "title": "Ce este TrichoLab?",
+      "body": "<p>TrichoLab este un sistem avansat de analiză capilară, bazat pe inteligență artificială, care examinează părul și scalpul prin imagistică tricoscopică de înaltă rezoluție. Măsurând parametri critici cu precizie milimetrică, oferă informații obiective, bazate pe date, care îi ghidează pe specialiștii noștri în planificarea celui mai eficient tratament pentru fiecare persoană.</p><p>Sistemul evaluează o gamă cuprinzătoare de factori, printre care densitatea foliculilor de păr, potențialul de grefe, grosimea firului de păr, capacitatea zonei donatoare, cartografierea căderii părului și rata de miniaturizare. Acest nivel de detaliu îi permite echipei noastre să conceapă un plan de tratament personalizat, bazat pe date exacte, în timp real, nu pe estimări.</p>"
+    },
+    {
+      "acf_fc_layout": "steps",
+      "eyebrow": "Procesul",
+      "title": "Analiza capilară cu TrichoLab la Estecapelli",
+      "lead": "De la imagistica de înaltă rezoluție până la un plan precis și personalizat. Parcurge pașii de mai jos.",
+      "items": [
+        {
+          "time": "Pasul 1",
+          "title": "Scanare tricoscopică digitală",
+          "body": "<p>Scalpul este examinat prin microimagistică de înaltă rezoluție, care surprinde imagini detaliate ale foliculilor de păr.</p>"
+        },
+        {
+          "time": "Pasul 2",
+          "title": "Analiza datelor cu inteligență artificială",
+          "body": "<p>Algoritmi avansați transformă datele imagistice în valori numerice precise pentru densitate și distribuția foliculară.</p>"
+        },
+        {
+          "time": "Pasul 3",
+          "title": "Plan de tratament personalizat",
+          "body": "<p>Datele stau la baza unui plan complet personalizat, care include numărul exact de grefe necesare.</p>"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "candidate",
+      "eyebrow": "De ce contează",
+      "title": "Importanța TrichoLab în planificarea transplantului",
+      "body": "Analiza științifică îți protejează zona donatoare și asigură rezultate naturale și simetrice:",
+      "items": [
+        {
+          "label": "Evaluare științifică a capacității zonei donatoare — fără recoltare excesivă"
+        },
+        {
+          "label": "Calcul exact al numărului de grefe, care elimină sub- și supraplanificarea"
+        },
+        {
+          "label": "Design natural și simetric, bazat pe părul tău existent"
+        },
+        {
+          "label": "Protecția pe termen lung a zonei donatoare"
+        },
+        {
+          "label": "Disponibil doar într-un număr limitat de clinici din Turcia"
+        }
+      ]
+    },
+    {
+      "acf_fc_layout": "intro",
+      "eyebrow": "De ce Estecapelli",
+      "title": "De ce TrichoLab la Estecapelli?",
+      "body": "<p>TrichoLab este un sistem avansat de analiză, disponibil doar într-un număr limitat de clinici din Turcia, iar la Estecapelli se află în centrul a tot ceea ce facem, oferindu-le pacienților noștri acces la un nivel de analiză pe care puține clinici îl pot pune la dispoziție.</p><p>Fiecare evaluare este obiectivă, măsurabilă și complet transparentă. Pentru fiecare pacient se dezvoltă o strategie de transplant cu adevărat personalizată, construită pe date exacte și nu pe presupuneri, care protejează zona donatoare și maximizează rezultatele pe termen lung.</p>",
+      "cta": {
+        "label": "Programează o consultație gratuită"
+      }
+    },
+    {
+      "acf_fc_layout": "faq",
+      "eyebrow": "Bine de știut",
+      "title": "TrichoLab — întrebări frecvente",
+      "items": [
+        {
+          "question": "Analiza TrichoLab este dureroasă?",
+          "answer": "<p>Deloc. Este un proces imagistic neinvaziv, care doar scanează scalpul — fără ace și fără disconfort.</p>"
+        },
+        {
+          "question": "De ce contează TrichoLab pentru transplantul meu?",
+          "answer": "<p>Calculează numărul exact de grefe de care ai nevoie și îți protejează zona donatoare, astfel încât planul să fie exact, natural și sustenabil.</p>"
+        },
+        {
+          "question": "Ce este, mai exact, analiza TrichoLab?",
+          "answer": "<p>TrichoLab este un sistem avansat de analiză capilară care examinează părul și scalpul prin imagistică de înaltă rezoluție și software asistat de inteligență artificială, măsurând densitatea părului, grosimea firului, capacitatea zonei donatoare și tiparul căderii.</p>"
+        },
+        {
+          "question": "TrichoLab stabilește numărul exact de grefe?",
+          "answer": "<p>TrichoLab întărește planificarea, susținând necesarul de grefe cu date științifice. Decizia finală se ia împreună cu factori clinici precum evaluarea specialistului și designul liniei frontale.</p>"
+        }
+      ]
+    }
+  ]
+}

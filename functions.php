@@ -81,6 +81,7 @@ require get_template_directory() . '/inc/pl-string-fallbacks.php';
 require get_template_directory() . '/inc/pl-content-revisions.php';
 require get_template_directory() . '/inc/es-string-fallbacks.php';
 require get_template_directory() . '/inc/pt-string-fallbacks.php';
+require get_template_directory() . '/inc/ro-string-fallbacks.php';
 require get_template_directory() . '/inc/legal-string-fallbacks.php';
 require get_template_directory() . '/inc/home-hero-translations.php';
 require get_template_directory() . '/inc/nav-translations.php';
@@ -118,6 +119,7 @@ if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-pl-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-es-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-pt-hair-treatments.php';
+	require get_template_directory() . '/inc/admin/import-ro-hair-treatments.php';
 	require get_template_directory() . '/inc/admin/import-pl-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-hair-pages.php';
 	require get_template_directory() . '/inc/admin/import-pl-dental-treatments.php';
@@ -127,10 +129,12 @@ if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-it-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-es-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-pt-plastic-treatments.php';
+	require get_template_directory() . '/inc/admin/import-ro-plastic-treatments.php';
 	require get_template_directory() . '/inc/admin/import-fr-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-es-dental-treatments.php';
 	require get_template_directory() . '/inc/admin/import-pt-dental-treatments.php';
+	require get_template_directory() . '/inc/admin/import-ro-dental-treatments.php';
 	// Loaded after the Italian Hair, Plastic and Dental import engines it shares.
 	require get_template_directory() . '/inc/admin/import-tr-treatments.php';
 	require get_template_directory() . '/inc/admin/import-it-doctors.php';
@@ -140,6 +144,7 @@ if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-pl-doctors.php';
 	require get_template_directory() . '/inc/admin/import-es-pages.php';
 	require get_template_directory() . '/inc/admin/import-pt-pages.php';
+	require get_template_directory() . '/inc/admin/import-ro-pages.php';
 	// Loaded after import-it-doctors.php, whose engine it shares.
 	require get_template_directory() . '/inc/admin/import-fr-doctors.php';
 	require get_template_directory() . '/inc/admin/import-fr-pages.php';

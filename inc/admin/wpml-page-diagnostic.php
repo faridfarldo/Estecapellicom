@@ -72,7 +72,7 @@ function estecapelli_wpml_diag_targets() {
 
 /** All languages the report walks, in column order. */
 function estecapelli_wpml_diag_languages() {
-	return array( 'en', 'fr', 'it', 'es', 'pt', 'pl', 'tr' );
+	return array( 'en', 'fr', 'it', 'es', 'pt', 'pl', 'tr', 'ro' );
 }
 
 /** Raw post row for a slug in a given post_type, ignoring request filtering. */
