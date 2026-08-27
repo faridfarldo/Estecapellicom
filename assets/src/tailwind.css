@@ -9320,3 +9320,75 @@
 	}
 	.site-footer__consent-link:hover { opacity: 1; }
 }
+
+/* ── Language suggestion bar ──────────────────────────────────────────────
+   Shown on a translated page when the visitor's own language is one we
+   publish. It is a link, never a redirect: deep pages arrive from search and
+   moving them would hide the six non-English indexes from Googlebot, which
+   crawls this site from US addresses. See inc/geo-language.php.
+
+   Bottom-LEFT, because bottom-right belongs to .float-wp and .wa-notice. It
+   also stands down entirely while the consent banner is open — consent is
+   legally required and gets the visitor's attention first. */
+@layer components {
+	.lang-suggest {
+		position: fixed;
+		z-index: 110;
+		left: 1rem;
+		bottom: max(1rem, env(safe-area-inset-bottom));
+		/* Clear the floating WhatsApp pill on narrow screens. */
+		right: 108px;
+		max-width: 24rem;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.7rem 0.8rem 0.7rem 1rem;
+		background: white;
+		border: 1px solid var(--color-brand-100);
+		border-radius: var(--radius-2xl, 1rem);
+		box-shadow: var(--shadow-pop);
+	}
+
+	/* Consent first. */
+	body:has(.consent.is-open) .lang-suggest { display: none; }
+
+	.lang-suggest__text {
+		margin: 0;
+		font-size: 0.8125rem;
+		line-height: 1.45;
+		color: oklch(45% 0.015 260);
+	}
+	.lang-suggest__action {
+		flex: 0 0 auto;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: var(--color-brand-600);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		white-space: nowrap;
+	}
+	.lang-suggest__action:hover { color: var(--color-brand-700); }
+	.lang-suggest__close {
+		flex: 0 0 auto;
+		width: 1.75rem;
+		height: 1.75rem;
+		display: grid;
+		place-items: center;
+		background: none;
+		border: 0;
+		border-radius: 999px;
+		font-size: 1.25rem;
+		line-height: 1;
+		color: oklch(55% 0.015 260);
+		cursor: pointer;
+	}
+	.lang-suggest__close:hover { background: var(--color-brand-50, oklch(97% 0.01 260)); }
+
+	@media (min-width: 768px) {
+		.lang-suggest {
+			left: 1.75rem;
+			bottom: 1.75rem;
+			right: auto;
+		}
+	}
+}

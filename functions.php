@@ -85,6 +85,7 @@ require get_template_directory() . '/inc/ro-string-fallbacks.php';
 require get_template_directory() . '/inc/legal-string-fallbacks.php';
 require get_template_directory() . '/inc/home-hero-translations.php';
 require get_template_directory() . '/inc/nav-translations.php';
+require get_template_directory() . '/inc/geo-language.php';
 require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
