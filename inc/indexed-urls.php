@@ -4,7 +4,7 @@
  *
  * Nothing in the theme should translate a slug or assemble a multilingual URL
  * heuristically. English source paths are keys; the values below are the exact
- * indexed routes for all seven languages.
+ * indexed routes for all eight languages.
  *
  * @package Estecapelli
  */
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string[]
  */
 function estecapelli_indexed_languages() {
-	return array( 'en', 'tr', 'fr', 'it', 'es', 'pl', 'pt' );
+	return array( 'en', 'tr', 'fr', 'it', 'es', 'pl', 'pt', 'ro' );
 }
 
 /**

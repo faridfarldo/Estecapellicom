@@ -8,12 +8,38 @@ batch if one file disagrees.
 
 ## What is already done
 
-`inc/indexed-urls.php` carries the full Romanian URL contract. It is staged but
-switched off: `estecapelli_indexed_languages()` still returns the seven existing
-codes, so nothing Romanian is live yet. The switch is flipped last, after the
-content lands.
+All 40 JSON overlays and all 8 blog bodies have landed and
+`node tools/validate-ro-translations.js` reports a clean run, so the content
+half of this spec is finished. What follows is kept as the record of the rules
+those files were written to — re-read it before editing any of them.
 
-`inc/data/translations/ro/` exists with all six folders, empty.
+`inc/indexed-urls.php` carries the full Romanian URL contract and the switch is
+now flipped: `estecapelli_indexed_languages()` returns `ro` alongside the seven
+existing codes.
+
+The theme plumbing is in place too:
+
+- `inc/ro-string-fallbacks.php` — the full front-end string dictionary, plus
+  the `%d min read` / `%d star` plural forms.
+- `inc/nav-translations.php` — the `ro` navbar and mega-menu dictionary.
+- `inc/consent-string-fallbacks.php`, `inc/legal-string-fallbacks.php` — cookie
+  banner and the four footer legal labels.
+- `inc/template-tags.php` — the Romanian flag and the WhatsApp intro message.
+- `inc/data/blog-i18n-meta.php` — Romanian title, meta description and focus
+  keyphrase for all 8 articles.
+- `inc/admin/import-ro-{hair,plastic,dental}-treatments.php` and
+  `inc/admin/import-ro-pages.php` (pages **and** doctors) — one Tools screen
+  each; `ro` is registered in the shared legal and blog importers.
+- `inc/wpml-slug-fix.php` — signature bumped to `v5-indexed-ro` so the slug
+  sweep re-runs once Romanian pages exist.
+
+**What is left is outside this repo:** add Romanian to WPML on live, then run
+the importers. Until Romanian is active in WPML every importer refuses with
+"Romanian (ro) must be active in WPML", which is the intended guard.
+
+Two things deliberately fall back to English because no Romanian asset exists:
+the VITA/Exosome hero videos, and the homepage Patient Stories (Romanian is not
+in `estecapelli_patient_stories_localized()`, so it shows the English set).
 
 ## Division of work
 
