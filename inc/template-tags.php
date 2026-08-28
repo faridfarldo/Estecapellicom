@@ -1793,10 +1793,16 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 	function estecapelli_patient_stories() {
 		$lang = estecapelli_stories_current_lang();
 
-		// Turkish: patient testimonials must not be published for legal reasons.
+		// Languages that publish no patient stories at all:
+		//
+		// - Turkish: testimonials must not be published for legal reasons.
+		// - Romanian: only the eyebrow and headline have Romanian fallbacks, so
+		//   the lead and every patient story would still be the English
+		//   defaults. Hidden until a Romanian patient set is authored.
+		//
 		// Empty stories makes the whole section render nothing — the template
 		// (template-parts/patient-stories.php) returns early when 'stories' is empty.
-		if ( 'tr' === $lang ) {
+		if ( in_array( $lang, array( 'tr', 'ro' ), true ) ) {
 			return estecapelli_patient_stories_filter( array( 'eyebrow' => '', 'headline' => '', 'lead' => '', 'stories' => array() ) );
 		}
 
@@ -2034,10 +2040,22 @@ if ( ! function_exists( 'estecapelli_patient_stories_defaults' ) ) {
 if ( ! function_exists( 'estecapelli_stories_current_lang' ) ) {
 	/**
 	 * Current display language for the Patient Stories section, normalised to the
-	 * public indexed code (en/es/it/fr/pl/pt/tr). WPML may store Portuguese as
+	 * public indexed code (en/tr/fr/it/es/pl/pt/ro). WPML may store Portuguese as
 	 * "pt-pt"; everything else already matches the indexed code.
+	 *
+	 * The URL is read first: WPML answers with the site's DEFAULT language
+	 * wherever it cannot resolve a request, which would show the English story
+	 * set on a language that publishes none. When the URL states a language,
+	 * that is the contract.
 	 */
 	function estecapelli_stories_current_lang() {
+		if ( function_exists( 'estecapelli_request_language_code' ) ) {
+			$requested = estecapelli_request_language_code();
+			if ( '' !== $requested ) {
+				return $requested;
+			}
+		}
+
 		$lang = apply_filters( 'wpml_current_language', null );
 		if ( ! $lang && defined( 'ICL_LANGUAGE_CODE' ) ) {
 			$lang = ICL_LANGUAGE_CODE;
