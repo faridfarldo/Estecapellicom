@@ -262,11 +262,77 @@ function estecapelli_render_doctor_language_diagnostic() {
 		return;
 	}
 
+	estecapelli_doctor_diag_render_copy_block( $languages );
 	estecapelli_doctor_diag_render_all_posts();
 	estecapelli_doctor_diag_render_rosters( $languages );
 	estecapelli_doctor_diag_render_expected( $languages );
 
 	echo '</div>';
+}
+
+/**
+ * The whole report again as one block of plain text, ready to copy out.
+ *
+ * The tables below are wide enough that screenshotting them loses columns, and
+ * the person reading this report is usually relaying it to someone who cannot
+ * reach wp-admin. One tab-separated block travels intact through any chat box.
+ *
+ * @param array $languages Language codes, in column order.
+ * @return void
+ */
+function estecapelli_doctor_diag_render_copy_block( array $languages ) {
+	$lines   = array();
+	$lines[] = '# doctor language diagnostic — ' . home_url( '/' );
+	$lines[] = '# generated ' . gmdate( 'Y-m-d H:i' ) . ' UTC';
+	$lines[] = '';
+	$lines[] = '## posts (id | slug | status | wpml_row | trid | source | meta[lang] | get_field[lang])';
+
+	foreach ( estecapelli_doctor_diag_all_posts() as $post ) {
+		$raw   = estecapelli_doctor_diag_raw_row( $post->ID );
+		$meta  = (string) get_post_meta( $post->ID, 'position', true );
+		$field = function_exists( 'get_field' ) ? (string) get_field( 'position', $post->ID ) : '';
+
+		$lines[] = implode(
+			"\t",
+			array(
+				(int) $post->ID,
+				$post->post_name,
+				$post->post_status,
+				$raw['rows'] ? $raw['language'] : 'NO-ROW',
+				$raw['rows'] > 1 ? $raw['trid'] . ' (x' . $raw['rows'] . ' rows)' : (string) $raw['trid'],
+				$raw['source'] ? $raw['source'] : '-',
+				$meta . ' [' . estecapelli_doctor_diag_position_language( $meta ) . ']',
+				$field . ' [' . estecapelli_doctor_diag_position_language( $field ) . ']',
+			)
+		);
+	}
+
+	foreach ( $languages as $language ) {
+		$roster  = estecapelli_doctor_diag_roster_for( $language );
+		$lines[] = '';
+		$lines[] = '## roster ' . $language . ' — ' . count( $roster ) . ' returned';
+		if ( ! $roster ) {
+			$lines[] = '(empty — section falls back to the page JSON members repeater)';
+			continue;
+		}
+		foreach ( $roster as $row ) {
+			$lines[] = implode(
+				"\t",
+				array(
+					(int) $row['id'],
+					$row['row_lang'] ? $row['row_lang'] : 'NO-ROW',
+					$row['field'] . ' [' . estecapelli_doctor_diag_position_language( $row['field'] ) . ']',
+					$row['permalink'],
+				)
+			);
+		}
+	}
+
+	echo '<h2>' . esc_html__( 'Copy this and send it over', 'estecapelli' ) . '</h2>';
+	echo '<p class="description">' . esc_html__( 'Everything below is in the tables further down — this box is just the same thing as plain text, so it can be selected and pasted in one go. Click inside it and press Ctrl+A then Ctrl+C.', 'estecapelli' ) . '</p>';
+	echo '<textarea readonly onclick="this.select();" rows="14" style="width:100%;font-family:monospace;font-size:11px;white-space:pre;">';
+	echo esc_textarea( implode( "\n", $lines ) );
+	echo '</textarea>';
 }
 
 /** Section 1 — every doctor post, with its WPML row and its position values. */
