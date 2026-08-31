@@ -99,6 +99,7 @@ require get_template_directory() . '/inc/consent-string-fallbacks.php';
 // locked. Each carries its own opt-in constant for the actions it offers.
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/wpml-page-diagnostic.php';
+	require get_template_directory() . '/inc/admin/doctor-language-diagnostic.php';
 	require get_template_directory() . '/inc/admin/translation-lock-diagnostic.php';
 	require get_template_directory() . '/inc/admin/translation-save-recorder.php';
 }
