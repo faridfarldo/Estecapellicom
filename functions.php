@@ -83,6 +83,7 @@ require get_template_directory() . '/inc/es-string-fallbacks.php';
 require get_template_directory() . '/inc/pt-string-fallbacks.php';
 require get_template_directory() . '/inc/ro-string-fallbacks.php';
 require get_template_directory() . '/inc/legal-string-fallbacks.php';
+require get_template_directory() . '/inc/toc-string-fallbacks.php';
 require get_template_directory() . '/inc/home-hero-translations.php';
 require get_template_directory() . '/inc/nav-translations.php';
 require get_template_directory() . '/inc/geo-language.php';
