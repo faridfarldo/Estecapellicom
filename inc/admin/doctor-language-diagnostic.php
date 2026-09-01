@@ -200,7 +200,12 @@ function estecapelli_doctor_diag_position_language( $value ) {
  */
 function estecapelli_doctor_diag_roster_for( $language ) {
 	$previous = (string) apply_filters( 'wpml_current_language', null );
-	do_action( 'wpml_switch_language', $language );
+
+	// WPML's own code, not the indexed one: Portuguese is 'pt-pt' inside WPML
+	// while the site publishes it at /pt/. Asking WPML to switch to 'pt' names a
+	// language it does not have, and it answers with another language's posts —
+	// which is why the pt roster below used to come back holding Turkish rows.
+	do_action( 'wpml_switch_language', estecapelli_wpml_language_code( $language ) );
 
 	// Identical arguments to template-parts/sections/doctors.php.
 	$posts = get_posts(
@@ -370,7 +375,7 @@ function estecapelli_doctor_diag_render_all_posts() {
 			$verdict = estecapelli_doctor_diag_warn( __( 'position is empty', 'estecapelli' ) );
 		} elseif ( '?' === $field_lang ) {
 			$verdict = estecapelli_doctor_diag_warn( __( 'position not on record in any language', 'estecapelli' ) );
-		} elseif ( $field_lang !== $raw['language'] ) {
+		} elseif ( $field_lang !== estecapelli_indexed_language_code( $raw['language'] ) ) {
 			$verdict = estecapelli_doctor_diag_bad(
 				sprintf(
 					/* translators: 1: language of the text found, 2: language the post is registered under */
@@ -426,7 +431,9 @@ function estecapelli_doctor_diag_render_rosters( array $languages ) {
 		foreach ( $roster as $row ) {
 			$row_lang   = $row['row_lang'];
 			$field_lang = estecapelli_doctor_diag_position_language( $row['field'] );
-			$wrong_post = $row_lang && $row_lang !== $language;
+			// Compared as indexed codes so WPML's 'pt-pt' is not read as a
+			// Portuguese post sitting in the wrong language.
+			$wrong_post = $row_lang && estecapelli_indexed_language_code( $row_lang ) !== $language;
 			$wrong_text = '?' !== $field_lang && '—' !== $field_lang && $field_lang !== $language;
 
 			echo '<tr' . ( ( $wrong_post || $wrong_text ) ? ' style="background:#fcf0f1;"' : '' ) . '>';
