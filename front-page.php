@@ -2,36 +2,16 @@
 /**
  * The homepage template.
  *
- * Loaded automatically when "Front page displays" is left on "Your latest posts"
- * or when a static page is set as the front page.
+ * Serves every language root (/en/, /fr/, /it/ …). Each of those requests is
+ * resolved to that language's Home page, which exists so Rank Math and the
+ * dashboard have something per-language to attach to; the layout itself comes
+ * from the shared section stack below, never from the page's post_content.
  *
  * @package Estecapelli
  */
 
 get_header();
-?>
 
-<?php get_template_part( 'template-parts/hero', 'home' ); ?>
+get_template_part( 'template-parts/home-sections' );
 
-<?php get_template_part( 'template-parts/trust', 'strip' ); ?>
-
-<?php get_template_part( 'template-parts/hair-analysis-lab' ); ?>
-
-<?php if ( ! function_exists( 'estecapelli_is_turkish_request' ) || ! estecapelli_is_turkish_request() ) : ?>
-	<?php get_template_part( 'template-parts/home-before-after' ); ?>
-<?php endif; ?>
-
-<?php get_template_part( 'template-parts/services', 'home' ); ?>
-
-<?php get_template_part( 'template-parts/why', 'choose' ); ?>
-
-<?php get_template_part( 'template-parts/signature', 'methods' ); ?>
-
-<?php get_template_part( 'template-parts/patient', 'stories' ); ?>
-
-<?php get_template_part( 'template-parts/facilities' ); ?>
-
-<?php get_template_part( 'template-parts/latest', 'posts' ); ?>
-
-<?php
 get_footer();

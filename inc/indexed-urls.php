@@ -421,7 +421,13 @@ function estecapelli_indexed_route_key( $path ) {
 				$reverse[ $normalized_route ] = $key;
 			}
 		}
-		foreach ( estecapelli_legacy_home_slugs() as $language => $slug ) {
+		$home_leaves = estecapelli_legacy_home_slugs();
+		if ( function_exists( 'estecapelli_home_page_slugs' ) ) {
+			// Romanian has no legacy leaf but does have a Home page, so its slug
+			// only reaches the reverse map through here.
+			$home_leaves = array_merge( $home_leaves, estecapelli_home_page_slugs() );
+		}
+		foreach ( $home_leaves as $language => $slug ) {
 			if ( '' === $slug ) {
 				continue;
 			}
@@ -736,7 +742,13 @@ function estecapelli_redirect_legacy_language_home() {
 	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
 	$path    = strtolower( untrailingslashit( (string) wp_parse_url( $request, PHP_URL_PATH ) ) );
 	$targets = array();
-	foreach ( estecapelli_legacy_home_slugs() as $language => $slug ) {
+	$leaves  = estecapelli_legacy_home_slugs();
+	if ( function_exists( 'estecapelli_home_page_slugs' ) ) {
+		// The Home pages reuse these leaves, plus a Romanian one that never
+		// existed on the legacy structure. Both must 301 to the language root.
+		$leaves = array_merge( $leaves, estecapelli_home_page_slugs() );
+	}
+	foreach ( $leaves as $language => $slug ) {
 		// A language with no legacy leaf must not register '/xx/' as a target;
 		// that is the language root itself, and redirecting it to itself would
 		// be a loop.
@@ -1040,6 +1052,23 @@ function estecapelli_indexed_request( $query_vars ) {
 		if ( isset( $query_vars['lang'] ) ) {
 			$resolved['lang'] = $wpml_language;
 		}
+
+		/*
+		 * Query this language's Home page when one exists. The layout still
+		 * comes from front-page.php — the page is what gives Rank Math a real
+		 * post to read its per-language title and meta description from, and
+		 * what carries the language's own Homepage Content overrides.
+		 *
+		 * Safe against a canonical bounce to the page's own leaf: every
+		 * language root is in the indexed route contract, so
+		 * estecapelli_preserve_indexed_canonical() already vetoes
+		 * redirect_canonical here.
+		 */
+		$home_id = function_exists( 'estecapelli_home_page_id' ) ? estecapelli_home_page_id( $language ) : 0;
+		if ( $home_id ) {
+			$resolved['page_id'] = $home_id;
+		}
+
 		return $resolved;
 	}
 

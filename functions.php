@@ -53,6 +53,7 @@ function estecapelli_content_mutations_enabled() {
 require get_template_directory() . '/inc/db-error-display.php';
 require get_template_directory() . '/inc/indexed-urls.php';
 require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/home-pages.php';
 require get_template_directory() . '/inc/svg-support.php';
 require get_template_directory() . '/inc/class-estecapelli-walker-nav-menu.php';
 require get_template_directory() . '/inc/post-types.php';
@@ -103,6 +104,14 @@ if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/import-damage-report.php';
 	require get_template_directory() . '/inc/admin/translation-lock-diagnostic.php';
 	require get_template_directory() . '/inc/admin/translation-save-recorder.php';
+
+	/*
+	 * Homepage Pages setup. Not behind ESTECAPELLI_ENABLE_CONTENT_MUTATIONS: it
+	 * creates the Page each language root needs before Rank Math has anywhere to
+	 * store a title or meta description, and it only ever fills blanks — no
+	 * importer runs, and no authored content is replaced.
+	 */
+	require get_template_directory() . '/inc/admin/home-pages-setup.php';
 }
 
 /**

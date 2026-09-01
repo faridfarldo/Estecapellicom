@@ -17,6 +17,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'acf/init', 'estecapelli_register_acf_field_groups' );
+/**
+ * Where the homepage field groups appear.
+ *
+ * Two places, and the order matters to the editor more than to ACF:
+ *
+ *   • Each language's Home page, identified by its page template. This is the
+ *     per-language copy — what is saved here shows on that language only.
+ *   • The shared "Homepage Content" options page, kept as the site-wide
+ *     fallback so every value already saved there keeps rendering.
+ *
+ * estecapelli_home_field() reads them in that order.
+ *
+ * @return array ACF location rule groups (OR between them).
+ */
+function estecapelli_homepage_field_locations() {
+	return array(
+		array(
+			array(
+				'param'    => 'page_template',
+				'operator' => '==',
+				'value'    => 'home-page.php',
+			),
+		),
+		array(
+			array(
+				'param'    => 'options_page',
+				'operator' => '==',
+				'value'    => 'estecapelli-homepage',
+			),
+		),
+	);
+}
+
 function estecapelli_register_acf_field_groups() {
 
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
@@ -1170,15 +1203,7 @@ function estecapelli_register_acf_field_groups() {
 		array(
 			'key'                   => 'group_home_patient_stories',
 			'title'                 => __( 'Homepage — Patient Stories', 'estecapelli' ),
-			'location'              => array(
-				array(
-					array(
-						'param'    => 'options_page',
-						'operator' => '==',
-						'value'    => 'estecapelli-homepage',
-					),
-				),
-			),
+			'location'              => estecapelli_homepage_field_locations(),
 			'menu_order'            => 0,
 			'position'              => 'normal',
 			'style'                 => 'default',
@@ -1219,7 +1244,7 @@ function estecapelli_register_acf_field_groups() {
 		)
 	);
 
-	$home_loc = array( array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'estecapelli-homepage' ) ) );
+	$home_loc = estecapelli_homepage_field_locations();
 
 	/* ===== Hero — Signature split (Exosome / VITA) ===== */
 	$split_panel = function ( $p, $label ) {

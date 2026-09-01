@@ -37,7 +37,12 @@ function estecapelli_en_request( $query_vars ) {
 
 	$rest = trim( substr( $path, 2 ), '/' );
 	if ( '' === $rest ) {
-		return array(); // bare /en/ — serve the front page.
+		// Bare /en/ — serve the front page. Query the English Home page when it
+		// exists so Rank Math has a post to read the homepage title and meta
+		// description from; front-page.php still draws the layout.
+		$home_id = function_exists( 'estecapelli_home_page_id' ) ? estecapelli_home_page_id( 'en' ) : 0;
+
+		return $home_id ? array( 'page_id' => $home_id ) : array();
 	}
 
 	// Preview links carry the post ID and a post-specific nonce. Resolve that ID

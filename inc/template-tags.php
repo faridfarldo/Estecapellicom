@@ -1084,7 +1084,7 @@ if ( ! function_exists( 'estecapelli_home_hero' ) ) {
 		if ( ! function_exists( 'get_field' ) ) {
 			return $defaults;
 		}
-		return estecapelli_acf_overlay( $defaults, get_field( 'home_hero', 'option' ) );
+		return estecapelli_acf_overlay( $defaults, estecapelli_home_field( 'home_hero' ) );
 	}
 }
 
@@ -1143,7 +1143,7 @@ if ( ! function_exists( 'estecapelli_signature_split' ) ) {
 		$defaults = estecapelli_signature_split_defaults();
 		$payload  = $defaults;
 		if ( function_exists( 'get_field' ) ) {
-			$payload = estecapelli_acf_overlay( $defaults, get_field( 'signature_split', 'option' ) );
+			$payload = estecapelli_acf_overlay( $defaults, estecapelli_home_field( 'signature_split' ) );
 		}
 		// The option is shared by WPML, so force both signature panels to the
 		// active language after the ACF overlay has supplied its values.
@@ -1215,7 +1215,7 @@ if ( ! function_exists( 'estecapelli_hero_slides' ) ) {
 		$defaults = estecapelli_hero_slides_defaults();
 		$payload  = $defaults;
 		if ( function_exists( 'get_field' ) ) {
-			$payload = estecapelli_acf_overlay( $defaults, get_field( 'hero_slides', 'option' ) );
+			$payload = estecapelli_acf_overlay( $defaults, estecapelli_home_field( 'hero_slides' ) );
 		}
 
 		return function_exists( 'estecapelli_localize_home_hero_payload' )
@@ -1278,7 +1278,7 @@ if ( ! function_exists( 'estecapelli_trust_stats' ) ) {
 		if ( ! function_exists( 'get_field' ) ) {
 			return $defaults;
 		}
-		$acf = get_field( 'trust_stats', 'option' );
+		$acf = estecapelli_home_field( 'trust_stats' );
 		return ( ! empty( $acf ) && is_array( $acf ) ) ? $acf : $defaults;
 	}
 }
@@ -1428,7 +1428,7 @@ if ( ! function_exists( 'estecapelli_home_services' ) ) {
 	 */
 	function estecapelli_home_services() {
 		if ( function_exists( 'get_field' ) ) {
-			$acf = get_field( 'home_services', 'option' );
+			$acf = estecapelli_home_field( 'home_services' );
 			if ( ! empty( $acf ) ) {
 				return $acf;
 			}
@@ -1602,7 +1602,7 @@ if ( ! function_exists( 'estecapelli_why_choose' ) ) {
 		if ( ! function_exists( 'get_field' ) ) {
 			return $defaults;
 		}
-		return estecapelli_acf_overlay( $defaults, get_field( 'home_why_choose', 'option' ) );
+		return estecapelli_acf_overlay( $defaults, estecapelli_home_field( 'home_why_choose' ) );
 	}
 }
 
@@ -1705,7 +1705,7 @@ if ( ! function_exists( 'estecapelli_signature_methods' ) ) {
 		if ( ! function_exists( 'get_field' ) ) {
 			return $defaults;
 		}
-		return estecapelli_acf_overlay( $defaults, get_field( 'home_signature_methods', 'option' ) );
+		return estecapelli_acf_overlay( $defaults, estecapelli_home_field( 'home_signature_methods' ) );
 	}
 }
 
@@ -1826,7 +1826,7 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 			'headline' => 'home_stories_headline',
 			'lead'     => 'home_stories_lead',
 		) as $k => $field ) {
-			$v = get_field( $field, 'option' );
+			$v = estecapelli_home_field( $field );
 			if ( is_string( $v ) && '' !== $v ) {
 				$out[ $k ] = $v;
 			}
@@ -1834,7 +1834,7 @@ if ( ! function_exists( 'estecapelli_patient_stories' ) ) {
 
 		// Patient list — overlay each row onto the default with the same Key, so an
 		// empty field or image keeps the current value. No rows = pure defaults.
-		$rows = get_field( 'home_patient_stories_list', 'option' );
+		$rows = estecapelli_home_field( 'home_patient_stories_list' );
 		if ( ! empty( $rows ) && is_array( $rows ) ) {
 			$by_key = array();
 			foreach ( $defaults['stories'] as $s ) {
@@ -2701,7 +2701,7 @@ if ( ! function_exists( 'estecapelli_facilities' ) ) {
 	function estecapelli_facilities() {
 		$defaults = estecapelli_facilities_defaults();
 		$data     = function_exists( 'get_field' )
-			? estecapelli_acf_overlay( $defaults, get_field( 'home_facilities', 'option' ) )
+			? estecapelli_acf_overlay( $defaults, estecapelli_home_field( 'home_facilities' ) )
 			: $defaults;
 
 		/**
