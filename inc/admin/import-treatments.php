@@ -2261,6 +2261,19 @@ function estecapelli_autorun_language_import( $option_key, $version, callable $i
 		return; // exactly one item this request — cannot exceed the time limit.
 	}
 
+	/*
+	 * Only a clean sweep counts as done. An item given up on after three
+	 * attempts is still in $done so the loop moves past it, but marking the
+	 * version complete here would record a language as imported when part of it
+	 * never was — and the fix for whatever broke it would then need a version
+	 * bump to be picked up. Leaving the version unfinished costs one cheap pass
+	 * over an all-skipped list per admin load, and nothing is retried.
+	 */
+	if ( $failures ) {
+		update_option( $progress_key, array( 'version' => $version, 'done' => $done, 'failures' => $failures ), false );
+		return;
+	}
+
 	// Every item imported → mark the version complete and drop the progress row.
 	update_option( $option_key, $version, false );
 	delete_option( $progress_key );
