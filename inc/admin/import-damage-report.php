@@ -22,8 +22,17 @@
  *     which WPML reads as "show this in every language";
  *   - translation groups where one language slot is claimed twice.
  *
- * Read-only: every statement is a SELECT. It reports, it never repairs — the
- * repair for anything found here is a decision, not a button.
+ * Read-only by default: every statement is a SELECT, and what to do about most
+ * of what it finds is a decision rather than a button.
+ *
+ * The exception is orphan cleanup, behind ESTECAPELLI_ENABLE_ORPHAN_CLEANUP.
+ * Orphans are the one case narrow enough to automate: an item with no row in
+ * wp_icl_translations is in no language, so nothing links to it, no language
+ * filter shows it, and it cannot be opened from the Posts or Pages screen at
+ * all — while still being fed to Google as a URL that 404s. The button will
+ * only bin an orphan whose slug is also carried by an item that DOES have a
+ * language, so the last copy of anything is never what goes. Everything else it
+ * refuses and leaves listed.
  *
  * @package Estecapelli
  */
@@ -234,6 +243,84 @@ function estecapelli_damage_term_problems( $taxonomy ) {
 	);
 }
 
+/** Whether the orphan cleanup button is switched on in wp-config.php. */
+function estecapelli_damage_cleanup_enabled() {
+	return defined( 'ESTECAPELLI_ENABLE_ORPHAN_CLEANUP' ) && true === ESTECAPELLI_ENABLE_ORPHAN_CLEANUP;
+}
+
+/**
+ * The orphans that are safe to bin: no language row, and some other item with
+ * the same slug does have one.
+ *
+ * The twin is the whole safety argument. It proves the content is reachable
+ * somewhere else in the site, so binning this copy cannot be what removes the
+ * last of something — which is exactly the mistake that would be unrecoverable
+ * on a page whose only fault is that WPML forgot about it.
+ *
+ * @param string $post_type Post type to scan.
+ * @return array<int,object>
+ */
+function estecapelli_damage_binnable_orphans( $post_type ) {
+	global $wpdb;
+	$table = $wpdb->prefix . 'icl_translations';
+
+	return (array) $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT p.ID, p.post_name, p.post_title
+			 FROM {$wpdb->posts} p
+			 LEFT JOIN {$table} t
+			        ON t.element_id = p.ID
+			       AND t.element_type = CONCAT( 'post_', p.post_type )
+			 WHERE p.post_type = %s
+			   AND p.post_status NOT IN ( 'trash', 'auto-draft', 'inherit' )
+			   AND t.translation_id IS NULL
+			   AND EXISTS (
+			         SELECT 1
+			         FROM {$wpdb->posts} twin
+			         INNER JOIN {$table} tt
+			                 ON tt.element_id = twin.ID
+			                AND tt.element_type = CONCAT( 'post_', twin.post_type )
+			         WHERE twin.post_name = p.post_name
+			           AND twin.post_type = p.post_type
+			           AND twin.ID <> p.ID
+			           AND twin.post_status NOT IN ( 'trash', 'auto-draft', 'inherit' )
+			       )
+			 ORDER BY p.ID ASC",
+			$post_type
+		)
+	);
+}
+
+add_action( 'admin_post_estecapelli_damage_cleanup', 'estecapelli_handle_damage_cleanup' );
+/** Bin the orphans that pass the twin test. */
+function estecapelli_handle_damage_cleanup() {
+	if ( ! current_user_can( 'manage_options' ) || ! estecapelli_damage_cleanup_enabled() ) {
+		wp_die( esc_html__( 'You are not allowed to do this.', 'estecapelli' ) );
+	}
+	check_admin_referer( 'estecapelli_damage_cleanup' );
+
+	$notice = __( 'Nothing was binned — the confirmation box was not ticked.', 'estecapelli' );
+	if ( ! empty( $_POST['confirm'] ) ) {
+		$binned = 0;
+		foreach ( estecapelli_damage_post_types() as $post_type ) {
+			foreach ( estecapelli_damage_binnable_orphans( $post_type ) as $orphan ) {
+				if ( wp_trash_post( $orphan->ID ) ) {
+					++$binned;
+				}
+			}
+		}
+		$notice = sprintf(
+			/* translators: %d: number of orphans binned */
+			__( 'Binned %d orphans. Anything left listed did not pass the twin test and was not touched.', 'estecapelli' ),
+			$binned
+		);
+	}
+
+	set_transient( 'estecapelli_damage_notice', $notice, MINUTE_IN_SECONDS );
+	wp_safe_redirect( admin_url( 'tools.php?page=estecapelli-import-damage' ) );
+	exit;
+}
+
 add_action( 'admin_menu', 'estecapelli_register_damage_report' );
 /** Put the report under Tools, with the other read-only diagnostics. */
 function estecapelli_register_damage_report() {
@@ -327,7 +414,51 @@ function estecapelli_render_damage_report() {
 
 	echo '<div class="wrap">';
 	echo '<h1>' . esc_html__( 'Import Damage Report', 'estecapelli' ) . '</h1>';
-	echo '<p class="description">' . esc_html__( 'Read-only. Every statement is a SELECT — this page reports, it never repairs. It asks of every post type and taxonomy the questions that found the doctor and blog duplicates.', 'estecapelli' ) . '</p>';
+
+	$notice = (string) get_transient( 'estecapelli_damage_notice' );
+	if ( '' !== $notice ) {
+		delete_transient( 'estecapelli_damage_notice' );
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $notice ) . '</p></div>';
+	}
+
+	echo '<p class="description">' . esc_html__( 'Reporting only, apart from the orphan cleanup below. It asks of every post type and taxonomy the questions that found the doctor and blog duplicates.', 'estecapelli' ) . '</p>';
+
+	$binnable = array();
+	foreach ( estecapelli_damage_post_types() as $type ) {
+		foreach ( estecapelli_damage_binnable_orphans( $type ) as $orphan ) {
+			$binnable[] = array( 'type' => $type, 'orphan' => $orphan );
+		}
+	}
+
+	echo '<h2>' . esc_html__( 'Bin the orphans', 'estecapelli' ) . '</h2>';
+	echo '<p class="description">' . esc_html__( 'An orphan has no language, so no language filter in wp-admin will show it and it cannot be opened from the Pages screen at all — while still being listed in the sitemap as a URL that 404s. Only an orphan whose slug is ALSO carried by an item that has a language is offered here: that twin is the proof this is a spare copy and not the last one. They go to the bin, not to permanent deletion.', 'estecapelli' ) . '</p>';
+
+	if ( ! $binnable ) {
+		echo '<p style="color:#1a7f37;">' . esc_html__( 'No orphans qualify.', 'estecapelli' ) . '</p>';
+	} else {
+		echo '<table class="widefat striped" style="max-width:900px;"><thead><tr><th>' . esc_html__( 'ID', 'estecapelli' ) . '</th><th>' . esc_html__( 'Type', 'estecapelli' ) . '</th><th>' . esc_html__( 'Slug', 'estecapelli' ) . '</th><th>' . esc_html__( 'Title', 'estecapelli' ) . '</th><th>' . esc_html__( 'Open', 'estecapelli' ) . '</th></tr></thead><tbody>';
+		foreach ( $binnable as $row ) {
+			echo '<tr>';
+			echo '<td>' . (int) $row['orphan']->ID . '</td>';
+			echo '<td><code>' . esc_html( $row['type'] ) . '</code></td>';
+			echo '<td><code>' . esc_html( $row['orphan']->post_name ) . '</code></td>';
+			echo '<td><small>' . esc_html( $row['orphan']->post_title ) . '</small></td>';
+			echo '<td><a href="' . esc_url( (string) get_edit_post_link( $row['orphan']->ID, 'raw' ) ) . '">' . esc_html__( 'Edit', 'estecapelli' ) . '</a></td>';
+			echo '</tr>';
+		}
+		echo '</tbody></table>';
+
+		if ( ! estecapelli_damage_cleanup_enabled() ) {
+			echo '<p><em>' . esc_html__( 'To switch the button on, add this to wp-config.php above the "stop editing" line, and take it out again afterwards:', 'estecapelli' ) . '</em><br /><code>define( \'ESTECAPELLI_ENABLE_ORPHAN_CLEANUP\', true );</code></p>';
+		} else {
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+			echo '<input type="hidden" name="action" value="estecapelli_damage_cleanup">';
+			wp_nonce_field( 'estecapelli_damage_cleanup' );
+			echo '<p><label><input type="checkbox" name="confirm" value="1"> ' . esc_html__( 'Yes, move these to the bin.', 'estecapelli' ) . '</label></p>';
+			echo '<button type="submit" class="button button-primary">' . esc_html( sprintf( __( 'Bin %d orphans', 'estecapelli' ), count( $binnable ) ) ) . '</button>';
+			echo '</form>';
+		}
+	}
 
 	if ( ! estecapelli_damage_has_wpml_table() ) {
 		echo '<div class="notice notice-error"><p>' . esc_html__( 'WPML translation table not found — nothing to audit.', 'estecapelli' ) . '</p></div></div>';
