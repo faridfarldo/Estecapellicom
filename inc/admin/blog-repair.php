@@ -417,7 +417,10 @@ function estecapelli_render_blog_repair() {
 	foreach ( $plan as $entry ) {
 		$total_extra += count( $entry['extra'] );
 		foreach ( $entry['slots'] as $language => $slot ) {
-			if ( 'en' !== $language && $slot['canonical'] && $slot['canonical'] !== $slot['current'] ) {
+			// Only count what relink can actually do. Without an English source
+			// there is no group to write into, so an entry in that state is
+			// reported as stranded below rather than promised on the button.
+			if ( $entry['trid'] && 'en' !== $language && $slot['canonical'] && $slot['canonical'] !== $slot['current'] ) {
 				++$total_relink;
 			}
 			if ( $slot['canonical'] && '' !== $slot['expected'] && $slot['stored'] !== $slot['expected'] ) {
