@@ -33,7 +33,6 @@ function estecapelli_fr_doctors_manifest() {
 		'op-dr-hasan-celik'     => 'op-dr-hasan-celik',
 		'op-dr-mehmet-palali'   => 'op-dr-mehmet-palali',
 		'op-dr-necdet-derici'   => 'op-dr-necdet-derici',
-		'op-dr-ali-durmus'      => 'op-dr-ali-durmus',
 	);
 }
 

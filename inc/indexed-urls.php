@@ -368,7 +368,6 @@ function estecapelli_indexed_route_contract() {
 		'op-dr-hasan-celik'     => 'our-doctors',
 		'op-dr-mehmet-palali'   => 'our-doctors',
 		'op-dr-necdet-derici'   => 'our-doctors',
-		'op-dr-ali-durmus'      => 'our-doctors',
 	);
 	foreach ( $doctor_parents as $doctor => $parent ) {
 		$key = '/en/about-us/' . $parent . '/' . $doctor;

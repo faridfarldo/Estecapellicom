@@ -130,16 +130,6 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 				'old_page_path'    => 'about-us/our-doctors/op-dr-necdet-derici',
 			),
 
-			array(
-				'slug'          => 'op-dr-ali-durmus',
-				'name'          => 'Op. Dr. Ali Durmuş',
-				'position'      => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-				'bio'           => $surgeon_bio( __( 'Op. Dr. Ali Durmuş', 'estecapelli' ) ),
-				'credentials'   => $surgeon_credentials,
-				'menu_order'    => 5,
-				'old_page_path' => 'about-us/our-doctors/op-dr-ali-durmus',
-			),
-
 		);
 	}
 }
