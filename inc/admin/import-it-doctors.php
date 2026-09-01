@@ -210,12 +210,29 @@ function estecapelli_it_doctor_import_one( array $translation, $language_code = 
 	 * another post behind. That is how six doctors came to own ~170 posts, most
 	 * of them orphans WPML had no row for. Reuse of an existing translation is
 	 * left alone; only what we just created is rolled back.
+	 *
+	 * Deleting the post is not the whole rollback, though. By the time a later
+	 * step fails, that post has already taken the language slot, and taking a
+	 * slot deletes the previous holder's row outright. Deleting our post then
+	 * takes its row too and the slot is left empty, with the profile that used
+	 * to be there orphaned — which is how three Polish doctors went missing
+	 * from /pl/ after the first version of this rollback shipped. So put the
+	 * previous holder back whenever the slot ends up empty.
 	 */
-	$fail = static function ( $error ) use ( &$created_id ) {
-		if ( $created_id ) {
-			wp_delete_post( $created_id, true );
-			$created_id = 0;
+	$previous_occupant = (int) estecapelli_wpml_group_element_id_raw( $trid, $element_type, $language_code );
+
+	$fail = static function ( $error ) use ( &$created_id, $previous_occupant, $element_type, $trid, $language_code, $source_language ) {
+		if ( ! $created_id ) {
+			return $error;
 		}
+
+		wp_delete_post( $created_id, true );
+		$created_id = 0;
+
+		if ( $previous_occupant && ! estecapelli_wpml_group_element_id_raw( $trid, $element_type, $language_code ) ) {
+			estecapelli_wpml_replace_language_slot_raw( $previous_occupant, $element_type, $trid, $language_code, $source_language );
+		}
+
 		return $error;
 	};
 
