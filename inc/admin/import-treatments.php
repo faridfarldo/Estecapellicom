@@ -2205,6 +2205,22 @@ function estecapelli_reseed_binnur_chief_physician() {
  * @param callable $run_all    Imports the whole language; returns true|WP_Error.
  */
 function estecapelli_autorun_language_import( $option_key, $version, callable $items_provider, callable $import_one ) {
+	/*
+	 * The sweep is opt-in on its own, separately from the importer buttons.
+	 * Enabling content mutations to press a button in Tools used to also arm a
+	 * writer that fires on every single wp-admin page load, unattended — which
+	 * is how a single broken item quietly produced a few hundred duplicate
+	 * posts. Wanting the buttons available is not the same as wanting an
+	 * automatic sweep, so say so deliberately in wp-config.php:
+	 *
+	 *   define( 'ESTECAPELLI_ENABLE_AUTO_IMPORT', true );
+	 *
+	 * and take it out again once the languages have settled. Every importer
+	 * remains fully usable by hand meanwhile.
+	 */
+	if ( ! defined( 'ESTECAPELLI_ENABLE_AUTO_IMPORT' ) || true !== ESTECAPELLI_ENABLE_AUTO_IMPORT ) {
+		return;
+	}
 	if ( get_option( $option_key ) === $version ) {
 		return; // this language is fully imported for this version.
 	}
