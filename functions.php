@@ -100,6 +100,7 @@ require get_template_directory() . '/inc/consent-string-fallbacks.php';
 if ( is_admin() ) {
 	require get_template_directory() . '/inc/admin/wpml-page-diagnostic.php';
 	require get_template_directory() . '/inc/admin/doctor-language-diagnostic.php';
+	require get_template_directory() . '/inc/admin/import-damage-report.php';
 	require get_template_directory() . '/inc/admin/translation-lock-diagnostic.php';
 	require get_template_directory() . '/inc/admin/translation-save-recorder.php';
 }
