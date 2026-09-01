@@ -787,7 +787,7 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 								'photo'      => '',
 								'name'       => __( 'Dr. Mehmet Hanifi Kutlar', 'estecapelli' ),
 								'position'   => __( 'Medical Director & Co-founder', 'estecapelli' ),
-								'resume_url' => home_url( '/en/about-us/medical-director/mehmet-hanifi-kutlar' ),
+								'resume_url' => home_url( '/en/about-us/our-doctors/mehmet-hanifi-kutlar' ),
 							),
 							array(
 								'photo'      => '',
@@ -811,15 +811,6 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 					),
 				),
 			),
-			array(
-				'slug'   => 'medical-director',
-				'title'  => 'Chief Physician',
-				'parent' => 'about-us',
-				'sections' => array(
-					$hero( __( 'Clinical Leadership', 'estecapelli' ), __( 'Led by our chief physician.', 'estecapelli' ), __( 'Every clinical decision at Estecapelli is overseen by our chief physician, ensuring consistent standards across hair restoration, plastic surgery, dental and non-surgical care.', 'estecapelli' ) ),
-				),
-			),
-
 			// ======================== Category landings ========================
 			array(
 				'slug'   => 'hair-transplant',

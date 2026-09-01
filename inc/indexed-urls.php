@@ -198,7 +198,6 @@ function estecapelli_legacy_home_slugs() {
 function estecapelli_indexed_about_slugs() {
 	return array(
 		'our-doctors'     => array( 'en' => 'our-doctors', 'tr' => 'doktorlarimiz', 'fr' => 'nos-medecins', 'it' => 'i-nostri-medici', 'es' => 'nuestros-doctores', 'pl' => 'nasi-lekarze', 'pt' => 'nossos-medicos', 'ro' => 'medicii-nostri' ),
-		'medical-director' => array( 'en' => 'medical-director', 'tr' => 'tibbi-direktor', 'fr' => 'directeur-medical', 'it' => 'direttore-medico', 'es' => 'director-medico', 'pl' => 'dyrektor-medyczny', 'pt' => 'diretor-medico', 'ro' => 'director-medical' ),
 		'our-team'         => array( 'en' => 'our-team', 'tr' => 'ekibimiz', 'fr' => 'notre-equipe', 'it' => 'il-nostro-team', 'es' => 'nuestro-equipo', 'pl' => 'nasz-zespol', 'pt' => 'nossa-equipe', 'ro' => 'echipa-noastra' ),
 	);
 }
@@ -357,12 +356,13 @@ function estecapelli_indexed_route_contract() {
 	}
 
 	/*
-	 * mehmet-hanifi-kutlar sits under medical-director because that is the path
-	 * the live site indexed, not because of his title. Every other profile lives
-	 * under our-doctors.
+	 * Every profile lives under our-doctors. mehmet-hanifi-kutlar used to sit
+	 * under medical-director — the path the old live site had indexed, not
+	 * anything to do with his title — and moved here when that page was
+	 * retired. inc/redirects.php 301s his old path in all eight languages.
 	 */
 	$doctor_parents = array(
-		'mehmet-hanifi-kutlar'  => 'medical-director',
+		'mehmet-hanifi-kutlar'  => 'our-doctors',
 		'prof-dr-binnur-ustun'  => 'our-doctors',
 		'op-dr-hasan-celik'     => 'our-doctors',
 		'op-dr-mehmet-palali'   => 'our-doctors',
@@ -840,7 +840,7 @@ function estecapelli_indexed_post_route_key( $post ) {
 		return $category ? '/en/' . $category . '/' . $slug : '';
 	}
 	if ( 'doctor' === $post->post_type ) {
-		$parent = 'mehmet-hanifi-kutlar' === $slug ? 'medical-director' : 'our-doctors';
+		$parent = 'our-doctors';
 		return '/en/about-us/' . $parent . '/' . $slug;
 	}
 	if ( 'post' === $post->post_type && isset( estecapelli_indexed_blog_slugs()[ $slug ] ) ) {
@@ -1384,7 +1384,9 @@ function estecapelli_indexed_404_fallback() {
 	} elseif ( false !== strpos( $key, '/our-doctors/' ) ) {
 		$fallback = '/en/about-us/our-doctors';
 	} elseif ( false !== strpos( $key, '/medical-director/' ) ) {
-		$fallback = '/en/about-us/medical-director';
+		// The page is retired, so anything still under it lands on the doctors
+		// roster rather than on a route that no longer resolves.
+		$fallback = '/en/about-us/our-doctors';
 	}
 
 	$target = estecapelli_indexed_url( $fallback, $language );

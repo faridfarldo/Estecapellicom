@@ -63,7 +63,6 @@ function estecapelli_wpml_diag_targets() {
 		'about-us'         => array( 'label' => 'About Us',         'slugs' => array( 'pl' => 'o-nas' ) ),
 		'our-team'         => array( 'label' => 'Our Team',         'slugs' => array( 'pl' => 'nasz-zespol' ) ),
 		'our-doctors'      => array( 'label' => 'Our Doctors',      'slugs' => array( 'pl' => 'nasi-lekarze' ) ),
-		'medical-director' => array( 'label' => 'Chief Physician',  'slugs' => array( 'pl' => 'dyrektor-medyczny' ) ),
 		'before-after'     => array( 'label' => 'Before & After',   'slugs' => array( 'pl' => 'przed-po' ) ),
 		'contact'          => array( 'label' => 'Contact',          'slugs' => array( 'pl' => 'kontakt' ) ),
 		'blog'             => array( 'label' => 'Blog',             'slugs' => array( 'pl' => 'blog', 'ro' => 'blog' ) ),

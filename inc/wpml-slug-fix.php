@@ -66,7 +66,7 @@ function estecapelli_slug_map_treatments() {
 function estecapelli_slug_map_pages() {
 	$maps = array();
 	foreach ( estecapelli_indexed_route_contract() as $key => $routes ) {
-		if ( preg_match( '#^/en/(?:home|hair-transplant|plastic-surgery|dental-treatment|before-after|about-us|blog|contact)(?:/(?:our-doctors|medical-director|our-team))?$#', $key ) ) {
+		if ( preg_match( '#^/en/(?:home|hair-transplant|plastic-surgery|dental-treatment|before-after|about-us|blog|contact)(?:/(?:our-doctors|our-team))?$#', $key ) ) {
 			foreach ( $routes as $lang => $route ) {
 				if ( 'en' !== $lang ) {
 					$maps[ substr( $key, 4 ) ][ $lang ] = basename( $route );

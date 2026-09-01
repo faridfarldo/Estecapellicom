@@ -42,7 +42,7 @@ function estecapelli_it_doctor_source_seed( $source_slug ) {
 
 /** Exact indexed route key for a doctor profile. */
 function estecapelli_it_doctor_route_key( $source_slug ) {
-	$parent = 'mehmet-hanifi-kutlar' === $source_slug ? 'medical-director' : 'our-doctors';
+	$parent = 'our-doctors';
 	return '/en/about-us/' . $parent . '/' . $source_slug;
 }
 

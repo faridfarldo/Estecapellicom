@@ -44,7 +44,6 @@ function estecapelli_fr_pages_manifest() {
 		'about-us'                    => 'a-propos-de-nous',
 		'our-team'                    => 'notre-equipe',
 		'our-doctors'                 => 'nos-medecins',
-		'medical-director'            => 'directeur-medical',
 		// Standalone pages. (The blog landing has no ACF sections — it renders the
 		// post archive — so it is translated with the blog round, not here.)
 		'before-after'                => 'avant-apres',

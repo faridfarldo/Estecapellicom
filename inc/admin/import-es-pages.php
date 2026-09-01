@@ -25,7 +25,6 @@ function estecapelli_es_pages_manifest() {
 		'about-us'                    => 'sobre-nosotros',
 		'our-team'                    => 'nuestro-equipo',
 		'our-doctors'                 => 'nuestros-doctores',
-		'medical-director'            => 'director-medico',
 		'before-after'                => 'antes-despues',
 		'contact'                     => 'contacto',
 	);
@@ -57,7 +56,7 @@ function estecapelli_es_page_route_key( $source_slug ) {
 	if ( in_array( $source_slug, array( 'tricholab', 'pre-hair-transplant-period', 'post-hair-transplant-period' ), true ) ) {
 		return '/en/hair-transplant/' . $source_slug;
 	}
-	if ( in_array( $source_slug, array( 'our-team', 'our-doctors', 'medical-director' ), true ) ) {
+	if ( in_array( $source_slug, array( 'our-team', 'our-doctors' ), true ) ) {
 		return '/en/about-us/' . $source_slug;
 	}
 
@@ -66,7 +65,7 @@ function estecapelli_es_page_route_key( $source_slug ) {
 
 /** Indexed English route key for one doctor profile. */
 function estecapelli_es_doctor_route_key( $source_slug ) {
-	$parent = 'mehmet-hanifi-kutlar' === $source_slug ? 'medical-director' : 'our-doctors';
+	$parent = 'our-doctors';
 	return '/en/about-us/' . $parent . '/' . $source_slug;
 }
 
@@ -223,7 +222,7 @@ function estecapelli_run_es_content_import( $kind, $source_slug ) {
 		if ( ! isset( estecapelli_es_doctors_manifest()[ $source_slug ] ) ) {
 			return new WP_Error( 'es_content_unknown_doctor', sprintf( 'Unknown Spanish doctor source: %s.', $source_slug ) );
 		}
-		$parent_source = 'mehmet-hanifi-kutlar' === $source_slug ? 'medical-director' : 'our-doctors';
+		$parent_source = 'our-doctors';
 		if ( ! estecapelli_es_page_translation_ready( $parent_source ) ) {
 			return new WP_Error( 'es_content_doctor_parent_missing', sprintf( 'Import the Spanish %s page before its doctor profiles.', $parent_source ) );
 		}

@@ -25,7 +25,6 @@ function estecapelli_it_pages_manifest() {
 		'about-us'         => 'chi-siamo',
 		'our-team'         => 'il-nostro-team',
 		'our-doctors'      => 'i-nostri-medici',
-		'medical-director' => 'direttore-medico',
 		'before-after'     => 'prima-dopo',
 		'contact'          => 'contatto',
 	);
@@ -43,7 +42,7 @@ function estecapelli_it_template_pages_manifest() {
 
 /** Return the indexed English route key for a regular page seed. */
 function estecapelli_it_pages_route_key( $source_slug ) {
-	if ( in_array( $source_slug, array( 'our-team', 'our-doctors', 'medical-director' ), true ) ) {
+	if ( in_array( $source_slug, array( 'our-team', 'our-doctors' ), true ) ) {
 		return '/en/about-us/' . $source_slug;
 	}
 

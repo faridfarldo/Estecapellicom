@@ -54,7 +54,6 @@ function estecapelli_pl_revision_pages() {
 			'about-us',
 			'our-team',
 			'our-doctors',
-			'medical-director',
 			'before-after',
 			'contact',
 		)

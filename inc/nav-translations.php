@@ -94,7 +94,6 @@ function estecapelli_nav_route_to_label() {
 		'/en/about-us'                                                                 => 'About Us',
 		'/en/about-us/our-doctors'                                                     => 'Our Doctors',
 		'/en/about-us/our-team'                                                        => 'Our Team',
-		'/en/about-us/medical-director'                                                => 'Chief Physician',
 		'/en/blog'                                                                     => 'Blog',
 		'/en/contact'                                                                  => 'Contact Us',
 	);

@@ -90,6 +90,34 @@ function estecapelli_redirect_renamed_blog_slugs() {
 		// hops where one will do.
 		'pl/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia'        => '/pl/blog/przeszczep-wlosow-u-pacjentow-hiv-pozytywnych/',
 
+		/*
+		 * The Chief Physician page is retired. It was a one-section stub that
+		 * duplicated what the doctors roster already says, and the only profile
+		 * nested under it — mehmet-hanifi-kutlar, there because the old live
+		 * site had indexed that path, not because of his title — now sits with
+		 * every other profile under our-doctors.
+		 *
+		 * Sixteen indexed URLs move, so all sixteen are written out: the page
+		 * itself goes to the roster, and the profile goes to its own new
+		 * address rather than being folded into the roster with it.
+		 */
+		'en/about-us/medical-director/mehmet-hanifi-kutlar'    => '/en/about-us/our-doctors/mehmet-hanifi-kutlar/',
+		'en/about-us/medical-director'                         => '/en/about-us/our-doctors/',
+		'tr/hakkimizda/tibbi-direktor/mehmet-hanifi-kutlar'    => '/tr/hakkimizda/doktorlarimiz/mehmet-hanifi-kutlar/',
+		'tr/hakkimizda/tibbi-direktor'                         => '/tr/hakkimizda/doktorlarimiz/',
+		'fr/a-propos-de-nous/directeur-medical/mehmet-hanifi-kutlar' => '/fr/a-propos-de-nous/nos-medecins/mehmet-hanifi-kutlar/',
+		'fr/a-propos-de-nous/directeur-medical'                => '/fr/a-propos-de-nous/nos-medecins/',
+		'it/chi-siamo/direttore-medico/mehmet-hanifi-kutlar'   => '/it/chi-siamo/i-nostri-medici/mehmet-hanifi-kutlar/',
+		'it/chi-siamo/direttore-medico'                        => '/it/chi-siamo/i-nostri-medici/',
+		'es/sobre-nosotros/director-medico/mehmet-hanifi-kutlar' => '/es/sobre-nosotros/nuestros-doctores/mehmet-hanifi-kutlar/',
+		'es/sobre-nosotros/director-medico'                    => '/es/sobre-nosotros/nuestros-doctores/',
+		'pl/o-nas/dyrektor-medyczny/mehmet-hanifi-kutlar'      => '/pl/o-nas/nasi-lekarze/mehmet-hanifi-kutlar/',
+		'pl/o-nas/dyrektor-medyczny'                           => '/pl/o-nas/nasi-lekarze/',
+		'pt/sobre-nos/diretor-medico/mehmet-hanifi-kutlar'     => '/pt/sobre-nos/nossos-medicos/mehmet-hanifi-kutlar/',
+		'pt/sobre-nos/diretor-medico'                          => '/pt/sobre-nos/nossos-medicos/',
+		'ro/despre-noi/director-medical/mehmet-hanifi-kutlar'  => '/ro/despre-noi/medicii-nostri/mehmet-hanifi-kutlar/',
+		'ro/despre-noi/director-medical'                       => '/ro/despre-noi/medicii-nostri/',
+
 		// The "HIV+ in Turkey" merge, one line per language.
 		'en/blog/hair-transplant-for-hiv-positive-patients-in-turkey'               => '/en/blog/hair-transplant-for-hiv-positive-patients/',
 		'tr/blog/hiv-pozitif-hastalarina-turkiye-de-sac-ekimi'                      => '/tr/blog/hiv-pozitif-hastalara-sac-ekimi/',
@@ -173,9 +201,9 @@ function estecapelli_legacy_redirect_rules() {
 		// ---- Homepage ----
 		array( 'from' => '#^home/?$#i', 'to' => '/en/' ),
 
-		// ---- Doctors moved from nested pages to the `doctor` post type. The
-		//      surgeons and Medical Director keep their exact indexed parents. ----
-		array( 'from' => '#^about-us/medical-director/mehmet-hanifi-kutlar/?$#i', 'to' => '/en/about-us/medical-director/mehmet-hanifi-kutlar' ),
+		// ---- Doctors moved from nested pages to the `doctor` post type, and
+		//      every profile now sits under our-doctors. ----
+		array( 'from' => '#^about-us/medical-director/mehmet-hanifi-kutlar/?$#i', 'to' => '/en/about-us/our-doctors/mehmet-hanifi-kutlar' ),
 
 		// ---- Previous build shipped treatments at /treatments/{slug}/.
 		//      Canonical is now /en/{category}/{service}. Every treatment we

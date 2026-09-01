@@ -25,7 +25,6 @@ function estecapelli_pl_pages_manifest() {
 		'about-us'                    => 'o-nas',
 		'our-team'                    => 'nasz-zespol',
 		'our-doctors'                 => 'nasi-lekarze',
-		'medical-director'            => 'dyrektor-medyczny',
 		'before-after'                => 'przed-po',
 		'contact'                     => 'kontakt',
 	);
@@ -46,7 +45,7 @@ function estecapelli_pl_pages_route_key( $source_slug ) {
 	if ( in_array( $source_slug, array( 'tricholab', 'pre-hair-transplant-period', 'post-hair-transplant-period' ), true ) ) {
 		return '/en/hair-transplant/' . $source_slug;
 	}
-	if ( in_array( $source_slug, array( 'our-team', 'our-doctors', 'medical-director' ), true ) ) {
+	if ( in_array( $source_slug, array( 'our-team', 'our-doctors' ), true ) ) {
 		return '/en/about-us/' . $source_slug;
 	}
 

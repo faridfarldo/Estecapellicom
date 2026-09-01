@@ -60,7 +60,6 @@ function estecapelli_it_nav_route_labels() {
 		'/en/about-us'                                                                                         => 'Chi siamo',
 		'/en/about-us/our-doctors'                                                                             => 'I nostri medici',
 		'/en/about-us/our-team'                                                                                => 'Il nostro team',
-		'/en/about-us/medical-director'                                                                        => 'Direttore medico',
 		'/en/blog'                                                                                             => 'Blog',
 		'/en/contact'                                                                                          => 'Contatti',
 	);
@@ -103,7 +102,6 @@ function estecapelli_it_nav_source_title_routes() {
 		'About Estecapelli'                  => '/en/about-us',
 		'Our Doctors'                        => '/en/about-us/our-doctors',
 		'Our Team'                           => '/en/about-us/our-team',
-		'Chief Physician'                    => '/en/about-us/medical-director',
 		'Blog'                               => '/en/blog',
 		'Contact'                            => '/en/contact',
 		'Contact Us'                         => '/en/contact',

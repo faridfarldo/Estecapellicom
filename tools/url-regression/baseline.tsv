@@ -1,7 +1,7 @@
 200	https://estecapelli.com/
 200	https://estecapelli.com/about-us
-200	https://estecapelli.com/about-us/medical-director
-200	https://estecapelli.com/about-us/medical-director/mehmet-hanifi-kutlar
+301	https://estecapelli.com/about-us/medical-director
+301	https://estecapelli.com/about-us/medical-director/mehmet-hanifi-kutlar
 200	https://estecapelli.com/about-us/our-doctors
 200	https://estecapelli.com/about-us/our-doctors/mehmet-hanifi-kutlar
 404	https://estecapelli.com/about-us/our-doctors/op-dr-ali-durmus
@@ -21,8 +21,8 @@
 200	https://estecapelli.com/en
 200	https://estecapelli.com/en/
 200	https://estecapelli.com/en/about-us
-200	https://estecapelli.com/en/about-us/medical-director
-200	https://estecapelli.com/en/about-us/medical-director/mehmet-hanifi-kutlar
+301	https://estecapelli.com/en/about-us/medical-director
+301	https://estecapelli.com/en/about-us/medical-director/mehmet-hanifi-kutlar
 200	https://estecapelli.com/en/about-us/our-doctors
 200	https://estecapelli.com/en/about-us/our-doctors/mehmet-hanifi-kutlar
 301	https://estecapelli.com/en/about-us/our-doctors/op-dr-ali-durmus
