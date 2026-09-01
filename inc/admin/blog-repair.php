@@ -460,6 +460,41 @@ function estecapelli_render_blog_repair() {
 	}
 	echo '</tbody></table>';
 
+	/*
+	 * An article whose English source has gone cannot be relinked — there is no
+	 * group to hang a translation on — so its posts are neither repaired nor
+	 * binned, and an orphan among them is unreachable from the Posts screen:
+	 * having no language at all, it does not appear under any language filter,
+	 * "All languages" included. Listing it here with an edit link is the only
+	 * way to get at it.
+	 */
+	$stranded = array();
+	foreach ( $plan as $source_slug => $entry ) {
+		if ( $entry['trid'] ) {
+			continue;
+		}
+		foreach ( $entry['owned'] as $post_id => $info ) {
+			$stranded[] = array( 'source' => $source_slug, 'id' => (int) $post_id ) + $info;
+		}
+	}
+
+	if ( $stranded ) {
+		echo '<h2>' . esc_html__( 'Stranded — no English source for these articles', 'estecapelli' ) . '</h2>';
+		echo '<p class="description">' . esc_html__( 'The contract still lists these articles, but the English post they translate no longer carries that slug — it was renamed. Nothing here can be relinked, and nothing is queued for the bin: an article that cannot be verified is left alone. Open each one, compare it with the article the contract entry was renamed to, and bin it from the dashboard if it is the same text.', 'estecapelli' ) . '</p>';
+		echo '<table class="widefat striped"><thead><tr><th>' . esc_html__( 'ID', 'estecapelli' ) . '</th><th>' . esc_html__( 'Contract entry', 'estecapelli' ) . '</th><th>' . esc_html__( 'Slug', 'estecapelli' ) . '</th><th>' . esc_html__( 'WPML row', 'estecapelli' ) . '</th><th>' . esc_html__( 'Title', 'estecapelli' ) . '</th><th>' . esc_html__( 'Open', 'estecapelli' ) . '</th></tr></thead><tbody>';
+		foreach ( $stranded as $row ) {
+			echo '<tr>';
+			echo '<td>' . (int) $row['id'] . '</td>';
+			echo '<td><code>' . esc_html( $row['source'] ) . '</code></td>';
+			echo '<td><code>' . esc_html( $row['slug'] ) . '</code></td>';
+			echo '<td><code>' . esc_html( $row['language'] ? $row['language'] : 'orphan' ) . '</code></td>';
+			echo '<td><small>' . esc_html( $row['title'] ) . '</small></td>';
+			echo '<td><a href="' . esc_url( get_edit_post_link( $row['id'], 'raw' ) ) . '">' . esc_html__( 'Edit', 'estecapelli' ) . '</a></td>';
+			echo '</tr>';
+		}
+		echo '</tbody></table>';
+	}
+
 	echo '<h2>' . esc_html__( 'Step 1 — relink the language slots', 'estecapelli' ) . '</h2>';
 	echo '<p class="description">' . esc_html__( 'Writes only WPML relationship rows. No post content is touched and nothing is deleted. This is what gives the orphans their language prefix back.', 'estecapelli' ) . '</p>';
 	estecapelli_blog_repair_button( 'relink', sprintf( __( 'Relink %d slots', 'estecapelli' ), $total_relink ), $total_relink > 0 );
