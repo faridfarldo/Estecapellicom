@@ -2223,9 +2223,10 @@ function estecapelli_autorun_language_import( $option_key, $version, callable $i
 	$progress_key = $option_key . '_progress';
 	$progress     = get_option( $progress_key );
 	if ( ! is_array( $progress ) || ( $progress['version'] ?? null ) !== $version ) {
-		$progress = array( 'version' => $version, 'done' => array() ); // fresh version.
+		$progress = array( 'version' => $version, 'done' => array(), 'failures' => array() ); // fresh version.
 	}
-	$done = is_array( $progress['done'] ) ? $progress['done'] : array();
+	$done     = is_array( $progress['done'] ) ? $progress['done'] : array();
+	$failures = isset( $progress['failures'] ) && is_array( $progress['failures'] ) ? $progress['failures'] : array();
 
 	foreach ( call_user_func( $items_provider ) as $item ) {
 		$id = $item['kind'] . ':' . $item['slug'];
@@ -2235,11 +2236,27 @@ function estecapelli_autorun_language_import( $option_key, $version, callable $i
 		$GLOBALS['estecapelli_language_autorun_ran_this_request'] = true;
 		$result = call_user_func( $import_one, $item['kind'], $item['slug'] );
 		if ( is_wp_error( $result ) ) {
-			set_transient( $option_key . '_error', $id . ' — ' . $result->get_error_message(), 10 * MINUTE_IN_SECONDS );
+			/*
+			 * Three attempts, then move on. A failing item used to be retried on
+			 * every single admin page load for as long as the version stayed
+			 * unfinished, and an importer that failed partway through left a new
+			 * post behind on each attempt — which is how six doctors ended up
+			 * owning roughly 170 posts. Giving up on the item keeps the rest of
+			 * the language importable and leaves the error on the screen.
+			 */
+			$failures[ $id ] = (int) ( $failures[ $id ] ?? 0 ) + 1;
+			$message         = $id . ' — ' . $result->get_error_message();
+			if ( $failures[ $id ] >= 3 ) {
+				$done[]  = $id;
+				$message = sprintf( 'skipped after %d failed attempts: %s', (int) $failures[ $id ], $message );
+			}
+			set_transient( $option_key . '_error', $message, 10 * MINUTE_IN_SECONDS );
+			update_option( $progress_key, array( 'version' => $version, 'done' => $done, 'failures' => $failures ), false );
 			return;
 		}
 		$done[] = $id;
-		update_option( $progress_key, array( 'version' => $version, 'done' => $done ), false );
+		unset( $failures[ $id ] );
+		update_option( $progress_key, array( 'version' => $version, 'done' => $done, 'failures' => $failures ), false );
 		delete_transient( $option_key . '_error' );
 		return; // exactly one item this request — cannot exceed the time limit.
 	}

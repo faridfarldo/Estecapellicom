@@ -192,15 +192,33 @@ function estecapelli_it_doctor_import_one( array $translation, $language_code = 
 		'post_content' => '',
 		'menu_order'   => (int) $source_post->menu_order,
 	);
+	$created_id = 0;
 	if ( $target_id ) {
 		$post_args['ID'] = $target_id;
 		$target_id       = wp_update_post( $post_args, true );
 	} else {
-		$target_id = wp_insert_post( $post_args, true );
+		$target_id  = wp_insert_post( $post_args, true );
+		$created_id = is_wp_error( $target_id ) ? 0 : (int) $target_id;
 	}
 	if ( is_wp_error( $target_id ) ) {
 		return $target_id;
 	}
+
+	/*
+	 * A post this run created must not outlive this run's failure. Every early
+	 * return below happens after the insert above, and the autorun retries a
+	 * failed item on the next admin page load — so each attempt used to leave
+	 * another post behind. That is how six doctors came to own ~170 posts, most
+	 * of them orphans WPML had no row for. Reuse of an existing translation is
+	 * left alone; only what we just created is rolled back.
+	 */
+	$fail = static function ( $error ) use ( &$created_id ) {
+		if ( $created_id ) {
+			wp_delete_post( $created_id, true );
+			$created_id = 0;
+		}
+		return $error;
+	};
 
 	do_action(
 		'wpml_set_element_language_details',
@@ -217,13 +235,15 @@ function estecapelli_it_doctor_import_one( array $translation, $language_code = 
 
 	if ( ! estecapelli_wpml_replace_language_slot_raw( $target_id, $element_type, $trid, $language_code, $source_language ) ) {
 		$reason = estecapelli_wpml_last_slot_error();
-		return new WP_Error(
-			'it_doctors_force_link_failed',
-			sprintf( 'The %s WPML relationship could not be rebuilt for %s%s', $language_name, $source_slug, $reason ? ' — ' . $reason : '.' )
+		return $fail(
+			new WP_Error(
+				'it_doctors_force_link_failed',
+				sprintf( 'The %s WPML relationship could not be rebuilt for %s%s', $language_name, $source_slug, $reason ? ' — ' . $reason : '.' )
+			)
 		);
 	}
 
-	$target_id = wp_update_post(
+	$updated_id = wp_update_post(
 		array(
 			'ID'         => (int) $target_id,
 			'post_title' => $translation['name'],
@@ -231,16 +251,17 @@ function estecapelli_it_doctor_import_one( array $translation, $language_code = 
 		),
 		true
 	);
-	if ( is_wp_error( $target_id ) ) {
-		return $target_id;
+	if ( is_wp_error( $updated_id ) ) {
+		return $fail( $updated_id );
 	}
+	$target_id   = (int) $updated_id;
 	$slug_result = estecapelli_force_multilingual_post_slug( $target_id, $translation['slug'], 'doctor', $language_code );
 	if ( is_wp_error( $slug_result ) ) {
-		return $slug_result;
+		return $fail( $slug_result );
 	}
 	$target_post = get_post( $target_id );
 	if ( ! $target_post || $translation['slug'] !== $target_post->post_name ) {
-		return new WP_Error( 'it_doctors_slug_conflict', sprintf( 'The required %s doctor slug is already in use: %s.', $language_name, $translation['slug'] ) );
+		return $fail( new WP_Error( 'it_doctors_slug_conflict', sprintf( 'The required %s doctor slug is already in use: %s.', $language_name, $translation['slug'] ) ) );
 	}
 
 	update_field( 'position', $translation['position'], $target_id );
@@ -282,7 +303,7 @@ function estecapelli_it_doctor_import_one( array $translation, $language_code = 
 		! is_array( $saved_credentials ) ||
 		count( $saved_credentials ) !== count( $translation['credentials'] )
 	) {
-		return new WP_Error( 'it_doctors_acf_not_saved', sprintf( 'The %s doctor fields were not saved for %s.', $language_name, $source_slug ) );
+		return $fail( new WP_Error( 'it_doctors_acf_not_saved', sprintf( 'The %s doctor fields were not saved for %s.', $language_name, $source_slug ) ) );
 	}
 
 	return (int) $target_id;

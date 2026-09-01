@@ -114,6 +114,16 @@ if ( is_admin() && defined( 'ESTECAPELLI_ENABLE_PL_PAGE_REPAIR' ) && true === ES
 	require get_template_directory() . '/inc/admin/repair-pl-pages.php';
 }
 
+/**
+ * Doctor repair. Same reasoning as the Polish repair above — its own constant,
+ * because putting ~130 duplicate profiles in the bin is not something to leave
+ * reachable once the repair is done. Read-only reporting until a button is
+ * pressed; Tools → Doctor Languages diagnoses without enabling anything.
+ */
+if ( is_admin() && defined( 'ESTECAPELLI_ENABLE_DOCTOR_REPAIR' ) && true === ESTECAPELLI_ENABLE_DOCTOR_REPAIR ) {
+	require get_template_directory() . '/inc/admin/doctor-repair.php';
+}
+
 if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-database-guard.php';
 	require get_template_directory() . '/inc/admin/import-treatments.php';
