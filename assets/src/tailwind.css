@@ -8735,7 +8735,7 @@
 
 	/* Featured post */
 	.blog-feature { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(1.5rem, 3vw, 2.75rem); align-items: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
-	.blog-feature__media { position: relative; display: block; aspect-ratio: 16 / 11; border-radius: 22px; overflow: hidden; background: linear-gradient(140deg, var(--color-brand-100), var(--color-brand-200)); box-shadow: var(--shadow-card); }
+	.blog-feature__media { position: relative; display: block; aspect-ratio: 1 / 1; border-radius: 22px; overflow: hidden; background: linear-gradient(140deg, var(--color-brand-100), var(--color-brand-200)); box-shadow: var(--shadow-card); }
 	.blog-feature__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-spring); }
 	.blog-feature:hover .blog-feature__img { transform: scale(1.04); }
 	.blog-feature__fallback { position: absolute; inset: 0; display: grid; place-items: center; color: oklch(100% 0 0 / 0.5); }
@@ -8754,7 +8754,10 @@
 	.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: clamp(1.25rem, 2.5vw, 1.75rem); }
 	.post-card { display: flex; flex-direction: column; background: white; border: 1px solid var(--color-brand-100); border-radius: 18px; overflow: hidden; transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease, border-color 0.3s ease; }
 	.post-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); border-color: var(--color-brand-200); }
-	.post-card__media { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: linear-gradient(140deg, var(--color-brand-100), var(--color-brand-200)); }
+	/* Square, for the same reason as the article hero: the covers are authored
+	   1080x1080 with the title along the top, so a landscape frame cuts the
+	   subject in half. */
+	.post-card__media { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; background: linear-gradient(140deg, var(--color-brand-100), var(--color-brand-200)); }
 	.post-card__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-spring); }
 	.post-card:hover .post-card__img { transform: scale(1.05); }
 	.post-card__fallback { position: absolute; inset: 0; display: grid; place-items: center; color: oklch(100% 0 0 / 0.5); }
