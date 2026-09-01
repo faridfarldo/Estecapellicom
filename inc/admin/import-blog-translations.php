@@ -485,11 +485,17 @@ function estecapelli_blog_i18n_ensure_landing_page( $lang ) {
  * Run the complete unified import: English SEO + every translated article.
  *
  * One unimportable article no longer takes the whole run down with it. The
- * English source for hair-transplant-for-hiv-positive-patients-in-turkey was
- * renamed at some point, so that entry in the frozen contract had nothing to
- * translate from — and because the loop returned on the first error, and French
- * is first in the list, seven languages' worth of work stopped there. Romanian
- * never got as far as having its /ro/blog landing page created.
+ * English source for hair-transplant-for-hiv-positive-patients-in-turkey had
+ * gone, so that entry in the frozen contract had nothing to translate from —
+ * and because the loop returned on the first error, and French is first in the
+ * list, seven languages' worth of work stopped there. Romanian never got as far
+ * as having its /ro/blog landing page created.
+ *
+ * That article turned out to have been removed on purpose, to stop it and
+ * "HIV+ hair transplant" cannibalising each other, and the contract entry has
+ * since been dropped to match. The resilience stays: a contract can fall out of
+ * step with the site again, and one stale entry must not be able to block seven
+ * languages behind it.
  *
  * Failures are collected and reported instead. A missing English post is not
  * something a re-run fixes, so it must not be able to block everything behind

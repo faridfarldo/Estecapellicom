@@ -58,10 +58,6 @@ function estecapelli_fr_blog_manifest() {
 			'slug'  => 'greffe-de-cheveux-pour-les-patients-seropositifs-vih',
 			'title' => 'Greffe de cheveux pour les patients séropositifs (VIH)',
 		),
-		'hair-transplant-for-hiv-positive-patients-in-turkey' => array(
-			'slug'  => 'greffe-de-cheveux-pour-patients-seropositifs-en-turquie',
-			'title' => 'Greffe de cheveux pour patients séropositifs en Turquie',
-		),
 	);
 }
 

@@ -52,11 +52,22 @@ function estecapelli_dedupe_tricholab() {
  * Each now has its correct localized slug (see estecapelli_indexed_blog_slugs),
  * so 301 the old language-scoped URLs to the new ones.
  *
- * The match is on the EXACT language-prefixed path because those same slugs are
- * still the live URLs in their real languages — /it/blog/i-pazienti-... (Italian),
- * /fr/blog/greffe-de-cheveux-sans-rasage (French) and
- * /es/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia (Spanish)
- * must never be redirected.
+ * The match is on the EXACT language-prefixed path because two of those slugs
+ * are still the live URLs in their real languages — /it/blog/i-pazienti-...
+ * (Italian) and /fr/blog/greffe-de-cheveux-sans-rasage (French) must never be
+ * redirected.
+ *
+ * The second group is a deliberate editorial merge, not a bug. "HIV+ hair
+ * transplant IN TURKEY" and "HIV+ hair transplant" were two articles competing
+ * for one query, so the first was removed to stop them cannibalising each
+ * other. Consolidating only works if the removed URLs pass their ranking on, so
+ * all eight of its localized slugs 301 to the article that survived, spelled
+ * out here rather than left to WordPress's own renamed-slug handling: the
+ * contract entry they came from is gone, and a redirect that carries ranking
+ * signal should not depend on post meta surviving a re-import. The Spanish slug
+ * in this group WAS live Spanish content until that merge, which is why the
+ * warning above no longer covers it.
+ *
  * Runs at priority 0 (before redirect_canonical) and is NOT gated on is_404 so it
  * fires no matter how WPML resolves the stale slug.
  */
@@ -74,7 +85,20 @@ function estecapelli_redirect_renamed_blog_slugs() {
 	$moved = array(
 		'es/blog/i-pazienti-diabetici-possono-sottoporsi-a-un-trapianto-di-capelli' => '/es/blog/los-pacientes-diabeticos-pueden-someterse-a-un-trasplante-capilar/',
 		'it/blog/greffe-de-cheveux-sans-rasage'                                     => '/it/blog/trapianto-di-capelli-senza-rasatura/',
-		'pl/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia'        => '/pl/blog/przeszczep-wlosow-u-pacjentow-hiv-pozytywnych-w-turcji/',
+		// Straight to the surviving article. This used to point at the Polish
+		// "in Turkey" slug, which the merge below then redirected again — two
+		// hops where one will do.
+		'pl/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia'        => '/pl/blog/przeszczep-wlosow-u-pacjentow-hiv-pozytywnych/',
+
+		// The "HIV+ in Turkey" merge, one line per language.
+		'en/blog/hair-transplant-for-hiv-positive-patients-in-turkey'               => '/en/blog/hair-transplant-for-hiv-positive-patients/',
+		'tr/blog/hiv-pozitif-hastalarina-turkiye-de-sac-ekimi'                      => '/tr/blog/hiv-pozitif-hastalara-sac-ekimi/',
+		'fr/blog/greffe-de-cheveux-pour-patients-seropositifs-en-turquie'           => '/fr/blog/greffe-de-cheveux-pour-les-patients-seropositifs-vih/',
+		'it/blog/trapianto-di-capelli-per-pazienti-hiv-positivi-in-turchia'         => '/it/blog/trapianto-di-capelli-per-pazienti-sieropositivi-hiv/',
+		'es/blog/trasplante-capilar-para-pacientes-vih-positivos-en-turquia'        => '/es/blog/trasplante-capilar-para-pacientes-vih-positivos/',
+		'pl/blog/przeszczep-wlosow-u-pacjentow-hiv-pozytywnych-w-turcji'            => '/pl/blog/przeszczep-wlosow-u-pacjentow-hiv-pozytywnych/',
+		'pt/blog/transplante-capilar-para-pacientes-hiv-positivos-na-turquia'       => '/pt/blog/transplante-capilar-para-pacientes-hiv-positivos/',
+		'ro/blog/transplant-de-par-pentru-pacientii-hiv-pozitivi-in-turcia'         => '/ro/blog/transplant-de-par-pentru-pacientii-hiv-pozitivi/',
 	);
 
 	if ( isset( $moved[ $path ] ) ) {

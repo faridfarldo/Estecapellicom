@@ -296,49 +296,6 @@ function estecapelli_blog_i18n_meta() {
 			),
 		),
 
-		'hair-transplant-for-hiv-positive-patients-in-turkey' => array(
-			'en' => array(
-				'title'         => 'Hair Transplant for HIV Positive Patients in Turkey',
-				'description'   => 'HIV positive patients can have a safe hair transplant in Turkey. With a strong immune system and strict protocols, natural results are achievable.',
-				'focus_keyword' => 'hair transplant HIV positive Turkey',
-			),
-			'tr' => array(
-				'title'         => 'Hıv Pozitif Hastalarına Türkiye’de Saç Ekimi',
-				'description'   => 'HIV pozitif hastalar Türkiye\'de güvenle saç ekimi yaptırabilir. Güçlü bir bağışıklık sistemi ve sıkı protokollerle doğal sonuçlar elde edilebilir.',
-				'focus_keyword' => 'HIV pozitif saç ekimi Türkiye',
-			),
-			'fr' => array(
-				'title'         => 'Greffe de cheveux pour patients séropositifs en Turquie',
-				'description'   => 'Les patients séropositifs peuvent bénéficier d\'une greffe de cheveux sûre en Turquie. Avec un système immunitaire fort et des protocoles stricts.',
-				'focus_keyword' => 'greffe de cheveux séropositif Turquie',
-			),
-			'it' => array(
-				'title'         => 'Trapianto di Capelli per Pazienti HIV Positivi in Turchia',
-				'description'   => 'I pazienti HIV positivi possono sottoporsi a un trapianto di capelli sicuro in Turchia. Con un sistema immunitario forte e protocolli rigorosi.',
-				'focus_keyword' => 'trapianto capelli HIV positivi Turchia',
-			),
-			'es' => array(
-				'title'         => 'Trasplante Capilar para Pacientes VIH Positivos en Turquía',
-				'description'   => 'Los pacientes VIH positivos pueden hacerse un trasplante capilar seguro en Turquía. Con un sistema inmune fuerte y protocolos estrictos, hay buenos resultados.',
-				'focus_keyword' => 'trasplante capilar VIH positivo Turquía',
-			),
-			'pl' => array(
-				'title'         => 'Przeszczep Włosów u Pacjentów HIV-Pozytywnych w Turcji',
-				'description'   => 'Pacjenci HIV-pozytywni mogą bezpiecznie poddać się przeszczepowi włosów w Turcji. Przy silnym układzie odpornościowym i rygorystycznych protokołach.',
-				'focus_keyword' => 'przeszczep włosów HIV Turcja',
-			),
-			'pt' => array(
-				'title'         => 'Transplante Capilar para Pacientes HIV Positivos na Turquia',
-				'description'   => 'Pacientes HIV positivos podem fazer um transplante capilar seguro na Turquia. Com um sistema imunológico forte e protocolos rigorosos há bons resultados.',
-				'focus_keyword' => 'transplante capilar HIV positivo Turquia',
-			),
-			'ro' => array(
-				'title'         => 'Transplant de Păr pentru Pacienții HIV Pozitivi în Turcia',
-				'description'   => 'Pacienții HIV pozitivi pot face un transplant de păr în siguranță în Turcia. Cu un sistem imunitar puternic și protocoale stricte, rezultatele sunt naturale.',
-				'focus_keyword' => 'transplant de păr HIV pozitiv Turcia',
-			),
-		),
-
 		'hair-transplant-for-hiv-positive-patients' => array(
 			'en' => array(
 				'title'         => 'Hair Transplant for HIV-Positive Patients',

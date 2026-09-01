@@ -30,7 +30,6 @@ if ( ! function_exists( 'estecapelli_blog_seed_articles' ) ) {
 			array( 'slug' => 'is-hair-transplant-a-painful-procedure',               'title' => 'Is Hair Transplant a Painful Procedure?',               'category' => 'Hair Transplant' ),
 			array( 'slug' => 'will-my-hair-fall-out-again-after-a-hair-transplant',  'title' => 'Will My Hair Fall Out Again After a Hair Transplant?',   'category' => 'Hair Transplant' ),
 			array( 'slug' => 'hair-transplant-with-the-fue-vita-technique',          'title' => 'Hair Transplant with the FUE Vita Technique',           'category' => 'Hair Transplant' ),
-			array( 'slug' => 'hair-transplant-for-hiv-positive-patients-in-turkey',  'title' => 'Hair Transplant for HIV Positive Patients in Turkey',   'category' => 'Hair Transplant' ),
 			array( 'slug' => 'hair-transplant-for-hiv-positive-patients',            'title' => 'Hair Transplant for HIV-Positive Patients',             'category' => 'Hair Transplant' ),
 		);
 	}
