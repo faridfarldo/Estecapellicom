@@ -124,6 +124,11 @@ if ( is_admin() && defined( 'ESTECAPELLI_ENABLE_DOCTOR_REPAIR' ) && true === EST
 	require get_template_directory() . '/inc/admin/doctor-repair.php';
 }
 
+/** Blog repair. Same shape and the same reasoning as the two repairs above. */
+if ( is_admin() && defined( 'ESTECAPELLI_ENABLE_BLOG_REPAIR' ) && true === ESTECAPELLI_ENABLE_BLOG_REPAIR ) {
+	require get_template_directory() . '/inc/admin/blog-repair.php';
+}
+
 if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-database-guard.php';
 	require get_template_directory() . '/inc/admin/import-treatments.php';
