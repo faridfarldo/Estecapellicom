@@ -71,7 +71,16 @@ function estecapelli_dedupe_tricholab() {
  * Runs at priority 0 (before redirect_canonical) and is NOT gated on is_404 so it
  * fires no matter how WPML resolves the stale slug.
  */
-add_action( 'template_redirect', 'estecapelli_redirect_renamed_blog_slugs', 0 );
+/*
+ * Ahead of estecapelli_indexed_404_fallback(), which also answers on
+ * template_redirect at priority 0 and, being registered from a file loaded
+ * earlier, used to win every tie. That fallback works the destination out from
+ * the route contract; everything below is a destination somebody chose. An
+ * explicit rule has to outrank a computed one, or the rule is decoration —
+ * /pt/sobre-nos/diretor-medico proved it by landing on the ENGLISH roster while
+ * the line saying otherwise sat right here unused.
+ */
+add_action( 'template_redirect', 'estecapelli_redirect_renamed_blog_slugs', -5 );
 function estecapelli_redirect_renamed_blog_slugs() {
 	if ( is_admin() ) {
 		return;
