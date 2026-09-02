@@ -45,9 +45,9 @@ if ( ! defined( 'ESTECAPELLI_MAIL_FROM' ) ) {
 /* -------------------------------------------------------------------------
  * Shared anti-spam primitives
  *
- * No third-party CAPTCHA is used. Bots are slowed down by per-IP rate limiting,
- * a signed form stamp, a honeypot and a submission timer — all invisible to a
- * real visitor.
+ * Bots are slowed down by per-IP rate limiting, a signed form stamp, a honeypot,
+ * a submission timer and an invisible Cloudflare Turnstile challenge — none of
+ * which a real visitor ever sees or has to click.
  *
  * Rule for everything in here: NEVER discard a submission silently. A lost
  * enquiry costs the clinic a patient; a spam email costs it ten seconds. Only
@@ -126,14 +126,221 @@ add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_footer_lead_script', 21 )
 function estecapelli_lead_scripts_skip_js_delay( $tag, $handle ) {
 	// The guard must be able to mint its token on the visitor's first focus; if
 	// WP Rocket holds it back until "first interaction" it can lose that race and
-	// a genuine lead arrives looking tokenless.
-	$critical_handles = array( 'estecapelli-footer-lead', 'estecapelli-lead-guard' );
-	if ( ! in_array( $handle, $critical_handles, true ) || false !== strpos( $tag, 'data-nowprocket' ) ) {
+	// a genuine lead arrives looking tokenless. Turnstile is in the same boat: a
+	// widget that has not run by the time the visitor submits produces no token,
+	// and the submission is then scored for a challenge it never got to answer.
+	$critical_handles = array( 'estecapelli-footer-lead', 'estecapelli-lead-guard', 'estecapelli-turnstile' );
+	if ( ! in_array( $handle, $critical_handles, true ) ) {
+		return $tag;
+	}
+	// Cloudflare's implicit renderer expects to be loaded out of the parser's
+	// way; wp_enqueue_script() has no portable way to put both attributes on a
+	// registered handle, so they go on here.
+	if ( 'estecapelli-turnstile' === $handle && false === strpos( $tag, ' async' ) ) {
+		$tag = preg_replace( '/<script\b/', '<script async defer', $tag, 1 );
+	}
+	if ( false !== strpos( $tag, 'data-nowprocket' ) ) {
 		return $tag;
 	}
 	return preg_replace( '/<script\b/', '<script data-nowprocket', $tag, 1 );
 }
 add_filter( 'script_loader_tag', 'estecapelli_lead_scripts_skip_js_delay', 10, 2 );
+
+/* -------------------------------------------------------------------------
+ * Cloudflare Turnstile — the one challenge layer, and an optional one
+ *
+ * Turnstile runs invisibly in front of the scoring in inc/lead-guard.php: the
+ * widget solves itself in the visitor's browser, the token it produces rides
+ * along with the form, and this file verifies it server-side. A real visitor
+ * sees nothing and clicks nothing.
+ *
+ * Two rules keep it inside the theme's "never discard a real enquiry"
+ * philosophy:
+ *
+ *   1. No keys, no Turnstile. If either constant is missing the entire layer is
+ *      switched off — the script is not loaded, no widget is printed and no
+ *      submission is ever scored for failing a challenge it was never shown.
+ *   2. A failed or missing challenge NEVER rejects. It is a weighted signal fed
+ *      to estecapelli_lead_assess(), so the worst it can do is quarantine a lead
+ *      the clinic releases with one click — the same lane a link in the message
+ *      field lands in.
+ *
+ * Add to wp-config.php (NOT committed to the repo — same handling as the SMTP
+ * credentials below):
+ *   define( 'ESTECAPELLI_TURNSTILE_SITE_KEY', '0x4AAAAAAA…' );
+ *   define( 'ESTECAPELLI_TURNSTILE_SECRET', '0x4AAAAAAA…' );
+ * Both come from dash.cloudflare.com → Turnstile → the estecapelli.com widget,
+ * which must be created in Invisible mode. See docs/CLOUDFLARE-ANTISPAM.md.
+ * ---------------------------------------------------------------------- */
+
+/** Public site key, or '' when Turnstile is not configured. */
+function estecapelli_turnstile_site_key() {
+	return defined( 'ESTECAPELLI_TURNSTILE_SITE_KEY' ) ? trim( (string) ESTECAPELLI_TURNSTILE_SITE_KEY ) : '';
+}
+
+/** Secret key, or '' when Turnstile is not configured. */
+function estecapelli_turnstile_secret() {
+	return defined( 'ESTECAPELLI_TURNSTILE_SECRET' ) ? trim( (string) ESTECAPELLI_TURNSTILE_SECRET ) : '';
+}
+
+/**
+ * Is the layer switched on? Half a key pair is the same as none: verifying with
+ * a missing secret would fail every submission, and a widget with no site key
+ * would mint no token for it to fail on.
+ *
+ * @return bool
+ */
+function estecapelli_turnstile_enabled() {
+	return '' !== estecapelli_turnstile_site_key() && '' !== estecapelli_turnstile_secret();
+}
+
+/**
+ * Load Cloudflare's script, once, and only from a page that actually printed a
+ * lead form. Enqueuing from the render of the form itself is what keeps it off
+ * every other page: all of the theme's lead forms are output before wp_footer(),
+ * which is where this handle prints.
+ */
+function estecapelli_turnstile_enqueue() {
+	if ( ! estecapelli_turnstile_enabled() || wp_script_is( 'estecapelli-turnstile', 'enqueued' ) ) {
+		return;
+	}
+	wp_enqueue_script(
+		'estecapelli-turnstile',
+		'https://challenges.cloudflare.com/turnstile/v0/api.js',
+		array(),
+		null, // Cloudflare versions the endpoint itself; ?ver= would only break its cache.
+		true
+	);
+}
+
+/**
+ * Print one invisible widget for a form.
+ *
+ * Implicit rendering: Cloudflare's script finds every .cf-turnstile element on
+ * load and drops its token into a hidden `cf-turnstile-response` input inside
+ * the surrounding <form>. That is why this works unchanged for the classic POST
+ * forms and for the popup and footer, which both send new FormData( form ).
+ *
+ * @param string $source Form source, used as the Turnstile analytics label.
+ */
+function estecapelli_turnstile_field( $source ) {
+	if ( ! estecapelli_turnstile_enabled() ) {
+		return;
+	}
+	estecapelli_turnstile_enqueue();
+	printf(
+		// interaction-only: even a site key configured as "managed" stays out of
+		// the visitor's way unless Cloudflare genuinely wants a click.
+		// refresh-expired: a token dies after five minutes, and someone reading a
+		// treatment page before filling the form in takes longer than that.
+		'<div class="cf-turnstile" data-sitekey="%s" data-action="%s" data-appearance="interaction-only" data-refresh-expired="auto" data-response-field-name="cf-turnstile-response"></div>',
+		esc_attr( estecapelli_turnstile_site_key() ),
+		esc_attr( 'lead-' . $source )
+	);
+}
+
+/**
+ * Verify the submitted challenge with Cloudflare.
+ *
+ * Memoised: both entry points reach the scorer through this, and one submission
+ * must cost exactly one HTTP request. The verdict is also cached per token,
+ * because Turnstile tokens are single-use — a visitor who trips a validation
+ * error ("please enter a valid phone number") and submits the same form again
+ * would otherwise have their perfectly good token come back as
+ * `timeout-or-duplicate` on the second try.
+ *
+ * Fails open everywhere it can: no keys, no form stamp, or Cloudflare
+ * unreachable all return no signal at all.
+ *
+ * @return string Empty when the challenge passed (or did not apply); otherwise
+ *                the signal text for inc/lead-guard.php.
+ */
+function estecapelli_lead_turnstile_signal() {
+	static $signal = null;
+	if ( null !== $signal ) {
+		return $signal;
+	}
+	$signal = '';
+
+	if ( ! estecapelli_turnstile_enabled() ) {
+		return $signal;
+	}
+
+	// The widget is printed by estecapelli_lead_antispam_fields(), always
+	// alongside the signed form stamp, so a submission arriving without a stamp
+	// was never handed a challenge to solve. That is the AI photo widget, which
+	// posts JSON to the REST API: scoring it for a missing token would quarantine
+	// every patient who sends photographs of their own head.
+	if ( ! isset( $_POST['lead_form_started'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return $signal;
+	}
+
+	$raw   = isset( $_POST['cf-turnstile-response'] ) ? wp_unslash( $_POST['cf-turnstile-response'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$token = is_scalar( $raw ) ? sanitize_text_field( $raw ) : '';
+	if ( '' === $token ) {
+		$signal = 'missing Turnstile challenge';
+		return $signal;
+	}
+
+	$cache_key = 'ec_ts_' . substr( hash( 'sha256', $token ), 0, 32 );
+	$cached    = get_transient( $cache_key );
+	if ( false !== $cached ) {
+		$signal = '1' === $cached ? '' : 'failed Turnstile challenge';
+		return $signal;
+	}
+
+	$body = array(
+		'secret'   => estecapelli_turnstile_secret(),
+		'response' => $token,
+	);
+	// Only when we actually have one — estecapelli_client_ip() answers 'unknown'
+	// behind a proxy that strips both headers, and siteverify rejects the call
+	// outright rather than ignoring an unparseable address.
+	$ip = estecapelli_client_ip();
+	if ( filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+		$body['remoteip'] = $ip;
+	}
+
+	$response = wp_remote_post(
+		'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+		array(
+			'timeout' => 5,
+			'body'    => $body,
+		)
+	);
+
+	$decoded = is_wp_error( $response ) ? null : json_decode( (string) wp_remote_retrieve_body( $response ), true );
+	if ( ! is_array( $decoded ) || ! isset( $decoded['success'] ) ) {
+		// Cloudflare is down, slow, or blocked by the host's egress rules. Say
+		// nothing and let the other layers decide — an outage at Cloudflare must
+		// never cost the clinic a patient. Not cached: the next submit retries.
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf(
+				'[estecapelli] Turnstile verification unavailable (%s) — submission scored without it.',
+				is_wp_error( $response ) ? $response->get_error_message() : 'unreadable siteverify response'
+			)
+		);
+		return $signal;
+	}
+
+	$passed = ! empty( $decoded['success'] );
+	// Ten minutes covers a resubmit after a validation error and is far short of
+	// anything a replay run could use — a token that passed once is already
+	// spent as far as Cloudflare is concerned.
+	set_transient( $cache_key, $passed ? '1' : '0', 10 * MINUTE_IN_SECONDS );
+
+	if ( ! $passed ) {
+		$codes = isset( $decoded['error-codes'] ) && is_array( $decoded['error-codes'] )
+			? implode( ', ', array_map( 'sanitize_text_field', $decoded['error-codes'] ) )
+			: 'no error code';
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf( '[estecapelli] Turnstile rejected a submission (%s) — scored, not blocked.', $codes )
+		);
+		$signal = 'failed Turnstile challenge';
+	}
+
+	return $signal;
+}
 
 /**
  * Render the shared honeypot and signed form-age fields.
@@ -163,6 +370,10 @@ function estecapelli_lead_antispam_fields( $source ) {
 	?>
 	<input type="hidden" name="lead_token" value="" />
 	<?php
+	// Invisible Cloudflare challenge. Prints nothing at all when the keys are
+	// absent from wp-config.php, so a site without them behaves exactly as it
+	// did before.
+	estecapelli_turnstile_field( $source );
 }
 
 /**
@@ -183,6 +394,13 @@ function estecapelli_check_lead_antispam( array $data ) {
 	if ( ! $started || ! $sig || ! hash_equals( $expect, $sig ) ) {
 		return new WP_Error( 'form_expired', __( 'Please refresh the page and submit the form again.', 'estecapelli' ) );
 	}
+
+	// Resolve the Cloudflare challenge here, on the one path that is allowed to
+	// say no — and deliberately do not use it to say no. The verdict is memoised
+	// and read back by estecapelli_lead_assess(), which scores a failed or absent
+	// challenge instead of rejecting it, so a visitor whose browser could not run
+	// Turnstile still reaches the clinic. This line never produces a WP_Error.
+	estecapelli_lead_turnstile_signal();
 
 	return true;
 }

@@ -8,6 +8,9 @@ These edge rules are the layer in front of it. They stop a flood before it ever
 reaches PHP, which is what keeps the site fast during an attack and keeps the AI
 analysis endpoint from burning Anthropic credit on bots.
 
+Turnstile (section 5) sits between the two: it is configured at Cloudflare but
+enforced in the theme, on every lead form.
+
 **Apply these by hand in the Cloudflare dashboard for `estecapelli.com`.** None
 of them can challenge a normal visitor reading pages — every rule is scoped to
 the POST endpoints the forms use.
@@ -25,6 +28,7 @@ the account-level menu. The left sidebar has a **Security** section:
 | 1 and 2 | Security → **Rate limiting rules** (older dashboards: Security → WAF → *Rate limiting rules* tab) |
 | 3 | Security → **Custom rules** (older: Security → WAF → *Custom rules* tab) |
 | 4 | Security → **Bots** |
+| 5 | **Turnstile** (top-level sidebar item, not under Security) |
 | Checking results | Security → **Events** (newer dashboards: Security → *Analytics*, "Events" tab) |
 
 Cloudflare reorganised this sidebar during 2025, so if "WAF" is not where you
@@ -127,6 +131,74 @@ Free, and it drops the crudest scripted clients before any rule is evaluated.
 If the site is on a paid plan, use **Super Bot Fight Mode** and set *Definitely
 automated* to **Block**, *Likely automated* to **Managed Challenge**.
 
+## 5. Turnstile on the lead forms
+
+Rules 1–4 judge the request. Turnstile judges the *browser* that sent it, which
+is the one thing an edge rule cannot see — and it does so invisibly: the widget
+solves itself, and a real visitor never sees a checkbox, a puzzle or a delay.
+
+**Cloudflare → Turnstile → Add widget**
+
+| Field | Value |
+|---|---|
+| Widget name | `estecapelli lead forms` |
+| Hostnames | `estecapelli.com` (add `www.estecapelli.com` and the staging host if there is one) |
+| Widget Mode | **Invisible** |
+| Pre-clearance | Off |
+
+That produces a **site key** and a **secret key**. Both go in `wp-config.php`,
+above the `/* That's all, stop editing! */` line, exactly like the SMTP
+credentials — **never** in the repo:
+
+```php
+define( 'ESTECAPELLI_TURNSTILE_SITE_KEY', '0x4AAAAAAA...' );  // public, printed in the page
+define( 'ESTECAPELLI_TURNSTILE_SECRET',   '0x4AAAAAAA...' );  // private, server-side only
+```
+
+| Constant | Where it is used |
+|---|---|
+| `ESTECAPELLI_TURNSTILE_SITE_KEY` | `estecapelli_turnstile_field()` — the `data-sitekey` on the widget `<div>` inside every lead form |
+| `ESTECAPELLI_TURNSTILE_SECRET` | `estecapelli_lead_turnstile_signal()` — the server-side POST to `challenges.cloudflare.com/turnstile/v0/siteverify` |
+
+### What it covers
+
+The widget is printed by `estecapelli_lead_antispam_fields()`, so it is on every
+form that helper feeds: the popup, the contact page, the footer quick-form, the
+in-page form section and the hair-analysis form. The classic POST path and the
+AJAX path both carry the token, because the AJAX forms are submitted with
+`new FormData( form )` and the widget writes its token into a hidden input
+inside the form. Cloudflare's script is loaded only on pages that actually
+printed a form, and is marked `data-nowprocket` so WP Rocket's delayed-JS pass
+cannot hold it back past the visitor's first submit.
+
+The AI photo widget is the exception: it posts JSON to the REST API and is never
+shown a challenge, so it is never scored for missing one.
+
+### What a failure does — and does not do
+
+**It does not reject.** A failed or absent challenge is worth **4 points** in
+`inc/lead-guard.php` (`failed Turnstile challenge` / `missing Turnstile
+challenge`), against a quarantine threshold of 5. So on its own it never even
+quarantines a lead, let alone loses one; combined with a second signal it holds
+the lead back from the CRM, and one click in **wp-admin → Leads → Quarantined**
+releases it.
+
+Everything else fails open, deliberately:
+
+| Situation | What happens |
+|---|---|
+| Constants missing or empty | The whole layer switches off — no script, no widget, no scoring |
+| `challenges.cloudflare.com` unreachable or slow (5s timeout) | Logged, and the submission is scored as if Turnstile did not exist |
+| Visitor has JavaScript off | Already charged 3 points for the missing interaction token; Turnstile does **not** charge again for the same fact |
+| Visitor resubmits after a validation error | The verdict is cached per token for 10 minutes, so a single-use token is not re-verified into a `timeout-or-duplicate` failure |
+
+That is the same rule the rest of the anti-spam code follows: a spam email costs
+the clinic ten seconds, a lost enquiry costs it a patient.
+
+**Not yet applied on the live site** — the widget has to be created and the two
+constants added to `wp-config.php`. Until then the theme behaves exactly as it
+did before.
+
 ---
 
 ## Why not just block the attacking IPs
@@ -141,6 +213,13 @@ Cloudflare → **Security → Events**, filter by the rule name. Legitimate lead
 should never appear there. If one does, loosen the rate on rule 1 rather than
 deleting it — and check `wp-admin → Leads → Quarantined` at the same time, since
 a lead held back in PHP is recoverable and one blocked at the edge is not.
+
+For Turnstile, the widget's own **Analytics** tab shows solve/fail rates, and
+every rejection is written to the PHP error log as
+`[estecapelli] Turnstile rejected a submission (<error codes>) — scored, not
+blocked.` A sudden run of `missing Turnstile challenge` on real leads means the
+script is not loading (check WP Rocket and any script-blocking consent rules),
+not that the site is under attack.
 
 ## The one thing to keep in sync
 

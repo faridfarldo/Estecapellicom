@@ -20,11 +20,13 @@
  * Kommo if it turns out to be genuine. That is what makes it safe to score
  * aggressively here: the cost of a false positive is a click, not a lost patient.
  *
- * Four layers feed the score:
+ * Five layers feed the score:
  *   1. an interaction token that only a JS-executing client can mint (below),
  *   2. content signals (links/emoji/foreign scripts in a name, throwaway email),
  *   3. the pre-existing honeypot and submission timer,
- *   4. a burst breaker that reacts to a flood in progress.
+ *   4. a burst breaker that reacts to a flood in progress,
+ *   5. an invisible Cloudflare Turnstile challenge, verified server-side in
+ *      inc/leads.php and read back here.
  *
  * Layer 0 lives at the edge — see docs/CLOUDFLARE-ANTISPAM.md.
  *
@@ -440,6 +442,23 @@ function estecapelli_lead_assess( array $d ) {
 	$token_bad = estecapelli_lead_token_check( $token );
 	if ( $token_bad ) {
 		$weighted[ $token_bad ] = ( false !== strpos( $token_bad, 'replayed' ) || false !== strpos( $token_bad, 'forged' ) ) ? 4 : 3;
+	}
+
+	// Layer 5 — Cloudflare Turnstile. The verdict was reached in inc/leads.php
+	// (memoised, so this costs nothing) and is only ever weighted here: a
+	// challenge Cloudflare turned down is worth 4, which quarantines alongside
+	// any second signal and never on its own.
+	//
+	// The exception is the reason this reads as more than one line. A client
+	// that ran no JavaScript at all cannot produce a Turnstile token either, and
+	// it has already paid 3 points for that above. Charging it a second time for
+	// the same fact would put an ordinary no-JS enquiry — a real person on a
+	// locked-down work laptop — one weak signal away from quarantine, which is
+	// exactly what the weights in this file are built to avoid.
+	$turnstile = function_exists( 'estecapelli_lead_turnstile_signal' ) ? estecapelli_lead_turnstile_signal() : '';
+	$no_js     = ( 0 === strpos( (string) $token_bad, 'no interaction token' ) );
+	if ( $turnstile && ! ( $no_js && false !== strpos( $turnstile, 'missing' ) ) ) {
+		$weighted[ $turnstile ] = 4;
 	}
 
 	// One IP filling the form all day is not a patient — but "one IP" is a much
