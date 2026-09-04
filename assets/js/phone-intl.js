@@ -16,6 +16,11 @@
  * we could not validate at all, because the field itself never holds the dial
  * code and an unprefixed number is useless to the CRM.
  *
+ * Belt and braces: the selected dial code is also posted in its own hidden
+ * field, so inc/leads.php can rebuild E.164 server-side if anything here fails
+ * to write it back into the visible input. A number that still arrives without
+ * a country code is flagged on the lead rather than guessed at.
+ *
  * Runs its submit check in the CAPTURE phase so it fires *before* the popup's
  * AJAX handler (main.js) and can cancel a bad submit for every form.
  *
@@ -46,21 +51,37 @@
 	};
 	var REQUIRED_ERROR = i18n.required || 'Please enter your phone number.';
 
+	// How long to wait for the geo-IP services before giving up on them. Neither
+	// is under our control and neither is on the critical path for anything but
+	// pre-selecting a flag the visitor can change, so this is deliberately short.
+	var GEO_TIMEOUT = 3500;
+
 	// Resolve the visitor's country once, cached for the session.
+	//
+	// This MUST call back exactly once, whatever happens. intl-tel-input leaves
+	// initialCountry unresolved until it does, and a field with no country has no
+	// dial code to post — which is how a bare national number used to reach the
+	// CRM whenever ipwho.is was blocked, rate-limited, or simply slow enough that
+	// its promise never settled.
 	function geoLookup(callback) {
 		var cached = null;
-		try { cached = sessionStorage.getItem('ec_country'); } catch (e) {}
-		if (cached) { callback(cached); return; }
+		var settled = false;
 
 		function done(cc) {
+			if (settled) { return; }
+			settled = true;
 			cc = (cc || '').toString().toLowerCase();
 			if (cc) {
 				try { sessionStorage.setItem('ec_country', cc); } catch (e) {}
-				callback(cc);
-			} else {
-				callback('us');
 			}
+			callback(cc || 'us');
 		}
+
+		try { cached = sessionStorage.getItem('ec_country'); } catch (e) {}
+		if (cached) { done(cached); return; }
+
+		// The floor under everything below, including a fetch that never settles.
+		setTimeout(function () { done(''); }, GEO_TIMEOUT);
 
 		fetch('https://ipwho.is/')
 			.then(function (r) { return r.json(); })
@@ -112,6 +133,35 @@
 		});
 
 		var touched = false; // don't nag before the visitor has finished the field
+
+		// The dial code, posted separately so the server can rebuild the number
+		// even if the rewrite at submit time below never happens. Created here
+		// rather than in the form templates so every form that gets the phone
+		// field gets this too, with nothing to keep in sync.
+		function dialFieldFor(el) {
+			var parent = el.closest('form');
+			if (!parent) { return null; }
+			var existing = parent.querySelector('input[name="lead_phone_dial"]');
+			if (existing) { return existing; }
+			var hidden = document.createElement('input');
+			hidden.type = 'hidden';
+			hidden.name = 'lead_phone_dial';
+			hidden.value = '';
+			parent.appendChild(hidden);
+			return hidden;
+		}
+		var dialField = dialFieldFor(input);
+
+		// Keep it current: the country can change on init (geo resolving), when
+		// the visitor picks from the dropdown, and when they paste a number that
+		// starts with a dial code.
+		function syncDial() {
+			if (!dialField) { return; }
+			var country = (typeof iti.getSelectedCountryData === 'function') ? iti.getSelectedCountryData() : null;
+			dialField.value = (country && country.dialCode) ? String(country.dialCode) : '';
+		}
+		syncDial();
+		input.addEventListener('countrychange', syncDial);
 
 		// The dial code lives in the country dropdown, never in the text field
 		// (separateDialCode), so the posted value has to be rebuilt here or the
@@ -217,6 +267,7 @@
 			// already returned above, which is what keeps us from ever
 			// prefixing a wrong one.
 			setError(input, '');
+			syncDial();
 			var canonical = canonicalNumber(); // e.g. +905321234567
 			if (canonical) { input.value = canonical; }
 		}, true);

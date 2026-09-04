@@ -129,7 +129,20 @@ function estecapelli_lead_scripts_skip_js_delay( $tag, $handle ) {
 	// a genuine lead arrives looking tokenless. Turnstile is in the same boat: a
 	// widget that has not run by the time the visitor submits produces no token,
 	// and the submission is then scored for a challenge it never got to answer.
-	$critical_handles = array( 'estecapelli-footer-lead', 'estecapelli-lead-guard', 'estecapelli-turnstile' );
+	//
+	// The two phone handles are here for a blunter reason: they are what puts the
+	// country dial code into the field. Delayed, they lose the same race and the
+	// clinic receives a bare national number it cannot dial — the lead is not
+	// flagged, not quarantined, just unusable. The footer's own controller was
+	// already excluded, so leaving these delayed had the submit handler live and
+	// the number unprefixed, which is the worst possible pairing.
+	$critical_handles = array(
+		'estecapelli-footer-lead',
+		'estecapelli-lead-guard',
+		'estecapelli-turnstile',
+		'intl-tel-input',
+		'estecapelli-phone',
+	);
 	if ( ! in_array( $handle, $critical_handles, true ) ) {
 		return $tag;
 	}
@@ -542,7 +555,7 @@ function estecapelli_collect_lead() {
 			: substr( (string) $value, 0, $max_length );
 	};
 
-	return array(
+	$d = array(
 		'name'       => $g( 'lead_name', 'text', 120 ),
 		'phone'      => $g( 'lead_phone', 'text', 40 ),
 		'email'      => $g( 'lead_email', 'email', 254 ),
@@ -560,6 +573,80 @@ function estecapelli_collect_lead() {
 			'term'     => $g( 'utm_term', 'text', 200 ),
 		),
 	);
+
+	$d['phone'] = estecapelli_lead_prefix_phone( $d['phone'], $g( 'lead_phone_dial', 'text', 8 ) );
+	// A number that still has no country code cannot be dialled from Turkey. It
+	// is recorded and delivered exactly like any other — losing the enquiry would
+	// be far worse than handing the clinic a number it has to ask about — but it
+	// is marked everywhere the clinic looks, and logged so the rate is visible.
+	$d['phone_unprefixed'] = ( '' !== $d['phone'] && '+' !== substr( $d['phone'], 0, 1 ) );
+
+	return $d;
+}
+
+/**
+ * Put the country dial code back on a number that arrived without one.
+ *
+ * assets/js/phone-intl.js normally posts the number already in E.164, rebuilt
+ * from the intl-tel-input country selector on submit. It cannot always: the
+ * library is loaded from a CDN, the country comes from a third-party geo-IP
+ * lookup, and either can fail on a visitor whose enquiry is perfectly genuine.
+ * So the same script also posts the selected dial code in its own field, and
+ * this rebuilds the number from it server-side.
+ *
+ * This is a reconstruction, never a guess. The dial code used is the one the
+ * visitor actually had selected in the dropdown; when it is absent the number
+ * is returned untouched rather than being decorated with a plausible-looking
+ * prefix the clinic would then dial.
+ *
+ * @param string $phone Submitted phone, possibly a bare national number.
+ * @param string $dial  Submitted dial code, digits, no plus (e.g. "90").
+ * @return string
+ */
+function estecapelli_lead_prefix_phone( $phone, $dial ) {
+	$phone = trim( (string) $phone );
+	$dial  = preg_replace( '/\D+/', '', (string) $dial );
+
+	if ( '' === $phone || '+' === substr( $phone, 0, 1 ) || '' === $dial ) {
+		return $phone;
+	}
+
+	$national = preg_replace( '/\D+/', '', $phone );
+	if ( '' === $national ) {
+		return $phone;
+	}
+
+	// A single leading zero is the national trunk prefix, and it goes when the
+	// country code arrives: a Turkish visitor types 0532…, and +900532… is not a
+	// number anyone can ring. Italy is the exception this rule is usually got
+	// wrong on — Italian numbers keep their leading zero (+39 06…) — so 39 is
+	// left alone.
+	if ( '39' !== $dial && '0' === substr( $national, 0, 1 ) ) {
+		$national = substr( $national, 1 );
+	}
+	if ( '' === $national ) {
+		return $phone;
+	}
+
+	// The visitor who typed their own country code into a field that already
+	// shows it. The field never holds the dial code (separateDialCode), so this
+	// is a mistake rather than a format — and prefixing it again produces
+	// +90 90 532…, a number that is worse than the one we started with.
+	//
+	// The test is whether what remains after the dial code is still a whole
+	// national number (9 digits or more). That is what separates "they typed the
+	// country code" from "their number happens to start with those digits":
+	// a Turkish number starts 2, 3, 4 or 5 and a NANP area code cannot start
+	// with 1 at all, so a national number beginning with its own country's dial
+	// code is not a thing. When it does happen the number is already complete
+	// and only the plus is missing.
+	if ( 0 === strpos( $national, $dial ) && strlen( $national ) - strlen( $dial ) >= 9 ) {
+		$rebuilt = '+' . $national;
+	} else {
+		$rebuilt = '+' . $dial . $national;
+	}
+
+	return estecapelli_phone_looks_valid( $rebuilt ) ? $rebuilt : $phone;
 }
 
 /**
@@ -778,6 +865,9 @@ function estecapelli_process_lead( array $d ) {
 	);
 	if ( ! is_wp_error( $lead_id ) ) {
 		update_post_meta( $lead_id, 'lead_phone', $d['phone'] );
+		if ( ! empty( $d['phone_unprefixed'] ) ) {
+			update_post_meta( $lead_id, 'lead_phone_no_prefix', '1' );
+		}
 		update_post_meta( $lead_id, 'lead_email', $d['email'] );
 		update_post_meta( $lead_id, 'lead_treatment', $d['treatment'] );
 		update_post_meta( $lead_id, 'lead_message', $d['message'] );
@@ -841,6 +931,18 @@ function estecapelli_process_lead( array $d ) {
 	$lines[] = 'UTM Campaign: ' . $d['utm']['campaign'];
 	$lines[] = 'UTM Content: ' . $d['utm']['content'];
 	$lines[] = 'UTM Term: ' . $d['utm']['term'];
+	// Last line on purpose: Kommo maps the labelled fields above it and ignores
+	// what it does not recognise, so the clinic sees the warning without the CRM
+	// mapping turning into something else.
+	if ( ! empty( $d['phone_unprefixed'] ) ) {
+		$lines[] = 'Uyarı: telefon numarası ülke kodu olmadan geldi — aramadan önce hastaya sorun.';
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf(
+				'[estecapelli] Lead phone arrived with no country code (source: %s) — intl-tel-input did not run or no country was selected.',
+				$d['source']
+			)
+		);
+	}
 
 	$body      = implode( "\r\n", $lines );
 	$from_name = get_bloginfo( 'name' );
@@ -1104,6 +1206,14 @@ add_filter( 'manage_lead_posts_columns', function ( $cols ) {
 add_action( 'manage_lead_posts_custom_column', function ( $col, $post_id ) {
 	if ( in_array( $col, array( 'lead_email', 'lead_treatment', 'lead_source' ), true ) ) {
 		echo esc_html( get_post_meta( $post_id, $col, true ) );
+		// A number with no country code is not spam and not a delivery failure,
+		// so it gets its own marker rather than sharing either of those.
+		if ( 'lead_source' === $col && '1' === get_post_meta( $post_id, 'lead_phone_no_prefix', true ) ) {
+			printf(
+				'<br /><small style="color:#b32d2e">☎ %s</small>',
+				esc_html__( 'Phone has no country code', 'estecapelli' )
+			);
+		}
 		$flags = 'lead_source' === $col ? (string) get_post_meta( $post_id, 'lead_spam_signals', true ) : '';
 		if ( $flags ) {
 			// Two very different states share this cell: a lead that scored but
