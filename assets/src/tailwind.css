@@ -5819,7 +5819,10 @@
 	}
 	.posts__feature-media {
 		position: relative;
-		aspect-ratio: 16 / 10;
+		/* Square, like the blog index card and the article hero: the covers are
+		   authored 1080x1080 with the headline along the top, so a landscape
+		   frame slices the title off. */
+		aspect-ratio: 1 / 1;
 		overflow: hidden;
 		background: linear-gradient(135deg, var(--color-brand-700), var(--color-brand-950));
 	}
