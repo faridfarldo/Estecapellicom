@@ -2796,13 +2796,47 @@
 		top: 0;
 		z-index: 50;
 		background: white;
-		transition: box-shadow 300ms, backdrop-filter 300ms;
+		transition: box-shadow 300ms, background-color 300ms;
+	}
+
+	/* The frosted glass lives on a pseudo-element and NEVER on the header.
+
+	   backdrop-filter, like transform and filter, makes the element a containing
+	   block for its position:fixed descendants. The mobile menu is one of those.
+	   With the blur on the header itself, the menu was fixed to the viewport
+	   until the first scroll set data-scrolled — and from then on it was fixed to
+	   the 84px header box instead, so its inset: 84px 0 0 0 collapsed it to
+	   nothing and its contents painted underneath the page. Exactly "the burger
+	   menu goes under everything once you scroll", and no z-index could ever
+	   have fixed it, because the menu was no longer where the z-index applied.
+
+	   A pseudo-element can blur what is behind the header without becoming
+	   anyone's containing block, since nothing is positioned inside it. */
+	.site-header::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		background: oklch(100% 0 0 / 0.92);
+		-webkit-backdrop-filter: saturate(180%) blur(12px);
+		backdrop-filter: saturate(180%) blur(12px);
+		opacity: 0;
+		transition: opacity 300ms;
 	}
 	.site-header[data-scrolled="true"] {
 		box-shadow: var(--shadow-card);
-		background: oklch(100% 0 0 / 0.92);
-		backdrop-filter: saturate(180%) blur(12px);
+		background: transparent;
 	}
+	.site-header[data-scrolled="true"]::before { opacity: 1; }
+
+	/* An open mobile menu has to cover the page's own floating layers — the
+	   WhatsApp button sits at 60 and its hand-off card at 61, both above the
+	   header's usual 50, so they floated on top of the open menu. Raised only
+	   while it is open, and kept below everything that should still interrupt
+	   it: the language suggestion (110), the consent banner (120) and the lead
+	   popup (9999). */
+	.site-header:has(.site-nav[data-open="true"]) { z-index: 90; }
 
 	/* ---------- Top utility bar ---------- */
 	.topbar {
