@@ -304,7 +304,9 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
      JS opens the hand-off notice first; the href stays real so that without
      JS the click still goes straight to WhatsApp. -->
 <a class="float-wp" href="<?php echo esc_url( estecapelli_whatsapp_url() ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Chat on WhatsApp', 'estecapelli' ); ?>">
-	<?php estecapelli_icon( 'whatsapp', array( 'width' => 24, 'height' => 24 ) ); ?>
+	<?php // The ring pulses out from behind the mark; purely decorative. ?>
+	<span class="float-wp__ring" aria-hidden="true"></span>
+	<span class="float-wp__mark"><?php estecapelli_icon( 'whatsapp', array( 'width' => 28, 'height' => 28 ) ); ?></span>
 	<span class="float-wp-text">
 		<strong><?php esc_html_e( 'Free Hair Analysis', 'estecapelli' ); ?></strong>
 		<span><?php esc_html_e( 'Reply in 2 minutes', 'estecapelli' ); ?></span>
