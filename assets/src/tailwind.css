@@ -2956,6 +2956,19 @@
 		.mainbar-inner { gap: 0.5rem; padding-inline: 0.75rem; }
 		.lang-switch__toggle { min-height: 36px; padding-inline: 8px; }
 	}
+	/* Below this the bar carries logo + language + CTA + burger, and something
+	   has to give. The language control keeps its flag and loses its code and
+	   chevron: the flag alone still says which language you are in, and the CTA
+	   is the one control on this bar that earns the clinic anything. */
+	@media (max-width: 480px) {
+		.brand-logo { width: 112px; height: 33px; }
+		.mainbar-inner { gap: 0.35rem; padding-inline: 0.5rem; }
+		.lang-switch__toggle { padding-inline: 6px; gap: 0; }
+		.lang-switch__toggle .lang-switch__current,
+		.lang-switch__toggle .chev { display: none; }
+		.mainbar-cta .btn { padding: 0.55rem 0.7rem; font-size: 0.75rem; }
+		.nav-toggle { width: 38px; height: 38px; }
+	}
 	.brand-wordmark {
 		font-weight: 700;
 		font-size: 1.5rem;
@@ -3610,7 +3623,18 @@
 		.trustpilot__name { display: none; }
 
 		.nav-toggle { display: inline-flex; }
-		.mainbar-cta { display: none; }
+
+		/* The CTA used to be display:none here, which left the only "Free
+		   Consultation" button on a phone buried inside the burger menu — the
+		   popup worked, nobody could reach it. It stays in the bar now, just
+		   compact: smaller type, tighter padding, and no trailing arrow, which
+		   is decoration the width cannot afford. */
+		.mainbar-cta .btn {
+			padding: 0.6rem 0.85rem;
+			font-size: 0.8125rem;
+			white-space: nowrap;
+		}
+		.mainbar-cta .btn svg { display: none; }
 
 		.site-nav {
 			position: fixed;
