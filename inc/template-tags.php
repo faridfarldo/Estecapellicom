@@ -865,7 +865,11 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					),
 					array(
 						array( 'label' => __( 'Our Team', 'estecapelli' ),        'url' => estecapelli_nav_url( '/en/about-us/our-team' ),    'description' => __( 'The full medical and patient-care team behind your treatment.', 'estecapelli' ) ),
-						array( 'label' => __( 'Careers', 'estecapelli' ),         'url' => estecapelli_nav_url( '/en/about-us/careers' ),     'description' => __( 'Open positions at the clinic, and how to apply.', 'estecapelli' ) ),
+						// Every language links to the English posting on purpose: the
+						// roles are written and answered in English, so sending a French
+						// visitor to /fr/… would only promise a translation that is not
+						// there. The label is still theirs — see inc/nav-translations.php.
+						array( 'label' => __( 'Join Us', 'estecapelli' ),         'url' => estecapelli_indexed_url( '/en/about-us/careers', 'en' ), 'description' => __( 'Open positions at the clinic, and how to apply.', 'estecapelli' ) ),
 					),
 				),
 			),

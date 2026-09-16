@@ -344,6 +344,19 @@ function estecapelli_indexed_route_contract() {
 		}
 	}
 
+	// Careers is published in English only: the roles are written in English and
+	// answered in English, so there is one page and every language points at it.
+	// Without this the language switcher would offer /tr/kariyer and /fr/carrieres
+	// from the map above — translated URLs for a page that was never translated,
+	// which is a 404 rather than a missing translation. The localized slugs stay
+	// defined so the day a role is translated the route is already correct.
+	$careers_key = '/en/about-us/careers';
+	if ( isset( $routes[ $careers_key ] ) ) {
+		foreach ( $langs as $lang ) {
+			$routes[ $careers_key ][ $lang ] = $careers_key;
+		}
+	}
+
 	foreach ( estecapelli_indexed_treatment_slugs() as $source_slug => $localized ) {
 		$category = estecapelli_indexed_treatment_category( $source_slug );
 		$key      = '/en/' . $category . '/' . $source_slug;

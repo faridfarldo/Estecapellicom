@@ -364,7 +364,7 @@ function estecapelli_it_gettext_fallback( $translation, $text, $domain ) {
 		'Meet the surgeons leading every procedure.' => 'Conosci i chirurghi che seguono ogni intervento.',
 		'Our Team' => 'Il nostro team',
 		'The full medical and patient-care team behind your treatment.' => 'Il team medico e di assistenza che segue il tuo trattamento.',
-		'Careers' => 'Lavora con noi',
+		'Join Us' => 'Unisciti a noi',
 		'Open positions at the clinic, and how to apply.' => 'Posizioni aperte in clinica e come candidarsi.',
 		'Visit Us' => 'Vieni a trovarci',
 		'Medical Treatment' => 'Trattamento medico',

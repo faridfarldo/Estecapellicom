@@ -32,7 +32,8 @@ while ( have_posts() ) :
 
 		<header class="job-hero">
 			<div class="shell job-hero__shell">
-				<a class="job-hero__back" href="<?php echo esc_url( estecapelli_indexed_url( '/en/about-us/careers' ) ); ?>">
+				<?php // English, like the menu entry: there is one Careers page. ?>
+				<a class="job-hero__back" href="<?php echo esc_url( estecapelli_indexed_url( '/en/about-us/careers', 'en' ) ); ?>">
 					<?php estecapelli_icon( 'chevron-left', array( 'width' => 16, 'height' => 16 ) ); ?>
 					<?php esc_html_e( 'All open positions', 'estecapelli' ); ?>
 				</a>

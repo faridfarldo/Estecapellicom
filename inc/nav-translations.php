@@ -94,7 +94,7 @@ function estecapelli_nav_route_to_label() {
 		'/en/about-us'                                                                 => 'About Us',
 		'/en/about-us/our-doctors'                                                     => 'Our Doctors',
 		'/en/about-us/our-team'                                                        => 'Our Team',
-		'/en/about-us/careers'                                                         => 'Careers',
+		'/en/about-us/careers'                                                         => 'Join Us',
 		'/en/blog'                                                                     => 'Blog',
 		'/en/contact'                                                                  => 'Contact Us',
 	);
@@ -194,7 +194,7 @@ function estecapelli_nav_translations() {
 			'Meet the surgeons leading every procedure.' => 'Rencontrez les chirurgiens qui dirigent chaque intervention.',
 			'Our Team'                              => 'Notre équipe',
 			'The full medical and patient-care team behind your treatment.' => 'Toute l’équipe médicale et d’accompagnement derrière votre traitement.',
-			'Careers'                               => 'Carrières',
+			'Join Us'                               => 'Rejoignez-nous',
 			'Open positions at the clinic, and how to apply.' => 'Postes ouverts à la clinique et comment postuler.',
 		),
 
@@ -269,7 +269,7 @@ function estecapelli_nav_translations() {
 			'Meet the surgeons leading every procedure.' => 'Conozca a los cirujanos que dirigen cada procedimiento.',
 			'Our Team'                              => 'Nuestro equipo',
 			'The full medical and patient-care team behind your treatment.' => 'Todo el equipo médico y de atención al paciente detrás de su tratamiento.',
-			'Careers'                               => 'Empleo',
+			'Join Us'                               => 'Únete a nosotros',
 			'Open positions at the clinic, and how to apply.' => 'Puestos vacantes en la clínica y cómo solicitarlos.',
 		),
 
@@ -344,7 +344,7 @@ function estecapelli_nav_translations() {
 			'Meet the surgeons leading every procedure.' => 'Conheça os cirurgiões que lideram cada procedimento.',
 			'Our Team'                              => 'A nossa equipa',
 			'The full medical and patient-care team behind your treatment.' => 'Toda a equipa médica e de apoio ao paciente por trás do seu tratamento.',
-			'Careers'                               => 'Carreiras',
+			'Join Us'                               => 'Junte-se a nós',
 			'Open positions at the clinic, and how to apply.' => 'Vagas abertas na clínica e como candidatar-se.',
 		),
 
@@ -419,7 +419,7 @@ function estecapelli_nav_translations() {
 			'Meet the surgeons leading every procedure.' => 'Cunoaște chirurgii care conduc fiecare procedură.',
 			'Our Team'                              => 'Echipa noastră',
 			'The full medical and patient-care team behind your treatment.' => 'Întreaga echipă medicală și de îngrijire a pacienților din spatele tratamentului tău.',
-			'Careers'                               => 'Cariere',
+			'Join Us'                               => 'Alătură-te nouă',
 			'Open positions at the clinic, and how to apply.' => 'Posturi disponibile în clinică și cum să aplici.',
 		),
 
@@ -494,7 +494,7 @@ function estecapelli_nav_translations() {
 			'Meet the surgeons leading every procedure.' => 'Poznaj chirurgów prowadzących każdy zabieg.',
 			'Our Team'                              => 'Nasz zespół',
 			'The full medical and patient-care team behind your treatment.' => 'Cały zespół medyczny i opieki nad pacjentem stojący za Twoim leczeniem.',
-			'Careers'                               => 'Kariera',
+			'Join Us'                               => 'Dołącz do nas',
 			'Open positions at the clinic, and how to apply.' => 'Otwarte stanowiska w klinice i jak aplikować.',
 		),
 
@@ -569,7 +569,7 @@ function estecapelli_nav_translations() {
 			'Meet the surgeons leading every procedure.' => 'Her prosedürü yöneten cerrahlarla tanışın.',
 			'Our Team'                              => 'Ekibimiz',
 			'The full medical and patient-care team behind your treatment.' => 'Tedavinizin arkasındaki tüm medikal ve hasta bakım ekibi.',
-			'Careers'                               => 'Kariyer',
+			'Join Us'                               => 'Bize Katılın',
 			'Open positions at the clinic, and how to apply.' => 'Kliniğimizdeki açık pozisyonlar ve nasıl başvurulacağı.',
 		),
 	);
