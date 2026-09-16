@@ -865,6 +865,7 @@ if ( ! function_exists( 'estecapelli_megamenu_data' ) ) {
 					),
 					array(
 						array( 'label' => __( 'Our Team', 'estecapelli' ),        'url' => estecapelli_nav_url( '/en/about-us/our-team' ),    'description' => __( 'The full medical and patient-care team behind your treatment.', 'estecapelli' ) ),
+						array( 'label' => __( 'Careers', 'estecapelli' ),         'url' => estecapelli_nav_url( '/en/about-us/careers' ),     'description' => __( 'Open positions at the clinic, and how to apply.', 'estecapelli' ) ),
 					),
 				),
 			),

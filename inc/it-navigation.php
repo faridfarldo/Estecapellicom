@@ -102,6 +102,7 @@ function estecapelli_it_nav_source_title_routes() {
 		'About Estecapelli'                  => '/en/about-us',
 		'Our Doctors'                        => '/en/about-us/our-doctors',
 		'Our Team'                           => '/en/about-us/our-team',
+		'Careers'                            => '/en/about-us/careers',
 		'Blog'                               => '/en/blog',
 		'Contact'                            => '/en/contact',
 		'Contact Us'                         => '/en/contact',
@@ -266,6 +267,8 @@ function estecapelli_it_nav_strings() {
 		'Meet the surgeons leading every procedure.'                                            => 'Conosca i chirurghi che guidano ogni procedura.',
 		'Our Team'                                                                              => 'Il nostro team',
 		'The full medical and patient-care team behind your treatment.'                        => 'L’intero team medico e di assistenza che segue il Suo trattamento.',
+		'Careers'                                                                              => 'Lavora con noi',
+		'Open positions at the clinic, and how to apply.'                                      => 'Posizioni aperte in clinica e come candidarsi.',
 	);
 }
 
