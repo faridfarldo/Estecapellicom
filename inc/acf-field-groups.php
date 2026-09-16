@@ -1111,6 +1111,155 @@ function estecapelli_register_acf_field_groups() {
 	);
 
 	// ============================================================
+	// Careers page fields
+	//
+	// The heading is the page title and the intro is the page's own editor
+	// content, so only the pieces with nowhere else to live are here. Every one
+	// is optional and falls back to a theme string, which is why the page looks
+	// finished the moment it is created.
+	// ============================================================
+	estecapelli_add_field_group(
+		array(
+			'key'                   => 'group_careers_page',
+			'title'                 => __( 'Careers Page', 'estecapelli' ),
+			'location'              => array(
+				array(
+					array(
+						'param'    => 'page_template',
+						'operator' => '==',
+						'value'    => 'page-careers.php',
+					),
+				),
+			),
+			'menu_order'            => 0,
+			'position'              => 'normal',
+			'style'                 => 'default',
+			'label_placement'       => 'top',
+			'instruction_placement' => 'label',
+			'active'                => true,
+			'fields'                => array(
+				array(
+					'key'          => 'field_careers_eyebrow',
+					'label'        => __( 'Eyebrow', 'estecapelli' ),
+					'name'         => 'careers_eyebrow',
+					'type'         => 'text',
+					'instructions' => __( 'The small label above the heading. Leave empty for “Careers at Estecapelli”.', 'estecapelli' ),
+				),
+				array(
+					'key'          => 'field_careers_empty_title',
+					'label'        => __( 'No openings — heading', 'estecapelli' ),
+					'name'         => 'careers_empty_title',
+					'type'         => 'text',
+					'instructions' => __( 'Shown instead of the list when no role is published.', 'estecapelli' ),
+				),
+				array(
+					'key'          => 'field_careers_empty_text',
+					'label'        => __( 'No openings — text', 'estecapelli' ),
+					'name'         => 'careers_empty_text',
+					'type'         => 'textarea',
+					'rows'         => 3,
+				),
+				array(
+					'key'          => 'field_careers_empty_cta',
+					'label'        => __( 'No openings — button', 'estecapelli' ),
+					'name'         => 'careers_empty_cta',
+					'type'         => 'text',
+					'instructions' => __( 'Opens an email to the HR inbox. Leave empty for “Send your CV”.', 'estecapelli' ),
+				),
+			),
+		)
+	);
+
+	// ============================================================
+	// Job / vacancy fields
+	//
+	// A vacancy is its own post type. The role name is the post title and the
+	// description is the editor body, so this form only carries the facts a
+	// candidate scans before reading anything: where, what contract, which
+	// team, how much experience, and when it closes. All optional — a role with
+	// an empty form still renders, it just shows fewer chips.
+	// ============================================================
+	estecapelli_add_field_group(
+		array(
+			'key'                   => 'group_job_fields',
+			'title'                 => __( 'Role Details', 'estecapelli' ),
+			'location'              => array(
+				array(
+					array(
+						'param'    => 'post_type',
+						'operator' => '==',
+						'value'    => 'job',
+					),
+				),
+			),
+			'menu_order'            => 0,
+			'position'              => 'side',
+			'style'                 => 'default',
+			'label_placement'       => 'top',
+			'instruction_placement' => 'label',
+			'active'                => true,
+			'fields'                => array(
+				array(
+					'key'          => 'field_job_location',
+					'label'        => __( 'Location', 'estecapelli' ),
+					'name'         => 'location',
+					'type'         => 'text',
+					'instructions' => __( 'e.g. Istanbul, Turkey — or “Remote”.', 'estecapelli' ),
+				),
+				array(
+					'key'           => 'field_job_type',
+					'label'         => __( 'Contract', 'estecapelli' ),
+					'name'          => 'type',
+					'type'          => 'select',
+					'instructions'  => __( 'How the role is employed.', 'estecapelli' ),
+					'choices'       => array(
+						'Full-time'  => __( 'Full-time', 'estecapelli' ),
+						'Part-time'  => __( 'Part-time', 'estecapelli' ),
+						'Contract'   => __( 'Contract', 'estecapelli' ),
+						'Internship' => __( 'Internship', 'estecapelli' ),
+					),
+					'default_value' => 'Full-time',
+					'allow_null'    => 1,
+					'ui'            => 1,
+				),
+				array(
+					'key'          => 'field_job_department',
+					'label'        => __( 'Department', 'estecapelli' ),
+					'name'         => 'department',
+					'type'         => 'text',
+					'instructions' => __( 'e.g. Marketing, Patient Care, Clinical.', 'estecapelli' ),
+				),
+				array(
+					'key'          => 'field_job_experience',
+					'label'        => __( 'Experience', 'estecapelli' ),
+					'name'         => 'experience',
+					'type'         => 'text',
+					'instructions' => __( 'e.g. 0–2 years, Junior, Senior.', 'estecapelli' ),
+				),
+				array(
+					'key'           => 'field_job_closes',
+					'label'         => __( 'Applications close', 'estecapelli' ),
+					'name'          => 'closes_on',
+					'type'          => 'date_picker',
+					'instructions'  => __( 'Optional. After this date the form is replaced by a “closed” notice — the role stays readable. Leave empty to keep it open until you unpublish it.', 'estecapelli' ),
+					'display_format' => 'j F Y',
+					'return_format'  => 'Ymd',
+					'first_day'      => 1,
+				),
+				array(
+					'key'          => 'field_job_summary',
+					'label'        => __( 'Card summary', 'estecapelli' ),
+					'name'         => 'summary',
+					'type'         => 'textarea',
+					'instructions' => __( 'One or two lines shown on the Careers listing card. Leave empty to use the start of the description.', 'estecapelli' ),
+					'rows'         => 3,
+					'maxlength'    => 260,
+				),
+			),
+		)
+	);
+
+	// ============================================================
 	// Doctor profile fields
 	//
 	// A doctor is its own post type (one entry per surgeon). The editor only

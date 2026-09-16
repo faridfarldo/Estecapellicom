@@ -1157,6 +1157,7 @@ function estecapelli_page_template_router( $template ) {
 		'contact'      => 'page-contact.php',
 		'blog'         => 'page-blog.php',
 		'before-after' => 'page-before-after.php',
+		'careers'      => 'page-careers.php',
 	);
 	$page_id = get_queried_object_id();
 	$slug    = get_post_field( 'post_name', $page_id );

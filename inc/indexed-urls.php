@@ -199,6 +199,7 @@ function estecapelli_indexed_about_slugs() {
 	return array(
 		'our-doctors'     => array( 'en' => 'our-doctors', 'tr' => 'doktorlarimiz', 'fr' => 'nos-medecins', 'it' => 'i-nostri-medici', 'es' => 'nuestros-doctores', 'pl' => 'nasi-lekarze', 'pt' => 'nossos-medicos', 'ro' => 'medicii-nostri' ),
 		'our-team'         => array( 'en' => 'our-team', 'tr' => 'ekibimiz', 'fr' => 'notre-equipe', 'it' => 'il-nostro-team', 'es' => 'nuestro-equipo', 'pl' => 'nasz-zespol', 'pt' => 'nossa-equipe', 'ro' => 'echipa-noastra' ),
+		'careers'          => array( 'en' => 'careers', 'tr' => 'kariyer', 'fr' => 'carrieres', 'it' => 'lavora-con-noi', 'es' => 'empleo', 'pl' => 'kariera', 'pt' => 'carreiras', 'ro' => 'cariere' ),
 	);
 }
 

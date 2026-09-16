@@ -93,6 +93,7 @@ require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/lead-guard.php';
 require get_template_directory() . '/inc/hair-analysis.php';
+require get_template_directory() . '/inc/careers.php';
 // After leads.php: the measurement layer reads its language + result helpers.
 require get_template_directory() . '/inc/analytics.php';
 require get_template_directory() . '/inc/consent-string-fallbacks.php';

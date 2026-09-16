@@ -21,6 +21,7 @@
     <custom-types>
         <custom-type translate="1" display-as-translated="1">treatment</custom-type>
         <custom-type translate="1" display-as-translated="1">doctor</custom-type>
+        <custom-type translate="1" display-as-translated="1">job</custom-type>
     </custom-types>
 
     <taxonomies>

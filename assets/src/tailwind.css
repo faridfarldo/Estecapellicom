@@ -8787,6 +8787,133 @@
 	.blog-empty { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; padding: clamp(2.5rem, 6vw, 4rem); text-align: center; color: oklch(45% 0.015 260); }
 	.blog-empty__icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 18px; background: var(--color-brand-50); color: var(--color-brand-400, var(--color-brand-300, var(--color-brand-200))); }
 
+	/* ============================================================ Careers
+
+	   Deliberately quieter than the blog: a vacancy list is scanned, not
+	   browsed. No cover images, no cards competing for attention — one row per
+	   role, the facts as chips, and the title doing the work. */
+	.careers-hero {
+		padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+		background: linear-gradient(180deg, oklch(98% 0.012 260), white);
+	}
+	.careers-hero__shell { max-width: 70ch; margin-inline: auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
+	.careers-hero__eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-brand-700); }
+	.careers-hero__eyebrow-mark { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-accent-500); box-shadow: 0 0 0 3px oklch(70% 0.15 78 / 0.18); }
+	.careers-hero__title { margin: 0; font-size: clamp(2rem, 1.5rem + 2vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; color: var(--color-brand-950); text-wrap: balance; }
+	/* The intro is the page's own editor content, so it arrives as paragraphs
+	   rather than one string. */
+	.careers-hero__lead { font-size: 1.0625rem; line-height: 1.65; color: oklch(42% 0.015 260); }
+	.careers-hero__lead > :first-child { margin-top: 0; }
+	.careers-hero__lead > :last-child { margin-bottom: 0; }
+	.careers-hero__lead p { margin: 0 0 0.75rem; }
+	.careers-hero__lead a { color: var(--color-brand-600); text-decoration: underline; }
+	.careers-hero__count { margin: 0; display: inline-flex; align-items: center; padding: 0.35rem 0.9rem; border-radius: 9999px; background: var(--color-brand-50); border: 1px solid var(--color-brand-100); font-size: 0.8125rem; font-weight: 700; color: var(--color-brand-800); }
+
+	.careers-body { padding-block: clamp(2rem, 4vw, 3.5rem); }
+	.careers-list { display: flex; flex-direction: column; gap: 0.9rem; max-width: 62rem; margin-inline: auto; }
+
+	/* One role. The whole row lifts on hover, but only the title and the button
+	   are links — a giant click target that swallows text selection makes a job
+	   description impossible to copy, which is the first thing candidates do. */
+	.job-card {
+		display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(1rem, 3vw, 2rem);
+		padding: clamp(1.15rem, 2.5vw, 1.6rem) clamp(1.25rem, 3vw, 1.85rem);
+		background: white; border: 1px solid var(--color-brand-100); border-radius: 18px;
+		transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease, border-color 0.3s ease;
+	}
+	.job-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--color-brand-200); }
+	.job-card--closed { opacity: 0.72; }
+	.job-card__body { display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+	.job-card__title { margin: 0; font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); line-height: 1.25; letter-spacing: -0.02em; font-weight: 700; color: var(--color-brand-950); }
+	.job-card__title a { color: inherit; text-decoration: none; }
+	.job-card:hover .job-card__title a { color: var(--color-brand-700); }
+	.job-card__meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+	.job-card__summary { margin: 0; font-size: 0.9375rem; line-height: 1.6; color: oklch(45% 0.015 260); }
+	.job-card__aside { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+	.job-card__closed { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: oklch(55% 0.015 260); }
+	.job-card__cta { white-space: nowrap; }
+
+	/* The fact chips, shared by the listing row and the posting header. */
+	.job-chip {
+		display: inline-flex; align-items: center; gap: 0.4rem;
+		padding: 0.3rem 0.7rem; border-radius: 9999px;
+		background: var(--color-brand-50); border: 1px solid var(--color-brand-100);
+		font-size: 0.8125rem; font-weight: 600; color: var(--color-brand-800);
+	}
+	.job-chip svg { flex: none; color: var(--color-brand-500, var(--color-brand-400)); }
+	.job-chip--lg { padding: 0.55rem 0.95rem; background: white; }
+	.job-chip--lg .job-chip__label { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(55% 0.015 260); }
+	.job-chip--lg .job-chip__value { display: block; font-size: 0.9375rem; font-weight: 700; color: var(--color-brand-950); }
+
+	.careers-empty { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; padding: clamp(2.5rem, 6vw, 4rem); text-align: center; color: oklch(45% 0.015 260); }
+	.careers-empty__icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 18px; background: var(--color-brand-50); color: var(--color-brand-400, var(--color-brand-300, var(--color-brand-200))); }
+	.careers-empty__title { margin: 0; font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; color: var(--color-brand-950); }
+
+	/* ---------------- One vacancy ---------------- */
+	.job-hero {
+		padding-block: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.25rem);
+		background: linear-gradient(180deg, oklch(98% 0.012 260), white);
+	}
+	.job-hero__shell { max-width: 56rem; margin-inline: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+	.job-hero__back { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.875rem; font-weight: 600; color: var(--color-brand-700); text-decoration: none; }
+	.job-hero__back:hover { color: var(--color-brand-900); }
+	.job-hero__title { margin: 0; font-size: clamp(1.875rem, 1.4rem + 2vw, 2.75rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; color: var(--color-brand-950); text-wrap: balance; }
+	.job-hero__meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+	.job-hero__cta { margin-top: 0.35rem; }
+	.job-hero__deadline { margin: 0; font-size: 0.875rem; color: oklch(50% 0.015 260); }
+	.job-hero__closed { margin: 0; padding: 0.7rem 1rem; border-radius: 12px; background: oklch(96% 0.02 60); border: 1px solid oklch(85% 0.07 60); font-size: 0.9375rem; font-weight: 600; color: oklch(45% 0.11 55); }
+
+	.job-body { max-width: 56rem; margin-inline: auto; padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 6vw, 4.5rem); }
+	.job-content { font-size: 1.0625rem; line-height: 1.75; color: oklch(38% 0.015 260); }
+	.job-content h2 { margin: 2rem 0 0.75rem; font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; color: var(--color-brand-950); }
+	.job-content h3 { margin: 1.5rem 0 0.5rem; font-size: 1.125rem; font-weight: 700; color: var(--color-brand-900); }
+	.job-content p { margin: 0 0 1rem; }
+	.job-content ul, .job-content ol { margin: 0 0 1.25rem; padding-left: 1.35rem; }
+	.job-content ul { list-style: disc; }
+	.job-content ol { list-style: decimal; }
+	.job-content li { margin-bottom: 0.4rem; }
+	.job-content a { color: var(--color-brand-600); text-decoration: underline; }
+
+	/* The application form. Boxed and set apart from the description so it reads
+	   as the step after reading, not as more of the posting. */
+	.job-apply {
+		margin-top: clamp(2rem, 4vw, 3rem);
+		padding: clamp(1.5rem, 3.5vw, 2.5rem);
+		background: white; border: 1px solid var(--color-brand-100); border-radius: 22px;
+		box-shadow: var(--shadow-card);
+		scroll-margin-top: 6rem;
+	}
+	.job-apply__head { margin-bottom: 1.5rem; }
+	.job-apply__title { margin: 0 0 0.35rem; font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; color: var(--color-brand-950); }
+	.job-apply__lead { margin: 0; font-size: 0.9375rem; line-height: 1.65; color: oklch(45% 0.015 260); }
+	.job-apply__alert { margin-bottom: 1.5rem; }
+
+	/* A file input is the one control browsers refuse to style, so the native
+	   button is kept and only the field around it is dressed — a custom
+	   replacement that hides the real input costs keyboard users the control. */
+	.job-apply__file input[type="file"] {
+		padding: 0.6rem 0.75rem;
+		font-size: 0.875rem;
+		cursor: pointer;
+	}
+	.job-apply__file input[type="file"]::file-selector-button {
+		margin-right: 0.85rem; padding: 0.45rem 0.9rem;
+		border: 0; border-radius: 9999px;
+		background: var(--color-brand-950); color: white;
+		font: inherit; font-size: 0.8125rem; font-weight: 700;
+		cursor: pointer;
+	}
+	.job-apply__file input[type="file"]::file-selector-button:hover { background: var(--color-brand-800); }
+	.job-apply__hint { margin: 0.4rem 0 0; font-size: 0.8125rem; color: oklch(52% 0.015 260); }
+	.job-apply__submit { margin-top: 0.5rem; }
+	.job-apply__privacy { margin: 0.9rem 0 0; font-size: 0.8125rem; line-height: 1.55; color: oklch(52% 0.015 260); }
+
+	@media (max-width: 720px) {
+		.job-card { grid-template-columns: 1fr; align-items: flex-start; }
+		.job-card__aside { flex-direction: row-reverse; align-items: center; justify-content: flex-start; width: 100%; }
+		.job-card__cta { width: 100%; justify-content: center; }
+	}
+
 	/* ---------------- Single post ----------------
 
 	   Two-part layout: a hero that gives the headline and the featured image
