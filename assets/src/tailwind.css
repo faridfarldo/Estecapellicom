@@ -2837,6 +2837,11 @@
 	   it: the language suggestion (110), the consent banner (120) and the lead
 	   popup (9999). */
 	.site-header:has(.site-nav[data-open="true"]) { z-index: 90; }
+	/* Same thing through the class main.js sets, for browsers without :has(),
+	   plus a solid ground: the scrolled header is 92% white, and nothing of the
+	   page should show through the one strip above an open menu. */
+	html.is-nav-open .site-header { z-index: 90; background: white; }
+	html.is-nav-open .site-header::before { opacity: 0; }
 
 	/* ---------- Top utility bar ---------- */
 	.topbar {
@@ -3035,6 +3040,8 @@
 		flex: 1;
 		justify-content: center;
 	}
+	/* Added by main.js beside each parent link; only the phone layout uses it. */
+	.site-nav__expand { display: none; }
 	.site-nav__list {
 		display: flex;
 		align-items: center;
@@ -3670,21 +3677,49 @@
 		}
 		.mainbar-cta .btn svg { display: none; }
 
+		/* The panel hangs from the header's measured bottom edge (--nav-top, set
+		   by main.js) down to the bottom of the screen, opaque, so it is also
+		   what covers the page. Hidden with visibility as well as opacity: a
+		   closed menu must not be reachable by Tab or by a stray tap. */
 		.site-nav {
 			position: fixed;
-			inset: 84px 0 0 0;
-			background: white;
-			padding: 1.5rem clamp(1rem, 3vw, 2rem) 4rem;
+			top: var(--nav-top, 64px);
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 45;
+			display: flex;
 			flex-direction: column;
 			align-items: stretch;
-			gap: 1rem;
-			overflow-y: auto;
-			transform: translateX(100%);
-			transition: transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
-			z-index: 45;
 			justify-content: flex-start;
+			gap: 1rem;
+			padding: 0.25rem clamp(1rem, 4vw, 2rem) calc(2rem + env(safe-area-inset-bottom, 0px));
+			background: white;
+			border-top: 1px solid var(--color-brand-100);
+			overflow-y: auto;
+			/* A long menu scrolls itself and never hands the gesture to the page. */
+			overscroll-behavior: contain;
+			-webkit-overflow-scrolling: touch;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(-6px);
+			transition:
+				opacity 200ms ease,
+				transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1),
+				visibility 0s linear 240ms;
 		}
-		.site-nav[data-open="true"] { transform: translateX(0); }
+		/* Takes focus when the menu opens (see main.js); it is a container, not
+		   a control, so it shows no ring. */
+		.site-nav:focus { outline: none; }
+		.site-nav[data-open="true"] {
+			opacity: 1;
+			visibility: visible;
+			transform: none;
+			transition:
+				opacity 200ms ease,
+				transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1),
+				visibility 0s;
+		}
 
 		.site-nav__list {
 			flex-direction: column;
@@ -3692,18 +3727,59 @@
 			gap: 0;
 			width: 100%;
 		}
+		/* One row per item: the link fills the row, the expand button (when the
+		   item has a sub-menu) sits at its end, and the sub-menu opens beneath
+		   both. */
 		.site-nav__list > li {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: center;
 			border-bottom: 1px solid var(--color-brand-100);
 		}
 		.site-nav__list > li > a {
-			padding: 1rem 0;
+			grid-column: 1;
+			min-height: 52px;
+			padding: 0.875rem 0;
 			font-size: 1.0625rem;
-			justify-content: space-between;
+			font-weight: 500;
+			justify-content: flex-start;
 			border-radius: 0;
+			white-space: normal;
 			background: transparent !important;
 		}
+		/* The inline chevron is the desktop hover cue; the button replaces it. */
+		.site-nav__list > li > a > .chev { display: none; }
 
+		.site-nav__expand {
+			grid-column: 2;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 48px;
+			height: 48px;
+			margin-right: -0.75rem;
+			border: 0;
+			border-radius: 12px;
+			background: transparent;
+			color: var(--color-brand-700);
+			cursor: pointer;
+			transition: background 160ms, color 160ms;
+		}
+		.site-nav__expand svg { transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+		.site-nav__expand:hover,
+		.site-nav__expand:focus-visible { background: var(--color-brand-50); }
+		.site-nav__list > li[data-mobile-open="true"] > .site-nav__expand {
+			background: var(--color-brand-50);
+			color: var(--color-brand-600);
+		}
+		.site-nav__list > li[data-mobile-open="true"] > .site-nav__expand svg { transform: rotate(180deg); }
+		.site-nav__list > li[data-mobile-open="true"] > a { color: var(--color-brand-600); }
+
+		/* Sub-menus from a menu built in Appearance → Menus: collapsed like the
+		   built-in mega menus, instead of always spilled open. */
 		.site-nav__submenu {
+			grid-column: 1 / -1;
+			display: none;
 			position: static;
 			border: none;
 			box-shadow: none;
@@ -3715,17 +3791,9 @@
 			min-width: 0;
 		}
 		.site-nav__submenu::before { display: none; }
+		.site-nav__list > li[data-mobile-open="true"] > .site-nav__submenu { display: block; }
 
-		/* Mobile: accordion mega-menu — closed by default, expands on tap */
-		.site-nav__list > li.has-megamenu > a > .chev {
-			transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
-		}
-		.site-nav__list > li.has-megamenu[data-mobile-open="true"] > a > .chev {
-			transform: rotate(180deg);
-		}
-		.site-nav__list > li.has-megamenu[data-mobile-open="true"] > a {
-			color: var(--color-brand-600);
-		}
+		.site-nav__list > li > .megamenu { grid-column: 1 / -1; }
 
 		.megamenu {
 			position: static;
@@ -3742,9 +3810,15 @@
 			display: block;
 			animation: estecapelli-mega-slide 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
 		}
-		.megamenu__inner {
+		/* Includes the no-feature variant on purpose. Its desktop rule sets
+		   width: max-content at higher specificity than a lone .megamenu__inner,
+		   so on phones the Plastic Surgery, Dental and About sub-menus shrank to
+		   their text and the auto margins centred them in the row. */
+		.megamenu__inner,
+		.megamenu--no-feature .megamenu__inner {
 			display: block;
 			padding: 0.25rem 0 1rem 0.25rem;
+			margin: 0;
 			background: transparent;
 			border: none;
 			box-shadow: none;
@@ -9256,7 +9330,21 @@
 
 /* ============================================================ Utilities */
 @layer utilities {
-	.no-scroll { overflow: hidden; }
+	/* Scroll lock, on the ROOT and never on <body>.
+
+	   <html> carries overflow-x: clip, and when the root's overflow is anything
+	   but visible the viewport takes its overflow from the root, not from body —
+	   so overflow: hidden on body never stopped the page scrolling. It also made
+	   body a scroll container, which is what a sticky element sticks to, so the
+	   sticky header came unstuck behind every popup, lightbox and open menu.
+
+	   Locking the root keeps the scroll position and keeps the header where it
+	   is. .no-scroll stays the class the popup and lightboxes toggle on body. */
+	html:has(> body.no-scroll),
+	html.is-nav-open {
+		overflow: hidden;
+		scrollbar-gutter: stable;
+	}
 	.sr-only {
 		position: absolute;
 		width: 1px;

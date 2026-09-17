@@ -19,62 +19,204 @@
 		document.dispatchEvent(new CustomEvent('estecapelli:' + name, { detail: detail || {} }));
 	}
 
+	/*
+	 * Mobile navigation.
+	 *
+	 * Built as a disclosure panel that sits directly under a header which stays
+	 * put, because every part of the previous version failed on a real phone:
+	 *
+	 *  - The page never stopped scrolling. The lock was overflow:hidden on
+	 *    <body>, but <html> carries overflow-x:clip, and when the root's overflow
+	 *    is anything but visible the viewport takes it from the root, not from
+	 *    body. So body's value never reached the viewport at all.
+	 *  - Worse, overflow:hidden turned <body> itself into a scroll container,
+	 *    which is the container a sticky header sticks to. Opening the menu while
+	 *    scrolled unstuck the header and it slid away with the page, leaving
+	 *    page content showing above the menu.
+	 *  - The panel started at a hard-coded 84px, whatever the header measured.
+	 *  - Closed, it sat off-screen to the right but fully focusable, so keyboard
+	 *    users tabbed into links they could not see; open, nothing stopped taps
+	 *    and focus reaching the page behind it.
+	 *  - JS used 1024px while the stylesheet switches at 1180px, so between the
+	 *    two the burger showed but its sub-menus did not work.
+	 *
+	 * Now: the lock is on <html> (which keeps the scroll position and keeps the
+	 * header stuck), the panel is placed at the header's measured bottom edge,
+	 * everything behind it is inert, focus is kept inside the header while the
+	 * menu is open, and both files agree on one breakpoint.
+	 */
+	var NAV_BREAKPOINT = '(max-width: 1180px)';
+
 	function initMobileNav() {
+		var header = document.querySelector('[data-site-header]');
 		var toggle = document.querySelector('[data-nav-toggle]');
 		var nav    = document.querySelector('[data-site-nav]');
-		if (!toggle || !nav) return;
+		if (!header || !toggle || !nav) return;
 
-		function setOpen(open) {
+		var root   = document.documentElement;
+		var mobile = window.matchMedia(NAV_BREAKPOINT);
+		// Focusable by script only, so opening can move focus into the menu.
+		nav.setAttribute('tabindex', '-1');
+		// The page behind the menu. The consent banner, the language suggestion
+		// and the lead popup are deliberately not here: they sit above the menu
+		// and must stay usable.
+		var BEHIND = '#main, .site-footer, .float-wp, .wa-notice';
+
+		function isOpen() {
+			return toggle.getAttribute('aria-expanded') === 'true';
+		}
+
+		// Pin the panel to wherever the header actually ends — the admin bar, a
+		// wrapping top bar or a rotated phone all move it.
+		function placePanel() {
+			var bottom = Math.max(0, Math.round(header.getBoundingClientRect().bottom));
+			root.style.setProperty('--nav-top', bottom + 'px');
+		}
+
+		function setBehindInert(on) {
+			document.querySelectorAll(BEHIND).forEach(function (el) {
+				if (on) {
+					if (!el.hasAttribute('inert')) {
+						el.setAttribute('inert', '');
+						el.setAttribute('data-nav-inert', '');
+					}
+				} else if (el.hasAttribute('data-nav-inert')) {
+					// Only undo what the menu did, never an inert set elsewhere.
+					el.removeAttribute('inert');
+					el.removeAttribute('data-nav-inert');
+				}
+			});
+		}
+
+		function focusables() {
+			return Array.prototype.filter.call(
+				header.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+				function (el) { return el.getClientRects().length > 0; }
+			);
+		}
+
+		function setOpen(open, returnFocus) {
+			if (open === isOpen()) return;
+			if (open) placePanel();
+
 			toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
 			nav.setAttribute('data-open', open ? 'true' : 'false');
-			document.body.classList.toggle('no-scroll', open);
+			root.classList.toggle('is-nav-open', open);
+			setBehindInert(open);
+
+			if (open) {
+				// Focus goes to the panel itself, not its first link: on a phone a
+				// focused first item reads as "already selected". Screen readers
+				// still land inside the menu, and Tab moves straight on to the
+				// first link. Deferred a frame, or it lands on an element that is
+				// still visibility:hidden and is lost.
+				window.requestAnimationFrame(function () {
+					nav.focus({ preventScroll: true });
+				});
+			} else {
+				collapseAll();
+				if (returnFocus) toggle.focus({ preventScroll: true });
+			}
+		}
+
+		/* ---- Sub-menus: a real button beside each parent link ----------------
+		   The parent used to swallow the tap to open its sub-menu, so a category
+		   page such as Hair Transplant could not be reached from a phone at all.
+		   The link now navigates like any link, and the chevron beside it is a
+		   separate button that owns the expand state. Added here rather than in
+		   PHP so the built-in menu and one assigned in Appearance → Menus get the
+		   same control. */
+		var parents = [];
+		Array.prototype.forEach.call(nav.querySelectorAll('.site-nav__list > li'), function (li, i) {
+			var link  = li.querySelector(':scope > a');
+			var panel = li.querySelector(':scope > .megamenu, :scope > .site-nav__submenu');
+			if (!link || !panel) return;
+
+			if (!link.id) link.id = 'nav-parent-' + i;
+			if (!panel.id) panel.id = 'nav-sub-' + i;
+
+			var button = document.createElement('button');
+			button.type = 'button';
+			button.className = 'site-nav__expand';
+			button.setAttribute('aria-expanded', 'false');
+			button.setAttribute('aria-controls', panel.id);
+			// Named by its own link, so a screen reader hears "Hair Transplant,
+			// button, collapsed" beside "Hair Transplant, link".
+			button.setAttribute('aria-labelledby', link.id);
+			button.innerHTML = '<svg width="16" height="16" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4 L6 8 L10 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+			link.insertAdjacentElement('afterend', button);
+			li.classList.add('has-expand');
+
+			button.addEventListener('click', function () {
+				var willOpen = li.getAttribute('data-mobile-open') !== 'true';
+				collapseAll();
+				if (willOpen) {
+					li.setAttribute('data-mobile-open', 'true');
+					button.setAttribute('aria-expanded', 'true');
+				}
+			});
+
+			parents.push({ li: li, button: button });
+		});
+
+		function collapseAll() {
+			parents.forEach(function (p) {
+				p.li.setAttribute('data-mobile-open', 'false');
+				p.button.setAttribute('aria-expanded', 'false');
+			});
 		}
 
 		toggle.addEventListener('click', function () {
-			var isOpen = toggle.getAttribute('aria-expanded') === 'true';
-			setOpen(!isOpen);
+			setOpen(!isOpen(), false);
+		});
+
+		// Any real link in the panel is a navigation: close first, so the page
+		// is not left inert behind a menu while the next page loads, and so a
+		// link that opens the lead popup opens it over an unlocked page.
+		nav.addEventListener('click', function (e) {
+			if (!mobile.matches || !isOpen()) return;
+			if (e.target.closest('a[href]')) setOpen(false, false);
 		});
 
 		document.addEventListener('keydown', function (e) {
-			if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-				setOpen(false);
-				toggle.focus();
-			}
-		});
+			if (!isOpen()) return;
 
-		nav.addEventListener('click', function (e) {
-			var target = e.target.closest('a');
-			if (!target) return;
-			if (!window.matchMedia('(max-width: 1024px)').matches) return;
-
-			var parentLi = target.parentElement;
-			var isMegaTrigger =
-				parentLi &&
-				parentLi.classList.contains('has-megamenu') &&
-				parentLi.parentElement &&
-				parentLi.parentElement.classList.contains('site-nav__list');
-
-			if (isMegaTrigger) {
-				e.preventDefault();
-				var siblings = parentLi.parentElement.querySelectorAll(':scope > li.has-megamenu');
-				var willOpen = parentLi.getAttribute('data-mobile-open') !== 'true';
-				siblings.forEach(function (sib) {
-					sib.setAttribute('data-mobile-open', sib === parentLi && willOpen ? 'true' : 'false');
-				});
+			if (e.key === 'Escape') {
+				setOpen(false, true);
 				return;
 			}
 
-			setOpen(false);
+			// Keep Tab inside the header while the menu is open; the page behind
+			// is inert, so leaving it would only drop focus on nothing.
+			if (e.key === 'Tab') {
+				var items = focusables();
+				if (!items.length) return;
+				var first = items[0];
+				var last  = items[items.length - 1];
+				if (e.shiftKey && document.activeElement === first) {
+					e.preventDefault();
+					last.focus();
+				} else if (!e.shiftKey && document.activeElement === last) {
+					e.preventDefault();
+					first.focus();
+				}
+			}
 		});
 
-		var mq = window.matchMedia('(min-width: 1025px)');
-		mq.addEventListener('change', function (ev) {
-			if (ev.matches) {
-				setOpen(false);
-				nav.querySelectorAll('li.has-megamenu[data-mobile-open="true"]').forEach(function (li) {
-					li.setAttribute('data-mobile-open', 'false');
-				});
-			}
+		window.addEventListener('resize', function () {
+			if (isOpen()) placePanel();
+		}, { passive: true });
+
+		// Growing past the breakpoint turns the panel back into the desktop bar;
+		// a menu left "open" there would keep the page locked and inert.
+		mobile.addEventListener('change', function (ev) {
+			if (!ev.matches) setOpen(false, false);
+		});
+
+		// Returning with the back button restores the page from bfcache exactly as
+		// it was left — including an open menu and an inert page.
+		window.addEventListener('pageshow', function (ev) {
+			if (ev.persisted) setOpen(false, false);
 		});
 	}
 
