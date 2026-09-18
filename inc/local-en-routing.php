@@ -8,7 +8,7 @@
  * internal links). Rather than fight that flaky feature, the theme owns the /en/
  * prefix for English — it intercepts /en/{path} at the request stage (before the
  * rewrite rules decide the query) and resolves it to the matching page, blog
- * post, treatment or doctor.
+ * post, treatment, doctor or job.
  *
  * Works whether or not WPML is active. It only ever touches paths under /en/, so
  * WPML's /fr/, /it/, … handling is untouched. No rewrite flush, no .htaccess.
@@ -52,7 +52,7 @@ function estecapelli_en_request( $query_vars ) {
 	$preview_id = estecapelli_en_preview_post_id();
 	if ( $preview_id ) {
 		$preview_post = get_post( $preview_id );
-		if ( $preview_post && in_array( $preview_post->post_type, array( 'post', 'page', 'treatment', 'doctor' ), true ) ) {
+		if ( $preview_post && in_array( $preview_post->post_type, array( 'post', 'page', 'treatment', 'doctor', 'job' ), true ) ) {
 			unset( $query_vars['name'], $query_vars['pagename'], $query_vars['attachment'], $query_vars['attachment_id'] );
 			$query_vars['preview'] = 'true';
 			if ( 'page' === $preview_post->post_type ) {
@@ -86,6 +86,15 @@ function estecapelli_en_request( $query_vars ) {
 	}
 
 	$parts = explode( '/', $rest );
+
+	// Job at about-us/careers/{slug}; resolve by ID just like doctor profiles,
+	// including when the stored rewrite rules predate the Careers post type.
+	if ( 3 === count( $parts ) && 'about-us' === $parts[0] && 'careers' === $parts[1] ) {
+		$id = estecapelli_post_id_by_slug( $parts[2], 'job' );
+		if ( $id ) {
+			return array( 'p' => $id, 'post_type' => 'job' );
+		}
+	}
 
 	// 3) Doctor profile at about-us/our-doctors/{slug}.
 	if ( 3 === count( $parts ) && 'about-us' === $parts[0] && 'our-doctors' === $parts[1] ) {
