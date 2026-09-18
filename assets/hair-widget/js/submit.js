@@ -33,6 +33,14 @@ export async function submitLead({ photos, analysis, contact, method }) {
   // WPML has no request context there. Send what the page already knows.
   form.append('lead_lang', CONFIG.locale || '');
   form.append('lead_page_url', window.location.href);
+  // Campaign parameters from the page's own URL, so an AI lead carries the same
+  // attribution as every other form on the site.
+  try {
+    const q = new URLSearchParams(window.location.search);
+    ['source', 'medium', 'campaign', 'content', 'term'].forEach((k) => {
+      form.append('utm_' + k, q.get('utm_' + k) || '');
+    });
+  } catch (e) { /* attribution is nice to have, never a reason to fail a lead */ }
   form.append('lead_page_title', document.title);
   form.append('analysis_json', JSON.stringify(analysis ?? {}));
   // Fresh, uncached nonce — the baked-in page nonce may be stale behind a cache.

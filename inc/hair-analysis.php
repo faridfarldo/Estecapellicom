@@ -402,6 +402,15 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		'page_title' => sanitize_text_field( (string) $request->get_param( 'lead_page_title' ) ),
 	);
 	$lead_lang   = function_exists( 'estecapelli_lead_language_code' ) ? estecapelli_lead_language_code( $lead_ctx ) : 'EN';
+
+	// The campaign that brought them. The widget posts these from the page's own
+	// query string (assets/hair-widget/js/submit.js); without them an AI lead
+	// reached the CRM with no idea where the visitor came from, while every
+	// other form reported it.
+	$utm = array();
+	foreach ( array( 'source', 'medium', 'campaign', 'content', 'term' ) as $utm_key ) {
+		$utm[ $utm_key ] = sanitize_text_field( (string) $request->get_param( 'utm_' . $utm_key ) );
+	}
 	$kommo_source = function_exists( 'estecapelli_lead_kommo_source' ) ? estecapelli_lead_kommo_source( $lead_ctx ) : $source_label;
 
 	// Store the lead.
@@ -452,18 +461,31 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 	if ( $quarantine ) {
 		$subject = '[SPAM?] ' . $subject;
 	}
-	$lines   = array(
-		'Adı Soyadı: ' . $name,
-		'Email: ' . ( $email ?: '-' ),
-		'Telefon: ' . ( $phone ?: '-' ),
-		'Tercih edilen iletişim: ' . $method_label,
-		'Norwood: ' . ( $norwood ?: '-' ),
-		'Greft Aralığı: ' . ( $grange ?: '-' ),
-		'Analiz: ' . ( $summary ?: '-' ),
-		'Onay (KVKK/GDPR): ' . ( $consent ? 'Evet' : 'Hayır' ),
-		'Dil: ' . $lead_lang,
-		'Kaynak: ' . $kommo_source,
-	);
+	// Built by the same helper as every other form (inc/leads.php), so Kommo's
+	// parser sees one shape. This used to be its own list in its own order with
+	// the message called "Analiz", which meant the CRM never filled Extra Note
+	// for an AI lead. The analysis details follow the mapped block as extras.
+	$lines = function_exists( 'estecapelli_lead_crm_lines' )
+		? estecapelli_lead_crm_lines(
+			array(
+				'name'    => $name,
+				'email'   => $email,
+				'phone'   => $phone,
+				'message' => $summary,
+				'lang'    => $lead_lang,
+				'source'  => $kommo_source,
+				'url'     => $lead_ctx['page_url'],
+				'utm'     => $utm,
+			),
+			array(
+				'Tercih edilen iletişim' => $method_label,
+				'Norwood'                => $norwood ?: '',
+				'Greft Aralığı'          => $grange,
+				'Onay (KVKK/GDPR)'       => $consent ? 'Evet' : 'Hayır',
+				'Form'                   => $source_label,
+			)
+		)
+		: array( 'Adı Soyadı: ' . $name, 'Email: ' . $email, 'Telefon: ' . $phone );
 
 	$from_name = get_bloginfo( 'name' );
 	$headers   = array(

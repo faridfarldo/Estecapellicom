@@ -794,13 +794,11 @@ function estecapelli_lead_page_name( array $d ) {
  * @return string
  */
 function estecapelli_lead_kommo_source( array $d ) {
-	// The footer form is on every page, so the page it was sent from says
-	// nothing about it. Kommo gets the form itself as the source instead.
-	$source = ( 'footer' === ( $d['source'] ?? '' ) )
-		? 'website - footer'
-		: 'website - ' . estecapelli_lead_page_name( $d );
-
-	return apply_filters( 'estecapelli_lead_kommo_source', $source, $d );
+	// Deliberately one stable value for the whole site. Kommo groups and filters
+	// leads on this field, and it used to carry the page name — which made a new
+	// source for every page and every language, and nothing to group on. The page
+	// is reported exactly, as a full address, on the URL line instead.
+	return (string) apply_filters( 'estecapelli_lead_kommo_source', 'website', $d );
 }
 
 /**
@@ -827,6 +825,68 @@ function estecapelli_lead_source_label( array $d ) {
 
 	// The contact page is self-describing; others gain a lot from the page.
 	return ( $where && 'contact' !== $d['source'] ) ? "$base · $where" : $base;
+}
+
+/**
+ * The notification body, in the exact order Kommo's inbound parser maps.
+ *
+ * Kommo matches on the label at the start of each line, and its template was
+ * built from these nine lines in this order. Three things had drifted out of
+ * step with it and silently cost fields on every lead:
+ *
+ *   - "İlgilenilen" sat between Telefon and Mesajınız, in the middle of the
+ *     mapped run.
+ *   - The last UTM line read "UTM Term" while the parser looks for
+ *     "UTM Keyword", so Ad Name was never filled.
+ *   - The AI photo form built its own body in a different order and called the
+ *     message "Analiz", so Extra Note was never filled for those leads either.
+ *
+ * So the mapped nine are produced here, once, for every form and every
+ * language — the labels are deliberately the same Turkish ones worldwide,
+ * because the parser is one template, not one per language. Anything else the
+ * clinic wants goes in $extras, which is printed after them: unmapped lines are
+ * ignored by Kommo and read by the person who opens the email.
+ *
+ * @param array $core   name, email, phone, message, lang, source, url, utm.
+ * @param array $extras Label => value, printed after the mapped block.
+ * @return string[]
+ */
+function estecapelli_lead_crm_lines( array $core, array $extras = array() ) {
+	$utm = array_merge(
+		array( 'source' => '', 'medium' => '', 'campaign' => '', 'content' => '', 'term' => '' ),
+		isset( $core['utm'] ) && is_array( $core['utm'] ) ? $core['utm'] : array()
+	);
+
+	// The mapped block. Order and spelling here are a contract with Kommo —
+	// changing either silently empties a field in the CRM.
+	$lines = array(
+		'Adı Soyadı: ' . $core['name'],
+		'Email: ' . ( $core['email'] ?: '-' ),
+		'Telefon: ' . ( $core['phone'] ?: '-' ),
+		'Mesajınız: ' . ( $core['message'] ?: '-' ),
+		'Dil: ' . $core['lang'],
+		'Kaynak: ' . $core['source'],
+		'UTM Campaign: ' . $utm['campaign'],
+		'UTM Content: ' . $utm['content'],
+		'UTM Keyword: ' . $utm['term'],
+	);
+
+	// Everything below is context for whoever reads the email. The page the
+	// enquiry came from is here rather than inside "Kaynak" so the source stays
+	// a short, stable value the CRM can group on while the exact page is still
+	// one line away.
+	$lines[] = 'URL: ' . ( $core['url'] ?: '-' );
+	$lines[] = 'UTM Source: ' . $utm['source'];
+	$lines[] = 'UTM Medium: ' . $utm['medium'];
+
+	foreach ( $extras as $label => $value ) {
+		$value = trim( (string) $value );
+		if ( '' !== $value ) {
+			$lines[] = $label . ': ' . $value;
+		}
+	}
+
+	return $lines;
 }
 
 /**
@@ -935,25 +995,22 @@ function estecapelli_process_lead( array $d ) {
 		);
 	}
 
-	$lines = array(
-		'Adı Soyadı: ' . $d['name'],
-		'Email: ' . ( $d['email'] ?: '-' ),
-		'Telefon: ' . ( $d['phone'] ?: '-' ),
+	$lines = estecapelli_lead_crm_lines(
+		array(
+			'name'    => $d['name'],
+			'email'   => $d['email'],
+			'phone'   => $d['phone'],
+			'message' => $d['message'],
+			'lang'    => strtoupper( substr( (string) apply_filters( 'estecapelli_lead_lang', estecapelli_lead_language_code( $d ), $d ), 0, 5 ) ),
+			'source'  => estecapelli_lead_kommo_source( $d ),
+			'url'     => $d['page_url'],
+			'utm'     => $d['utm'],
+		),
+		array(
+			'İlgilenilen' => $d['treatment'],
+			'Form'        => $source_label,
+		)
 	);
-	if ( $d['treatment'] ) {
-		$lines[] = 'İlgilenilen: ' . $d['treatment'];
-	}
-	$lines[] = 'Mesajınız: ' . ( $d['message'] ?: '-' );
-	$lines[] = 'Dil: ' . strtoupper( substr( (string) apply_filters( 'estecapelli_lead_lang', estecapelli_lead_language_code( $d ), $d ), 0, 5 ) );
-	$lines[] = 'Kaynak: ' . estecapelli_lead_kommo_source( $d );
-	if ( $d['page_url'] ) {
-		$lines[] = 'Sayfa: ' . $d['page_url'];
-	}
-	$lines[] = 'UTM Source: ' . $d['utm']['source'];
-	$lines[] = 'UTM Medium: ' . $d['utm']['medium'];
-	$lines[] = 'UTM Campaign: ' . $d['utm']['campaign'];
-	$lines[] = 'UTM Content: ' . $d['utm']['content'];
-	$lines[] = 'UTM Term: ' . $d['utm']['term'];
 	// Last line on purpose: Kommo maps the labelled fields above it and ignores
 	// what it does not recognise, so the clinic sees the warning without the CRM
 	// mapping turning into something else.
