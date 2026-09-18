@@ -585,6 +585,27 @@ export class HairAnalysisWidget {
       try { this.iti.destroy(); } catch (e) {}
       this.iti = null;
     }
+    // Same re-measure as the site's other phone fields (assets/js/phone-intl.js):
+    // the library sizes the gap for the dial code once at startup and again on
+    // each country change, so a web font that arrives later leaves the number
+    // sitting on top of "+90". Its own formula, re-applied.
+    const syncDialPadding = () => {
+      const wrap = input.closest('.iti');
+      const button = wrap && wrap.querySelector('.iti__selected-country');
+      if (!button || !button.offsetWidth) return;
+      const side = input.style.paddingRight && !input.style.paddingLeft ? 'paddingRight' : 'paddingLeft';
+      input.style[side] = `${button.offsetWidth + 6}px`;
+    };
+    input.addEventListener('countrychange', () => requestAnimationFrame(syncDialPadding));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncDialPadding);
+    if (typeof ResizeObserver === 'function') {
+      requestAnimationFrame(() => {
+        const wrap = input.closest('.iti');
+        const button = wrap && wrap.querySelector('.iti__selected-country');
+        if (button) new ResizeObserver(syncDialPadding).observe(button);
+      });
+    }
+
     this.iti = window.intlTelInput(input, {
       initialCountry: 'auto',
       separateDialCode: true,

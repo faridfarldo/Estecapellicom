@@ -123,6 +123,37 @@
 		return value.replace(/[^0-9+\-\s().]/g, '');
 	}
 
+	/*
+	 * Re-measure the gap the dial code needs.
+	 *
+	 * With separateDialCode the country button is positioned over the input, and
+	 * intl-tel-input keeps the number clear of it with an inline padding equal to
+	 * the button's measured width. It measures once at startup and again each
+	 * time the country changes — which misses everything that changes the
+	 * button's width without changing the country. A web font arriving after
+	 * startup is the usual one here: DM Sans is self-hosted, so the first
+	 * measurement can be of the fallback font, and "+90" in the real font is
+	 * wider than the space reserved for it. The number then sits on top of the
+	 * dial code, which is what the field looked like on a phone.
+	 *
+	 * This re-applies the library's own formula (button width + 6px) at the
+	 * moments it does not cover. Same formula, so a correct padding is rewritten
+	 * to itself and nothing moves.
+	 */
+	function syncDialPadding(input) {
+		var wrap = input.closest ? input.closest('.iti') : null;
+		if (!wrap) { return; }
+		var button = wrap.querySelector('.iti__selected-country');
+		if (!button) { return; }
+		var width = button.offsetWidth;
+		if (!width) { return; } // Hidden right now; it will run again when shown.
+
+		// Follow whichever side the library chose, so a right-to-left layout is
+		// left exactly as the library set it up.
+		var side = input.style.paddingRight && !input.style.paddingLeft ? 'paddingRight' : 'paddingLeft';
+		input.style[side] = (width + 6) + 'px';
+	}
+
 	Array.prototype.forEach.call(inputs, function (input) {
 		var iti = window.intlTelInput(input, {
 			initialCountry: 'auto',
@@ -161,7 +192,22 @@
 			dialField.value = (country && country.dialCode) ? String(country.dialCode) : '';
 		}
 		syncDial();
-		input.addEventListener('countrychange', syncDial);
+		input.addEventListener('countrychange', function () {
+			syncDial();
+			// After the library's own handler has written the new dial code.
+			window.requestAnimationFrame(function () { syncDialPadding(input); });
+		});
+
+		// The font is the common late change; ResizeObserver catches the rest
+		// (zoom, a rotated phone, a field that was hidden when it was set up).
+		if (document.fonts && document.fonts.ready) {
+			document.fonts.ready.then(function () { syncDialPadding(input); });
+		}
+		if (typeof ResizeObserver === 'function') {
+			var wrap = input.closest('.iti');
+			var button = wrap ? wrap.querySelector('.iti__selected-country') : null;
+			if (button) { new ResizeObserver(function () { syncDialPadding(input); }).observe(button); }
+		}
 
 		// The dial code lives in the country dropdown, never in the text field
 		// (separateDialCode), so the posted value has to be rebuilt here or the
