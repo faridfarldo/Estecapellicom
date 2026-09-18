@@ -164,10 +164,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	if ( function_exists( 'estecapelli_indexed_language_code' ) ) {
 		$hw_language = estecapelli_indexed_language_code( $hw_language );
 	}
-	if ( ! in_array( $hw_language, array( 'en', 'fr', 'it', 'es', 'pl', 'pt', 'tr' ), true ) ) {
+	// Every language the widget has strings for (assets/hair-widget/js/i18n.js).
+	// Romanian was missing from this list, so /ro/ pages shipped locale "en" and
+	// a Romanian visitor got an English widget — and an English AI summary,
+	// because the page's locale is what tells the model which language to
+	// answer in. Keep the two in step: a language here must exist there.
+	$hw_languages = array( 'en', 'fr', 'it', 'es', 'pl', 'pt', 'tr', 'ro' );
+	if ( ! in_array( $hw_language, $hw_languages, true ) ) {
 		$hw_language = function_exists( 'determine_locale' ) ? strtolower( substr( (string) determine_locale(), 0, 2 ) ) : 'en';
 	}
-	if ( ! in_array( $hw_language, array( 'en', 'fr', 'it', 'es', 'pl', 'pt', 'tr' ), true ) ) {
+	if ( ! in_array( $hw_language, $hw_languages, true ) ) {
 		$hw_language = 'en';
 	}
 	// Cache-bust the module loader so each deploy reaches browsers (the widget's
