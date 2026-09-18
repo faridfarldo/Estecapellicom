@@ -172,6 +172,24 @@ function estecapelli_job_permalink( $url, $post, $leavename = false ) {
 add_filter( 'post_type_link', 'estecapelli_job_permalink', 1000, 3 );
 
 /**
+ * Jobs are one shared collection, even if WPML still has the old translatable
+ * setting cached. The listing already uses get_posts() with suppressed filters;
+ * use the same policy for the main job query and the Careers admin list.
+ *
+ * This leaves WordPress's status/capability checks intact. Do not apply it to
+ * mixed queries, other post types, or secondary queries elsewhere on the site.
+ *
+ * @param WP_Query $query Main query being prepared.
+ */
+function estecapelli_shared_job_query( $query ) {
+	if ( ! $query->is_main_query() || 'job' !== $query->get( 'post_type' ) ) {
+		return;
+	}
+	$query->set( 'suppress_filters', true );
+}
+add_action( 'pre_get_posts', 'estecapelli_shared_job_query', PHP_INT_MAX );
+
+/**
  * Open roles, in the order the editor arranged them.
  *
  * @param int $limit Maximum roles to return.
