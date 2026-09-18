@@ -524,6 +524,27 @@ add_action( 'wp_enqueue_scripts', 'estecapelli_lead_guard_enqueue', 21 );
  * whole file would just be a nicer way to lose a patient.
  * ---------------------------------------------------------------------- */
 
+/**
+ * Leads that never reached the CRM: quarantined by the score, or held back by
+ * the flood control in inc/leads.php. One list, because from the clinic's side
+ * they are the same thing — an enquiry nobody has acted on yet.
+ *
+ * @return array Meta query.
+ */
+function estecapelli_lead_withheld_meta_query() {
+	return array(
+		'relation' => 'OR',
+		array(
+			'key'   => 'lead_is_spam',
+			'value' => '1',
+		),
+		array(
+			'key'     => 'lead_held',
+			'compare' => 'EXISTS',
+		),
+	);
+}
+
 /** "All | Spam" filter links above the Leads list. */
 add_filter(
 	'views_edit-lead',
@@ -535,8 +556,9 @@ add_filter(
 					'post_status'    => 'private',
 					'posts_per_page' => 200,
 					'fields'         => 'ids',
-					'meta_key'       => 'lead_is_spam', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-					'meta_value'     => '1', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+					// Anything that did not reach the CRM: scored as spam, or held
+					// back by flood control. Both need someone to look at them.
+					'meta_query'     => estecapelli_lead_withheld_meta_query(), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				)
 			)
 		);
@@ -566,12 +588,7 @@ add_action(
 		}
 		$query->set(
 			'meta_query', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-			array(
-				array(
-					'key'   => 'lead_is_spam',
-					'value' => '1',
-				),
-			)
+			estecapelli_lead_withheld_meta_query()
 		);
 	}
 );
@@ -580,7 +597,11 @@ add_action(
 add_filter(
 	'post_row_actions',
 	function ( $actions, $post ) {
-		if ( 'lead' !== $post->post_type || '1' !== get_post_meta( $post->ID, 'lead_is_spam', true ) ) {
+		// Quarantined (scored as spam) or held back by flood control: both are
+		// stored, neither reached the CRM, and both are released the same way.
+		$is_spam = '1' === get_post_meta( $post->ID, 'lead_is_spam', true );
+		$is_held = '' !== (string) get_post_meta( $post->ID, 'lead_held', true );
+		if ( 'lead' !== $post->post_type || ( ! $is_spam && ! $is_held ) ) {
 			return $actions;
 		}
 		if ( '1' === get_post_meta( $post->ID, 'lead_crm_released', true ) ) {

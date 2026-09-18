@@ -361,8 +361,11 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 	}
 	$summary = isset( $analysis['summary'] ) ? sanitize_textarea_field( $analysis['summary'] ) : '';
 
-	$lead_limits = function_exists( 'estecapelli_check_lead_limits' )
-		? estecapelli_check_lead_limits(
+	// Flood control that holds, never discards — the same rule the other forms
+	// follow. This used to return early on a duplicate, which meant a repeated
+	// submission left no lead anywhere at all while the widget said thank you.
+	$hold = function_exists( 'estecapelli_lead_hold_reason' )
+		? estecapelli_lead_hold_reason(
 			array(
 				'name'    => $name,
 				'phone'   => $phone,
@@ -370,13 +373,7 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 				'message' => $summary,
 			)
 		)
-		: true;
-	if ( is_wp_error( $lead_limits ) ) {
-		if ( 'duplicate_lead' === $lead_limits->get_error_code() ) {
-			return new WP_REST_Response( array( 'ok' => true, 'duplicate' => true ), 200 );
-		}
-		return new WP_REST_Response( array( 'ok' => false, 'error' => $lead_limits->get_error_code() ), 429 );
-	}
+		: '';
 
 	// Same quarantine lane as every other form (inc/lead-guard.php): a scored
 	// submission is still stored and still emailed to the clinic, it just never
@@ -431,6 +428,9 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		if ( $quarantine ) {
 			update_post_meta( $lead_id, 'lead_is_spam', '1' );
 		}
+		if ( $hold ) {
+			update_post_meta( $lead_id, 'lead_held', $hold );
+		}
 	}
 
 	// Save the uploaded photos to temp files so they can be attached.
@@ -483,6 +483,22 @@ function estecapelli_hair_lead( WP_REST_Request $request ) {
 		// the clinic's own copy, which is the only place they are read anyway.
 		update_post_meta( $lead_id, 'lead_mail_subject', $subject );
 		update_post_meta( $lead_id, 'lead_mail_body', $body );
+	}
+
+	// Held back: stored with the message it would have sent, releasable from
+	// wp-admin with one click, and the photos cleaned up below either way.
+	if ( $hold ) {
+		if ( ! is_wp_error( $lead_id ) ) {
+			update_post_meta( $lead_id, 'lead_mail_subject', $subject );
+			update_post_meta( $lead_id, 'lead_mail_body', $body );
+		}
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf( '[estecapelli] AI lead HELD (%s) but stored as #%s: %s', $hold, is_wp_error( $lead_id ) ? 'not stored' : (string) $lead_id, $name )
+		);
+		foreach ( $attachments as $tmp ) {
+			@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		}
+		return new WP_REST_Response( array( 'ok' => true ), 200 );
 	}
 
 	$sent = wp_mail( $to, $subject, $body, $headers, $attachments );

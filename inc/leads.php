@@ -451,37 +451,59 @@ function estecapelli_lead_spam_signals( array $data ) {
 }
 
 /**
- * Apply global lead throttling and suppress exact replay submissions.
+ * Flood control that holds a submission back from the inbox — and never
+ * discards it.
+ *
+ * This used to return a WP_Error that aborted estecapelli_process_lead()
+ * before it stored anything, so a throttled or repeated submission left no
+ * trace anywhere: no lead in wp-admin, no email, no CRM record, and — because
+ * the AJAX entry point answers a duplicate with a thank-you — a visitor who was
+ * told it had been received. An enquiry that vanishes is the one failure this
+ * site cannot afford; a spam email costs the clinic ten seconds, a lost patient
+ * costs it far more. So nothing is dropped any more. The two conditions below
+ * only decide whether the notification goes out now, and every held lead is
+ * stored, marked with its reason, and one click from the CRM in wp-admin.
  *
  * @param array $data Sanitised lead data.
- * @return true|WP_Error
+ * @return string '' to deliver normally, otherwise 'duplicate' or 'rate_limited'.
  */
-function estecapelli_check_lead_limits( array $data ) {
+function estecapelli_lead_hold_reason( array $data ) {
 	$limited = estecapelli_rate_limit(
 		'lead_submission',
 		(int) apply_filters( 'estecapelli_lead_rate_limit', 5 ),
 		(int) apply_filters( 'estecapelli_lead_rate_window', 15 * MINUTE_IN_SECONDS )
 	);
 	if ( is_wp_error( $limited ) ) {
-		return $limited;
+		return 'rate_limited';
 	}
 
-	// Suppress an identical resend — a double-clicked button or a replayed POST.
-	// Kept short on purpose: the window only has to cover an accidental repeat,
-	// and anything longer silently swallows a visitor who genuinely submits
-	// again (or the clinic testing its own forms).
+	// An identical resend — a double-clicked button, a replayed POST, or the
+	// clinic testing its own forms with the same details. The window only has to
+	// cover an accidental repeat: the first one was emailed moments ago and this
+	// is the same text, so sending it twice tells the clinic nothing new.
 	$window      = (int) apply_filters( 'estecapelli_lead_duplicate_window', 5 * MINUTE_IN_SECONDS );
 	$fingerprint = strtolower( implode( '|', array( $data['name'], $data['phone'], $data['email'], $data['message'] ) ) );
 	$duplicate   = 'ec_lead_dup_' . substr( hash( 'sha256', $fingerprint ), 0, 32 );
 	if ( get_transient( $duplicate ) ) {
-		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-			sprintf( '[estecapelli] Lead suppressed as an identical resend within %d min: %s', (int) round( $window / 60 ), $data['name'] )
-		);
-		return new WP_Error( 'duplicate_lead', __( 'This request has already been received.', 'estecapelli' ) );
+		return 'duplicate';
 	}
 	set_transient( $duplicate, 1, $window );
 
-	return true;
+	return '';
+}
+
+/**
+ * Why a lead was held back, in words the clinic can act on.
+ *
+ * @param string $reason Hold reason.
+ * @return string
+ */
+function estecapelli_lead_hold_label( $reason ) {
+	$labels = array(
+		'duplicate'    => __( 'Identical to a submission received minutes earlier — not emailed again', 'estecapelli' ),
+		'rate_limited' => __( 'Arrived during a burst from one address — stored, not emailed', 'estecapelli' ),
+	);
+	return $labels[ $reason ] ?? '';
 }
 
 /* -------------------------------------------------------------------------
@@ -837,10 +859,8 @@ function estecapelli_process_lead( array $d ) {
 		);
 		return $antispam;
 	}
-	$limits = estecapelli_check_lead_limits( $d );
-	if ( is_wp_error( $limits ) ) {
-		return $limits;
-	}
+	// Never aborts: at worst this says "store it, do not email it yet".
+	$hold = estecapelli_lead_hold_reason( $d );
 
 	// Scored, never dropped — see inc/lead-guard.php. A quarantined lead is
 	// stored and emailed to the clinic exactly like any other; the only thing it
@@ -867,6 +887,9 @@ function estecapelli_process_lead( array $d ) {
 		update_post_meta( $lead_id, 'lead_phone', $d['phone'] );
 		if ( ! empty( $d['phone_unprefixed'] ) ) {
 			update_post_meta( $lead_id, 'lead_phone_no_prefix', '1' );
+		}
+		if ( $hold ) {
+			update_post_meta( $lead_id, 'lead_held', $hold );
 		}
 		update_post_meta( $lead_id, 'lead_email', $d['email'] );
 		update_post_meta( $lead_id, 'lead_treatment', $d['treatment'] );
@@ -973,6 +996,26 @@ function estecapelli_process_lead( array $d ) {
 			. 'If this is a real enquiry, release it from wp-admin → Leads → Quarantined.';
 	}
 
+	// Held back: stored, logged, and left in wp-admin with the exact message it
+	// would have sent, so "Send to CRM" releases the real thing rather than a
+	// rebuilt approximation. The visitor is still thanked — they did nothing
+	// wrong, and telling a patient their enquiry failed is how you lose them.
+	if ( $hold ) {
+		if ( ! is_wp_error( $lead_id ) ) {
+			update_post_meta( $lead_id, 'lead_mail_subject', $subject );
+			update_post_meta( $lead_id, 'lead_mail_body', $body );
+		}
+		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			sprintf(
+				'[estecapelli] Lead HELD (%s) but stored as #%s — release it from wp-admin → Leads: %s',
+				$hold,
+				is_wp_error( $lead_id ) ? 'not stored' : (string) $lead_id,
+				$d['name']
+			)
+		);
+		return $lead_id;
+	}
+
 	$sent = wp_mail( $to, $subject, $body, apply_filters( 'estecapelli_lead_headers', $headers, $d ) );
 	estecapelli_lead_record_delivery( $lead_id, $sent, $source_label );
 
@@ -1062,7 +1105,9 @@ function estecapelli_handle_lead() {
 
 	$data = estecapelli_collect_lead();
 	$result = estecapelli_process_lead( $data );
-	$silent = is_wp_error( $result ) && in_array( $result->get_error_code(), array( 'duplicate_lead' ), true );
+	// Nothing is silently dropped any more, so there is no longer a result that
+	// has to be disguised as success.
+	$silent = false;
 
 	// Post/Redirect/Get → return to the submitting page. On a validation error
 	// come back with ?error=… instead of ?sent=1 so we never fake success.
@@ -1096,11 +1141,6 @@ function estecapelli_handle_lead_ajax() {
 	$data = estecapelli_collect_lead();
 	$result = estecapelli_process_lead( $data );
 	if ( is_wp_error( $result ) ) {
-		if ( in_array( $result->get_error_code(), array( 'duplicate_lead' ), true ) ) {
-			wp_send_json_success(
-				array( 'message' => __( 'Thank you! Your request has been received — our team will contact you shortly.', 'estecapelli' ) )
-			);
-		}
 		$status = 'rate_limited' === $result->get_error_code() ? 429 : 422;
 		wp_send_json_error( array( 'message' => $result->get_error_message() ), $status );
 	}
@@ -1207,6 +1247,16 @@ add_filter( 'manage_lead_posts_columns', function ( $cols ) {
 add_action( 'manage_lead_posts_custom_column', function ( $col, $post_id ) {
 	if ( in_array( $col, array( 'lead_email', 'lead_treatment', 'lead_source' ), true ) ) {
 		echo esc_html( get_post_meta( $post_id, $col, true ) );
+		// Held back by flood control: stored on purpose, never emailed, and
+		// waiting for someone to decide. Shown wherever the lead is listed so it
+		// cannot sit there unnoticed.
+		$held = 'lead_source' === $col ? (string) get_post_meta( $post_id, 'lead_held', true ) : '';
+		if ( $held ) {
+			printf(
+				'<br /><small style="color:#b26a00">⏸ %s</small>',
+				esc_html( estecapelli_lead_hold_label( $held ) )
+			);
+		}
 		// A number with no country code is not spam and not a delivery failure,
 		// so it gets its own marker rather than sharing either of those.
 		if ( 'lead_source' === $col && '1' === get_post_meta( $post_id, 'lead_phone_no_prefix', true ) ) {
