@@ -5,8 +5,8 @@
  * A vacancy is a `job` post: the title is the role, the editor body is the
  * description, and the short ACF form beside it carries the facts a candidate
  * scans for (location, contract, department, seniority, closing date). The
- * listing lives at /{lang}/about-us/careers and each role at
- * /{lang}/about-us/careers/{slug} — the same shape the doctor profiles use, so
+ * listing lives at /en/about-us/careers and each role at
+ * /en/about-us/careers/{slug} — shared across all language menus, so
  * a new role appears on the site the moment it is published, with no page
  * nesting and no roster to edit.
  *
@@ -153,6 +153,23 @@ function estecapelli_register_job_cpt() {
 	);
 }
 add_action( 'init', 'estecapelli_register_job_cpt', 0 );
+
+/**
+ * All menus share the English Careers page, and every role uses its English URL.
+ * Run after WPML's permalink filters, including when editing in another language.
+ * Keep WordPress's placeholder for sample permalinks in the editor.
+ */
+function estecapelli_job_permalink( $url, $post, $leavename = false ) {
+	if ( ! $post || 'job' !== $post->post_type ) {
+		return $url;
+	}
+	$slug = $leavename ? '%job%' : $post->post_name;
+	if ( ! $slug ) {
+		return $url;
+	}
+	return estecapelli_unfiltered_home_url() . user_trailingslashit( '/en/about-us/careers/' . $slug, 'single' );
+}
+add_filter( 'post_type_link', 'estecapelli_job_permalink', 1000, 3 );
 
 /**
  * Open roles, in the order the editor arranged them.
