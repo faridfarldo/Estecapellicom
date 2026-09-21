@@ -895,9 +895,15 @@ function estecapelli_indexed_post_type_link( $url, $post ) {
 add_filter( 'post_type_link', 'estecapelli_indexed_post_type_link', 999, 2 );
 
 /** Force generated blog-post links to their exact indexed translated slug. */
-function estecapelli_indexed_post_link( $url, $post ) {
-	$key = estecapelli_indexed_post_route_key( $post );
+function estecapelli_indexed_post_link( $url, $post, $leavename = false ) {
 	list( , $language ) = estecapelli_indexed_post_context( $post );
+	// The editor requests a template before substituting the saved/edited slug.
+	// Baking the title-generated sample slug into it makes View Post ignore that slug.
+	if ( $leavename && $post instanceof WP_Post && 'post' === $post->post_type ) {
+		return estecapelli_unfiltered_home_url() . '/' . $language . '/blog/%postname%';
+	}
+
+	$key = estecapelli_indexed_post_route_key( $post );
 	if ( $key && estecapelli_indexed_route_path( $key, $language ) ) {
 		return estecapelli_indexed_url( $key, $language );
 	}
@@ -910,7 +916,7 @@ function estecapelli_indexed_post_link( $url, $post ) {
 
 	return estecapelli_localize_theme_url( $url );
 }
-add_filter( 'post_link', 'estecapelli_indexed_post_link', 999, 2 );
+add_filter( 'post_link', 'estecapelli_indexed_post_link', 999, 3 );
 
 /** Force generated page links to their exact indexed translated hierarchy. */
 function estecapelli_indexed_page_link( $url, $post_id ) {
