@@ -560,12 +560,45 @@ if ( ! function_exists( 'estecapelli_whatsapp_prefill_url' ) ) {
 		if ( ! preg_match( '#^https?://(?:wa\.me|api\.whatsapp\.com)/#i', $url ) ) {
 			return $url;
 		}
+		$url = estecapelli_whatsapp_force_number( $url );
 		if ( false !== strpos( $url, 'text=' ) ) {
 			return $url;
 		}
 		$separator = false === strpos( $url, '?' ) ? '?' : '&';
 		return $url . $separator . 'text=' . rawurlencode( estecapelli_whatsapp_intro_message() );
 	}
+}
+
+if ( ! function_exists( 'estecapelli_whatsapp_force_number' ) ) {
+	/**
+	 * Point every WhatsApp link at ESTECAPELLI_WHATSAPP, whatever number it
+	 * was saved with. Business rule: no CTA in any language may reach another
+	 * line — an old number lived on in ACF hero buttons on live. Number-less
+	 * share links (wa.me/?text=…) are left alone.
+	 *
+	 * Works on a single URL or a whole HTML document.
+	 */
+	function estecapelli_whatsapp_force_number( $html ) {
+		$number = preg_replace( '/[^0-9]/', '', ESTECAPELLI_WHATSAPP );
+		if ( '' === $number ) {
+			return $html;
+		}
+		$html = preg_replace( '#(wa\.me/)(?:%2B|\+)?[0-9]+#i', '${1}' . $number, (string) $html );
+		return preg_replace( '#((?:whatsapp\.com|whatsapp:/)/send/?\?(?:[^"\'\s<>]*?(?:&amp;|&))?phone=)(?:%2B|\+)?[0-9]+#i', '${1}' . $number, $html );
+	}
+}
+
+/**
+ * Safety net for WhatsApp links outside ACF (post content, menus, widgets,
+ * options): rewrite the finished front-end page so none can carry another
+ * number.
+ */
+add_action( 'template_redirect', 'estecapelli_whatsapp_number_buffer', 0 );
+function estecapelli_whatsapp_number_buffer() {
+	if ( is_admin() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || is_feed() ) {
+		return;
+	}
+	ob_start( 'estecapelli_whatsapp_force_number' );
 }
 
 /** Fill the opening line into ACF-stored WhatsApp links on the front end. */
