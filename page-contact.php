@@ -138,8 +138,8 @@ $error_msg  = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_
 					</div>
 					<div class="contact-form__row">
 						<div class="contact-form__field">
-							<label for="cf-email"><?php esc_html_e( 'Email', 'estecapelli' ); ?></label>
-							<input id="cf-email" type="email" name="lead_email" autocomplete="email" placeholder="<?php esc_attr_e( 'you@example.com', 'estecapelli' ); ?>" />
+							<label for="cf-email"><?php esc_html_e( 'Email', 'estecapelli' ); ?> <span aria-hidden="true">*</span></label>
+							<input id="cf-email" type="email" name="lead_email" required autocomplete="email" placeholder="<?php esc_attr_e( 'you@example.com', 'estecapelli' ); ?>" />
 						</div>
 						<div class="contact-form__field">
 							<label for="cf-treatment"><?php esc_html_e( 'Interested in', 'estecapelli' ); ?></label>
@@ -156,6 +156,9 @@ $error_msg  = function_exists( 'estecapelli_lead_error_message' ) ? estecapelli_
 						<label for="cf-message"><?php esc_html_e( 'Message', 'estecapelli' ); ?></label>
 						<textarea id="cf-message" name="lead_message" rows="4" placeholder="<?php esc_attr_e( 'Tell us about your goals, or any questions you have…', 'estecapelli' ); ?>"></textarea>
 					</div>
+
+					<?php // Mandatory on the contact page in every language — most spam arrives here. ?>
+					<?php estecapelli_lead_captcha_field( 'cf-captcha' ); ?>
 
 					<?php estecapelli_lead_tracking_fields( 'contact' ); ?>
 					<?php wp_nonce_field( 'estecapelli_lead', 'estecapelli_lead_nonce' ); ?>

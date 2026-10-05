@@ -1706,6 +1706,10 @@
 			if (feedback) { feedback.hidden = true; feedback.classList.remove('is-error'); }
 			var nameField = form.querySelector('[name="lead_name"]');
 			if (nameField && !nameField.value.trim()) { nameField.focus(); return; }
+			// The form is novalidate (phone-intl.js owns the phone messages), so
+			// the required email is checked here; the server rejects it anyway.
+			var emailField = form.querySelector('[name="lead_email"]');
+			if (emailField && !emailField.checkValidity()) { emailField.reportValidity(); emailField.focus(); return; }
 
 			var data = new FormData(form);
 			data.append('action', 'estecapelli_lead');

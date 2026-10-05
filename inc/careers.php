@@ -289,6 +289,8 @@ function estecapelli_application_error_message( $code ) {
 	$map = array(
 		'missing_name'  => __( 'Please enter your name.', 'estecapelli' ),
 		'missing_email' => __( 'Please enter your email address.', 'estecapelli' ),
+		'missing_phone' => __( 'Please enter your phone number.', 'estecapelli' ),
+		'invalid_phone' => __( 'Please enter a valid phone number.', 'estecapelli' ),
 		'invalid_email' => __( 'Please enter a valid email address.', 'estecapelli' ),
 		'missing_cv'    => __( 'Please attach your CV.', 'estecapelli' ),
 		'cv_too_large'  => sprintf(
@@ -373,6 +375,13 @@ function estecapelli_process_application( $job ) {
 	}
 	if ( ! is_email( $email ) ) {
 		return 'invalid_email';
+	}
+	// Email and phone are both mandatory on every form on the site.
+	if ( '' === $phone ) {
+		return 'missing_phone';
+	}
+	if ( function_exists( 'estecapelli_phone_looks_valid' ) && ! estecapelli_phone_looks_valid( $phone ) ) {
+		return 'invalid_phone';
 	}
 
 	// The same stamp/honeypot/Turnstile gate every lead form goes through. It is

@@ -47,12 +47,13 @@ if ( ! defined( 'ESTECAPELLI_MAIL_FROM' ) ) {
  *
  * Bots are slowed down by per-IP rate limiting, a signed form stamp, a honeypot,
  * a submission timer and an invisible Cloudflare Turnstile challenge — none of
- * which a real visitor ever sees or has to click.
+ * which a real visitor ever sees or has to click. The contact page adds one
+ * visible layer on top: a typed security code (inc/lead-captcha.php).
  *
  * Rule for everything in here: NEVER discard a submission silently. A lost
  * enquiry costs the clinic a patient; a spam email costs it ten seconds. Only
- * the signed-stamp check rejects, and it does so with a message the visitor can
- * act on. The heuristics merely flag.
+ * the signed-stamp check and the contact-page security code reject, and both
+ * do so with a message the visitor can act on. The heuristics merely flag.
  * ---------------------------------------------------------------------- */
 
 /**
@@ -140,6 +141,9 @@ function estecapelli_lead_scripts_skip_js_delay( $tag, $handle ) {
 		'estecapelli-footer-lead',
 		'estecapelli-lead-guard',
 		'estecapelli-turnstile',
+		// The contact page's security code: delayed, the field sits empty until
+		// the first interaction and the visitor cannot submit at all.
+		'estecapelli-captcha',
 		'intl-tel-input',
 		'estecapelli-phone',
 	);
@@ -704,6 +708,10 @@ function estecapelli_lead_error_message( $code ) {
 		'invalid_email'            => __( 'Please enter a valid email address.', 'estecapelli' ),
 		'missing_name'             => __( 'Please enter your name.', 'estecapelli' ),
 		'missing_phone'            => __( 'Please enter your phone number.', 'estecapelli' ),
+		'missing_email'            => __( 'Please enter your email address.', 'estecapelli' ),
+		'captcha_missing'          => __( 'Please type the security code shown in the image.', 'estecapelli' ),
+		'captcha_failed'           => __( 'The security code was not correct. Please type the new code.', 'estecapelli' ),
+		'captcha_expired'          => __( 'The security code has expired. Please type the new code.', 'estecapelli' ),
 		'form_expired'             => __( 'Please refresh the page and submit the form again.', 'estecapelli' ),
 		'rate_limited'             => __( 'Too many requests. Please wait a few minutes and try again.', 'estecapelli' ),
 	);
@@ -902,14 +910,34 @@ function estecapelli_process_lead( array $d ) {
 	if ( '' === $d['phone'] ) {
 		return new WP_Error( 'missing_phone', __( 'Please enter your phone number.', 'estecapelli' ) );
 	}
+	// Both ways back to the patient are mandatory on every form: a lead the
+	// clinic can only call, or only write to, is half a lead, and a missing
+	// address is one of the cheapest tells of a form-filling bot.
+	if ( '' === $d['email'] ) {
+		return new WP_Error( 'missing_email', __( 'Please enter your email address.', 'estecapelli' ) );
+	}
 
 	// Server-side safety net (the browser already blocks letters and checks the
 	// per-country format via intl-tel-input, but never trust the client).
 	if ( ! estecapelli_phone_looks_valid( $d['phone'] ) ) {
 		return new WP_Error( 'invalid_phone', __( 'Please enter a valid phone number.', 'estecapelli' ) );
 	}
-	if ( '' !== $d['email'] && ! is_email( $d['email'] ) ) {
+	if ( ! is_email( $d['email'] ) ) {
 		return new WP_Error( 'invalid_email', __( 'Please enter a valid email address.', 'estecapelli' ) );
+	}
+
+	// The contact page's visible security code (inc/lead-captcha.php). Like the
+	// form stamp below, it rejects loudly — the visitor sees why, gets a new code
+	// and their details back — and is checked by source on the server, so posting
+	// straight to the endpoint does not skip it.
+	if ( function_exists( 'estecapelli_lead_captcha_required' ) && estecapelli_lead_captcha_required( $d['source'] ) ) {
+		$captcha = estecapelli_lead_captcha_verify();
+		if ( is_wp_error( $captcha ) ) {
+			error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+				sprintf( '[estecapelli] Lead rejected (%s) from source "%s".', $captcha->get_error_code(), $d['source'] )
+			);
+			return $captcha;
+		}
 	}
 
 	$antispam = estecapelli_check_lead_antispam( $d );

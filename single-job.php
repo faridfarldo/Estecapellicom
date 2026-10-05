@@ -114,10 +114,10 @@ while ( have_posts() ) :
 							</div>
 
 							<div class="contact-form__field">
-								<label for="ap-phone"><?php esc_html_e( 'Phone number', 'estecapelli' ); ?></label>
+								<label for="ap-phone"><?php esc_html_e( 'Phone number', 'estecapelli' ); ?> <span aria-hidden="true">*</span></label>
 								<?php // Same international phone control the lead forms use, so the
 									// dial code travels with the number here too. ?>
-								<input id="ap-phone" class="js-intl-phone" type="tel" name="applicant_phone" autocomplete="tel" inputmode="tel" placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>" />
+								<input id="ap-phone" class="js-intl-phone" type="tel" name="applicant_phone" required autocomplete="tel" inputmode="tel" placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>" />
 							</div>
 
 							<div class="contact-form__field job-apply__file">

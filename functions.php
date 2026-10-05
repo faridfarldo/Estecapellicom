@@ -92,6 +92,7 @@ require get_template_directory() . '/inc/wpml-slug-fix.php';
 require get_template_directory() . '/inc/local-en-routing.php';
 require get_template_directory() . '/inc/leads.php';
 require get_template_directory() . '/inc/lead-guard.php';
+require get_template_directory() . '/inc/lead-captcha.php';
 require get_template_directory() . '/inc/hair-analysis.php';
 require get_template_directory() . '/inc/careers.php';
 // After leads.php: the measurement layer reads its language + result helpers.
@@ -447,6 +448,7 @@ function estecapelli_enqueue_assets() {
 				'Please enter your phone number.'    => __( 'Please enter your phone number.', 'estecapelli' ),
 				'Please enter a valid phone number.' => __( 'Please enter a valid phone number.', 'estecapelli' ),
 				'Please enter a valid email address.' => __( 'Please enter a valid email address.', 'estecapelli' ),
+				'Please enter your email address.'   => __( 'Please enter your email address.', 'estecapelli' ),
 				'Please refresh the page and submit the form again.' => __( 'Please refresh the page and submit the form again.', 'estecapelli' ),
 				'Too many requests. Please wait a few minutes and try again.' => __( 'Too many requests. Please wait a few minutes and try again.', 'estecapelli' ),
 			)

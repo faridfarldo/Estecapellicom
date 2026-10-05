@@ -228,13 +228,13 @@ $footer_language_flag = (string) ( $footer_language['country_flag_url'] ?? '' );
 					</div>
 					<div class="lead-form__field">
 						<label for="lead-email" class="sr-only"><?php esc_html_e( 'Email address', 'estecapelli' ); ?></label>
-						<?php // Optional, exactly as on the popup and the contact page: the
-							// phone is what the clinic calls back on, and making a second
-							// field mandatory in a two-field footer form costs enquiries. ?>
+						<?php // Required on every lead form, like the phone: the server
+							// rejects a lead without both (estecapelli_process_lead()). ?>
 						<input
 							id="lead-email"
 							type="email"
 							name="lead_email"
+							required
 							autocomplete="email"
 							placeholder="<?php esc_attr_e( 'Email address', 'estecapelli' ); ?>"
 						/>

@@ -94,8 +94,8 @@ $error_msg    = function_exists( 'estecapelli_lead_error_message' ) ? estecapell
 					<input id="lf-phone" class="js-intl-phone" type="tel" name="lead_phone" required autocomplete="tel" inputmode="tel" placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>" />
 				</div>
 				<div class="contact-form__field">
-					<label for="lf-email"><?php esc_html_e( 'Email', 'estecapelli' ); ?></label>
-					<input id="lf-email" type="email" name="lead_email" autocomplete="email" placeholder="<?php esc_attr_e( 'you@example.com', 'estecapelli' ); ?>" />
+					<label for="lf-email"><?php esc_html_e( 'Email', 'estecapelli' ); ?> <span aria-hidden="true">*</span></label>
+					<input id="lf-email" type="email" name="lead_email" required autocomplete="email" placeholder="<?php esc_attr_e( 'you@example.com', 'estecapelli' ); ?>" />
 				</div>
 				<div class="contact-form__field">
 					<label for="lf-note"><?php esc_html_e( 'Note', 'estecapelli' ); ?></label>

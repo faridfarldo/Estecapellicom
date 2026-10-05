@@ -126,7 +126,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</label>
 					<label class="hal__field">
 						<span class="hal__label"><?php esc_html_e( 'Email', 'estecapelli' ); ?></span>
-						<input type="email" name="lead_email" autocomplete="email" inputmode="email" placeholder="<?php esc_attr_e( 'Your email', 'estecapelli' ); ?>" />
+						<input type="email" name="lead_email" required autocomplete="email" inputmode="email" placeholder="<?php esc_attr_e( 'Your email', 'estecapelli' ); ?>" />
 					</label>
 				</div>
 

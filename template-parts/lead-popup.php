@@ -47,8 +47,8 @@ $wa_url = function_exists( 'estecapelli_whatsapp_url' ) ? estecapelli_whatsapp_u
 				<input id="pop-phone" class="js-intl-phone" type="tel" name="lead_phone" required autocomplete="tel" inputmode="tel" placeholder="<?php esc_attr_e( 'Phone number', 'estecapelli' ); ?>" />
 			</div>
 			<div class="contact-form__field">
-				<label for="pop-email"><?php esc_html_e( 'Email', 'estecapelli' ); ?></label>
-				<input id="pop-email" type="email" name="lead_email" autocomplete="email" placeholder="<?php esc_attr_e( 'you@example.com', 'estecapelli' ); ?>" />
+				<label for="pop-email"><?php esc_html_e( 'Email', 'estecapelli' ); ?> <span aria-hidden="true">*</span></label>
+				<input id="pop-email" type="email" name="lead_email" required autocomplete="email" placeholder="<?php esc_attr_e( 'you@example.com', 'estecapelli' ); ?>" />
 			</div>
 			<div class="contact-form__field">
 				<label for="pop-note"><?php esc_html_e( 'Note', 'estecapelli' ); ?></label>
