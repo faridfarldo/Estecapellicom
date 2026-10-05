@@ -629,6 +629,21 @@ function estecapelli_header_languages() {
 }
 
 /**
+ * Keep WP Rocket's lazyload away from the switcher flags. They sit in a menu
+ * that is display:none until tapped, so the lazy placeholder was often never
+ * swapped for the real flag and the menu showed blank boxes. The markup also
+ * carries data-no-lazy="1"; this covers the class in case that is stripped.
+ */
+add_filter(
+	'rocket_lazyload_excluded_attributes',
+	function ( $attributes ) {
+		$attributes   = (array) $attributes;
+		$attributes[] = 'lang-switch__';
+		return $attributes;
+	}
+);
+
+/**
  * Backwards-compatible name used throughout the theme navigation.
  */
 function estecapelli_nav_url( $english_path ) {

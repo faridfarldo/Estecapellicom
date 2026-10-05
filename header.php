@@ -94,7 +94,7 @@ $language_home_url     = estecapelli_language_root_url( $current_language_slug )
 						aria-label="<?php echo esc_attr( sprintf( __( 'Choose language. Current language: %s', 'estecapelli' ), $current_language_name ) ); ?>"
 					>
 						<?php if ( $current_language_flag ) : ?>
-							<img class="lang-switch__current-flag" src="<?php echo esc_url( $current_language_flag ); ?>" width="20" height="14" alt="" />
+							<img class="lang-switch__current-flag" src="<?php echo esc_url( $current_language_flag ); ?>" width="20" height="14" alt="" loading="eager" decoding="async" data-no-lazy="1" />
 						<?php else : ?>
 							<?php estecapelli_icon( 'globe', array( 'width' => 16, 'height' => 16 ) ); ?>
 						<?php endif; ?>
@@ -117,7 +117,7 @@ $language_home_url     = estecapelli_language_root_url( $current_language_slug )
 									<?php echo $is_active ? 'aria-current="page"' : ''; ?>
 								>
 									<?php if ( $flag ) : ?>
-										<img class="lang-switch__flag" src="<?php echo esc_url( $flag ); ?>" width="18" height="12" alt="" />
+										<img class="lang-switch__flag" src="<?php echo esc_url( $flag ); ?>" width="18" height="12" alt="" loading="eager" decoding="async" data-no-lazy="1" />
 									<?php endif; ?>
 									<span class="lang-code"><?php echo esc_html( strtoupper( $code ) ); ?></span>
 									<span class="lang-switch__name"><?php echo esc_html( $name ); ?></span>

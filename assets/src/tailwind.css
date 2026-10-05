@@ -2964,6 +2964,26 @@
 	}
 	.lang-switch__name { flex: 1; white-space: nowrap; }
 
+	/* On phones the header switcher sits mid-bar (CTA and burger to its right),
+	   so a menu hung off its right edge ran off the left of the screen. Here the
+	   switcher stops being the anchor and the menu drops from the sticky header
+	   itself, centred on the page and capped to the viewport. */
+	@media (max-width: 767px) {
+		.mainbar .lang-switch { position: static; }
+		.mainbar .lang-switch__menu {
+			top: calc(100% + 6px);
+			left: 50%;
+			right: auto;
+			transform: translateX(-50%);
+			width: min(320px, calc(100vw - 2rem));
+			min-width: 0;
+			max-height: calc(100dvh - 120px);
+			overflow-y: auto;
+			overscroll-behavior: contain;
+		}
+		.mainbar .lang-switch__menu a { padding-block: 0.7rem; }
+	}
+
 	/* ---------- Main nav bar ---------- */
 	.mainbar { background: transparent; }
 	.mainbar-inner {
