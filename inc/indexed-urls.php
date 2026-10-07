@@ -379,6 +379,7 @@ function estecapelli_indexed_route_contract() {
 		'mehmet-hanifi-kutlar'  => 'our-doctors',
 		'prof-dr-binnur-ustun'  => 'our-doctors',
 		'dr-nisa-nur-polat'     => 'our-doctors',
+		'dt-sevinc-yilmaz-dogan' => 'our-doctors',
 		'op-dr-hasan-celik'     => 'our-doctors',
 		'op-dr-mehmet-palali'   => 'our-doctors',
 		'op-dr-necdet-derici'   => 'our-doctors',

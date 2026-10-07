@@ -26,12 +26,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/doctors-seed.php';
 
 if ( ! defined( 'ESTECAPELLI_NEW_DOCTORS_VERSION' ) ) {
-	define( 'ESTECAPELLI_NEW_DOCTORS_VERSION', '2026-10-07.1' );
+	define( 'ESTECAPELLI_NEW_DOCTORS_VERSION', '2026-10-07.2' );
 }
 
 /** English doctor slugs whose translations are created here. */
 function estecapelli_new_doctors_manifest() {
-	return array( 'dr-nisa-nur-polat' );
+	return array( 'dr-nisa-nur-polat', 'dt-sevinc-yilmaz-dogan' );
 }
 
 /** Indexed language => display name, for every translated language. */

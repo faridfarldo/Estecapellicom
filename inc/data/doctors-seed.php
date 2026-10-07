@@ -101,6 +101,25 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 				'menu_order'  => 2,
 			),
 
+			// Also created in the dashboard (English only); portrait is uploaded.
+			array(
+				'slug'        => 'dt-sevinc-yilmaz-dogan',
+				'name'        => 'Dt. Sevinç Yılmaz Doğan',
+				'position'    => __( 'Aesthetic & Restorative Dentist', 'estecapelli' ),
+				'bio'         => __( 'Dt. Sevinç Yılmaz Doğan is a senior dentist with 20 years of clinical experience in aesthetic, restorative and comprehensive dentistry, practising at Estecapelli since 2026. Before joining Estecapelli, she worked in hospital-based practice in Istanbul and served for more than five years as Head Dentist at a private dental clinic, leading the clinical team and managing high-volume aesthetic and restorative cases. Her work covers smile design, zirconia and ceramic restorations, composite veneers, endodontics and implant-prosthetic treatment planning, supported by digital workflows including CAD/CAM, CEREC and TRIOS intraoral scanning. Her approach is patient-centred and evidence-informed, combining digital precision with careful clinical judgment, with a focus on function, aesthetics and long-term oral health, and clear communication with international patients.', 'estecapelli' ),
+				'credentials' => array(
+					__( 'Aesthetic & Restorative Dentist — Estecapelli (2026–present)', 'estecapelli' ),
+					__( '20 years of clinical experience', 'estecapelli' ),
+					__( 'Former Head Dentist — private dental clinic, Istanbul (2019–2024)', 'estecapelli' ),
+					__( 'Smile design, zirconia & ceramic restorations, veneers', 'estecapelli' ),
+					__( 'Digital dentistry — CAD/CAM, CEREC, TRIOS', 'estecapelli' ),
+					__( 'Implant-prosthetic planning & endodontics', 'estecapelli' ),
+					__( 'Member — Turkish Dental Association, Turkish Academy of Esthetic Dentistry, OSSEDER', 'estecapelli' ),
+					__( 'Training — Nobel Biocare All-on-4, Digital Smile Design (CEREC)', 'estecapelli' ),
+				),
+				'menu_order'  => 3,
+			),
+
 			array(
 				'slug'          => 'op-dr-hasan-celik',
 				'name'          => 'Op. Dr. Hasan Çelik',
@@ -114,7 +133,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Member — ASPS, ISAPS & TPRECD (Turkish Plastic Surgery Association)', 'estecapelli' ),
 					__( 'Special interests — breast, body contouring, facial & rhinoplasty aesthetics', 'estecapelli' ),
 				),
-				'menu_order'    => 3,
+				'menu_order'    => 4,
 				'old_page_path' => 'about-us/our-doctors/op-dr-hasan-celik',
 			),
 
@@ -130,7 +149,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( '15+ years of clinical experience across leading Turkish hospitals', 'estecapelli' ),
 					__( 'Special interests — snoring & sleep apnoea, chronic sinusitis, nasal obstruction, tonsil disorders', 'estecapelli' ),
 				),
-				'menu_order'    => 4,
+				'menu_order'    => 5,
 				'old_page_path' => 'about-us/our-doctors/op-dr-mehmet-palali',
 			),
 
@@ -147,7 +166,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Gastrointestinal surgery & endoscopy', 'estecapelli' ),
 				),
 				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/necdet-derici.webp',
-				'menu_order'       => 5,
+				'menu_order'       => 6,
 				'old_page_path'    => 'about-us/our-doctors/op-dr-necdet-derici',
 			),
 
