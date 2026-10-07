@@ -58,7 +58,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Former Director — Experimental Animals Research Centre', 'estecapelli' ),
 					__( 'Leadership in patient safety, quality management & ethical care', 'estecapelli' ),
 				),
-				'menu_order'    => 0,
+				'menu_order'    => 1,
 			),
 
 			array(
@@ -74,10 +74,31 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Research background — supported by TÜBİTAK', 'estecapelli' ),
 				),
 				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/kutlar-resume.webp',
-				'menu_order'       => 1,
+				'menu_order'       => 0,
 				// Legacy page lived under Medical Director, so its URL changes —
 				// inc/redirects.php 301s the old path to the new profile.
 				'old_page_path'    => 'about-us/medical-director/mehmet-hanifi-kutlar',
+			),
+
+			// Created in the dashboard (English only) and mirrored here so the
+			// translation importer has a source. Her portrait is an uploaded photo.
+			array(
+				'slug'        => 'dr-nisa-nur-polat',
+				'name'        => 'Dr. Nisa Nur Polat',
+				'position'    => __( 'Oral & Maxillofacial Surgeon', 'estecapelli' ),
+				'bio'         => __( 'Dr. Nisa Nur Polat is an Oral and Maxillofacial Surgeon who has been practising at Estecapelli since 2026. She completed her dental education at İstanbul University Faculty of Dentistry and earned her PhD in Oral and Maxillofacial Surgery at Ondokuz Mayıs University in 2025. During her training she gained clinical experience at İstanbul University\'s Institute of Oncology, Department of Oral and Maxillofacial Pathology, as well as in private dental practice. Her clinical focus covers implant surgery, hard-tissue grafting and bone augmentation, soft-tissue surgery, dental surgery, and the diagnosis and treatment of oral diseases, jaw cysts and tumours. She has authored peer-reviewed articles in international journals, including the Journal of Oral and Maxillofacial Surgery and the Journal of Cranio-Maxillo-Facial Surgery, and regularly presents at national and international congresses.', 'estecapelli' ),
+				'credentials' => array(
+					__( 'Oral & Maxillofacial Surgeon — Estecapelli (2026–present)', 'estecapelli' ),
+					__( 'PhD — Oral & Maxillofacial Surgery, Ondokuz Mayıs University (2025)', 'estecapelli' ),
+					__( 'Dental degree (DDS) — İstanbul University, Faculty of Dentistry', 'estecapelli' ),
+					__( 'Implant surgery & bone augmentation', 'estecapelli' ),
+					__( 'Hard- and soft-tissue grafting procedures', 'estecapelli' ),
+					__( 'Jaw cysts, tumours & oral pathology', 'estecapelli' ),
+					__( 'Published in JOMS, J Cranio-Maxillofac Surg & Cranio', 'estecapelli' ),
+					__( 'Member — AÇBİD & OSSEDER', 'estecapelli' ),
+					__( 'Languages — Turkish, English (C1)', 'estecapelli' ),
+				),
+				'menu_order'  => 2,
 			),
 
 			array(
@@ -93,7 +114,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Member — ASPS, ISAPS & TPRECD (Turkish Plastic Surgery Association)', 'estecapelli' ),
 					__( 'Special interests — breast, body contouring, facial & rhinoplasty aesthetics', 'estecapelli' ),
 				),
-				'menu_order'    => 2,
+				'menu_order'    => 3,
 				'old_page_path' => 'about-us/our-doctors/op-dr-hasan-celik',
 			),
 
@@ -109,7 +130,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( '15+ years of clinical experience across leading Turkish hospitals', 'estecapelli' ),
 					__( 'Special interests — snoring & sleep apnoea, chronic sinusitis, nasal obstruction, tonsil disorders', 'estecapelli' ),
 				),
-				'menu_order'    => 3,
+				'menu_order'    => 4,
 				'old_page_path' => 'about-us/our-doctors/op-dr-mehmet-palali',
 			),
 
@@ -126,7 +147,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Gastrointestinal surgery & endoscopy', 'estecapelli' ),
 				),
 				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/necdet-derici.webp',
-				'menu_order'       => 4,
+				'menu_order'       => 5,
 				'old_page_path'    => 'about-us/our-doctors/op-dr-necdet-derici',
 			),
 

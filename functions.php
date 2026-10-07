@@ -114,6 +114,11 @@ if ( is_admin() ) {
 	 * importer runs, and no authored content is replaced.
 	 */
 	require get_template_directory() . '/inc/admin/home-pages-setup.php';
+
+	// New doctors: same fill-blanks-only reasoning. It creates a doctor's
+	// missing translations and applies the roster order; it never rewrites an
+	// existing profile.
+	require get_template_directory() . '/inc/admin/import-new-doctors.php';
 }
 
 /**
