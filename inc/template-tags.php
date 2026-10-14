@@ -655,11 +655,17 @@ if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
 		if ( function_exists( 'get_field' ) ) {
 			$acf = get_field( 'footer_contact', 'option' );
 			if ( ! empty( $acf ) ) {
-				// Force the one TikTok handle even if a stale URL is saved in ACF.
+				// Force the canonical TikTok/Facebook handles even if a stale URL is saved in ACF.
+				$canonical = array(
+					'tiktok.com'   => 'https://tiktok.com/@estecapellii',
+					'facebook.com' => 'https://www.facebook.com/estecapellii/',
+				);
 				if ( ! empty( $acf['socials'] ) && is_array( $acf['socials'] ) ) {
 					foreach ( $acf['socials'] as &$social ) {
-						if ( ! empty( $social['url'] ) && false !== stripos( $social['url'], 'tiktok.com' ) ) {
-							$social['url'] = 'https://tiktok.com/@estecapellii';
+						foreach ( $canonical as $host => $url ) {
+							if ( ! empty( $social['url'] ) && false !== stripos( $social['url'], $host ) ) {
+								$social['url'] = $url;
+							}
 						}
 					}
 					unset( $social );
@@ -675,7 +681,7 @@ if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
 			'email'    => 'info@estecapelli.com',
 			'socials'  => array(
 				array( 'label' => 'Instagram', 'icon' => 'instagram', 'url' => 'https://instagram.com/estecapelli' ),
-				array( 'label' => 'Facebook',  'icon' => 'facebook',  'url' => 'https://facebook.com/estecapelli' ),
+				array( 'label' => 'Facebook',  'icon' => 'facebook',  'url' => 'https://www.facebook.com/estecapellii/' ),
 				array( 'label' => 'YouTube',   'icon' => 'youtube',   'url' => 'https://youtube.com/@estecapelli' ),
 				array( 'label' => 'TikTok',    'icon' => 'tiktok',    'url' => 'https://tiktok.com/@estecapellii' ),
 			),
