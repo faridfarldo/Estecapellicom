@@ -2,11 +2,11 @@
 /**
  * Homepage hero — 3-slide carousel.
  *
- *   Slide 1: interactive Exosome/VITA diagonal split (estecapelli_signature_split).
- *   Slide 2: "most experienced" expert slide with patient photo + reviews badge.
+ *   Slide 1 (default): "most experienced" expert slide with patient photo + reviews badge.
+ *   Slide 2: interactive Exosome/VITA diagonal split (estecapelli_signature_split).
  *   Slide 3: Estecapelli Dental — a full-bleed patient portrait with animated copy.
  *
- * Slide 2 reads from estecapelli_hero_slides(). Auto-advances; arrows + dots.
+ * The expert slide reads from estecapelli_hero_slides(). Arrows + dots.
  *
  * @package Estecapelli
  */
@@ -65,7 +65,77 @@ foreach ( $result_ids as $rid ) {
 	<div class="hero-x__viewport">
 		<div class="hero-x__track" data-hero-track>
 
-			<!-- ===== Slide 1 — Exosome / VITA split ===== -->
+			<!-- ===== Slide 1 — Most experienced (default) ===== -->
+			<div class="hero-x__slide hero-x__slide--expert" data-hero-slide data-hero-title="<?php esc_attr_e( 'World-Class Experience', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $results[0]['after'] ?? $exp['photo'] ); ?>">
+				<div class="hero-x__bg" aria-hidden="true">
+					<span class="hero-x__glow hero-x__glow--a"></span>
+					<span class="hero-x__glow hero-x__glow--b"></span>
+				</div>
+
+				<div class="shell hero-exp">
+					<div class="hero-exp__copy">
+						<?php if ( ! empty( $exp['eyebrow'] ) ) : ?>
+							<span class="hero-exp__eyebrow"><?php echo esc_html( $exp['eyebrow'] ); ?></span>
+						<?php endif; ?>
+						<h2 class="hero-exp__title"><?php echo esc_html( $exp['headline'] ); ?></h2>
+						<p class="hero-exp__lead"><?php echo esc_html( $exp['body'] ); ?></p>
+						<?php if ( ! empty( $exp['cta']['url'] ) ) : ?>
+							<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $exp['cta']['url'] ); ?>">
+								<?php echo esc_html( $exp['cta']['label'] ); ?>
+								<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
+							</a>
+						<?php endif; ?>
+					</div>
+
+					<div class="hero-exp__media" data-hero-results="<?php echo esc_attr( wp_json_encode( $results ) ); ?>">
+						<figure class="hero-exp__photo">
+							<img data-result-after src="<?php echo esc_url( $results[0]['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" style="object-position: <?php echo esc_attr( $results[0]['pos'] ); ?>;<?php if ( 1.0 !== (float) $results[0]['scale'] ) : ?> transform: scale(<?php echo esc_attr( $results[0]['scale'] ); ?>); transform-origin: <?php echo esc_attr( $results[0]['origin'] ); ?>;<?php endif; ?>" loading="eager" fetchpriority="high" decoding="async" />
+
+							<?php if ( ! empty( $exp['badge'] ) ) : ?>
+								<span class="hero-exp__reviews">
+									<span class="hero-exp__stars" aria-hidden="true">
+										<?php for ( $i = 0; $i < 5; $i++ ) {
+											estecapelli_icon( 'star', array( 'width' => 14, 'height' => 14 ) );
+										} ?>
+									</span>
+									<strong><?php echo esc_html( $exp['badge']['value'] ); ?></strong>
+									<span><?php echo esc_html( $exp['badge']['label'] ); ?></span>
+								</span>
+							<?php endif; ?>
+						</figure>
+
+						<div class="hero-exp__controls">
+							<button type="button" class="hero-exp__arrow" data-result-prev aria-label="<?php esc_attr_e( 'Previous patient', 'estecapelli' ); ?>">
+								<?php estecapelli_icon( 'chevron-left', array( 'width' => 20, 'height' => 20 ) ); ?>
+							</button>
+							<div class="hero-exp__ba">
+								<figure>
+									<img data-result-b1 src="<?php echo esc_url( $results[0]['b1'] ); ?>" alt="" decoding="async" />
+									<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
+								</figure>
+								<figure>
+									<img data-result-b2 src="<?php echo esc_url( $results[0]['b2'] ); ?>" alt="" decoding="async" />
+									<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
+								</figure>
+							</div>
+							<button type="button" class="hero-exp__arrow" data-result-next aria-label="<?php esc_attr_e( 'Next patient', 'estecapelli' ); ?>">
+								<?php estecapelli_icon( 'chevron-right', array( 'width' => 20, 'height' => 20 ) ); ?>
+							</button>
+						</div>
+
+						<?php if ( ! empty( $exp['years'] ) ) : ?>
+							<span class="hero-exp__seal" aria-hidden="true">
+								<small><?php echo esc_html( $exp['years']['from'] ); ?></small>
+								<strong>ESTECAPELLI</strong>
+								<small><?php echo esc_html( $exp['years']['label'] ); ?></small>
+								<small><?php echo esc_html( $exp['years']['to'] ); ?></small>
+							</span>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+
+			<!-- ===== Slide 2 — Exosome / VITA split ===== -->
 			<div class="hero-x__slide" data-hero-slide data-hero-title="<?php esc_attr_e( 'Signature Methods', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $panels['exosome']['cover'] ?? '' ); ?>">
 				<div class="hero-split" aria-labelledby="hero-split-title">
 
@@ -96,14 +166,10 @@ foreach ( $result_ids as $rid ) {
 
 								<?php if ( ! empty( $p['cover'] ) ) : ?>
 									<?php
-									// These two covers ARE the Largest Contentful Paint: slide 1 is
-									// on screen at load and the panels fill it edge to edge. They
-									// used to ship loading="lazy", which makes the browser wait for
-									// layout before it even requests them — on a throttled 4G run
-									// that alone cost seconds of LCP. Eager + high priority puts
-									// them in the first wave, next to the stylesheet.
+									// This split is slide 2 now, off screen at load, so its covers
+									// no longer compete with the expert slide's LCP photo.
 									?>
-									<img class="hero-split__cover" src="<?php echo esc_url( $p['cover'] ); ?>" alt="<?php echo esc_attr( $p['name'] . ' ' . $p['tag'] ); ?>" loading="eager" fetchpriority="high" decoding="async" />
+									<img class="hero-split__cover" src="<?php echo esc_url( $p['cover'] ); ?>" alt="<?php echo esc_attr( $p['name'] . ' ' . $p['tag'] ); ?>" loading="lazy" decoding="async" />
 								<?php endif; ?>
 
 								<?php if ( ! empty( $p['video'] ) ) : ?>
@@ -138,76 +204,6 @@ foreach ( $result_ids as $rid ) {
 					</div>
 
 
-				</div>
-			</div>
-
-			<!-- ===== Slide 2 — Most experienced ===== -->
-			<div class="hero-x__slide hero-x__slide--expert" data-hero-slide data-hero-title="<?php esc_attr_e( 'World-Class Experience', 'estecapelli' ); ?>" data-hero-thumb="<?php echo esc_url( $results[0]['after'] ?? $exp['photo'] ); ?>">
-				<div class="hero-x__bg" aria-hidden="true">
-					<span class="hero-x__glow hero-x__glow--a"></span>
-					<span class="hero-x__glow hero-x__glow--b"></span>
-				</div>
-
-				<div class="shell hero-exp">
-					<div class="hero-exp__copy">
-						<?php if ( ! empty( $exp['eyebrow'] ) ) : ?>
-							<span class="hero-exp__eyebrow"><?php echo esc_html( $exp['eyebrow'] ); ?></span>
-						<?php endif; ?>
-						<h2 class="hero-exp__title"><?php echo esc_html( $exp['headline'] ); ?></h2>
-						<p class="hero-exp__lead"><?php echo esc_html( $exp['body'] ); ?></p>
-						<?php if ( ! empty( $exp['cta']['url'] ) ) : ?>
-							<a class="btn btn-accent btn-lg" href="<?php echo esc_url( $exp['cta']['url'] ); ?>">
-								<?php echo esc_html( $exp['cta']['label'] ); ?>
-								<?php estecapelli_icon( 'arrow-right', array( 'width' => 18, 'height' => 18 ) ); ?>
-							</a>
-						<?php endif; ?>
-					</div>
-
-					<div class="hero-exp__media" data-hero-results="<?php echo esc_attr( wp_json_encode( $results ) ); ?>">
-						<figure class="hero-exp__photo">
-							<img data-result-after src="<?php echo esc_url( $results[0]['after'] ); ?>" alt="<?php esc_attr_e( 'Estecapelli patient result', 'estecapelli' ); ?>" style="object-position: <?php echo esc_attr( $results[0]['pos'] ); ?>;<?php if ( 1.0 !== (float) $results[0]['scale'] ) : ?> transform: scale(<?php echo esc_attr( $results[0]['scale'] ); ?>); transform-origin: <?php echo esc_attr( $results[0]['origin'] ); ?>;<?php endif; ?>" decoding="async" />
-
-							<?php if ( ! empty( $exp['badge'] ) ) : ?>
-								<span class="hero-exp__reviews">
-									<span class="hero-exp__stars" aria-hidden="true">
-										<?php for ( $i = 0; $i < 5; $i++ ) {
-											estecapelli_icon( 'star', array( 'width' => 14, 'height' => 14 ) );
-										} ?>
-									</span>
-									<strong><?php echo esc_html( $exp['badge']['value'] ); ?></strong>
-									<span><?php echo esc_html( $exp['badge']['label'] ); ?></span>
-								</span>
-							<?php endif; ?>
-						</figure>
-
-						<div class="hero-exp__controls">
-							<button type="button" class="hero-exp__arrow" data-result-prev aria-label="<?php esc_attr_e( 'Previous patient', 'estecapelli' ); ?>">
-								<?php estecapelli_icon( 'chevron-left', array( 'width' => 20, 'height' => 20 ) ); ?>
-							</button>
-							<div class="hero-exp__ba">
-								<figure>
-									<img data-result-b1 src="<?php echo esc_url( $results[0]['b1'] ); ?>" alt="" loading="lazy" decoding="async" />
-									<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
-								</figure>
-								<figure>
-									<img data-result-b2 src="<?php echo esc_url( $results[0]['b2'] ); ?>" alt="" loading="lazy" decoding="async" />
-									<figcaption><?php esc_html_e( 'Before', 'estecapelli' ); ?></figcaption>
-								</figure>
-							</div>
-							<button type="button" class="hero-exp__arrow" data-result-next aria-label="<?php esc_attr_e( 'Next patient', 'estecapelli' ); ?>">
-								<?php estecapelli_icon( 'chevron-right', array( 'width' => 20, 'height' => 20 ) ); ?>
-							</button>
-						</div>
-
-						<?php if ( ! empty( $exp['years'] ) ) : ?>
-							<span class="hero-exp__seal" aria-hidden="true">
-								<small><?php echo esc_html( $exp['years']['from'] ); ?></small>
-								<strong>ESTECAPELLI</strong>
-								<small><?php echo esc_html( $exp['years']['label'] ); ?></small>
-								<small><?php echo esc_html( $exp['years']['to'] ); ?></small>
-							</span>
-						<?php endif; ?>
-					</div>
 				</div>
 			</div>
 
