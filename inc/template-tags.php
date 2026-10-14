@@ -655,6 +655,15 @@ if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
 		if ( function_exists( 'get_field' ) ) {
 			$acf = get_field( 'footer_contact', 'option' );
 			if ( ! empty( $acf ) ) {
+				// Force the one TikTok handle even if a stale URL is saved in ACF.
+				if ( ! empty( $acf['socials'] ) && is_array( $acf['socials'] ) ) {
+					foreach ( $acf['socials'] as &$social ) {
+						if ( ! empty( $social['url'] ) && false !== stripos( $social['url'], 'tiktok.com' ) ) {
+							$social['url'] = 'https://tiktok.com/@estecapellii';
+						}
+					}
+					unset( $social );
+				}
 				return $acf;
 			}
 		}
@@ -668,7 +677,7 @@ if ( ! function_exists( 'estecapelli_footer_contact' ) ) {
 				array( 'label' => 'Instagram', 'icon' => 'instagram', 'url' => 'https://instagram.com/estecapelli' ),
 				array( 'label' => 'Facebook',  'icon' => 'facebook',  'url' => 'https://facebook.com/estecapelli' ),
 				array( 'label' => 'YouTube',   'icon' => 'youtube',   'url' => 'https://youtube.com/@estecapelli' ),
-				array( 'label' => 'TikTok',    'icon' => 'tiktok',    'url' => 'https://tiktok.com/@estecapelli' ),
+				array( 'label' => 'TikTok',    'icon' => 'tiktok',    'url' => 'https://tiktok.com/@estecapellii' ),
 			),
 		);
 	}
