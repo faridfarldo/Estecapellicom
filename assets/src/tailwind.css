@@ -9334,6 +9334,17 @@
 	.single-post__content img { border-radius: 16px; }
 	.single-post__content :is(h2, h3):first-child { margin-top: 0; }
 
+	/* Tables in article bodies are plain <table> markup; the wrapper is added in single.php. */
+	.single-post__table { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--color-brand-100); border-radius: 14px; background: white; box-shadow: var(--shadow-soft); }
+	.single-post__content table { width: 100%; min-width: 32rem; border-collapse: collapse; font-size: 0.95rem; line-height: 1.5; text-align: left; }
+	.single-post__content :is(th, td) { padding: 0.75rem 1rem; vertical-align: top; border-bottom: 1px solid var(--color-brand-100); }
+	.single-post__content :is(th, td) + :is(th, td) { border-left: 1px solid var(--color-brand-100); }
+	.single-post__content thead th { background: var(--color-brand-50); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.02em; color: var(--color-brand-900); white-space: nowrap; }
+	.single-post__content tbody tr:nth-child(even) { background: oklch(98.5% 0.006 260); }
+	.single-post__content tbody tr:last-child > * { border-bottom: 0; }
+	.single-post__content :is(tbody, tfoot) tr:last-child:has(strong) { background: var(--color-brand-50); }
+	@media (min-width: 768px) { .single-post__content table { min-width: 0; } }
+
 	.single-post__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
 	.single-post__tag { padding: 0.35rem 0.8rem; border-radius: 9999px; background: var(--color-brand-50); border: 1px solid var(--color-brand-100); font-size: 0.8125rem; font-weight: 600; color: var(--color-brand-700); text-decoration: none; transition: border-color 0.2s ease; }
 	.single-post__tag:hover { border-color: var(--color-brand-300, var(--color-brand-200)); }

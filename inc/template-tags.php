@@ -2916,3 +2916,26 @@ if ( ! function_exists( 'estecapelli_brand_mark' ) ) {
 		);
 	}
 }
+
+if ( ! function_exists( 'estecapelli_wrap_content_tables' ) ) {
+	/**
+	 * Wrap each table in a rendered article body in a scroll container.
+	 *
+	 * Articles are written with plain <table> markup and no classes. Without a
+	 * wrapper a wide table cannot scroll on its own on a phone, so it either
+	 * squeezes its cells together or pushes the page sideways.
+	 *
+	 * @param string $html Rendered content (already run through the_content filters).
+	 * @return string
+	 */
+	function estecapelli_wrap_content_tables( $html ) {
+		if ( ! is_string( $html ) || false === stripos( $html, '<table' ) ) {
+			return (string) $html;
+		}
+		return preg_replace(
+			'#<table\b.*?</table>#is',
+			'<div class="single-post__table">$0</div>',
+			$html
+		);
+	}
+}

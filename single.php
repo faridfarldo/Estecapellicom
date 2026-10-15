@@ -41,7 +41,7 @@ while ( have_posts() ) :
 
 	// Build the article HTML once, add heading anchors, and derive the TOC. Two
 	// headings are enough to be worth a rail — most articles then carry one.
-	list( $post_html, $toc_items ) = estecapelli_extract_toc( apply_filters( 'the_content', get_the_content() ) );
+	list( $post_html, $toc_items ) = estecapelli_extract_toc( estecapelli_wrap_content_tables( apply_filters( 'the_content', get_the_content() ) ) );
 	$toc_html = estecapelli_toc_is_hidden() ? '' : estecapelli_render_toc( $toc_items, array( 'min' => 2 ) );
 	?>
 
