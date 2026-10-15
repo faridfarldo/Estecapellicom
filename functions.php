@@ -146,6 +146,14 @@ if ( is_admin() && defined( 'ESTECAPELLI_ENABLE_BLOG_REPAIR' ) && true === ESTEC
 	require get_template_directory() . '/inc/admin/blog-repair.php';
 }
 
+/**
+ * Blog language fix — the two TR articles showing Spanish text. Manual button
+ * only, four posts by ID, no auto-run; safe to load outside the content lock.
+ */
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/admin/repair-blog-crossed-languages.php';
+}
+
 if ( is_admin() && estecapelli_content_mutations_enabled() ) {
 	require get_template_directory() . '/inc/admin/import-database-guard.php';
 	require get_template_directory() . '/inc/admin/import-treatments.php';
