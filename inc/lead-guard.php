@@ -359,6 +359,17 @@ function estecapelli_lead_content_signals( array $d ) {
 		}
 	}
 
+	// The popup is markup with the `hidden` attribute until main.js opens it,
+	// and opening it is what writes lead_page_url. A popup lead with no page URL
+	// therefore came from a form nobody ever saw — a script that read the HTML
+	// and posted it blind. That is the October "RobertTof" run: popup, URL "-",
+	// a number with no country code, a price question in a random language, and
+	// at 3 points (the missing token) it sailed into Kommo every day. Worth 3, so
+	// it quarantines alongside the missing token and never on its own.
+	if ( 'popup' === ( $d['source'] ?? '' ) && '' === trim( (string) ( $d['page_url'] ?? '' ) ) ) {
+		$signals['popup form posted without the popup ever being opened'] = 3;
+	}
+
 	$digits = preg_replace( '/\D+/', '', $phone );
 	if ( $digits && preg_match( '/^(\d)\1+$/', $digits ) ) {
 		$signals['phone number is a single repeated digit'] = 3;
