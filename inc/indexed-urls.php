@@ -27,6 +27,13 @@ function estecapelli_indexed_languages() {
  */
 function estecapelli_indexed_language_code( $language = '' ) {
 	if ( '' === (string) $language ) {
+		// The URL first: on a /pt/ 404 WPML answers 'en', which sent the
+		// retired /pt/sobre-nos/diretor-medico redirect to the English roster.
+		// For every other language the two agree, and admin, cron and REST
+		// URLs declare no language, so those still ask WPML.
+		$language = estecapelli_request_language_code();
+	}
+	if ( '' === (string) $language ) {
 		$language = (string) apply_filters( 'wpml_current_language', null );
 		if ( ! $language && defined( 'ICL_LANGUAGE_CODE' ) ) {
 			$language = (string) ICL_LANGUAGE_CODE;
@@ -137,6 +144,11 @@ add_action( 'init', 'estecapelli_switch_portuguese_alias', 20 );
  * Strip the language directory before WordPress parses the request and carry
  * the language as ?lang=, which WPML honours on the bare REST root. Runs at
  * theme load so it also fixes URLs already baked into cached pages.
+ *
+ * /pt/wp-json/ is sent on to /pt-pt/wp-json/ first: WPML settles the request
+ * language from the /pt-pt/ directory before the theme loads, and on /pt/ it
+ * has already settled on English, so the stripped request would list English
+ * posts and categories. A 307 keeps the method, body and headers.
  */
 function estecapelli_route_portuguese_rest_request() {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
@@ -144,11 +156,15 @@ function estecapelli_route_portuguese_rest_request() {
 	}
 	$request = (string) $_SERVER['REQUEST_URI'];
 	$prefix  = preg_quote( rest_get_url_prefix(), '#' );
-	if ( ! preg_match( '#^/(?:pt|pt-pt)(/' . $prefix . '(?:/|\?|$).*)$#i', $request, $match ) ) {
+	if ( ! preg_match( '#^/(pt|pt-pt)(/' . $prefix . '(?:/|\?|$).*)$#i', $request, $match ) ) {
 		return;
 	}
+	if ( 'pt' === strtolower( $match[1] ) && 'pt-pt' === estecapelli_wpml_language_code( 'pt' ) ) {
+		wp_safe_redirect( estecapelli_unfiltered_home_url() . '/pt-pt' . $match[2], 307 );
+		exit;
+	}
 
-	$_SERVER['REQUEST_URI'] = $match[1];
+	$_SERVER['REQUEST_URI'] = $match[2];
 	$language               = estecapelli_wpml_language_code( 'pt' );
 	if ( ! isset( $_GET['lang'] ) ) {
 		$_GET['lang']     = $language;
@@ -1319,6 +1335,92 @@ function estecapelli_preserve_localized_blog_canonical( $redirect_url, $requeste
 	return estecapelli_localized_blog_post_id( $requested_url ) ? false : $redirect_url;
 }
 add_filter( 'redirect_canonical', 'estecapelli_preserve_localized_blog_canonical', 998, 2 );
+
+/**
+ * Public /pt/ for every link WPML still builds under its own /pt-pt/ directory.
+ *
+ * Term and author links are not covered by the contract filters above, so
+ * Portuguese category links reached the page, the sitemap and the schema as
+ * /pt-pt/blog/category/... — a redirect hop onto a URL that then 404'd.
+ */
+function estecapelli_public_portuguese_link( $url ) {
+	return preg_replace( '#^(https?://[^/]+)/pt-pt(?=/|$)#i', '$1/pt', (string) $url );
+}
+add_filter( 'term_link', 'estecapelli_public_portuguese_link', 1000 );
+add_filter( 'author_link', 'estecapelli_public_portuguese_link', 1000 );
+
+/**
+ * Resolve /pt/blog/category/{slug}[/page/N] to its Portuguese blog category.
+ *
+ * Every other language's category archive resolves natively because WPML
+ * knows its directory; /pt/ is not WPML's directory, so the rewrite rules never
+ * matched and the archive 404'd. Looked up through icl_translations so a slug
+ * shared with another language cannot pick the wrong term.
+ */
+function estecapelli_portuguese_category_request( $query_vars ) {
+	$request = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path    = (string) wp_parse_url( $request, PHP_URL_PATH );
+	if ( ! defined( 'ICL_SITEPRESS_VERSION' ) || ! preg_match( '#^/pt/blog/category/([^/]+)(?:/page/(\d+))?/?$#i', $path, $match ) ) {
+		return $query_vars;
+	}
+
+	global $wpdb;
+	$wpml_language = estecapelli_wpml_language_code( 'pt' );
+	$term_id       = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT t.term_id FROM {$wpdb->terms} t
+			INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_id = t.term_id AND tt.taxonomy = 'category'
+			INNER JOIN {$wpdb->prefix}icl_translations it ON it.element_id = tt.term_taxonomy_id AND it.element_type = 'tax_category'
+			WHERE t.slug = %s AND it.language_code = %s
+			LIMIT 1",
+			sanitize_title( rawurldecode( $match[1] ) ),
+			$wpml_language
+		)
+	);
+	if ( ! $term_id ) {
+		return $query_vars;
+	}
+
+	do_action( 'wpml_switch_language', $wpml_language );
+	$resolved = array( 'cat' => $term_id );
+	if ( ! empty( $match[2] ) ) {
+		$resolved['paged'] = (int) $match[2];
+	}
+	if ( isset( $query_vars['lang'] ) ) {
+		$resolved['lang'] = $wpml_language;
+	}
+	return $resolved;
+}
+add_filter( 'request', 'estecapelli_portuguese_category_request', 36 );
+
+/** Keep WordPress on a /pt/ category URL resolved above. */
+function estecapelli_preserve_portuguese_category_canonical( $redirect_url, $requested_url ) {
+	$path = (string) wp_parse_url( (string) $requested_url, PHP_URL_PATH );
+	return preg_match( '#^/pt/blog/category/#i', $path ) ? false : $redirect_url;
+}
+add_filter( 'redirect_canonical', 'estecapelli_preserve_portuguese_category_canonical', 998, 2 );
+
+/**
+ * <html lang> from the URL's language.
+ *
+ * On a /pt/ 404 WPML falls back to English, so the Portuguese 404 page
+ * declared lang="en-US" while the French one said fr-FR.
+ */
+function estecapelli_request_language_attributes( $output ) {
+	$language = is_admin() ? '' : estecapelli_request_language_code();
+	if ( '' === $language ) {
+		return $output;
+	}
+
+	$wpml_language = estecapelli_wpml_language_code( $language );
+	$languages     = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0 ) );
+	$locale        = is_array( $languages ) ? (string) ( $languages[ $wpml_language ]['default_locale'] ?? '' ) : '';
+	if ( '' === $locale ) {
+		return $output;
+	}
+	return preg_replace( '/\blang="[^"]*"/', 'lang="' . esc_attr( str_replace( '_', '-', $locale ) ) . '"', (string) $output );
+}
+add_filter( 'language_attributes', 'estecapelli_request_language_attributes', 20 );
 
 /**
  * Exact source/language context for a legal-page request, or an empty array.
