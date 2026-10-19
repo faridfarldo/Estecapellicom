@@ -125,6 +125,46 @@ function estecapelli_switch_portuguese_alias() {
 add_action( 'init', 'estecapelli_switch_portuguese_alias', 20 );
 
 /**
+ * Serve Portuguese REST requests from the bare /wp-json/ root.
+ *
+ * WPML prints Portuguese REST URLs as /pt-pt/wp-json/..., but the home_url
+ * filter below turns WPML's /pt-pt home into /pt, so WP::parse_request strips
+ * "pt" from "pt-pt/wp-json/..." and never sees a REST route. The request then
+ * falls through to estecapelli_redirect_pt_pt_alias() and ends as a /pt/ 404.
+ * That broke every Portuguese REST call: the block editor (featured images,
+ * uploads) and the contact captcha / lead token on /pt/ pages.
+ *
+ * Strip the language directory before WordPress parses the request and carry
+ * the language as ?lang=, which WPML honours on the bare REST root. Runs at
+ * theme load so it also fixes URLs already baked into cached pages.
+ */
+function estecapelli_route_portuguese_rest_request() {
+	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
+		return;
+	}
+	$request = (string) $_SERVER['REQUEST_URI'];
+	$prefix  = preg_quote( rest_get_url_prefix(), '#' );
+	if ( ! preg_match( '#^/(?:pt|pt-pt)(/' . $prefix . '(?:/|\?|$).*)$#i', $request, $match ) ) {
+		return;
+	}
+
+	$_SERVER['REQUEST_URI'] = $match[1];
+	$language               = estecapelli_wpml_language_code( 'pt' );
+	if ( ! isset( $_GET['lang'] ) ) {
+		$_GET['lang']     = $language;
+		$_REQUEST['lang'] = $language;
+	}
+	add_action(
+		'init',
+		static function () use ( $language ) {
+			do_action( 'wpml_switch_language', $language );
+		},
+		1
+	);
+}
+estecapelli_route_portuguese_rest_request();
+
+/**
  * Site base without WPML's current-language suffix.
  */
 function estecapelli_unfiltered_home_url() {
