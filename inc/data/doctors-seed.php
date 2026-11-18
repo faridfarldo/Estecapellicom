@@ -120,6 +120,29 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 				'menu_order'  => 3,
 			),
 
+			// Listed straight after the dentists. Unlike the two above, the English
+			// profile is created by the New Doctors importer from this entry when
+			// it does not exist yet; the portrait is theme-bundled.
+			array(
+				'slug'             => 'dr-bugra-gultekin',
+				'name'             => 'Dr. Buğra Gültekin',
+				'position'         => __( 'Hair Transplant & Medical Aesthetics Doctor', 'estecapelli' ),
+				'bio'              => __( 'Dr. Buğra Gültekin is a physician at Estecapelli, actively involved in hair transplant operations and medical aesthetic procedures since 2025. He graduated from İstinye University Faculty of Medicine in 2022. His clinical background brings together hospital-based practice, international internships and hands-on experience in hair restoration and medical aesthetics. Before joining Estecapelli, he worked as a hair transplant surgeon and medical aesthetics doctor at Acıbadem Ataşehir Hospital, as a hair transplant surgeon at Gold City Clinics, and as a medical aesthetics doctor at Luvimed Clinics and Nara Clinic. He also served as a general practitioner in the Plastic Surgery Department of Dr. Sadi Konuk Training and Research Hospital and, in 2023, provided medical support to earthquake victims at Hatay State Hospital in Kırıkhan. He speaks Turkish, English and German, and his work focuses on careful patient assessment and individual treatment planning.', 'estecapelli' ),
+				'credentials'      => array(
+					__( 'Hair Transplant & Medical Aesthetics Doctor — Estecapelli (2025–present)', 'estecapelli' ),
+					__( 'Medical degree — İstinye University, Faculty of Medicine (2016–2022)', 'estecapelli' ),
+					__( 'Hair Transplant Surgeon & Medical Aesthetics Doctor — Acıbadem Ataşehir Hospital (2024–2025)', 'estecapelli' ),
+					__( 'Hair Transplant Surgeon — Gold City Clinics (2024)', 'estecapelli' ),
+					__( 'Medical Aesthetics Doctor — Luvimed Clinics & Nara Clinic (2023–2024)', 'estecapelli' ),
+					__( 'General Practitioner, Plastic Surgery Department — Dr. Sadi Konuk Training & Research Hospital (2023)', 'estecapelli' ),
+					__( 'Medical support for earthquake victims — Hatay State Hospital, Kırıkhan (2023)', 'estecapelli' ),
+					__( 'Patient assessment & treatment planning, international clinical experience', 'estecapelli' ),
+					__( 'Languages — Turkish, English, German', 'estecapelli' ),
+				),
+				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/dr-bugra-gultekin.webp',
+				'menu_order'       => 4,
+			),
+
 			array(
 				'slug'          => 'op-dr-hasan-celik',
 				'name'          => 'Op. Dr. Hasan Çelik',
@@ -133,7 +156,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Member — ASPS, ISAPS & TPRECD (Turkish Plastic Surgery Association)', 'estecapelli' ),
 					__( 'Special interests — breast, body contouring, facial & rhinoplasty aesthetics', 'estecapelli' ),
 				),
-				'menu_order'    => 4,
+				'menu_order'    => 5,
 				'old_page_path' => 'about-us/our-doctors/op-dr-hasan-celik',
 			),
 
@@ -149,7 +172,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( '15+ years of clinical experience across leading Turkish hospitals', 'estecapelli' ),
 					__( 'Special interests — snoring & sleep apnoea, chronic sinusitis, nasal obstruction, tonsil disorders', 'estecapelli' ),
 				),
-				'menu_order'    => 5,
+				'menu_order'    => 6,
 				'old_page_path' => 'about-us/our-doctors/op-dr-mehmet-palali',
 			),
 
@@ -166,7 +189,7 @@ if ( ! function_exists( 'estecapelli_doctors_seed' ) ) {
 					__( 'Gastrointestinal surgery & endoscopy', 'estecapelli' ),
 				),
 				'resume_photo_url' => get_template_directory_uri() . '/assets/images/doctors/necdet-derici.webp',
-				'menu_order'       => 6,
+				'menu_order'       => 7,
 				'old_page_path'    => 'about-us/our-doctors/op-dr-necdet-derici',
 			),
 

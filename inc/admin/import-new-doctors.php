@@ -26,12 +26,94 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/doctors-seed.php';
 
 if ( ! defined( 'ESTECAPELLI_NEW_DOCTORS_VERSION' ) ) {
-	define( 'ESTECAPELLI_NEW_DOCTORS_VERSION', '2026-10-07.2' );
+	define( 'ESTECAPELLI_NEW_DOCTORS_VERSION', '2026-11-18.1' );
 }
 
 /** English doctor slugs whose translations are created here. */
 function estecapelli_new_doctors_manifest() {
-	return array( 'dr-nisa-nur-polat', 'dt-sevinc-yilmaz-dogan' );
+	return array( 'dr-nisa-nur-polat', 'dt-sevinc-yilmaz-dogan', 'dr-bugra-gultekin' );
+}
+
+/**
+ * English doctor slugs whose English profile is also created here from the
+ * seed when it is missing. Fill-blanks only, like everything else in this file.
+ */
+function estecapelli_new_doctors_seeded_english() {
+	return array( 'dr-bugra-gultekin' );
+}
+
+/**
+ * Create the English profile from the seed. Returns the post ID, or WP_Error.
+ * Only called when no published English profile exists for the slug.
+ */
+function estecapelli_new_doctor_create_english( $source_slug ) {
+	global $wpdb;
+
+	$seed = estecapelli_new_doctor_seed( $source_slug );
+	if ( ! $seed ) {
+		return new WP_Error( 'new_doctor_missing_seed', 'No seed entry.' );
+	}
+
+	// A draft or private profile under this slug means someone is working on it
+	// in the dashboard — leave it to them rather than creating a second one.
+	$existing = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = 'doctor' AND post_status NOT IN ('trash','auto-draft') LIMIT 1",
+			$source_slug
+		)
+	);
+	if ( $existing ) {
+		return new WP_Error( 'new_doctor_unpublished', sprintf( 'Doctor #%d already uses this slug but is not a published English profile; publish it or fix its language.', $existing ) );
+	}
+
+	$new_id = wp_insert_post(
+		array(
+			'post_type'    => 'doctor',
+			'post_title'   => $seed['name'],
+			'post_name'    => $source_slug,
+			'post_status'  => 'publish',
+			'post_content' => '',
+			'menu_order'   => (int) ( $seed['menu_order'] ?? 0 ),
+		),
+		true
+	);
+	if ( is_wp_error( $new_id ) ) {
+		return $new_id;
+	}
+
+	$element_type = apply_filters( 'wpml_element_type', 'doctor' );
+	do_action(
+		'wpml_set_element_language_details',
+		array(
+			'element_id'           => (int) $new_id,
+			'element_type'         => $element_type,
+			'trid'                 => false,
+			'language_code'        => 'en',
+			'source_language_code' => null,
+		)
+	);
+	if ( 'en' !== estecapelli_new_doctor_post_language( $new_id ) ) {
+		wp_delete_post( $new_id, true );
+		return new WP_Error( 'new_doctor_language_failed', 'The English profile could not be registered in WPML.' );
+	}
+
+	update_field( 'position', $seed['position'], $new_id );
+	update_field( 'bio', $seed['bio'], $new_id );
+	update_field(
+		'credentials',
+		array_map(
+			static function ( $label ) {
+				return array( 'label' => $label );
+			},
+			$seed['credentials']
+		),
+		$new_id
+	);
+	if ( ! empty( $seed['resume_photo_url'] ) ) {
+		update_field( 'resume_photo_url', $seed['resume_photo_url'], $new_id );
+	}
+
+	return (int) $new_id;
 }
 
 /** Indexed language => display name, for every translated language. */
@@ -277,6 +359,15 @@ function estecapelli_run_new_doctors() {
 
 	foreach ( estecapelli_new_doctors_manifest() as $source_slug ) {
 		$source_id = (int) estecapelli_source_post_id( $source_slug, 'doctor' );
+		if ( ! $source_id && in_array( $source_slug, estecapelli_new_doctors_seeded_english(), true ) ) {
+			$english = estecapelli_new_doctor_create_english( $source_slug );
+			if ( is_wp_error( $english ) ) {
+				$result['errors'][] = $source_slug . ' (English): ' . $english->get_error_message();
+				continue;
+			}
+			$source_id           = (int) $english;
+			$result['created'][] = $source_slug . ' (English)';
+		}
 		$details   = $source_id ? apply_filters(
 			'wpml_element_language_details',
 			null,
