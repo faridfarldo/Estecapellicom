@@ -119,6 +119,10 @@ if ( is_admin() ) {
 	// missing translations and applies the roster order; it never rewrites an
 	// existing profile.
 	require get_template_directory() . '/inc/admin/import-new-doctors.php';
+
+	// Team member swap (Natalia → Sandra): renames only the matching rows on
+	// the live Our Team pages and clears that card's photo.
+	require get_template_directory() . '/inc/admin/team-member-swap.php';
 }
 
 /**
