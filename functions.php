@@ -55,6 +55,7 @@ require get_template_directory() . '/inc/indexed-urls.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/home-pages.php';
 require get_template_directory() . '/inc/svg-support.php';
+require get_template_directory() . '/inc/disable-comments.php';
 require get_template_directory() . '/inc/class-estecapelli-walker-nav-menu.php';
 require get_template_directory() . '/inc/post-types.php';
 require get_template_directory() . '/inc/acfml-field-prefs.php';
@@ -498,10 +499,6 @@ function estecapelli_enqueue_assets() {
 			array( 'estecapelli-main' ),
 			estecapelli_asset_ver( '/assets/hair-widget/css/widget.css' )
 		);
-	}
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'estecapelli_enqueue_assets' );
