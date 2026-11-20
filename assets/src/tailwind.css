@@ -248,7 +248,12 @@
 		   headline is also trimmed so the copy + CTA fit without the button being
 		   clipped off the bottom of the (shorter) slide. */
 		.hero-x .hero-x__slide--expert { align-items: stretch; padding-block: clamp(1rem, 2.5vw, 2rem); }
-		.hero-x .hero-exp { align-items: stretch; }
+		/* Bound the grid row to the slide height. Without this the row sizes to the
+		   photo's 3:4 intrinsic height (taller than the slide), so the before/after
+		   row below it was pushed past the slide bottom and clipped under the next
+		   section. */
+		.hero-x .hero-exp { align-items: stretch; height: 100%; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+		.hero-x .hero-exp__media { min-height: 0; }
 		.hero-x .hero-exp__copy { justify-content: center; gap: 0.85rem; }
 		.hero-x .hero-exp__title { font-size: clamp(1.9rem, 1rem + 2.5vw, 3rem); }
 		/* Let the after photo run taller and tuck the before/after row a little
