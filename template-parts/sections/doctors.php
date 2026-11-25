@@ -39,9 +39,26 @@ if ( post_type_exists( 'doctor' ) ) {
 		)
 	);
 
+	// Doctors removed from the site stay hidden in every language, even before
+	// Tools → New Doctors has moved their translations to the trash.
+	if ( $doctor_posts && function_exists( 'estecapelli_retired_doctor_slugs' ) ) {
+		$retired      = estecapelli_retired_doctor_slugs();
+		$doctor_posts = array_values(
+			array_filter(
+				$doctor_posts,
+				static function ( $doc ) use ( $retired ) {
+					return ! in_array( preg_replace( '/-\d+$/', '', $doc->post_name ), $retired, true );
+				}
+			)
+		);
+	}
+
 	if ( $doctor_posts ) {
+		$default_lang = apply_filters( 'wpml_default_language', null );
+		$current_lang = apply_filters( 'wpml_current_language', null );
+
 		$members = array_map(
-			static function ( $doc ) {
+			static function ( $doc ) use ( $default_lang, $current_lang ) {
 				$photo = function_exists( 'get_field' ) ? get_field( 'photo', $doc->ID ) : array();
 				// Fall back to the theme-bundled résumé photo URL when no portrait
 				// has been uploaded (an uploaded photo always wins).
@@ -49,6 +66,21 @@ if ( post_type_exists( 'doctor' ) ) {
 					$rurl = (string) get_field( 'resume_photo_url', $doc->ID );
 					if ( '' !== $rurl ) {
 						$photo = array( 'url' => $rurl, 'alt' => get_the_title( $doc ) );
+					}
+				}
+				// Portraits are uploaded on the English profile only. A translated
+				// card with no photo of its own borrows it, the same way the
+				// profile page (single-doctor.php) does. Display only.
+				if ( empty( $photo['url'] ) && function_exists( 'get_field' ) && $default_lang && $current_lang && $default_lang !== $current_lang ) {
+					$source_id = (int) apply_filters( 'wpml_object_id', $doc->ID, 'doctor', false, $default_lang );
+					if ( $source_id && $source_id !== (int) $doc->ID ) {
+						$src_photo = get_field( 'photo', $source_id );
+						$src_url   = (string) get_field( 'resume_photo_url', $source_id );
+						if ( is_array( $src_photo ) && ! empty( $src_photo['url'] ) ) {
+							$photo = array( 'url' => $src_photo['url'], 'alt' => get_the_title( $doc ) );
+						} elseif ( '' !== $src_url ) {
+							$photo = array( 'url' => $src_url, 'alt' => get_the_title( $doc ) );
+						}
 					}
 				}
 				return array(

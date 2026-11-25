@@ -437,7 +437,6 @@ function estecapelli_indexed_route_contract() {
 		'dr-nisa-nur-polat'     => 'our-doctors',
 		'dt-sevinc-yilmaz-dogan' => 'our-doctors',
 		'dr-bugra-gultekin'     => 'our-doctors',
-		'op-dr-hasan-celik'     => 'our-doctors',
 		'op-dr-mehmet-palali'   => 'our-doctors',
 		'op-dr-necdet-derici'   => 'our-doctors',
 	);

@@ -154,7 +154,6 @@ function estecapelli_tr_revision_doctor_profile( $post_id, array $profile ) {
 		: get_post_field( 'post_name', $post_id );
 	$files = array(
 		'prof-dr-binnur-ustun' => 'prof-dr-binnur-ustun.json',
-		'op-dr-hasan-celik'     => 'op-dr-hasan-celik.json',
 	);
 	if ( empty( $files[ $slug ] ) ) {
 		return $profile;

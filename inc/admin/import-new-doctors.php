@@ -26,12 +26,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/data/doctors-seed.php';
 
 if ( ! defined( 'ESTECAPELLI_NEW_DOCTORS_VERSION' ) ) {
-	define( 'ESTECAPELLI_NEW_DOCTORS_VERSION', '2026-11-18.1' );
+	define( 'ESTECAPELLI_NEW_DOCTORS_VERSION', '2026-11-25.1' );
 }
 
 /** English doctor slugs whose translations are created here. */
 function estecapelli_new_doctors_manifest() {
 	return array( 'dr-nisa-nur-polat', 'dt-sevinc-yilmaz-dogan', 'dr-bugra-gultekin' );
+}
+
+/**
+ * Trash every doctor post, in any language, that uses a retired slug
+ * (estecapelli_retired_doctor_slugs() in inc/template-tags.php). Deleting the
+ * English profile does not take its translations with it; doctor slugs are the
+ * same in every language, so the slug finds them all. Trash, not a permanent
+ * delete, so a mistake can still be restored from the dashboard.
+ */
+function estecapelli_trash_retired_doctors() {
+	global $wpdb;
+	$trashed = 0;
+
+	foreach ( estecapelli_retired_doctor_slugs() as $slug ) {
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT ID, post_name FROM {$wpdb->posts}
+				 WHERE post_type = 'doctor' AND post_status NOT IN ('trash','auto-draft')
+				 AND ( post_name = %s OR post_name LIKE %s )",
+				$slug,
+				$wpdb->esc_like( $slug . '-' ) . '%'
+			)
+		);
+		foreach ( (array) $rows as $row ) {
+			// A numbered duplicate (op-dr-hasan-celik-2) is the same doctor;
+			// any other slug that merely starts the same way is left alone.
+			if ( $row->post_name !== $slug && ! preg_match( '/^' . preg_quote( $slug, '/' ) . '-\d+$/', $row->post_name ) ) {
+				continue;
+			}
+			if ( wp_trash_post( (int) $row->ID ) ) {
+				++$trashed;
+			}
+		}
+	}
+
+	return $trashed;
 }
 
 /**
@@ -345,12 +381,15 @@ function estecapelli_run_new_doctors() {
 		'kept'      => array(),
 		'errors'    => array(),
 		'reordered' => 0,
+		'retired'   => 0,
 	);
 
 	if ( ! function_exists( 'update_field' ) || ( ! defined( 'ICL_SITEPRESS_VERSION' ) && ! defined( 'WPML_VERSION' ) ) ) {
 		$result['errors'][] = 'ACF and WPML must both be active.';
 		return $result;
 	}
+
+	$result['retired'] = estecapelli_trash_retired_doctors();
 
 	// Order first: new translations copy the English menu_order.
 	$result['reordered'] = estecapelli_sync_doctor_roster_order();
@@ -467,7 +506,7 @@ function estecapelli_render_new_doctors_page() {
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'New Doctors', 'estecapelli' ); ?></h1>
-		<p><?php esc_html_e( 'Creates the missing translations of newly added doctors and applies the roster order. Existing translations are never changed.', 'estecapelli' ); ?></p>
+		<p><?php esc_html_e( 'Creates the missing translations of newly added doctors, applies the roster order, and moves every language\'s copy of a removed doctor to the trash. Existing translations are otherwise never changed.', 'estecapelli' ); ?></p>
 		<table class="widefat striped" style="max-width:980px;margin-top:1rem;">
 			<thead><tr>
 				<th><?php esc_html_e( 'English profile', 'estecapelli' ); ?></th>
@@ -518,10 +557,11 @@ function estecapelli_new_doctors_notice() {
 	delete_transient( 'estecapelli_new_doctors_result' );
 
 	$summary = sprintf(
-		'New doctors: %d translations created, %d already existed (kept), roster order applied to %d posts.',
+		'New doctors: %d translations created, %d already existed (kept), roster order applied to %d posts, %d removed-doctor profiles moved to trash.',
 		count( $result['created'] ),
 		count( $result['kept'] ),
-		(int) $result['reordered']
+		(int) $result['reordered'],
+		(int) ( $result['retired'] ?? 0 )
 	);
 	printf(
 		'<div class="notice notice-%s is-dismissible"><p>%s</p>%s</div>',

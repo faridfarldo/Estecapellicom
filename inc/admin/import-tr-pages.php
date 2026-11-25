@@ -45,7 +45,6 @@ function estecapelli_tr_doctors_manifest() {
 	return array(
 		'prof-dr-binnur-ustun' => 'prof-dr-binnur-ustun',
 		'mehmet-hanifi-kutlar' => 'mehmet-hanifi-kutlar',
-		'op-dr-hasan-celik'    => 'op-dr-hasan-celik',
 		'op-dr-mehmet-palali'  => 'op-dr-mehmet-palali',
 		'op-dr-necdet-derici'  => 'op-dr-necdet-derici',
 	);

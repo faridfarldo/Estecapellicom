@@ -791,12 +791,6 @@ if ( ! function_exists( 'estecapelli_pages_seed' ) ) {
 							),
 							array(
 								'photo'      => '',
-								'name'       => __( 'Op. Dr. Hasan Çelik', 'estecapelli' ),
-								'position'   => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
-								'resume_url' => home_url( '/en/about-us/our-doctors/op-dr-hasan-celik' ),
-							),
-							array(
-								'photo'      => '',
 								'name'       => __( 'Op. Dr. Mehmet Palalı', 'estecapelli' ),
 								'position'   => __( 'Plastic & Reconstructive Surgeon', 'estecapelli' ),
 								'resume_url' => home_url( '/en/about-us/our-doctors/op-dr-mehmet-palali' ),

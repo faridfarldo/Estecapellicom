@@ -2939,3 +2939,14 @@ if ( ! function_exists( 'estecapelli_wrap_content_tables' ) ) {
 		);
 	}
 }
+
+/**
+ * Doctors removed from the site, by slug (the same slug in every language).
+ * The roster hides them everywhere, and Tools → New Doctors moves every
+ * language's copy to the trash. Do not add these doctors back.
+ *
+ * @return string[]
+ */
+function estecapelli_retired_doctor_slugs() {
+	return array( 'op-dr-ali-durmus', 'op-dr-hasan-celik' );
+}
